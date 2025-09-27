@@ -27,12 +27,15 @@ func get_power():
 
 func set_hp(new_hp : int):
 	hp = new_hp
+	_label_hp.text = str(hp)
 
 func set_stamina(new_stamina : int):
 	stamina = new_stamina
+	_label_stamina.text = str(stamina)
 
 func set_power(new_power : int):
 	power = new_power
+	_label_power.text = str(power)
 
 func get_effect_node():
 	return _effect_node

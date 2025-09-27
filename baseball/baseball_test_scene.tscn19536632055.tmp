@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://fm6qv2iabylr"]
+
+[ext_resource type="PackedScene" uid="uid://bhxsevgsr7a4h" path="res://baseball/game_ui/baseball_manager.tscn" id="1_7g13d"]
+[ext_resource type="PackedScene" uid="uid://d2u44nn46w7k3" path="res://baseball/cards/card_bobson_dugnutt.tscn" id="2_p6kjw"]
+[ext_resource type="PackedScene" uid="uid://bqaymrtiucsr8" path="res://baseball/cards/card_mike_truck.tscn" id="3_d1tqf"]
+[ext_resource type="PackedScene" uid="uid://bsgfsn557mjou" path="res://baseball/cards/card_sleve_mcdichael.tscn" id="4_yv08a"]
+
+[node name="BaseballTestScene" type="Node2D"]
+
+[node name="BaseballCardGame" parent="." node_paths=PackedStringArray("deck_left", "deck_right") instance=ExtResource("1_7g13d")]
+position = Vector2(314, 152)
+deck_left = NodePath("deck_left")
+deck_right = NodePath("deck_right")
+
+[node name="deck_left" type="Node2D" parent="BaseballCardGame"]
+position = Vector2(-309, -1714)
+
+[node name="bobson_dugnutt" parent="BaseballCardGame/deck_left" instance=ExtResource("2_p6kjw")]
+
+[node name="mike_truck" parent="BaseballCardGame/deck_left" instance=ExtResource("3_d1tqf")]
+
+[node name="sleve_mcdichael" parent="BaseballCardGame/deck_left" instance=ExtResource("4_yv08a")]
+
+[node name="deck_right" type="Node2D" parent="BaseballCardGame"]
+position = Vector2(7, -1711)
+
+[node name="sleve_mcdichael" parent="BaseballCardGame/deck_right" instance=ExtResource("4_yv08a")]
+
+[node name="bobson_dugnutt" parent="BaseballCardGame/deck_right" instance=ExtResource("2_p6kjw")]
+
+[node name="mike_truck" parent="BaseballCardGame/deck_right" instance=ExtResource("3_d1tqf")]

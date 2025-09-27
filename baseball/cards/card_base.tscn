@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://bocxc8pmuf3na"]
+
+[ext_resource type="Script" uid="uid://xm51ra1miw1i" path="res://scripts/baseball/card_base.gd" id="1_j62ys"]
+[ext_resource type="Texture2D" uid="uid://bc3h2dltwyv7u" path="res://sprites/baseball/card_base.png" id="2_vdodt"]
+[ext_resource type="Texture2D" uid="uid://b0a4srplao03h" path="res://sprites/baseball/portraits/placeholder.png" id="3_vdodt"]
+[ext_resource type="LabelSettings" uid="uid://ds4opc02443bj" path="res://interface/location_label_settings.tres" id="3_y0m4l"]
+[ext_resource type="Script" uid="uid://bbkrydieo1hg7" path="res://scripts/baseball/effects/blank_effect.gd" id="5_y0m4l"]
+
+[node name="CardBase" type="Node2D"]
+script = ExtResource("1_j62ys")
+
+[node name="base_border" type="Sprite2D" parent="."]
+z_index = 1
+texture = ExtResource("2_vdodt")
+
+[node name="portrait" type="Sprite2D" parent="."]
+texture = ExtResource("3_vdodt")
+
+[node name="HP" type="Label" parent="."]
+z_index = 1
+offset_left = -67.0
+offset_top = 84.0
+offset_right = -27.0
+offset_bottom = 107.0
+text = "1"
+
+[node name="STAMINA" type="Label" parent="."]
+z_index = 1
+offset_left = -5.0
+offset_top = 85.0
+offset_right = 35.0
+offset_bottom = 134.0
+text = "1
+"
+
+[node name="POWER" type="Label" parent="."]
+z_index = 1
+offset_left = 55.0
+offset_top = 85.0
+offset_right = 95.0
+offset_bottom = 108.0
+text = "1"
+
+[node name="NAME" type="Label" parent="."]
+z_index = 1
+offset_left = -33.0
+offset_top = -115.0
+offset_right = 30.0
+offset_bottom = -92.0
+text = "TODD BONZALEZ"
+label_settings = ExtResource("3_y0m4l")
+
+[node name="DESCRIPTION" type="Label" parent="."]
+z_index = 1
+offset_left = -31.0
+offset_top = 44.0
+offset_right = 32.0
+offset_bottom = 67.0
+text = "\"what a guy!\""
+label_settings = ExtResource("3_y0m4l")
+
+[node name="effect_node" type="Node2D" parent="."]
+script = ExtResource("5_y0m4l")

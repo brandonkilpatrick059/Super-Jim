@@ -44,17 +44,12 @@ script = ExtResource("5_y0m4l")
 z_index = 2
 position = Vector2(33, 26)
 creates_blood_particle = true
-creates_stat_particle = true
-reverse_glow = false
 
 [node name="PowReadout" parent="." instance=ExtResource("7_l5nru")]
 z_index = 2
 position = Vector2(-32, 23)
-creates_stat_particle = true
-reverse_glow = false
 
 [node name="StamReadout" parent="." instance=ExtResource("8_bv7cg")]
 z_index = 3
 position = Vector2(0, 28)
 creates_stat_particle = false
-reverse_glow = false

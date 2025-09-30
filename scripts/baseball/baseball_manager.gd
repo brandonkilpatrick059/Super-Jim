@@ -3,7 +3,11 @@ extends Node2D
 @export var deck_left : Node2D
 @export var deck_right : Node2D
 @onready var active_card_left = $active_card_left
+@onready var card_left_2 = $left_2
+@onready var card_left_3 = $left_3
 @onready var active_card_right = $active_card_right
+@onready var card_right_2 = $right_2
+@onready var card_right_3 = $right_3
 @onready var bat_arms_left = $bat_arms_left
 @onready var bat_arms_right = $bat_arms_right
 @onready var sound_player = $AudioStreamPlayer2D
@@ -16,7 +20,7 @@ var max_lineup = 10
 
 var game_timer := Timer.new()
 var killing_timer := Timer.new()
-var turn_secs = 0.5
+var turn_secs = 0.375
 
 var right_is_going = true
 
@@ -40,6 +44,10 @@ func _ready():
 	bat_arms_right.visible = false
 	active_card_left.get_child(0).queue_free()
 	active_card_right.get_child(0).queue_free()
+	card_left_2.get_child(0).queue_free()
+	card_right_2.get_child(0).queue_free()
+	card_left_3.get_child(0).queue_free()
+	card_right_3.get_child(0).queue_free()
 	game_timer.one_shot = true
 	add_child(game_timer)
 	killing_timer.one_shot = true
@@ -74,19 +82,43 @@ func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card) ->
 	game_timer.start(turn_secs)
 	return card_killed
 
-func card_right():
-	return active_card_right.get_child(0)
+func card_right(num : int = 1):
+	if(num == 1):
+		return active_card_right.get_child(0)
+	elif(num == 2):
+		return card_right_2.get_child(0)
+	elif(num == 3):
+		return card_right_3.get_child(0)
 	
-func card_left():
-	return active_card_left.get_child(0)
+func card_left(num : int = 1):
+	if(num == 1):
+		return active_card_left.get_child(0)
+	elif(num == 2):
+		return card_left_2.get_child(0)
+	elif(num == 3):
+		return card_left_3.get_child(0)
 
-func set_card_right(card : Node2D):
-	active_card_right.add_child(card)
-	card.global_position = active_card_right.global_position
+func set_card_right(card : Node2D, num : int = 1):
+	if(num == 1):
+		active_card_right.add_child(card)
+		card.global_position = active_card_right.global_position
+	if(num == 2):
+		card_right_2.add_child(card)
+		card.global_position = card_right_2.global_position
+	if(num == 3):
+		card_right_3.add_child(card)
+		card.global_position = card_right_3.global_position
 	
-func set_card_left(card : Node2D):
-	active_card_left.add_child(card)
-	card.global_position = active_card_left.global_position
+func set_card_left(card : Node2D, num : int = 1):
+	if(num == 1):
+		active_card_left.add_child(card)
+		card.global_position = active_card_left.global_position
+	if(num == 2):
+		card_left_2.add_child(card)
+		card.global_position = card_left_2.global_position
+	if(num == 3):
+		card_left_3.add_child(card)
+		card.global_position = card_left_3.global_position
 
 func update_active_cards():
 	if(card_right().get_hp() == 0):
@@ -98,8 +130,20 @@ func start_game():
 	game_started = true
 	var left_card = deck_left.get_child(left_index).duplicate()
 	set_card_left(left_card)
+	if(left_index < deck_right.get_children().size()+1):
+		var left_card_2 = deck_left.get_child(left_index+1).duplicate()
+		set_card_left(left_card_2,2)
+	if(left_index < deck_right.get_children().size()+2):
+		var left_card_3 = deck_left.get_child(left_index+2).duplicate()
+		set_card_left(left_card_3,3)
 	var right_card = deck_right.get_child(right_index).duplicate()
 	set_card_right(right_card)
+	if(right_index < deck_right.get_children().size()+1):
+		var right_card_2 = deck_left.get_child(right_index+1).duplicate()
+		set_card_right(right_card_2,2)
+	if(right_index < deck_right.get_children().size()+2):
+		var right_card_3 = deck_left.get_child(right_index+2).duplicate()
+		set_card_right(right_card_3,3)
 	sound_player.stream = load("res://audio/soundFX/baseball/baseball.wav")
 	sound_player.play()
 	game_timer.start(3)
@@ -132,19 +176,41 @@ func killing_card_process():
 			killing_timer.start(killing_timer_step_secs)
 	else:
 		if(killing_right_card):
+			#TODO: should smoothly float into position instead of what I'm abt to do
 			card_right().queue_free()
+			if(card_right(2)):
+				card_right(2).queue_free()
+			if(card_right(3)):
+				card_right(3).queue_free()
 			right_index = right_index + 1
 			if(right_index < deck_right.get_children().size()):	
 				var right_card = deck_right.get_child(right_index).duplicate()
 				set_card_right(right_card)
+				if(right_index + 1 < deck_right.get_children().size()):
+					var right_card_2 = deck_right.get_child(right_index+1).duplicate()
+					set_card_right(right_card_2,2)
+				if(right_index + 2 < deck_right.get_children().size()):
+					var right_card_3 = deck_right.get_child(right_index+2).duplicate()
+					set_card_right(right_card_3,3)
+				
 			else:
 				game_is_over = true
 		else:
 			card_left().queue_free()
+			if(card_left(2)):
+				card_left(2).queue_free()
+			if(card_left(3)):
+				card_left(3).queue_free()
 			left_index = left_index + 1
 			if(left_index < deck_left.get_children().size()):	
 				var left_card = deck_left.get_child(left_index).duplicate()
 				set_card_left(left_card)
+				if(left_index + 1 < deck_left.get_children().size()):
+					var left_card_2 = deck_left.get_child(left_index+1).duplicate()
+					set_card_left(left_card_2,2)
+				if(left_index + 2 < deck_left.get_children().size()):
+					var left_card_3 = deck_left.get_child(left_index+2).duplicate()
+					set_card_left(left_card_3,3)
 			else:
 				game_is_over = true
 		killing_card = false
@@ -163,6 +229,8 @@ func _physics_process(delta: float):
 					active_card_right.global_position.y  = original_y  - 16
 					bat_arms_left.visible = false
 					bat_arms_right.visible = true
+					bat_arms_right.stop()
+					bat_arms_right.play("default",2)
 					var card_killed = run_turn(card_right(), card_left())
 					right_is_going = false
 				else:
@@ -170,6 +238,8 @@ func _physics_process(delta: float):
 					active_card_right.global_position.y  = original_y
 					bat_arms_left.visible = true
 					bat_arms_right.visible = false
+					bat_arms_left.stop()
+					bat_arms_left.play("default",2)
 					var card_killed = run_turn(card_left(), card_right())
 					right_is_going = true
 				game_timer.start(turn_secs)

@@ -1,0 +1,59 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://dugnyjwub8xs"]
+
+[ext_resource type="Texture2D" uid="uid://cwehq0ap6oadu" path="res://sprites/baseball/bat_arms_anim.png" id="1_ort00"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ort00"]
+atlas = ExtResource("1_ort00")
+region = Rect2(256, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c86qc"]
+atlas = ExtResource("1_ort00")
+region = Rect2(0, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blk4b"]
+atlas = ExtResource("1_ort00")
+region = Rect2(128, 0, 128, 96)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ort00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c86qc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blk4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blk4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blk4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blk4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blk4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blk4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blk4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blk4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blk4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blk4b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsobaybaolmd6"]
+
+[ext_resource type="Script" uid="uid://n8ti4p8mhn2b" path="res://scripts/baseball/stat_readouts/stat_readout.gd" id="1_gve63"]
+[ext_resource type="SpriteFrames" uid="uid://pbrgnkxe1gsa" path="res://sprites/spritesheets/spriteframes/baseball/power_spriteframes.tres" id="1_wbbiv"]
+
+[node name="PowReadout" type="Node2D"]
+script = ExtResource("1_gve63")
+creates_stat_particle = null
+reverse_glow = null
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_wbbiv")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -5.0
+offset_top = -7.0
+offset_right = 35.0
+offset_bottom = 16.0
+text = "1"

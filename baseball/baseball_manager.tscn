@@ -20,13 +20,12 @@ position = Vector2(64, 0)
 [node name="bat_arms_left" type="Sprite2D" parent="."]
 z_index = 2
 position = Vector2(16, -32)
-scale = Vector2(1.87637, 1.87637)
 texture = ExtResource("3_3h206")
 
 [node name="bat_arms_right" type="Sprite2D" parent="."]
 z_index = 2
 position = Vector2(-16, -32)
-scale = Vector2(-1.96363, 1.87637)
+scale = Vector2(-1, 0.955)
 texture = ExtResource("3_3h206")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

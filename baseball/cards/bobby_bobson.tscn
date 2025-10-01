@@ -11,10 +11,11 @@
 
 [node name="bobby_bobson" type="Node2D"]
 script = ExtResource("1_jgxaj")
+team = null
 card_name = "Bobby Bobson"
-hp = 7
+hp = 5
 stamina = 0
-power = 4
+power = 9
 
 [node name="base_border" type="Sprite2D" parent="."]
 z_index = 1
@@ -29,7 +30,7 @@ offset_left = -21.0
 offset_top = -61.0
 offset_right = 42.0
 offset_bottom = -38.0
-text = "TODD BONZALEZ"
+text = "Bobby Bobson"
 label_settings = ExtResource("4_jgxaj")
 
 [node name="DESCRIPTION" type="Label" parent="."]
@@ -48,14 +49,10 @@ script = ExtResource("5_oeqvw")
 z_index = 2
 position = Vector2(33, 27)
 creates_blood_particle = true
-creates_stat_particle = true
-reverse_glow = false
 
 [node name="PowReadout" parent="." instance=ExtResource("7_xg0dl")]
 z_index = 2
 position = Vector2(-32, 24)
-creates_stat_particle = true
-reverse_glow = false
 
 [node name="StamReadout" parent="." instance=ExtResource("8_8wqlb")]
 z_index = 3

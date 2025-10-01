@@ -9,13 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://dsobaybaolmd6" path="res://scripts/baseball/stat_readouts/pow_readout.tscn" id="7_q4q0y"]
 [ext_resource type="PackedScene" uid="uid://bpx2t73k84hm6" path="res://scripts/baseball/stat_readouts/stam_readout.tscn" id="8_jweip"]
 
-[node name="mickey_bobdogg" type="Node2D"]
+[node name="mickey_hotdogg" type="Node2D"]
 script = ExtResource("1_k35xx")
 team = null
-card_name = "Mickey Bobdogg"
+card_name = "Mickey Hotdogg"
 hp = 6
 stamina = 5
-flat_buff_stamina_next = 4
+adds_stamina_next = true
 
 [node name="base_border" type="Sprite2D" parent="."]
 z_index = 1
@@ -30,17 +30,17 @@ offset_left = -20.0
 offset_top = -61.0
 offset_right = 90.0
 offset_bottom = -38.0
-text = "Mickey Bobdogg"
+text = "Mickey Hotdogg"
 label_settings = ExtResource("4_k35xx")
 
 [node name="DESCRIPTION" type="Label" parent="."]
 z_index = 1
-offset_left = -28.0
+offset_left = -35.0
 offset_top = 41.0
-offset_right = 38.0
+offset_right = 42.0
 offset_bottom = 64.0
-text = "+4 to stamina of
-the next card"
+text = "passes remaining 
+stamina to next card"
 label_settings = ExtResource("4_k35xx")
 
 [node name="effect_node" type="Node2D" parent="."]
@@ -50,13 +50,18 @@ script = ExtResource("5_wntwn")
 z_index = 2
 position = Vector2(33, 25)
 creates_blood_particle = true
+creates_stat_particle_debuff = true
+creates_stat_particle_buff = true
 
 [node name="PowReadout" parent="." instance=ExtResource("7_q4q0y")]
 z_index = 2
 position = Vector2(-32, 22)
+creates_stat_particle_debuff = true
+creates_stat_particle_buff = true
 
 [node name="StamReadout" parent="." instance=ExtResource("8_jweip")]
 z_index = 3
 position = Vector2(0, 27)
-creates_stat_particle = false
+creates_stat_particle_debuff = false
+creates_stat_particle_buff = true
 reverse_glow = true

@@ -12,6 +12,7 @@ extends Node2D
 @onready var bat_arms_right = $bat_arms_right
 @onready var sound_player = $AudioStreamPlayer2D
 @onready var sound_player2 = $AudioStreamPlayer2D2
+@onready var sound_player3 = $AudioStreamPlayer2D2
 
 var left_index = 0
 var right_index = 0
@@ -21,7 +22,7 @@ var max_lineup = 10
 var shaking_timer := Timer.new()
 var game_timer := Timer.new()
 var killing_timer := Timer.new()
-var turn_secs = 0.2
+var turn_secs = 0.25
 
 var effects_phase = false
 
@@ -135,6 +136,22 @@ func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 			card_killed = true
 			sound_player2.stream = load("res://audio/soundFX/putdown.wav")
 			sound_player2.play()
+			
+			if(attacking_card.buff_dmg_on_kill > 0):
+				var buff_amt = attacking_card.buff_dmg_on_kill
+				attacking_card.set_power(attacking_card.get_power() + buff_amt)
+				sound_player3.stream = load("res://audio/soundFX/baseball/buff.wav")
+				sound_player3.play() 
+			if(attacking_card.buff_stamina_on_kill > 0):
+				var buff_amt = attacking_card.buff_stamina_on_kill
+				attacking_card.set_stamina(attacking_card.get_stamina() + buff_amt)
+				sound_player3.stream = load("res://audio/soundFX/baseball/buff.wav")
+				sound_player3.play() 
+			if(attacking_card.buff_hp_on_kill > 0):
+				var buff_amt = attacking_card.buff_hp_on_kill
+				attacking_card.set_hp(attacking_card.get_hp() + buff_amt)
+				sound_player3.stream = load("res://audio/soundFX/baseball/buff.wav")
+				sound_player3.play() 
 		if(damage_done <= 3):
 			sound_player.stream = load("res://audio/soundFX/baseball/hit2.wav")
 		elif(damage_done > 3 && damage_done <= 6):
@@ -230,6 +247,22 @@ func enact_effects():
 			queued_damage_buff_left = flat_buff_damage 
 			
 	##stat carries to next card
+	if(card_right.get_hp() == 0):
+		if(card_right.adds_hp_next):
+			queued_hp_buff_right = card_right.get_hp()
+		if(card_right.adds_stamina_next):
+			queued_stamina_buff_right = card_right.get_stamina()
+		if(card_right.adds_dmg_next):
+			queued_damage_buff_right = card_right.get_damage()
+	if(card_left.get_hp() == 0):
+		if(card_left.adds_hp_next):
+			queued_hp_buff_left = card_left.get_hp()
+		if(card_left.adds_stamina_next):
+			queued_stamina_buff_left = card_left.get_stamina()
+		if(card_left.adds_dmg_next):
+			queued_damage_buff_left = card_left.get_damage()
+	
+	#stat carries from previous card
 
 
 func start_game():

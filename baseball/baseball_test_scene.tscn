@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://fm6qv2iabylr"]
 
-[ext_resource type="PackedScene" uid="uid://bhxsevgsr7a4h" path="res://sprites/spritesheets/spriteframes/baseball/baseball_manager.tscn" id="1_7g13d"]
+[ext_resource type="PackedScene" uid="uid://bhxsevgsr7a4h" path="res://baseball/baseball_manager.tscn" id="1_7g13d"]
 [ext_resource type="PackedScene" uid="uid://dky561g1q1ul5" path="res://baseball/cards/bobby_bobson.tscn" id="2_uc6r2"]
 [ext_resource type="PackedScene" uid="uid://pq0gqmxbxwml" path="res://baseball/cards/jimmy_jo.tscn" id="3_p6kjw"]
 [ext_resource type="PackedScene" uid="uid://c7tkuxihuj6tg" path="res://baseball/cards/mickey_bobdogg.tscn" id="4_p6kjw"]

@@ -57,5 +57,5 @@ position = Vector2(-32, 24)
 [node name="StamReadout" parent="." instance=ExtResource("8_8wqlb")]
 z_index = 3
 position = Vector2(0, 29)
-creates_stat_particle = false
+creates_stat_particle_debuff = false
 reverse_glow = true

@@ -28,7 +28,6 @@ extends Node2D
 @export var adds_stamina_prev = false
 @export var adds_dmg_prev = false
 
-#TODO: implement
 #adds flat buff to next card
 @export var flat_buff_hp_next = 0
 @export var flat_buff_stamina_next = 0
@@ -46,6 +45,8 @@ extends Node2D
 @export var team_number_is_stamina = false
 @export var team_number_is_dmg = false
 
+var stat_max = 9
+
 func get_flat_buff_hp():
 	return flat_buff_hp_next
 
@@ -54,6 +55,15 @@ func get_flat_buff_damage():
 
 func get_flat_buff_stamina():
 	return flat_buff_stamina_next
+
+func get_buff_hp_on_kill():
+	return buff_stamina_on_kill
+
+func get_buff_damage_on_kill():
+	return flat_buff_damage_next
+
+func get_buff_stamina_on_kill():
+	return buff_dmg_on_kill
 
 func _ready() -> void:
 	_hp_meter.set_stat(hp)
@@ -78,16 +88,22 @@ func power_glow():
 	_pow_meter.glow()
 
 func set_hp(new_hp : int):
+	if(new_hp > stat_max):
+		new_hp = stat_max
 	var diff = new_hp - hp
 	hp = new_hp
 	_hp_meter.modify_stat(diff)
 
 func set_stamina(new_stamina : int):
+	if(new_stamina > stat_max):
+		new_stamina = stat_max
 	var diff = new_stamina - stamina
 	stamina = new_stamina
 	_stam_meter.modify_stat(diff)
 
 func set_power(new_power : int):
+	if(new_power > stat_max):
+		new_power = stat_max
 	var diff = new_power - power
 	power = new_power
 	_pow_meter.modify_stat(diff)

@@ -19,14 +19,18 @@ func _ready():
 	visible = false
 
 func set_and_fire(num : int):
-	label.text = str(num)
+	if(num > 0):
+		label.text = str("+",num)
+	else:
+		label.text = str(num)
+		
 	if(num < 0):
 		var red = Color (1.0,0.0,0.0,1.0)
-		label.set("theme_override_colors/font_color",red)
+		label.modulate = red
 	else:
 		is_buff = true
 		var green = Color (0.0,1.0,0.0,1.0)
-		label.set("theme_override_colors/font_color",green)
+		label.modulate = green
 	visible = true
 	fired = true
 	timer.start(fade_step_secs)
@@ -40,10 +44,10 @@ func _physics_process(delta: float) -> void:
 				text_alpha = text_alpha - alpha_fade_step
 				if(is_buff):
 					var green = Color (0.0,1.0,0.0,text_alpha)
-					label.set("theme_override_colors/font_color",green)
+					label.modulate = green
 				else:
 					var red = Color (1.0,0.0,0.0,text_alpha)
-					label.set("theme_override_colors/font_color",red)
+					label.modulate = red
 			if(text_alpha <=0):
 				queue_free()
 		global_position.y = global_position.y - transform_step

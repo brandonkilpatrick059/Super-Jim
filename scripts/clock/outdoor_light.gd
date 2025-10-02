@@ -60,7 +60,11 @@ func fade_to_black():
 		var day_ratio = time_keeper.get_time_as_ratio_of_full_day()
 		fade_out_interpolation.colors = [interpolation_gradient.sample(day_ratio), Color.BLACK]
 		fade_out_interpolation.offsets = [0.0, 1.0]
-		
+
+func end_fade():
+	fading = false
+	fade_level = 0
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(!fading && !paused):

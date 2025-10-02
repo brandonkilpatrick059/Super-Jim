@@ -22,6 +22,7 @@ var player_die = preload("res://entities/characters/player/player_die.tscn")
 var dash_get = preload("res://interface/dash_get.tscn")
 var die_material = preload("res://entities/characters/player/die_material.tres")
 var speech_bubble = preload("res://dialog/speech_bubble.tscn")
+var player_material = preload("res://entities/characters/player/player_material.tres")
 
 var sound_player := AudioStreamPlayer.new()
 
@@ -253,6 +254,20 @@ func die():
 		visible = false
 		die_guy.start_dyin(_character_base.get_facing_dir())
 		dead = true
+
+func resurrect():
+	if(dead):
+		control_frozen = false
+		_ui.visible = true
+		_character_base.reparent(self)
+		_character_base.global_position = global_position
+		var spawn_point = get_tree().get_first_node_in_group("player_spawn")
+		global_position = spawn_point.global_position
+		visible = true
+		var die_guy = get_tree().get_first_node_in_group("dead_player")
+		die_guy.queue_free()
+		dead = false
+		current_hp = 1
 
 func handle_interact():
 	if Input.is_action_just_pressed("interact"):

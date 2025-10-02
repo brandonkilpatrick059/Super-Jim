@@ -15,4 +15,3 @@ func get_ware_name() -> String:
 
 func get_cost() -> int:
 	return cost
-

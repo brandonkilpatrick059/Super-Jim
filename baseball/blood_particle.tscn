@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7nsts4ui7mnd"]
+
+[ext_resource type="Script" uid="uid://by8dqhjfpd858" path="res://baseball/blood_particle.gd" id="2_1erld"]
+[ext_resource type="SpriteFrames" uid="uid://n4vdin2n6arc" path="res://sprites/spritesheets/spriteframes/baseball/blood_particle.tres" id="2_5bmem"]
+
+[node name="BloodParticle" type="Node2D"]
+script = ExtResource("2_1erld")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 4
+sprite_frames = ExtResource("2_5bmem")

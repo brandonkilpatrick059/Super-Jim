@@ -99,8 +99,15 @@ func toggle_menu_pause():
 			toggle_pause_parent_tree()
 
 func game_over():
+	is_game_over = true
 	toggle_pause_parent_tree()
 	ambient_dark.fade_to_black()
+
+func game_continue():
+	ambient_dark.end_fade()
+	toggle_pause_parent_tree()
+	is_game_over = false
+	player_ref.resurrect()
 
 func get_informal_time_string() -> String:
 	var informal_string = ""
@@ -122,8 +129,7 @@ func get_input():
 		if(!is_game_over):
 			toggle_menu_pause()
 		elif(is_game_over):
-			toggle_pause_parent_tree()
-			get_tree().reload_current_scene()
+			game_continue()
 
 func set_clock(hour : int):
 	clock = hour
@@ -153,6 +159,5 @@ func _process(delta):
 		sound_player.play()
 	
 	if(player_ref.dead && !is_game_over):
-		is_game_over = true
 		game_over()
 		

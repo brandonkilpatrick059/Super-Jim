@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://ds74fw8ddlwdt"]
+
+[ext_resource type="Texture2D" uid="uid://jfkusnxvpdem" path="res://sprites/tilesets/water_brick_footer_2.png" id="1_8k4he"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iigj4"]
+atlas = ExtResource("1_8k4he")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33rps"]
+atlas = ExtResource("1_8k4he")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jne1i"]
+atlas = ExtResource("1_8k4he")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_756qr"]
+atlas = ExtResource("1_8k4he")
+region = Rect2(96, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iigj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33rps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jne1i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_756qr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]

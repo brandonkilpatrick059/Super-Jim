@@ -11,7 +11,6 @@ func _ready():
 	timer.one_shot = true
 	add_child(timer)
 	timer.start(seconds_between_particles)
-	
 
 func _physics_process(delta: float) -> void:
 	if(!Engine.is_editor_hint() || (Engine.is_editor_hint() && run_in_editor)):
@@ -21,4 +20,3 @@ func _physics_process(delta: float) -> void:
 			add_child(new_particle)
 			new_particle.global_position = global_position
 			timer.start(seconds_between_particles)
-		

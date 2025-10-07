@@ -2,19 +2,19 @@
 
 [ext_resource type="Texture2D" uid="uid://b3udfwspumwu1" path="res://sprites/tilesets/water_cliff_footer_2.png" id="1_dyaqd"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rqmlm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxyql"]
 atlas = ExtResource("1_dyaqd")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3m7ts"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q716n"]
 atlas = ExtResource("1_dyaqd")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w73ut"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftm6u"]
 atlas = ExtResource("1_dyaqd")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_od5rl"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_c65qm"]
 atlas = ExtResource("1_dyaqd")
 region = Rect2(96, 0, 32, 32)
 
@@ -22,16 +22,16 @@ region = Rect2(96, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rqmlm")
+"texture": SubResource("AtlasTexture_sxyql")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3m7ts")
+"texture": SubResource("AtlasTexture_q716n")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_w73ut")
+"texture": SubResource("AtlasTexture_ftm6u")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_od5rl")
+"texture": SubResource("AtlasTexture_c65qm")
 }],
 "loop": true,
 "name": &"default",

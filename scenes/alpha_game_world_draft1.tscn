@@ -33,7 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://tk0wlft2lk84" path="res://entities/dynamic world/window_4_all_night.tscn" id="31_q332v"]
 [ext_resource type="Texture2D" uid="uid://bskq5e775yxyx" path="res://sprites/game_world/decals/onyx_cave_ad.png" id="32_65yla"]
 [ext_resource type="PackedScene" uid="uid://e3sohpentkkp" path="res://entities/props/static props/train_stat_12hr_clock.tscn" id="33_5ij42"]
-[ext_resource type="PackedScene" uid="uid://dh2vssi64lbgs" path="res://sprites/lights/train_tracks.tscn" id="34_gbrjb"]
+[ext_resource type="PackedScene" uid="uid://dh2vssi64lbgs" path="res://entities/props/static props/city/train_tracks.tscn" id="34_gbrjb"]
 [ext_resource type="PackedScene" uid="uid://70py3s8or8pa" path="res://entities/props/static props/city/train_tracks_rev.tscn" id="35_id4mi"]
 [ext_resource type="PackedScene" uid="uid://dpua352fqdglw" path="res://entities/dynamic world/delivery_door1.tscn" id="36_nhaoa"]
 [ext_resource type="TileSet" uid="uid://dfyrmia6itd31" path="res://sprites/tilesets/indoor_test_set_1.tres" id="37_axv8n"]

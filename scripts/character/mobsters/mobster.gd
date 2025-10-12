@@ -61,12 +61,6 @@ const nav_path_resolution = 4
 const max_hit_points = 3
 var hit_points = max_hit_points
 
-#perception_lag_timer is a timer for introducing random, small wait times
-#to perception updates in an attempt to decrease processor load of perception
-#checking
-var perception_lag_timer = Timer.new()
-var perception_lag_wait_secs = 0.1
-
 var invincibility_timer = Timer.new()
 var damage_collision_layer : int
 var is_invincible = false
@@ -87,9 +81,6 @@ func _ready():
 		
 		invincibility_timer.one_shot = true
 		add_child(invincibility_timer)
-		
-		perception_lag_timer.one_shot = true
-		add_child(perception_lag_timer)
 	
 	#for updating character composition in the editor
 	if(Engine.is_editor_hint()):
@@ -181,10 +172,8 @@ func update_perceptions():
 	
 	update_line_of_sight_to_target()
 	
-	if(perception_lag_timer.is_stopped()):
-		check_vision()
-		check_hearing()
-		perception_lag_timer.start(random.randf_range(0,perception_lag_wait_secs))
+	check_vision()
+	check_hearing()
 	detect_sparks()
 
 	#clean out null nodes from sparks queue-freeing
@@ -309,7 +298,7 @@ func get_nearest_point_on_mesh(point : Vector2):
 	var rid = _navigation_agent.get_navigation_map()
 	return NavigationServer2D.map_get_closest_point(rid, point)
 
-#returns a list of valid mesh points in 8 cardinal directions, points 
+#returns a list of oints in 8 cardinal directions, points 
 #fanning out at an interval of step_distance for num_steps intervals
 func get_stepped_points_from_pos(pos: Vector2, num_steps, step_distance) -> Array[Vector2]:
 	var iterator = 1
@@ -536,10 +525,22 @@ func _on_set_ai_target_position():
 	perceptions.target_pos = perceptions.target_obj.global_position
 
 func _on_set_ai_target(entity : Node):
-	perceptions.target_obj = entity
-	update_line_of_sight_to_target()
-	send_perceptions()
-	perceptions.target_pos = perceptions.target_obj.global_position
+	if(entity != null):
+		perceptions.target_obj = entity
+		update_line_of_sight_to_target()
+		send_perceptions()
+		perceptions.target_pos = perceptions.target_obj.global_position
+	else:
+		#if no entity is given as target, 
+		#select random enemy mob in line of sight
+		var mobsters = get_tree().get_nodes_in_group("mobster")
+		perceptions.target_obj = null
+		for mob in mobsters:
+			if mob.is_in_group(opposing_team) && active_has_line_of_sight_to_object(mob):
+				perceptions.target_obj = mob
+				update_line_of_sight_to_target()
+				send_perceptions()
+				perceptions.target_pos = perceptions.target_obj.global_position
 
 func _on_face_ai_target_pos():
 	var vector_to_target = global_position.direction_to(perceptions.target_pos)
@@ -575,12 +576,6 @@ func update_vision():
 ##############
 #PROCESS STUFF
 ##############
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	#if(!Engine.is_editor_hint()):
-		#update()
-		#send_perceptions()
 
 func _physics_process(delta):
 	if(!Engine.is_editor_hint()):

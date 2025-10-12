@@ -23,6 +23,9 @@ func handle_sparks():
 				if(node.is_in_group(ai_state_machine.get_perceptions().opposing_team) &&
 				!ai_state_machine.get_perceptions().invincible):
 					reduce_health.emit()
+					var assailant_obj = node.get_source_obj()
+					set_target.emit(assailant_obj)
+					ai_state_machine.transition_to(mobster_states.exclaiming)
 					return true
 			#knockout when player throws object
 			elif(!ai_state_machine.get_perceptions().invincible && node.is_in_group("spark")):

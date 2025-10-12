@@ -34,7 +34,7 @@ func is_faded_out() -> bool:
 		return false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta: float) -> void:
 	update_fade_alpha()
 	if(not locked):
 		handle_camera_pan()

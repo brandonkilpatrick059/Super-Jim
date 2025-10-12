@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://b101644ss2lwo"]
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://bk20yhmb2c2sn"]
 
 [ext_resource type="Texture2D" uid="uid://i4kfuyv0ak2o" path="res://sprites/spritesheets/effects/waves_1.png" id="1_yrvyr"]
 [ext_resource type="Texture2D" uid="uid://bk53rd5l1fstx" path="res://sprites/tilesets/waves_1.png" id="2_u573h"]

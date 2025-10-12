@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c1ghc3q0ijo8k"]
 
-[ext_resource type="SpriteFrames" uid="uid://cd28ei2rci8sg" path="res://sprites/spritesheets/spriteframes/effects/mist.tres" id="1_bt60j"]
-[ext_resource type="Script" uid="uid://iououxrvl5te" path="res://scripts/utility/particle.gd" id="1_sjybb"]
+[ext_resource type="SpriteFrames" uid="uid://datveu54cse7y" path="res://sprites/spritesheets/spriteframes/effects/mist.tres" id="1_bt60j"]
+[ext_resource type="Script" path="res://scripts/utility/particle.gd" id="1_sjybb"]
 
 [node name="mist" type="RigidBody2D"]
 inertia = 1.0

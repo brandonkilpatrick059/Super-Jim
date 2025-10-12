@@ -69,7 +69,8 @@ func physics_process(_delta: float):
 						ai_state_machine.transition_to(mobster_states.exclaiming)
 						return
 			ai_state_machine.transition_to(mobster_states.investigate)
-		elif(nodes_in_vision.has(pizza) && 
+		elif(pizza != null &&
+		nodes_in_vision.has(pizza) && 
 		!ai_state_machine.perceptions.holding_object &&
 		!pizza.is_picked_up()):
 			set_target.emit(pizza)

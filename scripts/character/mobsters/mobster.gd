@@ -19,6 +19,7 @@ var blu_base = preload("res://sprites/spritesheets/spriteframes/characters/base/
 @onready var _navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var _head_collider = $head_shape
 @onready var _body_collider = $CollisionShape2D
+@onready var _spark_detector : Area2D = $spark_detector
 
 @export var current_patrol_point :Node2D = null
 
@@ -89,7 +90,6 @@ func _ready():
 		
 		perception_lag_timer.one_shot = true
 		add_child(perception_lag_timer)
-		perception_lag_timer.start(random.randf_range(0,perception_lag_wait_secs))
 	
 	#for updating character composition in the editor
 	if(Engine.is_editor_hint()):
@@ -184,8 +184,8 @@ func update_perceptions():
 	if(perception_lag_timer.is_stopped()):
 		check_vision()
 		check_hearing()
-		detect_sparks()
 		perception_lag_timer.start(random.randf_range(0,perception_lag_wait_secs))
+	detect_sparks()
 
 	#clean out null nodes from sparks queue-freeing
 	var iter = 0
@@ -271,13 +271,12 @@ func check_hearing():
 	perceptions.nodes_in_hearing = nodes_in_hearing
 
 func detect_sparks():
-	var sparks = get_tree().get_nodes_in_group("spark")
-	var detection_distance = 20
-	for spark in sparks:
-		if(is_instance_valid(spark) &&
-			spark not in perceptions.colliding_nodes &&
-			spark.global_position.distance_to(global_position) < detection_distance):
-				perceptions.colliding_nodes.append(spark)
+	var bodies_in_detector = _spark_detector.get_overlapping_bodies()
+	for body in bodies_in_detector:
+		if(is_instance_valid(body) &&
+			body.is_in_group("spark") &&
+			body not in perceptions.colliding_nodes):
+				perceptions.colliding_nodes.append(body)
 
 ###################################################################################################
 #ACTIONS- signal functions and helpers that cause the mobster to take some action in the game world
@@ -317,21 +316,21 @@ func get_stepped_points_from_pos(pos: Vector2, num_steps, step_distance) -> Arra
 	var points : Array[Vector2] = []
 	while(iterator <= num_steps):
 		var step = step_distance * iterator
-		var north = get_nearest_point_on_mesh(Vector2(pos.x, pos.y - step))
+		var north = Vector2(pos.x, pos.y - step)
 		points.append(north)
-		var northEast = get_nearest_point_on_mesh(Vector2(pos.x + step, pos.y - step))
+		var northEast = Vector2(pos.x + step, pos.y - step)
 		points.append(northEast)
-		var east = get_nearest_point_on_mesh(Vector2(pos.x + step, pos.y))
+		var east = Vector2(pos.x + step, pos.y)
 		points.append(east)
-		var southEast = get_nearest_point_on_mesh(Vector2(pos.x + step, pos.y + step))
+		var southEast = Vector2(pos.x + step, pos.y + step)
 		points.append(southEast)
-		var south = get_nearest_point_on_mesh(Vector2(pos.x, pos.y + step))
+		var south = Vector2(pos.x, pos.y + step)
 		points.append(south)
-		var soutWest = get_nearest_point_on_mesh(Vector2(pos.x - step, pos.y + step))
+		var soutWest = Vector2(pos.x - step, pos.y + step)
 		points.append(soutWest)
-		var west = get_nearest_point_on_mesh(Vector2(pos.x - step, pos.y))
+		var west = Vector2(pos.x - step, pos.y)
 		points.append(west)
-		var northWest = get_nearest_point_on_mesh(Vector2(pos.x + step, pos.y))
+		var northWest = Vector2(pos.x + step, pos.y)
 		points.append(northWest)
 		iterator = iterator + 1
 	return points
@@ -342,6 +341,7 @@ func get_adjusted_point(pos: Vector2) -> Vector2:
 	var num_steps = 16
 	var points = get_stepped_points_from_pos(pos, num_steps, distance_step)
 	var adjusted_point = points[random.randi_range(0,points.size() -1 )]
+	adjusted_point = get_nearest_point_on_mesh(adjusted_point)
 	return adjusted_point
 
 func get_strafe_point():
@@ -356,6 +356,7 @@ func get_strafe_point():
 			
 	if(valid_points.size() > 0):
 		var strafe_point = valid_points[random.randi_range(0,valid_points.size() -1 )]
+		strafe_point = get_nearest_point_on_mesh(strafe_point)
 		return strafe_point
 	else:
 		return global_position

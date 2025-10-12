@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://blygg1ro7g4fc"]
+
+[ext_resource type="Texture2D" uid="uid://bdbcrlpfc1o84" path="res://sprites/lights/square_shadow.png" id="1_8sr23"]
+
+[node name="arch_drop_shadow" type="Node2D"]
+
+[node name="Sprite2D144" type="Sprite2D" parent="."]
+position = Vector2(0, 7.00021)
+scale = Vector2(1, 0.4375)
+texture = ExtResource("1_8sr23")
+
+[node name="Sprite2D145" type="Sprite2D" parent="."]
+position = Vector2(0, -0.499786)
+scale = Vector2(0.937501, 0.0312499)
+texture = ExtResource("1_8sr23")
+
+[node name="Sprite2D146" type="Sprite2D" parent="."]
+position = Vector2(0.000244617, -1.99992)
+scale = Vector2(0.937501, 0.0625017)
+texture = ExtResource("1_8sr23")
+
+[node name="Sprite2D147" type="Sprite2D" parent="."]
+position = Vector2(0.000244617, -1.99992)
+scale = Vector2(0.937501, 0.0625017)
+texture = ExtResource("1_8sr23")
+
+[node name="Sprite2D148" type="Sprite2D" parent="."]
+position = Vector2(0, -4.49953)
+scale = Vector2(0.874999, 0.0937525)
+texture = ExtResource("1_8sr23")
+
+[node name="Sprite2D149" type="Sprite2D" parent="."]
+position = Vector2(0, -4.49953)
+scale = Vector2(0.874999, 0.0937525)
+texture = ExtResource("1_8sr23")
+
+[node name="Sprite2D150" type="Sprite2D" parent="."]
+position = Vector2(0.000122309, -8.00004)
+scale = Vector2(0.624996, 0.124998)
+texture = ExtResource("1_8sr23")
+
+[node name="Sprite2D151" type="Sprite2D" parent="."]
+position = Vector2(0, -7.99979)
+scale = Vector2(0.499996, 0.124998)
+texture = ExtResource("1_8sr23")
+
+[node name="Sprite2D152" type="Sprite2D" parent="."]
+position = Vector2(0, -7.99979)
+scale = Vector2(0.499996, 0.124998)
+texture = ExtResource("1_8sr23")
+
+[node name="Sprite2D153" type="Sprite2D" parent="."]
+position = Vector2(-9, -7.49979)
+scale = Vector2(0.062498, 0.0937445)
+texture = ExtResource("1_8sr23")
+
+[node name="Sprite2D154" type="Sprite2D" parent="."]
+position = Vector2(9.00012, -7.49979)
+scale = Vector2(0.062498, 0.0937466)
+texture = ExtResource("1_8sr23")
+
+[node name="Sprite2D155" type="Sprite2D" parent="."]
+position = Vector2(-9, -7.49979)
+scale = Vector2(0.062498, 0.0937487)
+texture = ExtResource("1_8sr23")
+
+[node name="Sprite2D156" type="Sprite2D" parent="."]
+position = Vector2(9, -7.49979)
+scale = Vector2(0.062498, 0.0937508)
+texture = ExtResource("1_8sr23")

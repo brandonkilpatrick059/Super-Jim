@@ -3,6 +3,8 @@ extends Node2D
 var sound_player := AudioStreamPlayer.new()
 @onready var _animated_sprite = $AnimatedSprite2D
 @onready var _collision_shape = $StaticBody2D/CollisionShape2D
+@onready var _static_body = $StaticBody2D
+@onready var _area_2d = $Area2D
 
 @export var opens_for_groups: Array[String]
 @export var locked_hours : Array[bool] #should either be empty or size = 24
@@ -50,11 +52,12 @@ func lock():
 func unlock():
 	locked = false
 
-func opener_is_near():
+func opener_is_near() -> bool:
 	var retVal = false
+	var nodes_in_area : Array[Node2D] = _area_2d.get_overlapping_bodies()
 	for group in opens_for_groups:
-		for obj in get_tree().get_nodes_in_group(group):
-			if (global_position.distance_to(obj.global_position) <= open_distance):
+		for node in nodes_in_area:
+			if(node.is_in_group(group)):
 				retVal = true
 	return retVal
 
@@ -69,27 +72,28 @@ func player_is_behind_door():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
+	var opener_is_near = opener_is_near()
 	#opener has to stand near the door for a period of time for it to open
-	if(opened == false && !waiting_to_open && opener_is_near()):
+	if(opened == false && !waiting_to_open && opener_is_near):
 		waiting_to_open = true
 		open_close_timer.start((open_close_time_secs))
 	
 	#if that period of time has elapsed and the opener is still there, open
-	if(open_close_timer.is_stopped() && waiting_to_open && opener_is_near()):
+	if(open_close_timer.is_stopped() && waiting_to_open && opener_is_near):
 		if(!locked || (locked && player_is_behind_door())):
 			open()
-	else: if(open_close_timer.is_stopped() && waiting_to_open && !opener_is_near()):
+	else: if(open_close_timer.is_stopped() && waiting_to_open && !opener_is_near):
 		waiting_to_open = false
 	
 	#if the opener leaves the door and it is open, it will start a timer to close itself
-	if(opened && !opener_is_near() && !waiting_to_close):
+	if(opened && !opener_is_near && !waiting_to_close):
 		waiting_to_close = true
 		open_close_timer.start((open_close_time_secs))
 	
 	#if that period of time has elapsed and the opener is still gone, close
-	if(open_close_timer.is_stopped() && waiting_to_close && !opener_is_near()):
+	if(open_close_timer.is_stopped() && waiting_to_close && !opener_is_near):
 		close()
-	else: if(open_close_timer.is_stopped() && waiting_to_close && opener_is_near()):
+	else: if(open_close_timer.is_stopped() && waiting_to_close && opener_is_near):
 		waiting_to_close = false
 	
 	#set lock by time using bool list locked_hours

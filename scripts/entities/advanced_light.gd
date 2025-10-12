@@ -1,0 +1,73 @@
+#this class wraps two lights, a dynamic point light and cheap sprite light
+#and allows for graphics configuration options & simple interface for
+#parent nodes
+class_name AdvancedLight
+extends Node2D
+
+@onready var light_point : PointLight2D = $Light2D_point
+@onready var light_sprite : Sprite2D = $Light2D_sprite
+
+@export var light_point_lo = false
+@export var light_point_med = false
+@export var light_point_hi = false
+@export var lazy_enable_lag_lo = 0
+@export var lazy_enable_lag_med = 0
+@export var lazy_enable_lag_hi = 0
+
+var light_running = false
+
+var timer : Timer = Timer.new()
+var random : RandomNumberGenerator = RandomNumberGenerator.new()
+
+
+func _ready():
+	timer.one_shot = true
+	add_child(timer)
+	timer.start(1)
+	
+
+func start_timer():
+	if(SettingsVariables.lighting_index == 0):
+		timer.start(random.randf_range(0,lazy_enable_lag_lo))
+	if(SettingsVariables.lighting_index == 1):
+		timer.start(random.randf_range(0,lazy_enable_lag_med))
+	if(SettingsVariables.lighting_index == 1):
+		timer.start(random.randf_range(0,lazy_enable_lag_hi))
+
+func turn_light_on():
+	light_running = true
+
+func turn_light_off():
+	light_running = false
+
+func toggle_light():
+	light_running = !light_running
+
+func set_light_running(running : bool):
+	light_running = running
+
+func _physics_process(delta: float) -> void:
+	if(timer.is_stopped()):
+		if(light_running):
+			if(light_point_lo && SettingsVariables.lighting_index == 0):
+				light_point.enabled = true
+				light_sprite.visible = false
+			else:
+				light_point.enabled = false
+				light_sprite.visible = true
+			if(light_point_med && SettingsVariables.lighting_index == 1):
+				light_point.enabled = true
+				light_sprite.visible = false
+			else:
+				light_point.enabled = false
+				light_sprite.visible = true
+			if(light_point_hi && SettingsVariables.lighting_index == 2):
+				light_point.enabled = true
+				light_sprite.visible = false
+			else:
+				light_point.enabled = false
+				light_sprite.visible = true
+		else:
+			light_point.enabled = false
+			light_sprite.visible = false
+		start_timer()

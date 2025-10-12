@@ -60,6 +60,12 @@ const nav_path_resolution = 4
 const max_hit_points = 3
 var hit_points = max_hit_points
 
+#perception_lag_timer is a timer for introducing random, small wait times
+#to perception updates in an attempt to decrease processor load of perception
+#checking
+var perception_lag_timer = Timer.new()
+var perception_lag_wait_secs = 0.1
+
 var invincibility_timer = Timer.new()
 var damage_collision_layer : int
 var is_invincible = false
@@ -80,6 +86,10 @@ func _ready():
 		
 		invincibility_timer.one_shot = true
 		add_child(invincibility_timer)
+		
+		perception_lag_timer.one_shot = true
+		add_child(perception_lag_timer)
+		perception_lag_timer.start(random.randf_range(0,perception_lag_wait_secs))
 	
 	#for updating character composition in the editor
 	if(Engine.is_editor_hint()):
@@ -170,9 +180,20 @@ func update_perceptions():
 	perceptions.holding_object = holding_object
 	
 	update_line_of_sight_to_target()
-	check_vision()
-	check_hearing()
-	detect_sparks()
+	
+	if(perception_lag_timer.is_stopped()):
+		check_vision()
+		check_hearing()
+		detect_sparks()
+		perception_lag_timer.start(random.randf_range(0,perception_lag_wait_secs))
+
+	#clean out null nodes from sparks queue-freeing
+	var iter = 0
+	while iter < len(perceptions.colliding_nodes):
+		if not is_instance_valid(perceptions.colliding_nodes[iter]):
+			perceptions.colliding_nodes.remove_at(iter)
+		else:
+			iter += 1
 	
 	#check if currently playing one-shot animation has ended
 	if(perceptions.one_shot_animating &&
@@ -257,13 +278,6 @@ func detect_sparks():
 			spark not in perceptions.colliding_nodes &&
 			spark.global_position.distance_to(global_position) < detection_distance):
 				perceptions.colliding_nodes.append(spark)
-	#clean out null nodes from sparks queue-freeing
-	var iter = 0
-	while iter < len(perceptions.colliding_nodes):
-		if not is_instance_valid(perceptions.colliding_nodes[iter]):
-			perceptions.colliding_nodes.remove_at(iter)
-		else:
-			iter += 1
 
 ###################################################################################################
 #ACTIONS- signal functions and helpers that cause the mobster to take some action in the game world
@@ -562,10 +576,10 @@ func update_vision():
 ##############
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if(!Engine.is_editor_hint()):
-		update()
-		send_perceptions()
+#func _process(delta):
+	#if(!Engine.is_editor_hint()):
+		#update()
+		#send_perceptions()
 
 func _physics_process(delta):
 	if(!Engine.is_editor_hint()):

@@ -261,13 +261,14 @@ func resurrect():
 		_ui.visible = true
 		_character_base.reparent(self)
 		_character_base.global_position = global_position
+		_character_base.set_all_materials(player_material)
 		var spawn_point = get_tree().get_first_node_in_group("player_spawn")
 		global_position = spawn_point.global_position
 		visible = true
 		var die_guy = get_tree().get_first_node_in_group("dead_player")
 		die_guy.queue_free()
 		dead = false
-		current_hp = 1
+		current_hp = 3
 
 func handle_interact():
 	if Input.is_action_just_pressed("interact"):

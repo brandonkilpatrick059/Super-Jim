@@ -22,6 +22,9 @@ sprite_frames = ExtResource("1_tls8q")
 [node name="advanced_light" type="Node2D" parent="."]
 script = ExtResource("4_js88o")
 light_point_hi = true
+lazy_enable_lag_lo = 10
+lazy_enable_lag_med = 10
+lazy_enable_lag_hi = 10
 
 [node name="Light2D_point" type="PointLight2D" parent="advanced_light"]
 scale = Vector2(0.2, 0.2)

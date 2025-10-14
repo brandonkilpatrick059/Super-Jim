@@ -23,19 +23,7 @@ position = Vector2(-309, -1714)
 
 [node name="jimmy_jo3" parent="BaseballCardGame/deck_left" instance=ExtResource("3_p6kjw")]
 
-[node name="bobby_bobson4" parent="BaseballCardGame/deck_left" instance=ExtResource("2_uc6r2")]
-position = Vector2(316, 3)
-
 [node name="mickey_bobdogg" parent="BaseballCardGame/deck_left" instance=ExtResource("4_p6kjw")]
-
-[node name="mickey_bobdogg4" parent="BaseballCardGame/deck_left" instance=ExtResource("4_p6kjw")]
-position = Vector2(316, 3)
-
-[node name="jimmy_jo5" parent="BaseballCardGame/deck_left" instance=ExtResource("3_p6kjw")]
-position = Vector2(316, 3)
-
-[node name="jimmy_jo4" parent="BaseballCardGame/deck_left" instance=ExtResource("3_p6kjw")]
-position = Vector2(316, 3)
 
 [node name="deck_right" type="Node2D" parent="BaseballCardGame"]
 position = Vector2(7, -1711)
@@ -49,11 +37,3 @@ position = Vector2(7, -1711)
 [node name="bobby_bobson2" parent="BaseballCardGame/deck_right" instance=ExtResource("2_uc6r2")]
 
 [node name="jimmy_jo2" parent="BaseballCardGame/deck_right" instance=ExtResource("3_p6kjw")]
-
-[node name="mickey_bobdogg2" parent="BaseballCardGame/deck_right" instance=ExtResource("4_p6kjw")]
-
-[node name="jimmy_jo3" parent="BaseballCardGame/deck_right" instance=ExtResource("3_p6kjw")]
-
-[node name="bobby_bobson3" parent="BaseballCardGame/deck_right" instance=ExtResource("2_uc6r2")]
-
-[node name="mickey_bobdogg3" parent="BaseballCardGame/deck_right" instance=ExtResource("4_p6kjw")]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://3y8mthmml1ay"]
+
+[ext_resource type="SpriteFrames" uid="uid://cj4qms7ks6udg" path="res://sprites/spritesheets/spriteframes/baseball/hp_spriteframes.tres" id="1_r56o0"]
+[ext_resource type="Script" uid="uid://n8ti4p8mhn2b" path="res://scripts/baseball/stat_readouts/stat_readout.gd" id="2_8ihmn"]
+[ext_resource type="LabelSettings" uid="uid://tdffmlt2tqo6" path="res://fonts/card_readout_text.tres" id="3_4yqhx"]
+
+[node name="HpReadout" type="Node2D"]
+script = ExtResource("2_8ihmn")
+creates_stat_particle_debuff = null
+creates_stat_particle_buff = null
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_r56o0")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 36.0
+offset_bottom = 15.0
+scale = Vector2(1.2, 1)
+text = "1"
+label_settings = ExtResource("3_4yqhx")

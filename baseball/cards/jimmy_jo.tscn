@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://pq0gqmxbxwml"]
+
+[ext_resource type="Script" uid="uid://xm51ra1miw1i" path="res://scripts/baseball/card_base.gd" id="1_mq53g"]
+[ext_resource type="Texture2D" uid="uid://bc3h2dltwyv7u" path="res://sprites/baseball/card_base.png" id="2_kvss8"]
+[ext_resource type="Texture2D" uid="uid://fffmt3nmk77l" path="res://sprites/baseball/portraits/test_6.png" id="3_mq53g"]
+[ext_resource type="LabelSettings" uid="uid://du7h04cuqn7f6" path="res://fonts/card_text_label_settings.tres" id="4_mq53g"]
+[ext_resource type="Script" uid="uid://bbkrydieo1hg7" path="res://scripts/baseball/effects/blank_effect.gd" id="5_eg11w"]
+[ext_resource type="PackedScene" uid="uid://3y8mthmml1ay" path="res://scripts/baseball/stat_readouts/hp_readout.tscn" id="6_o60i7"]
+[ext_resource type="PackedScene" uid="uid://dsobaybaolmd6" path="res://scripts/baseball/stat_readouts/pow_readout.tscn" id="7_ge1mx"]
+[ext_resource type="PackedScene" uid="uid://bpx2t73k84hm6" path="res://scripts/baseball/stat_readouts/stam_readout.tscn" id="8_bljxr"]
+
+[node name="jimmy_jo" type="Node2D"]
+script = ExtResource("1_mq53g")
+team = null
+hp = 8
+stamina = 3
+power = 2
+buff_hp_on_kill = 2
+
+[node name="base_border" type="Sprite2D" parent="."]
+z_index = 1
+texture = ExtResource("2_kvss8")
+
+[node name="portrait" type="Sprite2D" parent="."]
+texture = ExtResource("3_mq53g")
+
+[node name="NAME" type="Label" parent="."]
+z_index = 1
+offset_left = -12.0
+offset_top = -61.0
+offset_right = 51.0
+offset_bottom = -38.0
+text = "Jimmy Jo"
+label_settings = ExtResource("4_mq53g")
+
+[node name="DESCRIPTION" type="Label" parent="."]
+z_index = 1
+offset_left = -39.0
+offset_top = 48.0
+offset_right = 72.0
+offset_bottom = 71.0
+text = "Heals 2 points each kill"
+label_settings = ExtResource("4_mq53g")
+
+[node name="effect_node" type="Node2D" parent="."]
+script = ExtResource("5_eg11w")
+
+[node name="HpReadout" parent="." instance=ExtResource("6_o60i7")]
+z_index = 2
+position = Vector2(33, 27)
+creates_blood_particle = true
+
+[node name="PowReadout" parent="." instance=ExtResource("7_ge1mx")]
+z_index = 2
+position = Vector2(-32, 24)
+
+[node name="StamReadout" parent="." instance=ExtResource("8_bljxr")]
+z_index = 3
+position = Vector2(0, 29)
+creates_stat_particle_debuff = false
+reverse_glow = true

@@ -1,0 +1,293 @@
+[gd_scene load_steps=5 format=3 uid="uid://fm6qv2iabylr"]
+
+[ext_resource type="PackedScene" uid="uid://bhxsevgsr7a4h" path="res://sprites/spritesheets/spriteframes/baseball/baseball_manager.tscn" id="1_7g13d"]
+[ext_resource type="PackedScene" uid="uid://dky561g1q1ul5" path="res://baseball/cards/bobby_bobson.tscn" id="2_uc6r2"]
+[ext_resource type="PackedScene" uid="uid://pq0gqmxbxwml" path="res://baseball/cards/jimmy_jo.tscn" id="3_p6kjw"]
+[ext_resource type="PackedScene" uid="uid://c7tkuxihuj6tg" path="res://baseball/cards/mickey_bobdogg.tscn" id="4_p6kjw"]
+
+[node name="BaseballTestScene" type="Node2D"]
+
+[node name="BaseballCardGame" parent="." node_paths=PackedStringArray("deck_left", "deck_right") instance=ExtResource("1_7g13d")]
+position = Vector2(314, 152)
+deck_left = NodePath("deck_left")
+deck_right = NodePath("deck_right")
+
+[node name="deck_left" type="Node2D" parent="BaseballCardGame"]
+position = Vector2(-309, -1714)
+
+[node name="bobby_bobson" parent="BaseballCardGame/deck_left" instance=ExtResource("2_uc6r2")]
+team = null
+adds_hp_next = null
+adds_stamina_next = null
+adds_dmg_next = null
+adds_hp_prev = null
+adds_stamina_prev = null
+adds_dmg_prev = null
+buff_hp_on_kill = null
+buff_stamina_on_kill = null
+buff_dmg_on_kill = null
+team_number_is_hp = null
+team_number_is_stamina = null
+team_number_is_dmg = null
+
+[node name="jimmy_jo" parent="BaseballCardGame/deck_left" instance=ExtResource("3_p6kjw")]
+team = null
+adds_hp_next = null
+adds_stamina_next = null
+adds_dmg_next = null
+adds_hp_prev = null
+adds_stamina_prev = null
+adds_dmg_prev = null
+buff_hp_on_kill = null
+buff_stamina_on_kill = null
+buff_dmg_on_kill = null
+team_number_is_hp = null
+team_number_is_stamina = null
+team_number_is_dmg = null
+
+[node name="jimmy_jo2" parent="BaseballCardGame/deck_left" instance=ExtResource("3_p6kjw")]
+team = null
+adds_hp_next = null
+adds_stamina_next = null
+adds_dmg_next = null
+adds_hp_prev = null
+adds_stamina_prev = null
+adds_dmg_prev = null
+buff_hp_on_kill = null
+buff_stamina_on_kill = null
+buff_dmg_on_kill = null
+team_number_is_hp = null
+team_number_is_stamina = null
+team_number_is_dmg = null
+
+[node name="jimmy_jo3" parent="BaseballCardGame/deck_left" instance=ExtResource("3_p6kjw")]
+team = null
+adds_hp_next = null
+adds_stamina_next = null
+adds_dmg_next = null
+adds_hp_prev = null
+adds_stamina_prev = null
+adds_dmg_prev = null
+buff_hp_on_kill = null
+buff_stamina_on_kill = null
+buff_dmg_on_kill = null
+team_number_is_hp = null
+team_number_is_stamina = null
+team_number_is_dmg = null
+
+[node name="bobby_bobson4" parent="BaseballCardGame/deck_left" instance=ExtResource("2_uc6r2")]
+position = Vector2(316, 3)
+team = null
+adds_hp_next = null
+adds_stamina_next = null
+adds_dmg_next = null
+adds_hp_prev = null
+adds_stamina_prev = null
+adds_dmg_prev = null
+buff_hp_on_kill = null
+buff_stamina_on_kill = null
+buff_dmg_on_kill = null
+team_number_is_hp = null
+team_number_is_stamina = null
+team_number_is_dmg = null
+
+[node name="mickey_bobdogg" parent="BaseballCardGame/deck_left" instance=ExtResource("4_p6kjw")]
+team = null
+adds_hp_next = null
+adds_stamina_next = null
+adds_dmg_next = null
+adds_hp_prev = null
+adds_stamina_prev = null
+adds_dmg_prev = null
+buff_hp_on_kill = null
+buff_stamina_on_kill = null
+buff_dmg_on_kill = null
+team_number_is_hp = null
+team_number_is_stamina = null
+team_number_is_dmg = null
+
+[node name="mickey_bobdogg4" parent="BaseballCardGame/deck_left" instance=ExtResource("4_p6kjw")]
+position = Vector2(316, 3)
+team = null
+adds_hp_next = null
+adds_stamina_next = null
+adds_dmg_next = null
+adds_hp_prev = null
+adds_stamina_prev = null
+adds_dmg_prev = null
+buff_hp_on_kill = null
+buff_stamina_on_kill = null
+buff_dmg_on_kill = null
+team_number_is_hp = null
+team_number_is_stamina = null
+team_number_is_dmg = null
+
+[node name="jimmy_jo5" parent="BaseballCardGame/deck_left" instance=ExtResource("3_p6kjw")]
+position = Vector2(316, 3)
+team = null
+adds_hp_next = null
+adds_stamina_next = null
+adds_dmg_next = null
+adds_hp_prev = null
+adds_stamina_prev = null
+adds_dmg_prev = null
+buff_hp_on_kill = null
+buff_stamina_on_kill = null
+buff_dmg_on_kill = null
+team_number_is_hp = null
+team_number_is_stamina = null
+team_number_is_dmg = null
+
+[node name="jimmy_jo4" parent="BaseballCardGame/deck_left" instance=ExtResource("3_p6kjw")]
+position = Vector2(316, 3)
+team = null
+adds_hp_next = null
+adds_stamina_next = null
+adds_dmg_next = null
+adds_hp_prev = null
+adds_stamina_prev = null
+adds_dmg_prev = null
+buff_hp_on_kill = null
+buff_stamina_on_kill = null
+buff_dmg_on_kill = null
+team_number_is_hp = null
+team_number_is_stamina = null
+team_number_is_dmg = null
+
+[node name="deck_right" type="Node2D" parent="BaseballCardGame"]
+position = Vector2(7, -1711)
+
+[node name="jimmy_jo" parent="BaseballCardGame/deck_right" instance=ExtResource("3_p6kjw")]
+team = null
+adds_hp_next = null
+adds_stamina_next = null
+adds_dmg_next = null
+adds_hp_prev = null
+adds_stamina_prev = null
+adds_dmg_prev = null
+buff_hp_on_kill = null
+buff_stamina_on_kill = null
+buff_dmg_on_kill = null
+team_number_is_hp = null
+team_number_is_stamina = null
+team_number_is_dmg = null
+
+[node name="mickey_bobdogg" parent="BaseballCardGame/deck_right" instance=ExtResource("4_p6kjw")]
+team = null
+adds_hp_next = null
+adds_stamina_next = null
+adds_dmg_next = null
+adds_hp_prev = null
+adds_stamina_prev = null
+adds_dmg_prev = null
+buff_hp_on_kill = null
+buff_stamina_on_kill = null
+buff_dmg_on_kill = null
+team_number_is_hp = null
+team_number_is_stamina = null
+team_number_is_dmg = null
+
+[node name="bobby_bobson" parent="BaseballCardGame/deck_right" instance=ExtResource("2_uc6r2")]
+team = null
+adds_hp_next = null
+adds_stamina_next = null
+adds_dmg_next = null
+adds_hp_prev = null
+adds_stamina_prev = null
+adds_dmg_prev = null
+buff_hp_on_kill = null
+buff_stamina_on_kill = null
+buff_dmg_on_kill = null
+team_number_is_hp = null
+team_number_is_stamina = null
+team_number_is_dmg = null
+
+[node name="bobby_bobson2" parent="BaseballCardGame/deck_right" instance=ExtResource("2_uc6r2")]
+team = null
+adds_hp_next = null
+adds_stamina_next = null
+adds_dmg_next = null
+adds_hp_prev = null
+adds_stamina_prev = null
+adds_dmg_prev = null
+buff_hp_on_kill = null
+buff_stamina_on_kill = null
+buff_dmg_on_kill = null
+team_number_is_hp = null
+team_number_is_stamina = null
+team_number_is_dmg = null
+
+[node name="jimmy_jo2" parent="BaseballCardGame/deck_right" instance=ExtResource("3_p6kjw")]
+team = null
+adds_hp_next = null
+adds_stamina_next = null
+adds_dmg_next = null
+adds_hp_prev = null
+adds_stamina_prev = null
+adds_dmg_prev = null
+buff_hp_on_kill = null
+buff_stamina_on_kill = null
+buff_dmg_on_kill = null
+team_number_is_hp = null
+team_number_is_stamina = null
+team_number_is_dmg = null
+
+[node name="mickey_bobdogg2" parent="BaseballCardGame/deck_right" instance=ExtResource("4_p6kjw")]
+team = null
+adds_hp_next = null
+adds_stamina_next = null
+adds_dmg_next = null
+adds_hp_prev = null
+adds_stamina_prev = null
+adds_dmg_prev = null
+buff_hp_on_kill = null
+buff_stamina_on_kill = null
+buff_dmg_on_kill = null
+team_number_is_hp = null
+team_number_is_stamina = null
+team_number_is_dmg = null
+
+[node name="jimmy_jo3" parent="BaseballCardGame/deck_right" instance=ExtResource("3_p6kjw")]
+team = null
+adds_hp_next = null
+adds_stamina_next = null
+adds_dmg_next = null
+adds_hp_prev = null
+adds_stamina_prev = null
+adds_dmg_prev = null
+buff_hp_on_kill = null
+buff_stamina_on_kill = null
+buff_dmg_on_kill = null
+team_number_is_hp = null
+team_number_is_stamina = null
+team_number_is_dmg = null
+
+[node name="bobby_bobson3" parent="BaseballCardGame/deck_right" instance=ExtResource("2_uc6r2")]
+team = null
+adds_hp_next = null
+adds_stamina_next = null
+adds_dmg_next = null
+adds_hp_prev = null
+adds_stamina_prev = null
+adds_dmg_prev = null
+buff_hp_on_kill = null
+buff_stamina_on_kill = null
+buff_dmg_on_kill = null
+team_number_is_hp = null
+team_number_is_stamina = null
+team_number_is_dmg = null
+
+[node name="mickey_bobdogg3" parent="BaseballCardGame/deck_right" instance=ExtResource("4_p6kjw")]
+team = null
+adds_hp_next = null
+adds_stamina_next = null
+adds_dmg_next = null
+adds_hp_prev = null
+adds_stamina_prev = null
+adds_dmg_prev = null
+buff_hp_on_kill = null
+buff_stamina_on_kill = null
+buff_dmg_on_kill = null
+team_number_is_hp = null
+team_number_is_stamina = null
+team_number_is_dmg = null

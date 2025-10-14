@@ -76,4 +76,3 @@ func interact():
 
 func update_fade_alpha():
 	_fade_to_black.color = Color(0,0,0,fade_alpha)
-

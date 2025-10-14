@@ -308,6 +308,16 @@ func handle_dash():
 	elif Input.is_action_just_released("dash"):
 		stop_dash()
 
+func give_dash_seconds(seconds):
+	if(current_dash_secs < max_dash_secs):
+		if(current_dash_secs + seconds >= max_dash_secs):
+			current_dash_secs = max_dash_secs
+		else:
+			current_dash_secs = current_dash_secs + seconds
+
+func give_dash_fraction(fraction: float):
+	give_dash_seconds(max_dash_secs * fraction)
+
 func handle_throw():
 	if Input.is_action_just_pressed("throw"):
 		throw()
@@ -324,7 +334,6 @@ func stop():
 func set_holding_object(is_holding):
 	holding_object = is_holding
 	_character_base.set_arms_raised(is_holding)
-		
 
 func throw():
 	if(holding_object):
@@ -360,6 +369,7 @@ func stop_dash():
 	if(is_dashing):
 		is_dashing = false
 		_camera.zoom_to(1.0)
+		_ui.dash_stop_blink()
 
 func dash():
 	if(!is_dashing && Input.get_vector(direction.left, direction.right, direction.up, direction.down).length() > 0):
@@ -369,6 +379,7 @@ func dash():
 			is_dashing = true
 			timer_dash.start(1)
 			_camera.zoom_to(1.25)
+			_ui.dash_blink()
 
 func speed():
 	return linear_velocity.length()

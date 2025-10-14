@@ -84,10 +84,24 @@ func enter():
 		player_ref.global_position = linked_teleporter.global_position
 		if(reparent_to_daylight):
 			player_ref.reparent(daylight_affected_ysort)
+			var ambient_darks = get_tree().get_nodes_in_group("ambient_dark")
+			for cv_mod in ambient_darks:
+				cv_mod.visible = false
+				if daylight_affected_ysort.get_parent().get_children().has(cv_mod):
+					cv_mod.visible = true	
 		elif(reparent_to_no_daylight):
+			var ambient_darks = get_tree().get_nodes_in_group("ambient_dark")
+			for cv_mod in ambient_darks:
+				cv_mod.visible = false
 			player_ref.reparent(no_daylight_ysort)
 		elif(reparent_to_dark_indoor):
 			player_ref.reparent(dark_indoor_ysort)
+			var ambient_darks = get_tree().get_nodes_in_group("ambient_dark")
+			for cv_mod in ambient_darks:
+				cv_mod.visible = false
+				if dark_indoor_ysort.get_parent().get_children().has(cv_mod):
+					cv_mod.visible = true
+			
 			
 		linked_teleporter.player_ref = player_ref
 		linked_teleporter.timer_fade.start(teleport_step_secs)

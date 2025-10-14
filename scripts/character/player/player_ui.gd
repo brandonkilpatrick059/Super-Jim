@@ -66,6 +66,12 @@ func hide_dash():
 func show_dash():
 	dash_meter.visible = true
 
+func dash_blink():
+	dash_meter.start_blinking()
+
+func dash_stop_blink():
+	dash_meter.stop_blinking()
+
 func set_max_dash_fraction(fraction: float):
 	dash_meter.set_fraction_of_full_bar(fraction)
 

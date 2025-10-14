@@ -32,6 +32,7 @@ position = Vector2(-4, -105)
 shape = SubResource("RectangleShape2D_yputd")
 
 [node name="shadow" type="Sprite2D" parent="."]
+visible = false
 z_index = -1
 position = Vector2(7.7486e-07, -50.5)
 scale = Vector2(3, 3.09375)

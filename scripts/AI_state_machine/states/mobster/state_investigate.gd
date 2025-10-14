@@ -24,8 +24,7 @@ func handle_sparks():
 						reduce_health.emit()
 						var assailant_obj = node.get_source_obj()
 						set_target.emit(assailant_obj)
-						if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
-							ai_state_machine.transition_to(mobster_states.exclaiming)
+						ai_state_machine.transition_to(mobster_states.exclaiming)
 						return true
 					elif(!ai_state_machine.get_perceptions().invincible &&
 					 !node.is_in_group(ai_state_machine.get_perceptions().opposing_team)):

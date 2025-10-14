@@ -19,6 +19,7 @@ var blu_base = preload("res://sprites/spritesheets/spriteframes/characters/base/
 @onready var _navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var _head_collider = $head_shape
 @onready var _body_collider = $CollisionShape2D
+@onready var _spark_detector : Area2D = $spark_detector
 
 @export var current_patrol_point :Node2D = null
 
@@ -170,9 +171,18 @@ func update_perceptions():
 	perceptions.holding_object = holding_object
 	
 	update_line_of_sight_to_target()
+	
 	check_vision()
 	check_hearing()
 	detect_sparks()
+
+	#clean out null nodes from sparks queue-freeing
+	var iter = 0
+	while iter < len(perceptions.colliding_nodes):
+		if not is_instance_valid(perceptions.colliding_nodes[iter]):
+			perceptions.colliding_nodes.remove_at(iter)
+		else:
+			iter += 1
 	
 	#check if currently playing one-shot animation has ended
 	if(perceptions.one_shot_animating &&
@@ -250,20 +260,12 @@ func check_hearing():
 	perceptions.nodes_in_hearing = nodes_in_hearing
 
 func detect_sparks():
-	var sparks = get_tree().get_nodes_in_group("spark")
-	var detection_distance = 20
-	for spark in sparks:
-		if(is_instance_valid(spark) &&
-			spark not in perceptions.colliding_nodes &&
-			spark.global_position.distance_to(global_position) < detection_distance):
-				perceptions.colliding_nodes.append(spark)
-	#clean out null nodes from sparks queue-freeing
-	var iter = 0
-	while iter < len(perceptions.colliding_nodes):
-		if not is_instance_valid(perceptions.colliding_nodes[iter]):
-			perceptions.colliding_nodes.remove_at(iter)
-		else:
-			iter += 1
+	var bodies_in_detector = _spark_detector.get_overlapping_bodies()
+	for body in bodies_in_detector:
+		if(is_instance_valid(body) &&
+			body.is_in_group("spark") &&
+			body not in perceptions.colliding_nodes):
+				perceptions.colliding_nodes.append(body)
 
 ###################################################################################################
 #ACTIONS- signal functions and helpers that cause the mobster to take some action in the game world
@@ -296,28 +298,28 @@ func get_nearest_point_on_mesh(point : Vector2):
 	var rid = _navigation_agent.get_navigation_map()
 	return NavigationServer2D.map_get_closest_point(rid, point)
 
-#returns a list of valid mesh points in 8 cardinal directions, points 
+#returns a list of oints in 8 cardinal directions, points 
 #fanning out at an interval of step_distance for num_steps intervals
 func get_stepped_points_from_pos(pos: Vector2, num_steps, step_distance) -> Array[Vector2]:
 	var iterator = 1
 	var points : Array[Vector2] = []
 	while(iterator <= num_steps):
 		var step = step_distance * iterator
-		var north = get_nearest_point_on_mesh(Vector2(pos.x, pos.y - step))
+		var north = Vector2(pos.x, pos.y - step)
 		points.append(north)
-		var northEast = get_nearest_point_on_mesh(Vector2(pos.x + step, pos.y - step))
+		var northEast = Vector2(pos.x + step, pos.y - step)
 		points.append(northEast)
-		var east = get_nearest_point_on_mesh(Vector2(pos.x + step, pos.y))
+		var east = Vector2(pos.x + step, pos.y)
 		points.append(east)
-		var southEast = get_nearest_point_on_mesh(Vector2(pos.x + step, pos.y + step))
+		var southEast = Vector2(pos.x + step, pos.y + step)
 		points.append(southEast)
-		var south = get_nearest_point_on_mesh(Vector2(pos.x, pos.y + step))
+		var south = Vector2(pos.x, pos.y + step)
 		points.append(south)
-		var soutWest = get_nearest_point_on_mesh(Vector2(pos.x - step, pos.y + step))
+		var soutWest = Vector2(pos.x - step, pos.y + step)
 		points.append(soutWest)
-		var west = get_nearest_point_on_mesh(Vector2(pos.x - step, pos.y))
+		var west = Vector2(pos.x - step, pos.y)
 		points.append(west)
-		var northWest = get_nearest_point_on_mesh(Vector2(pos.x + step, pos.y))
+		var northWest = Vector2(pos.x + step, pos.y)
 		points.append(northWest)
 		iterator = iterator + 1
 	return points
@@ -328,6 +330,7 @@ func get_adjusted_point(pos: Vector2) -> Vector2:
 	var num_steps = 16
 	var points = get_stepped_points_from_pos(pos, num_steps, distance_step)
 	var adjusted_point = points[random.randi_range(0,points.size() -1 )]
+	adjusted_point = get_nearest_point_on_mesh(adjusted_point)
 	return adjusted_point
 
 func get_strafe_point():
@@ -342,6 +345,7 @@ func get_strafe_point():
 			
 	if(valid_points.size() > 0):
 		var strafe_point = valid_points[random.randi_range(0,valid_points.size() -1 )]
+		strafe_point = get_nearest_point_on_mesh(strafe_point)
 		return strafe_point
 	else:
 		return global_position
@@ -521,10 +525,22 @@ func _on_set_ai_target_position():
 	perceptions.target_pos = perceptions.target_obj.global_position
 
 func _on_set_ai_target(entity : Node):
-	perceptions.target_obj = entity
-	update_line_of_sight_to_target()
-	send_perceptions()
-	perceptions.target_pos = perceptions.target_obj.global_position
+	if(entity != null):
+		perceptions.target_obj = entity
+		update_line_of_sight_to_target()
+		send_perceptions()
+		perceptions.target_pos = perceptions.target_obj.global_position
+	else:
+		#if no entity is given as target, 
+		#select random enemy mob in line of sight
+		var mobsters = get_tree().get_nodes_in_group("mobster")
+		perceptions.target_obj = null
+		for mob in mobsters:
+			if mob.is_in_group(opposing_team) && active_has_line_of_sight_to_object(mob):
+				perceptions.target_obj = mob
+				update_line_of_sight_to_target()
+				send_perceptions()
+				perceptions.target_pos = perceptions.target_obj.global_position
 
 func _on_face_ai_target_pos():
 	var vector_to_target = global_position.direction_to(perceptions.target_pos)
@@ -560,12 +576,6 @@ func update_vision():
 ##############
 #PROCESS STUFF
 ##############
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if(!Engine.is_editor_hint()):
-		update()
-		send_perceptions()
 
 func _physics_process(delta):
 	if(!Engine.is_editor_hint()):

@@ -4,6 +4,7 @@
 
 [node name="main_camera" type="Camera2D" groups=["camera"]]
 process_mode = 3
+process_callback = 0
 limit_left = -1000000
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0

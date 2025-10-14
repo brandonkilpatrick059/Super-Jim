@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1ghc3q0ijo8k"]
+
+[ext_resource type="SpriteFrames" uid="uid://datveu54cse7y" path="res://sprites/spritesheets/spriteframes/effects/mist.tres" id="1_bt60j"]
+[ext_resource type="Script" path="res://scripts/utility/particle.gd" id="1_sjybb"]
+
+[node name="mist" type="RigidBody2D"]
+inertia = 1.0
+script = ExtResource("1_sjybb")
+drift_speed_x_min = -8.0
+drift_speed_x_max = 8.0
+drift_speed_y_min = -7.0
+drift_speed_y_max = -8.0
+spin_speed_min = -0.1
+spin_speed_max = 0.1
+speed_factor_min = 0.7
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_bt60j")

@@ -6,7 +6,7 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_aerk1"]
 light_mode = 1
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" groups=["dead_player"]]
 process_mode = 3
 script = ExtResource("1_d6ufp")
 

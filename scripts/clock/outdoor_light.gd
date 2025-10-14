@@ -19,10 +19,10 @@ var colors := {
 	0.124998: Color(0.514, 0.522, 0.667), #3
 	0.166664: Color(0.514, 0.522, 0.667), #4
 	0.20833:  Color(0.514, 0.522, 0.667), #5
-	0.249996: Color(0.871, 0.729, 0.847), #6
-	0.291662: Color(0.961, 0.863, 0.933), #7
-	0.333328: Color(1, 0.937, 0.98), #8
-	0.374994: Color(1, 1, 1), #9
+	0.249996: Color(0.514, 0.522, 0.667), #6
+	0.291662: Color(0.871, 0.729, 0.847), #7
+	0.333328: Color(0.961, 0.863, 0.933), #8
+	0.374994: Color(1, 0.937, 0.98), #9
 	0.41666:  Color(1, 1, 1), #10
 	0.458326: Color(1, 1, 1), #11
 	0.499992: Color(1, 1, 1), #12:00pm
@@ -60,7 +60,11 @@ func fade_to_black():
 		var day_ratio = time_keeper.get_time_as_ratio_of_full_day()
 		fade_out_interpolation.colors = [interpolation_gradient.sample(day_ratio), Color.BLACK]
 		fade_out_interpolation.offsets = [0.0, 1.0]
-		
+
+func end_fade():
+	fading = false
+	fade_level = 0
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(!fading && !paused):

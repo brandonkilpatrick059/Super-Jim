@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://baf2ux4slvsp3"]
+
+[ext_resource type="Script" uid="uid://kcp2m0eooc2r" path="res://scripts/utility/particle_spout.gd" id="1_wj5ym"]
+
+[node name="ParticleSpout" type="Node2D"]
+script = ExtResource("1_wj5ym")

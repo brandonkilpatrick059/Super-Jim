@@ -27,9 +27,14 @@ var player_material = preload("res://entities/characters/player/player_material.
 var sound_player := AudioStreamPlayer.new()
 
 const normal_speed = 50000
-const dash_speed = 250000
+const dash_speed = 100000
 var acceleration_quotient = normal_speed
 const top_speed = 180
+
+
+var current_dash_secs : float = 0.0
+var max_dash_secs : float = 20.0
+var full_dash_secs : float = 60.0
 
 var can_dash = true
 var is_dashing = false
@@ -47,8 +52,9 @@ var grabbed_object = null
 var control_frozen = false
 var current_v = Vector2(0,0)
 
-const max_hp = 3
-var current_hp = 3
+const full_max_hp = 6
+const max_hp = 2
+var current_hp = 2
 var is_invincible = false
 var invincibility_timer := Timer.new()
 var damage_collision_layer = 13
@@ -86,6 +92,10 @@ func _ready():
 	top_spriteframes,
 	bottom_spriteframes)
 	
+	_ui.set_max_hearts(max_hp)
+	current_dash_secs = max_dash_secs
+	update_max_dash_meter()
+	
 	if(Engine.is_editor_hint()):
 		queue_redraw()
 
@@ -118,6 +128,20 @@ func enter_dialog():
 	control_frozen = true
 	dialog_panning = true
 	in_dialog = true
+
+func update_max_dash_meter():
+	_ui.set_max_dash_fraction(max_dash_secs / full_dash_secs)
+
+func update_dash_meter():
+	update_max_dash_meter()
+	_ui.set_dash_fraction(current_dash_secs / max_dash_secs)
+
+func show_dash():
+	update_dash_meter()
+	_ui.show_dash()
+
+func hide_dash():
+	_ui.hide_dash()
 
 func show_hearts():
 	_ui.show_hearts()
@@ -280,7 +304,9 @@ func handle_interact():
 
 func handle_dash():
 	if Input.is_action_just_pressed("dash"):
-			dash()
+		dash()
+	elif Input.is_action_just_released("dash"):
+		stop_dash()
 
 func handle_throw():
 	if Input.is_action_just_pressed("throw"):
@@ -330,14 +356,19 @@ func return_pizza():
 	grabbed_object = pizza
 	set_holding_object(true)
 
+func stop_dash():
+	if(is_dashing):
+		is_dashing = false
+		_camera.zoom_to(1.0)
+
 func dash():
 	if(!is_dashing && Input.get_vector(direction.left, direction.right, direction.up, direction.down).length() > 0):
-		if(can_dash):
+		if(current_dash_secs > 0):
 			sound_player.stream = load("res://audio/soundFX/woosh.wav")
 			sound_player.play()
 			is_dashing = true
-			can_dash = false
-			timer_dash.start(dash_time_secs)
+			timer_dash.start(1)
+			_camera.zoom_to(1.25)
 
 func speed():
 	return linear_velocity.length()
@@ -401,22 +432,25 @@ func _physics_process(delta):
 				grabObj.is_in_group("pickupable")):
 					grabObj.will_pickup = true
 					will_grab_object = grabObj
-			#stop dash if timer has been esceeded
+			#stop dash if meter is depleted
+			update_dash_meter()
 			if(is_dashing):
 				acceleration_quotient = dash_speed
 				if(timer_dash.is_stopped()):
-					is_dashing = false
-					acceleration_quotient = normal_speed
-					timer_dash_regen.start(dash_regen_time_secs)
+					current_dash_secs = current_dash_secs - 1
+					if(current_dash_secs <= 0):
+						stop_dash()
+					else:
+						timer_dash.start(1)
 			else:
 				acceleration_quotient = normal_speed
 			
 			#regen dash
-			if(timer_dash_regen.is_stopped() && can_dash == false && !is_dashing):
-				sound_player.stream = load("res://audio/soundFX/dashget.wav")
-				sound_player.play()
-				can_dash = true
-				add_child(dash_get.instantiate())
+			#if(timer_dash_regen.is_stopped() && can_dash == false && !is_dashing):
+				#sound_player.stream = load("res://audio/soundFX/dashget.wav")
+				#sound_player.play()
+				#can_dash = true
+				#add_child(dash_get.instantiate())
 			
 			if(speech_instance != null &&
 			speech_instance.full_text_displayed):

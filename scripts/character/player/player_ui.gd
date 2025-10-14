@@ -4,16 +4,23 @@ extends Control
 @onready var heart_1 : AnimatedSprite2D = $health_meter/heart_1
 @onready var heart_2 : AnimatedSprite2D = $health_meter/heart_2
 @onready var heart_3 : AnimatedSprite2D = $health_meter/heart_3
+@onready var heart_4 : AnimatedSprite2D = $health_meter/heart_4
+@onready var heart_5 : AnimatedSprite2D = $health_meter/heart_5
+@onready var heart_6 : AnimatedSprite2D = $health_meter/heart_6
 @onready var location_header = $location_header
 @onready var money_label = $money_tracker/money_label
 @onready var pizza_lost = $pizza_lost
 @onready var fps_counter = $fps_counter/fps
+@onready var dash_meter = $dash_meter
 
 @export var fps_counter_visible = false
 
 var sound_player = AudioStreamPlayer.new()
 
 var hearts : Array[Node] = []
+var full_hearts : Array[Node] = []
+
+
 
 var money_timer = Timer.new()
 var money_step_pause_secs = 0.06
@@ -31,7 +38,18 @@ func _ready():
 	add_child(pizza_loss_timer)
 	sound_player.bus = "Effects"
 	add_child(sound_player)
-	hearts = [heart_1, heart_2, heart_3]
+	full_hearts = [heart_1, heart_2, heart_3, heart_4, heart_5, heart_6]
+	for heart in full_hearts:
+		heart.visible = false
+
+func set_max_hearts(num):
+	hearts = []
+	var iter = 0
+	while(iter < num):
+		var heart = full_hearts[iter]
+		heart.visible = true
+		hearts.append(heart)
+		iter = iter + 1
 
 func update_hearts(points : int):
 	var iterator = 0
@@ -41,6 +59,18 @@ func update_hearts(points : int):
 		else:
 			hearts[iterator].play("inactive")
 		iterator+=1
+
+func hide_dash():
+	dash_meter.visible = false
+
+func show_dash():
+	dash_meter.visible = true
+
+func set_max_dash_fraction(fraction: float):
+	dash_meter.set_fraction_of_full_bar(fraction)
+
+func set_dash_fraction(fraction: float):
+	dash_meter.set_fraction_filled(fraction)
 
 func _on_pizza_lost():
 	pizza_lost.visible = true

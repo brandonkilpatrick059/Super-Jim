@@ -6,4 +6,5 @@ func run_script():
 	var player_ref = get_tree().get_first_node_in_group("player")
 	player_ref.show_hearts()
 	player_ref.show_money()
+	player_ref.show_dash()
 	

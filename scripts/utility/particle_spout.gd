@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 	if(!Engine.is_editor_hint() || (Engine.is_editor_hint() && run_in_editor)):
 		var run_spout = true
 		if(!Engine.is_editor_hint()):
-			if(global_position.distance_to(get_player_ref().global_position > distance_to_stop)):
+			if(global_position.distance_to(get_player_ref().global_position) > distance_to_stop):
 				run_spout = false
 		if(run_spout && timer.is_stopped()):
 			var new_particle = particle.instantiate()

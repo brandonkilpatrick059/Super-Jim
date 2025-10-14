@@ -12,7 +12,7 @@ extends Node2D
 @export var light_point_hi = false
 
 var light_running = false
-var switched_on = false
+var switched_on = true
 
 var random : RandomNumberGenerator = RandomNumberGenerator.new()
 

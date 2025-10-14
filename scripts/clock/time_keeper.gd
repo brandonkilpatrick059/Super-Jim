@@ -155,8 +155,8 @@ func _process(delta):
 				advance_day()
 	elif (is_menu_paused && !is_playing_song && timer_song.is_stopped()):
 		is_playing_song = true
-		sound_player.stream = load("res://audio/music/Game is paused 2.wav")
-		sound_player.play()
+		#sound_player.stream = load("res://audio/music/Game is paused 2.wav")
+		#sound_player.play()
 	
 	if(player_ref.dead && !is_game_over):
 		game_over()

@@ -12,6 +12,7 @@ extends Node2D
 @export var light_point_hi = false
 
 var light_running = false
+var switched_on = false
 
 var random : RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -28,7 +29,7 @@ func set_light_running(running : bool):
 	light_running = running
 
 func _physics_process(delta: float) -> void:
-	if(light_running):
+	if(!switched_on && light_running):
 		if(light_point_lo && SettingsVariables.lighting_index == 0):
 			light_point.enabled = true
 			light_sprite.visible = false
@@ -47,6 +48,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			light_point.enabled = false
 			light_sprite.visible = true
-	else:
+		switched_on = true
+	elif(switched_on && !light_running):
 		light_point.enabled = false
 		light_sprite.visible = false
+		switched_on = false

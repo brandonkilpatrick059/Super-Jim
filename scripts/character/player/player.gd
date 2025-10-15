@@ -7,6 +7,7 @@ extends RigidBody2D
 @onready var _collision = $CollisionShape2D
 @onready var _ui = $ui_canvas/player_ui
 @onready var _light = $player_light
+@onready var _flash_light = $flash_light
 
 var _camera
 var camera_connected = false
@@ -101,6 +102,7 @@ func _ready():
 	update_max_dash_meter()
 	
 	_light.enabled = false
+	_flash_light.enabled = false
 	
 	if(Engine.is_editor_hint()):
 		queue_redraw()
@@ -152,14 +154,14 @@ func hide_dash():
 func turn_light_on():
 	light_on = true
 	if(has_flashlight):
-		return
+		_flash_light.enabled = true
 	else:
 		_light.enabled = true
 
 func turn_light_off():
 	light_on = false
 	if(has_flashlight):
-		return
+		_flash_light.enabled = false
 	else:
 		_light.enabled = false
 

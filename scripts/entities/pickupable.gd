@@ -2,7 +2,7 @@ extends RigidBody2D
 
 @onready var _collision_shape = $CollisionShape2D
 @onready var sprite = $sprite
-
+@export var has_home = true
 @export var force_factor = 100
 
 var picked_up = false
@@ -37,6 +37,9 @@ var falling = false
 var current_scale = 1
 var scale_step = 0.1
 
+var prop_home : Vector2 = Vector2(0,0)
+var return_home_distance = 600
+
 signal spark_collide()
 signal signal_picked_up()
 signal destroy_self()
@@ -51,6 +54,7 @@ func _ready():
 	sound_player.max_distance = 500
 	sound_player.bus = "Effects"
 	add_child(sound_player)
+	prop_home = global_position
 
 func set_physics_pos(vector2):
 	should_reset = true
@@ -116,7 +120,7 @@ func set_will_pickup_false():
 	will_pickup = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+#func _process(delta):
 	#TODO: pickup arrow broke and i don't care enough to fix it.
 	#maybe get rid of it in favor of a shader-based highlight or something?
 #	#update pickup arrow's presence
@@ -135,11 +139,16 @@ func _process(delta):
 	#if(showing_arrow):
 		#arrow_instance.position = position
 		
-	if(picked_up):
-		global_position = (pickup_actor_ref.global_position + Vector2(0, -base_offset+y_sort_offset))
+
+func return_to_home():
+	global_position = prop_home
+	set_physics_pos(prop_home)
+	falling = false
 
 func _physics_process(delta):
-	if(falling && timer_fall.is_stopped()):
+	if(picked_up):
+		global_position = (pickup_actor_ref.global_position + Vector2(0, -base_offset+y_sort_offset))
+	elif(falling && timer_fall.is_stopped()):
 		timer_fall.start(timer_fall_step)
 		if(current_scale - scale_step > 0):
 			current_scale = current_scale - scale_step
@@ -148,10 +157,24 @@ func _physics_process(delta):
 			if(is_in_group("pizza")):
 				destroy_self.emit()
 			else:
-				queue_free()
+				if(has_home):
+					return_to_home()
+				else:
+					queue_free()
+	else:
+		var player_ref = get_tree().get_first_node_in_group("player")
+		if(global_position.distance_to(player_ref.global_position) > return_home_distance):
+			return_to_home()
+	if(current_scale < 1 && !falling && timer_fall.is_stopped()):
+		if(current_scale + scale_step < 1):
+			current_scale = current_scale + scale_step
+		else:
+			current_scale  = 1
+		sprite.scale = Vector2(current_scale, current_scale)
 
 func fall():
 	if(!falling):
+		_collision_shape.disabled = true
 		falling = true
 		timer_fall.start(timer_fall_step)
 
@@ -174,6 +197,3 @@ func _integrate_forces(state):
 	if thrown:
 		state.apply_central_impulse(throw_force)
 		thrown = false
-
-
-

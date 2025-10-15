@@ -27,7 +27,6 @@ timer_wait_secs = 0.8
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="start_menu"]
 stream = ExtResource("7_0owee")
-volume_db = -12.855
 autoplay = true
 bus = &"Music"
 

@@ -8,7 +8,7 @@ extends Node2D
 var timer : Timer = Timer.new()
 var particle = null
 var player_ref : Node2D = null
-var distance_to_stop = 321
+var distance_to_stop = 600
 
 func get_player_ref():
 	if(!player_ref):

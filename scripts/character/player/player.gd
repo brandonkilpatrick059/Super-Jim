@@ -6,6 +6,7 @@ extends RigidBody2D
 @onready var _tough_luck = $tough_luck
 @onready var _collision = $CollisionShape2D
 @onready var _ui = $ui_canvas/player_ui
+@onready var _light = $player_light
 
 var _camera
 var camera_connected = false
@@ -71,6 +72,9 @@ var active_anchor : Node = null
 
 var money : int = 0
 
+var light_on = false
+var has_flashlight = false
+
 func _ready():
 	_collision.disabled = no_clip
 	timer_dash.one_shot = true
@@ -95,6 +99,8 @@ func _ready():
 	_ui.set_max_hearts(max_hp)
 	current_dash_secs = max_dash_secs
 	update_max_dash_meter()
+	
+	_light.enabled = false
 	
 	if(Engine.is_editor_hint()):
 		queue_redraw()
@@ -142,6 +148,20 @@ func show_dash():
 
 func hide_dash():
 	_ui.hide_dash()
+
+func turn_light_on():
+	light_on = true
+	if(has_flashlight):
+		return
+	else:
+		_light.enabled = true
+
+func turn_light_off():
+	light_on = false
+	if(has_flashlight):
+		return
+	else:
+		_light.enabled = false
 
 func show_hearts():
 	_ui.show_hearts()
@@ -237,6 +257,13 @@ func get_input():
 
 func get_current_hp():
 	return current_hp
+
+func heal_hp(heal):
+	if (current_hp <  max_hp):
+		if current_hp + heal > max_hp:
+			current_hp = max_hp
+		else:
+			current_hp = current_hp + heal
 
 func increment_hp():
 	if(current_hp < max_hp):

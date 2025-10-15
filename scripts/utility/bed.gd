@@ -22,6 +22,9 @@ var player_ref = null
 
 var time_keeper
 
+@export var gives_hp = 1
+@export var gives_dash_secs = 20
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -49,6 +52,7 @@ func _process(delta):
 				timer_fade.start(long_step_secs)
 				time_keeper.set_clock(sleep_end_time)
 				player_ref.increment_hp()
+				player_ref.give_dash_seconds(20)
 				time_keeper.advance_day()
 		elif(fading_in):
 			if(fade_alpha > 0):

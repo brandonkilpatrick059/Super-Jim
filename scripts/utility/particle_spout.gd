@@ -8,11 +8,11 @@ extends Node2D
 var timer : Timer = Timer.new()
 var particle = null
 var player_ref : Node2D = null
-var distance_to_stop = 600
+var distance_to_stop = 432
 
 func get_player_ref():
 	if(!player_ref):
-		player_ref = get_tree().get_first_node_in_group("player")
+		player_ref = get_tree().get_first_node_in_group("camera")
 	return player_ref
 
 func _ready():

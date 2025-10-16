@@ -1,0 +1,42 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://djh7805gy0ikr"]
+
+[ext_resource type="Texture2D" uid="uid://cqho78v0x1lcy" path="res://sprites/spritesheets/effects/spark_light.png" id="1_br0qa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aieou"]
+atlas = ExtResource("1_br0qa")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ka7u2"]
+atlas = ExtResource("1_br0qa")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4oihw"]
+atlas = ExtResource("1_br0qa")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_226nk"]
+atlas = ExtResource("1_br0qa")
+region = Rect2(48, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aieou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ka7u2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4oihw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_226nk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_226nk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]

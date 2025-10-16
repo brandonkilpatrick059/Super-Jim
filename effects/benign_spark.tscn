@@ -1,13 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmrbmx0sedvf5"]
+[gd_scene load_steps=6 format=3 uid="uid://cmrbmx0sedvf5"]
 
 [ext_resource type="Script" uid="uid://b26t6upggnqwl" path="res://scripts/utility/animation_destroy_source.gd" id="1_ouv3r"]
 [ext_resource type="SpriteFrames" uid="uid://sp81pjpathb6" path="res://sprites/spritesheets/spriteframes/effects/spark.tres" id="2_w5eee"]
+[ext_resource type="SpriteFrames" uid="uid://djh7805gy0ikr" path="res://sprites/spritesheets/spriteframes/effects/sparklight.tres" id="3_0xtqm"]
+[ext_resource type="Script" uid="uid://n30jkoh1sfnw" path="res://scripts/utility/animation_destroy.gd" id="4_vt2c2"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0xtqm"]
+blend_mode = 1
 
 [node name="spark" type="Node2D"]
 script = ExtResource("1_ouv3r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 8)
-scale = Vector2(0.25, 0.25)
 sprite_frames = ExtResource("2_w5eee")
-offset = Vector2(0, -32)
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("4_vt2c2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
+material = SubResource("CanvasItemMaterial_0xtqm")
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("3_0xtqm")

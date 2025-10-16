@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl6gmtd58bsq1"]
+
+[ext_resource type="Script" uid="uid://djqsu6tba8c28" path="res://scripts/utility/wire.gd" id="1_276x0"]
+
+[node name="wire" type="Node2D"]
+script = ExtResource("1_276x0")
+sample_count = null
+color = null
+precision = null
+width = null

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cciumaf53l3mj"]
+
+[ext_resource type="Texture2D" uid="uid://cy0wm1rv3ntad" path="res://sprites/props/sign_post.png" id="1_085lr"]
+[ext_resource type="Texture2D" uid="uid://0d3n5esom4o4" path="res://sprites/lights/small_shadow.png" id="2_pouhv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7wqg"]
+size = Vector2(22, 10)
+
+[node name="sign_post" type="StaticBody2D" groups=["prop"]]
+y_sort_enabled = true
+
+[node name="sprite" type="Sprite2D" parent="." groups=["prop"]]
+y_sort_enabled = true
+position = Vector2(0, -10)
+texture = ExtResource("1_085lr")
+
+[node name="sprite2" type="Sprite2D" parent="." groups=["prop"]]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(0, -10)
+texture = ExtResource("2_pouhv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["prop"]]
+y_sort_enabled = true
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_x7wqg")

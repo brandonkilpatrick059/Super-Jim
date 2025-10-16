@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://051pslydpmov"]
+
+[ext_resource type="SpriteFrames" uid="uid://beatnybf10wlk" path="res://sprites/spritesheets/spriteframes/props/ac_unit_1.tres" id="1_ennl0"]
+[ext_resource type="Script" uid="uid://b3xtkv5igree1" path="res://scripts/utility/play_default_animation.gd" id="2_e2ke8"]
+[ext_resource type="Texture2D" uid="uid://bdbcrlpfc1o84" path="res://sprites/lights/square_shadow.png" id="3_kutmk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fmkk0"]
+size = Vector2(32, 20)
+
+[node name="ac_unit_1" type="AnimatedSprite2D"]
+position = Vector2(0, -16)
+sprite_frames = ExtResource("1_ennl0")
+frame_progress = 0.266093
+script = ExtResource("2_e2ke8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 17)
+scale = Vector2(1, 0.625)
+texture = ExtResource("3_kutmk")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_fmkk0")

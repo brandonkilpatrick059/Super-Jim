@@ -2,39 +2,39 @@
 
 [ext_resource type="Texture2D" uid="uid://bovqk2ohyurt1" path="res://sprites/spritesheets/effects/spark.png" id="1_5338c"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yoxpv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pk47t"]
 atlas = ExtResource("1_5338c")
-region = Rect2(0, 0, 64, 64)
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_anb65"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1ex1"]
 atlas = ExtResource("1_5338c")
-region = Rect2(64, 0, 64, 64)
+region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jsbhp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fymax"]
 atlas = ExtResource("1_5338c")
-region = Rect2(128, 0, 64, 64)
+region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3yhl4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2cun"]
 atlas = ExtResource("1_5338c")
-region = Rect2(192, 0, 64, 64)
+region = Rect2(48, 0, 16, 16)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yoxpv")
+"texture": SubResource("AtlasTexture_pk47t")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_anb65")
+"texture": SubResource("AtlasTexture_e1ex1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jsbhp")
+"texture": SubResource("AtlasTexture_fymax")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3yhl4")
+"texture": SubResource("AtlasTexture_v2cun")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3yhl4")
+"texture": SubResource("AtlasTexture_v2cun")
 }],
 "loop": true,
 "name": &"default",

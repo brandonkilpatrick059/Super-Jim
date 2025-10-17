@@ -1,4 +1,4 @@
-extends AnimatedSprite2D
+extends Sprite2D
 
 @export var running_hours : Array[bool]
 

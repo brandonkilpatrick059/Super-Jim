@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpdil082ms5mq"]
+
+[ext_resource type="SpriteFrames" uid="uid://1853jgwx0bdr" path="res://sprites/spritesheets/spriteframes/game_world/light_house.tres" id="1_h1011"]
+[ext_resource type="Script" uid="uid://b3xtkv5igree1" path="res://scripts/utility/play_default_animation.gd" id="2_ecjsl"]
+[ext_resource type="SpriteFrames" uid="uid://7trhet2ud3qn" path="res://sprites/spritesheets/spriteframes/effects/light_house_light.tres" id="3_ecjsl"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h1011"]
+blend_mode = 1
+
+[node name="light_house" type="AnimatedSprite2D"]
+sprite_frames = ExtResource("1_h1011")
+frame_progress = 0.276809
+offset = Vector2(0, -96)
+script = ExtResource("2_ecjsl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 2
+material = SubResource("CanvasItemMaterial_h1011")
+position = Vector2(0, -150)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("3_ecjsl")
+frame_progress = 0.259043
+script = ExtResource("2_ecjsl")

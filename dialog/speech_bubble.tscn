@@ -15,7 +15,7 @@ font_color = Color(0, 0, 0, 1)
 shadow_size = 0
 
 [node name="bubble" type="Sprite2D" groups=["speech"]]
-z_index = 7
+z_index = 30
 material = SubResource("CanvasItemMaterial_3p65j")
 position = Vector2(30, -48)
 texture = ExtResource("1_rmlsj")

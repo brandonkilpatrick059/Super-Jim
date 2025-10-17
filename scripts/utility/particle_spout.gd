@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 			get_player_ref()
 			var pos_y : float = global_position.y - player_ref.global_position.y
 			var pos_x : float = global_position.x - player_ref.global_position.x
-			if(abs(pos_y) > distance_to_stop_y ||
+			if(abs(pos_y) > distance_to_stop_y &&
 			abs(pos_x) > distance_to_stop_x ):
 				run_spout = false
 

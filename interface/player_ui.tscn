@@ -19,6 +19,7 @@ font_size = 64
 font_color = Color(1, 0, 0, 1)
 
 [node name="player_ui" type="Control"]
+visible = false
 z_index = 6
 layout_mode = 3
 anchors_preset = 0

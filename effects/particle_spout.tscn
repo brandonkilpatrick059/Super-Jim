@@ -4,3 +4,5 @@
 
 [node name="ParticleSpout" type="Node2D"]
 script = ExtResource("1_wj5ym")
+min_seconds_between_particles = null
+max_seconds_between_particles = null

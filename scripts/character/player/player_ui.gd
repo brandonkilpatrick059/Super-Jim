@@ -32,6 +32,7 @@ var pizza_loss_on_screen_seconds = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	visible = true
 	money_timer.one_shot = true
 	pizza_loss_timer.one_shot = true
 	add_child(money_timer)

@@ -9,6 +9,8 @@ var pizza_bubble = preload("res://entities/characters/NPC/mobsters/communication
 var exclaim_bubble = preload("res://entities/characters/NPC/mobsters/communication/exclaim.tscn")
 var exclaim_bubble_blu = preload("res://entities/characters/NPC/mobsters/communication/exclaim_blu.tscn")
 var exclaim_bubble_red = preload("res://entities/characters/NPC/mobsters/communication/exclaim_red.tscn")
+var flag_bubble_blu = preload("res://entities/characters/NPC/mobsters/communication/flag_blu.tscn")
+var flag_bubble_red = preload("res://entities/characters/NPC/mobsters/communication/flag_red.tscn")
 var die_skull = preload("res://effects/kill_skull.tscn")
 var red_bullet = preload("res://entities/characters/NPC/mobsters/red_bullet.tscn")
 var blu_bullet = preload("res://entities/characters/NPC/mobsters/blu_bullet.tscn")
@@ -17,7 +19,9 @@ var red_base = preload("res://sprites/spritesheets/spriteframes/characters/base/
 var blu_base = preload("res://sprites/spritesheets/spriteframes/characters/base/blu_mobster_base.tres")
 
 var red_hat = preload("res://sprites/spritesheets/spriteframes/characters/hat/cowboy_hat_1.tres")
+var red_bandit_hat = preload("res://sprites/spritesheets/spriteframes/characters/hat/red_bandit_mask.tres")
 var blue_top = preload("res://sprites/spritesheets/spriteframes/characters/top/biker_vest_1.tres")
+var blue_bandit_hat = preload("res://sprites/spritesheets/spriteframes/characters/hat/blu_bandit_mask.tres")
 
 @onready var _navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var _head_collider = $head_shape
@@ -31,6 +35,7 @@ const team_red = "red"
 const team_blu = "blu"
 @export var team = team_red
 var opposing_team 
+var is_bandit = false
 
 #perceptors
 @onready var _passive_raycast: RayCast2D = $passive_raycast
@@ -61,8 +66,9 @@ const top_speed = 125000
 const nav_target_reached_distance = 32 #distance at which nav target is considered reached
 const nav_path_resolution = 4
 
+const bandit_max_hit_points = 6
 const max_hit_points = 3
-var hit_points = max_hit_points
+var hit_points = 0
 
 var invincibility_timer = Timer.new()
 var damage_collision_layer : int
@@ -89,6 +95,22 @@ func _ready():
 	if(Engine.is_editor_hint()):
 		queue_redraw()
 
+func make_bandit():
+	is_bandit = true
+	if(team == team_red):
+		hat_spriteframes = red_bandit_hat
+	else:
+		hat_spriteframes = blue_bandit_hat
+
+	_character_base.set_spriteframes(base_spriteframes,
+	hat_spriteframes,
+	top_spriteframes,
+	bottom_spriteframes)
+	
+	hit_points = bandit_max_hit_points
+	add_to_group("bandit")
+	perceptions.is_bandit = is_bandit
+
 func set_team(team_name : String):
 	team = team_name
 
@@ -99,7 +121,6 @@ func set_up_character_base():
 	else: if(team == team_blu):
 		base_spriteframes = blu_base
 		top_spriteframes = blue_top
-		
 	_character_base.set_facing_dir(start_facing_dir)
 	_character_base.set_spriteframes(base_spriteframes,
 	hat_spriteframes,
@@ -138,6 +159,8 @@ func set_up_mobster_team():
 		_vision.set_collision_mask_value(10,true)
 	perceptions.team = team
 	perceptions.opposing_team = opposing_team
+
+	hit_points = max_hit_points
 
 #################################################################
 #PERCEPTIONS- functions which deal with the mobster's perceptions
@@ -363,7 +386,8 @@ func _on_adjust_offset(adjustment : Vector2):
 	for child in children:
 		if(child.is_in_group("exclaim") ||
 		child.is_in_group("question") ||
-		child.is_in_group("pizza_bubble")):
+		child.is_in_group("pizza_bubble") ||
+		child.is_in_group("flag")):
 			child.position += adjustment
 	_shadow.offset += adjustment
 	offset_vector = adjustment
@@ -515,6 +539,17 @@ func _on_die_skull():
 	sound_player.play()
 	var skull = die_skull.instantiate()
 	self.add_child(skull)
+
+func _on_flag_bubble():
+	sound_player.stream = load("res://audio/soundFX/horn.wav")
+	sound_player.play()
+	var flagBubble
+	if(team == team_blu):
+		flagBubble = flag_bubble_blu.instantiate()
+	else:
+		flagBubble = flag_bubble_red.instantiate()
+	flagBubble.set_source_obj(self)
+	self.add_child(flagBubble)
 
 func _on_exclaim_bubble():
 	sound_player.stream = load("res://audio/soundFX/alert.wav")

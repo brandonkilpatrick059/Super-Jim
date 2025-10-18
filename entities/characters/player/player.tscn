@@ -32,6 +32,7 @@ max_contacts_reported = 1
 linear_damp = 6.0
 script = ExtResource("1_srksq")
 base_spriteframes = ExtResource("2_ai6r1")
+no_clip = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5.5)

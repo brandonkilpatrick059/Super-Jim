@@ -139,6 +139,7 @@ shape = SubResource("CircleShape2D_lksb6")
 [connection signal="turn_left" from="ai_state_machine/look" to="." method="_on_turn_left"]
 [connection signal="turn_right" from="ai_state_machine/look" to="." method="_on_turn_right"]
 [connection signal="advance_navigation" from="ai_state_machine/transit" to="." method="_on_advance_navigation"]
+[connection signal="call_to_arms" from="ai_state_machine/transit" to="." method="_on_flag_bubble"]
 [connection signal="reduce_health" from="ai_state_machine/transit" to="." method="_on_reduce_hit_points"]
 [connection signal="set_nav_target" from="ai_state_machine/transit" to="." method="_on_set_nav_target"]
 [connection signal="set_target" from="ai_state_machine/transit" to="." method="_on_set_ai_target"]

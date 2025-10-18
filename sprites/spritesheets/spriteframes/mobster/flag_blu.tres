@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://b88m2a4uc2sss"]
+
+[ext_resource type="Texture2D" uid="uid://40wixbvogyd5" path="res://sprites/spritesheets/mobster/bed_flag.png" id="1_lhj87"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpeve"]
+atlas = ExtResource("1_lhj87")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6l3i"]
+atlas = ExtResource("1_lhj87")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iq5aj"]
+atlas = ExtResource("1_lhj87")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yc8lk"]
+atlas = ExtResource("1_lhj87")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydu7f"]
+atlas = ExtResource("1_lhj87")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vby63"]
+atlas = ExtResource("1_lhj87")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpeve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6l3i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iq5aj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yc8lk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydu7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vby63")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

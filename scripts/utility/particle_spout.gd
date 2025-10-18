@@ -42,7 +42,7 @@ func _physics_process(delta: float) -> void:
 			if(!is_in_x_bounds || !is_in_y_bounds):
 				run_spout = false
 
-		if(run_spout && timer.is_stopped()):
+		if(false && timer.is_stopped()):
 			var new_particle = particle.instantiate()
 			add_child(new_particle)
 			new_particle.global_position = global_position

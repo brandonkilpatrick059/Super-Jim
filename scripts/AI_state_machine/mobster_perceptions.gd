@@ -9,3 +9,4 @@ var team = ""
 var opposing_team = ""
 var hit_points
 var invincible = false
+var is_bandit = false

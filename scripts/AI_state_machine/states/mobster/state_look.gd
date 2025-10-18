@@ -52,6 +52,7 @@ func physics_process(_delta: float):
 		var pizza = get_tree().get_first_node_in_group("pizza")
 		var nodes_in_vision = ai_state_machine.get_perceptions().nodes_in_vision
 		var nodes_in_hearing = ai_state_machine.get_perceptions().nodes_in_hearing
+		#check vision
 		for node in nodes_in_vision:
 			if(node != null && node.is_in_group(ai_state_machine.get_perceptions().opposing_team) &&
 			node.is_in_group("mobster")):
@@ -63,6 +64,7 @@ func physics_process(_delta: float):
 			set_target.emit(player)
 			if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
 				ai_state_machine.transition_to(mobster_states.exclaiming)
+		#check hearing
 		elif(nodes_in_hearing.size() > 0):
 			for node in nodes_in_hearing:
 				if(node.is_in_group("exclaim")):

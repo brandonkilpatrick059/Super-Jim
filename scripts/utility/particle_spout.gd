@@ -9,8 +9,8 @@ extends Node2D
 var timer : Timer = Timer.new()
 var particle = null
 var player_ref : Node2D = null
-var distance_to_stop_x = 400
-var distance_to_stop_y = 248
+var distance_to_stop_x = 320
+var distance_to_stop_y = 264
 
 var random : RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -30,10 +30,16 @@ func _physics_process(delta: float) -> void:
 		var run_spout = true
 		if(!Engine.is_editor_hint()):
 			get_player_ref()
-			var pos_y : float = global_position.y - player_ref.global_position.y
+			var pos_y_plus : float = global_position.y + distance_to_stop_y
+			var pos_y_minus : float = global_position.y - distance_to_stop_y
+			var pos_x_plus : float = global_position.x + distance_to_stop_x
+			var pos_x_minus : float = global_position.x - distance_to_stop_x
+			var is_in_y_bounds :bool = pos_y_minus <= player_ref.global_position.y 
+			is_in_y_bounds = is_in_y_bounds && pos_y_plus >= player_ref.global_position.y 
+			var is_in_x_bounds :bool = pos_x_minus <= player_ref.global_position.x 
+			is_in_x_bounds = is_in_x_bounds && pos_x_plus >= player_ref.global_position.x 
 			var pos_x : float = global_position.x - player_ref.global_position.x
-			if(abs(pos_y) > distance_to_stop_y &&
-			abs(pos_x) > distance_to_stop_x ):
+			if(!is_in_x_bounds || !is_in_y_bounds):
 				run_spout = false
 
 		if(run_spout && timer.is_stopped()):

@@ -61,7 +61,8 @@ func physics_process(_delta: float) -> void:
 			set_target.emit(player)
 			if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
 				ai_state_machine.transition_to(mobster_states.exclaiming)
-		elif(nodes_in_vision.has(pizza) && 
+		elif(pizza != null &&
+		nodes_in_vision.has(pizza) && 
 		!ai_state_machine.perceptions.holding_object &&
 		!pizza.is_picked_up()):
 			set_target.emit(pizza)

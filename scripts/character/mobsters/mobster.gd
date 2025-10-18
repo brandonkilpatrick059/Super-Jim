@@ -16,6 +16,8 @@ var blu_bullet = preload("res://entities/characters/NPC/mobsters/blu_bullet.tscn
 var red_base = preload("res://sprites/spritesheets/spriteframes/characters/base/red_mobster_base.tres")
 var blu_base = preload("res://sprites/spritesheets/spriteframes/characters/base/blu_mobster_base.tres")
 
+var red_hat = preload("res://sprites/spritesheets/spriteframes/characters/hat/cowboy_hat_1.tres")
+
 @onready var _navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var _head_collider = $head_shape
 @onready var _body_collider = $CollisionShape2D
@@ -92,6 +94,7 @@ func set_team(team_name : String):
 func set_up_character_base():
 	if(team == team_red):
 		base_spriteframes = red_base
+		hat_spriteframes = red_hat
 	else: if(team == team_blu):
 		base_spriteframes = blu_base
 		

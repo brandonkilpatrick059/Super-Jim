@@ -17,6 +17,7 @@ var red_base = preload("res://sprites/spritesheets/spriteframes/characters/base/
 var blu_base = preload("res://sprites/spritesheets/spriteframes/characters/base/blu_mobster_base.tres")
 
 var red_hat = preload("res://sprites/spritesheets/spriteframes/characters/hat/cowboy_hat_1.tres")
+var blue_top = preload("res://sprites/spritesheets/spriteframes/characters/top/biker_vest_1.tres")
 
 @onready var _navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var _head_collider = $head_shape
@@ -97,6 +98,7 @@ func set_up_character_base():
 		hat_spriteframes = red_hat
 	else: if(team == team_blu):
 		base_spriteframes = blu_base
+		top_spriteframes = blue_top
 		
 	_character_base.set_facing_dir(start_facing_dir)
 	_character_base.set_spriteframes(base_spriteframes,

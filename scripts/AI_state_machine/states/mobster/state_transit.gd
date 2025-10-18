@@ -63,8 +63,8 @@ func physics_process(_delta: float) -> void:
 		return
 	elif(handle_death()):
 		return
-	elif(ai_state_machine.get_perceptions().is_bandit && handle_call()):
-		return
+	#elif(ai_state_machine.get_perceptions().is_bandit && handle_call()):
+		#return
 	else:
 		#check for targets
 		var nodes_in_vision = ai_state_machine.get_perceptions().nodes_in_vision

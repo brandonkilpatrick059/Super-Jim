@@ -399,6 +399,10 @@ func _on_disable_all_collision():
 	_on_disable_head_collider()
 	_body_collider.disabled = true
 
+func _on_enable_all_collision():
+	_on_enable_head_collider()
+	_body_collider.disabled = false
+
 func _on_reduce_hit_points():
 	go_invincible()
 	hit_points -= 1

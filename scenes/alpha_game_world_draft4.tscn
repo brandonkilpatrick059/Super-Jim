@@ -1,4 +1,4 @@
-[gd_scene load_steps=897 format=3 uid="uid://cdqi1t4ffkn68"]
+[gd_scene load_steps=898 format=3 uid="uid://cdqi1t4ffkn68"]
 
 [ext_resource type="Script" uid="uid://b6jomjtxpe43f" path="res://scripts/utility/active_root.gd" id="1_kkdxt"]
 [ext_resource type="PackedScene" uid="uid://dt6metcfd7qcq" path="res://entities/util/bed.tscn" id="2_w73on"]
@@ -46,6 +46,7 @@
 [ext_resource type="SpriteFrames" uid="uid://brsf7khfc33uh" path="res://sprites/spritesheets/spriteframes/characters/hat/cowboy_hat_1.tres" id="29_besy2"]
 [ext_resource type="PackedScene" uid="uid://bwjchx0ehilg4" path="res://entities/dynamic world/train_st_window_2_all_night.tscn" id="30_plpuc"]
 [ext_resource type="PackedScene" uid="uid://kamax630ji7y" path="res://entities/dynamic world/window3_all_night.tscn" id="31_6mexl"]
+[ext_resource type="SpriteFrames" uid="uid://cpp0eytgtwa1r" path="res://sprites/spritesheets/spriteframes/characters/top/biker_vest_1.tres" id="31_lcc1l"]
 [ext_resource type="PackedScene" uid="uid://cgq4w0va0oofp" path="res://entities/dynamic world/window_5_all_night.tscn" id="32_6dug3"]
 [ext_resource type="PackedScene" uid="uid://durd7oart1xoi" path="res://entities/dynamic world/pizzashop_window.tscn" id="33_oku3t"]
 [ext_resource type="PackedScene" uid="uid://dyojwva6irfyf" path="res://entities/dynamic world/indoor_window_1.tscn" id="34_kku3q"]
@@ -9527,81 +9528,97 @@ hat_spriteframes = ExtResource("29_besy2")
 position = Vector2(-1660, -912)
 team = "blu"
 base_spriteframes = ExtResource("16_vleas")
+top_spriteframes = ExtResource("31_lcc1l")
 
 [node name="blu_mobster6" parent="daylight_affected_layer/daylight_affected_ysort" instance=ExtResource("15_o4ye6")]
 position = Vector2(-1628, 1275)
 team = "blu"
 base_spriteframes = ExtResource("16_vleas")
+top_spriteframes = ExtResource("31_lcc1l")
 
 [node name="blu_mobster7" parent="daylight_affected_layer/daylight_affected_ysort" instance=ExtResource("15_o4ye6")]
 position = Vector2(-2349, -1624)
 team = "blu"
 base_spriteframes = ExtResource("16_vleas")
+top_spriteframes = ExtResource("31_lcc1l")
 
 [node name="blu_mobster8" parent="daylight_affected_layer/daylight_affected_ysort" instance=ExtResource("15_o4ye6")]
 position = Vector2(-1356, 1618)
 team = "blu"
 base_spriteframes = ExtResource("16_vleas")
+top_spriteframes = ExtResource("31_lcc1l")
 
 [node name="blu_mobster9" parent="daylight_affected_layer/daylight_affected_ysort" instance=ExtResource("15_o4ye6")]
 position = Vector2(-699, -1432)
 team = "blu"
 base_spriteframes = ExtResource("16_vleas")
+top_spriteframes = ExtResource("31_lcc1l")
 
 [node name="blu_mobster10" parent="daylight_affected_layer/daylight_affected_ysort" instance=ExtResource("15_o4ye6")]
 position = Vector2(-1245, 1821)
 team = "blu"
 base_spriteframes = ExtResource("16_vleas")
+top_spriteframes = ExtResource("31_lcc1l")
 
 [node name="blu_mobster14" parent="daylight_affected_layer/daylight_affected_ysort" instance=ExtResource("15_o4ye6")]
 position = Vector2(727, 1152)
 team = "blu"
 base_spriteframes = ExtResource("16_vleas")
+top_spriteframes = ExtResource("31_lcc1l")
 
 [node name="blu_mobster15" parent="daylight_affected_layer/daylight_affected_ysort" instance=ExtResource("15_o4ye6")]
 position = Vector2(1684, 741)
 team = "blu"
 base_spriteframes = ExtResource("16_vleas")
+top_spriteframes = ExtResource("31_lcc1l")
 
 [node name="blu_mobster16" parent="daylight_affected_layer/daylight_affected_ysort" instance=ExtResource("15_o4ye6")]
 position = Vector2(3219, 722)
 team = "blu"
 base_spriteframes = ExtResource("16_vleas")
+top_spriteframes = ExtResource("31_lcc1l")
 
 [node name="blu_mobster2" parent="daylight_affected_layer/daylight_affected_ysort" instance=ExtResource("15_o4ye6")]
 position = Vector2(-2435, -666)
 team = "blu"
 base_spriteframes = ExtResource("16_vleas")
+top_spriteframes = ExtResource("31_lcc1l")
 
 [node name="blu_mobster3" parent="daylight_affected_layer/daylight_affected_ysort" instance=ExtResource("15_o4ye6")]
 position = Vector2(-2043, -1310)
 team = "blu"
 base_spriteframes = ExtResource("16_vleas")
+top_spriteframes = ExtResource("31_lcc1l")
 
 [node name="blu_mobster4" parent="daylight_affected_layer/daylight_affected_ysort" instance=ExtResource("15_o4ye6")]
 position = Vector2(-976, -1928)
 team = "blu"
 base_spriteframes = ExtResource("16_vleas")
+top_spriteframes = ExtResource("31_lcc1l")
 
 [node name="blu_mobster11" parent="daylight_affected_layer/daylight_affected_ysort" instance=ExtResource("15_o4ye6")]
 position = Vector2(1660, -1556)
 team = "blu"
 base_spriteframes = ExtResource("16_vleas")
+top_spriteframes = ExtResource("31_lcc1l")
 
 [node name="blu_mobster12" parent="daylight_affected_layer/daylight_affected_ysort" instance=ExtResource("15_o4ye6")]
 position = Vector2(2191, -1067)
 team = "blu"
 base_spriteframes = ExtResource("16_vleas")
+top_spriteframes = ExtResource("31_lcc1l")
 
 [node name="blu_mobster13" parent="daylight_affected_layer/daylight_affected_ysort" instance=ExtResource("15_o4ye6")]
 position = Vector2(2490, -1272)
 team = "blu"
 base_spriteframes = ExtResource("16_vleas")
+top_spriteframes = ExtResource("31_lcc1l")
 
 [node name="blu_mobster5" parent="daylight_affected_layer/daylight_affected_ysort" instance=ExtResource("15_o4ye6")]
 position = Vector2(-1667, -1135)
 team = "blu"
 base_spriteframes = ExtResource("16_vleas")
+top_spriteframes = ExtResource("31_lcc1l")
 
 [node name="game_world" type="Node2D" parent="daylight_affected_layer/daylight_affected_ysort"]
 y_sort_enabled = true

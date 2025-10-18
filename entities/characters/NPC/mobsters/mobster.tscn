@@ -43,7 +43,6 @@ contact_monitor = true
 max_contacts_reported = 3
 linear_damp = 5.0
 script = ExtResource("1_1jg0u")
-base_spriteframes = ExtResource("2_qkhc6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
@@ -144,7 +143,7 @@ shape = SubResource("CircleShape2D_lksb6")
 [connection signal="set_nav_target" from="ai_state_machine/transit" to="." method="_on_set_nav_target"]
 [connection signal="set_target" from="ai_state_machine/transit" to="." method="_on_set_ai_target"]
 [connection signal="one_shot_animate" from="ai_state_machine/recovering" to="." method="_on_play_one_shot_animation"]
-[connection signal="turn_on_head_collider" from="ai_state_machine/recovering" to="." method="_on_enable_head_collider"]
+[connection signal="turn_on_collision" from="ai_state_machine/recovering" to="." method="_on_enable_all_collision"]
 [connection signal="adjust_offset" from="ai_state_machine/knockedout" to="." method="_on_adjust_offset"]
 [connection signal="animate" from="ai_state_machine/knockedout" to="." method="_on_play_animation"]
 [connection signal="reduce_health" from="ai_state_machine/knockedout" to="." method="_on_reduce_hit_points"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bb2k5moefsyl7"]
+[gd_scene load_steps=8 format=3 uid="uid://bb2k5moefsyl7"]
 
 [ext_resource type="Script" uid="uid://b26t6upggnqwl" path="res://scripts/utility/animation_destroy_source.gd" id="1_vv155"]
 [ext_resource type="SpriteFrames" uid="uid://hch8trucxdvf" path="res://sprites/spritesheets/spriteframes/effects/explosion.tres" id="2_vv155"]
 [ext_resource type="SpriteFrames" uid="uid://b0ucg3rvj41x7" path="res://sprites/spritesheets/spriteframes/effects/explosion_light.tres" id="3_rkyet"]
 [ext_resource type="Script" uid="uid://cokplo2tlxspb" path="res://scripts/utility/play_sound_once.gd" id="4_2bmfb"]
+[ext_resource type="Script" uid="uid://b3xtkv5igree1" path="res://scripts/utility/play_default_animation.gd" id="4_yc3gs"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2bmfb"]
 blend_mode = 1
@@ -12,6 +13,8 @@ blend_mode = 1
 radius = 28.0179
 
 [node name="explosion" type="RigidBody2D" groups=["bullet_spark", "spark"]]
+collision_layer = 256
+collision_mask = 0
 script = ExtResource("1_vv155")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -22,14 +25,11 @@ speed_scale = 0.4
 material = SubResource("CanvasItemMaterial_2bmfb")
 sprite_frames = ExtResource("3_rkyet")
 speed_scale = 0.4
+script = ExtResource("4_yc3gs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_uok2e")
 
 [node name="play_sound" type="Node2D" parent="."]
-script = ExtResource("4_2bmfb")
-sound_path = "res://audio/soundFX/explosion.wav"
-
-[node name="play_sound2" type="Node2D" parent="."]
 script = ExtResource("4_2bmfb")
 sound_path = "res://audio/soundFX/explosion.wav"

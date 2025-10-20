@@ -279,7 +279,7 @@ func check_vision():
 			perceptions.nodes_in_vision = detected_nodes
 
 func check_hearing():
-	var commotion_notice_distance = 224
+	var commotion_notice_distance = 400
 	var commotions = get_tree().get_nodes_in_group("commotion")
 	var nodes_in_hearing: Array[Node] = []
 	for commotion in commotions:

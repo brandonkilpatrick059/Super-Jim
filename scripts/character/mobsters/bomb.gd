@@ -41,8 +41,10 @@ func explode():
 	new_explosion.position = position
 	
 	var iter = 0
+	var steps = 5
 	var rot = random.randf_range(0,360)
-	while(iter < 4):
+	var rot_step = 360 / steps
+	while(iter < 5):
 		var new_bullet
 		if(team == "red"):
 			new_bullet = red_shrapnel.instantiate()
@@ -50,7 +52,7 @@ func explode():
 			new_bullet = blu_shrapnel.instantiate()
 		new_bullet.set_source_obj(source_obj)
 		get_parent().add_child(new_bullet)
-		rot = rot + 90
+		rot = rot + rot_step
 		new_bullet.rotation_degrees = rot
 		new_bullet.position = position
 		new_bullet.apply_velocity()

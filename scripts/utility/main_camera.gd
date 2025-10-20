@@ -19,7 +19,7 @@ var fade_alpha = 0.0
 var fade_step = 0.05
 
 var current_zoom_level = 1.0
-var target_zoom_level = 0.2
+var target_zoom_level = 1.0
 var timer_zoom := Timer.new()
 var zoom_step = 0.002
 var zoom_step_secs = 0.001

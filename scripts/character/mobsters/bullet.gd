@@ -10,7 +10,6 @@ var speed = 185
 var velocity = Vector2.RIGHT
 var source_obj :Node
 @export var team = "red"
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sound_player.max_distance = 500

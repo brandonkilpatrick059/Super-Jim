@@ -118,13 +118,19 @@ func distance_to_position(pos: Vector2):
 
 func current_point_to_closest_capture_point():
 	var capture_points = get_tree().get_nodes_in_group("capture_point")
-	current_patrol_point = capture_points[0]
+	current_patrol_point = null
 	for capture_point in capture_points:
 		if(capture_point.is_in_group(ai_state_machine.get_perceptions().opposing_team)):
-			var distance_to_current_point = distance_to_current_point()
-			var distance_to_other_point = distance_to_position(capture_point.position)
-			if(distance_to_other_point < distance_to_current_point):
+			if(current_patrol_point != null):
+				var distance_to_current_point = distance_to_current_point()
+				var distance_to_other_point = distance_to_position(capture_point.position)
+				if(distance_to_other_point < distance_to_current_point):
+					current_patrol_point = capture_point
+			else:
 				current_patrol_point = capture_point
+	if(current_patrol_point == null):
+		current_point_to_closest_point()
+	
 
 func current_point_to_closest_point():
 	var patrol_points = get_tree().get_nodes_in_group("patrol_point")

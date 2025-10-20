@@ -13,6 +13,9 @@ var nav_target_reached = false
 var setup_done = false
 var host_position
 
+var default_speed = 400000
+var bandit_speed =  500000
+
 func get_host_position():
 	return ai_state_machine.get_perceptions().position
 
@@ -73,7 +76,10 @@ func physics_process(_delta: float) -> void:
 		
 		nav_target_reached = get_host_nav_target_reached()
 		if(!nav_target_reached):
-			advance_navigation.emit(400000)
+			if(ai_state_machine.get_perceptions().is_bandit):
+				advance_navigation.emit(bandit_speed)
+			else:
+				advance_navigation.emit(default_speed)
 		else:
 			if(!ai_state_machine.get_perceptions().has_line_of_sight_to_target):
 				#question_bubble.emit()

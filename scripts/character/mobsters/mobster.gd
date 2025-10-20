@@ -14,10 +14,10 @@ var flag_bubble_red = preload("res://entities/characters/NPC/mobsters/communicat
 var die_skull = preload("res://effects/kill_skull.tscn")
 var red_bullet = preload("res://entities/characters/NPC/mobsters/red_bullet.tscn")
 var blu_bullet = preload("res://entities/characters/NPC/mobsters/blu_bullet.tscn")
-
-var red_base = preload("res://sprites/spritesheets/spriteframes/characters/base/red_mobster_base.tres")
+var blu_bomb = preload("res://entities/characters/NPC/mobsters/blu_bomb.tscn")
+var red_bomb = preload("res://entities/characters/NPC/mobsters/red_bomb.tscn")
 var blu_base = preload("res://sprites/spritesheets/spriteframes/characters/base/blu_mobster_base.tres")
-
+var red_base = preload("res://sprites/spritesheets/spriteframes/characters/base/red_mobster_base.tres")
 var red_hat = preload("res://sprites/spritesheets/spriteframes/characters/hat/cowboy_hat_1.tres")
 var red_bandit_hat = preload("res://sprites/spritesheets/spriteframes/characters/hat/red_bandit_mask.tres")
 var blue_top = preload("res://sprites/spritesheets/spriteframes/characters/top/biker_vest_1.tres")
@@ -431,8 +431,14 @@ func _on_reduce_hit_points():
 	go_invincible()
 	hit_points -= 1
 
-func _on_add_hit_points():
+func _on_add_hit_point():
 	hit_points += 1
+
+func heal_to_max():
+	if(is_bandit):
+		hit_points = bandit_max_hit_points
+	else:
+		hit_points = max_hit_points
 
 func _on_set_strafe_point():
 	_on_set_unadjusted_nav_target(get_strafe_point())
@@ -452,6 +458,33 @@ func _on_create_bullet(create_pos: Vector2, rotation_deg):
 	new_bullet.create_spark_benign() #muzzle flash
 	sound_player.stream = load("res://audio/soundFX/gunshot.wav")
 	sound_player.play()
+
+func _on_create_bomb():
+	var new_bomb
+	var trajectory : Vector2
+	var width = 0.5
+	if(team == team_red):
+		new_bomb = red_bomb.instantiate()
+	else: if(team == team_blu):
+		new_bomb = blu_bomb.instantiate()
+	if(perceptions.facing_dir == direction.right):
+		var y_factor = random.randf_range(-width,width)
+		trajectory = Vector2(1, y_factor)
+	elif(perceptions.facing_dir == direction.left):
+		var y_factor = random.randf_range(-width,width)
+		trajectory = Vector2(-1, y_factor)
+	elif(perceptions.facing_dir == direction.up):
+		var x_factor = random.randf_range(-width,width)
+		trajectory = Vector2(x_factor, -1)
+	elif(perceptions.facing_dir == direction.down):
+		var x_factor = random.randf_range(-width,width)
+		trajectory = Vector2(x_factor, 1)
+	sound_player.stream = load("res://audio/soundFX/throw_bomb.wav")
+	sound_player.play()
+	new_bomb.set_trajectory(trajectory)
+	new_bomb.set_source_obj(self)
+	get_parent().add_child(new_bomb)
+	new_bomb.position = position
 
 func _on_set_nav_target(pos : Vector2):
 	perceptions.nav_target_reached = false
@@ -555,7 +588,8 @@ func _on_exclaim_bubble():
 	sound_player.stream = load("res://audio/soundFX/alert.wav")
 	sound_player.play()
 	var exclaimBubble
-	if(perceptions.target_obj.is_in_group("player")):
+	if(perceptions.target_obj != null && 
+	perceptions.target_obj.is_in_group("player")):
 		exclaimBubble = exclaim_bubble.instantiate()
 	else:
 		if(team == team_blu):

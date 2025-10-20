@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://bb2k5moefsyl7"]
+
+[ext_resource type="Script" uid="uid://b26t6upggnqwl" path="res://scripts/utility/animation_destroy_source.gd" id="1_vv155"]
+[ext_resource type="SpriteFrames" uid="uid://hch8trucxdvf" path="res://sprites/spritesheets/spriteframes/effects/explosion.tres" id="2_vv155"]
+[ext_resource type="SpriteFrames" uid="uid://b0ucg3rvj41x7" path="res://sprites/spritesheets/spriteframes/effects/explosion_light.tres" id="3_rkyet"]
+[ext_resource type="Script" uid="uid://cokplo2tlxspb" path="res://scripts/utility/play_sound_once.gd" id="4_2bmfb"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2bmfb"]
+blend_mode = 1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uok2e"]
+radius = 28.0179
+
+[node name="explosion" type="RigidBody2D" groups=["bullet_spark", "spark"]]
+script = ExtResource("1_vv155")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_vv155")
+speed_scale = 0.4
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_2bmfb")
+sprite_frames = ExtResource("3_rkyet")
+speed_scale = 0.4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uok2e")
+
+[node name="play_sound" type="Node2D" parent="."]
+script = ExtResource("4_2bmfb")
+sound_path = "res://audio/soundFX/explosion.wav"
+
+[node name="play_sound2" type="Node2D" parent="."]
+script = ExtResource("4_2bmfb")
+sound_path = "res://audio/soundFX/explosion.wav"

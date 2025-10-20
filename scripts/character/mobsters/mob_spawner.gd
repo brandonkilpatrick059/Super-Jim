@@ -3,8 +3,7 @@ extends Node2D
 
 var mobster = preload("res://entities/characters/NPC/mobsters/mobster.tscn")
 
-var max_mobs_per_team = 30
-
+var max_mobs_per_team = 40
 
 var spawns_since_bandit = 0
 var spawns_until_bandit = 3
@@ -41,6 +40,7 @@ func _on_body_entered(body: Node):
 	body.is_in_group("bandit") && 
 	body.is_in_group(opposing_team)):
 		turn_over()
+		body.heal_to_max()
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -56,7 +56,7 @@ func _process(delta):
 		new_mob.set_team(spawner_team)
 		spawns_since_bandit = spawns_since_bandit + 1
 		ysort_node.add_child(new_mob)
-		if(spawns_since_bandit >= spawns_until_bandit):
+		if(spawns_since_bandit > spawns_until_bandit):
 			new_mob.make_bandit()
 			spawns_since_bandit = 0
 		new_mob.global_position = global_position

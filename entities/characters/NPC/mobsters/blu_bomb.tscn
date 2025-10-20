@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvaw2tillvgvj"]
+
+[ext_resource type="Script" uid="uid://dfoyojqoy8wum" path="res://scripts/character/mobsters/bomb.gd" id="1_gdewb"]
+[ext_resource type="SpriteFrames" uid="uid://ui7fw3ecqlnl" path="res://sprites/spritesheets/spriteframes/mobster/bomb.tres" id="2_a3pb3"]
+[ext_resource type="Script" uid="uid://b3xtkv5igree1" path="res://scripts/utility/play_default_animation.gd" id="3_nq2we"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gdewb"]
+radius = 4.0
+
+[node name="BluBomb" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 16
+lock_rotation = true
+script = ExtResource("1_gdewb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_a3pb3")
+offset = Vector2(0, -24)
+script = ExtResource("3_nq2we")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gdewb")

@@ -18,7 +18,9 @@ var camera_connected = false
 @export var bottom_spriteframes : SpriteFrames
 @export var facing_dir = "right"
 
-@export var no_clip = false
+var no_clip = false
+var dev_zoom = false
+const no_clip_speed = 3200000
 
 var player_die = preload("res://entities/characters/player/player_die.tscn") 
 var dash_get = preload("res://interface/dash_get.tscn")
@@ -32,7 +34,6 @@ const normal_speed = 50000
 const dash_speed = 100000
 var acceleration_quotient = normal_speed
 const top_speed = 180
-
 
 var current_dash_secs : float = 0.0
 var max_dash_secs : float = 20.0
@@ -255,7 +256,27 @@ func get_input():
 		handle_interact()
 		handle_throw()
 		handle_dash()
+		handle_dev()
 		move()
+
+func handle_dev():
+	if Input.is_action_just_pressed("dev_no_clip"):
+		if(no_clip):
+			no_clip = false
+			acceleration_quotient = normal_speed
+			_collision.disabled = false
+		else:
+			no_clip = true
+			acceleration_quotient = no_clip_speed
+			_collision.disabled = true
+	if Input.is_action_just_pressed("dev_toggle_zoom"):
+		if(camera_connected):
+			if(dev_zoom == false):
+				dev_zoom = true
+				_camera.zoom_to(0.2)
+			else:
+				dev_zoom = false
+				_camera.zoom_to(1.0)
 
 func get_current_hp():
 	return current_hp
@@ -483,7 +504,10 @@ func _physics_process(delta):
 					else:
 						timer_dash.start(1)
 			else:
-				acceleration_quotient = normal_speed
+				if(!no_clip):
+					acceleration_quotient = normal_speed
+				else:
+					acceleration_quotient = no_clip_speed
 			
 			#regen dash
 			#if(timer_dash_regen.is_stopped() && can_dash == false && !is_dashing):

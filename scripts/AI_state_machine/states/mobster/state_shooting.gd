@@ -2,6 +2,7 @@ class_name Shooting_State
 extends State
 
 signal shoot(pos : Vector2, rotation_deg)
+signal throw_bomb()
 signal play_animation(name : String)
 signal face_target()
 signal stop_motion()
@@ -86,6 +87,8 @@ func shoot_burst():
 		num_bullets_fired = num_bullets_fired + 1
 		timer_between_shots.start(time_between_shots_secs)
 	else: if(num_bullets_fired >= burst_num_bullets):
+		if(ai_state_machine.get_perceptions().is_bandit):
+			throw_bomb.emit()
 		burst_cool_down = true
 		timer_burst_cool_down.start(burst_cool_down_secs)	
 

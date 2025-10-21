@@ -2,6 +2,7 @@ extends RigidBody2D
 
 @onready var _collision_shape = $CollisionShape2D
 @onready var sprite = $sprite
+@onready var _occluder = $occluder
 @export var has_home = true
 @export var force_factor = 100
 
@@ -161,10 +162,8 @@ func _physics_process(delta):
 					return_to_home()
 				else:
 					queue_free()
-	else:
-		var player_ref = get_tree().get_first_node_in_group("player")
-		if(global_position.distance_to(player_ref.global_position) > return_home_distance):
-			return_to_home()
+	elif(_occluder.is_occluding):
+		return_to_home()
 	if(current_scale < 1 && !falling && timer_fall.is_stopped()):
 		if(current_scale + scale_step < 1):
 			current_scale = current_scale + scale_step

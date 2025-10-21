@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6lxboyeldjgg"]
+[gd_scene load_steps=6 format=3 uid="uid://c6lxboyeldjgg"]
 
 [ext_resource type="Script" uid="uid://bkt2mviy7eonh" path="res://scripts/entities/pickupable.gd" id="1_b42oy"]
 [ext_resource type="Texture2D" uid="uid://jbkbp7b1xrl2" path="res://sprites/props/dynamic props/Brick.png" id="2_eca1u"]
+[ext_resource type="Script" uid="uid://b4yio707fbsyr" path="res://scripts/utility/visual_occluder.gd" id="3_v3ciw"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1gs3y"]
 
@@ -29,3 +30,6 @@ texture = ExtResource("2_eca1u")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["dynamic", "pickupable", "prop"]]
 y_sort_enabled = true
 shape = SubResource("RectangleShape2D_x7wqg")
+
+[node name="occluder" type="Node2D" parent="."]
+script = ExtResource("3_v3ciw")

@@ -17,6 +17,9 @@ func _ready():
 	if(state != null):
 		state.enter()
 
+func get_state () -> State:
+	return state
+
 func get_perceptions():
 	return perceptions
 

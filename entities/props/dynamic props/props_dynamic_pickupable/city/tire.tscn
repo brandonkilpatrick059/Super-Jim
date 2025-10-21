@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b32f5qpkrs36x"]
+[gd_scene load_steps=6 format=3 uid="uid://b32f5qpkrs36x"]
 
 [ext_resource type="Script" uid="uid://bkt2mviy7eonh" path="res://scripts/entities/pickupable.gd" id="1_3t1ky"]
 [ext_resource type="Texture2D" uid="uid://ddsax1bqr7jm1" path="res://sprites/props/dynamic props/tire.png" id="2_hhn02"]
+[ext_resource type="Script" uid="uid://b4yio707fbsyr" path="res://scripts/utility/visual_occluder.gd" id="3_42cxy"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1gs3y"]
 bounce = 0.2
@@ -31,3 +32,6 @@ texture = ExtResource("2_hhn02")
 y_sort_enabled = true
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_x7wqg")
+
+[node name="occluder" type="Node2D" parent="."]
+script = ExtResource("3_42cxy")

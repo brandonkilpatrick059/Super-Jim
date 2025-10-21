@@ -36,6 +36,8 @@ func spawn_mobs():
 			num_blu_mobs = num_blu_mobs + 1
 	var iter = 0
 	var need_new_spawner = true
+	if(num_blu_mobs == max_mobs_per_team):
+		pass #don't mind me, debug point for dev 
 	while(iter < num_mobs_to_spawn):
 		var red_spawner = get_loneliest_spawner(temp_red_spawners)
 		var blu_spawner = get_loneliest_spawner(temp_blu_spawners)

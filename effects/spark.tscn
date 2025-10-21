@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcd4cw7785qx"]
+[gd_scene load_steps=5 format=3 uid="uid://dcd4cw7785qx"]
 
 [ext_resource type="Script" uid="uid://b26t6upggnqwl" path="res://scripts/utility/animation_destroy_source.gd" id="1_b4bps"]
 [ext_resource type="SpriteFrames" uid="uid://sp81pjpathb6" path="res://sprites/spritesheets/spriteframes/effects/spark.tres" id="2_ra2sb"]
+[ext_resource type="Script" uid="uid://b4yio707fbsyr" path="res://scripts/utility/visual_occluder.gd" id="3_g8wki"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mst78"]
 
@@ -15,3 +16,6 @@ sprite_frames = ExtResource("2_ra2sb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_mst78")
+
+[node name="occluder" type="Node2D" parent="."]
+script = ExtResource("3_g8wki")

@@ -77,6 +77,8 @@ var money : int = 0
 var light_on = false
 var has_flashlight = false
 
+var dev_occlusion_enabled = true
+
 func _ready():
 	_collision.disabled = no_clip
 	timer_dash.one_shot = true
@@ -277,6 +279,16 @@ func handle_dev():
 			else:
 				dev_zoom = false
 				_camera.zoom_to(1.0)
+	if Input.is_action_just_pressed("dev_toggle_occluders"):
+		var occluders = get_tree().get_nodes_in_group("visual_occluder")
+		if(dev_occlusion_enabled):
+			dev_occlusion_enabled = false
+			for occluder in occluders:
+				occluder.occluding_enabled = false
+		else:
+			dev_occlusion_enabled = true
+			for occluder in occluders:
+				occluder.occluding_enabled = true
 
 func get_current_hp():
 	return current_hp

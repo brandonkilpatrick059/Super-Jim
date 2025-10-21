@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl38mevtnmtq1"]
+[gd_scene load_steps=4 format=3 uid="uid://dl38mevtnmtq1"]
 
 [ext_resource type="Texture2D" uid="uid://cji7agu6mdcnb" path="res://sprites/props/dynamic props/trash_can_open_bag.png" id="1_mb3pg"]
+[ext_resource type="Script" uid="uid://b4yio707fbsyr" path="res://scripts/utility/visual_occluder.gd" id="2_bhag3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x7wqg"]
 size = Vector2(24, 24)
@@ -22,3 +23,6 @@ texture = ExtResource("1_mb3pg")
 y_sort_enabled = true
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_x7wqg")
+
+[node name="occluder" type="Node2D" parent="."]
+script = ExtResource("2_bhag3")

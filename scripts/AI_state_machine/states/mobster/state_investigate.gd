@@ -46,29 +46,31 @@ func physics_process(_delta: float) -> void:
 		return
 	else:
 		#check for targets
-		var player = get_tree().get_first_node_in_group("courier")
-		var pizza = get_tree().get_first_node_in_group("pizza")
 		var nodes_in_vision = ai_state_machine.get_perceptions().nodes_in_vision
 		var nodes_in_hearing = ai_state_machine.get_perceptions().nodes_in_hearing
+		var pizza = get_tree().get_first_node_in_group("pizza")
 		for node in nodes_in_vision:
-			if(node != null && node.is_in_group(ai_state_machine.get_perceptions().opposing_team) &&
-			node.is_in_group("mobster")):
-				set_target.emit(node)
-				if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
-					ai_state_machine.transition_to(mobster_states.exclaiming)
-					return
-		if(nodes_in_vision.has(player)):
-			set_target.emit(player)
-			if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
-				ai_state_machine.transition_to(mobster_states.exclaiming)
-		elif(pizza != null &&
-		nodes_in_vision.has(pizza) && 
-		!ai_state_machine.perceptions.holding_object &&
-		!pizza.is_picked_up()):
-			set_target.emit(pizza)
-			if(ai_state_machine.get_perceptions().reactive_has_line_of_sight_to_target):
-				ai_state_machine.transition_to(mobster_states.enticed)
-				return
+			if(node != null):
+				if(node.is_in_group(ai_state_machine.get_perceptions().opposing_team) &&
+				node.is_in_group("mobster")):
+					set_target.emit(node)
+					if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
+						ai_state_machine.transition_to(mobster_states.exclaiming)
+						return
+				#check for player
+				elif(node.is_in_group("courier")):
+					set_target.emit(node)
+					if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
+						ai_state_machine.transition_to(mobster_states.exclaiming)
+						return
+				elif(pizza != null &&
+				node.is_in_group("pizza") && 
+				!ai_state_machine.perceptions.holding_object &&
+				!pizza.is_picked_up()):
+					set_target.emit(node)
+					if(ai_state_machine.get_perceptions().reactive_has_line_of_sight_to_target):
+						ai_state_machine.transition_to(mobster_states.enticed)
+						return
 		#investigate
 		if(timer.is_stopped()):
 			ai_state_machine.transition_to(mobster_states.look)

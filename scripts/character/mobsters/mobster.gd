@@ -23,10 +23,21 @@ var red_bandit_hat = preload("res://sprites/spritesheets/spriteframes/characters
 var blue_top = preload("res://sprites/spritesheets/spriteframes/characters/top/biker_vest_1.tres")
 var blue_bandit_hat = preload("res://sprites/spritesheets/spriteframes/characters/hat/blu_bandit_mask.tres")
 
+#audio preloads
+var bullet_sound = preload("res://audio/soundFX/gunshot.wav")
+var pick_up_sound = preload("res://audio/soundFX/pickup.wav")
+var put_down_sound = preload("res://audio/soundFX/putdown.wav")
+var throw_bomb_sound = preload("res://audio/soundFX/throw_bomb.wav")
+var sine_voice = preload("res://audio/soundFX/voice/sine_voice/1.wav")
+var low_sine_voice = preload("res://audio/soundFX/voice/low_sine_voice/1.wav")
+var exclaim_sound = preload("res://audio/soundFX/alert.wav")
+var horn_sound = preload("res://audio/soundFX/horn.wav")
+
 @onready var _navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var _head_collider = $head_shape
 @onready var _body_collider = $CollisionShape2D
 @onready var _spark_detector : Area2D = $spark_detector
+@onready var _occluder = $occluder
 
 @export var current_patrol_point :Node2D = null
 
@@ -78,6 +89,10 @@ var is_invincible = false
 var holding_object = false
 var held_obj : Node
 
+#var pathfinding_timer = Timer.new()
+#var pathfinding_wait = 0.5
+var next_path_position: Vector2
+
 var offset_vector : Vector2
 
 # Called when the node enters the scene tree for the first time.
@@ -87,7 +102,7 @@ func _ready():
 		set_up_sound_player()
 		set_up_nav_agent()
 		set_up_mobster_team()	
-		update_perceptions()
+		initiate_perceptions()
 		send_perceptions()
 		
 		invincibility_timer.one_shot = true
@@ -95,6 +110,9 @@ func _ready():
 		
 		exclaim_timer.one_shot = true
 		add_child(exclaim_timer)
+		
+		#pathfinding_timer.one_shot = true
+		#add_child(pathfinding_timer)
 	
 	#for updating character composition in the editor
 	if(Engine.is_editor_hint()):
@@ -193,6 +211,16 @@ func update_line_of_sight_to_target():
 		else:
 			perceptions.reactive_has_line_of_sight_to_target = false
 
+func initiate_perceptions():
+	perceptions.current_v = current_v
+	perceptions.facing_dir = _character_base.get_facing_dir()
+	perceptions.position = position
+	perceptions.linear_velocity = linear_velocity
+	perceptions.speed = linear_velocity.length()
+	perceptions.hit_points = hit_points
+	perceptions.invincible = is_invincible
+	perceptions.holding_object = holding_object
+
 func update_perceptions():
 	perceptions.current_v = current_v
 	perceptions.facing_dir = _character_base.get_facing_dir()
@@ -203,7 +231,10 @@ func update_perceptions():
 	perceptions.invincible = is_invincible
 	perceptions.holding_object = holding_object
 	
-	update_line_of_sight_to_target()
+	if(_ai_state_machine.get_state().name == mobster_states.shooting ||
+	_ai_state_machine.get_state().name == mobster_states.strafing ||
+	_ai_state_machine.get_state().name == mobster_states.chasing):
+		update_line_of_sight_to_target()
 	
 	check_vision()
 	check_hearing()
@@ -399,7 +430,7 @@ func _on_adjust_offset(adjustment : Vector2):
 
 func _on_pick_up(pick_up_obj : Node):
 	if(!holding_object):
-		sound_player.stream = load("res://audio/soundFX/pickup.wav")
+		sound_player.stream = pick_up_sound
 		sound_player.play()
 		pick_up_obj.pick_up(self)
 		held_obj = pick_up_obj
@@ -407,7 +438,7 @@ func _on_pick_up(pick_up_obj : Node):
 
 func _on_put_down():
 	if(holding_object):
-		sound_player.stream = load("res://audio/soundFX/putdown.wav")
+		sound_player.stream = put_down_sound
 		sound_player.play()
 		held_obj.put_down(direction.get_opposite(_character_base.get_facing_dir()))
 		held_obj = null
@@ -461,7 +492,7 @@ func _on_create_bullet(create_pos: Vector2, rotation_deg):
 	new_bullet.position = create_pos
 	new_bullet.apply_velocity()
 	new_bullet.create_spark_benign() #muzzle flash
-	sound_player.stream = load("res://audio/soundFX/gunshot.wav")
+	sound_player.stream = bullet_sound
 	sound_player.play()
 
 func _on_create_bomb():
@@ -484,7 +515,7 @@ func _on_create_bomb():
 	elif(perceptions.facing_dir == direction.down):
 		var x_factor = random.randf_range(-width,width)
 		trajectory = Vector2(x_factor, 1)
-	sound_player.stream = load("res://audio/soundFX/throw_bomb.wav")
+	sound_player.stream = throw_bomb_sound
 	sound_player.play()
 	new_bomb.set_trajectory(trajectory)
 	new_bomb.set_source_obj(self)
@@ -505,17 +536,18 @@ func _on_advance_navigation(speed : int):
 	if (!perceptions.nav_target_reached &&
 	global_position.distance_to(_navigation_agent.target_position) >= nav_target_reached_distance):
 		var current_agent_position: Vector2 = global_position
-		var next_path_position: Vector2 = _navigation_agent.get_next_path_position()
+		next_path_position  = _navigation_agent.get_next_path_position()
 		current_v = current_agent_position.direction_to(next_path_position) * speed
 	else:
 		current_v = perceptions.current_v * 0
 		perceptions.nav_target_reached = true
 	#handle animation
 	_character_base.face_to_vector(current_v)
-	_character_base.animate_sprite_by_vector(current_v, (linear_velocity.length() >= top_speed))
-	var base = 0.4
-	var remainder = 0.6
-	_character_base.set_animation_scale(base,remainder,perceptions.speed,top_speed)
+	if(!_occluder.is_occluding):
+		_character_base.animate_sprite_by_vector(current_v, (linear_velocity.length() >= top_speed))
+		var base = 0.4
+		var remainder = 0.6
+		_character_base.set_animation_scale(base,remainder,perceptions.speed,top_speed)
 
 func _on_turn_right():
 	_character_base.turn_right()
@@ -556,13 +588,13 @@ func _on_play_sound(resource_name: String):
 	sound_player.play()
 
 func _on_question_bubble():
-	sound_player.stream = load("res://audio/soundFX/voice/sine_voice/1.wav")
+	sound_player.stream = sine_voice
 	sound_player.play()
 	var questionBubble = question_bubble.instantiate()
 	self.add_child(questionBubble)
 
 func _on_pizza_bubble():
-	sound_player.stream = load("res://audio/soundFX/voice/sine_voice/1.wav")
+	sound_player.stream = sine_voice
 	sound_player.play()
 	var pizzaBubble = pizza_bubble.instantiate()
 	self.add_child(pizzaBubble)
@@ -573,13 +605,13 @@ func _on_blood():
 	blood.position += offset_vector
 
 func _on_die_skull():
-	sound_player.stream = load("res://audio/soundFX/voice/low_sine_voice/1.wav")
+	sound_player.stream = low_sine_voice
 	sound_player.play()
 	var skull = die_skull.instantiate()
 	self.add_child(skull)
 
 func _on_flag_bubble():
-	sound_player.stream = load("res://audio/soundFX/horn.wav")
+	sound_player.stream = horn_sound
 	sound_player.play()
 	var flagBubble
 	if(team == team_blu):
@@ -590,7 +622,7 @@ func _on_flag_bubble():
 	self.add_child(flagBubble)
 
 func exclaim():
-	sound_player.stream = load("res://audio/soundFX/alert.wav")
+	sound_player.stream = exclaim_sound
 	sound_player.play()
 	var exclaimBubble
 	if(perceptions.target_obj != null && 
@@ -644,7 +676,6 @@ func _on_face_pos(pos : Vector2):
 ##########################################################################################
 
 func update():
-	update_vision()
 	update_perceptions()
 	if(is_invincible && invincibility_timer.is_stopped()):
 		go_vincible()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuq4j5recltag"]
+[gd_scene load_steps=6 format=3 uid="uid://cuq4j5recltag"]
 
 [ext_resource type="Script" uid="uid://bo1iblsladq4s" path="res://scripts/character/mobsters/bullet.gd" id="1_31h2p"]
 [ext_resource type="Texture2D" uid="uid://bqk8cfkxyvgwv" path="res://sprites/mobster/shrapnel.png" id="2_31h2p"]
 [ext_resource type="AudioStream" uid="uid://dab2bmcr4prlv" path="res://audio/soundFX/mob/bullet_whoosh.wav" id="3_a6v10"]
+[ext_resource type="Script" uid="uid://b4yio707fbsyr" path="res://scripts/utility/visual_occluder.gd" id="4_unibv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xemyf"]
 size = Vector2(8, 6)
@@ -26,5 +27,8 @@ texture = ExtResource("2_31h2p")
 stream = ExtResource("3_a6v10")
 autoplay = true
 max_distance = 64.0
+
+[node name="occluder" type="Node2D" parent="."]
+script = ExtResource("4_unibv")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

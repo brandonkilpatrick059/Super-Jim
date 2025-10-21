@@ -25,11 +25,16 @@ var open_close_timer := Timer.new()
 var open_close_time_secs = 0.5
 var open_distance = 32
 
+var last_frame_open = 0
+var last_frame_close = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	open_close_timer.one_shot = true
 	add_child(open_close_timer)
 	time_keeper = get_tree().get_first_node_in_group("time_keeper")
+	last_frame_open = _animated_sprite.sprite_frames.get_frame_count("open")-1 
+	last_frame_close = _animated_sprite.sprite_frames.get_frame_count("close")-1 
 
 func open():
 	if(!opened):
@@ -72,7 +77,10 @@ func player_is_behind_door():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
-	var opener_is_near = opener_is_near()
+	var opener_is_near = false
+	if(_area_2d.has_overlapping_bodies()):
+		opener_is_near = opener_is_near()
+	
 	#opener has to stand near the door for a period of time for it to open
 	if(opened == false && !waiting_to_open && opener_is_near):
 		waiting_to_open = true
@@ -104,8 +112,6 @@ func _physics_process(delta: float):
 	else:
 		locked = false
 	
-	var last_frame_open = _animated_sprite.sprite_frames.get_frame_count("open")-1 
-	var last_frame_close = _animated_sprite.sprite_frames.get_frame_count("close")-1 
 	if(opening && _animated_sprite.frame == last_frame_open):
 		opened = true
 		opening = false

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://xq8rqbbcvrhk"]
+
+[ext_resource type="Texture2D" uid="uid://c2sivyh20pckg" path="res://sprites/props/bar_2.png" id="1_shmpv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7wqg"]
+size = Vector2(32, 18.5)
+
+[node name="bar_2" type="StaticBody2D" groups=["prop"]]
+y_sort_enabled = true
+
+[node name="bar_2" type="Sprite2D" parent="." groups=["prop"]]
+y_sort_enabled = true
+texture = ExtResource("1_shmpv")
+offset = Vector2(0, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["prop"]]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(0, 22.25)
+shape = SubResource("RectangleShape2D_x7wqg")

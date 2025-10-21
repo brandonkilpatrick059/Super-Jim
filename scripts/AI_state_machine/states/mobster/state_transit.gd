@@ -89,10 +89,11 @@ func physics_process(_delta: float) -> void:
 			for node in nodes_in_hearing:
 				if(node.is_in_group("exclaim")):
 					var source_obj = node.get_source_obj()
-					if(source_obj.is_in_group(ai_state_machine.get_perceptions().opposing_team)):
-						set_target.emit(source_obj)
-						ai_state_machine.transition_to(mobster_states.exclaiming)
-						return
+					if(source_obj != null):
+						if(source_obj.is_in_group(ai_state_machine.get_perceptions().opposing_team)):
+							set_target.emit(source_obj)
+							ai_state_machine.transition_to(mobster_states.exclaiming)
+							return
 			ai_state_machine.transition_to(mobster_states.investigate)
 		elif(pizza != null &&
 		nodes_in_vision.has(pizza) && 

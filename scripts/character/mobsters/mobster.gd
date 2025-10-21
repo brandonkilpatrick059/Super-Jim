@@ -70,6 +70,8 @@ const bandit_max_hit_points = 6
 const max_hit_points = 3
 var hit_points = 0
 
+var exclaim_timer = Timer.new()
+var exclaiming = false
 var invincibility_timer = Timer.new()
 var damage_collision_layer : int
 var is_invincible = false
@@ -90,6 +92,9 @@ func _ready():
 		
 		invincibility_timer.one_shot = true
 		add_child(invincibility_timer)
+		
+		exclaim_timer.one_shot = true
+		add_child(exclaim_timer)
 	
 	#for updating character composition in the editor
 	if(Engine.is_editor_hint()):
@@ -279,7 +284,7 @@ func check_vision():
 			perceptions.nodes_in_vision = detected_nodes
 
 func check_hearing():
-	var commotion_notice_distance = 400
+	var commotion_notice_distance = 300
 	var commotions = get_tree().get_nodes_in_group("commotion")
 	var nodes_in_hearing: Array[Node] = []
 	for commotion in commotions:
@@ -584,7 +589,7 @@ func _on_flag_bubble():
 	flagBubble.set_source_obj(self)
 	self.add_child(flagBubble)
 
-func _on_exclaim_bubble():
+func exclaim():
 	sound_player.stream = load("res://audio/soundFX/alert.wav")
 	sound_player.play()
 	var exclaimBubble
@@ -598,6 +603,10 @@ func _on_exclaim_bubble():
 			exclaimBubble = exclaim_bubble_blu.instantiate()
 	exclaimBubble.set_source_obj(perceptions.target_obj)
 	self.add_child(exclaimBubble)
+
+func _on_exclaim_bubble():
+	exclaiming = true
+	exclaim_timer.start(random.randf_range(0,0.5))
 
 func _on_set_ai_target_position():
 	perceptions.target_pos = perceptions.target_obj.global_position
@@ -662,3 +671,6 @@ func _physics_process(delta):
 		#apply velocity thru physics engine
 		apply_force(current_v)
 		var mobs = get_tree().get_nodes_in_group("mobster")
+		if(exclaim_timer.is_stopped() && exclaiming):
+			exclaim()
+			exclaiming = false

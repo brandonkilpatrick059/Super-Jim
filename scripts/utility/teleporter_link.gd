@@ -28,9 +28,13 @@ var control_timer_active = false
 
 var player_ref = null
 
-var daylight_affected_ysort : Node
-var no_daylight_ysort : Node
-var dark_indoor_ysort : Node
+var day_light_ysort : Node
+var flat_light_ysort : Node
+var dark_ysort : Node
+
+var day_light_layer : Node
+var flat_light_layer : Node
+var dark_layer : Node
 
 @export var exit_dir : String = ""
 
@@ -43,9 +47,12 @@ func get_fade_color():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	daylight_affected_ysort = get_tree().get_first_node_in_group("daylight_affected_ysort")
-	no_daylight_ysort = get_tree().get_first_node_in_group("no_daylight_ysort")
-	dark_indoor_ysort = get_tree().get_first_node_in_group("dark_indoor_ysort")
+	day_light_ysort = get_tree().get_first_node_in_group("daylight_affected_ysort")
+	flat_light_ysort = get_tree().get_first_node_in_group("no_daylight_ysort")
+	dark_ysort = get_tree().get_first_node_in_group("dark_indoor_ysort")
+	day_light_layer = get_tree().get_first_node_in_group("daylight_layer")
+	flat_light_layer = get_tree().get_first_node_in_group("flat_light_layer")
+	dark_layer = get_tree().get_first_node_in_group("dark_layer")
 	timer_fade.one_shot = true
 	timer_control_back.one_shot = true
 	add_child(timer_fade)
@@ -83,27 +90,23 @@ func enter():
 		
 		player_ref.global_position = linked_teleporter.global_position
 		if(reparent_to_daylight):
-			player_ref.reparent(daylight_affected_ysort)
+			player_ref.reparent(day_light_ysort)
 			player_ref.turn_light_off()
-			var ambient_darks = get_tree().get_nodes_in_group("ambient_dark")
-			for cv_mod in ambient_darks:
-				cv_mod.visible = false
-				if daylight_affected_ysort.get_parent().get_children().has(cv_mod):
-					cv_mod.visible = true	
+			day_light_layer.visible = true
+			dark_layer.visible = false
+			flat_light_layer.visible = false
 		elif(reparent_to_no_daylight):
 			player_ref.turn_light_off()
-			var ambient_darks = get_tree().get_nodes_in_group("ambient_dark")
-			for cv_mod in ambient_darks:
-				cv_mod.visible = false
-			player_ref.reparent(no_daylight_ysort)
+			day_light_layer.visible = false
+			dark_layer.visible = false
+			flat_light_layer.visible = true
+			player_ref.reparent(flat_light_ysort)
 		elif(reparent_to_dark_indoor):
-			player_ref.reparent(dark_indoor_ysort)
+			player_ref.reparent(dark_ysort)
 			player_ref.turn_light_on()
-			var ambient_darks = get_tree().get_nodes_in_group("ambient_dark")
-			for cv_mod in ambient_darks:
-				cv_mod.visible = false
-				if dark_indoor_ysort.get_parent().get_children().has(cv_mod):
-					cv_mod.visible = true
+			day_light_layer.visible = false
+			dark_layer.visible = true
+			flat_light_layer.visible = false
 			
 			
 		linked_teleporter.player_ref = player_ref
@@ -158,6 +161,6 @@ func _on_area_2d_body_entered(body):
 		body.global_position = linked_teleporter.global_position
 		linked_teleporter.npcs_using_teleporter.append(body)
 		if(reparent_to_daylight):
-			body.reparent(daylight_affected_ysort)
+			body.reparent(day_light_ysort)
 		if(reparent_to_no_daylight):
-			body.reparent(no_daylight_ysort)
+			body.reparent(flat_light_ysort)

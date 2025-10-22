@@ -162,7 +162,7 @@ func _physics_process(delta):
 					return_to_home()
 				else:
 					queue_free()
-	elif(_occluder.is_occluding):
+	elif(_occluder != null && _occluder.is_occluding):
 		return_to_home()
 	if(current_scale < 1 && !falling && timer_fall.is_stopped()):
 		if(current_scale + scale_step < 1):

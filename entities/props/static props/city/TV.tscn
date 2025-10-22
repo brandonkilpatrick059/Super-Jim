@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjdnphei1be46"]
+
+[ext_resource type="Texture2D" uid="uid://b87mlfbw062yh" path="res://sprites/props/tv_static.png" id="1_6uehy"]
+[ext_resource type="Texture2D" uid="uid://0d3n5esom4o4" path="res://sprites/lights/small_shadow.png" id="2_upi7u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_upi7u"]
+radius = 16.0312
+
+[node name="tv" type="StaticBody2D" groups=["prop"]]
+y_sort_enabled = true
+
+[node name="tv" type="Sprite2D" parent="." groups=["prop"]]
+z_index = 1
+y_sort_enabled = true
+texture = ExtResource("1_6uehy")
+offset = Vector2(0, 8)
+
+[node name="shadow" type="Sprite2D" parent="." groups=["prop"]]
+z_index = 1
+position = Vector2(0, -30)
+scale = Vector2(1.59375, 1.71875)
+texture = ExtResource("2_upi7u")
+offset = Vector2(0, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["prop"]]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(1, 8)
+shape = SubResource("CircleShape2D_upi7u")

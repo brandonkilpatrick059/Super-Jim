@@ -95,7 +95,7 @@ func enter():
 			player_ref.turn_light_off()
 			day_light_layer.visible = true
 			dark_layer.visible = false
-			flat_light_layer.visible = false
+			#flat_light_layer.visible = false
 		elif(reparent_to_no_daylight):
 			player_ref.turn_light_off()
 			day_light_layer.visible = false
@@ -107,7 +107,7 @@ func enter():
 			player_ref.turn_light_on()
 			day_light_layer.visible = false
 			dark_layer.visible = true
-			flat_light_layer.visible = false
+			#flat_light_layer.visible = false
 			
 			
 		linked_teleporter.player_ref = player_ref

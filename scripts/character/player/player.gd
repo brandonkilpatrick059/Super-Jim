@@ -19,7 +19,7 @@ var camera_connected = false
 @export var facing_dir = "right"
 
 var no_clip = false
-var dev_zoom = false
+var dev_zoom_level = 0
 const no_clip_speed = 3200000
 
 var player_die = preload("res://entities/characters/player/player_die.tscn") 
@@ -273,11 +273,14 @@ func handle_dev():
 			_collision.disabled = true
 	if Input.is_action_just_pressed("dev_toggle_zoom"):
 		if(camera_connected):
-			if(dev_zoom == false):
-				dev_zoom = true
+			if(dev_zoom_level == 0):
 				_camera.zoom_to(0.2)
+				dev_zoom_level = 1
+			elif(dev_zoom_level == 1):
+				_camera.zoom_to(0.05)
+				dev_zoom_level = 2
 			else:
-				dev_zoom = false
+				dev_zoom_level = 0
 				_camera.zoom_to(1.0)
 	if Input.is_action_just_pressed("dev_toggle_occluders"):
 		var occluders = get_tree().get_nodes_in_group("visual_occluder")

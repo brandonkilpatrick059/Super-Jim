@@ -638,7 +638,7 @@ func exclaim():
 
 func _on_exclaim_bubble():
 	exclaiming = true
-	exclaim_timer.start(random.randf_range(0,0.5))
+	exclaim_timer.start(random.randf_range(0,0.2))
 
 func _on_set_ai_target_position():
 	perceptions.target_pos = perceptions.target_obj.global_position
@@ -676,6 +676,7 @@ func _on_face_pos(pos : Vector2):
 ##########################################################################################
 
 func update():
+	update_vision()
 	update_perceptions()
 	if(is_invincible && invincibility_timer.is_stopped()):
 		go_vincible()

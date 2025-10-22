@@ -36,6 +36,8 @@ func spawn_mobs():
 			num_blu_mobs = num_blu_mobs + 1
 	var iter = 0
 	var need_new_spawner = true
+	print(str("Blu Mobs: ", num_blu_mobs))
+	print(str("Red Mobs: ", num_red_mobs))
 	if(num_blu_mobs == max_mobs_per_team):
 		pass #don't mind me, debug point for dev 
 	while(iter < num_mobs_to_spawn):

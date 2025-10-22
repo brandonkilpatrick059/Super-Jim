@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cam4vl2u6i8qd"
-path="res://.godot/imported/pizza.png-223220e1cba5b4b22f0048279bb1d101.ctex"
+uid="uid://u8cnl42c8y6r"
+path="res://.godot/imported/alien_fortune_teller.png-00f9a90e91070c6442ac127b2a5b17a4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/spritesheets/props/pizza.png"
-dest_files=["res://.godot/imported/pizza.png-223220e1cba5b4b22f0048279bb1d101.ctex"]
+source_file="res://sprites/spritesheets/props/alien_fortune_teller.png"
+dest_files=["res://.godot/imported/alien_fortune_teller.png-00f9a90e91070c6442ac127b2a5b17a4.ctex"]
 
 [params]
 

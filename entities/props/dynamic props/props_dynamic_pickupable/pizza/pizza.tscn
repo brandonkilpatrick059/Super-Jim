@@ -39,7 +39,7 @@ spark_time_secs = 0.2
 y_sort_enabled = true
 position = Vector2(0, -3)
 sprite_frames = ExtResource("3_0kawv")
-animation = &"1"
+animation = &"10"
 script = ExtResource("4_f123m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pizza" groups=["dynamic", "pickupable", "prop"]]
@@ -49,12 +49,13 @@ rotation = -1.5708
 shape = SubResource("CapsuleShape2D_bjers")
 
 [node name="compass_arrow" type="Sprite2D" parent="."]
+z_index = 10
 material = SubResource("CanvasItemMaterial_on1w6")
 texture = ExtResource("5_ryj0m")
 offset = Vector2(16, 0)
 
 [node name="pointer_arrow" type="Sprite2D" parent="."]
-z_index = 5
+z_index = 10
 texture = ExtResource("6_cfod4")
 
 [connection signal="body_entered" from="pizza" to="pizza" method="_on_body_entered"]

@@ -115,12 +115,12 @@ func get_informal_time_string() -> String:
 		if(clock == 12):
 			informal_string = str(12, " PM")
 		else:
-			informal_string = str(clock - 12, " PM")
+			informal_string = str(int(clock) - 12, " PM")
 	else:
 		if(clock == 0):
 			informal_string = str (12, " AM")
 		else:
-			informal_string = str (clock, " AM")
+			informal_string = str (int(clock), " AM")
 	informal_string = str(informal_string, ", ", days_in_week[day_of_the_week])
 	return informal_string
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cam4vl2u6i8qd"
-path="res://.godot/imported/pizza.png-223220e1cba5b4b22f0048279bb1d101.ctex"
+uid="uid://cub25jyudjcem"
+path="res://.godot/imported/bar_table.png-2ebffc3d72d8e3ca6ea4909861881df3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/spritesheets/props/pizza.png"
-dest_files=["res://.godot/imported/pizza.png-223220e1cba5b4b22f0048279bb1d101.ctex"]
+source_file="res://sprites/props/bar_table.png"
+dest_files=["res://.godot/imported/bar_table.png-2ebffc3d72d8e3ca6ea4909861881df3.ctex"]
 
 [params]
 

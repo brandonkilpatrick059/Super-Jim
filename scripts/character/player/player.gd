@@ -5,6 +5,7 @@ extends RigidBody2D
 @onready var _grabber = $grabber
 @onready var _tough_luck = $tough_luck
 @onready var _collision = $CollisionShape2D
+@onready var _ui_canvas = $ui_canvas
 @onready var _ui = $ui_canvas/player_ui
 @onready var _light = $player_light
 @onready var _flash_light = $flash_light

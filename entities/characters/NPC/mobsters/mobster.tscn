@@ -25,7 +25,7 @@
 size = Vector2(19.9688, 13)
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_ldxv5"]
-points = PackedVector2Array(-16, -16, -16, 16, 256, 128, 256, -128)
+points = PackedVector2Array(-16, -16, -16, 16, 224, 196, 224, -196)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bh1f3"]
 size = Vector2(4.75865, 16.4881)

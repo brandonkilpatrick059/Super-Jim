@@ -97,8 +97,8 @@ var offset_vector : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_up_character_base()
 	if(!Engine.is_editor_hint()):
+		set_up_character_base()
 		set_up_sound_player()
 		set_up_nav_agent()
 		set_up_mobster_team()	
@@ -310,7 +310,7 @@ func check_vision():
 			var iterator = 0
 			while(iterator < _vision.get_collision_count()):
 				var entity = _vision.get_collider(iterator)
-				if(entity != null ): #&& passive_has_line_of_sight_to_object(entity)):
+				if(entity != null ):
 					detected_nodes.append(entity)
 				iterator = iterator + 1
 			perceptions.nodes_in_vision = detected_nodes
@@ -650,17 +650,17 @@ func _on_set_ai_target(entity : Node):
 		update_line_of_sight_to_target()
 		send_perceptions()
 		perceptions.target_pos = perceptions.target_obj.global_position
-	else:
-		#if no entity is given as target, 
-		#select random enemy mob in line of sight
-		var mobsters = get_tree().get_nodes_in_group("mobster")
-		perceptions.target_obj = null
-		for mob in mobsters:
-			if mob.is_in_group(opposing_team) && active_has_line_of_sight_to_object(mob):
-				perceptions.target_obj = mob
-				update_line_of_sight_to_target()
-				send_perceptions()
-				perceptions.target_pos = perceptions.target_obj.global_position
+	#else:
+		##if no entity is given as target, 
+		##select random enemy mob in line of sight
+		#var mobsters = get_tree().get_nodes_in_group("mobster")
+		#perceptions.target_obj = null
+		#for mob in mobsters:
+			#if mob.is_in_group(opposing_team) && active_has_line_of_sight_to_object(mob):
+				#perceptions.target_obj = mob
+				#update_line_of_sight_to_target()
+				#send_perceptions()
+				#perceptions.target_pos = perceptions.target_obj.global_position
 
 func _on_face_ai_target_pos():
 	var vector_to_target = global_position.direction_to(perceptions.target_pos)

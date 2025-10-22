@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c2sivyh20pckg" path="res://sprites/props/bar_2.png" id="1_shmpv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x7wqg"]
-size = Vector2(32, 18.5)
+size = Vector2(32, 21)
 
 [node name="bar_2" type="StaticBody2D" groups=["prop"]]
 y_sort_enabled = true
@@ -16,5 +16,5 @@ offset = Vector2(0, 16)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["prop"]]
 z_as_relative = false
 y_sort_enabled = true
-position = Vector2(0, 22.25)
+position = Vector2(0, 21.5)
 shape = SubResource("RectangleShape2D_x7wqg")

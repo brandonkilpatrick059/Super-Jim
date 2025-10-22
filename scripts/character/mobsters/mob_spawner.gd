@@ -3,7 +3,7 @@ extends Node2D
 
 var mobster = preload("res://entities/characters/NPC/mobsters/mobster.tscn")
 
-var max_mobs_per_team = 30
+var max_mobs_per_team = 35
 
 var spawns_since_bandit = 0
 var spawns_until_bandit = 3
@@ -52,14 +52,20 @@ func check_nearby_friendlies():
 	num_nearby_friendlies =  num
 
 func spawn_mob():
-	var new_mob = mobster.instantiate()
-	new_mob.set_team(spawner_team)
-	spawns_since_bandit = spawns_since_bandit + 1
-	ysort_node.add_child(new_mob)
-	if(spawns_since_bandit > spawns_until_bandit):
-		new_mob.make_bandit()
-		spawns_since_bandit = 0
-	new_mob.global_position = global_position
+	var num_team_mobs = 0
+	var current_mobs = get_tree().get_nodes_in_group("mobster")
+	for mob in current_mobs:
+		if(mob.is_in_group(spawner_team)):
+			num_team_mobs = num_team_mobs + 1
+	if(num_team_mobs < max_mobs_per_team):
+		var new_mob = mobster.instantiate()
+		new_mob.set_team(spawner_team)
+		spawns_since_bandit = spawns_since_bandit + 1
+		ysort_node.add_child(new_mob)
+		if(spawns_since_bandit > spawns_until_bandit):
+			new_mob.make_bandit()
+			spawns_since_bandit = 0
+		new_mob.global_position = global_position
 	
 
 func _on_body_entered(body: Node):
@@ -73,16 +79,3 @@ func _physics_process(delta: float) -> void:
 	if(friendly_check_timer.is_stopped()):
 		check_nearby_friendlies()
 		friendly_check_timer.start(random.randf_range(0,max_check_wait_secs))
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	#var num_current_mobs = 0
-	#var current_mobs = get_tree().get_nodes_in_group("mobster")
-	#var current_team_nodes = get_tree().get_nodes_in_group(spawner_team)
-	#for mob in current_mobs:
-		#if(mob in current_team_nodes):
-			#num_current_mobs+=1
-	#
-	#if(respawn_timer.is_stopped() && num_current_mobs < max_mobs_per_team):
-		#spawn_mob()
-		#respawn_timer.start(new_mobster_timer_len_secs)

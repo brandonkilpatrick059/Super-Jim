@@ -3,7 +3,6 @@ extends Node2D
 var red_spawners : Array[Node] = []
 var blu_spawners : Array[Node] = []
 
-var max_mobs_per_team = 35
 var spawn_timer_len_secs = 5
 
 var spawn_timer : Timer = Timer.new()
@@ -35,24 +34,17 @@ func spawn_mobs():
 		elif(mob.is_in_group("blu")):
 			num_blu_mobs = num_blu_mobs + 1
 	var iter = 0
-	var need_new_spawner = true
 	print(str("Blu Mobs: ", num_blu_mobs))
 	print(str("Red Mobs: ", num_red_mobs))
-	if(num_blu_mobs == max_mobs_per_team):
-		pass #don't mind me, debug point for dev 
 	while(iter < num_mobs_to_spawn):
 		var red_spawner = get_loneliest_spawner(temp_red_spawners)
 		var blu_spawner = get_loneliest_spawner(temp_blu_spawners)
-		if(num_red_mobs < max_mobs_per_team):
-			red_spawner.spawn_mob()
-			num_red_mobs = num_red_mobs + 1
-			if(temp_red_spawners.size() > 1):
-				temp_red_spawners.remove_at(temp_red_spawners.find(red_spawner))
-		if(num_blu_mobs < max_mobs_per_team):
-			blu_spawner.spawn_mob()
-			num_blu_mobs = num_blu_mobs + 1
-			if(temp_blu_spawners.size() > 1):
-				temp_blu_spawners.remove_at(temp_blu_spawners.find(blu_spawner))
+		red_spawner.spawn_mob()
+		if(temp_red_spawners.size() > 1):
+			temp_red_spawners.remove_at(temp_red_spawners.find(red_spawner))
+		blu_spawner.spawn_mob()
+		if(temp_blu_spawners.size() > 1):
+			temp_blu_spawners.remove_at(temp_blu_spawners.find(blu_spawner))
 		iter = iter + 1
 
 func get_loneliest_spawner(spawners : Array[Node]):

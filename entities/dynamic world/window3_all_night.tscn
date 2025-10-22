@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://kamax630ji7y"]
+[gd_scene load_steps=7 format=3 uid="uid://kamax630ji7y"]
 
 [ext_resource type="Script" uid="uid://duw80sxpurnpt" path="res://scripts/clock/timed_light_advanced.gd" id="1_25ngb"]
 [ext_resource type="SpriteFrames" uid="uid://bi52quexnfo78" path="res://sprites/spritesheets/spriteframes/game_world/window3.tres" id="1_tls8q"]
 [ext_resource type="Texture2D" uid="uid://7xytxntsgyls" path="res://sprites/lights/diffuse_circle.png" id="3_11lia"]
 [ext_resource type="Script" uid="uid://dnu1hewogsd0x" path="res://scripts/entities/advanced_light.gd" id="4_js88o"]
 [ext_resource type="Texture2D" uid="uid://6dh6plwhup22" path="res://sprites/lights/diffuse_yellow_light.png" id="5_25ngb"]
-[ext_resource type="Script" uid="uid://b4yio707fbsyr" path="res://scripts/utility/visual_occluder.gd" id="6_25ngb"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ycgon"]
 blend_mode = 1
@@ -34,6 +33,3 @@ texture = ExtResource("3_11lia")
 material = SubResource("CanvasItemMaterial_ycgon")
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("5_25ngb")
-
-[node name="occluder" type="Node2D" parent="."]
-script = ExtResource("6_25ngb")

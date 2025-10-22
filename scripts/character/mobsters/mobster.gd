@@ -205,11 +205,13 @@ func update_line_of_sight_to_target():
 		#to reactive props (like the Pizza)
 		#we do this so that items do not block sightline checks for
 		#combat targets
-		if(reactive_has_line_of_sight_to_object(perceptions.target_obj)):
-			perceptions.target_pos = perceptions.target_obj.global_position
-			perceptions.reactive_has_line_of_sight_to_target = true
-		else:
-			perceptions.reactive_has_line_of_sight_to_target = false
+		if(!perceptions.target_obj.is_in_group("mobster") || 
+		!perceptions.target_obj.is_in_group("courier")):
+			if(reactive_has_line_of_sight_to_object(perceptions.target_obj)):
+				perceptions.target_pos = perceptions.target_obj.global_position
+				perceptions.reactive_has_line_of_sight_to_target = true
+			else:
+				perceptions.reactive_has_line_of_sight_to_target = false
 
 func initiate_perceptions():
 	perceptions.current_v = current_v
@@ -308,8 +310,7 @@ func check_vision():
 			var iterator = 0
 			while(iterator < _vision.get_collision_count()):
 				var entity = _vision.get_collider(iterator)
-				if(entity != null && 
-				passive_has_line_of_sight_to_object(entity)):
+				if(entity != null ): #&& passive_has_line_of_sight_to_object(entity)):
 					detected_nodes.append(entity)
 				iterator = iterator + 1
 			perceptions.nodes_in_vision = detected_nodes

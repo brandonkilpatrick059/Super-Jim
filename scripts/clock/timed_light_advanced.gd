@@ -47,7 +47,7 @@ func _ready():
 	get_active_hours()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _process(delta):
 	if(time_keeper.clock != current_hour):
 		current_hour = time_keeper.clock #this code only runs once per hour
 		if(time_keeper.clock == 0):

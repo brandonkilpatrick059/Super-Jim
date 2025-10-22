@@ -14,6 +14,8 @@ var sound_player := AudioStreamPlayer.new()
 @export var locked = false
 @export var one_time_use = false
 
+@export var does_not_open = false
+
 var time_keeper
 
 var opened = false
@@ -35,6 +37,8 @@ func _ready():
 	time_keeper = get_tree().get_first_node_in_group("time_keeper")
 	last_frame_open = _animated_sprite.sprite_frames.get_frame_count("open")-1 
 	last_frame_close = _animated_sprite.sprite_frames.get_frame_count("close")-1 
+	if(self.is_in_group("delivery_door")):
+		does_not_open = true
 
 func open():
 	if(!opened):
@@ -77,48 +81,50 @@ func player_is_behind_door():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
-	var opener_is_near = false
-	if(_area_2d.has_overlapping_bodies()):
-		opener_is_near = opener_is_near()
-	
-	#opener has to stand near the door for a period of time for it to open
-	if(opened == false && !waiting_to_open && opener_is_near):
-		waiting_to_open = true
-		open_close_timer.start((open_close_time_secs))
-	
-	#if that period of time has elapsed and the opener is still there, open
-	if(open_close_timer.is_stopped() && waiting_to_open && opener_is_near):
-		if(!locked || (locked && player_is_behind_door())):
-			open()
-	else: if(open_close_timer.is_stopped() && waiting_to_open && !opener_is_near):
-		waiting_to_open = false
-	
-	#if the opener leaves the door and it is open, it will start a timer to close itself
-	if(opened && !opener_is_near && !waiting_to_close):
-		waiting_to_close = true
-		open_close_timer.start((open_close_time_secs))
-	
-	#if that period of time has elapsed and the opener is still gone, close
-	if(open_close_timer.is_stopped() && waiting_to_close && !opener_is_near):
-		close()
-	else: if(open_close_timer.is_stopped() && waiting_to_close && opener_is_near):
-		waiting_to_close = false
-	
-	#set lock by time using bool list locked_hours
-	if(locked_hours.size() == 24):
-		if(locked_hours[time_keeper.clock]):
-			locked = true
-		else: locked = false
-	else:
-		locked = false
-	
-	if(opening && _animated_sprite.frame == last_frame_open):
-		opened = true
-		opening = false
-		_animated_sprite.play(("opened"))
-		_collision_shape.set_deferred("disabled", true)
-	else: if(closing && _animated_sprite.frame == last_frame_close):
-		opened = false
-		closing = false
-		_animated_sprite.play(("closed"))
-		_collision_shape.set_deferred("disabled", false)
+	if(!does_not_open):
+		var opener_is_near = false
+		if(_area_2d.has_overlapping_bodies()):
+			opener_is_near = opener_is_near()
+		
+		#opener has to stand near the door for a period of time for it to open
+		if(!opened && !waiting_to_open && opener_is_near):
+			waiting_to_open = true
+			open_close_timer.start((open_close_time_secs))
+		
+		#if that period of time has elapsed and the opener is still there, open
+		if(open_close_timer.is_stopped() && waiting_to_open):
+			if(opener_is_near):
+				if(!locked || (locked && player_is_behind_door())):
+					open()
+			else:
+				waiting_to_open = false
+		
+		#if the opener leaves the door and it is open, it will start a timer to close itself
+		if(opened && !opener_is_near && !waiting_to_close):
+			waiting_to_close = true
+			open_close_timer.start((open_close_time_secs))
+		
+		#if that period of time has elapsed and the opener is still gone, close
+		if(open_close_timer.is_stopped() && waiting_to_close && !opener_is_near):
+			close()
+		else: if(open_close_timer.is_stopped() && waiting_to_close && opener_is_near):
+			waiting_to_close = false
+		
+		#set lock by time using bool list locked_hours
+		if(locked_hours.size() == 24):
+			if(locked_hours[time_keeper.clock]):
+				locked = true
+			else: locked = false
+		else:
+			locked = false
+		
+		if(opening && _animated_sprite.frame == last_frame_open):
+			opened = true
+			opening = false
+			_animated_sprite.play(("opened"))
+			_collision_shape.set_deferred("disabled", true)
+		else: if(closing && _animated_sprite.frame == last_frame_close):
+			opened = false
+			closing = false
+			_animated_sprite.play(("closed"))
+			_collision_shape.set_deferred("disabled", false)

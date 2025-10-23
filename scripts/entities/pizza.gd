@@ -92,6 +92,11 @@ func get_closest_indoor_exit() -> Vector2:
 			nearest_exit = exit.global_position
 	return nearest_exit
 
+func _on_body_entered(body: Node):
+	if(body.is_in_group("spark") && 
+	(body.is_in_group("red") || body.is_in_group("blu"))):
+		damage_pizza()
+
 func update_pizza_stack():
 	if(pizzas > 0):
 		var num_hits = hits
@@ -99,12 +104,15 @@ func update_pizza_stack():
 			num_hits = 3
 		_sprite.play(str(pizzas,num_hits))
 
-func _on_prop_collide():
+func damage_pizza():
 	hits = hits + 1
 	if(hits > 2 && !lost):
 		lost = true
 		var player_ref = get_tree().get_nodes_in_group("player")[0]
 		player_ref._on_pizza_lost()
+
+func _on_prop_collide():
+	damage_pizza()
 	
 
 func _on_picked_up():

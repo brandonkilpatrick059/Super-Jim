@@ -1,0 +1,67 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://dkp6cyncd4wk5"]
+
+[ext_resource type="Texture2D" uid="uid://bp8167hdhb4ge" path="res://sprites/spritesheets/effects/pizza_oven_light.png" id="1_umerb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqhjw"]
+atlas = ExtResource("1_umerb")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cke4"]
+atlas = ExtResource("1_umerb")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71kgo"]
+atlas = ExtResource("1_umerb")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgw3j"]
+atlas = ExtResource("1_umerb")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jy0aq"]
+atlas = ExtResource("1_umerb")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cd0m4"]
+atlas = ExtResource("1_umerb")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqlts"]
+atlas = ExtResource("1_umerb")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ammv1"]
+atlas = ExtResource("1_umerb")
+region = Rect2(0, 0, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqhjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cke4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71kgo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgw3j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jy0aq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cd0m4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqlts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ammv1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

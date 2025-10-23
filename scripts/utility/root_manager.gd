@@ -1,6 +1,6 @@
 extends Node2D
 
-var main_scene = preload("res://scenes/alpha_game_world_draft4.tscn")
+var main_scene = preload("res://scenes/alpha_game_world.tscn")
 var camera_ref : Node
 var player_ref
 

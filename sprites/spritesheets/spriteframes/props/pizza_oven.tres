@@ -1,0 +1,67 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://cgyq6504ram43"]
+
+[ext_resource type="Texture2D" uid="uid://cfcix66n022uc" path="res://sprites/spritesheets/props/pizza_oven.png" id="1_ut0nc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fygiy"]
+atlas = ExtResource("1_ut0nc")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h03ek"]
+atlas = ExtResource("1_ut0nc")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6x0l"]
+atlas = ExtResource("1_ut0nc")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kamu"]
+atlas = ExtResource("1_ut0nc")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ut0nc"]
+atlas = ExtResource("1_ut0nc")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ns5f2"]
+atlas = ExtResource("1_ut0nc")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cla8"]
+atlas = ExtResource("1_ut0nc")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjtdi"]
+atlas = ExtResource("1_ut0nc")
+region = Rect2(0, 0, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fygiy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h03ek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6x0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kamu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ut0nc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ns5f2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cla8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjtdi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

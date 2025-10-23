@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxg17j35oeqmj"]
+
+[ext_resource type="SpriteFrames" uid="uid://cgyq6504ram43" path="res://sprites/spritesheets/spriteframes/props/pizza_oven.tres" id="1_37rcv"]
+[ext_resource type="Script" uid="uid://b3xtkv5igree1" path="res://scripts/utility/play_default_animation.gd" id="2_riyl1"]
+[ext_resource type="SpriteFrames" uid="uid://dkp6cyncd4wk5" path="res://sprites/spritesheets/spriteframes/effects/pizza_oven_light.tres" id="3_h8w3u"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_37rcv"]
+blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37rcv"]
+size = Vector2(64, 54)
+
+[node name="PizzaOven" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_37rcv")
+frame_progress = 0.63447
+speed_scale = 0.5
+offset = Vector2(0, 16)
+script = ExtResource("2_riyl1")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+z_index = 1
+material = SubResource("CanvasItemMaterial_37rcv")
+sprite_frames = ExtResource("3_h8w3u")
+frame_progress = 0.53817
+speed_scale = 0.5
+offset = Vector2(0, 16)
+script = ExtResource("2_riyl1")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_37rcv")

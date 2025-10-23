@@ -104,6 +104,7 @@ func handle_input():
 		elif(has_speech_options() && responding):
 			if(!shopping):
 				tree.take_speech_option(dialog_choice_index)
+				dialog_choice_index = 0
 				play_current_branch()
 			else:
 				var player_money = player_ref.get_money()

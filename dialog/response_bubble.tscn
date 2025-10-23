@@ -20,9 +20,9 @@ texture = ExtResource("2_okya3")
 [node name="Label" type="Label" parent="."]
 material = SubResource("CanvasItemMaterial_ct2ck")
 offset_left = -94.0
-offset_top = -60.0
+offset_top = -55.0
 offset_right = 90.0
-offset_bottom = 44.0
+offset_bottom = 49.0
 label_settings = ExtResource("3_btuch")
 horizontal_alignment = 1
 vertical_alignment = 1

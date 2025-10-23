@@ -1,8 +1,9 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://ca2608v2da05w"]
 
-[ext_resource type="FontFile" uid="uid://cl55ql7qruw6x" path="res://fonts/VT323-Regular.ttf" id="1_361pb"]
+[ext_resource type="FontFile" uid="uid://cdf6elivdwcta" path="res://fonts/CourierPrime-Regular.ttf" id="1_8qvxq"]
 
 [resource]
-font = ExtResource("1_361pb")
-font_size = 14
+font = ExtResource("1_8qvxq")
+font_size = 12
 font_color = Color(0, 0, 0, 1)
+outline_color = Color(0, 0, 0, 1)

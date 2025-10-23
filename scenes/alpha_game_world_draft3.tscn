@@ -56,7 +56,7 @@
 [ext_resource type="SpriteFrames" uid="uid://bfvoxxrcwphnp" path="res://sprites/spritesheets/spriteframes/characters/hat/cap_0.tres" id="50_mqseo"]
 [ext_resource type="SpriteFrames" uid="uid://c2xs2bbds05s3" path="res://sprites/spritesheets/spriteframes/characters/top/shirt_0.tres" id="51_u3gyh"]
 [ext_resource type="PackedScene" uid="uid://byn6r0mnnodrd" path="res://entities/characters/NPC/actors/npc_template.tscn" id="52_6odpx"]
-[ext_resource type="PackedScene" uid="uid://b7j6mfbfspirp" path="res://dialog/dialog trees/multiline_test.tscn" id="53_crbnu"]
+[ext_resource type="PackedScene" uid="uid://b7j6mfbfspirp" path="res://dialog/multiline_test.tscn" id="53_crbnu"]
 [ext_resource type="PackedScene" uid="uid://de47euexev0l8" path="res://dialog/dialog trees/test_tree.tscn" id="54_h0kfd"]
 [ext_resource type="PackedScene" uid="uid://b2bs10kaiset" path="res://dialog/dialog trees/multichar_test.tscn" id="55_qv3kl"]
 [ext_resource type="Script" uid="uid://cel6km74rmy7i" path="res://scripts/utility/check_cells.gd" id="56_h8qib"]

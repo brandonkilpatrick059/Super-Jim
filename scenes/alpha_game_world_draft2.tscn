@@ -54,7 +54,7 @@
 [ext_resource type="PackedScene" uid="uid://bqua037h47acu" path="res://entities/props/dynamic props/city/dynamic_dumpster.tscn" id="41_c40pm"]
 [ext_resource type="PackedScene" uid="uid://c8xp804upcral" path="res://entities/props/static props/apartment/desk/desk_0.tscn" id="42_8kv2c"]
 [ext_resource type="Script" uid="uid://bhwr4mvnbcx4q" path="res://scripts/clock/time_keeper.gd" id="42_bbuo3"]
-[ext_resource type="PackedScene" uid="uid://b7j6mfbfspirp" path="res://dialog/dialog trees/multiline_test.tscn" id="43_lj01s"]
+[ext_resource type="PackedScene" uid="uid://b7j6mfbfspirp" path="res://dialog/multiline_test.tscn" id="43_lj01s"]
 [ext_resource type="PackedScene" uid="uid://de47euexev0l8" path="res://dialog/dialog trees/test_tree.tscn" id="44_854c4"]
 [ext_resource type="PackedScene" uid="uid://b2bs10kaiset" path="res://dialog/dialog trees/multichar_test.tscn" id="49_w58sk"]
 [ext_resource type="PackedScene" uid="uid://db2ggfcpdapf1" path="res://entities/util/ysorted_indoor_wall.tscn" id="54_i3mms"]

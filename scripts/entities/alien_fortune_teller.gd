@@ -1,6 +1,5 @@
 extends Node2D
 
-@onready var _text_bubble = $bubble
 @onready var _animated_sprite = $AnimatedSprite2D
 
 var speech_bubble = preload("res://dialog/speech_bubble.tscn")

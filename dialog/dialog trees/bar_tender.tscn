@@ -1,0 +1,98 @@
+[gd_scene load_steps=3 format=3 uid="uid://buj2u4alt2o16"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_sqgy6"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_ct525"]
+
+[node name="bar_tender_at_bar" type="Node2D"]
+script = ExtResource("1_sqgy6")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
+speaker_text = Array[String](["You look like you could use a drink.", "You old enough to be in here?", "Bar's open all night."])
+speaker_portrait = null
+speech_options = Array[String](["See you later", "Can I buy a soda for $2?", "Can I get some advice?"])
+option_branches = [NodePath("../bye"), NodePath("../Can I buy a soda?"), NodePath("../Can you give me some advice?")]
+voice = "low_sine_voice"
+
+[node name="Can I buy a soda?" parent="." instance=ExtResource("2_ct525")]
+position = Vector2(174, 305)
+speaker_text = Array[String](["No."])
+speaker_portrait = null
+voice = "low_sine_voice"
+
+[node name="bye" parent="." instance=ExtResource("2_ct525")]
+position = Vector2(-233, 261)
+speaker_text = Array[String](["Till next time.", "Adios."])
+speaker_portrait = null
+voice = "low_sine_voice"
+
+[node name="Can you give me some advice?" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
+position = Vector2(1, 306)
+speaker_text = Array[String](["Advice on what?"])
+speaker_portrait = null
+speech_options = Array[String](["Making money?", "Getting around town?", "Any sights I should see?", "Dealing with gangsters?"])
+option_branches = [NodePath("../Making money"), NodePath("../getting around town"), NodePath("../sights to see"), NodePath("../dealing with gangster")]
+voice = "low_sine_voice"
+
+[node name="Making money" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
+position = Vector2(-498, 529)
+speaker_text = Array[String](["Get a job."])
+speaker_portrait = null
+option_branches = [NodePath("../anyways")]
+voice = "low_sine_voice"
+
+[node name="getting around town" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
+position = Vector2(-321, 524)
+speaker_text = Array[String](["With the gangs and the police, the town's locked up."])
+speaker_portrait = null
+option_branches = [NodePath("../getting around town2")]
+voice = "low_sine_voice"
+
+[node name="getting around town2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
+position = Vector2(-311, 709)
+speaker_text = Array[String](["But people have their ways of sneaking around."])
+speaker_portrait = null
+option_branches = [NodePath("../getting around town3")]
+voice = "low_sine_voice"
+
+[node name="getting around town3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
+position = Vector2(-307, 882)
+speaker_text = Array[String](["It's good to check doors to see if they go somewhere.", "Some people use old tunnels under the city.", "Some people might let you in on their tricks."])
+speaker_portrait = null
+option_branches = [NodePath("../anyways")]
+voice = "low_sine_voice"
+
+[node name="anyways" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
+position = Vector2(-882, 390)
+speaker_text = Array[String](["Anyways..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk")]
+voice = "low_sine_voice"
+
+[node name="sights to see" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
+position = Vector2(-153, 535)
+speaker_text = Array[String](["Maybe..."])
+speaker_portrait = null
+option_branches = [NodePath("../sights to see2")]
+voice = "low_sine_voice"
+
+[node name="sights to see2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
+position = Vector2(-138, 717)
+speaker_text = Array[String](["You been to Fallsboro? A little rough, but it's nice.", "I used to go exploring Onyx Cave when I was a kid.", "You ought to take the train out West, if you can afford it."])
+speaker_portrait = null
+option_branches = [NodePath("../anyways")]
+voice = "low_sine_voice"
+
+[node name="dealing with gangster" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
+position = Vector2(36, 528)
+speaker_text = Array[String](["I try to steer clear of 'em."])
+speaker_portrait = null
+option_branches = [NodePath("../dealing with gangster2")]
+voice = "low_sine_voice"
+
+[node name="dealing with gangster2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
+position = Vector2(45, 719)
+speaker_text = Array[String](["When they stop to look around, it's either clockwise or counter clockwise.", "It's tough, each side is constantly gaining and losing turf.", "But sometimes I get caught in the crossfire.", "But it's a real nightmare to run into a gangster in a back alley.", "Especially the guys in the sunglasses, they carry some heavy ordinance."])
+speaker_portrait = null
+option_branches = [NodePath("../anyways")]
+voice = "low_sine_voice"

@@ -192,6 +192,12 @@ func _on_advance_navigation(speed : int):
 	var remainder = 0.6
 	_character_base.set_animation_scale(base,remainder,perceptions.speed,top_speed)
 
+func _on_reach_stage_mark():
+	update_branching_dialog()
+
+func _on_leave_stage_mark():
+	branching_dialog = null
+
 func face_player():
 	var vector_to_player = global_position.direction_to(player_ref.global_position)
 	_character_base.face_to_vector(vector_to_player)

@@ -1,0 +1,42 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://bwvk378b0n0fb"]
+
+[ext_resource type="Texture2D" uid="uid://b1wr5oihlg3jm" path="res://sprites/game_world/open_sign.png" id="1_vsq8k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oeej2"]
+atlas = ExtResource("1_vsq8k")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_demoa"]
+atlas = ExtResource("1_vsq8k")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8mo7"]
+atlas = ExtResource("1_vsq8k")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oeej2")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_demoa")
+}],
+"loop": true,
+"name": &"dark",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8mo7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

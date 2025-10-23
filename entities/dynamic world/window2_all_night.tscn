@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cc56jcruw17be"]
 
-[ext_resource type="SpriteFrames" uid="uid://bu0s4673l2a68" path="res://sprites/spritesheets/spriteframes/game_world/window2.tres" id="1_4vdnb"]
+[ext_resource type="SpriteFrames" uid="uid://u6wnh213d0um" path="res://sprites/spritesheets/spriteframes/game_world/window2.tres" id="1_4vdnb"]
 [ext_resource type="Script" uid="uid://duw80sxpurnpt" path="res://scripts/clock/timed_light_advanced.gd" id="1_o641u"]
 [ext_resource type="Script" uid="uid://dnu1hewogsd0x" path="res://scripts/entities/advanced_light.gd" id="3_qk3kd"]
 [ext_resource type="Texture2D" uid="uid://6dh6plwhup22" path="res://sprites/lights/diffuse_yellow_light.png" id="3_x3o52"]
@@ -8,15 +8,16 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x3o52"]
 blend_mode = 1
 
-[node name="window2_all_night" type="Node2D"]
+[node name="shop_window" type="Node2D"]
 script = ExtResource("1_o641u")
-running_hours = Array[bool]([false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, false, false])
+running_hours = Array[bool]([false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, false])
 running_hours_2 = Array[bool]([false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true])
-running_hours_3 = Array[bool]([true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, false, false, false])
+running_hours_3 = Array[bool]([true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, false])
 running_hours_4 = Array[bool]([true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_4vdnb")
+animation = &"active"
 
 [node name="advanced_light" type="Node2D" parent="."]
 script = ExtResource("3_qk3kd")

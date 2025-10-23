@@ -3,6 +3,8 @@ extends State
 
 signal set_nav_target(pos : Vector2)
 signal advance_navigation(speed : int)
+signal reach_stage_mark()
+signal leave_stage_mark()
 
 var nav_target_reached = false
 var host_position
@@ -33,11 +35,13 @@ func physics_process(_delta: float) -> void:
 			var stage_mark_state : String = current_stage_mark.get_state()
 			#current_stage_mark = null
 			ai_state_machine.transition_to(stage_mark_state)
+			reach_stage_mark.emit()
 
 func enter(_msg := {}) -> void:
 	current_stage_mark = ai_state_machine.get_perceptions().current_stage_mark
 	if(current_stage_mark != null):
 		set_nav_target.emit(current_stage_mark.position)
+		leave_stage_mark.emit()
 
 func exit() -> void:
 	pass

@@ -55,4 +55,6 @@ script = ExtResource("7_q5sve")
 
 [connection signal="behavior_directive" from="ai_state_machine/alert_passive" to="." method="_on_handle_behavior"]
 [connection signal="advance_navigation" from="ai_state_machine/transit" to="." method="_on_advance_navigation"]
+[connection signal="leave_stage_mark" from="ai_state_machine/transit" to="." method="_on_leave_stage_mark"]
+[connection signal="reach_stage_mark" from="ai_state_machine/transit" to="." method="_on_reach_stage_mark"]
 [connection signal="set_nav_target" from="ai_state_machine/transit" to="." method="_on_set_nav_target"]

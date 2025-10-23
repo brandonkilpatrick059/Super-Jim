@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://b38g8360ntneo"]
+
+[ext_resource type="Script" uid="uid://duw80sxpurnpt" path="res://scripts/clock/timed_light_advanced.gd" id="1_kgdcn"]
+[ext_resource type="SpriteFrames" uid="uid://bwvk378b0n0fb" path="res://sprites/spritesheets/spriteframes/game_world/open_sign.tres" id="2_kgdcn"]
+[ext_resource type="Script" uid="uid://dnu1hewogsd0x" path="res://scripts/entities/advanced_light.gd" id="2_uatdc"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_u356n"]
+blend_mode = 1
+
+[node name="ShopWindow" type="Node2D"]
+script = ExtResource("1_kgdcn")
+
+[node name="advanced_light" type="Node2D" parent="."]
+script = ExtResource("2_uatdc")
+
+[node name="Light2D_point" type="PointLight2D" parent="advanced_light"]
+scale = Vector2(0.2, 0.2)
+color = Color(1, 1, 0.541176, 1)
+
+[node name="Light2D_sprite" type="Sprite2D" parent="advanced_light"]
+material = SubResource("CanvasItemMaterial_u356n")
+scale = Vector2(0.2, 0.2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_kgdcn")
+animation = &"active"

@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0rwjh2e8wc7e"]
+
+[ext_resource type="Script" uid="uid://duw80sxpurnpt" path="res://scripts/clock/timed_light_advanced.gd" id="1_lfkr8"]
+[ext_resource type="SpriteFrames" uid="uid://bu0s4673l2a68" path="res://sprites/spritesheets/spriteframes/game_world/shop_window.tres" id="2_l3u7x"]
+[ext_resource type="Script" uid="uid://dnu1hewogsd0x" path="res://scripts/entities/advanced_light.gd" id="2_l007j"]
+[ext_resource type="Texture2D" uid="uid://6dh6plwhup22" path="res://sprites/lights/diffuse_yellow_light.png" id="3_c4nwu"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_talck"]
+blend_mode = 1
+
+[node name="ShopWindow" type="Node2D"]
+script = ExtResource("1_lfkr8")
+
+[node name="advanced_light" type="Node2D" parent="."]
+script = ExtResource("2_l007j")
+
+[node name="Light2D_point" type="PointLight2D" parent="advanced_light"]
+scale = Vector2(0.2, 0.2)
+color = Color(1, 1, 0.541176, 1)
+texture = ExtResource("3_c4nwu")
+
+[node name="Light2D_sprite" type="Sprite2D" parent="advanced_light"]
+material = SubResource("CanvasItemMaterial_talck")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_c4nwu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_l3u7x")
+animation = &"active"

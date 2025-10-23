@@ -30,7 +30,7 @@ voice = "low_sine_voice"
 position = Vector2(1, 306)
 speaker_text = Array[String](["Advice on what?"])
 speaker_portrait = null
-speech_options = Array[String](["Making money?", "Getting around town?", "Any sights I should see?", "Dealing with gangsters?"])
+speech_options = Array[String](["Making money?", "Getting around town?", "Any sights I should see?", "Gangsters?"])
 option_branches = [NodePath("../Making money"), NodePath("../getting around town"), NodePath("../sights to see"), NodePath("../dealing with gangster")]
 voice = "low_sine_voice"
 
@@ -63,7 +63,7 @@ option_branches = [NodePath("../anyways")]
 voice = "low_sine_voice"
 
 [node name="anyways" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
-position = Vector2(-882, 390)
+position = Vector2(-531, 137)
 speaker_text = Array[String](["Anyways..."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk")]
@@ -92,7 +92,7 @@ voice = "low_sine_voice"
 
 [node name="dealing with gangster2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
 position = Vector2(45, 719)
-speaker_text = Array[String](["When they stop to look around, it's either clockwise or counter clockwise.", "It's tough, each side is constantly gaining and losing turf.", "But sometimes I get caught in the crossfire.", "But it's a real nightmare to run into a gangster in a back alley.", "Especially the guys in the sunglasses, they carry some heavy ordinance."])
+speaker_text = Array[String](["When they stop to look around, it's either clockwise or counter clockwise.", "They're cosntantly gunning for more territory.", "But sometimes I get caught in the crossfire.", "It's scary, running into one a those guys in a dark alley.", "Especially the guys in the sunglasses, they carry some heavy ordinance."])
 speaker_portrait = null
 option_branches = [NodePath("../anyways")]
 voice = "low_sine_voice"

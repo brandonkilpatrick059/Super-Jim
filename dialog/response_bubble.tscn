@@ -26,6 +26,7 @@ offset_bottom = 49.0
 label_settings = ExtResource("3_btuch")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="arrow_r" type="Sprite2D" parent="."]

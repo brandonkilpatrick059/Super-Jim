@@ -1,0 +1,42 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://bu0s4673l2a68"]
+
+[ext_resource type="Texture2D" uid="uid://kknedsvoltfs" path="res://sprites/game_world/shop_window.png" id="1_jkfae"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28j5s"]
+atlas = ExtResource("1_jkfae")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3b1w"]
+atlas = ExtResource("1_jkfae")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpvm0"]
+atlas = ExtResource("1_jkfae")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28j5s")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3b1w")
+}],
+"loop": true,
+"name": &"dark",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cpvm0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

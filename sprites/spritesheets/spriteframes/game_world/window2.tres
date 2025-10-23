@@ -1,21 +1,21 @@
-[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bu0s4673l2a68"]
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://u6wnh213d0um"]
 
-[ext_resource type="Texture2D" uid="uid://25jocwbygyjp" path="res://sprites/game_world/window2.png" id="1_0ua37"]
+[ext_resource type="Texture2D" uid="uid://25jocwbygyjp" path="res://sprites/game_world/window2.png" id="1_mrxtj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rukth"]
-atlas = ExtResource("1_0ua37")
+atlas = ExtResource("1_mrxtj")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bv05i"]
-atlas = ExtResource("1_0ua37")
+atlas = ExtResource("1_mrxtj")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vmdd2"]
-atlas = ExtResource("1_0ua37")
+atlas = ExtResource("1_mrxtj")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_etmnn"]
-atlas = ExtResource("1_0ua37")
+atlas = ExtResource("1_mrxtj")
 region = Rect2(32, 0, 32, 32)
 
 [resource]

@@ -30,6 +30,7 @@ func play_current_branch():
 		speaker_node = get_tree().get_first_node_in_group(tree.get_speaker_name())
 		
 	_ResponseBubble.visible = false
+	_DialogBubble.set_label("")
 	_DialogBubble.visible = true
 	_DialogBubble.set_portrait(tree.get_speaker_portrait(), tree.get_speaker_emote())
 	_DialogBubble.play_text(tree.get_speaker_text(), tree.get_voice())
@@ -99,6 +100,7 @@ func handle_input():
 			play_current_branch()
 		elif(has_speech_options() && !responding):
 			_DialogBubble.visible = false
+			_ResponseBubble.set_label("")
 			_ResponseBubble.visible = true
 			responding = true
 		elif(has_speech_options() && responding):

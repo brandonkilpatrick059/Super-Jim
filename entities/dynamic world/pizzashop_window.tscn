@@ -27,6 +27,7 @@ active_at_mid = true
 active_at_hi = true
 
 [node name="PointLight2D2" type="Sprite2D" parent="."]
+z_index = 1
 material = SubResource("CanvasItemMaterial_nai74")
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("5_jnkmf")

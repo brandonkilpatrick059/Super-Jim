@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqu01hdwogd1c"]
+
+[ext_resource type="Texture2D" uid="uid://6kdsps6c56nv" path="res://sprites/props/ATM.png" id="1_jua60"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4enx"]
+size = Vector2(24, 16)
+
+[node name="Atm" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jua60")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_l4enx")

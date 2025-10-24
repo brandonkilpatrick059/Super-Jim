@@ -28,7 +28,7 @@ func _on_transition_to_main_Scene_finished():
 	camera_ref.fade_in()
 	transitioning = false
 	
-func _process(delta):
+func _physics_process(delta):
 	if(transition_timer.is_stopped() && transitioning && !prev_scene_freed):
 		var active_root = get_tree().get_first_node_in_group("active_root")
 		active_root.queue_free()

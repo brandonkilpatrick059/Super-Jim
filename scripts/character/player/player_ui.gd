@@ -13,7 +13,7 @@ extends Control
 @onready var fps_counter = $fps_counter/fps
 @onready var dash_meter = $dash_meter
 
-@export var fps_counter_visible = false
+var fps_counter_visible = false
 
 var sound_player = AudioStreamPlayer.new()
 
@@ -102,7 +102,13 @@ func set_money(num : int):
 
 func set_money_tracker(money : int):
 	money_label.text = str("$",money)
-	
+
+func toggle_fps_counter():
+	if fps_counter_visible:
+		fps_counter_visible = false
+	else:
+		fps_counter_visible = true
+
 
 func activate_header(label : String):
 	location_header.activate_header(label)
@@ -124,4 +130,6 @@ func _process(delta):
 	if(fps_counter_visible):
 		fps_counter.visible = true
 		fps_counter.text = str(Engine.get_frames_per_second())
+	else:
+		fps_counter.visible = false
 	set_money_tracker(current_money)

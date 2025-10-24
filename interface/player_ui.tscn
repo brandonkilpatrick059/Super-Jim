@@ -26,9 +26,9 @@ anchors_preset = 0
 offset_right = 632.0
 offset_bottom = 320.0
 script = ExtResource("1_nbha7")
-fps_counter_visible = true
 
 [node name="fps_counter" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 632.0
 offset_bottom = 320.0

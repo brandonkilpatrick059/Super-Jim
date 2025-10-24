@@ -8,13 +8,13 @@
 blend_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_37rcv"]
-size = Vector2(64, 54)
+size = Vector2(70, 54)
 
 [node name="PizzaOven" type="Node2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_37rcv")
-frame_progress = 0.63447
+frame_progress = 0.254948
 speed_scale = 0.5
 offset = Vector2(0, 16)
 script = ExtResource("2_riyl1")
@@ -23,7 +23,7 @@ script = ExtResource("2_riyl1")
 z_index = 1
 material = SubResource("CanvasItemMaterial_37rcv")
 sprite_frames = ExtResource("3_h8w3u")
-frame_progress = 0.53817
+frame_progress = 0.158647
 speed_scale = 0.5
 offset = Vector2(0, 16)
 script = ExtResource("2_riyl1")

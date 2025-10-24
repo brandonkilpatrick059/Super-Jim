@@ -24,7 +24,6 @@ var dev_zoom_level = 0
 const no_clip_speed = 3200000
 
 var player_die = preload("res://entities/characters/player/player_die.tscn") 
-var dash_get = preload("res://interface/dash_get.tscn")
 var die_material = preload("res://entities/characters/player/die_material.tres")
 var speech_bubble = preload("res://dialog/speech_bubble.tscn")
 var player_material = preload("res://entities/characters/player/player_material.tres")
@@ -293,6 +292,8 @@ func handle_dev():
 			dev_occlusion_enabled = true
 			for occluder in occluders:
 				occluder.occluding_enabled = true
+	if Input.is_action_just_pressed("dev_toggle_fps"):
+		_ui.toggle_fps_counter()
 
 func get_current_hp():
 	return current_hp

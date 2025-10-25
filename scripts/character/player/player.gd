@@ -73,6 +73,7 @@ var anchored = false
 var active_anchor : Node = null
 
 var money : int = 0
+var banked_money : int = 25
 
 var light_on = false
 var has_flashlight = false
@@ -186,6 +187,12 @@ func connect_camera():
 	camera_connected = true
 	_camera.unlock()
 
+func is_in_dialog():
+	return in_dialog
+
+func add_scene_to_ui_tree(scene : Node):
+	_ui.add_child(scene)
+
 func exit_dialog():
 	in_dialog = false
 	control_frozen = false
@@ -193,6 +200,12 @@ func exit_dialog():
 
 func get_money():
 	return money
+
+func get_banked_money():
+	return banked_money
+
+func set_banked_money(num : int):
+	banked_money = num
 
 func anchor(anchor : Node):
 	_collision.disabled = true

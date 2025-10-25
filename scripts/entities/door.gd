@@ -30,8 +30,6 @@ var open_distance = 32
 var last_frame_open = 0
 var last_frame_close = 0
 
-var debug = true
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	open_close_timer.one_shot = true
@@ -83,10 +81,6 @@ func player_is_behind_door():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
-	if(debug):
-		if(parent_door != null):
-			print(str(str(self.name, " parent door: "), parent_door.get_name()))
-		debug = false
 	if(!does_not_open):
 		var opener_is_near = false
 		if(_area_2d.has_overlapping_bodies()):

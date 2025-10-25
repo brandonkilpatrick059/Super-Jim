@@ -124,6 +124,9 @@ func handle_input():
 				
 
 func clean_up():
+	var parent_npc = get_parent()
+	if(parent_npc.is_in_group("npc")):
+		parent_npc.out_of_dialog()
 	var children = get_children()
 	for child in children:
 		child.queue_free()

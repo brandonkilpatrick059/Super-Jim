@@ -1,11 +1,70 @@
-[gd_scene format=3 uid="uid://cthp3v5qyp44p"]
+[gd_scene load_steps=5 format=3 uid="uid://cthp3v5qyp44p"]
+
+[ext_resource type="Texture2D" uid="uid://1n5m4whcv75c" path="res://sprites/interface/atm_interface.png" id="1_a5l67"]
+[ext_resource type="Script" uid="uid://bltp14sggcnwy" path="res://scripts/utility/atm_interface.gd" id="1_su81r"]
+[ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="2_su81r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_28h3g"]
+font = ExtResource("2_su81r")
+font_color = Color(0, 0.580392, 1, 1)
 
 [node name="AtmInterface" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -632.0
-offset_bottom = -320.0
+anchors_preset = 0
+offset_right = 632.0
+offset_bottom = 320.0
+script = ExtResource("1_su81r")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_a5l67")
+
+[node name="balance_label" type="Label" parent="CenterContainer/TextureRect"]
+layout_mode = 2
+offset_left = 47.0
+offset_top = 37.0
+offset_right = 119.0
+offset_bottom = 55.0
+text = "BALANCE"
+label_settings = SubResource("LabelSettings_28h3g")
+
+[node name="balance_num" type="Label" parent="CenterContainer/TextureRect"]
+layout_mode = 2
+offset_left = 53.0
+offset_top = 60.0
+offset_right = 125.0
+offset_bottom = 78.0
+text = "$000000"
+label_settings = SubResource("LabelSettings_28h3g")
+
+[node name="transaction_num" type="Label" parent="CenterContainer/TextureRect"]
+layout_mode = 2
+offset_left = 53.0
+offset_top = 105.0
+offset_right = 125.0
+offset_bottom = 123.0
+text = "$000000"
+label_settings = SubResource("LabelSettings_28h3g")
+
+[node name="transaction_type" type="Label" parent="CenterContainer/TextureRect"]
+offset_left = 16.0
+offset_top = 83.0
+offset_right = 144.0
+offset_bottom = 101.0
+text = "<WITHDRAW>"
+label_settings = SubResource("LabelSettings_28h3g")
+horizontal_alignment = 1

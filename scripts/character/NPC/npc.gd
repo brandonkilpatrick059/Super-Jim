@@ -111,7 +111,11 @@ func interact():
 			dialog_manager.set_shop(shop)
 		var player_ref = get_tree().get_nodes_in_group("player")[0]
 		player_ref.enter_dialog()
-		dialog_manager.set_tree_and_start_dialog(branching_dialog)	
+		dialog_manager.set_tree_and_start_dialog(branching_dialog)
+		perceptions.in_dialog = true
+
+func out_of_dialog():
+	perceptions.in_dialog = false
 
 func update_perceptions():
 	perceptions.current_v = current_v

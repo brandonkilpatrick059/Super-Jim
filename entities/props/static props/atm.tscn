@@ -1,18 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqu01hdwogd1c"]
+[gd_scene load_steps=5 format=3 uid="uid://dqu01hdwogd1c"]
 
 [ext_resource type="Texture2D" uid="uid://6kdsps6c56nv" path="res://sprites/props/ATM.png" id="1_jua60"]
+[ext_resource type="Script" uid="uid://qihwh6t6bv72" path="res://scripts/entities/atm.gd" id="1_l4enx"]
+[ext_resource type="Script" uid="uid://cxdxvmads68ph" path="res://scripts/utility/interact_zone.gd" id="3_fnais"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l4enx"]
 size = Vector2(24, 16)
 
 [node name="Atm" type="Node2D"]
+script = ExtResource("1_l4enx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_jua60")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 0
-collision_mask = 16
+[node name="StaticBody2D" type="StaticBody2D" parent="." node_paths=PackedStringArray("interact_node") groups=["interactable"]]
+collision_layer = 28
+collision_mask = 0
+script = ExtResource("3_fnais")
+interact_node = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 8)

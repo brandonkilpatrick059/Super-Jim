@@ -27,7 +27,6 @@ offset_bottom = 320.0
 script = ExtResource("1_nbha7")
 
 [node name="fps_counter" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_right = 632.0
 offset_bottom = 320.0
@@ -61,6 +60,7 @@ text = "
 label_settings = SubResource("LabelSettings_7uvet")
 
 [node name="health_meter" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

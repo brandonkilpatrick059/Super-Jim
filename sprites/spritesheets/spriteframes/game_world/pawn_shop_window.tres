@@ -1,0 +1,42 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://ncus4loaxckd"]
+
+[ext_resource type="Texture2D" uid="uid://d0vu1v7j2i3ol" path="res://sprites/game_world/pawn_shop_window.png" id="1_gkum7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxitd"]
+atlas = ExtResource("1_gkum7")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxarb"]
+atlas = ExtResource("1_gkum7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6oloi"]
+atlas = ExtResource("1_gkum7")
+region = Rect2(0, 0, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxitd")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxarb")
+}],
+"loop": true,
+"name": &"dark",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6oloi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

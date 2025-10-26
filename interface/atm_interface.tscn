@@ -61,6 +61,7 @@ text = "$000000"
 label_settings = SubResource("LabelSettings_28h3g")
 
 [node name="transaction_type" type="Label" parent="CenterContainer/TextureRect"]
+layout_mode = 0
 offset_left = 16.0
 offset_top = 83.0
 offset_right = 144.0

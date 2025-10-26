@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://m0dl1db8l36u"]
+
+[ext_resource type="Script" uid="uid://duw80sxpurnpt" path="res://scripts/clock/timed_light_advanced.gd" id="1_2pf27"]
+[ext_resource type="SpriteFrames" uid="uid://bsbpyd01n2wb0" path="res://sprites/spritesheets/spriteframes/game_world/pawn_shop_window_2.tres" id="2_2pf27"]
+[ext_resource type="Script" uid="uid://dnu1hewogsd0x" path="res://scripts/entities/advanced_light.gd" id="3_xxdsl"]
+[ext_resource type="Texture2D" uid="uid://6dh6plwhup22" path="res://sprites/lights/diffuse_yellow_light.png" id="4_w33yy"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x3o52"]
+blend_mode = 1
+
+[node name="pawn_shop_window" type="Node2D"]
+script = ExtResource("1_2pf27")
+running_hours = Array[bool]([false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, false])
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_2pf27")
+animation = &"active"
+
+[node name="advanced_light" type="Node2D" parent="."]
+position = Vector2(0, 7)
+script = ExtResource("3_xxdsl")
+light_point_hi = true
+
+[node name="Light2D_point" type="PointLight2D" parent="advanced_light"]
+scale = Vector2(0.2, 0.2)
+color = Color(1, 1, 0.541176, 1)
+texture = ExtResource("4_w33yy")
+
+[node name="Light2D_sprite" type="Sprite2D" parent="advanced_light"]
+material = SubResource("CanvasItemMaterial_x3o52")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_w33yy")

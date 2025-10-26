@@ -108,7 +108,7 @@
 [ext_resource type="Script" uid="uid://k2vy5fgi6w" path="res://scripts/utility/play_default_anim_synched.gd" id="70_k76a5"]
 [ext_resource type="Texture2D" uid="uid://bdbcrlpfc1o84" path="res://sprites/lights/square_shadow.png" id="72_817t2"]
 [ext_resource type="PackedScene" uid="uid://blygg1ro7g4fc" path="res://effects/arch_drop_shadow.tscn" id="74_qxg51"]
-[ext_resource type="SpriteFrames" uid="uid://bk20yhmb2c2sn" path="res://sprites/spritesheets/effects/waves_1.tres" id="74_y61j8"]
+[ext_resource type="SpriteFrames" uid="uid://bk20yhmb2c2sn" path="res://sprites/spritesheets/spriteframes/effects/waves_1.tres" id="74_y61j8"]
 [ext_resource type="Texture2D" uid="uid://d4hrbn7g8hf6y" path="res://sprites/lights/square_gradient.png" id="76_yx6t6"]
 [ext_resource type="Texture2D" uid="uid://blvnwdt14csaq" path="res://sprites/lights/diamond_gradient.png" id="77_ax5nt"]
 [ext_resource type="Texture2D" uid="uid://ba6701aqerw3l" path="res://sprites/lights/diamond_gradient_solid.png" id="77_pdo0r"]

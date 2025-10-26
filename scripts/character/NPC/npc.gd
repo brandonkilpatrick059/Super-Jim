@@ -68,6 +68,7 @@ func _ready():
 	set_up_nav_agent()
 	update_perceptions()
 	send_perceptions()
+	player_ref = get_tree().get_nodes_in_group("player")[0]
 	
 	if(Engine.is_editor_hint()):
 		queue_redraw()
@@ -216,7 +217,6 @@ func _on_handle_behavior(behavior_directive : String):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(!Engine.is_editor_hint()):
-		player_ref = get_tree().get_nodes_in_group("player")[0]
 		update()
 		send_perceptions()
 

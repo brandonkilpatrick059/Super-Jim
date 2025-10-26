@@ -12,9 +12,13 @@ extends Node2D
 @export var light_point_hi = false
 
 var light_running = false
-var switched_on = true
+#var switched_on = true
 
 var random : RandomNumberGenerator = RandomNumberGenerator.new()
+
+func _ready():
+	light_point.visible = false
+	light_sprite.visible = false
 
 func turn_light_on():
 	light_running = true
@@ -29,27 +33,33 @@ func set_light_running(running : bool):
 	light_running = running
 
 func _physics_process(delta: float) -> void:
-	if(!switched_on && light_running):
+	if(light_running):
 		if(light_point_lo && SettingsVariables.lighting_index == 0):
 			light_point.enabled = true
+			light_point.visible = true
 			light_sprite.visible = false
 		else:
 			light_point.enabled = false
+			light_point.visible = false
 			light_sprite.visible = true
 		if(light_point_med && SettingsVariables.lighting_index == 1):
 			light_point.enabled = true
+			light_point.visible = true
 			light_sprite.visible = false
 		else:
 			light_point.enabled = false
+			light_point.visible = false
 			light_sprite.visible = true
 		if(light_point_hi && SettingsVariables.lighting_index == 2):
 			light_point.enabled = true
+			light_point.visible = true
 			light_sprite.visible = false
 		else:
 			light_point.enabled = false
+			light_point.visible = false
 			light_sprite.visible = true
-		switched_on = true
-	elif(switched_on && !light_running):
+		#switched_on = true
+	elif(!light_running):
 		light_point.enabled = false
 		light_sprite.visible = false
-		switched_on = false
+		#switched_on = false

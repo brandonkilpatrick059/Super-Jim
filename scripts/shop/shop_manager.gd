@@ -19,7 +19,6 @@ func dispose_of_staged_wares():
 		ware.queue_free()
 	staged_wares = []
 
-#TODO: hook this up to a signal from time keeper
 func shuffle_staged_items():
 	dispose_of_staged_wares()
 	var indices : Array[int] =[]

@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckq2pj60irab1"]
+
+[ext_resource type="Texture2D" uid="uid://de2ukfcqoe1a5" path="res://sprites/game_world/crystal_1.png" id="1_m4hln"]
+[ext_resource type="Script" uid="uid://u8vt83v0aeu7" path="res://scripts/entities/dash_crystal.gd" id="1_pn4uc"]
+[ext_resource type="SpriteFrames" uid="uid://dbkdrr7vtbfiy" path="res://sprites/spritesheets/spriteframes/effects/crystal_glow.tres" id="2_vfuvd"]
+[ext_resource type="Script" uid="uid://b3xtkv5igree1" path="res://scripts/utility/play_default_animation.gd" id="3_pn4uc"]
+[ext_resource type="Script" uid="uid://cxdxvmads68ph" path="res://scripts/utility/interact_zone.gd" id="4_vfuvd"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m4hln"]
+blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m4hln"]
+size = Vector2(6, 6)
+
+[node name="DashCrystal" type="Node2D"]
+script = ExtResource("1_pn4uc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_m4hln")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+material = SubResource("CanvasItemMaterial_m4hln")
+sprite_frames = ExtResource("2_vfuvd")
+frame_progress = 0.798147
+script = ExtResource("3_pn4uc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." node_paths=PackedStringArray("interact_node") groups=["interactable"]]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("4_vfuvd")
+interact_node = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_m4hln")

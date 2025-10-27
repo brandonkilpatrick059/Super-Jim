@@ -16,10 +16,10 @@ func _on_area_2d_body_entered(body):
 		player_ref.set_top_spriteframes(uniform_top_spriteframes)
 		player_ref.set_hat_spriteframes(uniform_hat_spriteframes)
 		clothes_stored = true
-		player_ref.add_to_group("courier")
+		player_ref.add_to_group("uniformed")
 	elif(body.is_in_group("player") && clothes_stored == true):
 		var player_ref = body
 		player_ref.set_top_spriteframes(hat_spriteframes)
 		player_ref.set_hat_spriteframes(top_spriteframes)
 		clothes_stored = false
-		player_ref.remove_from_group("courier")
+		player_ref.remove_from_group("uniformed")

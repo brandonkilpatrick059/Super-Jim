@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5aplidk0gkc5"]
+
+[ext_resource type="Script" uid="uid://c2eauyl5k8il2" path="res://scripts/shop/ware.gd" id="1_x2vo6"]
+[ext_resource type="Script" uid="uid://8g1wuisnfua7" path="res://scripts/shop/ware_coffee.gd" id="2_at2hu"]
+[ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="3_12knv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n32s6"]
+font = ExtResource("3_12knv")
+font_size = 8
+
+[node name="WareCoffee" type="Node2D"]
+script = ExtResource("1_x2vo6")
+cost = 6
+ware_name = "Espresso"
+
+[node name="script_node" type="Node" parent="."]
+script = ExtResource("2_at2hu")
+regen_amt = 20
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "espresso: $6"
+label_settings = SubResource("LabelSettings_n32s6")

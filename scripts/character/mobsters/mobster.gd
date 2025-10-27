@@ -22,6 +22,7 @@ var red_hat = preload("res://sprites/spritesheets/spriteframes/characters/hat/co
 var red_bandit_hat = preload("res://sprites/spritesheets/spriteframes/characters/hat/red_bandit_mask.tres")
 var blue_top = preload("res://sprites/spritesheets/spriteframes/characters/top/biker_vest_1.tres")
 var blue_bandit_hat = preload("res://sprites/spritesheets/spriteframes/characters/hat/blu_bandit_mask.tres")
+var speech_bubble = preload("res://dialog/speech_bubble.tscn")
 
 #audio preloads
 var bullet_sound = preload("res://audio/soundFX/gunshot.wav")
@@ -235,7 +236,8 @@ func update_perceptions():
 	
 	if(_ai_state_machine.get_state().name == mobster_states.shooting ||
 	_ai_state_machine.get_state().name == mobster_states.strafing ||
-	_ai_state_machine.get_state().name == mobster_states.chasing):
+	_ai_state_machine.get_state().name == mobster_states.chasing ||
+	_ai_state_machine.get_state().name == mobster_states.enticed):
 		update_line_of_sight_to_target()
 	
 	check_vision()
@@ -428,6 +430,13 @@ func _on_adjust_offset(adjustment : Vector2):
 			child.position += adjustment
 	_shadow.offset += adjustment
 	offset_vector = adjustment
+
+#TODO: speech bubble instance to taunt the player when they have their pizza
+func _on_taunt(tauntType : String):
+	var taunt_bubble
+	match(tauntType):
+		"pizza":
+			pass
 
 func _on_pick_up(pick_up_obj : Node):
 	if(!holding_object):

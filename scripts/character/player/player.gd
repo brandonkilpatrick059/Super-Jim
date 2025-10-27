@@ -441,6 +441,8 @@ func throw():
 		sound_player.stream = woosh_sound
 		sound_player.play()
 		grabbed_object.throw(_character_base.get_facing_dir())
+		if(grabbed_object.is_in_group("pizza")):
+			self.remove_from_group("courier")
 		grabbed_object = null
 		set_holding_object(false)
 
@@ -450,11 +452,15 @@ func handle_pick_up():
 		sound_player.play()
 		will_grab_object.pick_up(self)
 		grabbed_object = will_grab_object
+		if(will_grab_object.is_in_group("pizza")):
+			self.add_to_group("courier")
 		set_holding_object(true)
 	else: if(holding_object):
 		sound_player.stream = putdown_sound
 		sound_player.play()
 		grabbed_object.put_down(_character_base.get_facing_dir())
+		if(grabbed_object.is_in_group("pizza")):
+			self.remove_from_group("courier")
 		grabbed_object = null
 		set_holding_object(false)
 

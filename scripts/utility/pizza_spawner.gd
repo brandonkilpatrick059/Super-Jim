@@ -10,7 +10,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
-	var courier_ref = get_tree().get_first_node_in_group("courier")
+	var courier_ref = get_tree().get_first_node_in_group("uniformed")
 	if(courier_ref):
 		if(get_tree().get_nodes_in_group("pizza").size() == 0 &&
 		global_position.distance_to(courier_ref.global_position) < 32):

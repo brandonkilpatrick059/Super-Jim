@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf8b7feotqr2x"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_sp1nc"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_k4nhy"]
+
+[node name="barista_at_work" type="Node2D"]
+script = ExtResource("1_sp1nc")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_k4nhy")]
+speaker_text = Array[String](["How can I help you?"])
+speaker_portrait = null
+speech_options = Array[String](["See you later", "I would like some coffee"])
+option_branches = [NodePath("../bye"), NodePath("../coffee")]
+voice = "sine_voice"
+
+[node name="bye" parent="." instance=ExtResource("2_k4nhy")]
+position = Vector2(-233, 261)
+speaker_text = Array[String](["Take care!"])
+speaker_portrait = null
+voice = "sine_voice"
+
+[node name="coffee" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_k4nhy")]
+position = Vector2(79, 248)
+speaker_text = Array[String](["Sure, what kind?"])
+speaker_portrait = null
+speech_options = Array[String](["", "", ""])
+option_branches = [NodePath("../no purchase"), NodePath("../purchase"), NodePath("../insufficient money")]
+voice = "sine_voice"
+shows_wares = true
+
+[node name="Anything else?" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_k4nhy")]
+position = Vector2(-531, 137)
+speaker_text = Array[String](["Anything else?"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk")]
+voice = "sine_voice"
+
+[node name="insufficient money" parent="." instance=ExtResource("2_k4nhy")]
+position = Vector2(275, 602)
+speaker_text = Array[String](["Oh, sorry, that's not enough money..."])
+speaker_portrait = null
+voice = "sine_voice"
+
+[node name="no purchase" parent="." instance=ExtResource("2_k4nhy")]
+position = Vector2(-64, 602)
+speaker_text = Array[String](["Oh, okay."])
+speaker_portrait = null
+voice = "sine_voice"
+
+[node name="purchase" parent="." instance=ExtResource("2_k4nhy")]
+position = Vector2(109, 602)
+speaker_text = Array[String](["Come again!"])
+speaker_portrait = null
+voice = "sine_voice"

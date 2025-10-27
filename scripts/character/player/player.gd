@@ -50,6 +50,7 @@ var dash_time_secs = 0.5
 var dash_regen_time_secs = 5
 var timer_dash := Timer.new()
 var timer_dash_regen := Timer.new()
+var dash_regen_secs = 0
 
 var in_dialog = false
 var dialog_panning = false
@@ -402,6 +403,12 @@ func handle_dash():
 	elif Input.is_action_just_released("dash"):
 		stop_dash()
 
+func regen_dash_secs(seconds):
+	dash_regen_secs = seconds
+
+func get_max_dash_secs():
+	return max_dash_secs
+
 func give_dash_seconds(seconds):
 	if(current_dash_secs < max_dash_secs):
 		if(current_dash_secs + seconds >= max_dash_secs):
@@ -552,13 +559,16 @@ func _physics_process(delta):
 					acceleration_quotient = normal_speed
 				else:
 					acceleration_quotient = no_clip_speed
-			
 			#regen dash
-			#if(timer_dash_regen.is_stopped() && can_dash == false && !is_dashing):
-				#sound_player.stream = load("res://audio/soundFX/dashget.wav")
-				#sound_player.play()
-				#can_dash = true
-				#add_child(dash_get.instantiate())
+			if(timer_dash_regen.is_stopped() && dash_regen_secs > 0):
+				if(current_dash_secs < max_dash_secs):
+					dash_regen_secs = dash_regen_secs - 1
+					current_dash_secs = current_dash_secs + 1
+					timer_dash_regen.start(0.25)
+				else:
+					current_dash_secs = max_dash_secs
+					dash_regen_secs = 0
+				
 			
 			if(speech_instance != null &&
 			speech_instance.full_text_displayed):

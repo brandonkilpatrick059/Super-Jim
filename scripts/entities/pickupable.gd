@@ -147,6 +147,7 @@ func set_will_pickup_false():
 func return_to_home():
 	global_position = prop_home
 	set_physics_pos(prop_home)
+	_collision_shape.disabled = false
 	reparent(original_parent)
 	falling = false
 

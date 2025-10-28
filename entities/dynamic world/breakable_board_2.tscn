@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbxsdng71kggh"]
+
+[ext_resource type="Script" uid="uid://bq80ym6is1cfi" path="res://scripts/utility/breakable.gd" id="1_kcsbn"]
+[ext_resource type="Texture2D" uid="uid://syba12efcerm" path="res://sprites/game_world/decals/board_2.png" id="2_kcsbn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8dja"]
+size = Vector2(32, 8)
+
+[node name="BreakableBoard1" type="RigidBody2D"]
+collision_mask = 264
+freeze = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_kcsbn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_kcsbn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_y8dja")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

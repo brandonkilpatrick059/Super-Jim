@@ -65,19 +65,18 @@ func _draw():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	if(entering || exiting):
+	if(entering || exiting || control_timer_active):
 		_fade_to_black.global_position = Vector2(0,0)
 		update_fade_alpha()
 		if(Engine.is_editor_hint()):
 			queue_redraw()
 		if(entering):
 			enter()
-		else: if(exiting):
+		elif(exiting):
 			exit()
-		
-		if(control_timer_active &&
-			timer_control_back.is_stopped()):
+		elif(control_timer_active && timer_control_back.is_stopped()):
 				control_timer_active = false
+				exiting = false
 				player_ref.set_control_frozen(false)
 
 func enter():
@@ -128,7 +127,7 @@ func exit():
 		fade_alpha = 0
 		exiting = false
 		#player_ref.stop()
-		if(secs_for_control_back > 0):
+		if(!control_timer_active && secs_for_control_back > 0):
 			control_timer_active = true
 			timer_control_back.start(secs_for_control_back)
 		else:

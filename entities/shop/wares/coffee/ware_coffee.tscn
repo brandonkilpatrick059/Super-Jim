@@ -9,9 +9,10 @@ font = ExtResource("3_0t2s5")
 font_size = 8
 
 [node name="WareCoffee" type="Node2D"]
+z_index = 1
 script = ExtResource("1_84oca")
 cost = 3
-ware_name = "Regular Coffee"
+ware_name = "regular coffee"
 
 [node name="script_node" type="Node" parent="."]
 script = ExtResource("2_rg55s")
@@ -19,5 +20,5 @@ script = ExtResource("2_rg55s")
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
-text = "regular coffee: $3"
+text = "coffee: $3"
 label_settings = SubResource("LabelSettings_n32s6")

@@ -29,6 +29,7 @@ var speech_bubble = preload("res://dialog/speech_bubble.tscn")
 var player_material = preload("res://entities/characters/player/player_material.tres")
 
 var woosh_sound = preload("res://audio/soundFX/woosh.wav")
+var dash_sound = preload("res://audio/soundFX/dash.wav")
 var pickup_sound = preload("res://audio/soundFX/pickup.wav")
 var putdown_sound = preload("res://audio/soundFX/putdown.wav")
 var crystal_sound = preload("res://audio/soundFX/crystal_get.wav")
@@ -391,10 +392,10 @@ func resurrect():
 
 func handle_interact():
 	if Input.is_action_just_pressed("interact"):
-			if(_grabber.is_colliding()):
-					var grabObj = _grabber.get_collider(0)
-					if(grabObj.is_in_group("interactable")):
-						grabObj.interact()
+		var grabObj = _grabber.get_collider(0)
+		if(_grabber.is_colliding() && grabObj.is_in_group("interactable")):
+				grabObj.interact()
+		else:
 			handle_pick_up()
 
 func handle_dash():
@@ -468,6 +469,7 @@ func return_pizza():
 	sound_player.stream = pickup_sound
 	sound_player.play()
 	var pizza = get_tree().get_first_node_in_group("pizza")
+	self.add_to_group("courier")
 	pizza.pick_up(self)
 	grabbed_object = pizza
 	set_holding_object(true)
@@ -481,7 +483,7 @@ func stop_dash():
 func dash():
 	if(!is_dashing && Input.get_vector(direction.left, direction.right, direction.up, direction.down).length() > 0):
 		if(current_dash_secs > 0):
-			sound_player.stream = woosh_sound
+			sound_player.stream = dash_sound
 			sound_player.play()
 			is_dashing = true
 			timer_dash.start(1)

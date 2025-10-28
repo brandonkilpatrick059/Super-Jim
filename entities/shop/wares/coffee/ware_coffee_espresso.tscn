@@ -9,6 +9,7 @@ font = ExtResource("3_12knv")
 font_size = 8
 
 [node name="WareCoffee" type="Node2D"]
+z_index = 1
 script = ExtResource("1_x2vo6")
 cost = 6
 ware_name = "Espresso"

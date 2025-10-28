@@ -45,6 +45,8 @@ signal spark_collide()
 signal signal_picked_up()
 signal destroy_self()
 
+var original_parent = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	original_offset = sprite.offset
@@ -56,6 +58,7 @@ func _ready():
 	sound_player.bus = "Effects"
 	add_child(sound_player)
 	prop_home = global_position
+	original_parent = get_parent()
 
 func set_physics_pos(vector2):
 	should_reset = true
@@ -144,6 +147,7 @@ func set_will_pickup_false():
 func return_to_home():
 	global_position = prop_home
 	set_physics_pos(prop_home)
+	reparent(original_parent)
 	falling = false
 
 func _physics_process(delta):

@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://3ygj2lrsi3xy"]
+
+[ext_resource type="Script" uid="uid://b2xaniea3y6nq" path="res://scripts/entities/door.gd" id="1_5k0j3"]
+[ext_resource type="SpriteFrames" uid="uid://dc470q7nsy17b" path="res://sprites/spritesheets/spriteframes/game_world/door2.tres" id="2_5k0j3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j02e0"]
+size = Vector2(26, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hdbs2"]
+size = Vector2(26, 63)
+
+[node name="door1" type="Node2D" groups=["door"]]
+script = ExtResource("1_5k0j3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_5k0j3")
+animation = &"open"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-3, 14)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3, -5)
+shape = SubResource("RectangleShape2D_j02e0")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 71
+collision_mask = 71
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 8.5)
+shape = SubResource("RectangleShape2D_hdbs2")
+debug_color = Color(0.910119, 0.273452, 0.308353, 0.42)

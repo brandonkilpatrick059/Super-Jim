@@ -1,0 +1,88 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://dc470q7nsy17b"]
+
+[ext_resource type="Texture2D" uid="uid://ccc0nmj6nkfa5" path="res://sprites/game_world/door2.png" id="1_sep8c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddr73"]
+atlas = ExtResource("1_sep8c")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8r0we"]
+atlas = ExtResource("1_sep8c")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afk7d"]
+atlas = ExtResource("1_sep8c")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3d7c"]
+atlas = ExtResource("1_sep8c")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4scdm"]
+atlas = ExtResource("1_sep8c")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1dut"]
+atlas = ExtResource("1_sep8c")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbxve"]
+atlas = ExtResource("1_sep8c")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv4ks"]
+atlas = ExtResource("1_sep8c")
+region = Rect2(64, 0, 32, 48)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddr73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8r0we")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afk7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afk7d")
+}],
+"loop": true,
+"name": &"close",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3d7c")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4scdm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1dut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbxve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbxve")
+}],
+"loop": true,
+"name": &"open",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yv4ks")
+}],
+"loop": true,
+"name": &"opened",
+"speed": 10.0
+}]

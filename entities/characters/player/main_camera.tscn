@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b23ot5l1o0hli"]
+[gd_scene load_steps=3 format=3 uid="uid://b23ot5l1o0hli"]
 
 [ext_resource type="Script" uid="uid://n3s8ca76okij" path="res://scripts/utility/main_camera.gd" id="1_apwxg"]
+[ext_resource type="Texture2D" uid="uid://cbqvrhqpi3kqn" path="res://sprites/lights/additive_light.png" id="2_3jtv6"]
 
 [node name="main_camera" type="Camera2D" groups=["camera"]]
 process_mode = 3
@@ -23,3 +24,8 @@ position = Vector2(-335, -167)
 scale = Vector2(0.21859, 0.155457)
 color = Color(0, 0, 0, 0)
 polygon = PackedVector2Array(-118.944, -353.796, 3120, -315.2, 3097.13, 2431.54, -137.243, 2412.25)
+
+[node name="flash_light" type="PointLight2D" parent="."]
+z_index = -2
+scale = Vector2(1, 0.5)
+texture = ExtResource("2_3jtv6")

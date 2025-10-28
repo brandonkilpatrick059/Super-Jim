@@ -8,7 +8,6 @@ extends RigidBody2D
 @onready var _ui_canvas = $ui_canvas
 @onready var _ui = $ui_canvas/player_ui
 @onready var _light = $player_light
-@onready var _flash_light = $flash_light
 
 var _camera
 var camera_connected = false
@@ -113,7 +112,6 @@ func _ready():
 	update_max_dash_meter()
 	
 	_light.enabled = false
-	_flash_light.enabled = false
 	
 	if(Engine.is_editor_hint()):
 		queue_redraw()
@@ -172,18 +170,17 @@ func hide_dash():
 	_ui.hide_dash()
 
 func turn_light_on():
+	_light.enabled = true
 	light_on = true
-	if(has_flashlight):
-		_flash_light.enabled = true
-	else:
-		_light.enabled = true
+	if(has_flashlight && camera_connected):
+		_camera.turn_on_flashlight()
+
 
 func turn_light_off():
 	light_on = false
-	if(has_flashlight):
-		_flash_light.enabled = false
-	else:
-		_light.enabled = false
+	_light.enabled = false
+	if(has_flashlight && camera_connected):
+		_camera.turn_off_flashlight()
 
 func show_hearts():
 	_ui.show_hearts()

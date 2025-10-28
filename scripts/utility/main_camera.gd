@@ -1,6 +1,7 @@
 extends Camera2D
 
 @onready var _fade_to_black = $fade_to_black
+@onready var _flashlight = $flash_light
 
 var player_ref
 
@@ -26,6 +27,7 @@ var zoom_step_secs = 0.001
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	_flashlight.enabled = false
 	pan_timer.one_shot = true
 	timer_fade.one_shot = true
 	timer_zoom.one_shot = true
@@ -35,6 +37,12 @@ func _ready():
 	pan_timer.start(pan_step_time_secs)
 	timer_fade.start(fade_step_secs)
 
+func turn_on_flashlight():
+	_flashlight.enabled = true
+	
+func turn_off_flashlight():
+	_flashlight.enabled = false
+
 func is_faded_out() -> bool:
 	if(fade_alpha >= 1.0):
 		return true
@@ -43,6 +51,7 @@ func is_faded_out() -> bool:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	_flashlight.position = camera_offset
 	update_fade_alpha()
 	if(not locked):
 		handle_camera_pan()

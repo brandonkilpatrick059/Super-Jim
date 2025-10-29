@@ -25,6 +25,8 @@ var timer_zoom := Timer.new()
 var zoom_step = 0.002
 var zoom_step_secs = 0.001
 
+var player_connected = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_flashlight.enabled = false
@@ -76,6 +78,11 @@ func fade_in():
 func connect_player(input : Node):
 	player_ref = input
 	position = Vector2(0,0)
+	player_connected = true
+
+func connect_anchor(anchor : Node):
+	reparent(anchor)
+	position = Vector2(0,0)
 
 func update_fade_alpha():
 	if(fading_out && timer_fade.is_stopped() && fade_alpha < 1):
@@ -115,12 +122,12 @@ func handle_camera_pan():
 		pan_direction.x = 0
 	if(pan_direction.y < 0.4 && pan_direction.y > -0.4):
 		pan_direction.y = 0
-	
+		
 	if(pan_timer.is_stopped()):
 		var destination_x = (pan_direction.x/abs(pan_direction.x)) * pan_x_max 
 		var destination_y = (pan_direction.y/abs(pan_direction.y)) * pan_y_max
 		#var max_vector = Vector2(pan_x_max,pan_y_max)
-		
+			
 		var adj_x_step = pan_step
 		var adj_y_step = pan_step
 		var divisor = 3
@@ -140,7 +147,7 @@ func handle_camera_pan():
 			ret_adj_x_step = ceil((abs(camera_offset.x)/x_edge) * pan_step)
 		if(abs(camera_offset.y) < y_edge):
 			ret_adj_y_step = ceil((abs(camera_offset.y)/y_edge) * pan_step)
-		
+			
 		#pan x
 		if(destination_x > 0):
 			if(camera_offset.x < destination_x):
@@ -148,14 +155,14 @@ func handle_camera_pan():
 		elif(destination_x < 0):
 			if(camera_offset.x > destination_x):
 				camera_offset = camera_offset + Vector2(-adj_x_step,0)
-		
+			
 		#return x to center
 		if(pan_direction.x == 0):
 			if(camera_offset.x > 0):
 				camera_offset = camera_offset + Vector2(-ret_adj_x_step,0)
 			elif(camera_offset.x < 0):
 				camera_offset = camera_offset + Vector2(ret_adj_x_step,0)
-			
+				
 		#pan y
 		if(destination_y > 0):
 			if(camera_offset.y < destination_y):
@@ -163,14 +170,14 @@ func handle_camera_pan():
 		elif(destination_y < 0):
 			if(camera_offset.y > destination_y):
 				camera_offset = camera_offset + Vector2(0,-adj_y_step)
-			
+				
 		#return y to center
 		if(pan_direction.y == 0):
 			if(camera_offset.y > 0):
 				camera_offset = camera_offset + Vector2(0,-ret_adj_y_step)
 			elif(camera_offset.y < 0):
 				camera_offset = camera_offset + Vector2(0,ret_adj_y_step)
-		
+			
 			#snap to center
 		if(pan_direction.x == 0 &&
 		camera_offset.x < 1 && 
@@ -180,7 +187,7 @@ func handle_camera_pan():
 		camera_offset.y < 1 && 
 		camera_offset.y > -1):
 			camera_offset.y = 0
-		
+			
 		pan_timer.start(pan_step_time_secs)
-	
+		
 	set_offset(camera_offset)

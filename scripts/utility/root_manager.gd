@@ -8,6 +8,8 @@ var transition_timer = Timer.new()
 var transitioning = false
 var prev_scene_freed = false
 
+@export var skip_intro = false
+
 func _ready():
 	camera_ref = get_tree().get_first_node_in_group("camera")
 	transition_timer.one_shot = true
@@ -23,10 +25,16 @@ func _on_transition_to_main_scene_init():
 #callback from active_root when the scene is ready
 func _on_transition_to_main_Scene_finished():
 	player_ref = get_tree().get_first_node_in_group("player")
-	camera_ref.reparent(player_ref)
-	player_ref.connect_camera()
-	camera_ref.fade_in()
-	transitioning = false
+	if(skip_intro):	
+		camera_ref.reparent(player_ref)
+		player_ref.connect_camera()
+		camera_ref.fade_in()
+	else:
+		var anchor_ref = get_tree().get_first_node_in_group("start_camera_anchor")
+		player_ref.set_control_frozen(true)
+		camera_ref.connect_anchor(anchor_ref)
+		camera_ref.fade_in()
+		transitioning = false
 	
 func _physics_process(delta):
 	if(transition_timer.is_stopped() && transitioning && !prev_scene_freed):

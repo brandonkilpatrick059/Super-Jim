@@ -56,7 +56,6 @@ script = ExtResource("9_ty4g0")
 material = SubResource("CanvasItemMaterial_fnoqb")
 sprite_frames = ExtResource("2_rcf8h")
 animation = &"stand_right"
-frame_progress = 0.850031
 offset = Vector2(0, -16)
 
 [node name="hat" type="AnimatedSprite2D" parent="character_base"]

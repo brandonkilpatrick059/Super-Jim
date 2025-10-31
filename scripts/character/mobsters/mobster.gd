@@ -415,7 +415,7 @@ func get_strafe_point():
 		strafe_point = get_nearest_point_on_mesh(strafe_point)
 		return strafe_point
 	else:
-		return global_position
+		return points[random.randi_range(0,points.size() -1 )]
 
 func _on_adjust_offset(adjustment : Vector2):
 	var current_offset = _character_base.get_offset()

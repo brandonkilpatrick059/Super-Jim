@@ -8,4 +8,3 @@ texture = ExtResource("1_pprm0")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 texture = ExtResource("2_jdwut")
-texture_scale = 2.0

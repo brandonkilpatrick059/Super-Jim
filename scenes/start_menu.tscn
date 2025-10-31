@@ -10,7 +10,6 @@
 
 [node name="root_manager" type="Node2D" groups=["root_manager"]]
 script = ExtResource("1_hwmkm")
-skip_intro = true
 
 [node name="start_menu" type="Node2D" parent="." groups=["active_root"]]
 

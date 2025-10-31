@@ -36,8 +36,7 @@ func play_current_branch():
 	_DialogBubble.play_text(tree.get_speaker_text(), tree.get_voice())
 	
 	var branch_gives_money_amount = tree.get_give_money_amount()
-	if(branch_gives_money_amount > 0):
-		player_ref._on_add_money(branch_gives_money_amount)
+	player_ref._on_add_money(branch_gives_money_amount)
 	var branch_script = tree.get_dialog_script()
 	if(branch_script != null):
 		branch_script.run_script()

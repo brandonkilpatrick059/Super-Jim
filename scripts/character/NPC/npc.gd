@@ -39,7 +39,7 @@ var perceptions: NPCPerceptions = NPCPerceptions.new()
 #state machine reference
 @onready var _ai_state_machine = $ai_state_machine
 
-@onready var _navigation_agent: NavigationAgent2D = $NavigationAgent2D
+var _navigation_agent: NavigationAgent2D = NavigationAgent2D.new()
 
 var can_talk_bubble = preload("res://interface/can_talk_bubble.tscn")
 var speech_bubble = preload("res://dialog/speech_bubble.tscn")
@@ -83,6 +83,7 @@ func set_up_character_base():
 
 func set_up_nav_agent():
 	#nav agent setup stuff
+	add_child(_navigation_agent)
 	_navigation_agent.path_desired_distance = 4.0
 	_navigation_agent.target_desired_distance = nav_target_reached_distance
 
@@ -122,6 +123,7 @@ func update_perceptions():
 	perceptions.current_v = current_v
 	perceptions.facing_dir = _character_base.get_facing_dir()
 	perceptions.position = position
+	perceptions.global_position = global_position
 	perceptions.linear_velocity = linear_velocity
 	perceptions.speed = linear_velocity.length()
 	
@@ -142,6 +144,9 @@ func get_shop_manager():
 
 func speed():
 	return linear_velocity.length()
+
+func stop():
+	current_v = perceptions.current_v * 0
 
 func handle_passive_text():
 	var passive_text = perceptions.current_stage_mark.get_passive_text()

@@ -1,15 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://bet83al0d0a62"]
+[gd_scene load_steps=11 format=3 uid="uid://bet83al0d0a62"]
 
 [ext_resource type="Script" uid="uid://ckj5xwhetys06" path="res://scripts/character/NPC/npc.gd" id="1_fnoqb"]
 [ext_resource type="SpriteFrames" uid="uid://ssx43u4xq65j" path="res://sprites/spritesheets/spriteframes/characters/base/troll_base.tres" id="2_rcf8h"]
 [ext_resource type="Texture2D" uid="uid://0d3n5esom4o4" path="res://sprites/lights/small_shadow.png" id="3_m7uk8"]
+[ext_resource type="PackedScene" uid="uid://c1287sosujo5w" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_troll.tscn" id="5_o7kgo"]
 [ext_resource type="PackedScene" uid="uid://biwoi1biy4ynx" path="res://entities/characters/NPC/AI state machine/ai_state_machine.tscn" id="6_7k5wu"]
-[ext_resource type="PackedScene" uid="uid://dqwh40q1ob2i2" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_idle.tscn" id="7_pe11r"]
-[ext_resource type="Script" uid="uid://bpkh5va4fd55f" path="res://scripts/AI_state_machine/states/npc/state_npc_idle.gd" id="8_di0af"]
-[ext_resource type="PackedScene" uid="uid://bstl2betvigap" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_alert_passive.tscn" id="9_fpeu1"]
+[ext_resource type="PackedScene" uid="uid://c80jwmy1ekjxw" path="res://dialog/dialog trees/troll.tscn" id="7_o7kgo"]
 [ext_resource type="Script" uid="uid://cj00uqlrpwbo0" path="res://scripts/character/character_base.gd" id="9_ty4g0"]
-[ext_resource type="PackedScene" uid="uid://dmcldnrjuk25k" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_transit.tscn" id="10_8anjr"]
-[ext_resource type="SpriteFrames" uid="uid://bnangectbeyyg" path="res://sprites/spritesheets/spriteframes/characters/top/troll_eyes.tres" id="10_fnoqb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fnoqb"]
 radius = 24.9926
@@ -19,7 +16,7 @@ radius = 24.9926
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ty4g0"]
 blend_mode = 1
 
-[node name="troll" type="RigidBody2D" groups=["interactable", "npc"]]
+[node name="troll" type="RigidBody2D" node_paths=PackedStringArray("branching_dialog") groups=["npc"]]
 y_sort_enabled = true
 collision_layer = 4
 collision_mask = 16
@@ -30,6 +27,7 @@ linear_damp = 5.0
 script = ExtResource("1_fnoqb")
 talk_radius = 200
 base_spriteframes = ExtResource("2_rcf8h")
+branching_dialog = NodePath("troll")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 4.0
@@ -47,14 +45,9 @@ scale = Vector2(2, 2)
 texture = ExtResource("3_m7uk8")
 
 [node name="ai_state_machine" parent="." instance=ExtResource("6_7k5wu")]
-initial_state = NodePath("idle")
+initial_state = NodePath("troll")
 
-[node name="idle" parent="ai_state_machine" instance=ExtResource("7_pe11r")]
-script = ExtResource("8_di0af")
-
-[node name="alert_passive" parent="ai_state_machine" instance=ExtResource("9_fpeu1")]
-
-[node name="transit" parent="ai_state_machine" instance=ExtResource("10_8anjr")]
+[node name="troll" parent="ai_state_machine" instance=ExtResource("5_o7kgo")]
 
 [node name="character_base" type="Node2D" parent="."]
 script = ExtResource("9_ty4g0")
@@ -62,19 +55,21 @@ script = ExtResource("9_ty4g0")
 [node name="base_sprite" type="AnimatedSprite2D" parent="character_base"]
 material = SubResource("CanvasItemMaterial_fnoqb")
 sprite_frames = ExtResource("2_rcf8h")
-animation = &"stand_down"
+animation = &"stand_right"
+frame_progress = 0.973757
 
 [node name="hat" type="AnimatedSprite2D" parent="character_base"]
 
 [node name="top" type="AnimatedSprite2D" parent="character_base"]
 material = SubResource("CanvasItemMaterial_ty4g0")
-sprite_frames = ExtResource("10_fnoqb")
-animation = &"stand_down"
+animation = &""
 
 [node name="bottom" type="AnimatedSprite2D" parent="character_base"]
 
-[connection signal="behavior_directive" from="ai_state_machine/alert_passive" to="." method="_on_handle_behavior"]
-[connection signal="advance_navigation" from="ai_state_machine/transit" to="." method="_on_advance_navigation"]
-[connection signal="leave_stage_mark" from="ai_state_machine/transit" to="." method="_on_leave_stage_mark"]
-[connection signal="reach_stage_mark" from="ai_state_machine/transit" to="." method="_on_reach_stage_mark"]
-[connection signal="set_nav_target" from="ai_state_machine/transit" to="." method="_on_set_nav_target"]
+[node name="troll" parent="." instance=ExtResource("7_o7kgo")]
+visible = false
+
+[connection signal="advance_navigation" from="ai_state_machine/troll" to="." method="_on_advance_navigation"]
+[connection signal="interact" from="ai_state_machine/troll" to="." method="interact"]
+[connection signal="set_nav_target" from="ai_state_machine/troll" to="." method="_on_set_nav_target"]
+[connection signal="stop" from="ai_state_machine/troll" to="." method="stop"]

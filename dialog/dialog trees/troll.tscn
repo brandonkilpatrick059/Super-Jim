@@ -1,0 +1,99 @@
+[gd_scene load_steps=3 format=3 uid="uid://c80jwmy1ekjxw"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_w7mar"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_mp261"]
+
+[node name="troll" type="Node2D"]
+script = ExtResource("1_w7mar")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
+speaker_text = Array[String](["h-hey."])
+speaker_portrait = null
+option_branches = [NodePath("../not_allowed")]
+voice = "troll_voice"
+
+[node name="not_allowed" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
+position = Vector2(9, 204)
+speaker_text = Array[String](["you're not allowed down here..."])
+speaker_portrait = null
+option_branches = [NodePath("../fine")]
+voice = "troll_voice"
+
+[node name="fine" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
+position = Vector2(9, 442)
+speaker_text = Array[String](["i am sorry but i must ask you to pay a fine."])
+speaker_portrait = null
+speech_options = Array[String](["Who are you?", "Can I please not pay the fine?", "Okay"])
+option_branches = [NodePath("../who_are_you"), NodePath("../fine2"), NodePath("../safety")]
+voice = "troll_voice"
+
+[node name="fine2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
+position = Vector2(157, 716)
+speaker_text = Array[String](["no"])
+speaker_portrait = null
+option_branches = [NodePath("../safety")]
+voice = "troll_voice"
+
+[node name="who_are_you" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
+position = Vector2(-177, 716)
+speaker_text = Array[String](["i am the tunnel troll. "])
+speaker_portrait = null
+option_branches = [NodePath("../who_are_you2")]
+voice = "troll_voice"
+
+[node name="who_are_you2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
+position = Vector2(-177, 915)
+speaker_text = Array[String](["i keep everything up to code down here"])
+speaker_portrait = null
+option_branches = [NodePath("../who_are_you3")]
+voice = "troll_voice"
+
+[node name="who_are_you3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
+position = Vector2(-177, 1133)
+speaker_text = Array[String](["i am licensed and employed by the city."])
+speaker_portrait = null
+option_branches = [NodePath("../who_are_you4")]
+voice = "troll_voice"
+
+[node name="who_are_you4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
+position = Vector2(-177, 1335)
+speaker_text = Array[String](["and city ordinance #2758 section F says:"])
+speaker_portrait = null
+option_branches = [NodePath("../who_are_you5")]
+voice = "troll_voice"
+
+[node name="who_are_you5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
+position = Vector2(-177, 1521)
+speaker_text = Array[String](["\"any unauthorized person found tresspassing in the utility tunnels..."])
+speaker_portrait = null
+option_branches = [NodePath("../who_are_you6")]
+voice = "troll_voice"
+
+[node name="who_are_you6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
+position = Vector2(-188, 1692)
+speaker_text = Array[String](["...shall be fined ten (10) dollars\""])
+speaker_portrait = null
+option_branches = [NodePath("../safety")]
+voice = "troll_voice"
+
+[node name="safety" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
+position = Vector2(64, 1798)
+speaker_text = Array[String](["it's for your safety"])
+speaker_portrait = null
+option_branches = [NodePath("../leave")]
+voice = "troll_voice"
+gives_money = -10
+
+[node name="leave" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
+position = Vector2(64, 1995)
+speaker_text = Array[String](["now i must ask you to leave the tunnels at once"])
+speaker_portrait = null
+option_branches = [NodePath("../goodbye")]
+voice = "troll_voice"
+
+[node name="goodbye" parent="." instance=ExtResource("2_mp261")]
+position = Vector2(64, 2180)
+speaker_text = Array[String](["good bye"])
+speaker_portrait = null
+voice = "troll_voice"

@@ -30,7 +30,7 @@ voice = "troll_voice"
 
 [node name="fine2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
 position = Vector2(157, 716)
-speaker_text = Array[String](["no"])
+speaker_text = Array[String](["no."])
 speaker_portrait = null
 option_branches = [NodePath("../safety")]
 voice = "troll_voice"
@@ -44,7 +44,7 @@ voice = "troll_voice"
 
 [node name="who_are_you2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
 position = Vector2(-177, 915)
-speaker_text = Array[String](["i keep everything up to code down here"])
+speaker_text = Array[String](["i keep everything up to code down here."])
 speaker_portrait = null
 option_branches = [NodePath("../who_are_you3")]
 voice = "troll_voice"
@@ -72,14 +72,14 @@ voice = "troll_voice"
 
 [node name="who_are_you6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
 position = Vector2(-188, 1692)
-speaker_text = Array[String](["...shall be fined ten (10) dollars\""])
+speaker_text = Array[String](["...shall be fined ten (10) dollars.\""])
 speaker_portrait = null
 option_branches = [NodePath("../safety")]
 voice = "troll_voice"
 
 [node name="safety" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
 position = Vector2(64, 1798)
-speaker_text = Array[String](["it's for your safety"])
+speaker_text = Array[String](["it's for your safety."])
 speaker_portrait = null
 option_branches = [NodePath("../leave")]
 voice = "troll_voice"
@@ -87,13 +87,13 @@ gives_money = -10
 
 [node name="leave" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
 position = Vector2(64, 1995)
-speaker_text = Array[String](["now i must ask you to leave the tunnels at once"])
+speaker_text = Array[String](["now i must ask you to leave the tunnels at once."])
 speaker_portrait = null
 option_branches = [NodePath("../goodbye")]
 voice = "troll_voice"
 
 [node name="goodbye" parent="." instance=ExtResource("2_mp261")]
 position = Vector2(64, 2180)
-speaker_text = Array[String](["good bye"])
+speaker_text = Array[String](["good bye."])
 speaker_portrait = null
 voice = "troll_voice"

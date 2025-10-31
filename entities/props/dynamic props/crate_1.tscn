@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwxy6x5l2a6gd"]
+
+[ext_resource type="Texture2D" uid="uid://do4kqcmwqr2ei" path="res://sprites/props/dynamic props/crate_1.png" id="1_dlxcp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7wqg"]
+size = Vector2(32, 14)
+
+[node name="crate" type="RigidBody2D" groups=["dynamic", "prop"]]
+y_sort_enabled = true
+collision_layer = 8
+collision_mask = 31
+mass = 1000.0
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 2.0
+
+[node name="sprite" type="Sprite2D" parent="." groups=["dynamic", "prop"]]
+y_sort_enabled = true
+texture = ExtResource("1_dlxcp")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["dynamic", "prop"]]
+y_sort_enabled = true
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_x7wqg")

@@ -143,6 +143,7 @@ func set_ui_invisible():
 func enter_dialog():
 	stop()
 	control_frozen = true
+	is_dashing = false
 	dialog_panning = true
 	in_dialog = true
 
@@ -223,6 +224,7 @@ func set_banked_money(num : int):
 func anchor(anchor : Node):
 	_collision.disabled = true
 	control_frozen = true
+	is_dashing = false
 	anchored = true
 	active_anchor = anchor
 
@@ -361,6 +363,7 @@ func _on_make_comment(text : String):
 func die():
 	if(!dead):
 		control_frozen = true
+		is_dashing = false
 		_ui.visible = false
 		var die_guy = player_die.instantiate()
 		_character_base.reparent(die_guy)
@@ -423,6 +426,8 @@ func handle_throw():
 
 func set_control_frozen(value):
 	control_frozen = value
+	if(value):
+		is_dashing = false
 
 func set_current_v(vect : Vector2):
 	current_v = vect

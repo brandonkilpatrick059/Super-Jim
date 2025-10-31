@@ -23,7 +23,7 @@ texture = ExtResource("1_m4hln")
 z_index = 1
 material = SubResource("CanvasItemMaterial_m4hln")
 sprite_frames = ExtResource("2_vfuvd")
-frame_progress = 0.4666
+frame_progress = 0.129364
 script = ExtResource("3_pn4uc")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." node_paths=PackedStringArray("interact_node") groups=["interactable"]]
@@ -36,6 +36,6 @@ interact_node = NodePath("..")
 shape = SubResource("RectangleShape2D_m4hln")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.25, 0.25)
 color = Color(0, 0.958857, 0.964482, 1)
 texture = ExtResource("6_ajui8")

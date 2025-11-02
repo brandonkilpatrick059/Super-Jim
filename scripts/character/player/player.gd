@@ -82,7 +82,7 @@ var money : int = 0
 var banked_money : int = 25
 
 var light_on = false
-var has_flashlight = false
+var has_flashlight = true
 
 var dev_occlusion_enabled = true
 

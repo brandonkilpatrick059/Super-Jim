@@ -25,17 +25,18 @@ func get_host_nav_target_reached():
 func handle_sparks():
 	if(ai_state_machine.get_perceptions().colliding_nodes.size() > 0):
 		for node in ai_state_machine.get_perceptions().colliding_nodes:
-			if(is_instance_valid(node) && node.is_in_group("bullet_spark")):
-				#take damage when hit with bullet
-				if(node.is_in_group(ai_state_machine.get_perceptions().opposing_team) &&
-				!ai_state_machine.get_perceptions().invincible):
-					reduce_health.emit()
+			if(is_instance_valid(node)):
+				if(node.is_in_group("bullet_spark")):
+					#take damage when hit with bullet
+					if(node.is_in_group(ai_state_machine.get_perceptions().opposing_team) &&
+					!ai_state_machine.get_perceptions().invincible):
+						reduce_health.emit()
+						return true
+				#knockout when player throws object
+				elif(!ai_state_machine.get_perceptions().invincible &&
+				 node.is_in_group("spark")):
+					ai_state_machine.transition_to(mobster_states.falling)
 					return true
-			#knockout when player throws object
-			elif(!ai_state_machine.get_perceptions().invincible &&
-			 node.is_in_group("spark")):
-				ai_state_machine.transition_to(mobster_states.falling)
-				return true
 	return false
 
 func handle_death():
@@ -44,10 +45,10 @@ func handle_death():
 		return true
 	return false
 
-func process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	pass
 
-func physics_process(_delta: float) -> void:
+func process(_delta: float) -> void:
 	#check knockout
 	if(handle_sparks()):
 		return

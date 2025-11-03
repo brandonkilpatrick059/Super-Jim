@@ -8,9 +8,9 @@ signal reduce_health()
 signal drop_item()
 
 var pause_time = 2
-var timer : Timer
+var timer : Timer = Timer.new()
 
-func process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	pass
 
 func handle_sparks():
@@ -33,7 +33,7 @@ func handle_death():
 		return true
 	return false
 
-func physics_process(_delta: float) -> void:
+func process(_delta: float) -> void:
 	if(handle_sparks()):
 		return
 	elif(handle_death()):
@@ -41,15 +41,16 @@ func physics_process(_delta: float) -> void:
 	elif(timer.is_stopped()):
 		ai_state_machine.transition_to(mobster_states.shooting)
 
-func enter(_msg := {}) -> void:
-	timer = Timer.new()
+func _ready():
 	timer.one_shot = true
 	add_child(timer)
+
+func enter(_msg := {}) -> void:
 	timer.start(pause_time)
 	stop.emit()
 	stand.emit("")
 	exclaim_bubble.emit()
 
 func exit() -> void:
-	timer.queue_free()
+	pass
 	

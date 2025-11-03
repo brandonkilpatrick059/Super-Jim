@@ -19,7 +19,7 @@ func get_host_position():
 func get_host_nav_target_reached():
 	return ai_state_machine.get_perceptions().nav_target_reached
 
-func process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	pass
 
 func handle_sparks():
@@ -47,7 +47,7 @@ func handle_death():
 		return true
 	return false
 
-func physics_process(_delta: float) -> void:
+func process(_delta: float) -> void:
 	#check for knockout
 	if(handle_sparks()):
 		return

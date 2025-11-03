@@ -33,6 +33,7 @@ max_contacts_reported = 1
 linear_damp = 5.0
 script = ExtResource("2_a2jud")
 force_factor = 2000
+freeze_if_occluded = false
 spark_time_secs = 0.2
 
 [node name="sprite" type="AnimatedSprite2D" parent="pizza" groups=["dynamic", "pickupable", "prop"]]

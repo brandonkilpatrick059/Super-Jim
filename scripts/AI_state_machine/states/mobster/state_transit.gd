@@ -23,7 +23,7 @@ func get_host_position():
 func get_host_nav_target_reached():
 	return ai_state_machine.get_perceptions().nav_target_reached
 
-func process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	pass
 
 func handle_sparks():
@@ -50,14 +50,14 @@ func handle_death():
 		return true
 	return false
 
-func handle_call():
-	if(call_to_arms_timer.is_stopped()):
-		call_to_arms.emit()
-		call_to_arms_timer.start(call_to_arms_freq_secs)
-		return true
-	return false
+#func handle_call():
+	#if(call_to_arms_timer.is_stopped()):
+		#call_to_arms.emit()
+		#call_to_arms_timer.start(call_to_arms_freq_secs)
+		#return true
+	#return false
 
-func physics_process(_delta: float) -> void:
+func process(_delta: float) -> void:
 	#check for knockout
 	if(handle_sparks()):
 		return
@@ -145,10 +145,10 @@ func current_point_to_closest_point():
 
 
 func enter(_msg := {}) -> void:		
-	call_to_arms_timer = Timer.new()
-	call_to_arms_timer.one_shot = true
-	add_child(call_to_arms_timer)
-	call_to_arms_timer.start(call_to_arms_freq_secs)
+	#call_to_arms_timer = Timer.new()
+	#call_to_arms_timer.one_shot = true
+	#add_child(call_to_arms_timer)
+	#call_to_arms_timer.start(call_to_arms_freq_secs)
 
 	if(ai_state_machine.get_perceptions().is_bandit):
 		current_point_to_closest_capture_point()
@@ -164,5 +164,6 @@ func enter(_msg := {}) -> void:
 		set_nav_target.emit(current_patrol_point.position)
 
 func exit() -> void:
-	call_to_arms_timer.queue_free()
+	pass
+	#call_to_arms_timer.queue_free()
 	

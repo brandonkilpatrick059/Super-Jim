@@ -14,9 +14,9 @@ const bust_num_sweeps = 2
 const burst_bullets_per_sweep = 4
 const burst_num_bullets = bust_num_sweeps * burst_bullets_per_sweep
 const burst_cool_down_secs = 2
-var timer_burst_cool_down : Timer
+var timer_burst_cool_down : Timer = Timer.new()
 const time_between_shots_secs = 0.4
-var timer_between_shots : Timer
+var timer_between_shots : Timer = Timer.new()
 const shoot_arc_degrees = 50 #keep it even
 var num_bullets_fired = 0
 var lower_bound = 0
@@ -113,10 +113,10 @@ func handle_death():
 		return true
 	return false
 
-func process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	pass
 
-func physics_process(_delta: float) -> void:
+func process(_delta: float) -> void:
 	#check for enemy bullet collisions
 	if(handle_sparks()):
 		return
@@ -133,17 +133,16 @@ func physics_process(_delta: float) -> void:
 			else:
 				ai_state_machine.transition_to(mobster_states.strafing)
 
+func _ready():
+	timer_burst_cool_down.one_shot = true
+	add_child(timer_burst_cool_down)
+	timer_between_shots.one_shot = true
+	add_child(timer_between_shots)
+
 func enter(_msg := {}) -> void:
 	stop_motion.emit()
 	drop_item.emit()
-	timer_burst_cool_down = Timer.new()
-	timer_burst_cool_down.one_shot = true
-	add_child(timer_burst_cool_down)
-	timer_between_shots = Timer.new()
-	timer_between_shots.one_shot = true
-	add_child(timer_between_shots)
 	num_bullets_fired = 0
 
 func exit() -> void:
-	timer_burst_cool_down.queue_free()
-	timer_between_shots.queue_free()
+	pass

@@ -6,6 +6,7 @@ var path_1 : stage_mark
 var path_2 : stage_mark
 var path_3 : stage_mark
 var path_4 : stage_mark
+var path_5 : stage_mark
 var path_point_index = 0
 var path_points : Array[stage_mark]
 
@@ -67,7 +68,8 @@ func enter(_msg := {}) -> void:
 	path_2 = get_tree().get_first_node_in_group("troll_path_2")
 	path_3 = get_tree().get_first_node_in_group("troll_path_3")
 	path_4 = get_tree().get_first_node_in_group("troll_path_4")
-	path_points = [path_1,path_2,path_3,path_4]
+	path_5 = get_tree().get_first_node_in_group("troll_path_5")
+	path_points = [path_1,path_2,path_3,path_4,path_5]
 	current_stage_mark = path_points[0]
 	if(current_stage_mark != null):
 		set_nav_target.emit(current_stage_mark.position)

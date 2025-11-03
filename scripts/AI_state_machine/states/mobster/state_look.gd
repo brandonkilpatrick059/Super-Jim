@@ -10,9 +10,9 @@ signal reduce_health()
 const turn_wait_time_secs = 2
 const num_turns = 4
 var current_num_turns = 0
-var timer : Timer
+var timer = Timer.new()
 
-func process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	pass
 
 func handle_sparks():
@@ -40,7 +40,7 @@ func handle_death():
 		return true
 	return false
 
-func physics_process(_delta: float):
+func process(_delta: float):
 	#check knockout
 	if(handle_sparks()):
 		return
@@ -110,13 +110,14 @@ func physics_process(_delta: float):
 			else:
 				ai_state_machine.transition_to(mobster_states.transit)
 
-func enter(_msg := {}) -> void:
-	timer = Timer.new()
-	current_num_turns = 0
+func _ready() -> void:
 	timer.one_shot = true
 	add_child(timer)
+
+func enter(_msg := {}) -> void:
+	current_num_turns = 0
 	timer.start(turn_wait_time_secs)
 	stand.emit("")
 
 func exit() -> void:
-	timer.queue_free()
+	pass

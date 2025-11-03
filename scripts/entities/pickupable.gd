@@ -5,6 +5,7 @@ extends RigidBody2D
 @onready var _occluder = $occluder
 @export var has_home = true
 @export var force_factor = 100
+@export var freeze_if_occluded = true
 
 var picked_up = false
 var will_pickup = false
@@ -168,7 +169,10 @@ func _physics_process(delta):
 				else:
 					queue_free()
 	elif(_occluder != null && _occluder.is_occluding):
+		sleeping = true
 		return_to_home()
+	elif(_occluder != null && !_occluder.is_occluding):
+		sleeping = false
 	if(current_scale < 1 && !falling && timer_fall.is_stopped()):
 		if(current_scale + scale_step < 1):
 			current_scale = current_scale + scale_step

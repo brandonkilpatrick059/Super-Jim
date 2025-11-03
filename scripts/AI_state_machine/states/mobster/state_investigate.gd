@@ -8,11 +8,11 @@ signal stop()
 signal stand(dir : String)
 signal reduce_health()
 
-var timer : Timer
+var timer : Timer = Timer.new()
 var investigate_time_secs = 3
 var heard_pos : Vector2
 
-func process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	pass
 
 func handle_sparks():
@@ -38,7 +38,7 @@ func handle_death():
 		return true
 	return false
 
-func physics_process(_delta: float) -> void:
+func process(_delta: float) -> void:
 	#check knockout
 	if(handle_sparks()):
 		return
@@ -75,10 +75,11 @@ func physics_process(_delta: float) -> void:
 		if(timer.is_stopped()):
 			ai_state_machine.transition_to(mobster_states.look)
 
-func enter(_msg := {}) -> void:
-	timer = Timer.new()
+func _ready():
 	timer.one_shot = true
 	add_child(timer)
+
+func enter(_msg := {}) -> void:
 	timer.start(investigate_time_secs)
 	question_bubble.emit()
 	heard_pos = ai_state_machine.get_perceptions().nodes_in_hearing[0].global_position
@@ -87,4 +88,4 @@ func enter(_msg := {}) -> void:
 	stand.emit("")
 
 func exit() -> void:
-	timer.queue_free()
+	pass

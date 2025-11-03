@@ -363,7 +363,9 @@ func has_clear_shot(point : Vector2):
 
 func get_nearest_point_on_mesh(point : Vector2):
 	var rid = _navigation_agent.get_navigation_map()
-	return NavigationServer2D.map_get_closest_point(rid, point)
+	if(NavigationServer2D.map_get_iteration_id(rid) > 0):
+		return NavigationServer2D.map_get_closest_point(rid, point)
+	return global_position
 
 #returns a list of oints in 8 cardinal directions, points 
 #fanning out at an interval of step_distance for num_steps intervals
@@ -688,8 +690,7 @@ func _on_face_pos(pos : Vector2):
 func update():
 	update_vision()
 	update_perceptions()
-	if(is_invincible && invincibility_timer.is_stopped()):
-		go_vincible()
+	
 
 func update_vision():
 	match(_character_base.get_facing_dir()):
@@ -706,10 +707,14 @@ func update_vision():
 #PROCESS STUFF
 ##############
 
+func _process(delta):
+	update()
+	send_perceptions()
+
 func _physics_process(delta):
 	if(!Engine.is_editor_hint()):
-		update()
-		send_perceptions()
+		if(is_invincible && invincibility_timer.is_stopped()):
+			go_vincible()
 		#apply velocity thru physics engine
 		apply_force(current_v)
 		var mobs = get_tree().get_nodes_in_group("mobster")

@@ -708,8 +708,9 @@ func update_vision():
 ##############
 
 func _process(delta):
-	update()
-	send_perceptions()
+	if(!Engine.is_editor_hint()):
+		update()
+		send_perceptions()
 
 func _physics_process(delta):
 	if(!Engine.is_editor_hint()):

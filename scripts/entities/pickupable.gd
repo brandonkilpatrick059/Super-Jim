@@ -5,7 +5,7 @@ extends RigidBody2D
 @onready var _occluder = $occluder
 @export var has_home = true
 @export var force_factor = 100
-@export var freeze_if_occluded = true
+@export var sleep_if_occluded = true
 
 var picked_up = false
 var will_pickup = false

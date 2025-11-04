@@ -15,7 +15,7 @@ var sound_player := AudioStreamPlayer.new()
 @export var one_time_use = false
 
 @export var does_not_open = false
-
+@export var address : String = ""
 var time_keeper
 
 var opened = false
@@ -39,6 +39,9 @@ func _ready():
 	last_frame_close = _animated_sprite.sprite_frames.get_frame_count("close")-1 
 	if(self.is_in_group("delivery_door")):
 		does_not_open = true
+
+func get_address():
+	return address
 
 func open():
 	if(!opened):

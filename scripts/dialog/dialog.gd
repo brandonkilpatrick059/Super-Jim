@@ -135,6 +135,8 @@ func clean_up():
 func _process(delta):
 	if(dialog_started):
 		_DialogBubble.global_position = speaker_node.global_position + Vector2(-48,-96)
+		if(speaker_node.dialog_offset != null):
+			_DialogBubble.global_position = _DialogBubble.global_position + speaker_node.dialog_offset
 		_ResponseBubble.global_position = player_ref.global_position + Vector2(-48,-96)
 		if(_DialogBubble.is_text_done_playing()):
 			handle_input()

@@ -27,7 +27,7 @@ linear_damp = 5.0
 script = ExtResource("1_fnoqb")
 talk_radius = 200
 base_spriteframes = ExtResource("2_rcf8h")
-dialog_y_offset = null
+dialog_offset = null
 branching_dialog = NodePath("troll")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

@@ -19,7 +19,7 @@ const appears_at_time = "appears_at_time"
 @export var top_spriteframes : SpriteFrames
 @export var bottom_spriteframes : SpriteFrames
 @export var facing_dir = "right"
-@export var dialog_y_offset = Vector2(0,0)
+@export var dialog_offset = Vector2(0,0)
 
 #array of all schedules this NPC will use
 @export var schedules : Array[schedule] = []
@@ -111,6 +111,8 @@ func interact():
 		dialog_manager = dialog.instantiate()
 		dialog_manager.set_speaker_node(self)
 		add_child(dialog_manager)
+		if(dialog_offset != null):
+			dialog_manager.position = dialog_manager.position + dialog_offset
 		if(shop != null):
 			dialog_manager.set_shop(shop)
 		var player_ref = get_tree().get_nodes_in_group("player")[0]

@@ -5,8 +5,8 @@ var clothes_stored : bool = false
 var hat_spriteframes : SpriteFrames
 var top_spriteframes : SpriteFrames
 
-var uniform_top_spriteframes = preload("res://sprites/spritesheets/spriteframes/characters/top/shirt_0.tres") 
-var uniform_hat_spriteframes = preload("res://sprites/spritesheets/spriteframes/characters/hat/cap_0.tres")
+var uniform_top_spriteframes = preload("res://sprites/spritesheets/spriteframes/characters/top/full_sheet/shirt_0.tres") 
+var uniform_hat_spriteframes = preload("res://sprites/spritesheets/spriteframes/characters/hat/full_sheet/cap_0.tres")
 
 func _on_area_2d_body_entered(body):
 	if(body.is_in_group("player") && clothes_stored == false):

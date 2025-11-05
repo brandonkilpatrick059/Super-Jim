@@ -40,7 +40,7 @@ shape = SubResource("RectangleShape2D_w3v7o")
 rotation = 4.71239
 shape = SubResource("RectangleShape2D_4ys81")
 target_position = Vector2(1.35184e-05, 14)
-collision_mask = 12
+collision_mask = 28
 
 [node name="shadow" type="Sprite2D" parent="."]
 z_index = -1

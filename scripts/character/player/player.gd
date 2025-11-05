@@ -27,6 +27,7 @@ var die_material = preload("res://entities/characters/player/die_material.tres")
 var speech_bubble = preload("res://dialog/speech_bubble.tscn")
 var player_material = preload("res://entities/characters/player/player_material.tres")
 
+var bump_sound = preload("res://audio/soundFX/bigCollide.wav")
 var woosh_sound = preload("res://audio/soundFX/woosh.wav")
 var dash_sound = preload("res://audio/soundFX/dash.wav")
 var pickup_sound = preload("res://audio/soundFX/pickup.wav")
@@ -432,6 +433,7 @@ func give_dash_fraction(fraction: float):
 
 func handle_use_item():
 	if(use_item_timer.is_stopped() && Input.is_action_just_pressed("use_item")):
+		stop_dash()
 		use_item()
 		use_item_timer.start(0.25)
 
@@ -463,7 +465,7 @@ func set_holding_object(is_holding):
 	_character_base.set_arms_raised(is_holding)
 
 func throw():
-	if(holding_object):
+	if(holding_object && !_grabber.is_colliding() ):
 		sound_player.stream = woosh_sound
 		sound_player.play()
 		
@@ -475,6 +477,15 @@ func throw():
 		grabbed_object = null
 		set_holding_object(false)
 
+func put_down():
+	sound_player.stream = putdown_sound
+	sound_player.play()
+	grabbed_object.put_down(_character_base.get_facing_dir(),Vector2(0,-16))
+	if(grabbed_object.is_in_group("pizza")):
+		self.remove_from_group("courier")
+	grabbed_object = null
+	set_holding_object(false)
+	
 func handle_pick_up():
 	if(will_grab_object != null && !holding_object):
 		sound_player.stream = pickup_sound
@@ -485,13 +496,17 @@ func handle_pick_up():
 			self.add_to_group("courier")
 		set_holding_object(true)
 	else: if(holding_object):
-		sound_player.stream = putdown_sound
-		sound_player.play()
-		grabbed_object.put_down(_character_base.get_facing_dir(),Vector2(0,-16))
-		if(grabbed_object.is_in_group("pizza")):
-			self.remove_from_group("courier")
-		grabbed_object = null
-		set_holding_object(false)
+		if(_grabber.is_colliding()):
+			var delivery_doors = get_tree().get_nodes_in_group("delivery_door")
+			#exception for delivery doors
+			for door in delivery_doors:
+				if(global_position.distance_to(door.global_position) < 32):
+					put_down()
+			if(holding_object): #if we didn't find a delivery door
+				sound_player.stream = bump_sound
+				sound_player.play()
+		else:
+			put_down()
 
 func return_pizza():
 	sound_player.stream = pickup_sound

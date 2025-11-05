@@ -17,9 +17,13 @@ func _on_area_2d_body_entered(body):
 		player_ref.set_hat_spriteframes(uniform_hat_spriteframes)
 		clothes_stored = true
 		player_ref.add_to_group("uniformed")
+		var cook_ref = get_tree().get_first_node_in_group("cook")
+		cook_ref.set_schedules_index(1)
 	elif(body.is_in_group("player") && clothes_stored == true):
 		var player_ref = body
 		player_ref.set_top_spriteframes(hat_spriteframes)
 		player_ref.set_hat_spriteframes(top_spriteframes)
 		clothes_stored = false
 		player_ref.remove_from_group("uniformed")
+		var cook_ref = get_tree().get_first_node_in_group("cook")
+		cook_ref.set_schedules_index(0)

@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhpgw2t2gyth"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_4cd3j"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_0c4ik"]
+[ext_resource type="SpriteFrames" uid="uid://b6grq4ppef8v2" path="res://sprites/spritesheets/spriteframes/portrait/test3.tres" id="3_8mdru"]
+[ext_resource type="Script" uid="uid://dqbdq476y0spg" path="res://scripts/utility/spawn_pizza.gd" id="4_0c4ik"]
+
+[node name="cook_delivery_dispenser" type="Node2D"]
+script = ExtResource("1_4cd3j")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_0c4ik")]
+position = Vector2(7, -19)
+speaker_text = Array[String](["You ready to do some deliveries?", "You good to ferry some pies?", "We got some deliveries coming in. You good to go?", "Ready to deliver some pizza pies?"])
+speaker_portrait = ExtResource("3_8mdru")
+speech_options = Array[String](["Give me some pizzas.", "I'm not ready yet."])
+option_branches = [NodePath("../yes"), NodePath("../no")]
+voice = "low_sine_voice"
+
+[node name="yes" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_0c4ik")]
+position = Vector2(-118, 148)
+speaker_text = Array[String](["Right on.", "Cool.", "Nice."])
+speaker_portrait = ExtResource("3_8mdru")
+option_branches = [NodePath("../order up")]
+voice = "low_sine_voice"
+
+[node name="order up" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_0c4ik")]
+position = Vector2(-118, 332)
+speaker_text = Array[String](["Order up!"])
+speaker_portrait = ExtResource("3_8mdru")
+option_branches = [NodePath("../stay safe")]
+voice = "low_sine_voice"
+dialog_script = NodePath("spawn_pizza")
+
+[node name="spawn_pizza" type="Node" parent="order up"]
+script = ExtResource("4_0c4ik")
+
+[node name="stay safe" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_0c4ik")]
+position = Vector2(-118, 528)
+speaker_text = Array[String](["Stay safe out there."])
+speaker_portrait = ExtResource("3_8mdru")
+option_branches = [NodePath("../stay safe 2")]
+voice = "low_sine_voice"
+
+[node name="stay safe 2" parent="." instance=ExtResource("2_0c4ik")]
+position = Vector2(-118, 737)
+speaker_text = Array[String](["These pies are like my children.", "Remember: you're carrying a work of art.", "Those pies are made with love.", "These pies are my life's work.", "People are counting on you.", "I'm counting on you.", "A lot of work went into those pies."])
+speaker_portrait = ExtResource("3_8mdru")
+voice = "low_sine_voice"
+
+[node name="no" parent="." instance=ExtResource("2_0c4ik")]
+position = Vector2(208, 163)
+speaker_text = Array[String](["Well, let me know when you're ready."])
+speaker_portrait = ExtResource("3_8mdru")
+voice = "low_sine_voice"

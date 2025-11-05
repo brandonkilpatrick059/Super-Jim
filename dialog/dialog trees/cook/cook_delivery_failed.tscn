@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3 uid="uid://cumxsjjowgw6f"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_hqwab"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_7w25g"]
+[ext_resource type="SpriteFrames" uid="uid://b6grq4ppef8v2" path="res://sprites/spritesheets/spriteframes/portrait/test3.tres" id="3_0tgbk"]
+[ext_resource type="Script" uid="uid://l7oqg346nvjx" path="res://scripts/clear_pizzas.gd" id="4_7w25g"]
+
+[node name="cook_delivery_failed" type="Node2D"]
+script = ExtResource("1_hqwab")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_7w25g")]
+position = Vector2(209, -35)
+speaker_text = Array[String](["I have customers calling asking for refunds."])
+speaker_portrait = ExtResource("3_0tgbk")
+option_branches = [NodePath("../lost pizza2")]
+voice = "low_sine_voice"
+
+[node name="lost pizza2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_7w25g")]
+position = Vector2(209, 341)
+speaker_text = Array[String](["What the hell happened?"])
+speaker_portrait = ExtResource("3_0tgbk")
+speech_options = Array[String](["I was robbed.", "I left it somewhere.", "It went over a cliff.", "I threw it over a cliff.", "I dropped it.", "I threw it against a wall.", "I hit a guy over the head with it.", "It got hit by a bunch of bullets.", "A dog ate it.", "I ate it.", "I don't know."])
+option_branches = [NodePath("../sad_loss"), NodePath("../admonishing_loss"), NodePath("../admonishing_loss"), NodePath("../blame_loss"), NodePath("../admonishing_loss"), NodePath("../blame_loss"), NodePath("../blame_loss"), NodePath("../sad_loss"), NodePath("../incredulous_loss"), NodePath("../blame_loss"), NodePath("../admonishing_loss")]
+voice = "low_sine_voice"
+
+[node name="sad_loss" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_7w25g")]
+position = Vector2(29, 548)
+speaker_text = Array[String](["The world can be so cruel.", "That's hard to take.", "These are the kinds of things that keep me up at night."])
+speaker_portrait = ExtResource("3_0tgbk")
+option_branches = [NodePath("../refund")]
+voice = "low_sine_voice"
+
+[node name="blame_loss" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_7w25g")]
+position = Vector2(234, 548)
+speaker_text = Array[String](["Such disrespect for my work...", "How could you?", "You will pay for this..."])
+speaker_portrait = ExtResource("3_0tgbk")
+option_branches = [NodePath("../refund")]
+voice = "low_sine_voice"
+
+[node name="admonishing_loss" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_7w25g")]
+position = Vector2(643, 548)
+speaker_text = Array[String](["You have to be more careful.", "I told you to be careful...", "Be more careful next time."])
+speaker_portrait = ExtResource("3_0tgbk")
+option_branches = [NodePath("../refund")]
+voice = "low_sine_voice"
+
+[node name="incredulous_loss" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_7w25g")]
+position = Vector2(424, 548)
+speaker_text = Array[String](["A likely story.", "It's just like you to lie about it...", "I lose a little more faith in people each day."])
+speaker_portrait = ExtResource("3_0tgbk")
+option_branches = [NodePath("../refund")]
+voice = "low_sine_voice"
+
+[node name="refund" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_7w25g")]
+position = Vector2(234, 774)
+speaker_text = Array[String](["We're gonna have to reimburse our customers."])
+speaker_portrait = ExtResource("3_0tgbk")
+option_branches = [NodePath("../refund2")]
+voice = "low_sine_voice"
+
+[node name="refund2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_7w25g")]
+position = Vector2(234, 970)
+speaker_text = Array[String](["Give me 10 bucks, if you have it."])
+speaker_portrait = ExtResource("3_0tgbk")
+option_branches = [NodePath("../refund3")]
+voice = "low_sine_voice"
+gives_money = -10
+
+[node name="refund3" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_7w25g")]
+position = Vector2(234, 1183)
+speaker_text = Array[String](["Let's try to put this behind us..."])
+speaker_portrait = ExtResource("3_0tgbk")
+voice = "low_sine_voice"
+dialog_script = NodePath("clear_pizzas")
+
+[node name="clear_pizzas" type="Node" parent="refund3"]
+script = ExtResource("4_7w25g")

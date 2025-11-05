@@ -23,7 +23,7 @@ const appears_at_time = "appears_at_time"
 
 #array of all schedules this NPC will use
 @export var schedules : Array[schedule] = []
-var schedules_index = 0 #TODO: find a way to iterate this through some kind of global gamestate
+var schedules_index
 
 #@export var passive_text = ""
 
@@ -64,6 +64,7 @@ var player_ref
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	schedules_index = 0
 	set_up_character_base()
 	set_up_sound_player()
 	set_up_nav_agent()
@@ -123,6 +124,9 @@ func interact():
 func out_of_dialog():
 	perceptions.in_dialog = false
 
+func set_schedules_index(index : int):
+	schedules_index = index
+
 func update_perceptions():
 	perceptions.current_v = current_v
 	perceptions.facing_dir = _character_base.get_facing_dir()
@@ -139,6 +143,7 @@ func update_perceptions():
 			var current_hour_index = time_keeper_ref.get_hour()
 			var current_stage_mark = current_schedule.get_stage_mark(current_day_index,current_hour_index)
 			perceptions.current_stage_mark = current_stage_mark
+			update_branching_dialog()
 
 func get_branching_dialog():
 	return branching_dialog

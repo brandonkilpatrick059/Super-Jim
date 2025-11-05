@@ -497,12 +497,16 @@ func handle_pick_up():
 		set_holding_object(true)
 	else: if(holding_object):
 		if(_grabber.is_colliding()):
-			var delivery_doors = get_tree().get_nodes_in_group("delivery_door")
-			#exception for delivery doors
-			for door in delivery_doors:
-				if(global_position.distance_to(door.global_position) < 32):
-					put_down()
-			if(holding_object): #if we didn't find a delivery door
+			if(grabbed_object.is_in_group("pizza")):
+				var delivery_doors = get_tree().get_nodes_in_group("delivery_door")
+				#exception for delivery doors
+				for door in delivery_doors:
+					if(global_position.distance_to(door.global_position) < 32):
+						put_down()
+				if(holding_object): #if we didn't find a delivery door
+					sound_player.stream = bump_sound
+					sound_player.play()
+			else:
 				sound_player.stream = bump_sound
 				sound_player.play()
 		else:

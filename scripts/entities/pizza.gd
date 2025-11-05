@@ -63,6 +63,8 @@ func destroy_self():
 func pizza_destroyed():
 	var player_ref = get_tree().get_nodes_in_group("player")[0]
 	player_ref._on_pizza_lost()
+	var cook_ref = get_tree().get_first_node_in_group("cook")
+	cook_ref.set_schedules_index(3)
 	destroy_self()
 
 # Called when the node enters the scene tree for the first time.
@@ -196,6 +198,8 @@ func deliver_pizza():
 	
 	#delivering destroyed pizza
 	if(hits > 2):
+		var cook_ref = get_tree().get_first_node_in_group("cook")
+		cook_ref.set_schedules_index(3)
 		delivery_dialog_tree = _3hit.instantiate()
 	#slow
 	elif(timer.is_stopped()):
@@ -234,6 +238,9 @@ func deliver_pizza():
 	else:
 		var pizza_kitchen_door = get_tree().get_first_node_in_group("kitchen_door")
 		pizza_kitchen_door.unlock()
+		var cook_ref = get_tree().get_first_node_in_group("cook")
+		if(hits < 3):
+			cook_ref.set_schedules_index(1)
 		destroy_self()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

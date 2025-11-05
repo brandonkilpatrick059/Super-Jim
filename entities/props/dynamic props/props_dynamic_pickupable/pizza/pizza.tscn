@@ -17,7 +17,7 @@ height = 22.0
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_on1w6"]
 light_mode = 1
 
-[node name="pizza" type="Node2D"]
+[node name="pizza" type="Node2D" groups=["pizza_parent"]]
 y_sort_enabled = true
 script = ExtResource("1_rrs1i")
 

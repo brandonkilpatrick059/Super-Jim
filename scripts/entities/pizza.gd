@@ -18,6 +18,8 @@ var _3hit = preload("res://dialog/dialog trees/delivery_trees/3hits.tscn")
 var wrong_door_dialog = preload("res://dialog/dialog trees/delivery_trees/wrong_door.tscn")
 var pizza_select_bubble = preload("res://dialog/pizza_select_bubble.tscn")
 
+var transform_mod
+
 var delivery_doors
 var destination_door: Node
 var wrong_door_checked = false

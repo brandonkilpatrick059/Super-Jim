@@ -12,12 +12,13 @@ bounce = 0.05
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bjers"]
 radius = 7.0
-height = 16.0
+height = 22.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_on1w6"]
 light_mode = 1
 
 [node name="pizza" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_rrs1i")
 
 [node name="pizza" type="RigidBody2D" parent="." groups=["dynamic", "pickupable", "pizza", "prop", "usable"]]
@@ -37,14 +38,15 @@ spark_time_secs = 0.2
 
 [node name="sprite" type="AnimatedSprite2D" parent="pizza" groups=["dynamic", "pickupable", "prop"]]
 y_sort_enabled = true
-position = Vector2(0, -3)
+position = Vector2(0, 6)
 sprite_frames = ExtResource("3_0kawv")
 animation = &"10"
+offset = Vector2(0, 16)
 script = ExtResource("4_f123m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pizza" groups=["dynamic", "pickupable", "prop"]]
 y_sort_enabled = true
-position = Vector2(0, 2)
+position = Vector2(0, 22)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_bjers")
 

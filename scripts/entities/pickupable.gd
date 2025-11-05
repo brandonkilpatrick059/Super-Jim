@@ -69,7 +69,7 @@ func set_physics_pos(vector2):
 func is_picked_up():
 	return picked_up
 
-func throw(dir):
+func throw(dir, offset : Vector2 = Vector2(0,0)):
 	if(picked_up):
 		sprite.offset = original_offset
 		thrown = true
@@ -81,16 +81,20 @@ func throw(dir):
 		match(dir):
 			direction.left:
 				throw_force = Vector2(-force_factor,0)
-				set_physics_pos(pickup_actor_ref.global_position + Vector2(-base_offset, 0))
+				global_position = pickup_actor_ref.global_position + Vector2(-base_offset, 0) + offset
+				set_physics_pos(pickup_actor_ref.global_position + Vector2(-base_offset, 0) + offset)
 			direction.right:
 				throw_force = Vector2(force_factor,0)
-				set_physics_pos(pickup_actor_ref.global_position + Vector2(base_offset, 0))
+				global_position = pickup_actor_ref.global_position + Vector2(base_offset, 0) + offset
+				set_physics_pos(pickup_actor_ref.global_position + Vector2(base_offset, 0) + offset)
 			direction.up:
 				throw_force = Vector2(0,-force_factor)
-				set_physics_pos(pickup_actor_ref.global_position + Vector2(0, -base_offset))
+				global_position = pickup_actor_ref.global_position + Vector2(0, -base_offset) + offset
+				set_physics_pos(pickup_actor_ref.global_position + Vector2(0, -base_offset) + offset)
 			direction.down:
 				throw_force = Vector2(0,force_factor)
-				set_physics_pos(pickup_actor_ref.global_position + Vector2(0, base_offset))
+				global_position = pickup_actor_ref.global_position + Vector2(0, base_offset) + offset
+				set_physics_pos(pickup_actor_ref.global_position + Vector2(0, base_offset) + offset)
 
 func pick_up(actor_ref : Node):
 	sprite.offset = Vector2(0,-y_sort_offset)
@@ -101,7 +105,7 @@ func pick_up(actor_ref : Node):
 	will_pickup = false
 	signal_picked_up.emit()
 
-func put_down(dir):
+func put_down(dir, offset : Vector2 = Vector2(0,0)):
 	if(picked_up):
 		sprite.offset = original_offset
 		picked_up = false
@@ -110,16 +114,20 @@ func put_down(dir):
 		match(dir):
 			direction.left:
 				throw_force = Vector2(-force_factor,0)
-				set_physics_pos(pickup_actor_ref.global_position + Vector2(-base_offset, 0))
+				global_position = pickup_actor_ref.global_position + Vector2(-base_offset, 0) + offset
+				set_physics_pos(pickup_actor_ref.global_position + Vector2(-base_offset, 0) + offset)
 			direction.right:
 				throw_force = Vector2(force_factor,0)
-				set_physics_pos(pickup_actor_ref.global_position + Vector2(base_offset, 0))
+				global_position = pickup_actor_ref.global_position + Vector2(base_offset, 0) + offset
+				set_physics_pos(pickup_actor_ref.global_position + Vector2(base_offset, 0) + offset)
 			direction.up:
 				throw_force = Vector2(0,-force_factor)
-				set_physics_pos(pickup_actor_ref.global_position + Vector2(0, -base_offset))
+				global_position = pickup_actor_ref.global_position + Vector2(0, -base_offset) + offset
+				set_physics_pos(pickup_actor_ref.global_position + Vector2(0, -base_offset) + offset)
 			direction.down:
 				throw_force = Vector2(0,force_factor)
-				set_physics_pos(pickup_actor_ref.global_position + Vector2(0, base_offset))
+				global_position = pickup_actor_ref.global_position + Vector2(0, base_offset) + offset
+				set_physics_pos(pickup_actor_ref.global_position + Vector2(0, base_offset) + offset)
 
 
 func set_will_pickup_false():

@@ -45,6 +45,7 @@ var return_home_distance = 600
 signal spark_collide()
 signal signal_picked_up()
 signal destroy_self()
+signal on_use_item()
 
 var original_parent = null
 
@@ -151,6 +152,9 @@ func return_to_home():
 	_collision_shape.disabled = false
 	reparent(original_parent)
 	falling = false
+
+func use_item():
+	on_use_item.emit()
 
 func _physics_process(delta):
 	if(picked_up):

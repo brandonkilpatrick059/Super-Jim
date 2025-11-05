@@ -20,7 +20,7 @@ light_mode = 1
 [node name="pizza" type="Node2D"]
 script = ExtResource("1_rrs1i")
 
-[node name="pizza" type="RigidBody2D" parent="." groups=["dynamic", "pickupable", "pizza", "prop"]]
+[node name="pizza" type="RigidBody2D" parent="." groups=["dynamic", "pickupable", "pizza", "prop", "usable"]]
 y_sort_enabled = true
 collision_layer = 22536
 collision_mask = 4187
@@ -61,5 +61,6 @@ texture = ExtResource("6_cfod4")
 [connection signal="body_entered" from="pizza" to="." method="_on_body_entered"]
 [connection signal="body_entered" from="pizza" to="pizza" method="_on_body_entered"]
 [connection signal="destroy_self" from="pizza" to="." method="pizza_destroyed"]
+[connection signal="on_use_item" from="pizza" to="." method="use_item"]
 [connection signal="signal_picked_up" from="pizza" to="." method="_on_picked_up"]
 [connection signal="spark_collide" from="pizza" to="." method="_on_prop_collide"]

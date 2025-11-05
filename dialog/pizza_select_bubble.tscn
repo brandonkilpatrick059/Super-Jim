@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://dyp7uuojqxrvv"]
+
+[ext_resource type="Script" uid="uid://dbifpjkrik5ek" path="res://scripts/entities/pizza_select_bubble.gd" id="1_8cexv"]
+[ext_resource type="Texture2D" uid="uid://dd741i5mc6gg8" path="res://sprites/dialog/dialog_bubble2.png" id="2_8cexv"]
+[ext_resource type="LabelSettings" uid="uid://ca2608v2da05w" path="res://dialog/bubble_settings.tres" id="3_gxpsl"]
+[ext_resource type="Texture2D" uid="uid://tky7m7ktiahc" path="res://sprites/interface/compass_arrow.png" id="4_2acsk"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ct2ck"]
+light_mode = 1
+
+[node name="ResponseBubble" type="Node2D"]
+z_index = 30
+material = SubResource("CanvasItemMaterial_ct2ck")
+script = ExtResource("1_8cexv")
+
+[node name="bubble" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_ct2ck")
+texture = ExtResource("2_8cexv")
+offset = Vector2(0, -104)
+
+[node name="Label" type="Label" parent="."]
+material = SubResource("CanvasItemMaterial_ct2ck")
+offset_left = -93.0
+offset_top = -159.0
+offset_right = 91.0
+offset_bottom = -55.0
+label_settings = ExtResource("3_gxpsl")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="arrow_r" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_ct2ck")
+position = Vector2(90, -5)
+texture = ExtResource("4_2acsk")
+offset = Vector2(0, -104)
+
+[node name="arrow_l" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_ct2ck")
+position = Vector2(-93, -5)
+texture = ExtResource("4_2acsk")
+offset = Vector2(0, -104)
+flip_h = true

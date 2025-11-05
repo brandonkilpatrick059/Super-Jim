@@ -53,7 +53,7 @@ var timer_dash_regen := Timer.new()
 var dash_regen_secs = 0
 
 var in_dialog = false
-var dialog_panning = false
+var dialog_panning = false #checked by main camera
 
 var holding_object = false
 var will_grab_object = null
@@ -86,11 +86,14 @@ var has_flashlight = false
 
 var dev_occlusion_enabled = true
 
+var use_item_timer : Timer = Timer.new()
+
 func _ready():
 	_collision.disabled = no_clip
 	timer_dash.one_shot = true
 	timer_dash_regen.one_shot = true
 	invincibility_timer.one_shot = true
+	use_item_timer.one_shot = true
 	
 	comment_timer.one_shot = true
 	sound_player.bus = "Effects"
@@ -99,6 +102,7 @@ func _ready():
 	add_child(timer_dash_regen)
 	add_child(invincibility_timer)
 	add_child(comment_timer)
+	add_child(use_item_timer)
 	
 	#set up character base
 	_character_base.set_facing_dir(facing_dir)
@@ -146,6 +150,9 @@ func enter_dialog():
 	is_dashing = false
 	dialog_panning = true
 	in_dialog = true
+
+func set_dialog_panning(input: bool):
+	dialog_panning = input
 
 func update_max_dash_meter():
 	_ui.set_max_dash_fraction(max_dash_secs / full_dash_secs)
@@ -286,6 +293,7 @@ func get_input():
 		handle_interact()
 		handle_throw()
 		handle_dash()
+		handle_use_item()
 		handle_dev()
 		move()
 
@@ -391,7 +399,8 @@ func resurrect():
 		current_hp = 3
 
 func handle_interact():
-	if Input.is_action_just_pressed("interact"):
+	if use_item_timer.is_stopped() && Input.is_action_just_pressed("interact"):
+		use_item_timer.start(1)
 		var grabObj = _grabber.get_collider(0)
 		if(_grabber.is_colliding() && grabObj.is_in_group("interactable")):
 				grabObj.interact()
@@ -420,9 +429,22 @@ func give_dash_seconds(seconds):
 func give_dash_fraction(fraction: float):
 	give_dash_seconds(max_dash_secs * fraction)
 
+func handle_use_item():
+	if(use_item_timer.is_stopped() && Input.is_action_just_pressed("use_item")):
+		use_item()
+		use_item_timer.start(1)
+
 func handle_throw():
 	if Input.is_action_just_pressed("throw"):
 		throw()
+
+func use_item():
+	if(grabbed_object != null &&
+	grabbed_object.is_in_group("usable")):
+		grabbed_object.use_item()
+
+func set_use_item_timer(num : float):
+	use_item_timer.start(num)
 
 func set_control_frozen(value):
 	control_frozen = value

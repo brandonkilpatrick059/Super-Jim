@@ -30,6 +30,8 @@ var open_distance = 32
 var last_frame_open = 0
 var last_frame_close = 0
 
+var dialog_offset #needed so delivery dialog doesn't throw errors
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	open_close_timer.one_shot = true

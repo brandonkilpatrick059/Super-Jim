@@ -15,6 +15,7 @@ var slow_nohits = preload("res://dialog/dialog trees/delivery_trees/slow_nohits.
 var slow_1hit = preload ("res://dialog/dialog trees/delivery_trees/slow_1hit.tscn")
 var slow_2hit = preload("res://dialog/dialog trees/delivery_trees/slow_2hit.tscn")
 var _3hit = preload("res://dialog/dialog trees/delivery_trees/3hits.tscn")
+var pizza_select_bubble = preload("res://dialog/pizza_select_bubble.tscn")
 
 var delivery_doors
 var destination_door: Node
@@ -27,6 +28,7 @@ var lost = false
 var hits = 0
 
 var pizzas = 3
+var current_door = 0
 var selected_delivery_doors: Array[Node]
 
 var switch_to_pointer_distance = 128
@@ -39,6 +41,11 @@ var dialog_manager : Node
 var delivery_dialog_tree : dialog_tree
 
 var has_been_picked_up_before = false
+
+var selecting_pizza = false
+var select_pizza_bubble = null
+
+var use_item_timer : Timer = Timer.new()
 
 func destroy_self():
 	if(_prop != null):
@@ -56,8 +63,10 @@ func pizza_destroyed():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():	
+	use_item_timer.one_shot = true
 	timer.one_shot = true
-	add_child(timer)	
+	add_child(timer)
+	add_child(use_item_timer)
 	_compass.visible = false
 	_pointer.visible = false
 	delivery_doors = get_tree().get_nodes_in_group("delivery_door")
@@ -69,6 +78,7 @@ func _ready():
 		selected_delivery_doors.append(delivery_door)
 		iterator += 1
 	destination_door = selected_delivery_doors[0]
+	current_door = 0
 
 func distance_to_position(pos: Vector2):
 	return _prop.global_position.distance_to(pos)
@@ -120,17 +130,41 @@ func _on_picked_up():
 		timer.start(time_to_deliver_secs)
 		has_been_picked_up_before = true
 
+func update_select_bubble():
+	if(select_pizza_bubble != null):
+		var player_ref = get_tree().get_nodes_in_group("player")[0]
+		select_pizza_bubble.global_position = player_ref.global_position
+		var address = selected_delivery_doors[current_door].get_address()
+		select_pizza_bubble.set_label(address)
+
+func use_item():
+	var player_ref = get_tree().get_nodes_in_group("player")[0]
+	if(!selecting_pizza):
+		selecting_pizza = true
+		player_ref.set_control_frozen(true)
+		player_ref.stop()
+		player_ref.set_dialog_panning(true)
+		select_pizza_bubble = pizza_select_bubble.instantiate()
+		add_child(select_pizza_bubble)
+		select_pizza_bubble.global_position = player_ref.global_position
+		update_select_bubble()
+		use_item_timer.start(1)
+
 func update_compass_pointer():
 	var player_ref = get_tree().get_nodes_in_group("player")[0]
 	_compass.global_position = player_ref.global_position
 	_compass.look_at(current_guide_point)
-	if(distance_to_position(current_guide_point) < switch_to_pointer_distance):
-		_compass.visible = false
-		_pointer.global_position = current_guide_point
-		_pointer.visible = true
+	if(_prop.get_parent().get_parent().is_in_group("daylight_affected_ysort")):
+		if(distance_to_position(current_guide_point) < switch_to_pointer_distance):
+			_compass.visible = false
+			_pointer.global_position = current_guide_point
+			_pointer.visible = true
+		else:
+			_pointer.visible = false
+			_compass.visible = true
 	else:
 		_pointer.visible = false
-		_compass.visible = true
+		_compass.visible = false
 
 func deliver_pizza():
 	dialog_manager = dialog.instantiate()
@@ -174,6 +208,7 @@ func deliver_pizza():
 		player_ref.return_pizza()
 		selected_delivery_doors.erase(destination_door)
 		destination_door = selected_delivery_doors[0]
+		current_door = 0
 	else:
 		var pizza_kitchen_door = get_tree().get_first_node_in_group("kitchen_door")
 		pizza_kitchen_door.unlock()
@@ -187,17 +222,35 @@ func _physics_process(delta: float):
 		update_pizza_stack()
 		if(_prop.is_picked_up() && 
 		_prop.get_parent().is_in_group("player") && 
-		!_prop.get_parent().dead):	
+		!_prop.get_parent().dead):
+			if(selecting_pizza):
+				if(use_item_timer.is_stopped()  && 
+				Input.is_action_just_pressed("use_item")):
+					var player_ref = get_tree().get_nodes_in_group("player")[0]
+					player_ref.set_use_item_timer(1)
+					player_ref.set_control_frozen(false)
+					player_ref.set_dialog_panning(false)
+					select_pizza_bubble.queue_free()
+					selecting_pizza = false
+				else:
+					update_select_bubble()
+					if(Input.is_action_just_pressed(direction.right)):
+						if(current_door + 1 < selected_delivery_doors.size()):
+							current_door = current_door + 1
+						else:
+							current_door = 0
+					elif(Input.is_action_just_pressed(direction.left)):
+						if(current_door - 1 >= 0):
+							current_door = current_door - 1
+						else:
+							current_door = selected_delivery_doors.size() - 1
+					destination_door = selected_delivery_doors[current_door]
+				
 			if(distance_to_position(destination_door.global_position) < switch_to_pointer_distance):
 				current_guide_point = destination_door.global_position
 			else:
-				#if outdoors, point to parent door. 
-				if(_prop.get_parent().get_parent().is_in_group("daylight_affected_ysort")):
-					var outer_door = destination_door.get_parent_door()
-					current_guide_point = outer_door.global_position
-				else:
-					var exit = get_closest_indoor_exit()
-					current_guide_point = exit
+				var outer_door = destination_door.get_parent_door()
+				current_guide_point = outer_door.global_position
 			update_compass_pointer()
 		else:
 			_compass.visible = false

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqrxksd817eoi"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_mhtdt"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_h4alw"]
+
+[node name="TestTree" type="Node2D"]
+script = ExtResource("1_mhtdt")
+trunk = NodePath("wrong_door")
+
+[node name="wrong_door" parent="." instance=ExtResource("2_h4alw")]
+speaker_text = Array[String](["I didn't order a pizza...", "Pizza? Sorry, wrong address.", "We didn't order anything.", "This place doesn't allow solicitors.", "You have the wrong address.", "Wrong address, I'm afraid.", "Sorry, I think you have the wrong place.", "No one here ordered anything.", "I didn't order anything.", "Sorry, this isn't the right address."])
+speaker_portrait = null
+voice = "sine_voice"

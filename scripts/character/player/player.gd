@@ -215,6 +215,7 @@ func add_scene_to_ui_tree(scene : Node):
 	_ui.add_child(scene)
 
 func exit_dialog():
+	use_item_timer.start(0.5)
 	in_dialog = false
 	control_frozen = false
 	dialog_panning = false
@@ -400,10 +401,10 @@ func resurrect():
 
 func handle_interact():
 	if use_item_timer.is_stopped() && Input.is_action_just_pressed("interact"):
-		use_item_timer.start(1)
+		use_item_timer.start(0.5)
 		var grabObj = _grabber.get_collider(0)
 		if(_grabber.is_colliding() && grabObj.is_in_group("interactable")):
-				grabObj.interact()
+			grabObj.interact()
 		else:
 			handle_pick_up()
 
@@ -510,6 +511,7 @@ func dash():
 			sound_player.stream = dash_sound
 			sound_player.play()
 			is_dashing = true
+			current_dash_secs = current_dash_secs - 1
 			timer_dash.start(1)
 			_camera.zoom_to(1.25)
 			_ui.dash_blink()

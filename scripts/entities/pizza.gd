@@ -15,10 +15,12 @@ var slow_nohits = preload("res://dialog/dialog trees/delivery_trees/slow_nohits.
 var slow_1hit = preload ("res://dialog/dialog trees/delivery_trees/slow_1hit.tscn")
 var slow_2hit = preload("res://dialog/dialog trees/delivery_trees/slow_2hit.tscn")
 var _3hit = preload("res://dialog/dialog trees/delivery_trees/3hits.tscn")
+var wrong_door_dialog = preload("res://dialog/dialog trees/delivery_trees/wrong_door.tscn")
 var pizza_select_bubble = preload("res://dialog/pizza_select_bubble.tscn")
 
 var delivery_doors
 var destination_door: Node
+var wrong_door_checked = false
 
 var current_guide_point : Vector2
 
@@ -126,9 +128,11 @@ func _on_prop_collide():
 	
 
 func _on_picked_up():
+	wrong_door_checked = false
 	if(!has_been_picked_up_before):
 		timer.start(time_to_deliver_secs)
 		has_been_picked_up_before = true
+		
 
 func update_select_bubble():
 	if(select_pizza_bubble != null):
@@ -165,6 +169,17 @@ func update_compass_pointer():
 	else:
 		_pointer.visible = false
 		_compass.visible = false
+
+func wrong_door(door : Node):
+	dialog_manager = dialog.instantiate()
+	dialog_manager.set_speaker_node(door)
+	get_parent().add_child(dialog_manager)
+	var player_ref = get_tree().get_nodes_in_group("player")[0]
+	player_ref.enter_dialog()
+	delivery_dialog_tree = wrong_door_dialog.instantiate()
+	dialog_manager.add_child(delivery_dialog_tree)
+	dialog_manager.set_tree_and_start_dialog(delivery_dialog_tree)
+	player_ref.return_pizza()
 
 func deliver_pizza():
 	dialog_manager = dialog.instantiate()
@@ -224,15 +239,16 @@ func _physics_process(delta: float):
 		_prop.get_parent().is_in_group("player") && 
 		!_prop.get_parent().dead):
 			if(selecting_pizza):
+				var player_ref = get_tree().get_nodes_in_group("player")[0]
 				if(use_item_timer.is_stopped()  && 
 				Input.is_action_just_pressed("use_item")):
-					var player_ref = get_tree().get_nodes_in_group("player")[0]
 					player_ref.set_use_item_timer(1)
 					player_ref.set_control_frozen(false)
 					player_ref.set_dialog_panning(false)
 					select_pizza_bubble.queue_free()
 					selecting_pizza = false
 				else:
+					player_ref.stop()
 					update_select_bubble()
 					if(Input.is_action_just_pressed(direction.right)):
 						if(current_door + 1 < selected_delivery_doors.size()):
@@ -255,8 +271,16 @@ func _physics_process(delta: float):
 		else:
 			_compass.visible = false
 			_pointer.visible = false
-			if(_prop.global_position.distance_to(destination_door.global_position) < 32):
-				if(!_prop.is_picked_up()):
-					deliver_pizza()
+			for door in selected_delivery_doors:
+				if(_prop.global_position.distance_to(door.global_position) < 32):
+					if(!_prop.is_picked_up()):
+						deliver_pizza()
+			if(!wrong_door_checked && !_prop.is_picked_up()):
+				for door in delivery_doors:
+					if(_prop.global_position.distance_to(door.global_position) < 32):
+						wrong_door(door)
+						break
+				wrong_door_checked = true
+					
 	else:
 		destroy_self()

@@ -100,6 +100,7 @@ func pick_up(actor_ref : Node):
 	sprite.offset = Vector2(0,-y_sort_offset)
 	_collision_shape.disabled = true
 	pickup_actor_ref = actor_ref
+	global_position = pickup_actor_ref.global_position
 	reparent(actor_ref)
 	picked_up = true
 	will_pickup = false

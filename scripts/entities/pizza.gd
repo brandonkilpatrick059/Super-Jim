@@ -172,6 +172,9 @@ func update_compass_pointer():
 		_pointer.visible = false
 		_compass.visible = false
 
+func set_wrong_door_chceked(value : bool):
+	wrong_door_checked = value
+
 func wrong_door(door : Node):
 	dialog_manager = dialog.instantiate()
 	dialog_manager.set_speaker_node(door)
@@ -182,6 +185,7 @@ func wrong_door(door : Node):
 	dialog_manager.add_child(delivery_dialog_tree)
 	dialog_manager.set_tree_and_start_dialog(delivery_dialog_tree)
 	player_ref.return_pizza()
+	wrong_door_checked = false
 
 func deliver_pizza():
 	dialog_manager = dialog.instantiate()
@@ -221,6 +225,7 @@ func deliver_pizza():
 	dialog_manager.add_child(delivery_dialog_tree)
 	dialog_manager.set_tree_and_start_dialog(delivery_dialog_tree)	
 	pizzas -= 1
+	wrong_door_checked = false
 	if(pizzas > 0):
 		player_ref.return_pizza()
 		selected_delivery_doors.erase(destination_door)
@@ -277,7 +282,7 @@ func _physics_process(delta: float):
 				if(_prop.global_position.distance_to(door.global_position) < 32):
 					if(!_prop.is_picked_up()):
 						deliver_pizza()
-			if(!wrong_door_checked && !_prop.is_picked_up()):
+			if(!_prop.is_picked_up()):
 				for door in delivery_doors:
 					if(_prop.global_position.distance_to(door.global_position) < 32):
 						wrong_door(door)

@@ -215,7 +215,7 @@ func add_scene_to_ui_tree(scene : Node):
 	_ui.add_child(scene)
 
 func exit_dialog():
-	use_item_timer.start(0.5)
+	use_item_timer.start(0.25)
 	in_dialog = false
 	control_frozen = false
 	dialog_panning = false
@@ -401,7 +401,7 @@ func resurrect():
 
 func handle_interact():
 	if use_item_timer.is_stopped() && Input.is_action_just_pressed("interact"):
-		use_item_timer.start(0.5)
+		use_item_timer.start(0.25)
 		var grabObj = _grabber.get_collider(0)
 		if(_grabber.is_colliding() && grabObj.is_in_group("interactable")):
 			grabObj.interact()
@@ -433,7 +433,7 @@ func give_dash_fraction(fraction: float):
 func handle_use_item():
 	if(use_item_timer.is_stopped() && Input.is_action_just_pressed("use_item")):
 		use_item()
-		use_item_timer.start(1)
+		use_item_timer.start(0.25)
 
 func handle_throw():
 	if Input.is_action_just_pressed("throw"):

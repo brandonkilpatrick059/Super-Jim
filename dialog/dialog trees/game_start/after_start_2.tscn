@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmiytcfv8thjd"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_tmmw5"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_ca1ju"]
+[ext_resource type="SpriteFrames" uid="uid://b6grq4ppef8v2" path="res://sprites/spritesheets/spriteframes/portrait/test3.tres" id="3_ca1ju"]
+
+[node name="after_start_2" type="Node2D"]
+script = ExtResource("1_tmmw5")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ca1ju")]
+position = Vector2(0, -16)
+speaker_text = Array[String](["Go get some rest. The apartment is right behind the restaurant."])
+speaker_portrait = ExtResource("3_ca1ju")
+option_branches = [NodePath("../trunk2")]
+voice = "low_sine_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ca1ju")]
+position = Vector2(64, 175)
+speaker_text = Array[String](["Just head out the door and go down the alley to the right."])
+speaker_portrait = ExtResource("3_ca1ju")
+option_branches = [NodePath("../trunk3")]
+voice = "low_sine_voice"
+
+[node name="trunk3" parent="." instance=ExtResource("2_ca1ju")]
+position = Vector2(76, 371)
+speaker_text = Array[String](["It's the brick building next to the train tracks. Can't miss it."])
+speaker_portrait = ExtResource("3_ca1ju")
+voice = "low_sine_voice"

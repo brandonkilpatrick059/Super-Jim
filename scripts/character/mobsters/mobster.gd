@@ -234,11 +234,11 @@ func update_perceptions():
 	perceptions.invincible = is_invincible
 	perceptions.holding_object = holding_object
 	
-	if(_ai_state_machine.get_state().name == mobster_states.shooting ||
-	_ai_state_machine.get_state().name == mobster_states.strafing ||
-	_ai_state_machine.get_state().name == mobster_states.chasing ||
-	_ai_state_machine.get_state().name == mobster_states.enticed):
-		update_line_of_sight_to_target()
+	#if(_ai_state_machine.get_state().name == mobster_states.shooting ||
+	#_ai_state_machine.get_state().name == mobster_states.strafing ||
+	#_ai_state_machine.get_state().name == mobster_states.chasing ||
+	#_ai_state_machine.get_state().name == mobster_states.enticed):
+	update_line_of_sight_to_target()
 	
 	check_vision()
 	check_hearing()
@@ -299,7 +299,11 @@ func active_has_line_of_sight_to_point(point: Vector2):
 		return false
 
 func reactive_has_line_of_sight_to_object(obj):
-	_reactive_raycast.set_target_position(obj.global_position - _reactive_raycast.global_position)
+	if(obj.is_in_group("pizza")):
+		var obj_pos = obj.global_position + Vector2(0,16)
+		_reactive_raycast.set_target_position(obj_pos - _reactive_raycast.global_position)
+	else:
+		_reactive_raycast.set_target_position(obj.global_position - _reactive_raycast.global_position)
 	if(_reactive_raycast.is_colliding() && _reactive_raycast.get_collider() == obj):
 		return true
 	else:
@@ -709,11 +713,15 @@ func update_vision():
 
 func _process(delta):
 	if(!Engine.is_editor_hint()):
-		update()
-		send_perceptions()
+		pass
+		#update()
+		#send_perceptions()
 
 func _physics_process(delta):
 	if(!Engine.is_editor_hint()):
+		update()
+		send_perceptions()
+		
 		if(is_invincible && invincibility_timer.is_stopped()):
 			go_vincible()
 		#apply velocity thru physics engine

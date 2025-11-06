@@ -102,7 +102,7 @@ func handle_sparks():
 					reduce_health.emit()
 					return true
 			#knockout when player throws object
-			elif(!ai_state_machine.get_perceptions().invincible && node.is_in_group("spark")):
+			elif(node != null && !ai_state_machine.get_perceptions().invincible && node.is_in_group("spark")):
 				ai_state_machine.transition_to(mobster_states.falling)
 				return true
 	return false

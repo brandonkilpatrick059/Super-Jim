@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3qvrothedg7a"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_a0mlw"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_c4ccu"]
+[ext_resource type="SpriteFrames" uid="uid://b6grq4ppef8v2" path="res://sprites/spritesheets/spriteframes/portrait/test3.tres" id="3_c4ccu"]
+
+[node name="before_start_2" type="Node2D"]
+script = ExtResource("1_a0mlw")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_c4ccu")]
+position = Vector2(0, -16)
+speaker_text = Array[String](["If you want a job, you gotta talk to the boss."])
+speaker_portrait = ExtResource("3_c4ccu")
+option_branches = [NodePath("../trunk2")]
+voice = "low_sine_voice"
+
+[node name="trunk2" parent="." instance=ExtResource("2_c4ccu")]
+position = Vector2(-34, 233)
+speaker_text = Array[String](["Her office is up the stairs to the right."])
+speaker_portrait = ExtResource("3_c4ccu")
+voice = "low_sine_voice"

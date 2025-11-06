@@ -403,7 +403,14 @@ func resurrect():
 func handle_interact():
 	if use_item_timer.is_stopped() && Input.is_action_just_pressed("interact"):
 		use_item_timer.start(0.25)
+		var index = 0
 		var grabObj = _grabber.get_collider(0)
+		while(index < _grabber.get_collision_count()):
+			if(_grabber.get_collider(index).is_in_group("interactable") || 
+			_grabber.get_collider(index).is_in_group("pickupable")):
+				grabObj = _grabber.get_collider(index)
+				break
+			index = index + 1
 		if(_grabber.is_colliding() && grabObj.is_in_group("interactable")):
 			grabObj.interact()
 		else:

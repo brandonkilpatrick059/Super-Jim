@@ -1,0 +1,123 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfyudlftd7ffv"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_wo0y2"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_ow61d"]
+[ext_resource type="SpriteFrames" uid="uid://b6grq4ppef8v2" path="res://sprites/spritesheets/spriteframes/portrait/test3.tres" id="3_n2k0p"]
+
+[node name="before_start_1" type="Node2D"]
+script = ExtResource("1_wo0y2")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
+position = Vector2(0, -16)
+speaker_text = Array[String](["What can we do for ya?"])
+speaker_portrait = ExtResource("3_n2k0p")
+speech_options = Array[String](["I'd like to buy a pizza.", "I want to apply for a job.", "Nothing, actually."])
+option_branches = [NodePath("../pizza"), NodePath("../apply"), NodePath("../nothing")]
+voice = "low_sine_voice"
+
+[node name="pizza" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
+position = Vector2(-227, 152)
+speaker_text = Array[String](["Sure, it's ten bucks a pie."])
+speaker_portrait = ExtResource("3_n2k0p")
+speech_options = Array[String](["I don't have any money..."])
+option_branches = [NodePath("../pizza2")]
+voice = "low_sine_voice"
+
+[node name="pizza2" parent="." instance=ExtResource("2_ow61d")]
+position = Vector2(-236, 332)
+speaker_text = Array[String](["Well then we don't have any pies for you."])
+speaker_portrait = ExtResource("3_n2k0p")
+speech_options = Array[String](["I don't have any money..."])
+voice = "low_sine_voice"
+
+[node name="apply" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
+position = Vector2(10, 143)
+speaker_text = Array[String](["Listen pal, there's only one cook here, and it's ME."])
+speaker_portrait = ExtResource("3_n2k0p")
+option_branches = [NodePath("../apply2")]
+voice = "low_sine_voice"
+
+[node name="apply2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
+position = Vector2(10, 353)
+speaker_text = Array[String](["Find your own kitchen."])
+speaker_portrait = ExtResource("3_n2k0p")
+option_branches = [NodePath("../apply3")]
+voice = "low_sine_voice"
+
+[node name="apply3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
+position = Vector2(10, 536)
+speaker_text = Array[String](["You want to deliver pizzas?"])
+speech_options = Array[String](["yes", "no"])
+option_branches = [NodePath("../apply-yes"), NodePath("../apply-no")]
+voice = "sine_voice"
+speaker_name = "speedy"
+
+[node name="apply-no" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
+position = Vector2(223, 733)
+speaker_text = Array[String](["Then you better look elsewhere."])
+speech_options = Array[String](["yes", "no"])
+option_branches = [NodePath("../apply-no2")]
+voice = "sine_voice"
+speaker_name = "speedy"
+
+[node name="apply-no2" parent="." instance=ExtResource("2_ow61d")]
+position = Vector2(223, 918)
+speaker_text = Array[String](["Figures..."])
+speaker_portrait = ExtResource("3_n2k0p")
+speech_options = Array[String](["yes", "no"])
+voice = "low_sine_voice"
+
+[node name="apply-yes" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
+position = Vector2(-163, 733)
+speaker_text = Array[String](["Really?"])
+option_branches = [NodePath("../apply-yes2")]
+voice = "sine_voice"
+speaker_name = "speedy"
+
+[node name="apply-yes3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
+position = Vector2(-163, 1235)
+speaker_text = Array[String](["Don't scare 'em off, cook..."])
+option_branches = [NodePath("../apply-yes4")]
+voice = "sine_voice"
+speaker_name = "speedy"
+
+[node name="apply-yes4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
+position = Vector2(-163, 1459)
+speaker_text = Array[String](["We need all the help we can get."])
+option_branches = [NodePath("../apply-yes5")]
+voice = "sine_voice"
+speaker_name = "speedy"
+
+[node name="apply-yes7" parent="." instance=ExtResource("2_ow61d")]
+position = Vector2(-154, 2108)
+speaker_text = Array[String](["Good luck..."])
+voice = "sine_voice"
+speaker_name = "speedy"
+
+[node name="apply-yes2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
+position = Vector2(-163, 958)
+speaker_text = Array[String](["You got a death wish or something?"])
+speaker_portrait = ExtResource("3_n2k0p")
+option_branches = [NodePath("../apply-yes3")]
+voice = "low_sine_voice"
+
+[node name="apply-yes5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
+position = Vector2(-154, 1685)
+speaker_text = Array[String](["If you're serious, you're gonna have to talk to The Boss."])
+speaker_portrait = ExtResource("3_n2k0p")
+option_branches = [NodePath("../apply-yes6")]
+voice = "low_sine_voice"
+
+[node name="apply-yes6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
+position = Vector2(-154, 1883)
+speaker_text = Array[String](["Her office is up the stairs to the right."])
+speaker_portrait = ExtResource("3_n2k0p")
+option_branches = [NodePath("../apply-yes7")]
+voice = "low_sine_voice"
+
+[node name="nothing" parent="." instance=ExtResource("2_ow61d")]
+position = Vector2(252, 133)
+speaker_text = Array[String](["Whatever."])
+speaker_portrait = ExtResource("3_n2k0p")
+voice = "low_sine_voice"

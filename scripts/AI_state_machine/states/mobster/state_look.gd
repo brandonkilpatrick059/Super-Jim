@@ -28,7 +28,7 @@ func handle_sparks():
 					ai_state_machine.transition_to(mobster_states.exclaiming)
 					return true
 			#knockout when player throws object
-			elif(!ai_state_machine.get_perceptions().invincible && node.is_in_group("spark")):
+			elif(node != null && !ai_state_machine.get_perceptions().invincible && node.is_in_group("spark")):
 				ai_state_machine.transition_to(mobster_states.falling)
 				return true
 	return false
@@ -72,7 +72,8 @@ func process(_delta: float):
 				!ai_state_machine.perceptions.holding_object &&
 				!pizza.is_picked_up()):
 					set_target.emit(node)
-					if(ai_state_machine.get_perceptions().reactive_has_line_of_sight_to_target):
+					if(ai_state_machine.get_perceptions().reactive_has_line_of_sight_to_target || 
+					ai_state_machine.get_perceptions().has_line_of_sight_to_target):
 						ai_state_machine.transition_to(mobster_states.enticed)
 						return
 		#check nodes in hearing

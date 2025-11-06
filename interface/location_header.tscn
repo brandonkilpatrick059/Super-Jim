@@ -25,3 +25,4 @@ offset_bottom = 14.0
 label_settings = ExtResource("3_1ma0a")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3

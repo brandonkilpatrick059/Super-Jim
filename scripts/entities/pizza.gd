@@ -189,9 +189,9 @@ func wrong_door(door : Node):
 	player_ref.return_pizza()
 	wrong_door_checked = false
 
-func deliver_pizza():
+func deliver_pizza(door : Node2D):
 	dialog_manager = dialog.instantiate()
-	dialog_manager.set_speaker_node(destination_door)
+	dialog_manager.set_speaker_node(door)
 	get_parent().add_child(dialog_manager)
 	var player_ref = get_tree().get_nodes_in_group("player")[0]
 	player_ref.enter_dialog()
@@ -232,7 +232,7 @@ func deliver_pizza():
 	wrong_door_checked = false
 	if(pizzas > 0):
 		player_ref.return_pizza()
-		selected_delivery_doors.erase(destination_door)
+		selected_delivery_doors.erase(door)
 		destination_door = selected_delivery_doors[0]
 		current_door = 0
 	else:
@@ -288,7 +288,7 @@ func _physics_process(delta: float):
 			for door in selected_delivery_doors:
 				if(_prop.global_position.distance_to(door.global_position) < 32):
 					if(!_prop.is_picked_up()):
-						deliver_pizza()
+						deliver_pizza(door)
 			if(!_prop.is_picked_up()):
 				for door in delivery_doors:
 					if(_prop.global_position.distance_to(door.global_position) < 32):

@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfyudlftd7ffv"]
+[gd_scene load_steps=6 format=3 uid="uid://cfyudlftd7ffv"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_wo0y2"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_ow61d"]
 [ext_resource type="SpriteFrames" uid="uid://b6grq4ppef8v2" path="res://sprites/spritesheets/spriteframes/portrait/test3.tres" id="3_n2k0p"]
+[ext_resource type="Script" uid="uid://c2q4w0ekhh3v4" path="res://scripts/utility/lock_unlock_door.gd" id="4_a312a"]
+[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/adjust_schedules_index.gd" id="5_5blbd"]
 
 [node name="before_start_1" type="Node2D"]
 script = ExtResource("1_wo0y2")
@@ -28,7 +30,6 @@ voice = "low_sine_voice"
 position = Vector2(-236, 332)
 speaker_text = Array[String](["Well then we don't have any pies for you."])
 speaker_portrait = ExtResource("3_n2k0p")
-speech_options = Array[String](["I don't have any money..."])
 voice = "low_sine_voice"
 
 [node name="apply" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
@@ -44,6 +45,7 @@ speaker_text = Array[String](["Find your own kitchen."])
 speaker_portrait = ExtResource("3_n2k0p")
 option_branches = [NodePath("../apply3")]
 voice = "low_sine_voice"
+speaker_name = "cook"
 
 [node name="apply3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
 position = Vector2(10, 536)
@@ -56,7 +58,6 @@ speaker_name = "speedy"
 [node name="apply-no" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
 position = Vector2(223, 733)
 speaker_text = Array[String](["Then you better look elsewhere."])
-speech_options = Array[String](["yes", "no"])
 option_branches = [NodePath("../apply-no2")]
 voice = "sine_voice"
 speaker_name = "speedy"
@@ -65,8 +66,8 @@ speaker_name = "speedy"
 position = Vector2(223, 918)
 speaker_text = Array[String](["Figures..."])
 speaker_portrait = ExtResource("3_n2k0p")
-speech_options = Array[String](["yes", "no"])
 voice = "low_sine_voice"
+speaker_name = "cook"
 
 [node name="apply-yes" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
 position = Vector2(-163, 733)
@@ -89,18 +90,13 @@ option_branches = [NodePath("../apply-yes5")]
 voice = "sine_voice"
 speaker_name = "speedy"
 
-[node name="apply-yes7" parent="." instance=ExtResource("2_ow61d")]
-position = Vector2(-154, 2108)
-speaker_text = Array[String](["Good luck..."])
-voice = "sine_voice"
-speaker_name = "speedy"
-
 [node name="apply-yes2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
 position = Vector2(-163, 958)
 speaker_text = Array[String](["You got a death wish or something?"])
 speaker_portrait = ExtResource("3_n2k0p")
 option_branches = [NodePath("../apply-yes3")]
 voice = "low_sine_voice"
+speaker_name = "cook"
 
 [node name="apply-yes5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
 position = Vector2(-154, 1685)
@@ -108,13 +104,32 @@ speaker_text = Array[String](["If you're serious, you're gonna have to talk to T
 speaker_portrait = ExtResource("3_n2k0p")
 option_branches = [NodePath("../apply-yes6")]
 voice = "low_sine_voice"
+speaker_name = "cook"
 
-[node name="apply-yes6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
+[node name="apply-yes6" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_ow61d")]
 position = Vector2(-154, 1883)
 speaker_text = Array[String](["Her office is up the stairs to the right."])
 speaker_portrait = ExtResource("3_n2k0p")
 option_branches = [NodePath("../apply-yes7")]
 voice = "low_sine_voice"
+speaker_name = "cook"
+dialog_script = NodePath("unlock_office_door")
+
+[node name="unlock_office_door" type="Node" parent="apply-yes6"]
+script = ExtResource("4_a312a")
+node_group = "office_door"
+
+[node name="apply-yes7" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_ow61d")]
+position = Vector2(-154, 2108)
+speaker_text = Array[String](["Good luck..."])
+voice = "sine_voice"
+speaker_name = "speedy"
+dialog_script = NodePath("move_to_pre_start_2")
+
+[node name="move_to_pre_start_2" type="Node" parent="apply-yes7"]
+script = ExtResource("5_5blbd")
+node_group = "cook"
+new_index = 5
 
 [node name="nothing" parent="." instance=ExtResource("2_ow61d")]
 position = Vector2(252, 133)

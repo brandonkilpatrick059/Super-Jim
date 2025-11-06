@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://0iwp8u5sdyns"]
+[gd_scene load_steps=5 format=3 uid="uid://0iwp8u5sdyns"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_4ghtk"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_g13i0"]
 [ext_resource type="SpriteFrames" uid="uid://b6grq4ppef8v2" path="res://sprites/spritesheets/spriteframes/portrait/test3.tres" id="3_g13i0"]
+[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/adjust_schedules_index.gd" id="4_ggh0u"]
 
 [node name="after_start_1" type="Node2D"]
 script = ExtResource("1_4ghtk")
@@ -44,11 +45,11 @@ speaker_text = Array[String](["You ought to rest up before your first day."])
 speaker_portrait = ExtResource("3_g13i0")
 option_branches = [NodePath("../trunk6")]
 voice = "low_sine_voice"
+speaker_name = "cook"
 
 [node name="trunk6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_g13i0")]
 position = Vector2(54, 1025)
 speaker_text = Array[String](["I'm guessing she set you up in the old guy's apartment?"])
-speech_options = Array[String](["What now?", "How does this work?"])
 option_branches = [NodePath("../trunk7")]
 voice = "sine_voice"
 speaker_name = "speedy"
@@ -67,6 +68,7 @@ speaker_text = Array[String](["Just head up there and settle in. Get some shut-e
 speaker_portrait = ExtResource("3_g13i0")
 option_branches = [NodePath("../trunk9")]
 voice = "low_sine_voice"
+speaker_name = "cook"
 
 [node name="trunk9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_g13i0")]
 position = Vector2(54, 1614)
@@ -75,8 +77,14 @@ speaker_portrait = ExtResource("3_g13i0")
 option_branches = [NodePath("../trunk10")]
 voice = "low_sine_voice"
 
-[node name="trunk10" parent="." instance=ExtResource("2_g13i0")]
+[node name="trunk10" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_g13i0")]
 position = Vector2(64, 1834)
 speaker_text = Array[String](["Just come in when you're ready and we'll explain everything."])
 speaker_portrait = ExtResource("3_g13i0")
 voice = "low_sine_voice"
+dialog_script = NodePath("move_to_after_start_2")
+
+[node name="move_to_after_start_2" type="Node" parent="trunk10"]
+script = ExtResource("4_ggh0u")
+node_group = "cook"
+new_index = 7

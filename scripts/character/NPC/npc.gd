@@ -20,6 +20,7 @@ const appears_at_time = "appears_at_time"
 @export var bottom_spriteframes : SpriteFrames
 @export var facing_dir = "right"
 @export var dialog_offset = Vector2(0,0)
+@export var starting_index = 0
 
 #array of all schedules this NPC will use
 @export var schedules : Array[schedule] = []
@@ -64,7 +65,7 @@ var player_ref
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	schedules_index = 0
+	schedules_index = starting_index
 	set_up_character_base()
 	set_up_sound_player()
 	set_up_nav_agent()

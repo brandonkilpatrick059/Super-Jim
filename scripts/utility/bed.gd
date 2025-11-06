@@ -24,6 +24,8 @@ var time_keeper
 
 @export var gives_hp = 1
 @export var gives_dash_secs = 20
+@export var first_time_sleeping_script : Node = null
+var first_time_sleeping = true
 
 
 # Called when the node enters the scene tree for the first time.
@@ -77,6 +79,9 @@ func interact():
 		sound_player.global_position = player_ref.global_position
 		sound_player.stream = load("res://audio/music/sleep theme.wav")
 		sound_player.play()
+		if(first_time_sleeping):
+			first_time_sleeping_script.run_script()
+			first_time_sleeping = false
 
 func update_fade_alpha():
 	_fade_to_black.color = Color(0,0,0,fade_alpha)

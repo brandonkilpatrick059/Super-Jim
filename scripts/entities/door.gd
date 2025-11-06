@@ -120,8 +120,6 @@ func _physics_process(delta: float):
 			if(locked_hours[time_keeper.clock]):
 				locked = true
 			else: locked = false
-		else:
-			locked = false
 		
 		if(opening && _animated_sprite.frame == last_frame_open):
 			opened = true

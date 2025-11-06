@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dw4arigo54uju"]
+[gd_scene load_steps=5 format=3 uid="uid://dw4arigo54uju"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_reagj"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_csox7"]
+[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/adjust_schedules_index.gd" id="3_csox7"]
+[ext_resource type="Script" uid="uid://c2q4w0ekhh3v4" path="res://scripts/utility/lock_unlock_door.gd" id="3_p6wgb"]
 
 [node name="boss_start" type="Node2D"]
 script = ExtResource("1_reagj")
@@ -41,7 +43,7 @@ position = Vector2(64, 512)
 speaker_text = Array[String](["You just need to sign these forms."])
 speaker_portrait = null
 speech_options = Array[String](["(sign forms accepting liability for injury or death while delivering pizzas)", "(don't sign forms accepting liability for injury or death while delivering pizzas)", "(ask about forms accepting liability for injury or death while delivering pizzas)"])
-option_branches = [NodePath("../sign"), NodePath("../get out of here"), NodePath("../ask")]
+option_branches = [NodePath("../signed forms"), NodePath("../get out of here"), NodePath("../ask")]
 voice = "low_sine_voice"
 
 [node name="sign" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_csox7")]
@@ -117,32 +119,55 @@ speaker_portrait = null
 option_branches = [NodePath("../whatever5")]
 voice = "low_sine_voice"
 
-[node name="whatever5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_csox7")]
+[node name="whatever5" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_csox7")]
 position = Vector2(-439, 3017)
 speaker_text = Array[String](["The apartment is in the building right behind this one."])
 speaker_portrait = null
 option_branches = [NodePath("../whatever6")]
 voice = "low_sine_voice"
+dialog_script = NodePath("unlock_player_apartment")
 
-[node name="whatever6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_csox7")]
+[node name="unlock_player_apartment" type="Node" parent="whatever5"]
+script = ExtResource("3_p6wgb")
+node_group = "player_apartment_door"
+
+[node name="whatever6" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_csox7")]
 position = Vector2(-439, 3222)
 speaker_text = Array[String](["Now get out of here."])
 speaker_portrait = null
 option_branches = [NodePath("../whatever7")]
 voice = "low_sine_voice"
+dialog_script = NodePath("move_to_boss_start_done")
 
-[node name="whatever7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_csox7")]
+[node name="move_to_boss_start_done" type="Node" parent="whatever6"]
+script = ExtResource("3_csox7")
+node_group = "boss"
+new_index = 1
+
+[node name="whatever7" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_csox7")]
 position = Vector2(-439, 3415)
 speaker_text = Array[String](["Go talk to the jokers out front."])
 speaker_portrait = null
 option_branches = [NodePath("../whatever8")]
 voice = "low_sine_voice"
+dialog_script = NodePath("lock_office_door")
 
-[node name="whatever8" parent="." instance=ExtResource("2_csox7")]
+[node name="lock_office_door" type="Node" parent="whatever7"]
+script = ExtResource("3_p6wgb")
+node_group = "office_door"
+locked = true
+
+[node name="whatever8" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_csox7")]
 position = Vector2(-439, 3635)
 speaker_text = Array[String](["They'll handle things from here."])
 speaker_portrait = null
 voice = "low_sine_voice"
+dialog_script = NodePath("move_to_after_start_1")
+
+[node name="move_to_after_start_1" type="Node" parent="whatever8"]
+script = ExtResource("3_csox7")
+node_group = "cook"
+new_index = 6
 
 [node name="dont know" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_csox7")]
 position = Vector2(349, 1613)

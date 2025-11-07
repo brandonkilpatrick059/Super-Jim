@@ -11,6 +11,7 @@ var sound_player := AudioStreamPlayer.new()
 
 @export var parent_door : Node2D
 
+@export var cannot_trap_player = false
 @export var locked = false
 @export var one_time_use = false
 
@@ -99,7 +100,7 @@ func _physics_process(delta: float):
 		#if that period of time has elapsed and the opener is still there, open
 		if(open_close_timer.is_stopped() && waiting_to_open):
 			if(opener_is_near):
-				if(!locked || (locked && player_is_behind_door())):
+				if(!locked || (locked && !cannot_trap_player && player_is_behind_door())):
 					open()
 			else:
 				waiting_to_open = false

@@ -13,7 +13,7 @@ var long_step_secs = 6
 var timer_fade := Timer.new()
 
 var sleep_start_time = 18
-var sleep_end_time = 7
+var sleep_end_time = 9
 
 var fading_in = false
 var fading_out = false

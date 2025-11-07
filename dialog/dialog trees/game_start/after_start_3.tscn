@@ -72,7 +72,7 @@ speaker_name = "cook"
 position = Vector2(-679, 4482)
 speaker_text = Array[String](["Because of the gangs?"])
 option_branches = [NodePath("../gangs3")]
-voice = "low_sine_voice"
+voice = "sine_voice"
 speaker_name = "speedy"
 
 [node name="gangs3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
@@ -87,14 +87,14 @@ speaker_name = "cook"
 position = Vector2(-768, 4940)
 speaker_text = Array[String](["The Ten-Gallons and The Mufflers"])
 option_branches = [NodePath("../gangs7")]
-voice = "low_sine_voice"
+voice = "sine_voice"
 speaker_name = "speedy"
 
 [node name="gangs7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
 position = Vector2(-797, 5450)
 speaker_text = Array[String](["They've been fighting for as long as anyone remembers."])
 option_branches = [NodePath("../gangs8")]
-voice = "low_sine_voice"
+voice = "sine_voice"
 
 [node name="gangs8" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
 position = Vector2(-813, 5926)
@@ -108,26 +108,26 @@ speaker_name = "cook"
 position = Vector2(-822, 6188)
 speaker_text = Array[String](["They get into gunfights in the streets. "])
 option_branches = [NodePath("../gangs10")]
-voice = "low_sine_voice"
+voice = "sine_voice"
 speaker_name = "speedy"
 
 [node name="gangs10" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
 position = Vector2(-822, 6393)
 speaker_text = Array[String](["It's a warzone out there."])
 option_branches = [NodePath("../gangs11")]
-voice = "low_sine_voice"
+voice = "sine_voice"
 
 [node name="gangs11" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
 position = Vector2(-832, 6645)
 speaker_text = Array[String](["And worse..."])
 option_branches = [NodePath("../gangs12")]
-voice = "low_sine_voice"
+voice = "sine_voice"
 
 [node name="gangs12" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
 position = Vector2(-832, 6876)
 speaker_text = Array[String](["All those goons LOVE pizza."])
 option_branches = [NodePath("../gangs13")]
-voice = "low_sine_voice"
+voice = "sine_voice"
 
 [node name="gangs13" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
 position = Vector2(-822, 7089)
@@ -141,20 +141,20 @@ speaker_name = "cook"
 position = Vector2(-822, 7323)
 speaker_text = Array[String](["They'll kill YOU for pizza."])
 option_branches = [NodePath("../gangs15")]
-voice = "low_sine_voice"
+voice = "sine_voice"
 speaker_name = "speedy"
 
 [node name="gangs15" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
 position = Vector2(-832, 7534)
 speaker_text = Array[String](["So you gotta watch out."])
 option_branches = [NodePath("../gangs16")]
-voice = "low_sine_voice"
+voice = "sine_voice"
 
 [node name="gangs16" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
 position = Vector2(-832, 7739)
 speaker_text = Array[String](["Stay vigilant at all times."])
 option_branches = [NodePath("../gangs17")]
-voice = "low_sine_voice"
+voice = "sine_voice"
 
 [node name="gangs17" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
 position = Vector2(-822, 7989)
@@ -169,7 +169,7 @@ position = Vector2(-832, 8238)
 speaker_text = Array[String](["You sure you're prepared to do this job?"])
 speech_options = Array[String](["Yes", "I don't know..."])
 option_branches = [NodePath("../done"), NodePath("../done")]
-voice = "low_sine_voice"
+voice = "sine_voice"
 speaker_name = "speedy"
 
 [node name="gate key2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
@@ -191,11 +191,16 @@ speaker_text = Array[String](["It's under the rail line, just follow the tracks 
 option_branches = [NodePath("../gate key5")]
 voice = "sine_voice"
 
-[node name="gate key5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
+[node name="gate key5" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_shkpx")]
 position = Vector2(-130, 4162)
 speaker_text = Array[String](["Here's a copy of the key."])
 option_branches = [NodePath("../gate key6")]
 voice = "sine_voice"
+dialog_script = NodePath("unlock_passage_gate")
+
+[node name="unlock_passage_gate" type="Node" parent="gate key5"]
+script = ExtResource("4_juich")
+node_group = "passage_gate"
 
 [node name="gate key6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
 position = Vector2(-275, 4362)
@@ -267,12 +272,13 @@ dialog_script = NodePath("unlock_kitchen_door")
 script = ExtResource("4_juich")
 node_group = "kitchen_door"
 
-[node name="done" parent="." instance=ExtResource("2_shkpx")]
+[node name="done" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_shkpx")]
 position = Vector2(-257, 9103)
 speaker_text = Array[String](["Just come talk to me when you're ready."])
 speaker_portrait = ExtResource("3_shkpx")
 voice = "low_sine_voice"
 speaker_name = "cook"
+dialog_script = NodePath("start_main_loop")
 
 [node name="start_main_loop" type="Node" parent="done"]
 script = ExtResource("4_froi3")

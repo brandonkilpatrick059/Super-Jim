@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 			moving = true
 	else:
 		var distance = global_position.distance_to(player_ref.global_position)
-		if(distance > 0.25):
+		if(distance > 3):
 			if(distance < 256):
 				speed = speed - 2.0
 			apply_force(Vector2(0,speed))

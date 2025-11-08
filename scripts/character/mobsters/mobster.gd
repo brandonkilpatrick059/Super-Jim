@@ -38,7 +38,7 @@ var horn_sound = preload("res://audio/soundFX/horn.wav")
 @onready var _head_collider = $head_shape
 @onready var _body_collider = $CollisionShape2D
 @onready var _spark_detector : Area2D = $spark_detector
-@onready var _occluder = $occluder
+#@onready var _occluder = $occluder
 
 @export var current_patrol_point :Node2D = null
 
@@ -50,11 +50,13 @@ var opposing_team
 var is_bandit = false
 
 #perceptors
-@onready var _passive_raycast: RayCast2D = $passive_raycast
-@onready var _active_raycast: RayCast2D = $active_raycast
-@onready var _reactive_raycast: RayCast2D = $reactive_raycast
 @onready var _vision = $vision
 @onready var _shadow = $shadow
+
+var red_ray_collision_mask = 0b00000000_00000000_00000100_00010001
+var blu_ray_collision_mask = 0b00000000_00000000_00000010_00010001
+var ray_collision_mask = 0
+var ray_reactive_collision_mask = 0b00000000_00000000_00001000_00010001
 
 #character composition
 @onready var _character_base = $character_base
@@ -170,16 +172,14 @@ func set_up_mobster_team():
 		damage_collision_layer = 2
 		set_collision_layer_value(damage_collision_layer,true) #base collision layer
 		set_collision_layer_value(10,true) #collision layer for raycasts
-		_passive_raycast.set_collision_mask_value(11,true)
-		_active_raycast.set_collision_mask_value(11,true)
+		ray_collision_mask = red_ray_collision_mask
 		_vision.set_collision_mask_value(11,true)
 	else: if (team == team_blu):
 		opposing_team = team_red
 		damage_collision_layer = 7
 		set_collision_layer_value(damage_collision_layer,true)#base collision layer
 		set_collision_layer_value(11,true) #collision layer for raycasts
-		_passive_raycast.set_collision_mask_value(10,true)
-		_active_raycast.set_collision_mask_value(10,true)
+		ray_collision_mask = blu_ray_collision_mask
 		_vision.set_collision_mask_value(10,true)
 	perceptions.team = team
 	perceptions.opposing_team = opposing_team
@@ -265,46 +265,31 @@ func _on_body_exited(body: Node):
 	var node_index = perceptions.colliding_nodes.find(body)
 	perceptions.colliding_nodes.remove_at(node_index)
 
-#we need a separate passive raycast for use with regular vision checking
-#or else there will be race conditions fighting over the ray-cast as we
-#check for line of sight 
-func passive_has_line_of_sight_to_object(obj):
-	_passive_raycast.set_target_position(obj.global_position - _passive_raycast.global_position)
-	if(_passive_raycast.is_colliding() && _passive_raycast.get_collider() == obj):
-		return true
-	else:
-		perceptions.nodes_in_vision.erase(obj)
-		return false
-
-func passive_has_line_of_sight_to_point(point: Vector2):
-	_passive_raycast.set_target_position(point - _passive_raycast.global_position)
-	if(!_passive_raycast.is_colliding()):
-		return true
-	else:
-		return false
-
 func active_has_line_of_sight_to_object(obj):
-	_active_raycast.set_target_position(obj.global_position - _active_raycast.global_position)
-	if(_active_raycast.is_colliding() && _active_raycast.get_collider() == obj):
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(global_position,obj.global_position,ray_collision_mask,[self])
+	var result = null
+	if(space_state != null):
+		result = space_state.intersect_ray(query)
+	
+	#_active_raycast.set_target_position(obj.global_position - _active_raycast.global_position)
+	if(result && result.collider == obj):
 		return true
 	else:
 		perceptions.nodes_in_vision.erase(obj)
-		return false
-
-func active_has_line_of_sight_to_point(point: Vector2):
-	_active_raycast.set_target_position(point)
-	if(!_active_raycast.is_colliding()):
-		return true
-	else:
 		return false
 
 func reactive_has_line_of_sight_to_object(obj):
+	var obj_pos = obj.global_position
 	if(obj.is_in_group("pizza")):
-		var obj_pos = obj.global_position + Vector2(0,16)
-		_reactive_raycast.set_target_position(obj_pos - _reactive_raycast.global_position)
-	else:
-		_reactive_raycast.set_target_position(obj.global_position - _reactive_raycast.global_position)
-	if(_reactive_raycast.is_colliding() && _reactive_raycast.get_collider() == obj):
+		obj_pos = obj.global_position + Vector2(0,16)
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(global_position,obj_pos,ray_reactive_collision_mask,[self])
+	var result = null
+	if(space_state != null):
+		result = space_state.intersect_ray(query)
+
+	if(result && result.collider == obj):
 		return true
 	else:
 		perceptions.nodes_in_vision.erase(obj)
@@ -559,11 +544,11 @@ func _on_advance_navigation(speed : int):
 		perceptions.nav_target_reached = true
 	#handle animation
 	_character_base.face_to_vector(current_v)
-	if(!_occluder.is_occluding):
-		_character_base.animate_sprite_by_vector(current_v, (linear_velocity.length() >= top_speed))
-		var base = 0.4
-		var remainder = 0.6
-		_character_base.set_animation_scale(base,remainder,perceptions.speed,top_speed)
+	#if(!_occluder.is_occluding):
+	_character_base.animate_sprite_by_vector(current_v, (linear_velocity.length() >= top_speed))
+	var base = 0.4
+	var remainder = 0.6
+	_character_base.set_animation_scale(base,remainder,perceptions.speed,top_speed)
 
 func _on_turn_right():
 	_character_base.turn_right()
@@ -665,17 +650,6 @@ func _on_set_ai_target(entity : Node):
 		update_line_of_sight_to_target()
 		send_perceptions()
 		perceptions.target_pos = perceptions.target_obj.global_position
-	#else:
-		##if no entity is given as target, 
-		##select random enemy mob in line of sight
-		#var mobsters = get_tree().get_nodes_in_group("mobster")
-		#perceptions.target_obj = null
-		#for mob in mobsters:
-			#if mob.is_in_group(opposing_team) && active_has_line_of_sight_to_object(mob):
-				#perceptions.target_obj = mob
-				#update_line_of_sight_to_target()
-				#send_perceptions()
-				#perceptions.target_pos = perceptions.target_obj.global_position
 
 func _on_face_ai_target_pos():
 	var vector_to_target = global_position.direction_to(perceptions.target_pos)

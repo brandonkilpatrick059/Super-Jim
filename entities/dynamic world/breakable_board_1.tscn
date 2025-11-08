@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bq80ym6is1cfi" path="res://scripts/utility/breakable.gd" id="1_y8dja"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y8dja"]
-size = Vector2(32, 8)
+size = Vector2(28, 8)
 
 [node name="BreakableBoard1" type="RigidBody2D"]
 collision_layer = 280

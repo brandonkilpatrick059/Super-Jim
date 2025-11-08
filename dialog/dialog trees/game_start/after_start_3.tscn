@@ -185,11 +185,16 @@ speaker_text = Array[String](["There's a gate we use to get around the police ba
 option_branches = [NodePath("../gate key4")]
 voice = "sine_voice"
 
-[node name="gate key4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
+[node name="gate key4" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_shkpx")]
 position = Vector2(-130, 3957)
 speaker_text = Array[String](["It's under the rail line, just follow the tracks to the left."])
 option_branches = [NodePath("../gate key5")]
 voice = "sine_voice"
+dialog_script = NodePath("unlock_kitchen_door")
+
+[node name="unlock_kitchen_door" type="Node" parent="gate key4"]
+script = ExtResource("4_juich")
+node_group = "kitchen_door"
 
 [node name="gate key5" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_shkpx")]
 position = Vector2(-130, 4162)
@@ -261,16 +266,11 @@ speaker_text = Array[String](["Double-check the address to make sure you knock o
 option_branches = [NodePath("../thats it then")]
 voice = "sine_voice"
 
-[node name="not_yet" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_shkpx")]
+[node name="not_yet" parent="." instance=ExtResource("2_shkpx")]
 position = Vector2(-193, 209)
 speaker_text = Array[String](["Well, let me know when you're ready."])
 speaker_portrait = ExtResource("3_shkpx")
 voice = "low_sine_voice"
-dialog_script = NodePath("unlock_kitchen_door")
-
-[node name="unlock_kitchen_door" type="Node" parent="not_yet"]
-script = ExtResource("4_juich")
-node_group = "kitchen_door"
 
 [node name="done" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_shkpx")]
 position = Vector2(-257, 9103)

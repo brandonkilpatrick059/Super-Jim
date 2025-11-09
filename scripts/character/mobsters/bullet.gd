@@ -9,6 +9,10 @@ var benign_spark = preload("res://effects/benign_spark.tscn")
 var speed = 185
 var velocity = Vector2.RIGHT
 var source_obj :Node
+
+var range_timer : Timer = Timer.new()
+var range_time_secs = 4
+
 @export var team = "red"
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,6 +26,10 @@ func _ready():
 			_sprite.modulate = Color(1,0,0)
 		"blu":
 			_sprite.modulate = Color(0,0,1)
+	
+	range_timer.one_shot = true
+	add_child(range_timer)
+	range_timer.start(range_time_secs)
 
 func _on_body_entered(body:Node):
 	create_spark_deadly()
@@ -56,3 +64,6 @@ func apply_velocity():
 
 func _physics_process(delta):
 	linear_velocity = velocity
+	if(range_timer.is_stopped()):
+		create_spark_deadly()
+		queue_free()

@@ -33,7 +33,7 @@ func handle_death():
 		return true
 	return false
 
-func process(_delta: float) -> void:
+func physics_process(_delta: float) -> void:
 	if(handle_sparks()):
 		return
 	elif(handle_death()):

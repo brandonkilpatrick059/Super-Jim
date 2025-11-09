@@ -98,6 +98,11 @@ var next_path_position: Vector2
 
 var offset_vector : Vector2
 
+var processing_tier = 0
+var processing_timer : Timer = Timer.new()
+var processing_timer_pad = 0
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if(!Engine.is_editor_hint()):
@@ -113,6 +118,9 @@ func _ready():
 		
 		exclaim_timer.one_shot = true
 		add_child(exclaim_timer)
+		
+		processing_timer.one_shot = true
+		add_child(processing_timer)
 		
 		#pathfinding_timer.one_shot = true
 		#add_child(pathfinding_timer)
@@ -234,11 +242,11 @@ func update_perceptions():
 	perceptions.invincible = is_invincible
 	perceptions.holding_object = holding_object
 	
-	#if(_ai_state_machine.get_state().name == mobster_states.shooting ||
-	#_ai_state_machine.get_state().name == mobster_states.strafing ||
-	#_ai_state_machine.get_state().name == mobster_states.chasing ||
-	#_ai_state_machine.get_state().name == mobster_states.enticed):
-	update_line_of_sight_to_target()
+	if(_ai_state_machine.get_state().name == mobster_states.shooting ||
+	_ai_state_machine.get_state().name == mobster_states.strafing ||
+	_ai_state_machine.get_state().name == mobster_states.chasing ||
+	_ai_state_machine.get_state().name == mobster_states.enticed):
+		update_line_of_sight_to_target()
 	
 	check_vision()
 	check_hearing()
@@ -684,6 +692,14 @@ func update_vision():
 ##############
 #PROCESS STUFF
 ##############
+
+func get_process_tier():
+	var player_ref = get_tree().get_first_node_in_group("player")
+	processing_tier = 0
+	if global_position.distance_to(player_ref.global_position) < 1000:
+		processing_tier = 2
+	if global_position.distance_to(player_ref.global_position) < 800:
+		processing_tier = 1
 
 func _process(delta):
 	if(!Engine.is_editor_hint()):

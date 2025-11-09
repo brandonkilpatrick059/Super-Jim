@@ -26,7 +26,7 @@ func _physics_process(_delta: float) -> void:
 	#if(current_stage_mark != null):
 		#set_nav_target.emit(current_stage_mark.position)
 
-func process(_delta: float) -> void:
+func physics_process(_delta: float) -> void:
 	if(current_stage_mark != null):
 		nav_target_reached = get_host_nav_target_reached()
 		if(!nav_target_reached):

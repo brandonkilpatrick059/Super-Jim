@@ -27,15 +27,28 @@ func spawn_mobs():
 	var temp_red_spawners = red_spawners.duplicate()
 	var num_red_mobs = 0
 	var num_blu_mobs = 0
+	var num_red_bandits = 0
+	var num_blu_bandits = 0
 	var current_mobs = get_tree().get_nodes_in_group("mobster")
 	for mob in current_mobs:
 		if(mob.is_in_group("red")):
 			num_red_mobs = num_red_mobs + 1
+			if(mob.is_in_group("bandit")):
+				num_red_bandits = num_red_bandits + 1
 		elif(mob.is_in_group("blu")):
 			num_blu_mobs = num_blu_mobs + 1
+			if(mob.is_in_group("bandit")):
+				num_blu_bandits = num_blu_bandits + 1
 	var iter = 0
-	print(str("Blu Mobs: ", num_blu_mobs))
-	print(str("Red Mobs: ", num_red_mobs))
+	print("=======================")
+	print(str("Total Mobs-----", current_mobs.size()))
+	print(str("Total Bandits:-", num_red_bandits + num_blu_bandits))
+	print(str("Blu Mobs:------", num_blu_mobs))
+	print(str("+Blu Bandits:--", num_blu_bandits))
+	print(str("+Blu Goons:----", num_blu_mobs - num_blu_bandits))
+	print(str("Red Mobs:------", num_red_mobs))
+	print(str("+Red Bandits:--", num_red_bandits))
+	print(str("+Red Goons:----", num_red_mobs - num_red_bandits))
 	while(iter < num_mobs_to_spawn):
 		var red_spawner = get_loneliest_spawner(temp_red_spawners)
 		var blu_spawner = get_loneliest_spawner(temp_blu_spawners)

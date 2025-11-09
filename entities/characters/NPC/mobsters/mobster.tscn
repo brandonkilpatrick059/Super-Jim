@@ -58,6 +58,7 @@ max_neighbors = 5
 time_horizon_agents = 5.0
 
 [node name="vision" type="ShapeCast2D" parent="."]
+visible = false
 self_modulate = Color(1, 1, 0, 1)
 shape = SubResource("ConvexPolygonShape2D_ldxv5")
 target_position = Vector2(0, 0)

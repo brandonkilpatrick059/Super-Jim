@@ -11,7 +11,7 @@ var timer := Timer.new()
 var disappear_time_secs = 60
 var sprite_offset_amt = 16
 
-func process(_delta: float) -> void:
+func physics_process(_delta: float) -> void:
 	if(timer.is_stopped()):
 		queue_free.emit()
 

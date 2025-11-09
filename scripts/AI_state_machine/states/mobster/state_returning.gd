@@ -47,7 +47,7 @@ func handle_death():
 		return true
 	return false
 
-func process(_delta: float) -> void:
+func physics_process(_delta: float) -> void:
 	#check for knockout
 	if(handle_sparks()):
 		return

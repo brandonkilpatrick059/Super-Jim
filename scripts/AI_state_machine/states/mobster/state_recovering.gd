@@ -7,7 +7,7 @@ signal turn_on_collision
 func _physics_process(_delta: float) -> void:
 	pass
 
-func process(_delta: float) -> void:
+func physics_process(_delta: float) -> void:
 	if(!ai_state_machine.get_perceptions().one_shot_animating):
 		turn_on_collision.emit()
 		ai_state_machine.transition_to(mobster_states.look)

@@ -21,7 +21,7 @@ func handle_sparks():
 						return true
 	return false
 
-func process(_delta: float) -> void:
+func physics_process(_delta: float) -> void:
 	handle_sparks()
 	if(timer.is_stopped()):
 		adjust_offset.emit(Vector2(0,-sprite_offset_amt))

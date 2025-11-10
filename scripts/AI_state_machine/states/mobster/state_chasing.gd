@@ -44,12 +44,7 @@ func physics_process(_delta: float) -> void:
 				return
 		
 		nav_target_reached = get_host_nav_target_reached()
-		if(!nav_target_reached):
-			if(ai_state_machine.get_perceptions().is_bandit):
-				advance_navigation.emit(bandit_speed)
-			else:
-				advance_navigation.emit(default_speed)
-		else:
+		if(nav_target_reached):
 			if(!ai_state_machine.get_perceptions().has_line_of_sight_to_target):
 				#question_bubble.emit()
 				ai_state_machine.transition_to(mobster_states.look)

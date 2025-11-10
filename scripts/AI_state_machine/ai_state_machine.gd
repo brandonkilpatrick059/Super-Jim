@@ -51,9 +51,9 @@ func _physics_process(delta: float):
 				state.physics_process(delta)
 				match tier:
 					1:
-						process_timer.start(random.randf_range(1,2))
+						process_timer.start(random.randf_range(0.5,1))
 					2:
-						process_timer.start(random.randf_range(2,4))
+						process_timer.start(random.randf_range(2,6))
 
 func transition_to(target_state_name: String, msg: Dictionary = {}):
 	var transition_node = get_node(target_state_name)

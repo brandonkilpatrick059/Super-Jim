@@ -83,6 +83,9 @@ const nav_path_resolution = 4
 const bandit_max_hit_points = 6
 const max_hit_points = 3
 var hit_points = 0
+var default_speed = 150000
+var default_chase_speed = 400000
+var bandit_chase_speed =  500000
 
 var exclaim_timer = Timer.new()
 var exclaiming = false
@@ -94,13 +97,12 @@ var held_obj : Node
 
 #var pathfinding_timer = Timer.new()
 #var pathfinding_wait = 0.5
-var next_path_position: Vector2
+var next_path_position: Vector2 = Vector2(0,0)
 
 var offset_vector : Vector2
 
 var processing_tier = 0
 var processing_timer : Timer = Timer.new()
-var processing_timer_pad = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -573,7 +575,9 @@ func _on_advance_navigation(speed : int):
 	if (!perceptions.nav_target_reached &&
 	global_position.distance_to(_navigation_agent.target_position) >= nav_target_reached_distance):
 		var current_agent_position: Vector2 = global_position
-		next_path_position  = _navigation_agent.get_next_path_position()
+		if(current_agent_position.distance_to(next_path_position) <= nav_target_reached_distance ||
+		next_path_position == Vector2(0,0)):
+			next_path_position  = _navigation_agent.get_next_path_position()
 		current_v = current_agent_position.direction_to(next_path_position) * speed
 	else:
 		current_v = perceptions.current_v * 0
@@ -704,18 +708,40 @@ func _on_face_pos(pos : Vector2):
 func update():
 	update_vision()
 	update_perceptions()
-	if(_ai_state_machine.get_state().name != mobster_states.falling &&
-	_ai_state_machine.get_state().name != mobster_states.recovering &&
-	_ai_state_machine.get_state().name != mobster_states.dead):
-		if(_ai_state_machine.get_state().name == mobster_states.chasing ||
-		_ai_state_machine.get_state().name == mobster_states.shooting ||
-		_ai_state_machine.get_state().name == mobster_states.strafing ||
-		_ai_state_machine.get_state().name == mobster_states.exclaiming):
-			handle_sparks_combat()
+	if(_ai_state_machine.get_state().name != mobster_states.dead):
+		if(!perceptions.nav_target_reached):
+			#var tier = processing_tier
+			#if(tier == 0):
+			update_navigation()
+			#elif(processing_timer.is_stopped()):
+				#update_navigation()
+				#match tier:
+					#1:
+						#processing_timer.start(randf_range(0.1,0.5))
+					#2:
+						#processing_timer.start(randf_range(0.5,1))
+		if(_ai_state_machine.get_state().name != mobster_states.falling &&
+		_ai_state_machine.get_state().name != mobster_states.recovering &&
+		_ai_state_machine.get_state().name != mobster_states.dead):
+			if(_ai_state_machine.get_state().name == mobster_states.chasing ||
+			_ai_state_machine.get_state().name == mobster_states.shooting ||
+			_ai_state_machine.get_state().name == mobster_states.strafing ||
+			_ai_state_machine.get_state().name == mobster_states.exclaiming):
+				handle_sparks_combat()
+			else:
+				handle_sparks_non_combat()
+			handle_death()
+
+func update_navigation():
+	if(_ai_state_machine.get_state().name == mobster_states.chasing ||
+	_ai_state_machine.get_state().name == mobster_states.strafing):
+		if(is_bandit):
+			_on_advance_navigation(bandit_chase_speed)
 		else:
-			handle_sparks_non_combat()
-		handle_death()
-	
+			_on_advance_navigation(default_chase_speed)
+	elif(_ai_state_machine.get_state().name == mobster_states.transit || 
+	_ai_state_machine.get_state().name == mobster_states.enticed):
+		_on_advance_navigation(default_speed)
 
 func update_vision():
 	match(_character_base.get_facing_dir()):
@@ -735,9 +761,9 @@ func update_vision():
 func get_process_tier():
 	var player_ref = get_tree().get_first_node_in_group("player")
 	processing_tier = 0
-	if global_position.distance_to(player_ref.global_position) > 800:
-		processing_tier = 1
 	if global_position.distance_to(player_ref.global_position) > 1000:
+		processing_tier = 1
+	if global_position.distance_to(player_ref.global_position) > 2000:
 		processing_tier = 2
 
 func _process(delta):

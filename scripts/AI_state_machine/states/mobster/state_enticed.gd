@@ -49,9 +49,7 @@ func physics_process(_delta: float) -> void:
 			!pizza_ref.is_picked_up() &&
 			ai_state_machine.perceptions.reactive_has_line_of_sight_to_target):
 				nav_target_reached = get_host_nav_target_reached()
-				if(!nav_target_reached):
-					advance_navigation.emit(125000)
-				else:
+				if(nav_target_reached):
 					if(!pizza_ref.is_picked_up()):
 						pick_up.emit(pizza_ref)
 						ai_state_machine.transition_to(mobster_states.returning) 

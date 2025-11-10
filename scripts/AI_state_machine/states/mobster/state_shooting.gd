@@ -71,6 +71,18 @@ func create_bullet():
 	
 	shoot.emit(bullet_spawn_point, current_arc)
 
+func handle_knockout() -> bool:
+	#knockout when player throws object
+	for node in ai_state_machine.get_perceptions().colliding_nodes:
+			if(node != null &&
+				!ai_state_machine.get_perceptions().invincible &&
+				node.is_in_group("spark") &&
+				!node.is_in_group("red") &&
+				!node.is_in_group("blu")):
+				ai_state_machine.transition_to(mobster_states.falling)
+				return true
+	return false
+
 func shoot_burst():
 	face_target.emit()
 	set_shoort_arc_bounds()
@@ -93,6 +105,9 @@ func shoot_burst():
 		timer_burst_cool_down.start(burst_cool_down_secs)	
 
 func physics_process(_delta: float) -> void:
+	if(handle_knockout()):
+		return
+	else:
 		if(!burst_cool_down):
 			shoot_burst()
 		if(timer_burst_cool_down.is_stopped() && burst_cool_down):

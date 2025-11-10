@@ -10,9 +10,24 @@ signal drop_item()
 var pause_time = 2
 var timer : Timer = Timer.new()
 
+func handle_knockout() -> bool:
+	#knockout when player throws object
+	for node in ai_state_machine.get_perceptions().colliding_nodes:
+			if(node != null &&
+				!ai_state_machine.get_perceptions().invincible &&
+				node.is_in_group("spark") &&
+				!node.is_in_group("red") &&
+				!node.is_in_group("blu")):
+				ai_state_machine.transition_to(mobster_states.falling)
+				return true
+	return false
+
 func physics_process(_delta: float) -> void:
-	if(timer.is_stopped()):
-		ai_state_machine.transition_to(mobster_states.shooting)
+	if(handle_knockout()):
+		return
+	else:
+		if(timer.is_stopped()):
+			ai_state_machine.transition_to(mobster_states.shooting)
 
 func _ready():
 	timer.one_shot = true

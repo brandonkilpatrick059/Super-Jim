@@ -18,7 +18,7 @@ size = Vector2(20, 13)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_smo0f"]
 
-[node name="player" type="RigidBody2D" groups=["player"]]
+[node name="player" type="RigidBody2D" groups=["persist", "player"]]
 y_sort_enabled = true
 material = ExtResource("1_m0gj2")
 collision_mask = 8443

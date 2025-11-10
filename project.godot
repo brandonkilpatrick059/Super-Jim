@@ -165,6 +165,7 @@ use_item={
 
 [physics]
 
+common/physics_jitter_fix=0.0
 2d/default_gravity=0.0
 2d/default_gravity_vector=Vector2(0, 0)
 2d/solver/solver_iterations=1

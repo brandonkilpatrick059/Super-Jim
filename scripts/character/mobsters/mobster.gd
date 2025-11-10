@@ -209,10 +209,6 @@ func handle_sparks_combat():
 					if(node.is_in_group(perceptions.opposing_team) &&
 					!perceptions.invincible):
 						_on_reduce_hit_points()
-				#knockout when player throws object
-				elif(!perceptions.invincible &&
-				 node.is_in_group("spark")):
-					_ai_state_machine.transition_to(mobster_states.falling)
 
 func handle_sparks_non_combat():
 	if(perceptions.colliding_nodes.size() > 0):
@@ -226,10 +222,6 @@ func handle_sparks_non_combat():
 						var assailant_obj = node.get_source_obj()
 						_on_set_ai_target(assailant_obj)
 						_ai_state_machine.transition_to(mobster_states.exclaiming)
-				#knockout when player throws object
-				elif(!perceptions.invincible &&
-				 node.is_in_group("spark")):
-					_ai_state_machine.transition_to(mobster_states.falling)
 
 func handle_death():
 	if(perceptions.hit_points <= 0):
@@ -258,6 +250,15 @@ func update_line_of_sight_to_target():
 				perceptions.reactive_has_line_of_sight_to_target = true
 			else:
 				perceptions.reactive_has_line_of_sight_to_target = false
+
+func check_falling():
+	if(perceptions.one_shot_animating):
+		if(perceptions.hit_points > 0):
+			_on_play_sound("res://audio/soundFX/smallCollide.wav")
+			_ai_state_machine.transition_to(mobster_states.knockedout)
+		else:
+			_on_play_sound("res://audio/soundFX/smallCollide.wav")
+			_ai_state_machine.transition_to(mobster_states.dead)
 
 func initiate_perceptions():
 	perceptions.current_v = current_v
@@ -294,7 +295,6 @@ func update_perceptions():
 	if(perceptions.one_shot_animating &&
 	_character_base.get_base_current_frame() == _character_base.get_base_animation_framecount() - 1):
 		perceptions.one_shot_animating = false
-
 
 func _on_body_entered(body: Node):
 	perceptions.colliding_nodes.append(body)
@@ -479,6 +479,10 @@ func _on_put_down():
 	if(holding_object):
 		sound_player.stream = put_down_sound
 		sound_player.play()
+		if(held_obj.is_in_group("pizza")):
+			held_obj.put_down(direction.get_opposite(_character_base.get_facing_dir()),Vector2(0,-16))
+		else:
+			held_obj.put_down(direction.get_opposite(_character_base.get_facing_dir()))
 		held_obj.put_down(direction.get_opposite(_character_base.get_facing_dir()))
 		held_obj = null
 		set_holding_object(false)
@@ -706,31 +710,32 @@ func _on_face_pos(pos : Vector2):
 ##########################################################################################
 
 func update():
-	update_vision()
-	update_perceptions()
 	if(_ai_state_machine.get_state().name != mobster_states.dead):
-		if(!perceptions.nav_target_reached):
-			#var tier = processing_tier
-			#if(tier == 0):
-			update_navigation()
-			#elif(processing_timer.is_stopped()):
-				#update_navigation()
-				#match tier:
-					#1:
-						#processing_timer.start(randf_range(0.1,0.5))
-					#2:
-						#processing_timer.start(randf_range(0.5,1))
-		if(_ai_state_machine.get_state().name != mobster_states.falling &&
-		_ai_state_machine.get_state().name != mobster_states.recovering &&
-		_ai_state_machine.get_state().name != mobster_states.dead):
-			if(_ai_state_machine.get_state().name == mobster_states.chasing ||
-			_ai_state_machine.get_state().name == mobster_states.shooting ||
-			_ai_state_machine.get_state().name == mobster_states.strafing ||
-			_ai_state_machine.get_state().name == mobster_states.exclaiming):
-				handle_sparks_combat()
-			else:
-				handle_sparks_non_combat()
-			handle_death()
+		update_vision()
+		update_perceptions()
+		if(_ai_state_machine.get_state().name != mobster_states.dead):
+			if(!perceptions.nav_target_reached):
+				#var tier = processing_tier
+				#if(tier == 0):
+				update_navigation()
+				#elif(processing_timer.is_stopped()):
+					#update_navigation()
+					#match tier:
+						#1:
+							#processing_timer.start(randf_range(0.1,0.5))
+						#2:
+							#processing_timer.start(randf_range(0.5,1))
+			if(_ai_state_machine.get_state().name != mobster_states.falling &&
+			_ai_state_machine.get_state().name != mobster_states.recovering &&
+			_ai_state_machine.get_state().name != mobster_states.dead):
+				if(_ai_state_machine.get_state().name == mobster_states.chasing ||
+				_ai_state_machine.get_state().name == mobster_states.shooting ||
+				_ai_state_machine.get_state().name == mobster_states.strafing ||
+				_ai_state_machine.get_state().name == mobster_states.exclaiming):
+					handle_sparks_combat()
+				else:
+					handle_sparks_non_combat()
+				handle_death()
 
 func update_navigation():
 	if(_ai_state_machine.get_state().name == mobster_states.chasing ||

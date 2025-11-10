@@ -63,7 +63,7 @@ var control_frozen = false
 var current_v = Vector2(0,0)
 
 const full_max_hp = 6
-const max_hp = 2
+var max_hp = 2
 var current_hp = 2
 var is_invincible = false
 var invincibility_timer := Timer.new()
@@ -120,6 +120,36 @@ func _ready():
 	
 	if(Engine.is_editor_hint()):
 		queue_redraw()
+
+func get_save_dictionary() -> Dictionary:
+	var save_dictionary = {
+		"pos_x" : global_position.x,
+		"pos_y" : global_position.y,
+		"max_hp" : max_hp, 
+		"full_dash_secs" : full_dash_secs,
+		"money" : money,
+		"banked_money" : banked_money,
+		"base_spriteframes" : base_spriteframes.resource_path,
+		"hat_spriteframes" : hat_spriteframes.resource_path,
+		"top_spriteframes" : top_spriteframes.resource_path,
+		"bottom_spriteframes" : bottom_spriteframes.resource_path
+	}
+	return save_dictionary
+
+func load_from_dictionary(load_dictionary : Dictionary):
+	global_position = Vector2(load_dictionary.get("pos_x"), load_dictionary.get("pos_y"))
+	max_hp = load_dictionary.get("max_hp")
+	full_dash_secs = load_dictionary.get("full_dash_secs")
+	money = load_dictionary.get("money")
+	banked_money = load_dictionary.get("banked_money")
+	base_spriteframes = load(load_dictionary.get("base_spriteframes"))
+	hat_spriteframes = load(load_dictionary.get("hat_spriteframes"))
+	top_spriteframes = load(load_dictionary.get("top_spriteframes"))
+	bottom_spriteframes = load(load_dictionary.get("bottom_spriteframes"))
+	_character_base.set_spriteframes(base_spriteframes,
+		hat_spriteframes,
+		top_spriteframes,
+		bottom_spriteframes)
 
 func get_hat_spriteframes() -> SpriteFrames:
 	return hat_spriteframes
@@ -183,7 +213,6 @@ func turn_light_on():
 	light_on = true
 	if(has_flashlight && camera_connected):
 		_camera.turn_on_flashlight()
-
 
 func turn_light_off():
 	light_on = false
@@ -487,9 +516,11 @@ func throw():
 func put_down():
 	sound_player.stream = putdown_sound
 	sound_player.play()
-	grabbed_object.put_down(_character_base.get_facing_dir(),Vector2(0,-16))
 	if(grabbed_object.is_in_group("pizza")):
+		grabbed_object.put_down(_character_base.get_facing_dir(),Vector2(0,-16))
 		self.remove_from_group("courier")
+	else:
+		grabbed_object.put_down(_character_base.get_facing_dir())
 	grabbed_object = null
 	set_holding_object(false)
 	

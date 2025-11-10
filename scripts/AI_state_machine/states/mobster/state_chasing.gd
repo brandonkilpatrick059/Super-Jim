@@ -44,7 +44,8 @@ func physics_process(_delta: float) -> void:
 		for node in nodes_in_vision:
 			#mobster takes priority over player
 			if(ai_state_machine.get_perceptions().target_obj != null && 
-			ai_state_machine.get_perceptions().target_obj.is_in_group("courier") && 
+			ai_state_machine.get_perceptions().target_obj.is_in_group("courier") &&
+			node != null && 
 			node.is_in_group("mobster") &&
 			node.is_in_group(ai_state_machine.get_perceptions().opposing_team) &&
 			 node != ai_state_machine.get_perceptions().target_obj &&

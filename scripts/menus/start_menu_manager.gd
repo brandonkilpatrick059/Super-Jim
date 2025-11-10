@@ -80,6 +80,32 @@ func handle_input():
 			set_labels_alpha(menu_alpha)
 			return
 
+func load_settings():
+	if(FileAccess.file_exists("user://settings.save")):
+		var settings_file = FileAccess.open("user://settings.save", FileAccess.READ)
+		var settings_string = settings_file.get_line()
+		var settings : Dictionary = JSON.parse_string(settings_string)
+		SettingsVariables.resolution_index = settings.get("resolution_index")
+		SettingsVariables.lighting_index = settings.get("lighting_index")
+		SettingsVariables.full_screen = settings.get("full_screen")
+		SettingsVariables.lock_framerate_index = settings.get("lock_framerate_index")
+		get_viewport().content_scale_size = SettingsVariables.supported_resolutions[SettingsVariables.resolution_index]
+		if(SettingsVariables.full_screen):
+			get_viewport().mode = 4 #fullscreen
+		else:
+			get_viewport().mode = 2 #maximized 
+		match SettingsVariables.lock_framerate_index:
+			0:
+				Engine.max_fps = 0
+			1:
+				Engine.max_fps = 30
+			2:
+				Engine.max_fps = 40
+			3:
+				Engine.max_fps = 50
+			4:
+				Engine.max_fps = 60
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer.one_shot = true
@@ -94,6 +120,7 @@ func _ready():
 	var bus_headroom = 6
 	AudioServer.set_bus_volume_db(1, -bus_headroom) #set music headroom
 	AudioServer.set_bus_volume_db(2, -bus_headroom) #set effects headroom
+	load_settings()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

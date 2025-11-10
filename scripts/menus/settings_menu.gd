@@ -41,6 +41,21 @@ func update_selection():
 			labels[iterator].modulate = Color(1,1,1,1)
 		iterator+=1
 
+func get_settings_dictionary() -> Dictionary:
+	var settings_dictionary = {
+		"lighting_index" = SettingsVariables.lighting_index,
+		"resolution_index" = SettingsVariables.resolution_index,
+		"full_screen" = SettingsVariables.full_screen,
+		"lock_framerate_index" = SettingsVariables.lock_framerate_index
+	}
+	return settings_dictionary
+
+func save_settings():
+	var settings : Dictionary = get_settings_dictionary()
+	var settings_file : FileAccess = FileAccess.open("user://settings.save", FileAccess.WRITE)
+	settings_file.store_line(JSON.stringify(settings))
+	settings_file.close()
+
 func handle_selection():
 	if(select_index == 0): #audio
 		var child_settings_menu = audio_settings_menu.instantiate()
@@ -51,6 +66,7 @@ func handle_selection():
 		active_child_menu = child_settings_menu
 		get_parent().add_child(child_settings_menu)
 	elif(select_index == 2): #back
+		save_settings()
 		queue_free()
 		
 func handle_input():

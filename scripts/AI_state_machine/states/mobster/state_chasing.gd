@@ -23,13 +23,13 @@ func get_host_nav_target_reached():
 	return ai_state_machine.get_perceptions().nav_target_reached
 
 func physics_process(_delta: float) -> void:
-		#mobster takes priority over player
 		var player = get_tree().get_first_node_in_group("courier")
 		var nodes_in_vision = ai_state_machine.get_perceptions().nodes_in_vision
 		var nodes_in_hearing = ai_state_machine.get_perceptions().nodes_in_hearing
 		for node in nodes_in_vision:
+			#mobster takes priority over player
 			if(ai_state_machine.get_perceptions().target_obj != null && 
-			ai_state_machine.get_perceptions().target_obj.is_in_group("player") && 
+			ai_state_machine.get_perceptions().target_obj.is_in_group("courier") && 
 			node.is_in_group("mobster") &&
 			node.is_in_group(ai_state_machine.get_perceptions().opposing_team) &&
 			 node != ai_state_machine.get_perceptions().target_obj &&
@@ -38,22 +38,21 @@ func physics_process(_delta: float) -> void:
 				if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
 					ai_state_machine.transition_to(mobster_states.exclaiming)
 					return
-		if(ai_state_machine.get_perceptions().target_obj != null &&
-		!ai_state_machine.get_perceptions().target_obj.is_in_group("courier") &&
-			nodes_in_vision.has(player)):
-			set_target.emit(player)
-			if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
-				ai_state_machine.transition_to(mobster_states.exclaiming)
-				return
+			elif(ai_state_machine.get_perceptions().target_obj != null &&
+			!ai_state_machine.get_perceptions().target_obj.is_in_group("courier") &&
+				node.is_in_group("courier")):
+				set_target.emit(player)
+				if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
+					ai_state_machine.transition_to(mobster_states.exclaiming)
+					return
 		
 		nav_target_reached = get_host_nav_target_reached()
 		if(nav_target_reached):
 			if(!ai_state_machine.get_perceptions().has_line_of_sight_to_target):
-				#question_bubble.emit()
 				ai_state_machine.transition_to(mobster_states.look)
 				return
-		if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
-			ai_state_machine.transition_to(mobster_states.strafing)
+			else:
+				ai_state_machine.transition_to(mobster_states.strafing)
 
 func enter(_msg := {}) -> void:
 	var last_seen_pos = ai_state_machine.get_perceptions().target_pos

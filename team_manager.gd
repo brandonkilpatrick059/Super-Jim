@@ -30,7 +30,18 @@ func spawn_mobs():
 	var num_red_bandits = 0
 	var num_blu_bandits = 0
 	var current_mobs = get_tree().get_nodes_in_group("mobster")
+	var num_tier_0 = 0
+	var num_tier_1 = 0
+	var num_tier_2 = 0
 	for mob in current_mobs:
+		var tier = mob.check_process_tier()
+		match tier:
+			0:
+				num_tier_0 = num_tier_0 + 1
+			1:
+				num_tier_1 = num_tier_1 + 1
+			2:
+				num_tier_2 = num_tier_2 + 1
 		if(mob.is_in_group("red")):
 			num_red_mobs = num_red_mobs + 1
 			if(mob.is_in_group("bandit")):
@@ -44,11 +55,15 @@ func spawn_mobs():
 	print(str("Total Mobs-----", current_mobs.size()))
 	print(str("Total Bandits:-", num_red_bandits + num_blu_bandits))
 	print(str("Blu Mobs:------", num_blu_mobs))
-	print(str("+Blu Bandits:--", num_blu_bandits))
-	print(str("+Blu Goons:----", num_blu_mobs - num_blu_bandits))
+	print(str("+Bandits:------", num_blu_bandits))
+	print(str("+Goons:--------", num_blu_mobs - num_blu_bandits))
 	print(str("Red Mobs:------", num_red_mobs))
-	print(str("+Red Bandits:--", num_red_bandits))
-	print(str("+Red Goons:----", num_red_mobs - num_red_bandits))
+	print(str("+Bandits:------", num_red_bandits))
+	print(str("+Goons:--------", num_red_mobs - num_red_bandits))
+	print(str("PROCESSING:"))
+	print(str("T1: ", num_tier_0))
+	print(str("T2: ", num_tier_1))
+	print(str("T3: ", num_tier_2))
 	while(iter < num_mobs_to_spawn):
 		var red_spawner = get_loneliest_spawner(temp_red_spawners)
 		var blu_spawner = get_loneliest_spawner(temp_blu_spawners)

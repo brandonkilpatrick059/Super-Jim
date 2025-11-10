@@ -758,6 +758,9 @@ func update_vision():
 #PROCESS STUFF
 ##############
 
+func check_process_tier():
+	return processing_tier
+
 func get_process_tier():
 	var player_ref = get_tree().get_first_node_in_group("player")
 	processing_tier = 0

@@ -8,9 +8,6 @@ var timer := Timer.new()
 var knocked_out_time_secs = 10
 var sprite_offset_amt = 16
 
-func _physics_process(_delta: float) -> void:
-	pass
-
 func handle_sparks():
 	if(ai_state_machine.get_perceptions().colliding_nodes.size() > 0):
 		for node in ai_state_machine.get_perceptions().colliding_nodes:

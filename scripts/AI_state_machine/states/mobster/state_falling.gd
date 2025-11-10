@@ -7,9 +7,6 @@ signal turn_off_collision
 signal play_sound(resource_name : String)
 signal drop_item()
 
-func _physics_process(_delta: float) -> void:
-	pass
-
 func physics_process(_delta: float) -> void:
 	if(!ai_state_machine.get_perceptions().one_shot_animating):
 		if(ai_state_machine.get_perceptions().hit_points > 0):

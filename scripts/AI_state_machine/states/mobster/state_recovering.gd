@@ -4,9 +4,6 @@ extends State
 signal one_shot_animate(animation : String)
 signal turn_on_collision
 
-func _physics_process(_delta: float) -> void:
-	pass
-
 func physics_process(_delta: float) -> void:
 	if(!ai_state_machine.get_perceptions().one_shot_animating):
 		turn_on_collision.emit()

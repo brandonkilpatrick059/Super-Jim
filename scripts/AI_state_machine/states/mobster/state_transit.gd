@@ -23,9 +23,6 @@ func get_host_position():
 func get_host_nav_target_reached():
 	return ai_state_machine.get_perceptions().nav_target_reached
 
-func _physics_process(_delta: float) -> void:
-	pass
-
 func handle_sparks():
 	if(ai_state_machine.get_perceptions().colliding_nodes.size() > 0):
 		for node in ai_state_machine.get_perceptions().colliding_nodes:

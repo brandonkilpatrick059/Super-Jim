@@ -113,9 +113,6 @@ func handle_death():
 		return true
 	return false
 
-func _physics_process(_delta: float) -> void:
-	pass
-
 func physics_process(_delta: float) -> void:
 	#check for enemy bullet collisions
 	if(handle_sparks()):

@@ -242,11 +242,12 @@ func update_perceptions():
 	perceptions.invincible = is_invincible
 	perceptions.holding_object = holding_object
 	
-	if(_ai_state_machine.get_state().name == mobster_states.shooting ||
-	_ai_state_machine.get_state().name == mobster_states.strafing ||
-	_ai_state_machine.get_state().name == mobster_states.chasing ||
-	_ai_state_machine.get_state().name == mobster_states.enticed):
-		update_line_of_sight_to_target()
+	if(_ai_state_machine != null):
+		if(_ai_state_machine.get_state().name == mobster_states.shooting ||
+		_ai_state_machine.get_state().name == mobster_states.strafing ||
+		_ai_state_machine.get_state().name == mobster_states.chasing ||
+		_ai_state_machine.get_state().name == mobster_states.enticed):
+			update_line_of_sight_to_target()
 	
 	check_vision()
 	check_hearing()
@@ -688,16 +689,15 @@ func update_vision():
 func get_process_tier():
 	var player_ref = get_tree().get_first_node_in_group("player")
 	processing_tier = 0
-	if global_position.distance_to(player_ref.global_position) < 1000:
-		processing_tier = 2
-	if global_position.distance_to(player_ref.global_position) < 800:
+	if global_position.distance_to(player_ref.global_position) > 800:
 		processing_tier = 1
+	if global_position.distance_to(player_ref.global_position) > 1000:
+		processing_tier = 2
 
 func _process(delta):
 	if(!Engine.is_editor_hint()):
-		pass
-		#update()
-		#send_perceptions()
+		get_process_tier()
+		_ai_state_machine.set_process_tier(processing_tier)
 
 func _physics_process(delta):
 	if(!Engine.is_editor_hint()):

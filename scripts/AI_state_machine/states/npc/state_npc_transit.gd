@@ -18,9 +18,6 @@ func get_host_position():
 func get_host_nav_target_reached():
 	return ai_state_machine.get_perceptions().nav_target_reached
 
-func _physics_process(_delta: float) -> void:
-	pass
-
 #func get_stage_mark():
 	#current_stage_mark = ai_state_machine.get_perceptions().current_stage_mark
 	#if(current_stage_mark != null):

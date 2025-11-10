@@ -12,9 +12,6 @@ const num_turns = 4
 var current_num_turns = 0
 var timer = Timer.new()
 
-func _physics_process(_delta: float) -> void:
-	pass
-
 func handle_sparks():
 	if(ai_state_machine.get_perceptions().colliding_nodes.size() > 0):
 		for node in ai_state_machine.get_perceptions().colliding_nodes:

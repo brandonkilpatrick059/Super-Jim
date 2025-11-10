@@ -9,6 +9,13 @@ signal transitioned(state_name)
 @onready var state: State = get_node(initial_state)
 
 var perceptions : Perceptions = Perceptions.new()
+var random : RandomNumberGenerator = RandomNumberGenerator.new()
+
+var process_tier = 0
+var process_timer : Timer = Timer.new()
+
+func set_process_tier(tier : int):
+	process_tier = tier
 
 func _ready():
 	# The state machine assigns itself to the State objects' state_machine property.
@@ -16,6 +23,9 @@ func _ready():
 		child.ai_state_machine = self
 	if(state != null):
 		state.enter()
+		
+	process_timer.one_shot = true
+	add_child(process_timer)
 
 func get_state () -> State:
 	return state
@@ -25,16 +35,25 @@ func get_perceptions():
 
 func receive_perceptions(host_perceptions: Perceptions):
 		perceptions = host_perceptions
-
-func _process(delta: float):
-	if(!Engine.is_editor_hint()):
-		if(state != null):
-			state.process(delta)
+#
+#func _process(delta: float):
+	#if(!Engine.is_editor_hint()):
+		#if(state != null):
+			#state.process(delta)
 
 func _physics_process(delta: float):
+	var tier = 2
 	if(!Engine.is_editor_hint()):
 		if(state != null):
-			state.physics_process(delta)
+			if(tier == 0):
+				state.physics_process(delta)
+			elif(process_timer.is_stopped()):
+				state.physics_process(delta)
+				match tier:
+					1:
+						process_timer.start(random.randf_range(1,2))
+					2:
+						process_timer.start(random.randf_range(2,4))
 
 func transition_to(target_state_name: String, msg: Dictionary = {}):
 	var transition_node = get_node(target_state_name)

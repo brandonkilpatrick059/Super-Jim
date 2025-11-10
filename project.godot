@@ -165,12 +165,11 @@ use_item={
 
 [physics]
 
-common/physics_ticks_per_second=30
-common/physics_jitter_fix=0.0
+2d/run_on_separate_thread=true
 2d/default_gravity=0.0
 2d/default_gravity_vector=Vector2(0, 0)
 2d/solver/solver_iterations=1
-common/physics_interpolation=true
+common/enable_object_picking=false
 
 [rendering]
 

@@ -3,8 +3,8 @@ extends Node2D
 
 var mobster = preload("res://entities/characters/NPC/mobsters/mobster.tscn")
 
-var max_mobs_per_team = 24
-
+var max_mobs_per_team = 40
+var max_bandits_per_team = 10
 var spawns_since_bandit = 0
 var spawns_until_bandit = 3
 var friendly_check_timer = Timer.new()
@@ -53,16 +53,20 @@ func check_nearby_friendlies():
 
 func spawn_mob():
 	var num_team_mobs = 0
+	var num_team_bandits = 0
 	var current_mobs = get_tree().get_nodes_in_group("mobster")
 	for mob in current_mobs:
 		if(mob.is_in_group(spawner_team)):
 			num_team_mobs = num_team_mobs + 1
+			if(mob.is_in_group("bandit")):
+				num_team_bandits = num_team_bandits +1
 	if(num_team_mobs < max_mobs_per_team):
 		var new_mob = mobster.instantiate()
 		new_mob.set_team(spawner_team)
 		spawns_since_bandit = spawns_since_bandit + 1
 		ysort_node.add_child(new_mob)
-		if(spawns_since_bandit > spawns_until_bandit):
+		if(spawns_since_bandit > spawns_until_bandit &&
+		num_team_bandits + 1 < max_bandits_per_team):
 			new_mob.make_bandit()
 			spawns_since_bandit = 0
 		new_mob.global_position = global_position

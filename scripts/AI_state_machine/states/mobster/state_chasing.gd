@@ -40,7 +40,8 @@ func physics_process(_delta: float) -> void:
 					return
 			elif(ai_state_machine.get_perceptions().target_obj != null &&
 			!ai_state_machine.get_perceptions().target_obj.is_in_group("courier") &&
-				node.is_in_group("courier")):
+			node != null &&
+			node.is_in_group("courier")):
 				set_target.emit(player)
 				if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
 					ai_state_machine.transition_to(mobster_states.exclaiming)

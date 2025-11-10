@@ -35,11 +35,6 @@ func get_perceptions():
 
 func receive_perceptions(host_perceptions: Perceptions):
 		perceptions = host_perceptions
-#
-#func _process(delta: float):
-	#if(!Engine.is_editor_hint()):
-		#if(state != null):
-			#state.process(delta)
 
 func _physics_process(delta: float):
 	var tier = process_tier

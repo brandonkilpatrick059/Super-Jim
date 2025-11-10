@@ -35,15 +35,6 @@ label_settings = SubResource("LabelSettings_0j45f")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="integer_scaling" type="Label" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "INTEGER SCALING:
-ON
-"
-label_settings = SubResource("LabelSettings_0j45f")
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
 [node name="full_screen" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "FULL SCREEN:
@@ -58,6 +49,14 @@ layout_mode = 2
 text = "LIGHTING QUALITY:
 LOW
 "
+label_settings = SubResource("LabelSettings_0j45f")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="lock_framerate" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "LOCK FRAMERATE:
+OFF"
 label_settings = SubResource("LabelSettings_0j45f")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true

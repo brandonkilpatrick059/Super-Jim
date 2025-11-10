@@ -31,8 +31,8 @@ func physics_process(_delta: float) -> void:
 		var pizza = get_tree().get_first_node_in_group("pizza")
 		for node in nodes_in_vision:
 			if(node != null):
-				if(node.is_in_group(ai_state_machine.get_perceptions().opposing_team) &&
-				node.is_in_group("mobster")):
+				if(node.is_in_group("mobster") &&
+				node.is_in_group(ai_state_machine.get_perceptions().opposing_team)):
 					set_target.emit(node)
 					if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
 						ai_state_machine.transition_to(mobster_states.exclaiming)
@@ -44,8 +44,8 @@ func physics_process(_delta: float) -> void:
 						ai_state_machine.transition_to(mobster_states.exclaiming)
 						return
 				elif(pizza != null &&
-				node.is_in_group("pizza") && 
 				!ai_state_machine.perceptions.holding_object &&
+				node.is_in_group("pizza") && 
 				!pizza.is_picked_up()):
 					set_target.emit(node)
 					if(ai_state_machine.get_perceptions().reactive_has_line_of_sight_to_target):
@@ -88,7 +88,6 @@ func current_point_to_closest_capture_point():
 				current_patrol_point = capture_point
 	if(current_patrol_point == null):
 		current_point_to_closest_point()
-	
 
 func current_point_to_closest_point():
 	var patrol_points = get_tree().get_nodes_in_group("patrol_point")
@@ -99,13 +98,7 @@ func current_point_to_closest_point():
 		if(distance_to_other_point < distance_to_current_point):
 			current_patrol_point = patrol_point
 
-
 func enter(_msg := {}) -> void:		
-	#call_to_arms_timer = Timer.new()
-	#call_to_arms_timer.one_shot = true
-	#add_child(call_to_arms_timer)
-	#call_to_arms_timer.start(call_to_arms_freq_secs)
-
 	if(ai_state_machine.get_perceptions().is_bandit):
 		current_point_to_closest_capture_point()
 	else:

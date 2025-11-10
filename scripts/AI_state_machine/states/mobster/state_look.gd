@@ -53,17 +53,6 @@ func physics_process(_delta: float):
 							ai_state_machine.transition_to(mobster_states.exclaiming)
 							return
 			ai_state_machine.transition_to(mobster_states.investigate)
-		#check hearing
-		elif(nodes_in_hearing.size() > 0):
-			for node in nodes_in_hearing:
-				if(node.is_in_group("exclaim")):
-					var source_obj = node.get_source_obj()
-					if(source_obj != null && 
-					source_obj.is_in_group(ai_state_machine.get_perceptions().opposing_team)):
-						set_target.emit(source_obj)
-						ai_state_machine.transition_to(mobster_states.exclaiming)
-						return
-			ai_state_machine.transition_to(mobster_states.investigate)
 		#look state code
 		elif(timer.is_stopped()):
 			if(current_num_turns < num_turns):

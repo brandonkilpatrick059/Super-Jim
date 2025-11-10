@@ -198,6 +198,41 @@ func set_up_mobster_team():
 #PERCEPTIONS- functions which deal with the mobster's perceptions
 #################################################################
 
+func handle_sparks_combat():
+	if(perceptions.colliding_nodes.size() > 0):
+		for node in perceptions.colliding_nodes:
+			if(is_instance_valid(node)):
+				if(node.is_in_group("bullet_spark")):
+					#take damage when hit with bullet
+					if(node.is_in_group(perceptions.opposing_team) &&
+					!perceptions.invincible):
+						_on_reduce_hit_points()
+				#knockout when player throws object
+				elif(!perceptions.invincible &&
+				 node.is_in_group("spark")):
+					_ai_state_machine.transition_to(mobster_states.falling)
+
+func handle_sparks_non_combat():
+	if(perceptions.colliding_nodes.size() > 0):
+		for node in perceptions.colliding_nodes:
+			if(is_instance_valid(node)):
+				if(node.is_in_group("bullet_spark")):
+					#take damage when hit with bullet
+					if(node.is_in_group(perceptions.opposing_team) &&
+					!perceptions.invincible):
+						_on_reduce_hit_points()
+						var assailant_obj = node.get_source_obj()
+						_on_set_ai_target(assailant_obj)
+						_ai_state_machine.transition_to(mobster_states.exclaiming)
+				#knockout when player throws object
+				elif(!perceptions.invincible &&
+				 node.is_in_group("spark")):
+					_ai_state_machine.transition_to(mobster_states.falling)
+
+func handle_death():
+	if(perceptions.hit_points <= 0):
+		_ai_state_machine.transition_to(mobster_states.falling)
+
 func send_perceptions():
 	if(_ai_state_machine != null):
 		_ai_state_machine.receive_perceptions(perceptions)
@@ -669,6 +704,17 @@ func _on_face_pos(pos : Vector2):
 func update():
 	update_vision()
 	update_perceptions()
+	if(_ai_state_machine.get_state().name != mobster_states.falling &&
+	_ai_state_machine.get_state().name != mobster_states.recovering &&
+	_ai_state_machine.get_state().name != mobster_states.dead):
+		if(_ai_state_machine.get_state().name == mobster_states.chasing ||
+		_ai_state_machine.get_state().name == mobster_states.shooting ||
+		_ai_state_machine.get_state().name == mobster_states.strafing ||
+		_ai_state_machine.get_state().name == mobster_states.exclaiming):
+			handle_sparks_combat()
+		else:
+			handle_sparks_non_combat()
+		handle_death()
 	
 
 func update_vision():

@@ -42,7 +42,7 @@ func receive_perceptions(host_perceptions: Perceptions):
 			#state.process(delta)
 
 func _physics_process(delta: float):
-	var tier = 2
+	var tier = process_tier
 	if(!Engine.is_editor_hint()):
 		if(state != null):
 			if(tier == 0):

@@ -18,35 +18,7 @@ func get_host_position():
 func get_host_nav_target_reached():
 	return ai_state_machine.get_perceptions().nav_target_reached
 
-func handle_sparks():
-	if(ai_state_machine.get_perceptions().colliding_nodes.size() > 0):
-		for node in ai_state_machine.get_perceptions().colliding_nodes:
-			if(is_instance_valid(node) && node.is_in_group("bullet_spark")):
-				#take damage when hit with bullet
-				if(node.is_in_group(ai_state_machine.get_perceptions().opposing_team) &&
-				!ai_state_machine.get_perceptions().invincible):
-					reduce_health.emit()
-					return true
-				#knockout when player throws object
-			elif(node != null && !ai_state_machine.get_perceptions().invincible &&
-			 node.is_in_group("spark")):
-				ai_state_machine.transition_to(mobster_states.falling)
-				return true
-	return false
-
-func handle_death():
-	if(ai_state_machine.get_perceptions().hit_points <= 0):
-		ai_state_machine.transition_to(mobster_states.falling)
-		return true
-	return false
-
 func physics_process(_delta: float) -> void:
-	#check for knockout
-	if(handle_sparks()):
-		return
-	if(handle_death()):
-		return
-	else:
 		#mobster takes priority over player
 		if(ai_state_machine.get_perceptions().target_obj != null &&
 		ai_state_machine.get_perceptions().target_obj.is_in_group("courier")):

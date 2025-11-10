@@ -251,14 +251,6 @@ func update_perceptions():
 	check_vision()
 	check_hearing()
 	detect_sparks()
-
-	#clean out null nodes from sparks queue-freeing
-	var iter = 0
-	while iter < len(perceptions.colliding_nodes):
-		if not is_instance_valid(perceptions.colliding_nodes[iter]):
-			perceptions.colliding_nodes.remove_at(iter)
-		else:
-			iter += 1
 	
 	#check if currently playing one-shot animation has ended
 	if(perceptions.one_shot_animating &&

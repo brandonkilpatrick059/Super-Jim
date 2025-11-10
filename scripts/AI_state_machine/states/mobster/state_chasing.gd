@@ -28,8 +28,11 @@ func physics_process(_delta: float) -> void:
 		var nodes_in_vision = ai_state_machine.get_perceptions().nodes_in_vision
 		var nodes_in_hearing = ai_state_machine.get_perceptions().nodes_in_hearing
 		for node in nodes_in_vision:
-			if(node != null && node.is_in_group(ai_state_machine.get_perceptions().opposing_team) &&
-			node.is_in_group("mobster") && node != ai_state_machine.get_perceptions().target_obj &&
+			if(ai_state_machine.get_perceptions().target_obj != null && 
+			ai_state_machine.get_perceptions().target_obj.is_in_group("player") && 
+			node.is_in_group("mobster") &&
+			node.is_in_group(ai_state_machine.get_perceptions().opposing_team) &&
+			 node != ai_state_machine.get_perceptions().target_obj &&
 			!ai_state_machine.get_perceptions().has_line_of_sight_to_target):
 				set_target.emit(node)
 				if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
@@ -49,7 +52,6 @@ func physics_process(_delta: float) -> void:
 				#question_bubble.emit()
 				ai_state_machine.transition_to(mobster_states.look)
 				return
-				
 		if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
 			ai_state_machine.transition_to(mobster_states.strafing)
 

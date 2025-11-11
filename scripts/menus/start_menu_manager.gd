@@ -94,7 +94,7 @@ func load_settings():
 			get_viewport().mode = 4 #fullscreen
 		else:
 			get_viewport().mode = 2 #maximized 
-		match SettingsVariables.lock_framerate_index:
+		match int(SettingsVariables.lock_framerate_index):
 			0:
 				Engine.max_fps = 0
 			1:

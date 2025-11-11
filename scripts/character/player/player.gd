@@ -662,8 +662,6 @@ func _physics_process(delta):
 				else:
 					current_dash_secs = max_dash_secs
 					dash_regen_secs = 0
-				
-			
 			if(speech_instance != null &&
 			speech_instance.full_text_displayed):
 				if(!comment_waiting):

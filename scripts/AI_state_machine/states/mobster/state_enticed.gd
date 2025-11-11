@@ -40,17 +40,14 @@ func physics_process(_delta: float) -> void:
 		var nodes_in_vision = ai_state_machine.get_perceptions().nodes_in_vision
 		var nodes_in_hearing = ai_state_machine.get_perceptions().nodes_in_hearing
 		for node in nodes_in_vision:
-			if(node != null && node.is_in_group(ai_state_machine.get_perceptions().opposing_team) &&
-			node.is_in_group("mobster")):
-				set_target.emit(node)
-				if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
-					ai_state_machine.transition_to(mobster_states.exclaiming)
-					return
-		if(nodes_in_vision.has(player)):
-			set_target.emit(player)
-			if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
-				ai_state_machine.transition_to(mobster_states.exclaiming)
-		elif(nodes_in_hearing.size() > 0):
+			if(node != null):
+				if(node.is_in_group(ai_state_machine.get_perceptions().opposing_team) &&
+					node.is_in_group("mobster") || node.is_in_group("courier")):
+						set_target.emit(node)
+						if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
+							ai_state_machine.transition_to(mobster_states.exclaiming)
+							return
+		if(nodes_in_hearing.size() > 0):
 			for node in nodes_in_hearing:
 				if(node.is_in_group("exclaim")):
 					var source_obj = node.get_source_obj()
@@ -60,14 +57,25 @@ func physics_process(_delta: float) -> void:
 						return
 		#enticed code
 		else:
-			if(pizza_ref != null && 
+			var player_ref = get_tree().get_first_node_in_group("player")
+			var player_distance_to_pizza = player_ref.global_position.distance_to(pizza_ref.global_position)
+			if(player_distance_to_pizza < 32):
+				set_target.emit(player_ref)
+				ai_state_machine.transition_to(mobster_states.exclaiming)
+			elif(pizza_ref != null && 
 			!pizza_ref.is_picked_up() &&
 			ai_state_machine.perceptions.reactive_has_line_of_sight_to_target):
 				nav_target_reached = get_host_nav_target_reached()
 				if(nav_target_reached):
-					if(!pizza_ref.is_picked_up()):
-						pick_up.emit(pizza_ref)
-						ai_state_machine.transition_to(mobster_states.returning) 
+					var global_pos = ai_state_machine.get_perceptions().global_position
+					var distance_to_pizza = global_pos.distance_to(pizza_ref.global_position)
+					if(distance_to_pizza < 64):
+						if(!pizza_ref.is_picked_up()):
+							pick_up.emit(pizza_ref)
+							ai_state_machine.transition_to(mobster_states.returning) 
+						else:
+							stop_movement.emit()
+							ai_state_machine.transition_to(mobster_states.look)
 					else:
 						stop_movement.emit()
 						ai_state_machine.transition_to(mobster_states.look)

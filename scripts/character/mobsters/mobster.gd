@@ -56,7 +56,7 @@ var is_bandit = false
 var red_ray_collision_mask = 0b00000000_00000000_00000100_00010001
 var blu_ray_collision_mask = 0b00000000_00000000_00000010_00010001
 var ray_collision_mask = 0
-var ray_reactive_collision_mask = 0b00000000_00000000_00001000_00010001
+var ray_reactive_collision_mask = 0b00000000_00000000_00001000_00010000
 
 #character composition
 @onready var _character_base = $character_base
@@ -264,6 +264,7 @@ func initiate_perceptions():
 	perceptions.current_v = current_v
 	perceptions.facing_dir = _character_base.get_facing_dir()
 	perceptions.position = position
+	perceptions.global_position = global_position
 	perceptions.linear_velocity = linear_velocity
 	perceptions.speed = linear_velocity.length()
 	perceptions.hit_points = hit_points
@@ -274,6 +275,7 @@ func update_perceptions():
 	perceptions.current_v = current_v
 	perceptions.facing_dir = _character_base.get_facing_dir()
 	perceptions.position = position
+	perceptions.global_position = global_position
 	perceptions.linear_velocity = linear_velocity
 	perceptions.speed = linear_velocity.length()
 	perceptions.hit_points = hit_points

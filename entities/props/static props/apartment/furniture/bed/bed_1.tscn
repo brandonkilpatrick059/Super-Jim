@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b20egxvemuaa6"]
+[gd_scene load_steps=5 format=3 uid="uid://b20egxvemuaa6"]
 
+[ext_resource type="Script" uid="uid://y5ippqr715to" path="res://scripts/player_apartment/furniture.gd" id="1_5hvnd"]
 [ext_resource type="PackedScene" uid="uid://dt6metcfd7qcq" path="res://entities/util/bed.tscn" id="2_t7621"]
 [ext_resource type="Texture2D" uid="uid://c26fq4gtsui1c" path="res://sprites/props/furniture/bed_1.png" id="2_vcio1"]
 
@@ -7,6 +8,8 @@
 size = Vector2(30, 46)
 
 [node name="Bed1" type="Node2D"]
+script = ExtResource("1_5hvnd")
+path_to_self = "res://entities/props/static props/apartment/furniture/bed/bed_1.tscn"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_vcio1")

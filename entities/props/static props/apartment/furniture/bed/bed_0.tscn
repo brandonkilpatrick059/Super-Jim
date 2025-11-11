@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://eovosbyon1g"]
+
+[ext_resource type="Script" uid="uid://y5ippqr715to" path="res://scripts/player_apartment/furniture.gd" id="1_1xijq"]
+[ext_resource type="Texture2D" uid="uid://7d6laqlx8n60" path="res://sprites/props/furniture/bed_0.png" id="2_apaak"]
+[ext_resource type="PackedScene" uid="uid://dt6metcfd7qcq" path="res://entities/util/bed.tscn" id="3_6absw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p05ix"]
+size = Vector2(30, 47)
+
+[node name="Bed1" type="Node2D"]
+script = ExtResource("1_1xijq")
+path_to_self = "res://entities/props/static props/apartment/furniture/bed/bed_0.tscn"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_apaak")
+offset = Vector2(0, 24)
+
+[node name="bed" parent="." instance=ExtResource("3_6absw")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bed"]
+position = Vector2(0, 27.5)
+shape = SubResource("RectangleShape2D_p05ix")
+debug_color = Color(0.109804, 0.647059, 0.129412, 0.419608)

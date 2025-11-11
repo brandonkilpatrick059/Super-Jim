@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxyrwvbmwvwor"]
+[gd_scene load_steps=4 format=3 uid="uid://bxyrwvbmwvwor"]
 
 [ext_resource type="Texture2D" uid="uid://xr3irx8qxfgj" path="res://sprites/props/furniture/night_stand_0.png" id="1_08mj7"]
+[ext_resource type="Script" uid="uid://y5ippqr715to" path="res://scripts/player_apartment/furniture.gd" id="1_p2p5l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ydt6r"]
 size = Vector2(18, 23)
 
 [node name="NightStand0" type="Node2D"]
+script = ExtResource("1_p2p5l")
+path_to_self = "res://entities/props/static props/apartment/furniture/night stand/night_stand_0.tscn"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_08mj7")

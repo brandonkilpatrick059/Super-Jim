@@ -126,7 +126,7 @@ func get_save_dictionary() -> Dictionary:
 		"pos_x" : global_position.x,
 		"pos_y" : global_position.y,
 		"max_hp" : max_hp, 
-		"full_dash_secs" : full_dash_secs,
+		"max_dash_secs" : max_dash_secs,
 		"money" : money,
 		"banked_money" : banked_money,
 		"base_spriteframes" : base_spriteframes.resource_path,
@@ -138,8 +138,8 @@ func get_save_dictionary() -> Dictionary:
 
 func load_from_dictionary(load_dictionary : Dictionary):
 	global_position = Vector2(load_dictionary.get("pos_x"), load_dictionary.get("pos_y"))
-	max_hp = load_dictionary.get("max_hp")
-	full_dash_secs = load_dictionary.get("full_dash_secs")
+	max_hp = int(load_dictionary.get("max_hp"))
+	max_dash_secs = load_dictionary.get("max_dash_secs")
 	money = load_dictionary.get("money")
 	banked_money = load_dictionary.get("banked_money")
 	base_spriteframes = load(load_dictionary.get("base_spriteframes"))

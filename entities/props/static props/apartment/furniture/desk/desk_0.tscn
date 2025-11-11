@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8xp804upcral"]
+[gd_scene load_steps=5 format=3 uid="uid://c8xp804upcral"]
 
+[ext_resource type="Script" uid="uid://y5ippqr715to" path="res://scripts/player_apartment/furniture.gd" id="1_pyp13"]
 [ext_resource type="Texture2D" uid="uid://busfjnb1hav2x" path="res://sprites/props/furniture/desk_0.png" id="1_sjmv1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mrlbe"]
@@ -9,6 +10,8 @@ size = Vector2(51.5, 11)
 size = Vector2(9.75, 22.5)
 
 [node name="Desk0" type="Node2D"]
+script = ExtResource("1_pyp13")
+path_to_self = "res://entities/props/static props/apartment/furniture/desk/desk_0.tscn"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

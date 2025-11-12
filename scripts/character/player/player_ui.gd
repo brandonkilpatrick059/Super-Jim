@@ -43,7 +43,6 @@ func _ready():
 	for heart in full_hearts:
 		heart.visible = false
 
-
 func turn_on_ui_noises():
 	makes_noise = true
 
@@ -98,6 +97,12 @@ func show_hearts():
 func hide_money():
 	money_label.visible = false
 
+func hide_location_header():
+	location_header.visible = false
+
+func show_location_header():
+	location_header.visible = true
+
 func show_money():
 	money_label.visible = true
 
@@ -112,7 +117,6 @@ func toggle_fps_counter():
 		fps_counter_visible = false
 	else:
 		fps_counter_visible = true
-
 
 func activate_header(label : String):
 	location_header.activate_header(label)

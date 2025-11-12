@@ -28,15 +28,11 @@ func _on_transition_to_main_scene_init():
 #callback from active_root when the scene is ready
 func _on_transition_to_main_Scene_finished():
 	player_ref = get_tree().get_first_node_in_group("player")
-	if(skip_intro):	
+	if(skip_intro):
+		player_ref.set_control_frozen(true)
 		camera_ref.reparent(player_ref)
 		player_ref.connect_camera()
-		player_ref.set_ui_visible()
-		sound_player.stream = load("res://audio/music/sleep theme.wav")
-		sound_player.play()
-		var time_keeper = get_tree().get_first_node_in_group("time_keeper")
-		#time_keeper.set_clock(9)
-		camera_ref.fade_in()
+		player_ref.load_in()
 	else:
 		var anchor_ref = get_tree().get_first_node_in_group("start_camera_anchor")
 		player_ref.set_control_frozen(true)
@@ -44,7 +40,7 @@ func _on_transition_to_main_Scene_finished():
 		#player_ref.global_position = player_spawn.global_position
 		camera_ref.connect_anchor(anchor_ref)
 		camera_ref.fade_in()
-		transitioning = false
+	transitioning = false
 	
 func _physics_process(delta):
 	if(transition_timer.is_stopped() && transitioning && !prev_scene_freed):

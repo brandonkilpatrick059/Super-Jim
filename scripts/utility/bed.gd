@@ -65,6 +65,7 @@ func _process(delta):
 				fade_alpha = 0.0
 				fading_in = false
 				player_ref.set_control_frozen(false)
+				player_ref.set_ui_invisible()
 	update_fade_alpha()
 
 func interact():
@@ -73,6 +74,7 @@ func interact():
 		var player_ref = get_tree().get_first_node_in_group("player")
 		player_ref.stop()
 		player_ref.set_control_frozen(true)
+		player_ref.set_ui_invisible()
 		update_fade_alpha()
 		timer_fade.start(fade_step_secs)
 		fading_out = true

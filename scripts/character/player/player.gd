@@ -36,6 +36,9 @@ var crystal_sound = preload("res://audio/soundFX/crystal_get.wav")
 
 var sound_player := AudioStreamPlayer.new()
 
+var timer_load_in : Timer = Timer.new()
+var loading_in : bool = false
+
 const normal_speed = 50000
 const dash_speed = 100000
 var acceleration_quotient = normal_speed
@@ -95,6 +98,7 @@ func _ready():
 	timer_dash_regen.one_shot = true
 	invincibility_timer.one_shot = true
 	use_item_timer.one_shot = true
+	timer_load_in.one_shot = true
 	
 	comment_timer.one_shot = true
 	sound_player.bus = "Effects"
@@ -104,6 +108,7 @@ func _ready():
 	add_child(invincibility_timer)
 	add_child(comment_timer)
 	add_child(use_item_timer)
+	add_child(timer_load_in)
 	
 	#set up character base
 	_character_base.set_facing_dir(facing_dir)
@@ -121,7 +126,19 @@ func _ready():
 	if(Engine.is_editor_hint()):
 		queue_redraw()
 
+func load_in():
+	if(!loading_in):
+		set_ui_invisible()
+		control_frozen = true
+		timer_load_in.start(8)
+		loading_in = true
+		var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+		time_keeper.set_clock(9)
+		sound_player.stream = load("res://audio/music/sleep theme.wav")
+		sound_player.play()
+
 func get_save_dictionary() -> Dictionary:
+	var parent_group : String = get_parent().get_groups()[0]
 	var hat : String = ""
 	if(hat_spriteframes != null):
 		hat = hat_spriteframes.resource_path
@@ -132,6 +149,7 @@ func get_save_dictionary() -> Dictionary:
 	if(bottom_spriteframes != null):
 		bottom = bottom_spriteframes.resource_path
 	var save_dictionary = {
+		"parent_group" : parent_group,
 		"pos_x" : global_position.x,
 		"pos_y" : global_position.y,
 		"max_hp" : max_hp, 
@@ -147,6 +165,9 @@ func get_save_dictionary() -> Dictionary:
 	return save_dictionary
 
 func load_from_dictionary(load_dictionary : Dictionary):
+	var parent_group = String(load_dictionary.get("parent_group"))
+	var parent = get_tree().get_first_node_in_group(parent_group)
+	reparent(parent)
 	global_position = Vector2(load_dictionary.get("pos_x"), load_dictionary.get("pos_y"))
 	max_hp = int(load_dictionary.get("max_hp"))
 	max_dash_secs = load_dictionary.get("max_dash_secs")
@@ -624,6 +645,16 @@ func move():
 					
 func _physics_process(delta):
 	if(!Engine.is_editor_hint()):
+		if(timer_load_in.is_stopped() && loading_in):
+			loading_in = false
+			control_frozen = false
+			set_ui_visible()
+			show_hearts()
+			show_money()
+			show_dash()
+			_ui.turn_on_ui_noises()
+			_camera.fade_in()
+			
 		if(camera_connected):
 			_camera.handle_camera_pan()
 		if(!dead):

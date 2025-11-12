@@ -51,11 +51,8 @@ func _process(delta):
 				fading_out = false
 				fading_in = true
 				_saving_game.visible = true
-				timer_fade.start(long_step_secs)
 				time_keeper.set_clock(sleep_end_time)
-				player_ref.increment_hp()
-				player_ref.give_dash_seconds(20)
-				time_keeper.advance_day()
+				timer_fade.start(long_step_secs)
 		elif(fading_in):
 			if(fade_alpha > 0):
 				_saving_game.visible = false
@@ -65,7 +62,7 @@ func _process(delta):
 				fade_alpha = 0.0
 				fading_in = false
 				player_ref.set_control_frozen(false)
-				player_ref.set_ui_invisible()
+				player_ref.set_ui_visible()
 	update_fade_alpha()
 
 func interact():
@@ -82,10 +79,13 @@ func interact():
 		sound_player.stream = load("res://audio/music/sleep theme.wav")
 		sound_player.play()
 		var game_save_manager = get_tree().get_first_node_in_group("game_save_manager")
-		game_save_manager.save_game()
 		if(first_time_sleeping):
 			first_time_sleeping_script.run_script()
 			first_time_sleeping = false
+		player_ref.increment_hp()
+		player_ref.give_dash_seconds(20)
+		time_keeper.advance_day()
+		game_save_manager.save_game()
 
 func update_fade_alpha():
 	_fade_to_black.color = Color(0,0,0,fade_alpha)

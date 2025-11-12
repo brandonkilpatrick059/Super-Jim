@@ -112,22 +112,15 @@ speaker_portrait = null
 option_branches = [NodePath("../whatever4")]
 voice = "low_sine_voice"
 
-[node name="whatever4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_csox7")]
+[node name="whatever4" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_csox7")]
 position = Vector2(-439, 2848)
 speaker_text = Array[String](["My friend will set you up. I will ring him in a minute."])
-speaker_portrait = null
-option_branches = [NodePath("../whatever5")]
-voice = "low_sine_voice"
-
-[node name="whatever5" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_csox7")]
-position = Vector2(-439, 3017)
-speaker_text = Array[String](["The apartment is in the building right behind this one."])
 speaker_portrait = null
 option_branches = [NodePath("../whatever6")]
 voice = "low_sine_voice"
 dialog_script = NodePath("unlock_player_apartment")
 
-[node name="unlock_player_apartment" type="Node" parent="whatever5"]
+[node name="unlock_player_apartment" type="Node" parent="whatever4"]
 script = ExtResource("3_p6wgb")
 node_group = "player_apartment_door"
 

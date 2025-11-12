@@ -29,14 +29,13 @@ talk_radius = 200
 base_spriteframes = ExtResource("2_rcf8h")
 dialog_offset = null
 starting_index = null
-save_tag = null
 branching_dialog = NodePath("troll")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 4.0
 target_desired_distance = 32.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["npc"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
 position = Vector2(0, -13)
 shape = SubResource("CircleShape2D_fnoqb")
@@ -59,6 +58,7 @@ script = ExtResource("9_ty4g0")
 material = SubResource("CanvasItemMaterial_fnoqb")
 sprite_frames = ExtResource("2_rcf8h")
 animation = &"stand_right"
+frame_progress = 0.519094
 offset = Vector2(0, -16)
 
 [node name="hat" type="AnimatedSprite2D" parent="character_base"]

@@ -9,7 +9,8 @@ func load_game():
 	save_file = FileAccess.open("user://game_save_0.pizz", FileAccess.READ)
 	load_player()
 	load_time_keeper()
-	while(!save_file.eof_reached()):
+	while(save_file.get_position() < save_file.get_length()):
+	# Read data):
 		var line = save_file.get_line()
 		var dictionary : Dictionary = JSON.parse_string(line)
 		var type = String(dictionary.get("type"))
@@ -69,21 +70,23 @@ func load_spawn(dictionary : Dictionary):
 func save_npcs():
 	var npcs = get_tree().get_nodes_in_group("npc")
 	for npc in npcs:
-		var npc_dictionary : String = npc.get_save_dictionary()
-		save_file.store_line(JSON.stringify(npc_dictionary))
+		if (npc.get_save_tag() != ""):
+			var npc_dictionary : Dictionary = npc.get_save_dictionary()
+			save_file.store_line(JSON.stringify(npc_dictionary))
 
 func load_npc(dictionary : Dictionary):
 	var npcs = get_tree().get_nodes_in_group("npc")
 	for npc in npcs:
-		var npc_tag = npc.get_save_tag()
-		if(npc_tag == dictionary.get("save_tag")):
-			npc.load_from_dictionary(dictionary)
+		if(npc.get_save_tag() != ""):
+			var npc_tag = npc.get_save_tag()
+			if(npc_tag == dictionary.get("save_tag")):
+				npc.load_from_dictionary(dictionary)
 		
 
 func save_doors():
 	var doors = get_tree().get_nodes_in_group("door_persistent")
 	for door in doors:
-		var door_dictionary : String = door.get_save_dictionary()
+		var door_dictionary : Dictionary = door.get_save_dictionary()
 		save_file.store_line(JSON.stringify(door_dictionary))
 
 func load_door(dictionary : Dictionary):
@@ -96,7 +99,7 @@ func load_door(dictionary : Dictionary):
 func save_comments():
 	var comments = get_tree().get_nodes_in_group("comment_persistent")
 	for comment in comments:
-		var comment_dictionary : String = comment.get_save_dictionary()
+		var comment_dictionary : Dictionary = comment.get_save_dictionary()
 		save_file.store_line(JSON.stringify(comment_dictionary))
 
 func load_comment(dictionary : Dictionary):

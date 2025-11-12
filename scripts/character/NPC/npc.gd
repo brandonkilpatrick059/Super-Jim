@@ -235,12 +235,13 @@ func _on_handle_behavior(behavior_directive : String):
 		handle_passive_text()
 
 func get_save_dictionary() -> Dictionary:
+	var save_tag : String = get_save_tag()
 	var save_dictionary = {
 		"type" : "npc",
 		"save_tag" : get_save_tag(),
 		"pos_x" : global_position.x,
 		"pos_y" : global_position.y,
-		"schedules_index" : schedules_index
+		"schedules_index" : int(schedules_index)
 	}
 	return save_dictionary
 

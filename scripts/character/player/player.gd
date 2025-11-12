@@ -83,7 +83,7 @@ var anchored = false
 var active_anchor : Node = null
 
 var money : int = 0
-var banked_money : int = 25
+var banked_money : int = 0
 
 var light_on = false
 var has_flashlight = false
@@ -134,6 +134,7 @@ func load_in():
 		loading_in = true
 		var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 		time_keeper.set_clock(9)
+		time_keeper.unlock_time()
 		sound_player.stream = load("res://audio/music/sleep theme.wav")
 		sound_player.play()
 

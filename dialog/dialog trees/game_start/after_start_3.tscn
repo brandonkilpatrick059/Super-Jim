@@ -62,7 +62,7 @@ speaker_name = "cook"
 
 [node name="gangs" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
 position = Vector2(-525, 4226)
-speaker_text = Array[String](["..."])
+speaker_text = Array[String](["Are you joking?"])
 speaker_portrait = ExtResource("3_shkpx")
 option_branches = [NodePath("../gangs2")]
 voice = "low_sine_voice"
@@ -85,7 +85,7 @@ speaker_name = "cook"
 
 [node name="gangs4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
 position = Vector2(-768, 4940)
-speaker_text = Array[String](["The Ten-Gallons and The Mufflers"])
+speaker_text = Array[String](["The Ten-Gallons and The Mufflers."])
 option_branches = [NodePath("../gangs7")]
 voice = "sine_voice"
 speaker_name = "speedy"

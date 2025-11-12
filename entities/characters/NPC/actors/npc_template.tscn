@@ -29,7 +29,7 @@ base_spriteframes = ExtResource("2_cp75f")
 path_desired_distance = 4.0
 target_desired_distance = 32.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["npc"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
 position = Vector2(0.015625, 7.35938)
 shape = SubResource("RectangleShape2D_68bjs")

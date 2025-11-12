@@ -77,6 +77,7 @@ func close():
 		closing = true
 		if(one_time_use):
 			opens_for_groups = []
+			locked = true
 
 func lock():
 	locked = true

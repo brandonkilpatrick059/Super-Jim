@@ -37,7 +37,7 @@ func _on_transition_to_main_Scene_finished():
 		var anchor_ref = get_tree().get_first_node_in_group("start_camera_anchor")
 		player_ref.set_control_frozen(true)
 		var player_spawn = get_tree().get_first_node_in_group("player_spawn_start")
-		#player_ref.global_position = player_spawn.global_position
+		player_ref.global_position = player_spawn.global_position
 		camera_ref.connect_anchor(anchor_ref)
 		camera_ref.fade_in()
 	transitioning = false

@@ -11,9 +11,14 @@ signal make_comment(String)
 @export var play_once : bool = false
 var has_played = false
 
+@export var save_tag : String = ""
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
+
+func get_save_tag():
+	return save_tag
 
 func interact():
 	if(!text_when_zone_entered):
@@ -32,6 +37,17 @@ func _on_body_entered(body : Node2D):
 				if(script_when_zone_entered && get_children().size() > 0):
 					get_children()[0].run_script()
 		
+
+func get_save_dictionary() -> Dictionary:
+	var save_dictionary = {
+		"type" : "comment",
+		"save_tag" : get_save_tag(),
+		"has_played" : has_played 
+	}
+	return save_dictionary
+
+func load_from_dictionary(load_dictionary : Dictionary):
+	has_played = load_dictionary.get("has_played")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

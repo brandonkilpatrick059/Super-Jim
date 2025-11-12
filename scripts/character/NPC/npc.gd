@@ -22,7 +22,7 @@ const appears_at_time = "appears_at_time"
 @export var dialog_offset = Vector2(0,0)
 @export var starting_index = 0
 
-@export var save_key : String = ""
+@export var save_tag : String = ""
 
 #array of all schedules this NPC will use
 @export var schedules : Array[schedule] = []
@@ -86,8 +86,8 @@ func set_up_character_base():
 	bottom_spriteframes)
 	_character_base.stand_dir(_character_base.facing_dir)
 
-func get_save_key() -> String:
-	return save_key
+func get_save_tag() -> String:
+	return save_tag
 
 func set_up_nav_agent():
 	#nav agent setup stuff
@@ -237,7 +237,7 @@ func _on_handle_behavior(behavior_directive : String):
 func get_save_dictionary() -> Dictionary:
 	var save_dictionary = {
 		"type" : "npc",
-		"key" : get_save_key(),
+		"save_tag" : get_save_tag(),
 		"pos_x" : global_position.x,
 		"pos_y" : global_position.y,
 		"schedules_index" : schedules_index

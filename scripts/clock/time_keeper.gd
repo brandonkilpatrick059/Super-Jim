@@ -38,6 +38,9 @@ var pause_menu_ref = null
 func get_day_of_week():
 	return day_of_the_week
 
+func set_day_of_week(input : int):
+	day_of_the_week = input
+
 func get_hour():
 	return clock
 

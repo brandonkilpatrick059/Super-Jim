@@ -70,7 +70,21 @@ func spawn_mob():
 			new_mob.make_bandit()
 			spawns_since_bandit = 0
 		new_mob.global_position = global_position
-	
+
+func get_save_dictionary() -> Dictionary:
+	var save_dictionary = {
+		"type" : "spawn",
+		"pos_x" : global_position.x,
+		"pos_y" : global_position.y,
+		"team" : spawner_team, 
+		"spawns_since_bandit" : spawns_since_bandit
+	}
+	return save_dictionary
+
+func load_from_dictionary(load_dictionary : Dictionary):
+	global_position = Vector2(load_dictionary.get("pos_x"), load_dictionary.get("pos_y"))
+	spawner_team = String(load_dictionary.get("team"))
+	spawns_since_bandit = int(load_dictionary.get("spawns_since_bandit"))
 
 func _on_body_entered(body: Node):
 	if(body.is_in_group("mobster") && 

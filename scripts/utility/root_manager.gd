@@ -10,10 +10,13 @@ var prev_scene_freed = false
 
 @export var skip_intro = false
 
+var sound_player : AudioStreamPlayer = AudioStreamPlayer.new()
+
 func _ready():
 	camera_ref = get_tree().get_first_node_in_group("camera")
 	transition_timer.one_shot = true
 	self.add_child(transition_timer)
+	add_child(sound_player)
 
 #root manager transitions from current scene (presumably start) to main scene
 func _on_transition_to_main_scene_init():
@@ -28,10 +31,17 @@ func _on_transition_to_main_Scene_finished():
 	if(skip_intro):	
 		camera_ref.reparent(player_ref)
 		player_ref.connect_camera()
+		player_ref.set_ui_visible()
+		sound_player.stream = load("res://audio/music/sleep theme.wav")
+		sound_player.play()
+		var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+		#time_keeper.set_clock(9)
 		camera_ref.fade_in()
 	else:
 		var anchor_ref = get_tree().get_first_node_in_group("start_camera_anchor")
 		player_ref.set_control_frozen(true)
+		var player_spawn = get_tree().get_first_node_in_group("player_spawn_start")
+		#player_ref.global_position = player_spawn.global_position
 		camera_ref.connect_anchor(anchor_ref)
 		camera_ref.fade_in()
 		transitioning = false
@@ -43,3 +53,7 @@ func _physics_process(delta):
 		prev_scene_freed = true
 		var main_scene = main_scene.instantiate()
 		add_child(main_scene)
+		var game_save_manager = get_tree().get_first_node_in_group("game_save_manager")
+		if(game_save_manager.save_file_exists()):
+			game_save_manager.load_game()
+			skip_intro = true

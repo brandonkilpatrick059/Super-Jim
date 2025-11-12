@@ -23,15 +23,15 @@ func set_night_stand_slot(night_stand : Node):
 func get_save_dictionary() -> Dictionary:
 	var bed_slot = ""
 	if (_bed_slot.get_children().size() > 0):
-		bed_slot = _bed_slot.get_path_to_self()
+		bed_slot = _bed_slot.get_child(0).get_path_to_self()
 	
 	var desk_slot = ""
 	if (_desk_slot.get_children().size() > 0):
-		bed_slot = _desk_slot.get_path_to_self()
+		bed_slot = _desk_slot.get_child(0).get_path_to_self()
 	
 	var night_stand_slot = ""
 	if (_night_stand_slot.get_children().size() > 0):
-		bed_slot = _night_stand_slot.get_path_to_self()
+		bed_slot = _night_stand_slot.get_child(0).get_path_to_self()
 		
 	var save_dictionary = {
 		"bed_slot" = bed_slot,

@@ -335,6 +335,36 @@ func reactive_has_line_of_sight_to_object(obj):
 		perceptions.nodes_in_vision.erase(obj)
 		return false
 
+func get_save_dictionary() -> Dictionary:
+	var save_dictionary = {
+		"type" : "mob",
+		"pos_x" : global_position.x,
+		"pos_y" : global_position.y,
+		"team" : team, 
+		"is_bandit" : is_bandit,
+		"hit_points" : hit_points,
+		"base_spriteframes" : base_spriteframes.resource_path,
+		"hat_spriteframes" : hat_spriteframes.resource_path,
+		"top_spriteframes" : top_spriteframes.resource_path,
+		"bottom_spriteframes" : bottom_spriteframes.resource_path
+	}
+	return save_dictionary
+
+func load_from_dictionary(load_dictionary : Dictionary):
+	global_position = Vector2(load_dictionary.get("pos_x"), load_dictionary.get("pos_y"))
+	hit_points = int(load_dictionary.get("hit_points"))
+	team = String(load_dictionary.get("team"))
+	if (load_dictionary.get("is_bandit")):
+		make_bandit()
+	base_spriteframes = load(load_dictionary.get("base_spriteframes"))
+	hat_spriteframes = load(load_dictionary.get("hat_spriteframes"))
+	top_spriteframes = load(load_dictionary.get("top_spriteframes"))
+	bottom_spriteframes = load(load_dictionary.get("bottom_spriteframes"))
+	_character_base.set_spriteframes(base_spriteframes,
+		hat_spriteframes,
+		top_spriteframes,
+		bottom_spriteframes)
+
 func check_vision():
 	if (_vision.is_colliding()):
 			var detected_nodes: Array[Node] = []

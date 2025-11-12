@@ -79,6 +79,8 @@ func interact():
 		sound_player.global_position = player_ref.global_position
 		sound_player.stream = load("res://audio/music/sleep theme.wav")
 		sound_player.play()
+		var game_save_manager = get_tree().get_first_node_in_group("game_save_manager")
+		game_save_manager.save_game()
 		if(first_time_sleeping):
 			first_time_sleeping_script.run_script()
 			first_time_sleeping = false

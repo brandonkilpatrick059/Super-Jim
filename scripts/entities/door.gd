@@ -17,6 +17,9 @@ var sound_player := AudioStreamPlayer.new()
 
 @export var does_not_open = false
 @export var address : String = ""
+
+@export var save_tag : String = ""
+
 var time_keeper
 
 var opened = false
@@ -33,6 +36,9 @@ var last_frame_close = 0
 
 var dialog_offset #needed so delivery dialog doesn't throw errors
 
+func get_save_tag() -> String:
+	return save_tag
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	open_close_timer.one_shot = true
@@ -42,6 +48,17 @@ func _ready():
 	last_frame_close = _animated_sprite.sprite_frames.get_frame_count("close")-1 
 	if(self.is_in_group("delivery_door")):
 		does_not_open = true
+
+func get_save_dictionary() -> Dictionary:
+	var save_dictionary = {
+		"type" : "door",
+		"save_tag" : get_save_tag(),
+		"locked" : locked 
+	}
+	return save_dictionary
+
+func load_from_dictionary(load_dictionary : Dictionary):
+	locked = load_dictionary.get("locked")
 
 func get_address():
 	return address

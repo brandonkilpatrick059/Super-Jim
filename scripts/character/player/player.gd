@@ -122,17 +122,27 @@ func _ready():
 		queue_redraw()
 
 func get_save_dictionary() -> Dictionary:
+	var hat : String = ""
+	if(hat_spriteframes != null):
+		hat = hat_spriteframes.resource_path
+	var top : String = ""
+	if(top_spriteframes != null):
+		top = top_spriteframes.resource_path
+	var bottom : String = ""
+	if(bottom_spriteframes != null):
+		bottom = bottom_spriteframes.resource_path
 	var save_dictionary = {
 		"pos_x" : global_position.x,
 		"pos_y" : global_position.y,
 		"max_hp" : max_hp, 
+		"current_dash_secs" : current_dash_secs,
 		"max_dash_secs" : max_dash_secs,
 		"money" : money,
 		"banked_money" : banked_money,
 		"base_spriteframes" : base_spriteframes.resource_path,
-		"hat_spriteframes" : hat_spriteframes.resource_path,
-		"top_spriteframes" : top_spriteframes.resource_path,
-		"bottom_spriteframes" : bottom_spriteframes.resource_path
+		"hat_spriteframes" : hat,
+		"top_spriteframes" : top,
+		"bottom_spriteframes" : bottom
 	}
 	return save_dictionary
 
@@ -140,12 +150,19 @@ func load_from_dictionary(load_dictionary : Dictionary):
 	global_position = Vector2(load_dictionary.get("pos_x"), load_dictionary.get("pos_y"))
 	max_hp = int(load_dictionary.get("max_hp"))
 	max_dash_secs = load_dictionary.get("max_dash_secs")
-	money = load_dictionary.get("money")
+	current_dash_secs = load_dictionary.get("current_dash_secs")
+	money = int(load_dictionary.get("money"))
 	banked_money = load_dictionary.get("banked_money")
 	base_spriteframes = load(load_dictionary.get("base_spriteframes"))
-	hat_spriteframes = load(load_dictionary.get("hat_spriteframes"))
-	top_spriteframes = load(load_dictionary.get("top_spriteframes"))
-	bottom_spriteframes = load(load_dictionary.get("bottom_spriteframes"))
+	var hat = load_dictionary.get("hat_spriteframes")
+	var top = load_dictionary.get("top_spriteframes")
+	var bottom = load_dictionary.get("bottom_spriteframes")
+	if(hat != ""):
+		hat_spriteframes = load(hat)
+	if(top != ""):
+		top_spriteframes = load(top)
+	if(bottom != ""):
+		bottom_spriteframes = load(bottom)
 	_character_base.set_spriteframes(base_spriteframes,
 		hat_spriteframes,
 		top_spriteframes,

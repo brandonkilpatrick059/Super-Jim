@@ -20,7 +20,7 @@ var sound_player = AudioStreamPlayer.new()
 var hearts : Array[Node] = []
 var full_hearts : Array[Node] = []
 
-
+var makes_noise = false
 
 var money_timer = Timer.new()
 var money_step_pause_secs = 0.06
@@ -42,6 +42,10 @@ func _ready():
 	full_hearts = [heart_1, heart_2, heart_3, heart_4, heart_5, heart_6]
 	for heart in full_hearts:
 		heart.visible = false
+
+
+func turn_on_ui_noises():
+	makes_noise = true
 
 func set_max_hearts(num):
 	hearts = []
@@ -118,12 +122,14 @@ func _process(delta):
 	if(money_timer.is_stopped()):
 		if(current_money < money):
 			current_money = current_money + 1
-			sound_player.stream = load("res://audio/soundFX/coins.wav")
-			sound_player.play()
+			if(makes_noise):
+				sound_player.stream = load("res://audio/soundFX/coins.wav")
+				sound_player.play()
 		if(current_money > money):
 			current_money = current_money - 1
-			sound_player.stream = load("res://audio/soundFX/voice/low_sine_voice/1.wav")
-			sound_player.play()
+			if(makes_noise):
+				sound_player.stream = load("res://audio/soundFX/voice/low_sine_voice/1.wav")
+				sound_player.play()
 		money_timer.start(money_step_pause_secs)
 	if(pizza_loss_timer.is_stopped() && pizza_lost.visible):
 		pizza_lost.visible = false

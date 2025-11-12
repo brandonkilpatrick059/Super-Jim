@@ -22,6 +22,8 @@ const appears_at_time = "appears_at_time"
 @export var dialog_offset = Vector2(0,0)
 @export var starting_index = 0
 
+@export var save_key : String = ""
+
 #array of all schedules this NPC will use
 @export var schedules : Array[schedule] = []
 var schedules_index
@@ -83,6 +85,9 @@ func set_up_character_base():
 	top_spriteframes,
 	bottom_spriteframes)
 	_character_base.stand_dir(_character_base.facing_dir)
+
+func get_save_key() -> String:
+	return save_key
 
 func set_up_nav_agent():
 	#nav agent setup stuff
@@ -228,6 +233,20 @@ func _on_handle_behavior(behavior_directive : String):
 		if(self.global_position.distance_to(player_ref.global_position) < talk_radius):
 			face_player()
 		handle_passive_text()
+
+func get_save_dictionary() -> Dictionary:
+	var save_dictionary = {
+		"type" : "npc",
+		"key" : get_save_key(),
+		"pos_x" : global_position.x,
+		"pos_y" : global_position.y,
+		"schedules_index" : schedules_index
+	}
+	return save_dictionary
+
+func load_from_dictionary(load_dictionary : Dictionary):
+	global_position = Vector2(load_dictionary.get("pos_x"), load_dictionary.get("pos_y"))
+	schedules_index = int(load_dictionary.get("schedules_index"))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -131,7 +131,9 @@ func _ready():
 
 func initialize_mob():
 	set_up_character_base()
-	set_up_mobster_team()	
+	set_up_mobster_team()
+	if(is_bandit):
+		make_bandit()
 
 func make_bandit():
 	is_bandit = true
@@ -367,7 +369,7 @@ func load_from_dictionary(load_dictionary : Dictionary):
 	hit_points = int(load_dictionary.get("hit_points"))
 	team = String(load_dictionary.get("team"))
 	if (load_dictionary.get("is_bandit")):
-		make_bandit()
+		is_bandit = true
 	base_spriteframes = load(load_dictionary.get("base_spriteframes"))
 	var hat = load_dictionary.get("hat_spriteframes")
 	var top = load_dictionary.get("top_spriteframes")

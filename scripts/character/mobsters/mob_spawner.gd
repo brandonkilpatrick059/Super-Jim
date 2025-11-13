@@ -73,9 +73,9 @@ func spawn_mob():
 	if(num_team_mobs < max_mobs_per_team):
 		var new_mob = mobster.instantiate()
 		new_mob.set_team(spawner_team)
-		new_mob.initialize_mob()
 		spawns_since_bandit = spawns_since_bandit + 1
 		ysort_node.add_child(new_mob)
+		new_mob.initialize_mob()
 		if(spawns_since_bandit > spawns_until_bandit &&
 		num_team_bandits + 1 < max_bandits_per_team):
 			new_mob.make_bandit()

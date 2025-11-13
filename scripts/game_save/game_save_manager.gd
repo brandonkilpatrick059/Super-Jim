@@ -1,11 +1,14 @@
 extends Node
 
 var save_file : FileAccess
+var mobster = preload("res://entities/characters/NPC/mobsters/mobster.tscn")
+var mobster_parent : Node
 
 func save_file_exists() -> bool:
 	return FileAccess.file_exists("user://game_save_0.pizz")
 
 func load_game():
+	mobster_parent = get_tree().get_first_node_in_group("daylight_affected_ysort")
 	save_file = FileAccess.open("user://game_save_0.pizz", FileAccess.READ)
 	load_player()
 	load_time_keeper()
@@ -56,16 +59,27 @@ func load_player():
 	player_apartment_ref.load_from_dictionary(player_apartment_dictionary)
 
 func save_mob_war():
-	pass
-	#var mobs = get_tree().get_nodes_in_group("mobster")
-	#for mob in mobster:
-		#var mob_dictionary = mob.get_save_dictionary()
+	var mobs = get_tree().get_nodes_in_group("mobster")
+	for mob in mobs:
+		var mob_dictionary = mob.get_save_dictionary()
+		save_file.store_line(JSON.stringify(mob_dictionary))
+	var spawners = get_tree().get_nodes_in_group("capture_point")
+	for spawner in spawners:
+		var spawn_dictionary = spawner.get_save_dictionary()
+		save_file.store_line(JSON.stringify(spawn_dictionary))
 
 func load_mob(dictionary : Dictionary):
-	pass
+	var mob = mobster.initiate()
+	mobster_parent.add_child(mob)
+	mob.load_from_dictionary(dictionary)
 
 func load_spawn(dictionary : Dictionary):
-	pass
+	var spawns = get_tree().get_nodes_in_group("capture_point")
+	for spawn in spawns:
+		if (spawn.get_save_tag() != ""):
+			var spawn_tag = spawn.get_save_tag()
+			if(spawn_tag == dictionary.get("save_tag")):
+				spawn.load_from_dictionary(dictionary)
 
 func save_npcs():
 	var npcs = get_tree().get_nodes_in_group("npc")

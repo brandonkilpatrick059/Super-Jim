@@ -336,6 +336,15 @@ func reactive_has_line_of_sight_to_object(obj):
 		return false
 
 func get_save_dictionary() -> Dictionary:
+	var hat : String = ""
+	if(hat_spriteframes != null):
+		hat = hat_spriteframes.resource_path
+	var top : String = ""
+	if(top_spriteframes != null):
+		top = top_spriteframes.resource_path
+	var bottom : String = ""
+	if(bottom_spriteframes != null):
+		bottom = bottom_spriteframes.resource_path
 	var save_dictionary = {
 		"type" : "mob",
 		"pos_x" : global_position.x,
@@ -357,9 +366,15 @@ func load_from_dictionary(load_dictionary : Dictionary):
 	if (load_dictionary.get("is_bandit")):
 		make_bandit()
 	base_spriteframes = load(load_dictionary.get("base_spriteframes"))
-	hat_spriteframes = load(load_dictionary.get("hat_spriteframes"))
-	top_spriteframes = load(load_dictionary.get("top_spriteframes"))
-	bottom_spriteframes = load(load_dictionary.get("bottom_spriteframes"))
+	var hat = load_dictionary.get("hat_spriteframes")
+	var top = load_dictionary.get("top_spriteframes")
+	var bottom = load_dictionary.get("bottom_spriteframes")
+	if(hat != ""):
+		hat_spriteframes = load(hat)
+	if(top != ""):
+		top_spriteframes = load(top)
+	if(bottom != ""):
+		bottom_spriteframes = load(bottom)
 	_character_base.set_spriteframes(base_spriteframes,
 		hat_spriteframes,
 		top_spriteframes,

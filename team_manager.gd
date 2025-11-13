@@ -12,16 +12,23 @@ var num_mobs_to_spawn = 3
 func _ready() -> void:
 	spawn_timer.one_shot = true
 	add_child(spawn_timer)
-	
+
+func initiate_mob_war():
+	#randomize spawner allegiance roughly down the middle,
+	#favoring red team
 	var spawners = get_tree().get_nodes_in_group("capture_point")
-	for spawner in spawners:
-		if(spawner.is_in_group("red")):
-			red_spawners.append(spawner)
-		else:
-			blu_spawners.append(spawner)
-	
+	var num_blue_spawners = spawners / 2
+	while(num_blue_spawners > 0):
+		var index = randi_range(0,spawners.size()-1)
+		var spawn = spawners[index]
+		spawn.set_team("blu")
+		blu_spawners.append(spawn)
+		spawners.remove_at(index)
+		num_blue_spawners = num_blue_spawners - 1
+	red_spawners = spawners
+
 	spawn_timer.start(spawn_timer_len_secs)
-	
+
 func spawn_mobs():
 	var temp_blu_spawners = blu_spawners.duplicate()
 	var temp_red_spawners = red_spawners.duplicate()

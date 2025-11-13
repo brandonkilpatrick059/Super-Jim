@@ -15,6 +15,7 @@ var opposing_team = "blu"
 
 var friendly_check_radius = 600
 var num_nearby_friendlies = 0
+@export var save_tag = ""
 
 var random : RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -25,15 +26,18 @@ func _ready():
 	add_child(friendly_check_timer)
 	ysort_node = get_tree().get_first_node_in_group("daylight_affected_ysort")
 	friendly_check_timer.start(random.randf_range(0,max_check_wait_secs))
-	
-	if(spawner_team == "red"):
-		opposing_team = "blu"
-	else:
-		opposing_team = "red"
 	add_to_group(spawner_team)
 
 func get_num_nearby_friendlies():
 	return num_nearby_friendlies
+
+func set_team(input_team : String):
+	if(input_team == "red"):
+		spawner_team = "red"
+		opposing_team = "blu"
+	elif(input_team == "blu"):
+		spawner_team = "blu"
+		opposing_team = "red"
 
 func turn_over():
 	var temp = spawner_team
@@ -41,6 +45,9 @@ func turn_over():
 	spawner_team = opposing_team
 	opposing_team = temp
 	add_to_group(spawner_team)
+
+func get_save_tag():
+	return save_tag
 
 func check_nearby_friendlies():
 	var num = 0
@@ -74,6 +81,7 @@ func spawn_mob():
 func get_save_dictionary() -> Dictionary:
 	var save_dictionary = {
 		"type" : "spawn",
+		"save_tag" : save_tag,
 		"pos_x" : global_position.x,
 		"pos_y" : global_position.y,
 		"team" : spawner_team, 

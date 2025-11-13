@@ -31,8 +31,9 @@ func play_current_branch():
 		
 	_ResponseBubble.visible = false
 	_DialogBubble.set_label("")
-	_DialogBubble.visible = true
+	_DialogBubble.global_position = speaker_node.global_position + Vector2(-48,-96)
 	_DialogBubble.set_portrait(tree.get_speaker_portrait(), tree.get_speaker_emote())
+	_DialogBubble.visible = true
 	_DialogBubble.play_text(tree.get_speaker_text(), tree.get_voice())
 	
 	var branch_gives_money_amount = tree.get_give_money_amount()

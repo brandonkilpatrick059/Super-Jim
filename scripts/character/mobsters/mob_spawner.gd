@@ -28,6 +28,9 @@ func _ready():
 	friendly_check_timer.start(random.randf_range(0,max_check_wait_secs))
 	add_to_group(spawner_team)
 
+func get_team():
+	return spawner_team
+
 func get_num_nearby_friendlies():
 	return num_nearby_friendlies
 
@@ -70,6 +73,7 @@ func spawn_mob():
 	if(num_team_mobs < max_mobs_per_team):
 		var new_mob = mobster.instantiate()
 		new_mob.set_team(spawner_team)
+		new_mob.initialize_mob()
 		spawns_since_bandit = spawns_since_bandit + 1
 		ysort_node.add_child(new_mob)
 		if(spawns_since_bandit > spawns_until_bandit &&
@@ -82,15 +86,12 @@ func get_save_dictionary() -> Dictionary:
 	var save_dictionary = {
 		"type" : "spawn",
 		"save_tag" : save_tag,
-		"pos_x" : global_position.x,
-		"pos_y" : global_position.y,
 		"team" : spawner_team, 
 		"spawns_since_bandit" : spawns_since_bandit
 	}
 	return save_dictionary
 
 func load_from_dictionary(load_dictionary : Dictionary):
-	global_position = Vector2(load_dictionary.get("pos_x"), load_dictionary.get("pos_y"))
 	spawner_team = String(load_dictionary.get("team"))
 	spawns_since_bandit = int(load_dictionary.get("spawns_since_bandit"))
 

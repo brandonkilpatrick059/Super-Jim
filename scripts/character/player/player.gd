@@ -128,10 +128,10 @@ func _ready():
 
 func load_in():
 	if(!loading_in):
+		loading_in = true
 		set_ui_invisible()
 		control_frozen = true
 		timer_load_in.start(8)
-		loading_in = true
 		var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 		time_keeper.set_clock(9)
 		time_keeper.unlock_time()

@@ -108,10 +108,8 @@ var processing_timer : Timer = Timer.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if(!Engine.is_editor_hint()):
-		set_up_character_base()
 		set_up_sound_player()
 		set_up_nav_agent()
-		set_up_mobster_team()	
 		initiate_perceptions()
 		send_perceptions()
 		
@@ -130,6 +128,10 @@ func _ready():
 	#for updating character composition in the editor
 	if(Engine.is_editor_hint()):
 		queue_redraw()
+
+func initialize_mob():
+	set_up_character_base()
+	set_up_mobster_team()	
 
 func make_bandit():
 	is_bandit = true
@@ -157,6 +159,7 @@ func set_up_character_base():
 	else: if(team == team_blu):
 		base_spriteframes = blu_base
 		top_spriteframes = blue_top
+		hat_spriteframes = null
 	_character_base.set_facing_dir(start_facing_dir)
 	_character_base.set_spriteframes(base_spriteframes,
 	hat_spriteframes,
@@ -353,9 +356,9 @@ func get_save_dictionary() -> Dictionary:
 		"is_bandit" : is_bandit,
 		"hit_points" : hit_points,
 		"base_spriteframes" : base_spriteframes.resource_path,
-		"hat_spriteframes" : hat_spriteframes.resource_path,
-		"top_spriteframes" : top_spriteframes.resource_path,
-		"bottom_spriteframes" : bottom_spriteframes.resource_path
+		"hat_spriteframes" : hat,
+		"top_spriteframes" : top,
+		"bottom_spriteframes" : bottom
 	}
 	return save_dictionary
 

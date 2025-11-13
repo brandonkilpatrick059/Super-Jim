@@ -69,9 +69,10 @@ func save_mob_war():
 		save_file.store_line(JSON.stringify(spawn_dictionary))
 
 func load_mob(dictionary : Dictionary):
-	var mob = mobster.initiate()
+	var mob = mobster.instantiate()
 	mobster_parent.add_child(mob)
 	mob.load_from_dictionary(dictionary)
+	mob.initialize_mob()
 
 func load_spawn(dictionary : Dictionary):
 	var spawns = get_tree().get_nodes_in_group("capture_point")

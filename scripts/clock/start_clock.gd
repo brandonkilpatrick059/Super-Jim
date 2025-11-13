@@ -7,4 +7,6 @@ func run_script():
 	player_ref.show_hearts()
 	player_ref.show_money()
 	player_ref.show_dash()
+	var team_manager = get_tree().get_first_node_in_group("team_manager")
+	team_manager.initiate_mob_war()
 	

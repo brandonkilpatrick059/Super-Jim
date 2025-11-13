@@ -9,6 +9,8 @@ var spawn_timer : Timer = Timer.new()
 
 var num_mobs_to_spawn = 3
 
+var spawns_locked = true
+
 func _ready() -> void:
 	spawn_timer.one_shot = true
 	add_child(spawn_timer)
@@ -17,7 +19,7 @@ func initiate_mob_war():
 	#randomize spawner allegiance roughly down the middle,
 	#favoring red team
 	var spawners = get_tree().get_nodes_in_group("capture_point")
-	var num_blue_spawners = spawners / 2
+	var num_blue_spawners = spawners.size() / 2
 	while(num_blue_spawners > 0):
 		var index = randi_range(0,spawners.size()-1)
 		var spawn = spawners[index]
@@ -26,8 +28,23 @@ func initiate_mob_war():
 		spawners.remove_at(index)
 		num_blue_spawners = num_blue_spawners - 1
 	red_spawners = spawners
-
+	spawns_locked = false
 	spawn_timer.start(spawn_timer_len_secs)
+
+func unlock_spawns():
+	spawns_locked = false
+
+func get_and_unlock_spawns():
+	get_spawner_lists()
+	unlock_spawns()
+
+func get_spawner_lists():
+	var capture_points = get_tree().get_nodes_in_group("capture_point")
+	for point in capture_points:
+		if(point.get_team() == "blu"):
+			blu_spawners.append(point)
+		elif(point.get_team() == "red"):
+			red_spawners.append(point)
 
 func spawn_mobs():
 	var temp_blu_spawners = blu_spawners.duplicate()
@@ -92,7 +109,8 @@ func get_loneliest_spawner(spawners : Array[Node]):
 		return lonely_spawner
 
 func _physics_process(delta: float) -> void:
-	if(spawn_timer.is_stopped()):
-		spawn_mobs()
-		spawn_timer.start(spawn_timer_len_secs)
+	if(!spawns_locked):
+		if(spawn_timer.is_stopped()):
+			spawn_mobs()
+			spawn_timer.start(spawn_timer_len_secs)
 	

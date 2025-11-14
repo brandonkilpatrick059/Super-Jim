@@ -13,16 +13,25 @@ extends Node2D
 @onready var sound_player = $AudioStreamPlayer2D
 @onready var sound_player2 = $AudioStreamPlayer2D2
 @onready var sound_player3 = $AudioStreamPlayer2D2
+@onready var back_ground = $back_ground
+@onready var home_win = $home_win
+@onready var away_win = $away_win
 
 var left_index = 0
 var right_index = 0
 
-var max_lineup = 10
+var max_lineup = 5
 
+var begin_end_timer := Timer.new()
 var shaking_timer := Timer.new()
 var game_timer := Timer.new()
 var killing_timer := Timer.new()
 var turn_secs = 0.25
+
+var declaring_victor = false
+var flashing_timer := Timer.new()
+var flashing_time = 0.5
+var flashes = 6
 
 var effects_phase = false
 
@@ -58,6 +67,11 @@ var queued_hp_buff_right = 0
 var queued_stamina_buff_right = 0
 var queued_damage_buff_right = 0
 
+var starting = false
+var ending = false
+var back_ground_move_step = 16
+var back_ground_move_step_time = 0.006
+
 var random = RandomNumberGenerator.new()
 
 func _ready():
@@ -76,7 +90,31 @@ func _ready():
 	game_timer.start(turn_secs)
 	shaking_timer.one_shot = true
 	add_child(shaking_timer)
+	begin_end_timer.one_shot = true
+	add_child(begin_end_timer)
+	flashing_timer.one_shot = true
+	add_child(flashing_timer)
 	starting_global_pos_x = global_position.x
+	hide_cards()
+	begin()
+
+func hide_cards():
+	active_card_right.visible = false
+	card_right_2.visible = false
+	card_right_3.visible = false
+	
+	active_card_left.visible = false
+	card_left_2.visible = false
+	card_left_3.visible = false
+	
+func show_cards():
+	active_card_right.visible = true
+	card_right_2.visible = true
+	card_right_3.visible = true
+	
+	active_card_left.visible = true
+	card_left_2.visible = true
+	card_left_3.visible = true
 
 func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 	if(effects_phase):
@@ -265,6 +303,18 @@ func enact_effects():
 	#stat carries from previous card
 
 
+func begin():
+	starting = true
+	ending = false
+	game_started = false
+	begin_end_timer.start(back_ground_move_step_time)
+
+func end():
+	starting = false
+	ending = true
+	hide_cards()
+	begin_end_timer.start(back_ground_move_step_time)
+
 func start_game():
 	game_started = true
 	var left_card = deck_left.get_child(left_index).duplicate()
@@ -283,6 +333,7 @@ func start_game():
 	if(right_index+2 < deck_right.get_children().size()):
 		var right_card_3 = deck_right.get_child(right_index+2).duplicate()
 		set_card_right(right_card_3,3)
+	show_cards()
 	sound_player.stream = load("res://audio/soundFX/baseball/baseball.wav")
 	sound_player.play()
 	game_timer.start(3)
@@ -316,6 +367,12 @@ func kill_card(kill_right_card : bool):
 	sound_player.stream = load("res://audio/soundFX/pizza_lost.wav")
 	sound_player.play()
 	skip_turn_switch = true
+
+func set_deck_left(deck : Node):
+	deck_left = deck
+
+func set_deck_right(deck : Node):
+	deck_right = deck
 
 func killing_card_process():
 	var card = card_left()
@@ -370,23 +427,56 @@ func killing_card_process():
 			else:
 				game_is_over = true
 		killing_card = false
-		
-		
+
+func set_decks_and_begin(deck_left : Node, deck_right : Node):
+	set_deck_left(deck_left)
+	set_deck_right(deck_right)
+	begin()
 
 func _physics_process(delta: float):	
-	if(game_started == false):
-		start_game()
-	else:
+	if(starting && begin_end_timer.is_stopped()):
+		if(back_ground.position.y - back_ground_move_step < 0):
+			back_ground.position.y = 0
+			starting = false
+			start_game()
+		else:
+			back_ground.position.y = back_ground.position.y - back_ground_move_step
+			begin_end_timer.start(back_ground_move_step_time)
+	elif(ending && begin_end_timer.is_stopped()):
+		if(back_ground.position.y + back_ground_move_step >512):
+			back_ground.position.y = 512
+			queue_free()
+		else:
+			back_ground.position.y = back_ground.position.y + back_ground_move_step
+			begin_end_timer.start(back_ground_move_step_time)
+	if(game_started):
 		if(shaking && shaking_timer.is_stopped()):
 			handle_shake()
-		if(game_timer.is_stopped() &&!game_is_over && !killing_card):
-			update_active_cards()
-			if(!killing_card):
-				if(right_is_going):	
-					run_turn(card_right(), card_left())
+		if(declaring_victor && flashing_timer.is_stopped()):
+			if(flashes > 0):
+				var flashing_text
+				if(deck_left.get_children().size() == 0):
+					flashing_text = away_win
 				else:
-					run_turn(card_left(), card_right())
-				game_timer.start(turn_secs)
-		elif(killing_card):
+					flashing_text = home_win
+				flashing_text.visible = !flashing_text.visible
+				flashing_timer.start(flashing_time)
+				flashes = flashes - 1
+			else:
+				declaring_victor = false
+				end()
+		if(killing_card):
 			killing_card_process()
+		elif(game_timer.is_stopped()):
+			if(!game_is_over && !killing_card):
+				update_active_cards()
+				if(!killing_card):
+					if(right_is_going):	
+						run_turn(card_right(), card_left())
+					else:
+						run_turn(card_left(), card_right())
+					game_timer.start(turn_secs)
+			elif(game_is_over && !declaring_victor && !ending):
+				declaring_victor = true
+			
 			

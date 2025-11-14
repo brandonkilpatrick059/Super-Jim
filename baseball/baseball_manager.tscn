@@ -1,9 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhxsevgsr7a4h"]
+[gd_scene load_steps=8 format=3 uid="uid://bhxsevgsr7a4h"]
 
 [ext_resource type="Script" uid="uid://dn8lth6ua677u" path="res://scripts/baseball/baseball_manager.gd" id="1_6bnxi"]
 [ext_resource type="PackedScene" uid="uid://bocxc8pmuf3na" path="res://baseball/cards/card_base.tscn" id="2_x31gc"]
 [ext_resource type="SpriteFrames" uid="uid://dugnyjwub8xs" path="res://sprites/spritesheets/spriteframes/baseball/bat_arms.tres" id="3_ae8mq"]
 [ext_resource type="Texture2D" uid="uid://bklgivc3q1a7v" path="res://sprites/baseball/back_ground.png" id="4_a786n"]
+[ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="5_7ut21"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3fd7y"]
+font = ExtResource("5_7ut21")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ut21"]
+font = ExtResource("5_7ut21")
+font_size = 32
+font_color = Color(1, 0, 0, 1)
 
 [node name="BaseballCardGame" type="Node2D"]
 script = ExtResource("1_6bnxi")
@@ -60,4 +70,26 @@ position = Vector2(324, 0)
 
 [node name="back_ground" type="Sprite2D" parent="."]
 z_index = -1
+position = Vector2(0, 512)
 texture = ExtResource("4_a786n")
+
+[node name="home_win" type="Label" parent="."]
+visible = false
+z_index = 1
+offset_left = -126.0
+offset_top = 72.0
+offset_right = 134.0
+offset_bottom = 144.0
+text = "HOME TEAM WINS!"
+label_settings = SubResource("LabelSettings_3fd7y")
+horizontal_alignment = 1
+
+[node name="away_win" type="Label" parent="."]
+visible = false
+z_index = 1
+offset_left = -122.0
+offset_top = 72.0
+offset_right = 126.0
+offset_bottom = 144.0
+text = "AWAY TEAM WINS"
+label_settings = SubResource("LabelSettings_7ut21")

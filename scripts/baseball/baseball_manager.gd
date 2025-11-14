@@ -455,7 +455,8 @@ func _physics_process(delta: float):
 		if(declaring_victor && flashing_timer.is_stopped()):
 			if(flashes > 0):
 				var flashing_text
-				if(deck_left.get_children().size() == 0):
+				left_index
+				if(left_index == deck_left.get_children().size()):
 					flashing_text = away_win
 				else:
 					flashing_text = home_win

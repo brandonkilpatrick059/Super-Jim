@@ -33,8 +33,8 @@ position = Vector2(7, -1711)
 
 [node name="mickey_bobdogg" parent="BaseballCardGame/deck_right" instance=ExtResource("4_p6kjw")]
 
+[node name="jimmy_jo2" parent="BaseballCardGame/deck_right" instance=ExtResource("3_p6kjw")]
+
 [node name="bobby_bobson" parent="BaseballCardGame/deck_right" instance=ExtResource("2_uc6r2")]
 
 [node name="bobby_bobson2" parent="BaseballCardGame/deck_right" instance=ExtResource("2_uc6r2")]
-
-[node name="jimmy_jo2" parent="BaseballCardGame/deck_right" instance=ExtResource("3_p6kjw")]

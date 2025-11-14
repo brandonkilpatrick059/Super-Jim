@@ -18,6 +18,9 @@ extends Node2D
 
 @export var shows_wares : bool = false
 
+@export var plays_cards : bool = false
+@export var card_deck : Node2D
+
 var random = RandomNumberGenerator.new()
 
 func get_gives_money() -> int:
@@ -50,6 +53,12 @@ func get_option_branch(index : int) -> dialog_branch:
 
 func get_dialog_script():
 	return dialog_script
+
+func get_plays_cards():
+	return plays_cards
+
+func get_deck():
+	return card_deck
 
 func get_shows_wares() -> bool:
 	return shows_wares

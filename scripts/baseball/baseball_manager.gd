@@ -47,9 +47,9 @@ var killing_card = false
 var killing_right_card = false
 var card_killing_y_step_start_val = 5
 var card_killing_y_step = card_killing_y_step_start_val
-var card_killing_y_step_accel = 15
+var card_killing_y_step_accel = 2
 var card_killing_rotation_step = 0.05
-var killing_timer_step_secs = 0.1
+var killing_timer_step_secs = 0.006
 var killing_time_in_secs = 1.5
 
 var shaking = false
@@ -74,6 +74,8 @@ var back_ground_move_step_time = 0.006
 
 var random = RandomNumberGenerator.new()
 
+var callback_node : Node
+
 func _ready():
 	bat_arms_left.visible = false
 	bat_arms_right.visible = false
@@ -94,9 +96,11 @@ func _ready():
 	add_child(begin_end_timer)
 	flashing_timer.one_shot = true
 	add_child(flashing_timer)
-	starting_global_pos_x = global_position.x
 	hide_cards()
 	begin()
+
+func set_callback_node(node : Node):
+	callback_node = node
 
 func hide_cards():
 	active_card_right.visible = false
@@ -316,6 +320,7 @@ func end():
 	begin_end_timer.start(back_ground_move_step_time)
 
 func start_game():
+	starting_global_pos_x = global_position.x
 	game_started = true
 	var left_card = deck_left.get_child(left_index).duplicate()
 	set_card_left(left_card)
@@ -445,6 +450,10 @@ func _physics_process(delta: float):
 	elif(ending && begin_end_timer.is_stopped()):
 		if(back_ground.position.y + back_ground_move_step >512):
 			back_ground.position.y = 512
+			if(left_index == deck_left.get_children().size()):
+				callback_node.game_end(2)
+			else:
+				callback_node.game_end(1)
 			queue_free()
 		else:
 			back_ground.position.y = back_ground.position.y + back_ground_move_step

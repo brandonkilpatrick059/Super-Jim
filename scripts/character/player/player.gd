@@ -8,6 +8,7 @@ extends RigidBody2D
 @onready var _ui_canvas = $ui_canvas
 @onready var _ui = $ui_canvas/player_ui
 @onready var _light = $player_light
+@onready var _card_deck = $card_deck
 
 var _camera
 var camera_connected = false
@@ -91,6 +92,9 @@ var has_flashlight = false
 var dev_occlusion_enabled = true
 
 var use_item_timer : Timer = Timer.new()
+
+var owned_cards : Array[Baseball_Card] = []
+var num_owned_cards : Array[int] = [] #mirrors owned_cards but each index contains the # of each particular card
 
 func _ready():
 	_collision.disabled = no_clip
@@ -190,6 +194,9 @@ func load_from_dictionary(load_dictionary : Dictionary):
 		top_spriteframes,
 		bottom_spriteframes)
 
+func get_deck():
+	return _card_deck
+
 func get_hat_spriteframes() -> SpriteFrames:
 	return hat_spriteframes
 
@@ -213,6 +220,10 @@ func set_ui_visible():
 
 func set_ui_invisible():
 	_ui.visible = false
+
+func get_camera_global_pos():
+	var pos = _camera.global_position + _camera.offset
+	return pos
 
 func enter_dialog():
 	stop()
@@ -400,6 +411,9 @@ func handle_dev():
 				occluder.occluding_enabled = true
 	if Input.is_action_just_pressed("dev_toggle_fps"):
 		_ui.toggle_fps_counter()
+	if Input.is_action_just_pressed("dev_advance_time"):
+		var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+		time_keeper.advance_clock()
 
 func get_current_hp():
 	return current_hp

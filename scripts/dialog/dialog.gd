@@ -1,5 +1,7 @@
 extends Node
 
+var baseball_game = preload("res://baseball/baseball_manager.tscn")
+
 @onready var _DialogBubble = $DialogBubble
 @onready var _ResponseBubble = $ResponseBubble
 
@@ -11,6 +13,8 @@ var responding = false
 var shopping = false
 var dialog_started = false
 var shop : shop_manager = null
+
+var playing_cards = false
 
 func set_shop(new_shop : shop_manager):
 	shop = new_shop
@@ -25,22 +29,25 @@ func _ready():
 	_ResponseBubble.visible = false
 
 func play_current_branch():
-	responding = false
-	if(tree.get_speaker_name() != null && tree.get_speaker_name() != ""):
-		speaker_node = get_tree().get_first_node_in_group(tree.get_speaker_name())
+	if(!tree.get_plays_cards()):
+		responding = false
+		if(tree.get_speaker_name() != null && tree.get_speaker_name() != ""):
+			speaker_node = get_tree().get_first_node_in_group(tree.get_speaker_name())
+			
+		_ResponseBubble.visible = false
+		_DialogBubble.set_label("")
+		_DialogBubble.global_position = speaker_node.global_position + Vector2(-48,-96)
+		_DialogBubble.set_portrait(tree.get_speaker_portrait(), tree.get_speaker_emote())
+		_DialogBubble.visible = true
+		_DialogBubble.play_text(tree.get_speaker_text(), tree.get_voice())
 		
-	_ResponseBubble.visible = false
-	_DialogBubble.set_label("")
-	_DialogBubble.global_position = speaker_node.global_position + Vector2(-48,-96)
-	_DialogBubble.set_portrait(tree.get_speaker_portrait(), tree.get_speaker_emote())
-	_DialogBubble.visible = true
-	_DialogBubble.play_text(tree.get_speaker_text(), tree.get_voice())
-	
-	var branch_gives_money_amount = tree.get_give_money_amount()
-	player_ref._on_add_money(branch_gives_money_amount)
-	var branch_script = tree.get_dialog_script()
-	if(branch_script != null):
-		branch_script.run_script()
+		var branch_gives_money_amount = tree.get_give_money_amount()
+		player_ref._on_add_money(branch_gives_money_amount)
+		var branch_script = tree.get_dialog_script()
+		if(branch_script != null):
+			branch_script.run_script()
+	else:
+		play_cards()
 
 func set_tree_and_start_dialog(in_tree :dialog_tree):
 	tree = in_tree
@@ -56,7 +63,34 @@ func dialog_continues() -> bool:
 
 func has_speech_options() -> bool:
 	return tree.get_num_speech_options() > 0
-	
+
+func play_cards():
+	if(player_ref.get_deck().get_children().size() > 0):
+		playing_cards = true
+		_DialogBubble.visible = false
+		_ResponseBubble.visible = false
+		var player_deck = player_ref.get_deck()
+		var opponent_deck = tree.get_deck()
+		var game = baseball_game.instantiate()
+		player_ref.get_parent().add_child(game)
+		game.global_position = player_ref.get_camera_global_pos()
+		game.set_callback_node(self)
+		game.set_decks_and_begin(player_deck,opponent_deck)
+	else:
+		game_end(0)
+
+func game_end(player_won : int):
+	playing_cards = false
+	if(player_won == 0):
+		tree.take_speech_option(0) #player doesn't have any cards
+		play_current_branch()
+	elif(player_won == 1):
+		tree.take_speech_option(1)
+		play_current_branch()
+	else: #player lost
+		tree.take_speech_option(2)
+		play_current_branch()
+
 func handle_input():
 	if(responding):
 		if(tree.get_shows_wares() && shop != null): #display available wares
@@ -121,7 +155,6 @@ func handle_input():
 				elif(player_money < ware.get_cost()):
 					tree.take_speech_option(2) #"not enough money" don't buy anything
 					play_current_branch()
-				
 
 func clean_up():
 	var parent_npc = get_parent()

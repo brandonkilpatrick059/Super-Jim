@@ -41,6 +41,12 @@ func get_dialog_script() -> Node:
 func get_shows_wares() -> bool:
 	return current_branch.get_shows_wares()
 
+func get_plays_cards() -> bool:
+	return current_branch.get_plays_cards()
+
+func get_deck() -> Node:
+	return current_branch.get_deck()
+
 func set_speech_options(options : Array[String]):
 	current_branch.set_speech_options(options)
 

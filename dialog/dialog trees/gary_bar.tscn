@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://wu60bat886ur"]
+[gd_scene load_steps=6 format=3 uid="uid://wu60bat886ur"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_srd8c"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_igc2l"]
+[ext_resource type="PackedScene" uid="uid://pq0gqmxbxwml" path="res://baseball/cards/jimmy_jo.tscn" id="3_di8uv"]
+[ext_resource type="PackedScene" uid="uid://c7tkuxihuj6tg" path="res://baseball/cards/mickey_bobdogg.tscn" id="4_f8quc"]
+[ext_resource type="PackedScene" uid="uid://dky561g1q1ul5" path="res://baseball/cards/bobby_bobson.tscn" id="5_lijhx"]
 
 [node name="bar_tender_at_bar" type="Node2D"]
 script = ExtResource("1_srd8c")
@@ -57,14 +60,50 @@ voice = "sine_voice"
 
 [node name="cards 2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
 position = Vector2(682, 458)
-speaker_text = Array[String](["I would play you, but I left my deck at home."])
+speaker_text = Array[String](["Yeah, let's throw down."])
 speaker_portrait = null
-option_branches = [NodePath("../cards 3")]
+option_branches = [NodePath("../play_cards")]
 voice = "sine_voice"
 
-[node name="cards 3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
+[node name="play_cards" parent="." node_paths=PackedStringArray("option_branches", "card_deck") instance=ExtResource("2_igc2l")]
 position = Vector2(716, 703)
-speaker_text = Array[String](["Sorry."])
+speaker_portrait = null
+option_branches = [NodePath("../no_cards"), NodePath("../cards_win"), NodePath("../cards_lose")]
+voice = "sine_voice"
+plays_cards = true
+card_deck = NodePath("deck_right")
+
+[node name="deck_right" type="Node2D" parent="play_cards"]
+position = Vector2(7, -1711)
+metadata/_edit_group_ = true
+
+[node name="jimmy_jo" parent="play_cards/deck_right" instance=ExtResource("3_di8uv")]
+
+[node name="mickey_bobdogg" parent="play_cards/deck_right" instance=ExtResource("4_f8quc")]
+
+[node name="jimmy_jo2" parent="play_cards/deck_right" instance=ExtResource("3_di8uv")]
+
+[node name="bobby_bobson" parent="play_cards/deck_right" instance=ExtResource("5_lijhx")]
+
+[node name="bobby_bobson2" parent="play_cards/deck_right" instance=ExtResource("5_lijhx")]
+
+[node name="no_cards" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
+position = Vector2(574, 922)
+speaker_text = Array[String](["Oh wait, you don't have any cards. Sorry."])
+speaker_portrait = null
+option_branches = [NodePath("../vibes are good")]
+voice = "sine_voice"
+
+[node name="cards_win" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
+position = Vector2(776, 928)
+speaker_text = Array[String](["Nice, good game."])
+speaker_portrait = null
+option_branches = [NodePath("../vibes are good")]
+voice = "sine_voice"
+
+[node name="cards_lose" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
+position = Vector2(965, 918)
+speaker_text = Array[String](["Heck yeah! Good game."])
 speaker_portrait = null
 option_branches = [NodePath("../vibes are good")]
 voice = "sine_voice"

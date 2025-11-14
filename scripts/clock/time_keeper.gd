@@ -144,6 +144,13 @@ func advance_day():
 		day_of_the_week = day_of_the_week + 1
 	new_day.emit()
 
+func advance_clock():
+	if(clock != 23):
+		clock = clock + 1
+	else: if(clock == 23):
+		clock = 0
+		advance_day()
+
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	get_input()
@@ -151,11 +158,7 @@ func _process(delta):
 		#calculate clock
 		if(timer_world.is_stopped() && not time_locked):
 			timer_world.start(hour_length_seconds)
-			if(clock != 23):
-				clock = clock + 1
-			else: if(clock == 23):
-				clock = 0
-				advance_day()
+			advance_clock()
 	elif (is_menu_paused && !is_playing_song && timer_song.is_stopped()):
 		is_playing_song = true
 		#sound_player.stream = load("res://audio/music/Game is paused 2.wav")

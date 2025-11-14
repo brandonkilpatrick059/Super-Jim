@@ -22,6 +22,8 @@ const appears_at_time = "appears_at_time"
 @export var dialog_offset = Vector2(0,0)
 @export var starting_index = 0
 
+@export var exempt_from_npc_refresh = false
+
 @export var save_tag : String = ""
 
 #array of all schedules this NPC will use
@@ -52,7 +54,7 @@ var has_talked = false
 var showing_bubble = false
 
 const top_speed = 125000
-const nav_target_reached_distance = 32 #distance at which nav target is considered reached
+const nav_target_reached_distance = 4 #distance at which nav target is considered reached
 const nav_path_resolution = 4
 
 var sound_player := AudioStreamPlayer2D.new()
@@ -141,6 +143,9 @@ func update_perceptions():
 	perceptions.linear_velocity = linear_velocity
 	perceptions.speed = linear_velocity.length()
 	
+	update_stage_mark()
+
+func update_stage_mark():
 	if(schedules.size() > 0):
 		var time_keeper_ref = get_tree().get_first_node_in_group("time_keeper")
 		if(time_keeper_ref != null):
@@ -150,7 +155,7 @@ func update_perceptions():
 			var current_stage_mark = current_schedule.get_stage_mark(current_day_index,current_hour_index)
 			perceptions.current_stage_mark = current_stage_mark
 			update_branching_dialog()
-
+		
 func get_branching_dialog():
 	return branching_dialog
 
@@ -244,6 +249,14 @@ func get_save_dictionary() -> Dictionary:
 		"schedules_index" : int(schedules_index)
 	}
 	return save_dictionary
+
+func teleport_and_update():
+	if(schedules.size() > 0 && !exempt_from_npc_refresh):
+		update_stage_mark()
+		global_position = perceptions.current_stage_mark.global_position
+		var parent_node = perceptions.current_stage_mark.get_reparent_node()
+		reparent(parent_node)
+		_ai_state_machine.transition_to(perceptions.current_stage_mark.get_state())
 
 func load_from_dictionary(load_dictionary : Dictionary):
 	global_position = Vector2(load_dictionary.get("pos_x"), load_dictionary.get("pos_y"))

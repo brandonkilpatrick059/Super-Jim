@@ -294,6 +294,9 @@ func is_in_dialog():
 func add_scene_to_ui_tree(scene : Node):
 	_ui.add_child(scene)
 
+func get_camera_ref() -> Node:
+	return _camera
+
 func exit_dialog():
 	use_item_timer.start(0.25)
 	in_dialog = false
@@ -414,6 +417,7 @@ func handle_dev():
 	if Input.is_action_just_pressed("dev_advance_time"):
 		var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 		time_keeper.advance_clock()
+		time_keeper.refresh_npc_locations()
 
 func get_current_hp():
 	return current_hp

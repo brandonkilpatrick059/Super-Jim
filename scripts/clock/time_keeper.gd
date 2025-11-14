@@ -50,6 +50,11 @@ func unlock_time():
 func lock_time():
 	time_locked = true
 
+func refresh_npc_locations():
+	var npcs = get_tree().get_nodes_in_group("npc")
+	for npc in npcs:
+		npc.teleport_and_update()
+
 #Called when the node enters the scene tree for the first time.
 func _ready():
 	sound_player.bus = "Music"
@@ -136,6 +141,7 @@ func get_input():
 
 func set_clock(hour : int):
 	clock = hour
+	refresh_npc_locations()
 
 func advance_day():
 	if(day_of_the_week == 6):

@@ -73,7 +73,7 @@ func play_cards():
 		var opponent_deck = tree.get_deck()
 		var game = baseball_game.instantiate()
 		player_ref.get_parent().add_child(game)
-		game.global_position = player_ref.get_camera_global_pos()
+		game.global_position = player_ref.get_camera_ref().get_screen_center_position()
 		game.set_callback_node(self)
 		game.set_decks_and_begin(player_deck,opponent_deck)
 	else:

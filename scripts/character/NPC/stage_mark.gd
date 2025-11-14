@@ -9,7 +9,22 @@ extends Node2D
 
 @export var passive_text : Array[String] = []
 
+@export var reparent_to_daylight = false
+@export var reparent_to_no_daylight = false
+@export var reparent_to_dark_indoor = false
+
 var random = RandomNumberGenerator.new()
+
+func get_reparent_node() -> Node:
+	var reparent_node 
+	if(reparent_to_daylight):
+		reparent_node = get_tree().get_first_node_in_group("daylight_affected_ysort")
+	elif(reparent_to_no_daylight):
+		reparent_node = get_tree().get_first_node_in_group("no_daylight_ysort")
+	elif(reparent_to_dark_indoor):
+		reparent_node = get_tree().get_first_node_in_group("dark_indoor_ysort")
+	return reparent_node
+
 
 func get_state():
 	return state

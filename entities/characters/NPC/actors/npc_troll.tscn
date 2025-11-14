@@ -29,6 +29,7 @@ talk_radius = 200
 base_spriteframes = ExtResource("2_rcf8h")
 dialog_offset = null
 starting_index = null
+exempt_from_npc_refresh = null
 branching_dialog = NodePath("troll")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

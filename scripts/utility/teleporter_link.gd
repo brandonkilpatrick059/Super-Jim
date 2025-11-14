@@ -11,14 +11,15 @@ extends Node2D
 @export var reparent_to_dark_indoor = false
 @export var secs_for_control_back : int = 0
 @export var fade_color : Color = Color(0,0,0)
+@export var no_ui_interact = false
 
 var entering = false
 var exiting = false
 
 var fade_alpha = 0.0
-var fade_step = 0.05
+var fade_step = 0.02
 
-var fade_step_secs = 0.05
+var fade_step_secs = 0.006
 var teleport_step_secs = 0.5
 var timer_fade := Timer.new()
 
@@ -132,6 +133,8 @@ func exit():
 			timer_control_back.start(secs_for_control_back)
 		else:
 			player_ref.set_control_frozen(false)
+			if(!no_ui_interact):
+				player_ref.main_ui_visible()
 
 func update_fade_alpha():
 	_fade_to_black.color = Color(fade_color.r,fade_color.g,fade_color.b,fade_alpha)
@@ -150,6 +153,8 @@ func _on_area_2d_body_entered(body):
 			entering = true
 			player_ref.stop()
 			player_ref.set_control_frozen(true)
+			if(!no_ui_interact):
+				player_ref.main_ui_invisible()
 			update_fade_alpha()
 			timer_fade.start(fade_step_secs)
 			if(enter_y_push != 0):

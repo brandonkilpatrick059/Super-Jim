@@ -281,7 +281,17 @@ func show_money():
 
 func hide_money():
 	_ui.hide_money()
-	
+
+func main_ui_invisible():
+	hide_hearts()
+	hide_money()
+	hide_dash()
+
+func main_ui_visible():
+	show_hearts()
+	show_money()
+	show_dash()
+
 func connect_camera():
 	_camera = get_tree().get_first_node_in_group("camera")
 	_camera.connect_player(self)

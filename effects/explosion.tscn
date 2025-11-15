@@ -12,7 +12,7 @@ blend_mode = 1
 [sub_resource type="CircleShape2D" id="CircleShape2D_uok2e"]
 radius = 28.0179
 
-[node name="explosion" type="RigidBody2D" groups=["bullet_spark", "spark"]]
+[node name="explosion" type="RigidBody2D" groups=["bullet_spark", "commotion", "spark"]]
 collision_layer = 256
 collision_mask = 0
 script = ExtResource("1_vv155")
@@ -24,6 +24,7 @@ speed_scale = 0.4
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_2bmfb")
 sprite_frames = ExtResource("3_rkyet")
+frame_progress = 0.998082
 speed_scale = 0.4
 script = ExtResource("4_yc3gs")
 

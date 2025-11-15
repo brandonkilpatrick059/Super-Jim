@@ -53,10 +53,18 @@ func spawn_mobs():
 	var num_blu_mobs = 0
 	var num_red_bandits = 0
 	var num_blu_bandits = 0
+	var num_red_points = 0
+	var num_blu_points = 0
 	var current_mobs = get_tree().get_nodes_in_group("mobster")
 	var num_tier_0 = 0
 	var num_tier_1 = 0
 	var num_tier_2 = 0
+	var points = get_tree().get_nodes_in_group("capture_point")
+	for point in points:
+		if(point.is_in_group("red")):
+			num_red_points = num_red_points + 1
+		elif(point.is_in_group("blu")):
+			num_blu_points = num_blu_points + 1
 	for mob in current_mobs:
 		var tier = mob.check_process_tier()
 		match tier:
@@ -78,9 +86,11 @@ func spawn_mobs():
 	print("=======================")
 	print(str("Total Mobs-----", current_mobs.size()))
 	print(str("Total Bandits:-", num_red_bandits + num_blu_bandits))
+	print(str("BLU:-----------", num_blu_points))
 	print(str("Blu Mobs:------", num_blu_mobs))
 	print(str("+Bandits:------", num_blu_bandits))
 	print(str("+Goons:--------", num_blu_mobs - num_blu_bandits))
+	print(str("RED:-----------", num_red_points))
 	print(str("Red Mobs:------", num_red_mobs))
 	print(str("+Bandits:------", num_red_bandits))
 	print(str("+Goons:--------", num_red_mobs - num_red_bandits))

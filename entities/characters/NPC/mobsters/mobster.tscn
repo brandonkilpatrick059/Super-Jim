@@ -58,10 +58,10 @@ max_neighbors = 5
 time_horizon_agents = 5.0
 
 [node name="vision" type="ShapeCast2D" parent="."]
-visible = false
 self_modulate = Color(1, 1, 0, 1)
 shape = SubResource("ConvexPolygonShape2D_ldxv5")
 target_position = Vector2(0, 0)
+max_results = 4
 collision_mask = 2049
 
 [node name="shadow" type="Sprite2D" parent="."]
@@ -114,6 +114,7 @@ initial_state = NodePath("idle")
 [node name="spark_detector" type="Area2D" parent="."]
 collision_layer = 256
 collision_mask = 256
+input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="spark_detector"]
 shape = SubResource("CircleShape2D_lksb6")

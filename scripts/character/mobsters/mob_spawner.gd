@@ -38,16 +38,16 @@ func set_team(input_team : String):
 	if(input_team == "red"):
 		spawner_team = "red"
 		opposing_team = "blu"
+		remove_from_group("blu")
+		add_to_group("red")
 	elif(input_team == "blu"):
 		spawner_team = "blu"
 		opposing_team = "red"
+		remove_from_group("red")
+		add_to_group("blu")
 
 func turn_over():
-	var temp = spawner_team
-	remove_from_group(temp)
-	spawner_team = opposing_team
-	opposing_team = temp
-	add_to_group(spawner_team)
+	set_team(opposing_team)
 
 func get_save_tag():
 	return save_tag
@@ -93,6 +93,7 @@ func get_save_dictionary() -> Dictionary:
 
 func load_from_dictionary(load_dictionary : Dictionary):
 	spawner_team = String(load_dictionary.get("team"))
+	set_team(spawner_team)
 	spawns_since_bandit = int(load_dictionary.get("spawns_since_bandit"))
 
 func _on_body_entered(body: Node):

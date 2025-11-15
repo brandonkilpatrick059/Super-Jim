@@ -4,16 +4,16 @@ extends State
 signal one_shot_animate(animation : String)
 signal stop_motion
 signal turn_off_collision
-signal play_sound(resource_name : String)
+signal play_sound(resource_id : int)
 signal drop_item()
 
 func physics_process(_delta: float) -> void:
 	if(!ai_state_machine.get_perceptions().one_shot_animating):
 		if(ai_state_machine.get_perceptions().hit_points > 0):
-			play_sound.emit("res://audio/soundFX/smallCollide.wav")
+			play_sound.emit(0)
 			ai_state_machine.transition_to(mobster_states.knockedout)
 		else:
-			play_sound.emit("res://audio/soundFX/smallCollide.wav")
+			play_sound.emit(0)
 			ai_state_machine.transition_to(mobster_states.dead)
 
 func enter(_msg := {}) -> void:

@@ -33,6 +33,7 @@ var sine_voice = preload("res://audio/soundFX/voice/sine_voice/1.wav")
 var low_sine_voice = preload("res://audio/soundFX/voice/low_sine_voice/1.wav")
 var exclaim_sound = preload("res://audio/soundFX/alert.wav")
 var horn_sound = preload("res://audio/soundFX/horn.wav")
+var small_collide = preload("res://audio/soundFX/smallCollide.wav")
 
 @onready var _navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var _head_collider = $head_shape
@@ -256,15 +257,6 @@ func update_line_of_sight_to_target():
 			else:
 				perceptions.reactive_has_line_of_sight_to_target = false
 
-func check_falling():
-	if(perceptions.one_shot_animating):
-		if(perceptions.hit_points > 0):
-			_on_play_sound("res://audio/soundFX/smallCollide.wav")
-			_ai_state_machine.transition_to(mobster_states.knockedout)
-		else:
-			_on_play_sound("res://audio/soundFX/smallCollide.wav")
-			_ai_state_machine.transition_to(mobster_states.dead)
-
 func initiate_perceptions():
 	perceptions.current_v = current_v
 	perceptions.facing_dir = _character_base.get_facing_dir()
@@ -368,6 +360,12 @@ func load_from_dictionary(load_dictionary : Dictionary):
 	global_position = Vector2(load_dictionary.get("pos_x"), load_dictionary.get("pos_y"))
 	hit_points = int(load_dictionary.get("hit_points"))
 	team = String(load_dictionary.get("team"))
+	if(team == team_red):
+		opposing_team = team_blu
+	elif(team == team_blu):
+		opposing_team = team_red
+	perceptions.team = team
+	perceptions.opposing_team = opposing_team
 	if (load_dictionary.get("is_bandit")):
 		is_bandit = true
 	base_spriteframes = load(load_dictionary.get("base_spriteframes"))
@@ -391,6 +389,7 @@ func check_vision():
 			var iterator = 0
 			while(iterator < _vision.get_collision_count()):
 				var entity = _vision.get_collider(iterator)
+				_vision.get
 				if(entity != null ):
 					detected_nodes.append(entity)
 				iterator = iterator + 1
@@ -680,9 +679,10 @@ func _on_stop_motion():
 	_character_base.set_animation_scale_ratio(1)
 	current_v = Vector2(0,0)
 
-func _on_play_sound(resource_name: String):
-	sound_player.stream = load(resource_name)
-	sound_player.play()
+func _on_play_sound(resource_id: int):
+	if(resource_id == 0):
+		sound_player.stream = small_collide
+		sound_player.play()
 
 func _on_question_bubble():
 	sound_player.stream = sine_voice
@@ -767,16 +767,7 @@ func update():
 		update_perceptions()
 		if(_ai_state_machine.get_state().name != mobster_states.dead):
 			if(!perceptions.nav_target_reached):
-				#var tier = processing_tier
-				#if(tier == 0):
 				update_navigation()
-				#elif(processing_timer.is_stopped()):
-					#update_navigation()
-					#match tier:
-						#1:
-							#processing_timer.start(randf_range(0.1,0.5))
-						#2:
-							#processing_timer.start(randf_range(0.5,1))
 			if(_ai_state_machine.get_state().name != mobster_states.falling &&
 			_ai_state_machine.get_state().name != mobster_states.recovering &&
 			_ai_state_machine.get_state().name != mobster_states.dead):

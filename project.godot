@@ -175,6 +175,7 @@ dev_advance_time={
 
 [physics]
 
+common/max_physics_steps_per_frame=4
 2d/default_gravity=0.0
 2d/default_gravity_vector=Vector2(0, 0)
 2d/solver/solver_iterations=1

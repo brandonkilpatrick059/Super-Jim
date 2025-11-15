@@ -44,28 +44,29 @@ func physics_process(_delta: float) -> void:
 		var nodes_in_hearing = ai_state_machine.get_perceptions().nodes_in_hearing
 		#check nodes in vision for other mobs, who take priority
 		var pizza = get_tree().get_first_node_in_group("pizza")
-		for node in nodes_in_vision:
-			if(node != null):
-				if(node.is_in_group("mobster") &&
-				node.is_in_group(ai_state_machine.get_perceptions().opposing_team)):
-					set_target.emit(node)
-					if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
-						ai_state_machine.transition_to(mobster_states.exclaiming)
-						return
-				#check for player
-				elif(node.is_in_group("courier")):
-					set_target.emit(node)
-					if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
-						ai_state_machine.transition_to(mobster_states.exclaiming)
-						return
-				elif(pizza != null &&
-				!ai_state_machine.perceptions.holding_object &&
-				node.is_in_group("pizza") && 
-				!pizza.is_picked_up()):
-					set_target.emit(node)
-					if(ai_state_machine.get_perceptions().reactive_has_line_of_sight_to_target):
-						ai_state_machine.transition_to(mobster_states.enticed)
-						return
+		if(nodes_in_vision.size() > 0):
+			for node in nodes_in_vision:
+				if(node != null):
+					if(node.is_in_group("mobster") &&
+					node.is_in_group(ai_state_machine.get_perceptions().opposing_team)):
+						set_target.emit(node)
+						if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
+							ai_state_machine.transition_to(mobster_states.exclaiming)
+							return
+					#check for player
+					elif(node.is_in_group("courier")):
+						set_target.emit(node)
+						if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
+							ai_state_machine.transition_to(mobster_states.exclaiming)
+							return
+					elif(pizza != null &&
+					!ai_state_machine.perceptions.holding_object &&
+					node.is_in_group("pizza") && 
+					!pizza.is_picked_up()):
+						set_target.emit(node)
+						if(ai_state_machine.get_perceptions().reactive_has_line_of_sight_to_target):
+							ai_state_machine.transition_to(mobster_states.enticed)
+							return
 		#check nodes in hearing
 		if(nodes_in_hearing.size() > 0):
 			for node in nodes_in_hearing:
@@ -92,6 +93,8 @@ func distance_to_position(pos: Vector2):
 func current_point_to_closest_capture_point():
 	var capture_points = get_tree().get_nodes_in_group("capture_point")
 	current_patrol_point = null
+	var test = ai_state_machine.get_perceptions().opposing_team
+	var test2 = ai_state_machine.get_perceptions().team
 	for capture_point in capture_points:
 		if(capture_point.is_in_group(ai_state_machine.get_perceptions().opposing_team)):
 			if(current_patrol_point != null):

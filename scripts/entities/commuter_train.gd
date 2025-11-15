@@ -5,7 +5,7 @@ var move_timer_step = 0.006
 var move_step_timer : Timer = Timer.new()
 
 var station_timer : Timer = Timer.new()
-var station_wait_secs = 5
+var station_wait_secs = 15
 
 var going_east = true
 var returning_east = false

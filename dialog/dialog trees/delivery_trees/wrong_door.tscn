@@ -11,4 +11,3 @@ trunk = NodePath("wrong_door")
 speaker_text = Array[String](["I didn't order a pizza...", "Pizza? Sorry, wrong address.", "We didn't order anything.", "This place doesn't allow solicitors.", "You have the wrong address.", "Wrong address, I'm afraid.", "Sorry, I think you have the wrong place.", "No one here ordered anything.", "I didn't order anything.", "Sorry, this isn't the right address."])
 speaker_portrait = null
 voice = "sine_voice"
-plays_cards = null

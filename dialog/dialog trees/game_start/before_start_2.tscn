@@ -14,11 +14,9 @@ speaker_text = Array[String](["If you want a job, you gotta talk to the boss."])
 speaker_portrait = ExtResource("3_c4ccu")
 option_branches = [NodePath("../trunk2")]
 voice = "low_sine_voice"
-plays_cards = null
 
 [node name="trunk2" parent="." instance=ExtResource("2_c4ccu")]
 position = Vector2(-34, 233)
 speaker_text = Array[String](["Her office is up the stairs to the right."])
 speaker_portrait = ExtResource("3_c4ccu")
 voice = "low_sine_voice"
-plays_cards = null

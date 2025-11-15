@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://vrgbugp2wbwy"]
+
+[ext_resource type="Texture2D" uid="uid://ds6wb6eub3iig" path="res://sprites/game_world/commuter_train.png" id="1_4bgwf"]
+
+[node name="commuter_train" type="Sprite2D"]
+z_index = 1
+texture = ExtResource("1_4bgwf")

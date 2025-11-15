@@ -37,6 +37,3 @@ z_index = -1
 position = Vector2(7.7486e-07, -50.5)
 scale = Vector2(3, 3.09375)
 texture = ExtResource("3_s7jfl")
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_vision_collider_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_vision_collider_body_exited"]

@@ -1,0 +1,42 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://bwa5dnp04qtod"]
+
+[ext_resource type="Texture2D" uid="uid://cl11n0meec3jp" path="res://sprites/game_world/commuter_train_window.png" id="1_d2uht"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_habd3"]
+atlas = ExtResource("1_d2uht")
+region = Rect2(0, 96, 480, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ln8h"]
+atlas = ExtResource("1_d2uht")
+region = Rect2(0, 0, 480, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knnl8"]
+atlas = ExtResource("1_d2uht")
+region = Rect2(0, 96, 480, 96)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_habd3")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ln8h")
+}],
+"loop": true,
+"name": &"dark",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knnl8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

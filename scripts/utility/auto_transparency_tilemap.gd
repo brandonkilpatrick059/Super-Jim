@@ -36,11 +36,13 @@ func _process(delta):
 		
 
 func _on_vision_collider_body_entered(body):
+	pass
 	if(body.is_in_group("player")):
 		timer.start(fade_step_time)
 		is_occluding_player = true
 
 func _on_vision_collider_body_exited(body):
+	pass
 	if(body.is_in_group("player")):
 		timer.start(fade_step_time)
 		is_occluding_player = false

@@ -9,7 +9,6 @@ signal transitioned(state_name)
 @onready var state: State = get_node(initial_state)
 
 var perceptions : Perceptions = Perceptions.new()
-var random : RandomNumberGenerator = RandomNumberGenerator.new()
 
 var process_tier = 0
 var process_timer : Timer = Timer.new()
@@ -41,6 +40,7 @@ func _physics_process(delta: float):
 	if(!Engine.is_editor_hint()):
 		if(state != null):
 			if(tier == 0):
+				pass
 				state.physics_process(delta)
 			elif(process_timer.is_stopped()):
 				state.physics_process(delta)

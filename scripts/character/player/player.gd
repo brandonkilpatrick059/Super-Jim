@@ -496,6 +496,12 @@ func resurrect():
 		dead = false
 		current_hp = 3
 
+func disable_collision():
+	_collision.disabled = true
+	
+func enable_collision():
+	_collision.disabled = false
+
 func handle_interact():
 	if use_item_timer.is_stopped() && Input.is_action_just_pressed("interact"):
 		use_item_timer.start(0.25)

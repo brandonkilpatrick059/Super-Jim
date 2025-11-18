@@ -3,7 +3,7 @@ extends Node2D
 
 var mobster = preload("res://entities/characters/NPC/mobsters/mobster.tscn")
 
-var max_mobs_per_team = 0
+var max_mobs_per_team = 40
 var max_bandits_per_team = 10
 var spawns_since_bandit = 0
 var spawns_until_bandit = 3

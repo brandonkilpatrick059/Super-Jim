@@ -14,6 +14,7 @@ extends Node2D
 @export var no_ui_interact = false
 
 var entering = false
+var loading = false
 var exiting = false
 
 var fade_alpha = 0.0
@@ -22,6 +23,9 @@ var fade_step = 0.02
 var fade_step_secs = 0.006
 var teleport_step_secs = 0.5
 var timer_fade := Timer.new()
+var timer_load_in := Timer.new()
+
+var teleport_load_in_secs = 1.0
 
 #for locking player control during teleport
 var timer_control_back := Timer.new() 
@@ -56,6 +60,8 @@ func _ready():
 	dark_layer = get_tree().get_first_node_in_group("dark_layer")
 	timer_fade.one_shot = true
 	timer_control_back.one_shot = true
+	timer_load_in.one_shot = true
+	add_child(timer_load_in)
 	add_child(timer_fade)
 	add_child(timer_control_back)
 	camera_ref = get_tree().get_first_node_in_group("camera")
@@ -70,12 +76,14 @@ func _process(delta):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	if(entering || exiting || control_timer_active):
+	if(entering || exiting || loading ||  control_timer_active):
 		_fade_to_black.global_position = Vector2(0,0)
 		if(Engine.is_editor_hint()):
 			queue_redraw()
 		if(entering):
 			enter()
+		elif(loading):
+			load_wait() # wait for pruned objects to load in
 		elif(exiting):
 			exit()
 		elif(control_timer_active && timer_control_back.is_stopped()):
@@ -83,13 +91,22 @@ func _physics_process(delta):
 				exiting = false
 				player_ref.set_control_frozen(false)
 
+func load_wait():
+	if(timer_load_in.is_stopped()):
+		loading = false
+		linked_teleporter.player_ref = player_ref
+		linked_teleporter.timer_fade.start(teleport_step_secs)
+		linked_teleporter.exiting = true
+		player_ref.enable_collision()
+		if(linked_teleporter.exit_y_push != 0):
+			player_ref.set_current_v(Vector2(0,linked_teleporter.exit_y_push))
+
 func enter():
 	if(fade_alpha < 1 && timer_fade.is_stopped()):
 		fade_alpha = fade_alpha + fade_step
 		timer_fade.start(fade_step_secs)
 	else: if(fade_alpha >= 1):
 		fade_alpha = 1
-		
 		player_ref.global_position = linked_teleporter.global_position
 		if(reparent_to_daylight):
 			player_ref.reparent(day_light_ysort)
@@ -109,13 +126,9 @@ func enter():
 			day_light_layer.visible = false
 			dark_layer.visible = true
 			#flat_light_layer.visible = false	
-			
-		linked_teleporter.player_ref = player_ref
-		linked_teleporter.timer_fade.start(teleport_step_secs)
-		linked_teleporter.exiting = true
 		entering = false
-		if(linked_teleporter.exit_y_push != 0):
-				player_ref.set_current_v(Vector2(0,linked_teleporter.exit_y_push))
+		loading = true
+		timer_load_in.start(teleport_load_in_secs)
 
 func exit():
 	if(fade_alpha > 0 && timer_fade.is_stopped()):
@@ -149,10 +162,11 @@ func _on_area_2d_body_exited(body):
 func _on_area_2d_body_entered(body):
 	if(body.is_in_group("player")):
 		player_ref = body
-		if(!entering && !exiting && !exit_only):
+		if(!entering && !loading && !exiting && !exit_only):
 			entering = true
 			player_ref.stop()
 			player_ref.set_control_frozen(true)
+			player_ref.disable_collision()
 			if(!no_ui_interact):
 				player_ref.main_ui_invisible()
 			update_fade_alpha()

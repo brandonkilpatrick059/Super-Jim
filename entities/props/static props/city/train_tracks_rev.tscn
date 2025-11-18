@@ -10,7 +10,7 @@ size = Vector2(16, 18)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yputd"]
 size = Vector2(282, 78)
 
-[node name="TrainTracks" type="Node2D"]
+[node name="TrainTracks" type="Node2D" groups=["prunable"]]
 script = ExtResource("1_p5n2p")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

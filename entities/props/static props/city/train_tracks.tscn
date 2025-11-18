@@ -10,10 +10,10 @@ size = Vector2(16, 17)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_14bso"]
 size = Vector2(325, 78)
 
-[node name="TrainTracks" type="Node2D"]
+[node name="TrainTracks" type="Node2D" groups=["prunable"]]
 script = ExtResource("1_vrd6i")
 
-[node name="Sprite2D" type="Sprite2D" parent="." groups=["above_player"]]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_0khg3")
 offset = Vector2(0, -96)
 flip_h = true

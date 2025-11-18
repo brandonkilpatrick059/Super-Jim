@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x7wqg"]
 size = Vector2(16, 10)
 
-[node name="brick" type="RigidBody2D" groups=["dynamic", "pickupable", "prop"]]
+[node name="brick" type="RigidBody2D" groups=["dynamic", "pickupable", "prop", "prunable"]]
 y_sort_enabled = true
 collision_layer = 8
 collision_mask = 4187

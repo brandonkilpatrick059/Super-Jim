@@ -10,7 +10,7 @@ bounce = 0.1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x7wqg"]
 size = Vector2(8, 10)
 
-[node name="bottle" type="RigidBody2D" groups=["dynamic", "pickupable", "prop"]]
+[node name="bottle" type="RigidBody2D" groups=["dynamic", "pickupable", "prop", "prunable"]]
 y_sort_enabled = true
 collision_layer = 8
 collision_mask = 4187

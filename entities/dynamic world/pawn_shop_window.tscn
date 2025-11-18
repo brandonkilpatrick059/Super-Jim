@@ -8,7 +8,7 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x3o52"]
 blend_mode = 1
 
-[node name="pawn_shop_window" type="Node2D"]
+[node name="pawn_shop_window" type="Node2D" groups=["prunable"]]
 script = ExtResource("1_fxmf4")
 running_hours = Array[bool]([false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, false])
 

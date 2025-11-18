@@ -12,7 +12,7 @@ size = Vector2(70.3932, 27.5491)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h4eb8"]
 blend_mode = 1
 
-[node name="lightPole" type="StaticBody2D" groups=["prop"]]
+[node name="lightPole" type="StaticBody2D" groups=["prop", "prunable"]]
 
 [node name="lightPole" type="Sprite2D" parent="." groups=["prop"]]
 y_sort_enabled = true

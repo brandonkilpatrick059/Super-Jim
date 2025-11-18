@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dkmviee8xxpm7" path="res://sprites/lights/indoor_window__light.png" id="1_1s8t7"]
 [ext_resource type="Script" uid="uid://cpcowly5yu2nq" path="res://scripts/utility/timed_light.gd" id="2_yjwhw"]
 
-[node name="IndoorWindowLight1" type="Node2D"]
+[node name="IndoorWindowLight1" type="Node2D" groups=["prunable"]]
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(1, 1, 0.862745, 1)

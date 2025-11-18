@@ -108,8 +108,7 @@ func enter():
 			player_ref.turn_light_on()
 			day_light_layer.visible = false
 			dark_layer.visible = true
-			#flat_light_layer.visible = false
-			
+			#flat_light_layer.visible = false	
 			
 		linked_teleporter.player_ref = player_ref
 		linked_teleporter.timer_fade.start(teleport_step_secs)

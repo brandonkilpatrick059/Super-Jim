@@ -9,7 +9,7 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ycgon"]
 blend_mode = 1
 
-[node name="window3_all_night" type="Node2D"]
+[node name="window3_all_night" type="Node2D" groups=["prunable"]]
 script = ExtResource("1_25ngb")
 running_hours = Array[bool]([false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, false])
 running_hours_2 = Array[bool]([false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true])

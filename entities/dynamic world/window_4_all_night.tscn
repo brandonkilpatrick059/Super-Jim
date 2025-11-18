@@ -10,7 +10,7 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b10d8"]
 blend_mode = 1
 
-[node name="window4_all_night" type="Node2D"]
+[node name="window4_all_night" type="Node2D" groups=["prunable"]]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_0gdkm")

@@ -103,6 +103,15 @@ func player_is_behind_door():
 		ret_val = true
 	return ret_val
 
+func _process(delta: float):
+	#by default doors are prunable (will be removed from tree to save processor usage)
+	#but doors which are saved/loaded from memory
+	#are locked/unlocked while offscreen, which would not
+	#be possible if they were pruned (removed from tree). So this code
+	#enforces an exception for doors which are saved/loaded from memory
+	if(is_in_group("prunable") && save_tag != ""):
+		remove_from_group("prunable")
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
 	if(!does_not_open):

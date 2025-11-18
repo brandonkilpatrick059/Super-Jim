@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dhd8jwmx0asck" path="res://sprites/lights/tunnel_light.png" id="1_pprm0"]
 [ext_resource type="Texture2D" uid="uid://7xytxntsgyls" path="res://sprites/lights/diffuse_circle.png" id="2_jdwut"]
 
-[node name="tunnel_light" type="Sprite2D"]
+[node name="tunnel_light" type="Sprite2D" groups=["prunable"]]
 texture = ExtResource("1_pprm0")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

@@ -806,21 +806,21 @@ func update_vision():
 #PROCESS STUFF
 ##############
 
-func check_process_tier():
-	return processing_tier
+#func check_process_tier():
+	#return processing_tier
+#
+#func get_process_tier():
+	#var player_ref = get_tree().get_first_node_in_group("player")
+	#processing_tier = 0
+	#if global_position.distance_to(player_ref.global_position) > 1000:
+		#processing_tier = 1
+	#if global_position.distance_to(player_ref.global_position) > 2000:
+		#processing_tier = 2
 
-func get_process_tier():
-	var player_ref = get_tree().get_first_node_in_group("player")
-	processing_tier = 0
-	if global_position.distance_to(player_ref.global_position) > 1000:
-		processing_tier = 1
-	if global_position.distance_to(player_ref.global_position) > 2000:
-		processing_tier = 2
-
-func _process(delta):
-	if(!Engine.is_editor_hint()):
-		get_process_tier()
-		_ai_state_machine.set_process_tier(processing_tier)
+#func _process(delta):
+	#if(!Engine.is_editor_hint()):
+		#get_process_tier()
+		#_ai_state_machine.set_process_tier(processing_tier)
 
 func _physics_process(delta):
 	if(!Engine.is_editor_hint()):

@@ -36,21 +36,7 @@ func receive_perceptions(host_perceptions: Perceptions):
 		perceptions = host_perceptions
 
 func _physics_process(delta: float):
-	var tier = process_tier
-	if(!Engine.is_editor_hint()):
-		if(state != null):
-			if(tier == 0):
-				pass
-				state.physics_process(delta)
-			elif(process_timer.is_stopped()):
-				state.physics_process(delta)
-				match tier:
-					1:
-						#random.randf_range(0.5,1)
-						process_timer.start(randfn(1.5,5.0) + 0.5)
-					2:
-						#random.randf_range(2,6)
-						process_timer.start(randfn(4.0,5.0) + 2.0)
+	state.physics_process(delta)
 
 func transition_to(target_state_name: String, msg: Dictionary = {}):
 	var transition_node = get_node(target_state_name)

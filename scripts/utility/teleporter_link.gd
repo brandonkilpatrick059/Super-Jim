@@ -64,11 +64,14 @@ func _draw():
 	if(linked_teleporter != null && Engine.is_editor_hint()):
 		draw_line(Vector2(), get_transform().affine_inverse() * linked_teleporter.global_position, Color(0,0,1,1), -1)
 
+func _process(delta):
+	if(entering || exiting || control_timer_active):
+		update_fade_alpha()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if(entering || exiting || control_timer_active):
 		_fade_to_black.global_position = Vector2(0,0)
-		update_fade_alpha()
 		if(Engine.is_editor_hint()):
 			queue_redraw()
 		if(entering):
@@ -83,11 +86,9 @@ func _physics_process(delta):
 func enter():
 	if(fade_alpha < 1 && timer_fade.is_stopped()):
 		fade_alpha = fade_alpha + fade_step
-		update_fade_alpha()
 		timer_fade.start(fade_step_secs)
 	else: if(fade_alpha >= 1):
 		fade_alpha = 1
-		update_fade_alpha()
 		
 		player_ref.global_position = linked_teleporter.global_position
 		if(reparent_to_daylight):

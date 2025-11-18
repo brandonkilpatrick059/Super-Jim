@@ -181,7 +181,9 @@ func _physics_process(delta):
 					return_to_home()
 				else:
 					queue_free()
-	elif(_occluder != null && _occluder.is_occluding):
+	elif(global_position != prop_home && 
+	_occluder != null && 
+	_occluder.is_occluding):
 		sleeping = true
 		return_to_home()
 	elif(_occluder != null && !_occluder.is_occluding):

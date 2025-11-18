@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://btyhoptlwgkp3"]
+
+[ext_resource type="Script" uid="uid://clacd6vj7ja7c" path="res://scripts/character/mobsters/simple_mobster.gd" id="1_1fh5o"]
+[ext_resource type="Texture2D" uid="uid://de3p3m36u4dqc" path="res://sprites/mobster/simple_mob_base_red.png" id="1_qvcyi"]
+
+[node name="SimpleMob" type="Node2D"]
+script = ExtResource("1_1fh5o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qvcyi")

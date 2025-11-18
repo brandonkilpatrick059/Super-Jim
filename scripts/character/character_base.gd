@@ -1,6 +1,6 @@
 @tool
 extends Node2D
-@onready var _base_sprite = $base_sprite
+@onready var _base_sprite :AnimatedSprite2D = $base_sprite
 @onready var _hat = $hat
 @onready var _top = $top
 @onready var _bottom = $bottom
@@ -11,6 +11,7 @@ extends Node2D
 var arms_raised = false
 var flashing = false
 var is_visible = true
+var current_animation_name : String = ""
 
 var flashing_timer = Timer.new() 
 
@@ -62,14 +63,16 @@ func get_base_animation_framecount(animation_name: String = ""):
 	return base_animation_framecount
 
 func play_animation(animation: String):
-	if(_base_sprite.sprite_frames != null):
-		_base_sprite.play(animation)
-	if(_hat.sprite_frames != null):
-		_hat.play(animation)
-	if(_top.sprite_frames != null):
-		_top.play(animation)
-	if(_bottom.sprite_frames != null):
-		_bottom.play(animation)
+	if(current_animation_name != animation):
+		current_animation_name = animation
+		if(_base_sprite.sprite_frames != null):
+			_base_sprite.play(animation)
+		if(_hat.sprite_frames != null):
+			_hat.play(animation)
+		if(_top.sprite_frames != null):
+			_top.play(animation)
+		if(_bottom.sprite_frames != null):
+			_bottom.play(animation)
 
 func set_speed_scales(scale):
 	if(_base_sprite.sprite_frames != null):

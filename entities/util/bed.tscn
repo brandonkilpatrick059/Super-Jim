@@ -41,8 +41,9 @@ offset_bottom = 320.0
 [node name="zzz" type="AnimatedSprite2D" parent="saving_game/CenterContainer"]
 position = Vector2(316, 93)
 sprite_frames = ExtResource("2_0gpwx")
-frame_progress = 0.05618
+frame_progress = 0.175892
 script = ExtResource("3_43kmp")
+not_prunable = true
 
 [node name="door" type="AnimatedSprite2D" parent="saving_game/CenterContainer"]
 position = Vector2(316, 122)

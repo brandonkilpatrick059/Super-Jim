@@ -3,6 +3,7 @@
 extends AnimatedSprite2D
 
 @export var wait_offset : float = 0
+@export var not_prunable = false
 
 var timer : Timer = Timer.new()
 
@@ -12,7 +13,8 @@ var is_playing : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_to_group("prunable")
+	if(!not_prunable):
+		add_to_group("prunable")
 	timer.one_shot = true
 	add_child(timer)
 	timer.start(random.randf_range(0,wait_offset))

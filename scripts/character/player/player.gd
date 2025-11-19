@@ -142,6 +142,9 @@ func load_in():
 		sound_player.stream = load("res://audio/music/sleep theme.wav")
 		sound_player.play()
 
+func turn_on_ui_noises():
+	_ui.turn_on_ui_noises() 
+
 func get_save_dictionary() -> Dictionary:
 	var parent_group : String = get_parent().get_groups()[0]
 	var hat : String = ""
@@ -687,6 +690,8 @@ func _physics_process(delta):
 			show_hearts()
 			show_money()
 			show_dash()
+			#ui noises start off so that we don't hear the money meter ratcheting up
+			#as the player loads in
 			_ui.turn_on_ui_noises()
 			_camera.fade_in()
 			

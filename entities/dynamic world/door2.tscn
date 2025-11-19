@@ -9,7 +9,7 @@ size = Vector2(26, 28)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hdbs2"]
 size = Vector2(26, 63)
 
-[node name="door1" type="Node2D" groups=["door", "prunable"]]
+[node name="door1" type="Node2D" groups=["door"]]
 script = ExtResource("1_5k0j3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

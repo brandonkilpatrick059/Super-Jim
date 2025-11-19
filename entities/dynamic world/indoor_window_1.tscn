@@ -3,7 +3,7 @@
 [ext_resource type="SpriteFrames" uid="uid://c2lbsb116ctxo" path="res://sprites/spritesheets/spriteframes/game_world/indoor_window_1.tres" id="1_cfy8d"]
 [ext_resource type="Script" uid="uid://cxi3plipn5gyw" path="res://scripts/clock/clock_anim.gd" id="2_p14oi"]
 
-[node name="indoor_window_1" type="Node2D" groups=["prunable"]]
+[node name="indoor_window_1" type="Node2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_cfy8d")

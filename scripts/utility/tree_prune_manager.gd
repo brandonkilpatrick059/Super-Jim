@@ -11,6 +11,7 @@ var nodes : Array[Node]
 var player_ref : Node = null
 
 var loadTouples : Array[LoadTouple]
+var deadIndexes : Array[int]
 
 var load_distance : float = 800
 
@@ -40,6 +41,11 @@ func setup():
 		loadTouples.append(new_touple)
 	setup_ready = true
 
+func remove_dead_indexes():
+	for dead_index in deadIndexes:
+		loadTouples.remove_at(dead_index)
+	deadIndexes = []
+
 func prune_tree():
 	rel_index = 0
 	while(rel_index < max_nodes_per):
@@ -47,13 +53,20 @@ func prune_tree():
 		var node_pos : Vector2 = loadTouple.load_node.global_position
 		if(node_pos.distance_to(player_ref.global_position) > load_distance):
 			if(loadTouple.load_node.get_parent() == loadTouple.load_parent):
-				loadTouple.load_parent.remove_child(loadTouple.load_node)
+				if(loadTouple.load_parent != null && loadTouple.load_node != null):
+					loadTouple.load_parent.remove_child(loadTouple.load_node)
+				else:
+					deadIndexes.append(index)
 		if(node_pos.distance_to(player_ref.global_position) < load_distance):
 			if(loadTouple.load_node.get_parent() == null):
-				loadTouple.load_parent.add_child(loadTouple.load_node)
+				if(loadTouple.load_parent != null && loadTouple.load_node != null):
+					loadTouple.load_parent.add_child(loadTouple.load_node)
+				else:
+					deadIndexes.append(index)
 		rel_index = rel_index + 1
 		if(index + 1 >= loadTouples.size()):
 			index = 0
+			remove_dead_indexes()
 		else:
 			index = index + 1
 

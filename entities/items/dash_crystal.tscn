@@ -23,7 +23,7 @@ texture = ExtResource("1_m4hln")
 z_index = 1
 material = SubResource("CanvasItemMaterial_m4hln")
 sprite_frames = ExtResource("2_vfuvd")
-frame_progress = 0.129364
+frame_progress = 0.0774128
 script = ExtResource("3_pn4uc")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." node_paths=PackedStringArray("interact_node") groups=["interactable"]]

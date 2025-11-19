@@ -33,6 +33,7 @@ func _on_transition_to_main_Scene_finished():
 		camera_ref.reparent(player_ref)
 		player_ref.connect_camera()
 		player_ref.load_in()
+		player_ref.turn_on_ui_noises()
 		var team_manager = get_tree().get_first_node_in_group("team_manager")
 		team_manager.get_and_unlock_spawns()
 	else:

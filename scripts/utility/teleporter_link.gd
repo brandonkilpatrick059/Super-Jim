@@ -25,7 +25,7 @@ var teleport_step_secs = 0.5
 var timer_fade := Timer.new()
 var timer_load_in := Timer.new()
 
-var teleport_load_in_secs = 1.0
+var teleport_load_in_secs = 2.0
 
 #for locking player control during teleport
 var timer_control_back := Timer.new() 

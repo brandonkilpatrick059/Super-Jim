@@ -52,6 +52,7 @@ func get_fade_color():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	player_ref = get_tree().get_first_node_in_group("player")
 	day_light_ysort = get_tree().get_first_node_in_group("daylight_affected_ysort")
 	flat_light_ysort = get_tree().get_first_node_in_group("no_daylight_ysort")
 	dark_ysort = get_tree().get_first_node_in_group("dark_indoor_ysort")
@@ -87,19 +88,15 @@ func _physics_process(delta):
 		elif(exiting):
 			exit()
 		elif(control_timer_active && timer_control_back.is_stopped()):
-				control_timer_active = false
-				exiting = false
-				player_ref.set_control_frozen(false)
+			control_timer_active = false
+			exiting = false
+			player_ref.set_control_frozen(false)
 
 func load_wait():
 	if(timer_load_in.is_stopped()):
-		loading = false
-		linked_teleporter.player_ref = player_ref
 		linked_teleporter.timer_fade.start(teleport_step_secs)
-		linked_teleporter.exiting = true
-		player_ref.enable_collision()
-		if(linked_teleporter.exit_y_push != 0):
-			player_ref.set_current_v(Vector2(0,linked_teleporter.exit_y_push))
+		loading = false
+		exiting = true
 
 func enter():
 	if(fade_alpha < 1 && timer_fade.is_stopped()):
@@ -126,9 +123,15 @@ func enter():
 			day_light_layer.visible = false
 			dark_layer.visible = true
 			#flat_light_layer.visible = false	
+		player_ref.stop()
+		if(linked_teleporter.exit_y_push != 0):
+			player_ref.set_current_v(Vector2(0,linked_teleporter.exit_y_push))
+		linked_teleporter.is_loading()
 		entering = false
-		loading = true
-		timer_load_in.start(teleport_load_in_secs)
+
+func is_loading():
+	loading = true
+	timer_load_in.start(teleport_load_in_secs)
 
 func exit():
 	if(fade_alpha > 0 && timer_fade.is_stopped()):
@@ -161,12 +164,11 @@ func _on_area_2d_body_exited(body):
 
 func _on_area_2d_body_entered(body):
 	if(body.is_in_group("player")):
-		player_ref = body
 		if(!entering && !loading && !exiting && !exit_only):
 			entering = true
 			player_ref.stop()
 			player_ref.set_control_frozen(true)
-			player_ref.disable_collision()
+			#player_ref.disable_collision()
 			if(!no_ui_interact):
 				player_ref.main_ui_invisible()
 			update_fade_alpha()

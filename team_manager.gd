@@ -56,9 +56,6 @@ func spawn_mobs():
 	var num_red_points = 0
 	var num_blu_points = 0
 	var current_mobs = get_tree().get_nodes_in_group("mobster")
-	var num_tier_0 = 0
-	var num_tier_1 = 0
-	var num_tier_2 = 0
 	var points = get_tree().get_nodes_in_group("capture_point")
 	for point in points:
 		if(point.is_in_group("red")):
@@ -66,14 +63,6 @@ func spawn_mobs():
 		elif(point.is_in_group("blu")):
 			num_blu_points = num_blu_points + 1
 	for mob in current_mobs:
-		var tier = mob.check_process_tier()
-		match tier:
-			0:
-				num_tier_0 = num_tier_0 + 1
-			1:
-				num_tier_1 = num_tier_1 + 1
-			2:
-				num_tier_2 = num_tier_2 + 1
 		if(mob.is_in_group("red")):
 			num_red_mobs = num_red_mobs + 1
 			if(mob.is_in_group("bandit")):
@@ -95,9 +84,6 @@ func spawn_mobs():
 	print(str("+Bandits:------", num_red_bandits))
 	print(str("+Goons:--------", num_red_mobs - num_red_bandits))
 	print(str("PROCESSING:"))
-	print(str("T1: ", num_tier_0))
-	print(str("T2: ", num_tier_1))
-	print(str("T3: ", num_tier_2))
 	while(iter < num_mobs_to_spawn):
 		var red_spawner = get_loneliest_spawner(temp_red_spawners)
 		var blu_spawner = get_loneliest_spawner(temp_blu_spawners)

@@ -1,6 +1,6 @@
 extends Sprite2D
 
-var move_step = 8
+var move_step = 6
 var move_timer_step = 0.006
 var move_step_timer : Timer = Timer.new()
 

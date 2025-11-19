@@ -35,14 +35,14 @@ func _process(delta):
 	set_layer_modulate(0,Color(1,1,1,current_alpha))
 		
 
-func _on_vision_collider_body_entered(body):
-	pass
-	if(body.is_in_group("player")):
-		timer.start(fade_step_time)
-		is_occluding_player = true
-
-func _on_vision_collider_body_exited(body):
-	pass
-	if(body.is_in_group("player")):
-		timer.start(fade_step_time)
-		is_occluding_player = false
+#func _on_vision_collider_body_entered(body):
+	#pass
+	#if(body.is_in_group("player")):
+		#timer.start(fade_step_time)
+		#is_occluding_player = true
+#
+#func _on_vision_collider_body_exited(body):
+	#pass
+	#if(body.is_in_group("player")):
+		#timer.start(fade_step_time)
+		#is_occluding_player = false

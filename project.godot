@@ -14,7 +14,9 @@ config/name="Jim"
 run/main_scene="res://scenes/start_menu.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/image="res://sprites/start_screen/dire_logo_2.png"
-config/icon="res://sprites/pizzaBubble.png"
+config/icon="uid://brtmqlp0es60q"
+config/macos_native_icon="res://sprites/door_icon_ios.icns"
+config/windows_native_icon="res://sprites/door_icon_windows.ico"
 
 [autoload]
 

@@ -12,6 +12,7 @@ sprite_frames = ExtResource("1_h1011")
 frame_progress = 0.106834
 offset = Vector2(0, -96)
 script = ExtResource("2_ecjsl")
+not_prunable = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 2
@@ -21,3 +22,4 @@ scale = Vector2(2, 2)
 sprite_frames = ExtResource("3_ecjsl")
 frame_progress = 0.347716
 script = ExtResource("2_ecjsl")
+not_prunable = null

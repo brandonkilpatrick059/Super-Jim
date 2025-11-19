@@ -237,6 +237,15 @@ func send_perceptions():
 	if(_ai_state_machine != null):
 		_ai_state_machine.receive_perceptions(perceptions)
 
+func is_in_combat() -> bool:
+	return perceptions.in_combat
+
+func has_line_of_sight_to_target() -> bool:
+	return perceptions.has_line_of_sight_to_target
+
+func transition_ai_state_machine(state : String):
+	_ai_state_machine.transition_to(state)
+
 func update_line_of_sight_to_target():
 	if(perceptions.target_obj != null):
 		if(active_has_line_of_sight_to_object(perceptions.target_obj)):
@@ -285,6 +294,12 @@ func update_perceptions():
 		_ai_state_machine.get_state().name == mobster_states.chasing ||
 		_ai_state_machine.get_state().name == mobster_states.enticed):
 			update_line_of_sight_to_target()
+		if(_ai_state_machine.get_state().name == mobster_states.shooting ||
+		_ai_state_machine.get_state().name == mobster_states.strafing ||
+		_ai_state_machine.get_state().name == mobster_states.chasing):
+			perceptions.in_combat = true
+		else:
+			perceptions.in_combat = false
 	
 	check_vision()
 	check_hearing()

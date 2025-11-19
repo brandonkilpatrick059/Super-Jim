@@ -172,6 +172,7 @@ func get_save_dictionary() -> Dictionary:
 	}
 	return save_dictionary
 
+
 func load_from_dictionary(load_dictionary : Dictionary):
 	var parent_group = String(load_dictionary.get("parent_group"))
 	var parent = get_tree().get_first_node_in_group(parent_group)
@@ -179,6 +180,7 @@ func load_from_dictionary(load_dictionary : Dictionary):
 	global_position = Vector2(load_dictionary.get("pos_x"), load_dictionary.get("pos_y"))
 	max_hp = int(load_dictionary.get("max_hp"))
 	max_dash_secs = load_dictionary.get("max_dash_secs")
+	update_max_dash_meter()
 	current_dash_secs = load_dictionary.get("current_dash_secs")
 	money = int(load_dictionary.get("money"))
 	banked_money = load_dictionary.get("banked_money")

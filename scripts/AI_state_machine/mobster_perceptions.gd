@@ -11,3 +11,4 @@ var hit_points
 var invincible = false
 var is_bandit = false
 var advancing_navigation = false
+var in_combat = false

@@ -118,10 +118,11 @@ func interact():
 	if (branching_dialog != null):
 		face_player()
 		dialog_manager = dialog.instantiate()
+		dialog_manager.set_nudge_vector(dialog_offset)
 		dialog_manager.set_speaker_node(self)
 		add_child(dialog_manager)
-		if(dialog_offset != null):
-			dialog_manager.position = dialog_manager.position + dialog_offset
+		#if(dialog_offset != null):
+			#dialog_manager.position = dialog_manager.position + dialog_offset
 		if(shop != null):
 			dialog_manager.set_shop(shop)
 		var player_ref = get_tree().get_nodes_in_group("player")[0]

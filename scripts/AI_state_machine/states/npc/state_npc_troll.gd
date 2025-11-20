@@ -47,10 +47,14 @@ func physics_process(_delta: float) -> void:
 		if(!ai_state_machine.get_perceptions().in_dialog):
 			if(player_pos.distance_to(troll_pos) < 64 &&
 			timer.is_stopped()):
+				var point_light = get_tree().get_first_node_in_group("troll").get_child(0)
+				point_light.enabled = true
 				interact.emit()
 				stop.emit()
 				timer.start(grace_period_secs)
 			else:
+				var point_light = get_tree().get_first_node_in_group("troll").get_child(0)
+				point_light.enabled = false
 				if(!nav_target_reached):
 					advance_navigation.emit(200000)
 				else:

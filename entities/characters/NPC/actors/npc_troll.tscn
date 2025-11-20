@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bet83al0d0a62"]
+[gd_scene load_steps=12 format=3 uid="uid://bet83al0d0a62"]
 
 [ext_resource type="Script" uid="uid://ckj5xwhetys06" path="res://scripts/character/NPC/npc.gd" id="1_fnoqb"]
 [ext_resource type="SpriteFrames" uid="uid://ssx43u4xq65j" path="res://sprites/spritesheets/spriteframes/characters/base/troll_base.tres" id="2_rcf8h"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c1287sosujo5w" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_troll.tscn" id="5_o7kgo"]
 [ext_resource type="PackedScene" uid="uid://biwoi1biy4ynx" path="res://entities/characters/NPC/AI state machine/ai_state_machine.tscn" id="6_7k5wu"]
 [ext_resource type="PackedScene" uid="uid://c80jwmy1ekjxw" path="res://dialog/dialog trees/troll.tscn" id="7_o7kgo"]
+[ext_resource type="Texture2D" uid="uid://6dh6plwhup22" path="res://sprites/lights/diffuse_yellow_light.png" id="8_csjcg"]
 [ext_resource type="Script" uid="uid://cj00uqlrpwbo0" path="res://scripts/character/character_base.gd" id="9_ty4g0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fnoqb"]
@@ -16,7 +17,7 @@ radius = 24.9926
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ty4g0"]
 blend_mode = 1
 
-[node name="troll" type="RigidBody2D" node_paths=PackedStringArray("branching_dialog") groups=["npc"]]
+[node name="troll" type="RigidBody2D" node_paths=PackedStringArray("branching_dialog") groups=["npc", "troll"]]
 y_sort_enabled = true
 collision_layer = 4
 collision_mask = 0
@@ -27,10 +28,16 @@ linear_damp = 5.0
 script = ExtResource("1_fnoqb")
 talk_radius = 200
 base_spriteframes = ExtResource("2_rcf8h")
-dialog_offset = null
+dialog_offset = Vector2(0, -32)
 starting_index = null
 exempt_from_npc_refresh = null
 branching_dialog = NodePath("troll")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -16)
+scale = Vector2(0.5, 0.5)
+enabled = false
+texture = ExtResource("8_csjcg")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 4.0
@@ -59,6 +66,7 @@ script = ExtResource("9_ty4g0")
 material = SubResource("CanvasItemMaterial_fnoqb")
 sprite_frames = ExtResource("2_rcf8h")
 animation = &"stand_right"
+frame_progress = 0.00164903
 offset = Vector2(0, -16)
 
 [node name="hat" type="AnimatedSprite2D" parent="character_base"]

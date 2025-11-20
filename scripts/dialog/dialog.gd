@@ -13,11 +13,15 @@ var responding = false
 var shopping = false
 var dialog_started = false
 var shop : shop_manager = null
+var nudge_vector = Vector2(0,0)
 
 var playing_cards = false
 
 func set_shop(new_shop : shop_manager):
 	shop = new_shop
+
+func set_nudge_vector(input : Vector2):
+	nudge_vector = input
 
 func set_speaker_node(node : Node):
 	speaker_node = node
@@ -36,7 +40,7 @@ func play_current_branch():
 			
 		_ResponseBubble.visible = false
 		_DialogBubble.set_label("")
-		_DialogBubble.global_position = speaker_node.global_position + Vector2(-48,-96)
+		_DialogBubble.global_position = speaker_node.global_position + Vector2(-48,-96) + nudge_vector
 		_DialogBubble.set_portrait(tree.get_speaker_portrait(), tree.get_speaker_emote())
 		_DialogBubble.visible = true
 		_DialogBubble.play_text(tree.get_speaker_text(), tree.get_voice())

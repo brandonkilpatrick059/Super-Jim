@@ -28,6 +28,8 @@ func load_game():
 				load_mob(dictionary)
 			"spawn":
 				load_spawn(dictionary)
+			"crystal":
+				load_crystal(dictionary)
 	save_file.close()
 
 func save_game(): 
@@ -38,6 +40,7 @@ func save_game():
 	save_npcs()
 	save_doors()
 	save_comments()
+	save_crystals()
 	save_file.close()
 
 func save_player():
@@ -96,7 +99,19 @@ func load_npc(dictionary : Dictionary):
 			var npc_tag = npc.get_save_tag()
 			if(npc_tag == dictionary.get("save_tag")):
 				npc.load_from_dictionary(dictionary)
-		
+
+func save_crystals():
+	var crystals = get_tree().get_nodes_in_group("dash_crystal")
+	for crystal in crystals:
+		var crystal_dictionary : Dictionary = crystal.get_save_dictionary()
+		save_file.store_line(JSON.stringify(crystal_dictionary))
+
+func load_crystal(dictionary : Dictionary):
+	var crystals = get_tree().get_nodes_in_group("dash_crystal")
+	for crystal in crystals:
+		var crystal_tag = crystal.get_save_tag()
+		if(crystal_tag == dictionary.get("save_tag")):
+			crystal.load_from_dictionary(dictionary)
 
 func save_doors():
 	var doors = get_tree().get_nodes_in_group("door_persistent")

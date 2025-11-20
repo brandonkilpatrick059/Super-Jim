@@ -59,7 +59,8 @@ func prune_tree():
 			#re-add near objects
 			if(node_pos.distance_to(player_ref.global_position) < load_distance):
 					if(loadTouple.load_parent != null && loadTouple.load_node != null):
-						loadTouple.load_parent.add_child(loadTouple.load_node)
+						if(loadTouple.load_node.get_parent() != loadTouple.load_parent):
+							loadTouple.load_parent.add_child(loadTouple.load_node)
 					else:
 						deadIndexes.append(index)
 		else:

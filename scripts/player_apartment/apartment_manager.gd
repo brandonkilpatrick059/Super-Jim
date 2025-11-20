@@ -8,16 +8,19 @@ func set_bed_slot(bed : Node):
 	if(_bed_slot.get_child_count() > 0):
 		_bed_slot.get_children()[0].queue_free()
 	_bed_slot.add_child(bed)
+	bed.position = Vector2(0,0)
 
 func set_desk_slot(desk : Node):
 	if(_desk_slot.get_child_count() > 0):
 		_desk_slot.get_children()[0].queue_free()
 	_desk_slot.add_child(desk)
+	desk.position = Vector2(0,0)
 
 func set_night_stand_slot(night_stand : Node):
 	if(_night_stand_slot.get_child_count() > 0):
 		_night_stand_slot.get_children()[0].queue_free()
 	_night_stand_slot.add_child(night_stand)
+	night_stand.position = Vector2(0,0)
 
 
 func get_save_dictionary() -> Dictionary:
@@ -27,11 +30,11 @@ func get_save_dictionary() -> Dictionary:
 	
 	var desk_slot = ""
 	if (_desk_slot.get_children().size() > 0):
-		bed_slot = _desk_slot.get_child(0).get_path_to_self()
+		desk_slot = _desk_slot.get_child(0).get_path_to_self()
 	
 	var night_stand_slot = ""
 	if (_night_stand_slot.get_children().size() > 0):
-		bed_slot = _night_stand_slot.get_child(0).get_path_to_self()
+		night_stand_slot = _night_stand_slot.get_child(0).get_path_to_self()
 		
 	var save_dictionary = {
 		"bed_slot" = bed_slot,

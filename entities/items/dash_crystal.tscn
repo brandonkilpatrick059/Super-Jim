@@ -23,7 +23,7 @@ texture = ExtResource("1_m4hln")
 z_index = 1
 material = SubResource("CanvasItemMaterial_m4hln")
 sprite_frames = ExtResource("2_vfuvd")
-frame_progress = 0.737646
+frame_progress = 0.432582
 script = ExtResource("3_pn4uc")
 not_prunable = null
 

@@ -29,7 +29,7 @@ timer_wait_secs = 0.3
 scale = Vector2(2, 2)
 timer_wait_secs = 0.8
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="start_menu"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="start_menu"]
 stream = ExtResource("7_0owee")
 autoplay = true
 bus = &"Music"

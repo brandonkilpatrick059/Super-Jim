@@ -5,6 +5,7 @@ extends MarginContainer
 @onready var quit_label = $CenterContainer/VBoxContainer/quit_label
 
 var settings_menu = preload("res://menu/settings menu/settings_menu.tscn")
+var start_game_sound = preload("res://audio/soundFX/crystal_get.wav")
 var active_child_menu = null
 var select_index = 0
 var labels: Array[Node] = []
@@ -15,6 +16,7 @@ var done_fading = false
 var scene_changing = false
 
 var sound_player := AudioStreamPlayer2D.new()
+var music_player : AudioStreamPlayer
 var timer = Timer.new()
 
 signal transition_to_main_scene()
@@ -50,6 +52,9 @@ func update_selection():
 
 func handle_selection():
 	if(select_index == 0): #start
+		music_player.stop()
+		music_player.stream = start_game_sound
+		music_player.play()
 		scene_changing = true
 		transition_to_main_scene.emit()
 	elif(select_index == 1): #settings
@@ -121,6 +126,7 @@ func _ready():
 	AudioServer.set_bus_volume_db(1, -bus_headroom) #set music headroom
 	AudioServer.set_bus_volume_db(2, -bus_headroom) #set effects headroom
 	load_settings()
+	music_player = get_parent().get_child(3)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

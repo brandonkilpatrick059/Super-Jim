@@ -12,3 +12,4 @@ var invincible = false
 var is_bandit = false
 var advancing_navigation = false
 var in_combat = false
+var knocked_out = false

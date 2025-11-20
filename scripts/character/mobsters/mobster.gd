@@ -123,6 +123,8 @@ func _ready():
 		processing_timer.one_shot = true
 		add_child(processing_timer)
 		
+		_ai_state_machine.set_mob_ref(self)
+		
 		#pathfinding_timer.one_shot = true
 		#add_child(pathfinding_timer)
 	
@@ -229,6 +231,9 @@ func handle_sparks_non_combat():
 						_on_set_ai_target(assailant_obj)
 						_ai_state_machine.transition_to(mobster_states.exclaiming)
 
+func is_knocked_out():
+	return perceptions.knocked_out
+
 func handle_death():
 	if(perceptions.hit_points <= 0):
 		_ai_state_machine.transition_to(mobster_states.falling)
@@ -300,6 +305,10 @@ func update_perceptions():
 			perceptions.in_combat = true
 		else:
 			perceptions.in_combat = false
+		if(_ai_state_machine.get_state().name == mobster_states.knockedout):
+			perceptions.knocked_out = true
+		else:
+			perceptions.knocked_out = false
 	
 	check_vision()
 	check_hearing()

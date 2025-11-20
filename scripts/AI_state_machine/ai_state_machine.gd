@@ -13,6 +13,14 @@ var perceptions : Perceptions = Perceptions.new()
 var process_tier = 0
 var process_timer : Timer = Timer.new()
 
+var mob_ref = null
+
+func set_mob_ref(ref : Node):
+	mob_ref = ref
+
+func get_mob_ref():
+	return mob_ref
+
 func set_process_tier(tier : int):
 	process_tier = tier
 

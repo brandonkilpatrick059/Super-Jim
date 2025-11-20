@@ -111,11 +111,10 @@ func game_over():
 	toggle_pause_parent_tree()
 	ambient_dark.fade_to_black()
 
-func game_continue():
-	ambient_dark.end_fade()
-	toggle_pause_parent_tree()
-	is_game_over = false
-	player_ref.resurrect()
+#func game_continue():
+	#ambient_dark.end_fade()
+	#toggle_pause_parent_tree()
+	#is_game_over = false
 
 func get_informal_time_string() -> String:
 	var informal_string = ""
@@ -137,7 +136,7 @@ func get_input():
 		if(!is_game_over):
 			toggle_menu_pause()
 		elif(is_game_over):
-			game_continue()
+			get_tree().change_scene_to_file("res://scenes/start_menu.tscn")
 
 func set_clock(hour : int):
 	clock = hour

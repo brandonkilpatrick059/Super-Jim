@@ -26,7 +26,8 @@ func enter(_msg := {}) -> void:
 		var mobs = get_tree().get_nodes_in_group("mobster")
 		for mob in mobs:
 			if(mob != null &&
-			mob != self.get_parent().get_parent() &&
+			mob != ai_state_machine.get_mob_ref() &&
+			!mob.is_knocked_out() &&
 			mob.is_in_group(ai_state_machine.get_perceptions().team) &&
 			mob.global_position.distance_to(g_position) < concern_distance &&
 			!mob.is_in_combat()):

@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnltkuxho0iv3"]
+
+[ext_resource type="Texture2D" uid="uid://b76rttfua10ki" path="res://sprites/start_screen/starfiend_back.png" id="2_xt2wi"]
+[ext_resource type="PackedScene" uid="uid://f4ngkupjl7mr" path="res://menu/start menu/starfield_far.tscn" id="3_cr2sy"]
+[ext_resource type="PackedScene" uid="uid://bgbawsiajvalm" path="res://menu/start menu/starfield_farthest.tscn" id="4_g8no6"]
+[ext_resource type="AudioStream" uid="uid://b3pbwf0l1i5mh" path="res://audio/music/starfield_theme.wav" id="5_t0ge4"]
+[ext_resource type="PackedScene" uid="uid://ciw22wbkgnx0c" path="res://menu/start menu/start_menu_manager.tscn" id="6_x3mfb"]
+
+[node name="start_menu" type="Node2D" groups=["active_root"]]
+
+[node name="StarfieldBack" type="Sprite2D" parent="."]
+scale = Vector2(2.89687, 2.89688)
+texture = ExtResource("2_xt2wi")
+
+[node name="starfield" parent="." instance=ExtResource("3_cr2sy")]
+scale = Vector2(2, 2)
+timer_wait_secs = 0.3
+
+[node name="starfield_far" parent="." instance=ExtResource("4_g8no6")]
+scale = Vector2(2, 2)
+timer_wait_secs = 0.8
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_t0ge4")
+autoplay = true
+bus = &"Music"
+
+[node name="start_menu" parent="." instance=ExtResource("6_x3mfb")]

@@ -38,6 +38,8 @@ func _ready():
 	add_child(timer_zoom)
 	pan_timer.start(pan_step_time_secs)
 	timer_fade.start(fade_step_secs)
+	fade_alpha = 1
+	update_fade_alpha()
 
 func turn_on_flashlight():
 	_flashlight.enabled = true

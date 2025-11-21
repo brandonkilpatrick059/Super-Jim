@@ -95,7 +95,7 @@ var use_item_timer : Timer = Timer.new()
 var owned_cards : Array[Baseball_Card] = []
 var num_owned_cards : Array[int] = [] #mirrors owned_cards but each index contains the # of each particular card
 
-var items : Array[String] = ["flashlight"]
+var items : Array[String] = []
 var item_index : int = 0
 
 var main_ui_hidden = false
@@ -566,7 +566,8 @@ func handle_throw():
 		throw()
 
 func append_to_items(item : String):
-	items.append(item)
+	if(items.find(item) < 0):
+		items.append(item)
 
 func use_item():
 	if(items.size() > 0 ):

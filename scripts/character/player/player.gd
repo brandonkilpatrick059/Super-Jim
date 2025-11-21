@@ -87,7 +87,6 @@ var money : int = 0
 var banked_money : int = 0
 
 var light_on = false
-var has_flashlight = false
 
 var dev_occlusion_enabled = true
 
@@ -95,6 +94,11 @@ var use_item_timer : Timer = Timer.new()
 
 var owned_cards : Array[Baseball_Card] = []
 var num_owned_cards : Array[int] = [] #mirrors owned_cards but each index contains the # of each particular card
+
+var items : Array[String] = ["flashlight"]
+var item_index : int = 0
+
+var main_ui_hidden = false
 
 func _ready():
 	_collision.disabled = no_clip
@@ -266,14 +270,10 @@ func hide_dash():
 func turn_light_on():
 	_light.enabled = true
 	light_on = true
-	if(has_flashlight && camera_connected):
-		_camera.turn_on_flashlight()
 
 func turn_light_off():
 	light_on = false
 	_light.enabled = false
-	if(has_flashlight && camera_connected):
-		_camera.turn_off_flashlight()
 
 func show_hearts():
 	_ui.show_hearts()
@@ -291,11 +291,15 @@ func main_ui_invisible():
 	hide_hearts()
 	hide_money()
 	hide_dash()
+	_ui.hide_item_square()
+	main_ui_hidden = true
 
 func main_ui_visible():
 	show_hearts()
 	show_money()
 	show_dash()
+	_ui.show_item_square()
+	main_ui_hidden = false
 
 func connect_camera():
 	_camera = get_tree().get_first_node_in_group("camera")
@@ -550,15 +554,33 @@ func handle_use_item():
 		stop_dash()
 		use_item()
 		use_item_timer.start(0.25)
+	if(Input.is_action_just_pressed(("switch_item"))):
+		if(items.size() > 1):
+			if(item_index + 1 == items.size()):
+				item_index = 0
+			else:
+				item_index = item_index + 1
 
 func handle_throw():
 	if Input.is_action_just_pressed("throw"):
 		throw()
 
+func append_to_items(item : String):
+	items.append(item)
+
 func use_item():
-	if(grabbed_object != null &&
-	grabbed_object.is_in_group("usable")):
-		grabbed_object.use_item()
+	if(items.size() > 0 ):
+		match items[item_index]:
+			"pizza":
+				grabbed_object.use_item()
+			"flashlight":
+				if(camera_connected):
+					_camera.toggle_flashlight()
+
+func remove_from_items(item : String):
+	var item_index = items.find(item)
+	items.remove_at(item_index)
+	
 
 func set_use_item_timer(num : float):
 	use_item_timer.start(num)
@@ -585,6 +607,7 @@ func throw():
 		
 		if(grabbed_object.is_in_group("pizza")):
 			self.remove_from_group("courier")
+			remove_from_items("pizza")
 			grabbed_object.throw(_character_base.get_facing_dir(),Vector2(0,-16))
 		else:
 			grabbed_object.throw(_character_base.get_facing_dir())
@@ -597,6 +620,7 @@ func put_down():
 	if(grabbed_object.is_in_group("pizza")):
 		grabbed_object.put_down(_character_base.get_facing_dir(),Vector2(0,-16))
 		self.remove_from_group("courier")
+		remove_from_items("pizza")
 	else:
 		grabbed_object.put_down(_character_base.get_facing_dir())
 	grabbed_object = null
@@ -610,6 +634,7 @@ func handle_pick_up():
 		grabbed_object = will_grab_object
 		if(will_grab_object.is_in_group("pizza")):
 			self.add_to_group("courier")
+			append_to_items("pizza")
 		set_holding_object(true)
 	else: if(holding_object):
 		if(_grabber.is_colliding()):
@@ -633,6 +658,7 @@ func return_pizza():
 	sound_player.play()
 	var pizza = get_tree().get_first_node_in_group("pizza")
 	self.add_to_group("courier")
+	append_to_items("pizza")
 	pizza.pick_up(self)
 	grabbed_object = pizza
 	set_holding_object(true)
@@ -679,23 +705,36 @@ func move():
 	
 	_character_base.set_animation_scale(0.2, 0.8, speed(), top_speed)
 
+func finish_load_in():
+	loading_in = false
+	control_frozen = false
+	set_ui_visible()
+	show_hearts()
+	show_money()
+	show_dash()
+	#ui noises start off so that we don't hear the money meter ratcheting up
+	#as the player loads in
+	_ui.turn_on_ui_noises()
+	_camera.fade_in()
+
+func update_item_square():
+	if(items.size() > 0 && !main_ui_hidden):
+		_ui.show_item_square()
+		_ui.set_item_square(items[item_index])
+	else:
+		_ui.hide_item_square()
+	
+	
+
 #func _process(_delta):
 	#if(!Engine.is_editor_hint()):
 		
 					
 func _physics_process(delta):
 	if(!Engine.is_editor_hint()):
+		
 		if(timer_load_in.is_stopped() && loading_in):
-			loading_in = false
-			control_frozen = false
-			set_ui_visible()
-			show_hearts()
-			show_money()
-			show_dash()
-			#ui noises start off so that we don't hear the money meter ratcheting up
-			#as the player loads in
-			_ui.turn_on_ui_noises()
-			_camera.fade_in()
+			finish_load_in()
 			
 		if(camera_connected):
 			_camera.handle_camera_pan()
@@ -711,7 +750,9 @@ func _physics_process(delta):
 			_ui.set_money(money)
 			if(anchored && active_anchor != null):
 				global_position = active_anchor.global_position
-
+			
+			update_item_square()
+			
 			_character_base.animate_sprite_by_vector(current_v, (speed() >= top_speed))
 			update_grabber()
 			will_grab_object = null

@@ -41,6 +41,9 @@ func _ready():
 	fade_alpha = 1
 	update_fade_alpha()
 
+func toggle_flashlight():
+	_flashlight.enabled = !_flashlight.enabled
+
 func turn_on_flashlight():
 	_flashlight.enabled = true
 	

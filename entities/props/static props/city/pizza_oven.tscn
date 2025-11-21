@@ -14,7 +14,7 @@ size = Vector2(70, 54)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_37rcv")
-frame_progress = 0.284779
+frame_progress = 0.938766
 speed_scale = 0.5
 offset = Vector2(0, 16)
 script = ExtResource("2_riyl1")
@@ -24,7 +24,7 @@ not_prunable = true
 z_index = 1
 material = SubResource("CanvasItemMaterial_37rcv")
 sprite_frames = ExtResource("3_h8w3u")
-frame_progress = 0.188478
+frame_progress = 0.842464
 speed_scale = 0.5
 offset = Vector2(0, 16)
 script = ExtResource("2_riyl1")

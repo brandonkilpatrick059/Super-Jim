@@ -12,6 +12,8 @@ extends Control
 @onready var pizza_lost = $pizza_lost
 @onready var fps_counter = $fps_counter/fps
 @onready var dash_meter = $dash_meter
+@onready var item_square = $item_square
+@onready var item_square_texture :TextureRect = $item_square/Sprite2D
 
 var fps_counter_visible = false
 
@@ -63,6 +65,12 @@ func update_hearts(points : int):
 		else:
 			hearts[iterator].play("inactive")
 		iterator+=1
+
+func hide_item_square():
+	item_square.visible = false
+
+func show_item_square():
+	item_square.visible = true
 
 func hide_dash():
 	dash_meter.visible = false
@@ -120,6 +128,15 @@ func toggle_fps_counter():
 
 func activate_header(label : String):
 	location_header.activate_header(label)
+
+func set_item_square(id : String):
+	match id:
+		"" :
+			item_square_texture.texture = load("res://sprites/interface/item_box/item_box.png")
+		"pizza" :
+			item_square_texture.texture = load("res://sprites/interface/item_box/item_pizza.png")
+		"flashlight" :
+			item_square_texture.texture = load("res://sprites/interface/item_box/item_flashlight.png")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

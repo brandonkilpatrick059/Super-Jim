@@ -19,5 +19,5 @@ func _process(_delta):
 		if(main_scene && root_manager.is_to_main_scene()):
 			#if everything is ready and the scene is running, complete transition on the manager end
 			root_manager._on_transition_to_main_scene_finished()
-		if(start_scene && root_manager.is_to_start_scene()):
-			root_manager._on_transition_to_start_scene_finished()
+		#if(start_scene && root_manager.is_to_start_scene()):
+			#root_manager._on_transition_to_start_scene_finished()

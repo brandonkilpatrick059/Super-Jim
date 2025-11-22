@@ -85,6 +85,9 @@ func toggle_pause_parent_tree():
 	else:
 		get_parent().get_tree().paused = false
 
+func unpause_parent_tree():
+	get_parent().get_tree().paused = false
+
 func toggle_menu_pause():
 	if(!is_game_over):
 		if(!is_menu_paused):
@@ -136,6 +139,7 @@ func get_input():
 		if(!is_game_over):
 			toggle_menu_pause()
 		elif(is_game_over):
+			unpause_parent_tree()
 			get_tree().change_scene_to_file("res://scenes/start_menu.tscn")
 
 func set_clock(hour : int):

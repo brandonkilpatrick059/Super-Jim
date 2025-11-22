@@ -42,17 +42,17 @@ func _on_transition_to_main_scene_init():
 #code cause I might come back to it later, but as it is this won't transition
 #back to the start menu. 
 #Use get_tree().change_scene_to_file("res://scenes/start_menu.tscn") instead
-func transition_to_start_menu_init():
-	camera_ref.fade_out()
-	transitioning = true
-	transition_timer.start(3)
-	prev_scene_freed = false
-	to_start_scene = true
+#func transition_to_start_menu_init():
+	#camera_ref.fade_out()
+	#transitioning = true
+	#transition_timer.start(3)
+	#prev_scene_freed = false
+	#to_start_scene = true
 
-func _on_transition_to_start_scene_finished():
-	camera_ref.fade_in()
-	transitioning = false
-	to_start_scene = false
+#func _on_transition_to_start_scene_finished():
+	#camera_ref.fade_in()
+	#transitioning = false
+	#to_start_scene = false
 
 #callback from active_root when the scene is ready
 func _on_transition_to_main_scene_finished():
@@ -73,7 +73,6 @@ func _on_transition_to_main_scene_finished():
 		camera_ref.connect_anchor(anchor_ref)
 		camera_ref.fade_in()
 	transitioning = false
-	to_main_scene = false
 	
 func _physics_process(delta):
 	if(transition_timer.is_stopped() && transitioning && !prev_scene_freed):
@@ -87,10 +86,10 @@ func _physics_process(delta):
 			if(game_save_manager.save_file_exists()):
 				game_save_manager.load_game()
 				skip_intro = true
-		elif(to_start_scene):
-			var active_root = get_tree().get_first_node_in_group("active_root")
-			active_root.queue_free()
-			prev_scene_freed = true
-			var start_scene = start_scene.instantiate()
-			camera_ref.global_position = Vector2(0,0)
-			add_child(start_scene)
+		#elif(to_start_scene):
+			#var active_root = get_tree().get_first_node_in_group("active_root")
+			#active_root.queue_free()
+			#prev_scene_freed = true
+			#var start_scene = start_scene.instantiate()
+			#camera_ref.global_position = Vector2(0,0)
+			#add_child(start_scene)

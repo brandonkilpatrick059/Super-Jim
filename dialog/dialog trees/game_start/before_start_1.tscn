@@ -50,7 +50,7 @@ speaker_name = "cook"
 [node name="apply3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
 position = Vector2(10, 536)
 speaker_text = Array[String](["You want to deliver pizzas?"])
-speech_options = Array[String](["yes", "no"])
+speech_options = Array[String](["Yes", "No"])
 option_branches = [NodePath("../apply-yes"), NodePath("../apply-no")]
 voice = "sine_voice"
 speaker_name = "speedy"

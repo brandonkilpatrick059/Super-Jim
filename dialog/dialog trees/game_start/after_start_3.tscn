@@ -210,8 +210,8 @@ node_group = "passage_gate"
 [node name="gate key6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
 position = Vector2(-275, 4362)
 speaker_text = Array[String](["From there you can get to the rest of the city."])
-speech_options = Array[String](["Why are there police barricades?", "Okay."])
-option_branches = [NodePath("../gangs"), NodePath("../done")]
+speech_options = Array[String](["Okay", "Why are there police barricades?"])
+option_branches = [NodePath("../done"), NodePath("../gangs")]
 voice = "sine_voice"
 speaker_name = "speedy"
 

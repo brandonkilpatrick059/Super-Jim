@@ -258,7 +258,7 @@ func add_to_max_dash_secs(num : int):
 	update_dash_meter()
 	sound_player.stream = crystal_sound
 	sound_player.play()
-	_on_make_comment("Cool, a DASH crystal!")
+	_on_make_comment("Cool, a Dash Crystal!")
 
 func show_dash():
 	update_dash_meter()

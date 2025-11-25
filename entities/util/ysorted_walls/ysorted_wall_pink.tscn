@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bajajo858expa"]
+
+[ext_resource type="Texture2D" uid="uid://dsr287gpcvygl" path="res://sprites/tilesets/ysorted_walls/ysorted_wall_pink.png" id="1_vyi02"]
+
+[node name="ysorted_wall" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture = ExtResource("1_vyi02")

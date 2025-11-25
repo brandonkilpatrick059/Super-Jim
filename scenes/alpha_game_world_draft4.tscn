@@ -53,7 +53,7 @@
 [ext_resource type="PackedScene" uid="uid://dyojwva6irfyf" path="res://entities/dynamic world/indoor_window_1.tscn" id="34_kku3q"]
 [ext_resource type="PackedScene" uid="uid://bk7i2h4q3v463" path="res://entities/dynamic world/door_frame.tscn" id="35_l6daq"]
 [ext_resource type="PackedScene" uid="uid://g8q516mt8mta" path="res://entities/dynamic world/door1.tscn" id="36_fmxy3"]
-[ext_resource type="PackedScene" uid="uid://db2ggfcpdapf1" path="res://entities/util/ysorted_indoor_wall.tscn" id="37_4pkbp"]
+[ext_resource type="PackedScene" uid="uid://db2ggfcpdapf1" path="res://entities/util/ysorted_walls/ysorted_wall.tscn" id="37_4pkbp"]
 [ext_resource type="PackedScene" uid="uid://b7i6xhe00dvi4" path="res://entities/props/static props/city/lightPole_right.tscn" id="38_h4tqc"]
 [ext_resource type="PackedScene" uid="uid://cvw0h3o72k4yp" path="res://entities/props/static props/city/lightPole_left.tscn" id="39_54wjn"]
 [ext_resource type="PackedScene" uid="uid://cvpxd8fmth427" path="res://entities/dynamic world/indoor_window_light_1.tscn" id="40_7hojp"]

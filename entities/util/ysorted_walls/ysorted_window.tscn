@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://m6okoedo00em"]
+
+[ext_resource type="Texture2D" uid="uid://dqqtuiwgipfuj" path="res://sprites/tilesets/ysorted_walls/indoor_wall_window.png" id="1_ijei0"]
+
+[node name="YsortedIndoorWall" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 5)
+texture = ExtResource("1_ijei0")

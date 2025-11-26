@@ -21,12 +21,15 @@ light_point_hi = true
 scale = Vector2(0.2, 0.2)
 color = Color(1, 1, 0.541176, 1)
 texture = ExtResource("3_c4nwu")
+offset = Vector2(0, 5)
 
 [node name="Light2D_sprite" type="Sprite2D" parent="advanced_light"]
 material = SubResource("CanvasItemMaterial_talck")
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_c4nwu")
+offset = Vector2(0, 5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_l3u7x")
 animation = &"active"
+offset = Vector2(0, 5)

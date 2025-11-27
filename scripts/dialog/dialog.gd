@@ -69,7 +69,7 @@ func has_speech_options() -> bool:
 	return tree.get_num_speech_options() > 0
 
 func play_cards():
-	if(player_ref.get_deck().get_children().size() > 0):
+	if(player_ref.get_deck().size() > 0):
 		playing_cards = true
 		_DialogBubble.visible = false
 		_ResponseBubble.visible = false
@@ -79,7 +79,7 @@ func play_cards():
 		player_ref.get_parent().add_child(game)
 		game.global_position = player_ref.get_camera_ref().get_screen_center_position()
 		game.set_callback_node(self)
-		game.set_decks_and_begin(player_deck,opponent_deck)
+		game.initiate_card_game(player_deck,opponent_deck)
 	else:
 		game_end(0)
 

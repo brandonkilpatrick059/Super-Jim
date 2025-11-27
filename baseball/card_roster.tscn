@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://d2ddi880fd0rf" path="res://scripts/baseball/card_roster.gd" id="1_50t8e"]
 [ext_resource type="PackedScene" uid="uid://bocxc8pmuf3na" path="res://baseball/card_base.tscn" id="2_yiqgv"]
 
-[node name="CardRoster" type="Node2D"]
+[node name="CardRoster" type="Node2D" groups=["card_roster"]]
 script = ExtResource("1_50t8e")
 
 [node name="green_1" parent="." instance=ExtResource("2_yiqgv")]
@@ -115,7 +115,6 @@ power = 2
 flat_buff_stamina_next = 2
 
 [node name="yellow_11" parent="." instance=ExtResource("2_yiqgv")]
-visible = false
 team = "yellow"
 card_name = "Rich “Dicky” Dodge"
 portrait_path = "res://sprites/baseball/portraits/test_2.png"
@@ -189,6 +188,7 @@ flat_buff_stamina_next = 2
 flat_buff_damage_next = 1
 
 [node name="yellow_17" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
 team = "yellow"
 card_name = "Gordy Feet"
 portrait_path = "res://sprites/baseball/portraits/test_9.png"
@@ -216,129 +216,151 @@ visible = false
 team = "gray"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="gray_20" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "gray"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="gray_21" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "gray"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="gray_22" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "gray"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="gray_23" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "gray"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="gray_24" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "gray"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="gray_25" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "gray"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="gray_26" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "gray"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="gray_27" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "gray"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="white_28" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="white_29" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="white_30" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="white_31" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="white_32" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="white_33" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="white_34" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="white_35" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="white_36" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="green_37" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "green"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="yellow_38" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "yellow"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="gray_39" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "gray"
 portrait_path = ""
 description = ""
+strength_rating = 0
 
 [node name="white_40" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
 portrait_path = ""
 description = ""
+strength_rating = 0

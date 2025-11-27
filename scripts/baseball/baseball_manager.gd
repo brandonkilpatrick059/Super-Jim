@@ -179,18 +179,18 @@ func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 			sound_player2.stream = load("res://audio/soundFX/putdown.wav")
 			sound_player2.play()
 			
-			if(attacking_card.buff_dmg_on_kill > 0):
-				var buff_amt = attacking_card.buff_dmg_on_kill
+			if(attacking_card.get_buff_damage_on_kill() > 0):
+				var buff_amt = attacking_card.get_buff_damage_on_kill()
 				attacking_card.set_power(attacking_card.get_power() + buff_amt)
 				sound_player3.stream = load("res://audio/soundFX/baseball/buff.wav")
 				sound_player3.play() 
-			if(attacking_card.buff_stamina_on_kill > 0):
-				var buff_amt = attacking_card.buff_stamina_on_kill
+			if(attacking_card.get_buff_stamina_on_kill() > 0):
+				var buff_amt = attacking_card.get_buff_stamina_on_kill()
 				attacking_card.set_stamina(attacking_card.get_stamina() + buff_amt)
 				sound_player3.stream = load("res://audio/soundFX/baseball/buff.wav")
 				sound_player3.play() 
-			if(attacking_card.buff_hp_on_kill > 0):
-				var buff_amt = attacking_card.buff_hp_on_kill
+			if(attacking_card.get_buff_hp_on_kill() > 0):
+				var buff_amt = attacking_card.get_buff_hp_on_kill()
 				attacking_card.set_hp(attacking_card.get_hp() + buff_amt)
 				sound_player3.stream = load("res://audio/soundFX/baseball/buff.wav")
 				sound_player3.play() 
@@ -234,6 +234,7 @@ func card_left(num : int = 1):
 		return card_left_3.get_child(0)
 
 func set_card_right(card : Node2D, num : int = 1):
+	card.visible = true
 	if(num == 1):
 		active_card_right.add_child(card)
 		card.global_position = active_card_right.global_position
@@ -245,6 +246,7 @@ func set_card_right(card : Node2D, num : int = 1):
 		card.global_position = card_right_3.global_position
 	
 func set_card_left(card : Node2D, num : int = 1):
+	card.visible = true
 	if(num == 1):
 		active_card_left.add_child(card)
 		card.global_position = active_card_left.global_position
@@ -373,11 +375,13 @@ func kill_card(kill_right_card : bool):
 	sound_player.play()
 	skip_turn_switch = true
 
-func set_deck_left(deck : Node):
+func set_deck_left(deck : Node2D):
 	deck_left = deck
+	add_child(deck_left)
 
-func set_deck_right(deck : Node):
+func set_deck_right(deck : Node2D):
 	deck_right = deck
+	add_child(deck_right)
 
 func killing_card_process():
 	var card = card_left()
@@ -432,6 +436,18 @@ func killing_card_process():
 			else:
 				game_is_over = true
 		killing_card = false
+
+func initiate_card_game(deck_left : Array[int], deck_right : Array[int]):
+	var node_deck_left : Node2D = Node2D.new()
+	var node_deck_right: Node2D = Node2D.new()
+	var card_roster = get_tree().get_first_node_in_group("card_roster")
+	for num in deck_left:
+		var card = card_roster.get_card(num).duplicate()
+		node_deck_left.add_child(card)
+	for num in deck_right:
+		var card = card_roster.get_card(num).duplicate()
+		node_deck_right.add_child(card)
+	set_decks_and_begin(node_deck_left, node_deck_right)
 
 func set_decks_and_begin(deck_left : Node, deck_right : Node):
 	set_deck_left(deck_left)

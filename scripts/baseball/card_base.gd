@@ -17,57 +17,57 @@ extends Node2D
 @export var portrait_path : String = ""
 @export var description : String = ""
 @export var strength_rating: int = 0
-@export var hp = 1
-@export var stamina = 1
-@export var power = 1
+@export var hp : int = 1
+@export var stamina : int = 1
+@export var power : int = 1
 
 #TODO: implement
 #adds stat to the next card upon death
-@export var adds_hp_next = false 
-@export var adds_stamina_next = false
-@export var adds_dmg_next = false
+@export var adds_hp_next : bool = false 
+@export var adds_stamina_next : bool = false
+@export var adds_dmg_next : bool = false
 
 #TODO: implement
 #gets stat from previous card upon death
-@export var adds_hp_prev = false 
-@export var adds_stamina_prev = false
-@export var adds_dmg_prev = false
+@export var adds_hp_prev : bool = false 
+@export var adds_stamina_prev : bool = false
+@export var adds_dmg_prev : bool = false
 
 #adds flat buff to next card
-@export var flat_buff_hp_next = 0
-@export var flat_buff_stamina_next = 0
-@export var flat_buff_damage_next = 0
+@export var flat_buff_hp_next : int = 0
+@export var flat_buff_stamina_next : int = 0
+@export var flat_buff_damage_next : int = 0
 
 #TODO: implement
 #buffs/debuffs stat to this card each kill
-@export var buff_hp_on_kill = 0 
-@export var buff_stamina_on_kill = 0
-@export var buff_dmg_on_kill = 0
+@export var buff_hp_on_kill : int = 0 
+@export var buff_stamina_on_kill : int = 0
+@export var buff_dmg_on_kill : int = 0
 
 #TODO: implement
 #stat is  equal to the number of a certain team in deck
-@export var team_number_is_hp = false
-@export var team_number_is_stamina = false
-@export var team_number_is_dmg = false
+@export var team_number_is_hp : bool = false
+@export var team_number_is_stamina : bool = false
+@export var team_number_is_dmg : bool = false
 
 var stat_max = 9
 
-func get_flat_buff_hp():
+func get_flat_buff_hp() -> int:
 	return flat_buff_hp_next
 
-func get_flat_buff_damage():
+func get_flat_buff_damage() -> int:
 	return flat_buff_damage_next
 
-func get_flat_buff_stamina():
+func get_flat_buff_stamina() -> int:
 	return flat_buff_stamina_next
 
-func get_buff_hp_on_kill():
+func get_buff_hp_on_kill() -> int:
 	return buff_stamina_on_kill
 
-func get_buff_damage_on_kill():
+func get_buff_damage_on_kill() -> int:
 	return flat_buff_damage_next
 
-func get_buff_stamina_on_kill():
+func get_buff_stamina_on_kill() -> int:
 	return buff_dmg_on_kill
 
 func _ready() -> void:
@@ -97,6 +97,9 @@ func get_power():
 
 func power_glow():
 	_pow_meter.glow()
+
+func get_team():
+	return team
 
 func set_hp(new_hp : int):
 	if(new_hp > stat_max):

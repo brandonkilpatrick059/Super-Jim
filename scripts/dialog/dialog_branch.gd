@@ -19,7 +19,7 @@ extends Node2D
 @export var shows_wares : bool = false
 
 @export var plays_cards : bool = false
-@export var card_deck : Node2D
+@export var card_deck : Array[int]
 
 var random = RandomNumberGenerator.new()
 

@@ -44,7 +44,7 @@ func get_shows_wares() -> bool:
 func get_plays_cards() -> bool:
 	return current_branch.get_plays_cards()
 
-func get_deck() -> Node:
+func get_deck() -> Array[int]:
 	return current_branch.get_deck()
 
 func set_speech_options(options : Array[String]):

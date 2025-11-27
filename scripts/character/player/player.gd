@@ -8,8 +8,8 @@ extends RigidBody2D
 @onready var _ui_canvas = $ui_canvas
 @onready var _ui = $ui_canvas/player_ui
 @onready var _light = $player_light
-@onready var _card_deck : Array[int] = []
-@onready var _owned_cards : Array[int] = [0,0,0,0,0,0,0,0,0, #green
+@export var _card_deck : Array[int] = []
+@export var _owned_cards : Array[int] = [0,0,0,0,0,0,0,0,0, #green
 										0,0,0,0,0,0,0,0,0, #yellow
 										0,0,0,0,0,0,0,0,0, #gray
 										0,0,0,0,0,0,0,0,0, #white
@@ -208,7 +208,7 @@ func load_from_dictionary(load_dictionary : Dictionary):
 		top_spriteframes,
 		bottom_spriteframes)
 
-func get_deck():
+func get_deck() -> Array[int]:
 	return _card_deck
 
 func get_hat_spriteframes() -> SpriteFrames:

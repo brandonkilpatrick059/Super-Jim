@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c21jsew46j2v0"]
+[gd_scene load_steps=13 format=3 uid="uid://c21jsew46j2v0"]
 
 [ext_resource type="Material" uid="uid://dhx7fk0igp2jl" path="res://entities/characters/player/player_material.tres" id="1_m0gj2"]
 [ext_resource type="Script" uid="uid://cogilhe2xxfbn" path="res://scripts/character/player/player.gd" id="1_srksq"]
@@ -8,8 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://drhb8omp3qpc2" path="res://sprites/die_text.png" id="6_o3xy8"]
 [ext_resource type="PackedScene" uid="uid://mcdceuvq1y5j" path="res://sprites/interface/player_ui.tscn" id="6_ya2x2"]
 [ext_resource type="Texture2D" uid="uid://7xytxntsgyls" path="res://sprites/lights/diffuse_circle.png" id="8_0d5hj"]
-[ext_resource type="PackedScene" uid="uid://dky561g1q1ul5" path="res://baseball/cards/bobby_bobson.tscn" id="9_sybl7"]
-[ext_resource type="PackedScene" uid="uid://pq0gqmxbxwml" path="res://baseball/cards/jimmy_jo.tscn" id="10_5otfs"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3o5m8"]
 
@@ -68,30 +66,10 @@ texture = ExtResource("6_o3xy8")
 [node name="ui_canvas" type="CanvasLayer" parent="."]
 
 [node name="player_ui" parent="ui_canvas" instance=ExtResource("6_ya2x2")]
-offset_right = 0.0
-offset_bottom = 0.0
 
 [node name="player_light" type="PointLight2D" parent="."]
 z_index = -1
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("8_0d5hj")
-
-[node name="card_deck" type="Node2D" parent="."]
-visible = false
-
-[node name="bobby_bobson" parent="card_deck" instance=ExtResource("9_sybl7")]
-position = Vector2(-309, -1714)
-
-[node name="jimmy_jo" parent="card_deck" instance=ExtResource("10_5otfs")]
-position = Vector2(-309, -1714)
-
-[node name="jimmy_jo2" parent="card_deck" instance=ExtResource("10_5otfs")]
-position = Vector2(-309, -1714)
-
-[node name="jimmy_jo3" parent="card_deck" instance=ExtResource("10_5otfs")]
-position = Vector2(-309, -1714)
-
-[node name="bobby_bobson4" parent="card_deck" instance=ExtResource("9_sybl7")]
-position = Vector2(7, -1711)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

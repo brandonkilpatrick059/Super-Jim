@@ -15,6 +15,7 @@ script = ExtResource("1_y3q1y")
 team = null
 portrait_path = null
 description = null
+strength_rating = null
 adds_hp_next = null
 adds_stamina_next = null
 adds_dmg_next = null

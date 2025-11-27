@@ -12,7 +12,8 @@ team = "green"
 card_name = "Squidge McTervish"
 portrait_path = "res://sprites/baseball/portraits/test_1.png"
 description = "\"Yes, my momma named me Squidge.\""
-hp = 6
+strength_rating = 9
+hp = 5
 stamina = 2
 power = 2
 buff_dmg_on_kill = 2
@@ -23,6 +24,7 @@ team = "green"
 card_name = "Kevin \"Corky\" Batts"
 portrait_path = "res://sprites/baseball/portraits/test_2.png"
 description = "\"Those allegations are unproven!\""
+strength_rating = 9
 hp = 4
 power = 4
 
@@ -31,7 +33,8 @@ visible = false
 team = "green"
 card_name = "Sammy Salsalito"
 portrait_path = "res://sprites/baseball/portraits/test_3.png"
-description = "\"We call it 'stick-ball' where I come from.\""
+description = "\"We call it stick-ball where I come from.\""
+strength_rating = 9
 hp = 2
 stamina = 4
 power = 3
@@ -41,6 +44,7 @@ visible = false
 team = "green"
 portrait_path = "res://sprites/baseball/portraits/test_4.png"
 description = ""
+strength_rating = 9
 hp = 7
 
 [node name="green_5" parent="." instance=ExtResource("2_yiqgv")]
@@ -49,9 +53,9 @@ team = "green"
 card_name = "Beary Long"
 portrait_path = "res://sprites/baseball/portraits/test_5.png"
 description = "\"I started playing baseball by accident.\""
-hp = 4
-stamina = 6
-power = 4
+strength_rating = 9
+hp = 5
+power = 3
 
 [node name="green_6" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -59,18 +63,21 @@ team = "green"
 card_name = "Danny Overs Jr."
 portrait_path = "res://sprites/baseball/portraits/test_6.png"
 description = "\"It's not overs till it's overs.\""
+strength_rating = 12
 hp = 7
 stamina = 3
 power = 2
+adds_hp_next = false
 
 [node name="green_7" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "green"
 card_name = "Grimo Johnsonson"
 portrait_path = "res://sprites/baseball/portraits/test_7.png"
-description = "\"I'm gonna getcha hehehe\""
+description = "\"Hehehe\""
+strength_rating = 12
 hp = 6
-stamina = 3
+stamina = 2
 power = 4
 
 [node name="green_8" parent="." instance=ExtResource("2_yiqgv")]
@@ -78,73 +85,131 @@ visible = false
 team = "green"
 card_name = "Hudson Scudd"
 portrait_path = "res://sprites/baseball/portraits/test_9.png"
-description = "Add 2 ❤️ to next card."
+description = "+2 ❤️ to next card."
+strength_rating = 12
 hp = 5
 power = 4
-adds_hp_next = true
+adds_hp_next = false
 flat_buff_hp_next = 2
 
 [node name="green_9" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
 team = "green"
 card_name = "Gustopher Leeds"
 portrait_path = "res://sprites/baseball/portraits/test_11.png"
-description = "Add 4 🔶 to next card."
+description = "+4 🔶 to next card."
+strength_rating = 12
 hp = 8
+flat_buff_damage_next = 4
 
 [node name="yellow_10" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "yellow"
-card_name = "Danny Overs Jr."
-portrait_path = ""
-description = "\"It's not overs till it's overs.\""
+card_name = "Marchie Saintsgo"
+portrait_path = "res://sprites/baseball/portraits/test_1.png"
+description = "+2 🔵 to next card."
+strength_rating = 9
+hp = 3
+stamina = 2
+power = 2
+flat_buff_stamina_next = 2
 
 [node name="yellow_11" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "yellow"
-portrait_path = ""
-description = ""
+card_name = "Rich “Dicky” Dodge"
+portrait_path = "res://sprites/baseball/portraits/test_2.png"
+description = "+ remaining🔶 to next card."
+strength_rating = 9
+hp = 3
+stamina = 3
+power = 2
+adds_stamina_next = false
+adds_dmg_next = true
 
 [node name="yellow_12" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "yellow"
-portrait_path = ""
-description = ""
+card_name = "Jimothy Stole"
+portrait_path = "res://sprites/baseball/portraits/test_3.png"
+description = "\"Born to steal bases.\""
+strength_rating = 9
+hp = 3
+stamina = 3
+power = 3
 
 [node name="yellow_13" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "yellow"
-portrait_path = ""
-description = ""
+card_name = "Laniel Willy-Song"
+portrait_path = "res://sprites/baseball/portraits/test_4.png"
+description = "+2 🔵 each kill."
+strength_rating = 9
+hp = 4
+stamina = 0
+power = 4
+buff_stamina_on_kill = 2
 
 [node name="yellow_14" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
+position = Vector2(0, -1)
 team = "yellow"
-portrait_path = ""
-description = ""
+card_name = "Brichard Socks"
+portrait_path = "res://sprites/baseball/portraits/test_5.png"
+description = "+3 ❤️ each kill."
+strength_rating = 9
+hp = 5
+stamina = 0
+power = 3
+buff_hp_on_kill = 3
 
 [node name="yellow_15" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "yellow"
-portrait_path = ""
-description = ""
+card_name = "PJ Bottoms"
+portrait_path = "res://sprites/baseball/portraits/test_6.png"
+description = "+1 🔶 each kill"
+strength_rating = 12
+hp = 4
+stamina = 2
+power = 4
+buff_dmg_on_kill = 1
 
 [node name="yellow_16" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "yellow"
-portrait_path = ""
-description = ""
+card_name = "Frack MacBack"
+portrait_path = "res://sprites/baseball/portraits/test_7.png"
+description = "+2 🔵, +1 🔶 to next card"
+strength_rating = 12
+hp = 6
+stamina = 0
+power = 0
+flat_buff_stamina_next = 2
+flat_buff_damage_next = 1
 
 [node name="yellow_17" parent="." instance=ExtResource("2_yiqgv")]
-visible = false
 team = "yellow"
-portrait_path = ""
-description = ""
+card_name = "Gordy Feet"
+portrait_path = "res://sprites/baseball/portraits/test_9.png"
+description = "+2 ❤️, + remaining 🔵 to next card"
+strength_rating = 12
+hp = 2
+stamina = 4
+adds_stamina_next = true
+flat_buff_hp_next = 2
+buff_hp_on_kill = 0
 
 [node name="yellow_18" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "yellow"
-portrait_path = ""
-description = ""
+card_name = "“Court-Order” Joe"
+portrait_path = "res://sprites/baseball/portraits/test_11.png"
+description = "+2 🔶each kill."
+strength_rating = 12
+hp = 4
+power = 3
+adds_hp_next = false
 
 [node name="gray_19" parent="." instance=ExtResource("2_yiqgv")]
 visible = false

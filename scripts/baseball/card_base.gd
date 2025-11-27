@@ -16,6 +16,7 @@ extends Node2D
 @export var card_name : String = "Todd Bonzalez"
 @export var portrait_path : String = ""
 @export var description : String = ""
+@export var strength_rating: int = 0
 @export var hp = 1
 @export var stamina = 1
 @export var power = 1

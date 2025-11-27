@@ -1,0 +1,279 @@
+[gd_scene load_steps=3 format=3 uid="uid://cutmu2qf1a0rx"]
+
+[ext_resource type="Script" uid="uid://d2ddi880fd0rf" path="res://scripts/baseball/card_roster.gd" id="1_50t8e"]
+[ext_resource type="PackedScene" uid="uid://bocxc8pmuf3na" path="res://baseball/card_base.tscn" id="2_yiqgv"]
+
+[node name="CardRoster" type="Node2D"]
+script = ExtResource("1_50t8e")
+
+[node name="green_1" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "green"
+card_name = "Squidge McTervish"
+portrait_path = "res://sprites/baseball/portraits/test_1.png"
+description = "\"Yes, my momma named me Squidge.\""
+hp = 6
+stamina = 2
+power = 2
+buff_dmg_on_kill = 2
+
+[node name="green_2" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "green"
+card_name = "Kevin \"Corky\" Batts"
+portrait_path = "res://sprites/baseball/portraits/test_2.png"
+description = "\"Those allegations are unproven!\""
+hp = 4
+power = 4
+
+[node name="green_3" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "green"
+card_name = "Sammy Salsalito"
+portrait_path = "res://sprites/baseball/portraits/test_3.png"
+description = "\"We call it 'stick-ball' where I come from.\""
+hp = 2
+stamina = 4
+power = 3
+
+[node name="green_4" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "green"
+portrait_path = "res://sprites/baseball/portraits/test_4.png"
+description = ""
+hp = 7
+
+[node name="green_5" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "green"
+card_name = "Beary Long"
+portrait_path = "res://sprites/baseball/portraits/test_5.png"
+description = "\"I started playing baseball by accident.\""
+hp = 4
+stamina = 6
+power = 4
+
+[node name="green_6" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "green"
+card_name = "Danny Overs Jr."
+portrait_path = "res://sprites/baseball/portraits/test_6.png"
+description = "\"It's not overs till it's overs.\""
+hp = 7
+stamina = 3
+power = 2
+
+[node name="green_7" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "green"
+card_name = "Grimo Johnsonson"
+portrait_path = "res://sprites/baseball/portraits/test_7.png"
+description = "\"I'm gonna getcha hehehe\""
+hp = 6
+stamina = 3
+power = 4
+
+[node name="green_8" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "green"
+card_name = "Hudson Scudd"
+portrait_path = "res://sprites/baseball/portraits/test_9.png"
+description = "Add 2 ❤️ to next card."
+hp = 5
+power = 4
+adds_hp_next = true
+flat_buff_hp_next = 2
+
+[node name="green_9" parent="." instance=ExtResource("2_yiqgv")]
+team = "green"
+card_name = "Gustopher Leeds"
+portrait_path = "res://sprites/baseball/portraits/test_11.png"
+description = "Add 4 🔶 to next card."
+hp = 8
+
+[node name="yellow_10" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "yellow"
+card_name = "Danny Overs Jr."
+portrait_path = ""
+description = "\"It's not overs till it's overs.\""
+
+[node name="yellow_11" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "yellow"
+portrait_path = ""
+description = ""
+
+[node name="yellow_12" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "yellow"
+portrait_path = ""
+description = ""
+
+[node name="yellow_13" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "yellow"
+portrait_path = ""
+description = ""
+
+[node name="yellow_14" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "yellow"
+portrait_path = ""
+description = ""
+
+[node name="yellow_15" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "yellow"
+portrait_path = ""
+description = ""
+
+[node name="yellow_16" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "yellow"
+portrait_path = ""
+description = ""
+
+[node name="yellow_17" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "yellow"
+portrait_path = ""
+description = ""
+
+[node name="yellow_18" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "yellow"
+portrait_path = ""
+description = ""
+
+[node name="gray_19" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "gray"
+portrait_path = ""
+description = ""
+
+[node name="gray_20" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "gray"
+portrait_path = ""
+description = ""
+
+[node name="gray_21" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "gray"
+portrait_path = ""
+description = ""
+
+[node name="gray_22" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "gray"
+portrait_path = ""
+description = ""
+
+[node name="gray_23" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "gray"
+portrait_path = ""
+description = ""
+
+[node name="gray_24" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "gray"
+portrait_path = ""
+description = ""
+
+[node name="gray_25" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "gray"
+portrait_path = ""
+description = ""
+
+[node name="gray_26" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "gray"
+portrait_path = ""
+description = ""
+
+[node name="gray_27" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "gray"
+portrait_path = ""
+description = ""
+
+[node name="white_28" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "white"
+portrait_path = ""
+description = ""
+
+[node name="white_29" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "white"
+portrait_path = ""
+description = ""
+
+[node name="white_30" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "white"
+portrait_path = ""
+description = ""
+
+[node name="white_31" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "white"
+portrait_path = ""
+description = ""
+
+[node name="white_32" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "white"
+portrait_path = ""
+description = ""
+
+[node name="white_33" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "white"
+portrait_path = ""
+description = ""
+
+[node name="white_34" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "white"
+portrait_path = ""
+description = ""
+
+[node name="white_35" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "white"
+portrait_path = ""
+description = ""
+
+[node name="white_36" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "white"
+portrait_path = ""
+description = ""
+
+[node name="green_37" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "green"
+portrait_path = ""
+description = ""
+
+[node name="yellow_38" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "yellow"
+portrait_path = ""
+description = ""
+
+[node name="gray_39" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "gray"
+portrait_path = ""
+description = ""
+
+[node name="white_40" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "white"
+portrait_path = ""
+description = ""

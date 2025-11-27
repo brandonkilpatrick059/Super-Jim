@@ -7,11 +7,15 @@ extends Node2D
 @onready var _pow_meter = $PowReadout
 @onready var _stam_meter = $StamReadout
 @onready var _label_name = $NAME
+@onready var _label_description = $DESCRIPTION
 @onready var _effect_node = $effect_node
+@onready var _team_symbol = $team_symbol
 
 @export var team = ""
 
 @export var card_name : String = "Todd Bonzalez"
+@export var portrait_path : String = ""
+@export var description : String = ""
 @export var hp = 1
 @export var stamina = 1
 @export var power = 1
@@ -69,8 +73,14 @@ func _ready() -> void:
 	_hp_meter.set_stat(hp)
 	_stam_meter.set_stat(stamina)
 	_pow_meter.set_stat(power)
+	_label_name.text = card_name
 	if(team):
 		add_to_group(team)
+		_team_symbol.play(team)
+	if(portrait_path):
+		_portrait.texture = load(portrait_path)
+	if(description):
+		_label_description.text = description
 
 func get_card_name():
 	return card_name

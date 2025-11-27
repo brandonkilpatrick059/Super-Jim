@@ -1,0 +1,66 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://dmd3a0ip20jnj"]
+
+[ext_resource type="Texture2D" uid="uid://b3hsb21a1h6kp" path="res://sprites/baseball/team_symbols.png" id="1_ak5r5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o23qw"]
+atlas = ExtResource("1_ak5r5")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5tp2"]
+atlas = ExtResource("1_ak5r5")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6ee4"]
+atlas = ExtResource("1_ak5r5")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq8dr"]
+atlas = ExtResource("1_ak5r5")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_euiei"]
+atlas = ExtResource("1_ak5r5")
+region = Rect2(24, 0, 24, 24)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o23qw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5tp2")
+}],
+"loop": true,
+"name": &"gray",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6ee4")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sq8dr")
+}],
+"loop": true,
+"name": &"white",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euiei")
+}],
+"loop": true,
+"name": &"yellow",
+"speed": 5.0
+}]

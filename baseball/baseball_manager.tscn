@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bhxsevgsr7a4h"]
 
 [ext_resource type="Script" uid="uid://dn8lth6ua677u" path="res://scripts/baseball/baseball_manager.gd" id="1_6bnxi"]
-[ext_resource type="PackedScene" uid="uid://bocxc8pmuf3na" path="res://baseball/cards/card_base.tscn" id="2_x31gc"]
+[ext_resource type="PackedScene" uid="uid://bocxc8pmuf3na" path="res://baseball/card_base.tscn" id="2_x31gc"]
 [ext_resource type="SpriteFrames" uid="uid://dugnyjwub8xs" path="res://sprites/spritesheets/spriteframes/baseball/bat_arms.tres" id="3_ae8mq"]
 [ext_resource type="Texture2D" uid="uid://bklgivc3q1a7v" path="res://sprites/baseball/back_ground.png" id="4_a786n"]
 [ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="5_7ut21"]

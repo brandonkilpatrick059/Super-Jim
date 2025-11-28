@@ -21,17 +21,9 @@ extends Node2D
 @export var stamina : int = 1
 @export var power : int = 1
 
-#TODO: implement
 #adds stat to the next card upon death
-@export var adds_hp_next : bool = false 
 @export var adds_stamina_next : bool = false
 @export var adds_dmg_next : bool = false
-
-#TODO: implement
-#gets stat from previous card upon death
-@export var adds_hp_prev : bool = false 
-@export var adds_stamina_prev : bool = false
-@export var adds_dmg_prev : bool = false
 
 #adds flat buff to next card
 @export var flat_buff_hp_next : int = 0

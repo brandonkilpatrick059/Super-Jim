@@ -208,11 +208,25 @@ func load_from_dictionary(load_dictionary : Dictionary):
 		top_spriteframes,
 		bottom_spriteframes)
 
+func set_deck(deck : Array[int]):
+	card_deck = deck
+
 func get_deck() -> Array[int]:
 	return card_deck
 
 func get_owned_cards() -> Array[int]:
 	return owned_cards
+
+#func increment_owned_card(index : int):
+	#if(owned_cards[index] + 1 <= 5):
+		#owned_cards[index] = owned_cards[index] + 1
+#
+#func decrement_owned_card(index : int):
+	#if(owned_cards[index] - 1 >= 0):
+		#owned_cards[index] = owned_cards[index] - 1
+
+func get_num_card(index : int):
+	return owned_cards[index]
 
 func get_hat_spriteframes() -> SpriteFrames:
 	return hat_spriteframes
@@ -586,10 +600,10 @@ func use_item():
 				if(camera_connected):
 					_camera.toggle_flashlight()
 			"card_binder":
+				stop_dash()
 				var binder = card_binder.instantiate()
 				get_parent().add_child(binder)
 				main_ui_invisible()
-				binder.global_position = _camera.get_screen_center_position()
 				set_control_frozen(true)
 
 func remove_from_items(item : String):

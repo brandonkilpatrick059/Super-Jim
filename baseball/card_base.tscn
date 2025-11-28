@@ -1,24 +1,39 @@
-[gd_scene load_steps=10 format=3 uid="uid://bocxc8pmuf3na"]
+[gd_scene load_steps=14 format=3 uid="uid://bocxc8pmuf3na"]
 
 [ext_resource type="Script" uid="uid://xm51ra1miw1i" path="res://scripts/baseball/card_base.gd" id="1_y3q1y"]
 [ext_resource type="Texture2D" uid="uid://bc3h2dltwyv7u" path="res://sprites/baseball/card_base.png" id="2_uqmeo"]
 [ext_resource type="Texture2D" uid="uid://citmxsuewhe8x" path="res://sprites/baseball/portraits/test_2.png" id="3_ubpcq"]
 [ext_resource type="LabelSettings" uid="uid://du7h04cuqn7f6" path="res://fonts/card_text_label_settings.tres" id="4_jghjo"]
 [ext_resource type="Script" uid="uid://bbkrydieo1hg7" path="res://scripts/baseball/effects/blank_effect.gd" id="5_5t3vm"]
-[ext_resource type="PackedScene" uid="uid://3y8mthmml1ay" path="res://scripts/baseball/stat_readouts/hp_readout.tscn" id="6_f5lln"]
-[ext_resource type="PackedScene" uid="uid://dsobaybaolmd6" path="res://scripts/baseball/stat_readouts/pow_readout.tscn" id="7_psc4y"]
-[ext_resource type="PackedScene" uid="uid://bpx2t73k84hm6" path="res://scripts/baseball/stat_readouts/stam_readout.tscn" id="8_5d8u1"]
+[ext_resource type="PackedScene" uid="uid://3y8mthmml1ay" path="res://baseball/hp_readout.tscn" id="6_f5lln"]
+[ext_resource type="PackedScene" uid="uid://dsobaybaolmd6" path="res://baseball/pow_readout.tscn" id="7_psc4y"]
+[ext_resource type="PackedScene" uid="uid://bpx2t73k84hm6" path="res://baseball/stam_readout.tscn" id="8_5d8u1"]
 [ext_resource type="SpriteFrames" uid="uid://dmd3a0ip20jnj" path="res://sprites/spritesheets/spriteframes/baseball/team_symbol.tres" id="9_5daux"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_y3q1y"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_uqmeo"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jghjo"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ubpcq"]
+light_mode = 1
+
 [node name="CardBase" type="Node2D"]
+material = SubResource("CanvasItemMaterial_y3q1y")
 script = ExtResource("1_y3q1y")
 team = null
 
 [node name="base_border" type="Sprite2D" parent="."]
 z_index = 1
+material = SubResource("CanvasItemMaterial_uqmeo")
 texture = ExtResource("2_uqmeo")
 
 [node name="portrait" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_jghjo")
 texture = ExtResource("3_ubpcq")
 
 [node name="NAME" type="Label" parent="."]
@@ -42,30 +57,30 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="effect_node" type="Node2D" parent="."]
+material = SubResource("CanvasItemMaterial_ubpcq")
 script = ExtResource("5_5t3vm")
 
 [node name="HpReadout" parent="." instance=ExtResource("6_f5lln")]
 z_index = 2
+material = SubResource("CanvasItemMaterial_ubpcq")
 position = Vector2(33, 26)
 creates_blood_particle = true
-creates_stat_particle_debuff = true
-creates_stat_particle_buff = true
 
 [node name="PowReadout" parent="." instance=ExtResource("7_psc4y")]
 z_index = 2
+material = SubResource("CanvasItemMaterial_ubpcq")
 position = Vector2(-32, 23)
-creates_stat_particle_debuff = true
-creates_stat_particle_buff = true
 
 [node name="StamReadout" parent="." instance=ExtResource("8_5d8u1")]
 z_index = 3
+material = SubResource("CanvasItemMaterial_ubpcq")
 position = Vector2(0, 28)
 creates_stat_particle_debuff = false
-creates_stat_particle_buff = true
 reverse_glow = true
 
 [node name="team_symbol" type="AnimatedSprite2D" parent="."]
 z_index = 1
+material = SubResource("CanvasItemMaterial_ubpcq")
 position = Vector2(-48, -64)
 sprite_frames = ExtResource("9_5daux")
 animation = &"yellow"

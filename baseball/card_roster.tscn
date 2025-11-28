@@ -16,7 +16,6 @@ strength_rating = 9
 hp = 5
 stamina = 2
 power = 2
-buff_dmg_on_kill = 2
 
 [node name="green_2" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -205,6 +204,7 @@ description = "+2 🔶each kill."
 strength_rating = 12
 hp = 4
 power = 3
+buff_dmg_on_kill = 2
 
 [node name="gray_19" parent="." instance=ExtResource("2_yiqgv")]
 visible = false

@@ -134,7 +134,7 @@ func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 				queued_stamina_buff_right = 0
 				buff = true
 			if(queued_damage_buff_right > 0):
-				card_right().set_damage(card_right().get_damage() + queued_damage_buff_right)
+				card_right().set_power(card_right().get_power() + queued_damage_buff_right)
 				queued_damage_buff_right = 0
 				buff = true
 		else:
@@ -147,7 +147,7 @@ func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 				queued_stamina_buff_left = 0
 				buff = true
 			if(queued_damage_buff_left > 0):
-				card_left().set_damage(card_left().get_damage() + queued_damage_buff_left)
+				card_left().set_power(card_left().get_power() + queued_damage_buff_left)
 				queued_damage_buff_left = 0
 				buff = true
 		if(buff):
@@ -297,14 +297,14 @@ func enact_effects():
 		if(card_right.adds_stamina_next):
 			queued_stamina_buff_right = card_right.get_stamina()
 		if(card_right.adds_dmg_next):
-			queued_damage_buff_right = card_right.get_damage()
+			queued_damage_buff_right = card_right.get_power()
 	if(card_left.get_hp() == 0):
 		if(card_left.adds_hp_next):
 			queued_hp_buff_left = card_left.get_hp()
 		if(card_left.adds_stamina_next):
 			queued_stamina_buff_left = card_left.get_stamina()
 		if(card_left.adds_dmg_next):
-			queued_damage_buff_left = card_left.get_damage()
+			queued_damage_buff_left = card_left.get_power()
 	
 	#stat carries from previous card
 

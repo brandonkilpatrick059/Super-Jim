@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://fffmt3nmk77l" path="res://sprites/baseball/portraits/test_6.png" id="3_mq53g"]
 [ext_resource type="LabelSettings" uid="uid://du7h04cuqn7f6" path="res://fonts/card_text_label_settings.tres" id="4_mq53g"]
 [ext_resource type="Script" uid="uid://bbkrydieo1hg7" path="res://scripts/baseball/effects/blank_effect.gd" id="5_eg11w"]
-[ext_resource type="PackedScene" uid="uid://3y8mthmml1ay" path="res://scripts/baseball/stat_readouts/hp_readout.tscn" id="6_o60i7"]
-[ext_resource type="PackedScene" uid="uid://dsobaybaolmd6" path="res://scripts/baseball/stat_readouts/pow_readout.tscn" id="7_ge1mx"]
-[ext_resource type="PackedScene" uid="uid://bpx2t73k84hm6" path="res://scripts/baseball/stat_readouts/stam_readout.tscn" id="8_bljxr"]
+[ext_resource type="PackedScene" uid="uid://3y8mthmml1ay" path="res://baseball/hp_readout.tscn" id="6_o60i7"]
+[ext_resource type="PackedScene" uid="uid://dsobaybaolmd6" path="res://baseball/pow_readout.tscn" id="7_ge1mx"]
+[ext_resource type="PackedScene" uid="uid://bpx2t73k84hm6" path="res://baseball/stam_readout.tscn" id="8_bljxr"]
 
 [node name="jimmy_jo" type="Node2D"]
 script = ExtResource("1_mq53g")

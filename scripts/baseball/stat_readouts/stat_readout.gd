@@ -9,7 +9,7 @@ extends Node2D
 @export var creates_stat_particle_buff : bool = true
 @export var reverse_glow : bool = false
 
-var stat_particle = preload("res://scripts/baseball/stat_readouts/stat_particle.tscn")
+var stat_particle = preload("res://baseball/stat_particle.tscn")
 var blood_particle = preload("res://baseball/blood_particle.tscn")
 
 var stat

@@ -16,16 +16,13 @@ func _ready() -> void:
 
 func set_lineup(deck : Array[int]):
 	index = 0
-	while(index < lineup.size()):
-		if(index < deck.size()):
-			var num = deck[index]
-			if(num != 0):
-				var card = get_card(num)
-				lineup[index].add_child(card)
-				card.position = Vector2(0,0)
-				index = index + 1
-		else:
-			break
+	while(index < deck.size()):
+		var num = deck[index]
+		var card = get_card(num)
+		lineup[index].add_child(card)
+		card.position = Vector2(0,0)
+		card.visible = true
+		index = index + 1
 
 func get_card(num : int) -> Node2D:
 	if(card_roster == null):
@@ -34,12 +31,14 @@ func get_card(num : int) -> Node2D:
 	return card
 
 func add_card(num : int):
-	if(index < lineup.size() - 1):
+	if(index < lineup.size()):
 		var card = get_card(num)
 		lineup[index].add_child(card)
 		card.position = Vector2(0,0)
+		card.visible = true
 		index = index + 1
 
 func subtract_card():
-	lineup[index].get_children()[0].queue_free()
-	index = index - 1
+	if(index - 1 >= 0):
+		index = index - 1
+		lineup[index].get_children()[0].queue_free()

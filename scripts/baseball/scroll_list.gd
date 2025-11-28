@@ -15,15 +15,16 @@ var selected_index = 1
 var card_roster = null
 var player_ref = null
 
+var dial_height = 116
+var dial_step = 3.31
+
 func _ready() -> void:
 	tabs = [tab_0, tab_1, tab_2, tab_3, tab_4]
+	card_roster = get_tree().get_first_node_in_group("card_roster")
+	player_ref = get_tree().get_first_node_in_group("player")
 	update_list()
 
 func update_list():
-	if(card_roster == null):
-		card_roster = get_tree().get_first_node_in_group("card_roster")
-	if(player_ref == null):
-		player_ref = get_tree().get_first_node_in_group("player")
 	var owned_cards = player_ref.get_owned_cards()
 	var index = bottom_index
 	var tab = 0
@@ -41,12 +42,35 @@ func update_list():
 		tab = tab + 1
 		index = index + 1
 
+func get_selected_index():
+	return selected_index
+
+func get_selected_card():
+	var owned_cards = player_ref.get_owned_cards()
+	var card = null
+	if(owned_cards[selected_index-1] > 0):
+		card = card_roster.get_card(selected_index).duplicate()
+	return card
+
+func get_num_selected_card():
+	var owned_cards = player_ref.get_owned_cards()
+	return owned_cards[selected_index-1]
+
+#func increment_selected_card():
+	#player_ref.increment_owned_card(selected_index-1)
+	#update_list()
+#
+#func decrement_selected_card():
+	#player_ref.decrement_owned_card(selected_index-1)
+	#update_list()
+
 func increment_selected():
 	if(selected_index + 1 <= 40):
 		selected_index = selected_index + 1
 		if(selected_index > bottom_index + 4 &&
 		bottom_index + 5 <= 40):
 			bottom_index = bottom_index + 1
+			dial.position = dial.position + Vector2(0,dial_step)
 	update_list()
 
 func decrement_selected():
@@ -55,4 +79,5 @@ func decrement_selected():
 		if(selected_index < bottom_index &&
 		bottom_index - 1 > 0):
 			bottom_index = bottom_index - 1
+			dial.position = dial.position - Vector2(0,dial_step)
 	update_list()

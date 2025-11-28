@@ -326,10 +326,10 @@ func start_game():
 	game_started = true
 	var left_card = deck_left.get_child(left_index).duplicate()
 	set_card_left(left_card)
-	if(left_index+1 < deck_right.get_children().size()):
+	if(left_index+1 < deck_left.get_children().size()):
 		var left_card_2 = deck_left.get_child(left_index+1).duplicate()
 		set_card_left(left_card_2,2)
-	if(left_index+2 < deck_right.get_children().size()):
+	if(left_index+2 < deck_left.get_children().size()):
 		var left_card_3 = deck_left.get_child(left_index+2).duplicate()
 		set_card_left(left_card_3,3)
 	var right_card = deck_right.get_child(right_index).duplicate()

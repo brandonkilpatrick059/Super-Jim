@@ -62,13 +62,13 @@ func get_flat_buff_stamina() -> int:
 	return flat_buff_stamina_next
 
 func get_buff_hp_on_kill() -> int:
-	return buff_stamina_on_kill
+	return buff_hp_on_kill
 
 func get_buff_damage_on_kill() -> int:
-	return flat_buff_damage_next
+	return buff_dmg_on_kill
 
 func get_buff_stamina_on_kill() -> int:
-	return buff_dmg_on_kill
+	return buff_stamina_on_kill
 
 func _ready() -> void:
 	_hp_meter.set_stat(hp)

@@ -95,7 +95,7 @@ card_name = "Gustopher Leeds"
 portrait_path = "res://sprites/baseball/portraits/test_11.png"
 description = "+4 🔶 to next card."
 strength_rating = 12
-hp = 8
+hp = 6
 flat_buff_damage_next = 4
 
 [node name="yellow_10" parent="." instance=ExtResource("2_yiqgv")]

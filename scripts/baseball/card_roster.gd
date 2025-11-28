@@ -10,4 +10,4 @@ func _ready():
 
 func get_card(card_number : int):
 	if(card_number - 1 < cards.size()):
-		return cards[card_number]
+		return cards[card_number - 1]

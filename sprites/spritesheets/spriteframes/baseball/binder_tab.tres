@@ -1,0 +1,54 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://cvrg27m3lgkfn"]
+
+[ext_resource type="Texture2D" uid="uid://bq4o38c4fdwuo" path="res://sprites/baseball/binder_tab.png" id="1_880li"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmbjr"]
+atlas = ExtResource("1_880li")
+region = Rect2(0, 0, 192, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_880li"]
+atlas = ExtResource("1_880li")
+region = Rect2(0, 48, 192, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l201b"]
+atlas = ExtResource("1_880li")
+region = Rect2(0, 24, 192, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xd7d"]
+atlas = ExtResource("1_880li")
+region = Rect2(0, 48, 192, 24)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmbjr")
+}],
+"loop": true,
+"name": &"collected",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_880li")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l201b")
+}],
+"loop": true,
+"name": &"selected",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xd7d")
+}],
+"loop": true,
+"name": &"uncollected",
+"speed": 5.0
+}]

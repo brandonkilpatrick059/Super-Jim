@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://q2mxl80rpim1"]
+
+[ext_resource type="SpriteFrames" uid="uid://cvrg27m3lgkfn" path="res://sprites/spritesheets/spriteframes/baseball/binder_tab.tres" id="1_j36nw"]
+[ext_resource type="SpriteFrames" uid="uid://dmd3a0ip20jnj" path="res://sprites/spritesheets/spriteframes/baseball/team_symbol.tres" id="2_irwj7"]
+[ext_resource type="Script" uid="uid://chn2vlawbf73g" path="res://scripts/baseball/binder_tab.gd" id="2_o0xc3"]
+[ext_resource type="LabelSettings" uid="uid://tdffmlt2tqo6" path="res://fonts/card_readout_text.tres" id="3_j6ajk"]
+
+[node name="tab_0" type="AnimatedSprite2D"]
+sprite_frames = ExtResource("1_j36nw")
+script = ExtResource("2_o0xc3")
+
+[node name="team_symbol" type="AnimatedSprite2D" parent="."]
+position = Vector2(84, 0)
+sprite_frames = ExtResource("2_irwj7")
+
+[node name="num_label" type="Label" parent="."]
+offset_left = -95.0
+offset_top = -9.0
+offset_right = -59.0
+offset_bottom = 11.0
+text = "#00-"
+label_settings = ExtResource("3_j6ajk")
+
+[node name="name_label" type="Label" parent="."]
+offset_left = -59.0
+offset_top = -9.0
+offset_right = 69.0
+offset_bottom = 11.0
+text = "Squidge McTervish"
+label_settings = ExtResource("3_j6ajk")

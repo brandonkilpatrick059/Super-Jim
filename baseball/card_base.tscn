@@ -13,24 +13,6 @@
 [node name="CardBase" type="Node2D"]
 script = ExtResource("1_y3q1y")
 team = null
-portrait_path = null
-description = null
-strength_rating = null
-adds_hp_next = null
-adds_stamina_next = null
-adds_dmg_next = null
-adds_hp_prev = null
-adds_stamina_prev = null
-adds_dmg_prev = null
-flat_buff_hp_next = null
-flat_buff_stamina_next = null
-flat_buff_damage_next = null
-buff_hp_on_kill = null
-buff_stamina_on_kill = null
-buff_dmg_on_kill = null
-team_number_is_hp = null
-team_number_is_stamina = null
-team_number_is_dmg = null
 
 [node name="base_border" type="Sprite2D" parent="."]
 z_index = 1

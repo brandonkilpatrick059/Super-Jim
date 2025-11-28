@@ -137,6 +137,8 @@ func set_item_square(id : String):
 			item_square_texture.texture = load("res://sprites/interface/item_box/item_pizza.png")
 		"flashlight" :
 			item_square_texture.texture = load("res://sprites/interface/item_box/item_flashlight.png")
+		"card_binder" :
+			item_square_texture.texture = load("res://sprites/interface/item_box/item_card_binder.png")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

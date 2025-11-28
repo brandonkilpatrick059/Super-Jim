@@ -8,8 +8,8 @@ extends RigidBody2D
 @onready var _ui_canvas = $ui_canvas
 @onready var _ui = $ui_canvas/player_ui
 @onready var _light = $player_light
-@export var _card_deck : Array[int] = []
-@export var _owned_cards : Array[int] = [0,0,0,0,0,0,0,0,0, #green
+@export var card_deck : Array[int] = []
+@export var owned_cards : Array[int] = [0,0,0,0,0,0,0,0,0, #green
 										0,0,0,0,0,0,0,0,0, #yellow
 										0,0,0,0,0,0,0,0,0, #gray
 										0,0,0,0,0,0,0,0,0, #white
@@ -29,6 +29,7 @@ var dev_zoom_level = 0
 const no_clip_speed = 3200000
 
 var player_die = preload("res://entities/characters/player/player_die.tscn") 
+var card_binder = preload("res://baseball/card_binder.tscn")
 var die_material = preload("res://entities/characters/player/die_material.tres")
 var speech_bubble = preload("res://dialog/speech_bubble.tscn")
 var player_material = preload("res://entities/characters/player/player_material.tres")
@@ -97,10 +98,7 @@ var dev_occlusion_enabled = true
 
 var use_item_timer : Timer = Timer.new()
 
-var owned_cards : Array[Baseball_Card] = []
-var num_owned_cards : Array[int] = [] #mirrors owned_cards but each index contains the # of each particular card
-
-var items : Array[String] = []
+var items : Array[String] = ["card_binder"]
 var item_index : int = 0
 
 var main_ui_hidden = false
@@ -177,10 +175,11 @@ func get_save_dictionary() -> Dictionary:
 		"base_spriteframes" : base_spriteframes.resource_path,
 		"hat_spriteframes" : hat,
 		"top_spriteframes" : top,
-		"bottom_spriteframes" : bottom
+		"bottom_spriteframes" : bottom,
+		"card_deck" : card_deck,
+		"owned_cards" : owned_cards
 	}
 	return save_dictionary
-
 
 func load_from_dictionary(load_dictionary : Dictionary):
 	var parent_group = String(load_dictionary.get("parent_group"))
@@ -194,6 +193,7 @@ func load_from_dictionary(load_dictionary : Dictionary):
 	money = int(load_dictionary.get("money"))
 	banked_money = load_dictionary.get("banked_money")
 	base_spriteframes = load(load_dictionary.get("base_spriteframes"))
+	#TODO: load cards
 	var hat = load_dictionary.get("hat_spriteframes")
 	var top = load_dictionary.get("top_spriteframes")
 	var bottom = load_dictionary.get("bottom_spriteframes")
@@ -209,7 +209,10 @@ func load_from_dictionary(load_dictionary : Dictionary):
 		bottom_spriteframes)
 
 func get_deck() -> Array[int]:
-	return _card_deck
+	return card_deck
+
+func get_owned_cards() -> Array[int]:
+	return owned_cards
 
 func get_hat_spriteframes() -> SpriteFrames:
 	return hat_spriteframes
@@ -556,7 +559,6 @@ func give_dash_fraction(fraction: float):
 
 func handle_use_item():
 	if(use_item_timer.is_stopped() && Input.is_action_just_pressed("use_item")):
-		stop_dash()
 		use_item()
 		use_item_timer.start(0.25)
 	if(Input.is_action_just_pressed(("switch_item"))):
@@ -578,10 +580,17 @@ func use_item():
 	if(items.size() > 0 ):
 		match items[item_index]:
 			"pizza":
+				stop_dash()
 				grabbed_object.use_item()
 			"flashlight":
 				if(camera_connected):
 					_camera.toggle_flashlight()
+			"card_binder":
+				var binder = card_binder.instantiate()
+				get_parent().add_child(binder)
+				main_ui_invisible()
+				binder.global_position = _camera.get_screen_center_position()
+				set_control_frozen(true)
 
 func remove_from_items(item : String):
 	var item_index = items.find(item)

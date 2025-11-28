@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://n8dfy4d7h82j"]
+
+[ext_resource type="Script" uid="uid://bqk71nh4cjmij" path="res://baseball/card_binder.gd" id="1_jwmym"]
+[ext_resource type="Texture2D" uid="uid://dqei57x371nxa" path="res://sprites/baseball/binder_ui_background.png" id="1_lctft"]
+[ext_resource type="PackedScene" uid="uid://q2mxl80rpim1" path="res://baseball/binder_tab.tscn" id="2_lctft"]
+[ext_resource type="Texture2D" uid="uid://cfduq0o17ddv1" path="res://sprites/baseball/binder_dial.png" id="3_0udkm"]
+[ext_resource type="Script" uid="uid://drsvrrljsgk4q" path="res://scripts/baseball/scroll_list.gd" id="3_w3cg3"]
+[ext_resource type="LabelSettings" uid="uid://tdffmlt2tqo6" path="res://fonts/card_readout_text.tres" id="4_j3mmq"]
+[ext_resource type="Script" uid="uid://s338kti7bbt0" path="res://scripts/baseball/lineup.gd" id="6_706po"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jwmym"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w3cg3"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_706po"]
+light_mode = 1
+
+[node name="CardBinder" type="Node2D"]
+z_index = 100
+material = SubResource("CanvasItemMaterial_jwmym")
+script = ExtResource("1_jwmym")
+
+[node name="background" type="Sprite2D" parent="."]
+z_index = -1
+material = SubResource("CanvasItemMaterial_w3cg3")
+texture = ExtResource("1_lctft")
+
+[node name="view_card" type="Node2D" parent="."]
+position = Vector2(1, 69)
+
+[node name="scroll_list" type="Node2D" parent="."]
+position = Vector2(-316, -160)
+script = ExtResource("3_w3cg3")
+
+[node name="tab_0" parent="scroll_list" instance=ExtResource("2_lctft")]
+material = SubResource("CanvasItemMaterial_706po")
+position = Vector2(143, 181)
+
+[node name="tab_1" parent="scroll_list" instance=ExtResource("2_lctft")]
+material = SubResource("CanvasItemMaterial_706po")
+position = Vector2(143, 205)
+
+[node name="tab_2" parent="scroll_list" instance=ExtResource("2_lctft")]
+material = SubResource("CanvasItemMaterial_706po")
+position = Vector2(143, 229)
+
+[node name="tab_3" parent="scroll_list" instance=ExtResource("2_lctft")]
+material = SubResource("CanvasItemMaterial_706po")
+position = Vector2(143, 253)
+
+[node name="tab_4" parent="scroll_list" instance=ExtResource("2_lctft")]
+material = SubResource("CanvasItemMaterial_706po")
+position = Vector2(143, 277)
+
+[node name="dial" type="Sprite2D" parent="scroll_list"]
+material = SubResource("CanvasItemMaterial_706po")
+position = Vector2(245, 171)
+texture = ExtResource("3_0udkm")
+
+[node name="lineup" type="Node2D" parent="."]
+position = Vector2(-316, -160)
+script = ExtResource("6_706po")
+
+[node name="lineup_5" type="Node2D" parent="lineup"]
+position = Vector2(93, 98)
+
+[node name="lineup_4" type="Node2D" parent="lineup"]
+position = Vector2(206, 97)
+
+[node name="lineup_3" type="Node2D" parent="lineup"]
+position = Vector2(317, 98)
+
+[node name="lineup_2" type="Node2D" parent="lineup"]
+position = Vector2(429, 98)
+
+[node name="lineup_1" type="Node2D" parent="lineup"]
+position = Vector2(541, 98)
+
+[node name="num_card" type="Label" parent="."]
+offset_left = 50.0
+offset_top = 5.0
+offset_right = 90.0
+offset_bottom = 23.0
+text = "x0"
+label_settings = ExtResource("4_j3mmq")

@@ -45,9 +45,9 @@ var original_y = 0
 var skip_turn_switch = false
 var killing_card = false
 var killing_right_card = false
-var card_killing_y_step_start_val = 5
+var card_killing_y_step_start_val = 1
 var card_killing_y_step = card_killing_y_step_start_val
-var card_killing_y_step_accel = 2
+var card_killing_y_step_accel = 1
 var card_killing_rotation_step = 0.05
 var killing_timer_step_secs = 0.006
 var killing_time_in_secs = 1.5
@@ -504,5 +504,3 @@ func _physics_process(delta: float):
 					game_timer.start(turn_secs)
 			elif(game_is_over && !declaring_victor && !ending):
 				declaring_victor = true
-			
-			

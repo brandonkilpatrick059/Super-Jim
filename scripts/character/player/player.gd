@@ -79,6 +79,9 @@ var is_invincible = false
 var invincibility_timer := Timer.new()
 var damage_collision_layer = 13
 
+var push_timer := Timer.new()
+var push_vector : Vector2 = Vector2(0,0)
+
 var dead = false
 
 var speech_instance = null
@@ -110,6 +113,7 @@ func _ready():
 	invincibility_timer.one_shot = true
 	use_item_timer.one_shot = true
 	timer_load_in.one_shot = true
+	push_timer.one_shot = true
 	
 	comment_timer.one_shot = true
 	sound_player.bus = "Effects"
@@ -120,6 +124,7 @@ func _ready():
 	add_child(comment_timer)
 	add_child(use_item_timer)
 	add_child(timer_load_in)
+	add_child(push_timer)
 	
 	#set up character base
 	_character_base.set_facing_dir(facing_dir)
@@ -186,6 +191,11 @@ func get_save_dictionary() -> Dictionary:
 		"owned_cards" : owned_cards
 	}
 	return save_dictionary
+
+func push(push_vect : Vector2, time_secs : float):
+	push_timer.start(time_secs)
+	stop()
+	push_vector = push_vect
 
 func load_from_dictionary(load_dictionary : Dictionary):
 	var parent_group = String(load_dictionary.get("parent_group"))
@@ -468,6 +478,9 @@ func handle_dev():
 
 func get_current_hp():
 	return current_hp
+
+func get_current_v() -> Vector2:
+	return current_v
 
 func heal_hp(heal):
 	if (current_hp <  max_hp):
@@ -758,16 +771,9 @@ func update_item_square():
 		_ui.set_item_square(items[item_index])
 	else:
 		_ui.hide_item_square()
-	
-	
 
-#func _process(_delta):
-	#if(!Engine.is_editor_hint()):
-		
-					
 func _physics_process(delta):
 	if(!Engine.is_editor_hint()):
-		
 		if(timer_load_in.is_stopped() && loading_in):
 			finish_load_in()
 			
@@ -777,7 +783,10 @@ func _physics_process(delta):
 			get_input()
 			if(in_dialog):
 				current_v = Vector2(0,0)
-			apply_force(current_v)
+			if(push_timer.is_stopped()):
+				apply_force(current_v)
+			else:
+				apply_force(push_vector)
 			if(invincibility_timer.is_stopped() &&
 			is_invincible == true):
 				go_vincible()

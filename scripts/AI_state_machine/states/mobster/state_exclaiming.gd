@@ -6,11 +6,13 @@ signal exclaim_bubble()
 signal stand(dir :String)
 signal reduce_health()
 signal drop_item()
+signal stop_motion()
 
 var pause_time = 2
 var timer : Timer = Timer.new()
 
 func handle_knockout() -> bool:
+	stop_motion.emit()
 	#knockout when player throws object
 	for node in ai_state_machine.get_perceptions().colliding_nodes:
 			if(node != null &&
@@ -23,6 +25,7 @@ func handle_knockout() -> bool:
 	return false
 
 func physics_process(_delta: float) -> void:
+	
 	if(handle_knockout()):
 		return
 	else:

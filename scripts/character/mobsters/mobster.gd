@@ -321,6 +321,16 @@ func update_perceptions():
 
 func _on_body_entered(body: Node):
 	perceptions.colliding_nodes.append(body)
+	if(body.is_in_group("player")):
+		var vect : Vector2 = body.get_current_v()
+		body.push(-vect,0.35)
+		if(_ai_state_machine.get_state().name == "transit" ||
+		_ai_state_machine.get_state().name == "look" ||
+		_ai_state_machine.get_state().name == "investigate" ||
+		_ai_state_machine.get_state().name == "enticed"):
+			_on_set_ai_target(body)
+			_ai_state_machine.transition_to("exclaiming")
+	
 
 func _on_body_exited(body: Node):
 	var node_index = perceptions.colliding_nodes.find(body)

@@ -147,6 +147,7 @@ shape = SubResource("CircleShape2D_lksb6")
 [connection signal="reduce_health" from="ai_state_machine/exclaiming" to="." method="_on_reduce_hit_points"]
 [connection signal="stand" from="ai_state_machine/exclaiming" to="." method="_on_stand_dir"]
 [connection signal="stop" from="ai_state_machine/exclaiming" to="." method="_on_stop_motion"]
+[connection signal="stop_motion" from="ai_state_machine/exclaiming" to="." method="_on_stop_motion"]
 [connection signal="drop_item" from="ai_state_machine/shooting" to="." method="_on_put_down"]
 [connection signal="face_target" from="ai_state_machine/shooting" to="." method="_on_face_ai_target_pos"]
 [connection signal="play_animation" from="ai_state_machine/shooting" to="." method="_on_play_animation"]

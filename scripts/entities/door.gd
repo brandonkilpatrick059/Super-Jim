@@ -13,6 +13,7 @@ var sound_player := AudioStreamPlayer.new()
 
 @export var cannot_trap_player = false
 @export var locked = false
+@export var locked_exception_groups :Array[String]
 @export var one_time_use = false
 
 @export var does_not_open = false
@@ -35,6 +36,8 @@ var last_frame_open = 0
 var last_frame_close = 0
 
 var dialog_offset #needed so delivery dialog doesn't throw errors
+
+var exception_group_is_near = false
 
 func get_save_tag() -> String:
 	return save_tag
@@ -87,10 +90,13 @@ func unlock():
 
 func get_opener_is_near() -> bool:
 	var retVal = false
+	exception_group_is_near = false
 	var nodes_in_area : Array[Node2D] = _area_2d.get_overlapping_bodies()
 	for group in opens_for_groups:
 		for node in nodes_in_area:
 			if(node.is_in_group(group)):
+				if(locked_exception_groups.has(group)):
+					exception_group_is_near = true
 				retVal = true
 	return retVal
 
@@ -129,7 +135,8 @@ func _physics_process(delta: float):
 			#if that period of time has elapsed and the opener is still there, open
 			if(open_close_timer.is_stopped()):
 				if(opener_is_near):
-					if(!locked || (locked && !cannot_trap_player && player_is_behind_door())):
+					if(!locked || (locked && !cannot_trap_player && player_is_behind_door()) ||
+					(locked && exception_group_is_near)):
 						open()
 				else:
 					waiting_to_open = false

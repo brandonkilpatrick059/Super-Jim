@@ -66,9 +66,9 @@ func _process(delta):
 	update_fade_alpha()
 
 func interact():
+	var player_ref = get_tree().get_first_node_in_group("player")
 	if(time_keeper.clock > sleep_start_time ||
 	time_keeper.clock < sleep_end_time):
-		var player_ref = get_tree().get_first_node_in_group("player")
 		player_ref.stop()
 		player_ref.set_control_frozen(true)
 		player_ref.set_ui_invisible()
@@ -86,6 +86,8 @@ func interact():
 		player_ref.give_dash_seconds(20)
 		time_keeper.advance_day()
 		game_save_manager.save_game()
+	else:
+		player_ref._on_make_comment("Can't sleep the day away.")
 
 func update_fade_alpha():
 	_fade_to_black.color = Color(0,0,0,fade_alpha)

@@ -98,7 +98,7 @@ var dev_occlusion_enabled = true
 
 var use_item_timer : Timer = Timer.new()
 
-var items : Array[String] = ["card_binder"]
+var items : Array[String] = []
 var item_index : int = 0
 
 var main_ui_hidden = false
@@ -137,6 +137,7 @@ func _ready():
 	if(Engine.is_editor_hint()):
 		queue_redraw()
 
+#called when the player loads in from a save
 func load_in():
 	if(!loading_in):
 		loading_in = true
@@ -148,6 +149,11 @@ func load_in():
 		time_keeper.unlock_time()
 		sound_player.stream = load("res://audio/music/sleep theme.wav")
 		sound_player.play()
+
+#called when the player starts a new game
+func new_game():
+	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+	time_keeper.set_clock(10)
 
 func turn_on_ui_noises():
 	_ui.turn_on_ui_noises() 

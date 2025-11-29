@@ -37,7 +37,7 @@ func physics_process(_delta: float) -> void:
 func enter(_msg := {}) -> void:
 	current_stage_mark = ai_state_machine.get_perceptions().current_stage_mark
 	if(current_stage_mark != null):
-		set_nav_target.emit(current_stage_mark.position)
+		set_nav_target.emit(current_stage_mark.global_position)
 		leave_stage_mark.emit()
 
 func exit() -> void:

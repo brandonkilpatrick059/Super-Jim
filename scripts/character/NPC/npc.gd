@@ -246,8 +246,8 @@ func get_save_dictionary() -> Dictionary:
 	var save_dictionary = {
 		"type" : "npc",
 		"save_tag" : get_save_tag(),
-		"pos_x" : global_position.x,
-		"pos_y" : global_position.y,
+		#"pos_x" : global_position.x,
+		#"pos_y" : global_position.y,
 		"schedules_index" : int(schedules_index)
 	}
 	return save_dictionary
@@ -261,7 +261,7 @@ func teleport_and_update():
 		_ai_state_machine.transition_to(perceptions.current_stage_mark.get_state())
 
 func load_from_dictionary(load_dictionary : Dictionary):
-	global_position = Vector2(load_dictionary.get("pos_x"), load_dictionary.get("pos_y"))
+	#global_position = Vector2(load_dictionary.get("pos_x"), load_dictionary.get("pos_y"))
 	schedules_index = int(load_dictionary.get("schedules_index"))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

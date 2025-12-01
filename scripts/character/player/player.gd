@@ -194,7 +194,8 @@ func get_save_dictionary() -> Dictionary:
 		"top_spriteframes" : top,
 		"bottom_spriteframes" : bottom,
 		"card_deck" : card_deck,
-		"owned_cards" : owned_cards
+		"owned_cards" : owned_cards,
+		"items" : items
 	}
 	return save_dictionary
 
@@ -215,7 +216,21 @@ func load_from_dictionary(load_dictionary : Dictionary):
 	money = int(load_dictionary.get("money"))
 	banked_money = load_dictionary.get("banked_money")
 	base_spriteframes = load(load_dictionary.get("base_spriteframes"))
-	#TODO: load cards
+	var load_owned_cards = load_dictionary.get("owned_cards")
+	var index = 0
+	while(index < load_owned_cards.size()):
+		owned_cards[index] = int(load_owned_cards[index])
+		index = index + 1
+	var load_card_deck = load_dictionary.get("card_deck")
+	index = 0
+	while(index < load_card_deck.size()):
+		card_deck.append(int(load_card_deck[index]))
+		index = index + 1
+	var load_items = load_dictionary.get("items")
+	index = 0
+	while(index < load_items.size()):
+		items.append(String(load_items[index]))
+		index = index + 1
 	var hat = load_dictionary.get("hat_spriteframes")
 	var top = load_dictionary.get("top_spriteframes")
 	var bottom = load_dictionary.get("bottom_spriteframes")
@@ -778,7 +793,7 @@ func finish_load_in():
 	_camera.fade_in()
 
 func update_item_square():
-	if(items.size() > 0 && !main_ui_hidden):
+	if(items.size() > 0 && item_index < items.size() && !main_ui_hidden):
 		_ui.show_item_square()
 		_ui.set_item_square(items[item_index])
 	else:

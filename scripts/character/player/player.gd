@@ -14,6 +14,7 @@ extends RigidBody2D
 										0,0,0,0,0,0,0,0,0, #gray
 										0,0,0,0,0,0,0,0,0, #white
 										0,0,0,0] #legendaries
+var max_each_card = 5
 
 var _camera
 var camera_connected = false
@@ -105,6 +106,11 @@ var items : Array[String] = []
 var item_index : int = 0
 
 var main_ui_hidden = false
+
+#item cosnt
+const flashlight : String = "flashlight"
+const pizza : String = "pizza"
+const cardbinder : String = "card_binder"
 
 func _ready():
 	_collision.disabled = no_clip
@@ -229,6 +235,12 @@ func set_deck(deck : Array[int]):
 
 func get_deck() -> Array[int]:
 	return card_deck
+
+func add_owned_card(card : int):
+	if(!items.has(cardbinder)):
+		items.append(cardbinder)
+	if(owned_cards[card-1] < 5):
+		owned_cards[card-1] = owned_cards[card-1] + 1
 
 func get_owned_cards() -> Array[int]:
 	return owned_cards
@@ -612,13 +624,13 @@ func append_to_items(item : String):
 func use_item():
 	if(items.size() > 0 ):
 		match items[item_index]:
-			"pizza":
+			pizza:
 				stop_dash()
 				grabbed_object.use_item()
-			"flashlight":
+			flashlight:
 				if(camera_connected):
 					_camera.toggle_flashlight()
-			"card_binder":
+			cardbinder:
 				stop_dash()
 				var binder = card_binder.instantiate()
 				get_parent().add_child(binder)

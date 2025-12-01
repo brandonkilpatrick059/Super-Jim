@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://n8dfy4d7h82j"]
 
-[ext_resource type="Script" uid="uid://bqk71nh4cjmij" path="res://baseball/card_binder.gd" id="1_jwmym"]
+[ext_resource type="Script" uid="uid://bqk71nh4cjmij" path="res://scripts/baseball/card_binder.gd" id="1_jwmym"]
 [ext_resource type="Texture2D" uid="uid://dqei57x371nxa" path="res://sprites/baseball/binder_ui_background.png" id="1_lctft"]
 [ext_resource type="PackedScene" uid="uid://q2mxl80rpim1" path="res://baseball/binder_tab.tscn" id="2_lctft"]
 [ext_resource type="Texture2D" uid="uid://cfduq0o17ddv1" path="res://sprites/baseball/binder_dial.png" id="3_0udkm"]

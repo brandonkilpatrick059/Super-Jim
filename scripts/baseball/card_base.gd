@@ -44,6 +44,9 @@ extends Node2D
 
 var stat_max = 9
 
+func get_strength_rating() -> int:
+	return strength_rating
+
 func get_flat_buff_hp() -> int:
 	return flat_buff_hp_next
 

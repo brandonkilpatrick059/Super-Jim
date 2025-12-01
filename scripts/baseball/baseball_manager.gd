@@ -292,15 +292,11 @@ func enact_effects():
 			
 	##stat carries to next card
 	if(card_right.get_hp() == 0):
-		if(card_right.adds_hp_next):
-			queued_hp_buff_right = card_right.get_hp()
 		if(card_right.adds_stamina_next):
 			queued_stamina_buff_right = card_right.get_stamina()
 		if(card_right.adds_dmg_next):
 			queued_damage_buff_right = card_right.get_power()
 	if(card_left.get_hp() == 0):
-		if(card_left.adds_hp_next):
-			queued_hp_buff_left = card_left.get_hp()
 		if(card_left.adds_stamina_next):
 			queued_stamina_buff_left = card_left.get_stamina()
 		if(card_left.adds_dmg_next):

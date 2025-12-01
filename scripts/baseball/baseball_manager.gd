@@ -48,7 +48,7 @@ var killing_right_card = false
 var card_killing_y_step_start_val = 1
 var card_killing_y_step = card_killing_y_step_start_val
 var card_killing_y_step_accel = 1
-var card_killing_rotation_step = 0.05
+var card_killing_rotation_step = 0.006
 var killing_timer_step_secs = 0.006
 var killing_time_in_secs = 1.5
 
@@ -69,7 +69,7 @@ var queued_damage_buff_right = 0
 
 var starting = false
 var ending = false
-var back_ground_move_step = 16
+var back_ground_move_step = 6
 var back_ground_move_step_time = 0.006
 
 var random = RandomNumberGenerator.new()

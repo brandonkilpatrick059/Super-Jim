@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6brnwgdydw2e"]
+
+[ext_resource type="Script" uid="uid://d18gtdg12y0fn" path="res://scripts/baseball/card_pack.gd" id="1_w010h"]
+[ext_resource type="SpriteFrames" uid="uid://c7vua4v87qau2" path="res://sprites/spritesheets/spriteframes/baseball/card_pack.tres" id="1_xvrhh"]
+
+[node name="CardPack" type="Node2D"]
+script = ExtResource("1_w010h")
+
+[node name="animated_pack" type="AnimatedSprite2D" parent="."]
+z_index = 80
+position = Vector2(0, 512)
+sprite_frames = ExtResource("1_xvrhh")
+
+[node name="card_1" type="Node2D" parent="."]
+z_index = 45
+position = Vector2(0, 12)
+
+[node name="card_2" type="Node2D" parent="."]
+z_index = 40
+position = Vector2(0, 12)
+
+[node name="card_3" type="Node2D" parent="."]
+z_index = 35
+position = Vector2(0, 12)

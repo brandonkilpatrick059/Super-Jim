@@ -97,6 +97,7 @@ func load_wait():
 		linked_teleporter.timer_fade.start(teleport_step_secs)
 		loading = false
 		exiting = true
+		#player_ref.get_camera_ref().fade_in(0.1)
 
 func enter():
 	if(fade_alpha < 1 && timer_fade.is_stopped()):
@@ -166,6 +167,7 @@ func _on_area_2d_body_entered(body):
 	if(body.is_in_group("player")):
 		if(!entering && !loading && !exiting && !exit_only):
 			entering = true
+			#player_ref.get_camera_ref().fade_out(0.1)
 			player_ref.stop()
 			player_ref.set_control_frozen(true)
 			#player_ref.disable_collision()

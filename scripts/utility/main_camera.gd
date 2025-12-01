@@ -17,7 +17,8 @@ var fading_out = false
 var fade_step_secs = 0.05
 var timer_fade := Timer.new()
 var fade_alpha = 0.0
-var fade_step = 0.05
+var fade_step_default = 0.05
+var fade_step = fade_step_default
 
 var current_zoom_level = 1.0
 var target_zoom_level = 1.0
@@ -74,10 +75,12 @@ func lock():
 func unlock():
 	locked = false
 
-func fade_out():
+func fade_out(in_fade_step : float = fade_step_default):
+	fade_step = in_fade_step
 	fading_out = true
 
-func fade_in():
+func fade_in(in_fade_step : float = fade_step_default):
+	fade_step = in_fade_step
 	fading_out = false 
 
 func connect_player(input : Node):

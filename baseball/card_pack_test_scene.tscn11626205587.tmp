@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcpwilo2u0dte"]
+
+[ext_resource type="PackedScene" uid="uid://b6brnwgdydw2e" path="res://baseball/card_pack.tscn" id="1_21grv"]
+[ext_resource type="PackedScene" uid="uid://cutmu2qf1a0rx" path="res://baseball/card_roster.tscn" id="1_xf5ng"]
+
+[node name="CardOpenTestScene" type="Node2D"]
+
+[node name="CardRoster" parent="." instance=ExtResource("1_xf5ng")]
+
+[node name="CardPack" parent="." instance=ExtResource("1_21grv")]
+position = Vector2(322, 159)

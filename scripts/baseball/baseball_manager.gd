@@ -58,7 +58,6 @@ var card_killing_rotation_step = 0.006
 var killing_timer_step_secs = 0.006
 var killing_time_in_secs = 1.5
 
-var getting_ready = false
 var cycling_cards = false
 var cycling_right_cards = false
 var card_cycle_x_step = 4
@@ -88,6 +87,7 @@ var thrown_stamina_buff_right = 0
 var thrown_damage_buff_right = 0
 
 var starting = false
+var start_pausing = false
 var ending = false
 var back_ground_move_step = 6
 var back_ground_move_step_time = 0.006
@@ -556,10 +556,14 @@ func check_game_over():
 
 func _physics_process(delta: float):	
 	if(starting && begin_end_timer.is_stopped()):
-		if(back_ground.position.y - back_ground_move_step < 0):
-			back_ground.position.y = 0
+		if(start_pausing): #end of slight pause
 			starting = false
+			start_pausing = false
 			start_game()
+		elif(back_ground.position.y - back_ground_move_step <= 0):
+			back_ground.position.y = 0
+			start_pausing = true
+			begin_end_timer.start(0.25) #slight pause to avoid graphics jitter
 		else:
 			back_ground.position.y = back_ground.position.y - back_ground_move_step
 			begin_end_timer.start(back_ground_move_step_time)

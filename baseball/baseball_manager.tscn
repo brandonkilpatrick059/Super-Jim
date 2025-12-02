@@ -23,50 +23,14 @@ z_index = 10
 material = SubResource("CanvasItemMaterial_7ut21")
 script = ExtResource("1_6bnxi")
 
-[node name="active_card_left" type="Node2D" parent="."]
-position = Vector2(-64, 0)
-
-[node name="CardBase" parent="active_card_left" instance=ExtResource("2_x31gc")]
-throws_hp = null
-throws_stamina = null
-throws_power = null
-throws_remaining_stamina = null
-throws_remaining_power = null
-catches_hp = null
-catches_stamina = null
-catches_power = null
-catches_opponent_hp = null
-catches_opponent_stamina = null
-catches_opponentTh_power = null
-buff_dmg_against_team = null
-buff_dmg_target_team = null
-
-[node name="active_card_right" type="Node2D" parent="."]
-position = Vector2(64, 0)
-
-[node name="CardBase" parent="active_card_right" instance=ExtResource("2_x31gc")]
-throws_hp = null
-throws_stamina = null
-throws_power = null
-throws_remaining_stamina = null
-throws_remaining_power = null
-catches_hp = null
-catches_stamina = null
-catches_power = null
-catches_opponent_hp = null
-catches_opponent_stamina = null
-catches_opponentTh_power = null
-buff_dmg_against_team = null
-buff_dmg_target_team = null
-
 [node name="bat_arms_left" type="AnimatedSprite2D" parent="."]
-z_index = 2
-position = Vector2(-16, -48)
+z_index = 25
+position = Vector2(16, -48)
 sprite_frames = ExtResource("3_ae8mq")
 
 [node name="bat_arms_right" type="AnimatedSprite2D" parent="."]
-z_index = 2
-position = Vector2(16, -47)
+z_index = 25
+position = Vector2(-16, -47)
 scale = Vector2(-1, 0.955)
 sprite_frames = ExtResource("3_ae8mq")
 
@@ -79,77 +43,155 @@ bus = &"Effects"
 [node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="."]
 bus = &"Effects"
 
+[node name="active_card_left" type="Node2D" parent="."]
+z_index = 20
+position = Vector2(-64, 0)
+
+[node name="CardBase" parent="active_card_left" instance=ExtResource("2_x31gc")]
+throws_hp = 0
+throws_stamina = 0
+throws_power = 0
+throws_remaining_stamina = 0
+throws_remaining_power = 0
+catches_hp = false
+catches_stamina = false
+catches_power = false
+catches_opponent_hp = false
+catches_opponent_stamina = false
+catches_opponentTh_power = false
+buff_dmg_against_team = 0
+buff_dmg_target_team = ""
+
 [node name="left_2" type="Node2D" parent="."]
+z_index = 10
 position = Vector2(-196, 0)
 
 [node name="CardBase" parent="left_2" instance=ExtResource("2_x31gc")]
-throws_hp = null
-throws_stamina = null
-throws_power = null
-throws_remaining_stamina = null
-throws_remaining_power = null
-catches_hp = null
-catches_stamina = null
-catches_power = null
-catches_opponent_hp = null
-catches_opponent_stamina = null
-catches_opponentTh_power = null
-buff_dmg_against_team = null
-buff_dmg_target_team = null
+throws_hp = 0
+throws_stamina = 0
+throws_power = 0
+throws_remaining_stamina = 0
+throws_remaining_power = 0
+catches_hp = false
+catches_stamina = false
+catches_power = false
+catches_opponent_hp = false
+catches_opponent_stamina = false
+catches_opponentTh_power = false
+buff_dmg_against_team = 0
+buff_dmg_target_team = ""
 
 [node name="left_3" type="Node2D" parent="."]
+z_index = 15
 position = Vector2(-324, 0)
 
 [node name="CardBase" parent="left_3" instance=ExtResource("2_x31gc")]
-throws_hp = null
-throws_stamina = null
-throws_power = null
-throws_remaining_stamina = null
-throws_remaining_power = null
-catches_hp = null
-catches_stamina = null
-catches_power = null
-catches_opponent_hp = null
-catches_opponent_stamina = null
-catches_opponentTh_power = null
-buff_dmg_against_team = null
-buff_dmg_target_team = null
+throws_hp = 0
+throws_stamina = 0
+throws_power = 0
+throws_remaining_stamina = 0
+throws_remaining_power = 0
+catches_hp = false
+catches_stamina = false
+catches_power = false
+catches_opponent_hp = false
+catches_opponent_stamina = false
+catches_opponentTh_power = false
+buff_dmg_against_team = 0
+buff_dmg_target_team = ""
+
+[node name="left_spawn" type="Node2D" parent="."]
+position = Vector2(-452, 0)
+
+[node name="CardBase" parent="left_spawn" instance=ExtResource("2_x31gc")]
+throws_hp = 0
+throws_stamina = 0
+throws_power = 0
+throws_remaining_stamina = 0
+throws_remaining_power = 0
+catches_hp = false
+catches_stamina = false
+catches_power = false
+catches_opponent_hp = false
+catches_opponent_stamina = false
+catches_opponentTh_power = false
+buff_dmg_against_team = 0
+buff_dmg_target_team = ""
+
+[node name="active_card_right" type="Node2D" parent="."]
+z_index = 20
+position = Vector2(64, 0)
+
+[node name="CardBase" parent="active_card_right" instance=ExtResource("2_x31gc")]
+throws_hp = 0
+throws_stamina = 0
+throws_power = 0
+throws_remaining_stamina = 0
+throws_remaining_power = 0
+catches_hp = false
+catches_stamina = false
+catches_power = false
+catches_opponent_hp = false
+catches_opponent_stamina = false
+catches_opponentTh_power = false
+buff_dmg_against_team = 0
+buff_dmg_target_team = ""
 
 [node name="right_2" type="Node2D" parent="."]
+z_index = 10
 position = Vector2(196, 0)
 
 [node name="CardBase" parent="right_2" instance=ExtResource("2_x31gc")]
-throws_hp = null
-throws_stamina = null
-throws_power = null
-throws_remaining_stamina = null
-throws_remaining_power = null
-catches_hp = null
-catches_stamina = null
-catches_power = null
-catches_opponent_hp = null
-catches_opponent_stamina = null
-catches_opponentTh_power = null
-buff_dmg_against_team = null
-buff_dmg_target_team = null
+throws_hp = 0
+throws_stamina = 0
+throws_power = 0
+throws_remaining_stamina = 0
+throws_remaining_power = 0
+catches_hp = false
+catches_stamina = false
+catches_power = false
+catches_opponent_hp = false
+catches_opponent_stamina = false
+catches_opponentTh_power = false
+buff_dmg_against_team = 0
+buff_dmg_target_team = ""
 
 [node name="right_3" type="Node2D" parent="."]
+z_index = 15
 position = Vector2(324, 0)
 
 [node name="CardBase" parent="right_3" instance=ExtResource("2_x31gc")]
-throws_hp = null
-throws_stamina = null
-throws_power = null
-throws_remaining_stamina = null
-throws_remaining_power = null
-catches_hp = null
-catches_stamina = null
-catches_power = null
-catches_opponent_hp = null
-catches_opponent_stamina = null
-catches_opponentTh_power = null
-buff_dmg_against_team = null
-buff_dmg_target_team = null
+throws_hp = 0
+throws_stamina = 0
+throws_power = 0
+throws_remaining_stamina = 0
+throws_remaining_power = 0
+catches_hp = false
+catches_stamina = false
+catches_power = false
+catches_opponent_hp = false
+catches_opponent_stamina = false
+catches_opponentTh_power = false
+buff_dmg_against_team = 0
+buff_dmg_target_team = ""
+
+[node name="right_spawn" type="Node2D" parent="."]
+position = Vector2(452, 0)
+
+[node name="CardBase" parent="right_spawn" instance=ExtResource("2_x31gc")]
+throws_hp = 0
+throws_stamina = 0
+throws_power = 0
+throws_remaining_stamina = 0
+throws_remaining_power = 0
+catches_hp = false
+catches_stamina = false
+catches_power = false
+catches_opponent_hp = false
+catches_opponent_stamina = false
+catches_opponentTh_power = false
+buff_dmg_against_team = 0
+buff_dmg_target_team = ""
 
 [node name="back_ground" type="Sprite2D" parent="."]
 z_index = -1
@@ -164,6 +206,28 @@ offset_top = 72.0
 offset_right = 134.0
 offset_bottom = 144.0
 text = "HOME TEAM WINS!"
+label_settings = SubResource("LabelSettings_3fd7y")
+horizontal_alignment = 1
+
+[node name="get_ready" type="Label" parent="."]
+visible = false
+z_index = 1
+offset_left = -126.0
+offset_top = 72.0
+offset_right = 134.0
+offset_bottom = 144.0
+text = "GET READY"
+label_settings = SubResource("LabelSettings_3fd7y")
+horizontal_alignment = 1
+
+[node name="fight" type="Label" parent="."]
+visible = false
+z_index = 1
+offset_left = -126.0
+offset_top = 72.0
+offset_right = 134.0
+offset_bottom = 144.0
+text = "FIGHT!!!"
 label_settings = SubResource("LabelSettings_3fd7y")
 horizontal_alignment = 1
 

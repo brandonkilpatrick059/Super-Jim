@@ -1,41 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://fm6qv2iabylr"]
+[gd_scene load_steps=4 format=3 uid="uid://fm6qv2iabylr"]
 
 [ext_resource type="PackedScene" uid="uid://bhxsevgsr7a4h" path="res://baseball/baseball_manager.tscn" id="1_7g13d"]
-[ext_resource type="PackedScene" uid="uid://dky561g1q1ul5" path="res://baseball/cards/bobby_bobson.tscn" id="2_uc6r2"]
-[ext_resource type="PackedScene" uid="uid://pq0gqmxbxwml" path="res://baseball/cards/jimmy_jo.tscn" id="3_p6kjw"]
-[ext_resource type="PackedScene" uid="uid://c7tkuxihuj6tg" path="res://baseball/cards/mickey_bobdogg.tscn" id="4_p6kjw"]
+[ext_resource type="Script" uid="uid://by7oifc7851pr" path="res://scripts/baseball/baseball_test_scene.gd" id="1_c1v5f"]
+[ext_resource type="PackedScene" uid="uid://cutmu2qf1a0rx" path="res://baseball/card_roster.tscn" id="3_uc6r2"]
 
 [node name="BaseballTestScene" type="Node2D"]
+script = ExtResource("1_c1v5f")
+deck_left_array = Array[int]([1, 2, 3, 4])
+deck_right_array = Array[int]([6, 7])
 
-[node name="BaseballCardGame" parent="." node_paths=PackedStringArray("deck_left", "deck_right") instance=ExtResource("1_7g13d")]
+[node name="BaseballCardGame" parent="." instance=ExtResource("1_7g13d")]
 position = Vector2(314, 152)
-deck_left = NodePath("deck_left")
-deck_right = NodePath("deck_right")
 
-[node name="deck_left" type="Node2D" parent="BaseballCardGame"]
-position = Vector2(-309, -1714)
-
-[node name="bobby_bobson" parent="BaseballCardGame/deck_left" instance=ExtResource("2_uc6r2")]
-
-[node name="jimmy_jo" parent="BaseballCardGame/deck_left" instance=ExtResource("3_p6kjw")]
-
-[node name="jimmy_jo2" parent="BaseballCardGame/deck_left" instance=ExtResource("3_p6kjw")]
-
-[node name="jimmy_jo3" parent="BaseballCardGame/deck_left" instance=ExtResource("3_p6kjw")]
-
-[node name="bobby_bobson4" parent="BaseballCardGame/deck_left" instance=ExtResource("2_uc6r2")]
-position = Vector2(316, 3)
-
-[node name="deck_right" type="Node2D" parent="BaseballCardGame"]
-position = Vector2(7, -1711)
-metadata/_edit_group_ = true
-
-[node name="jimmy_jo" parent="BaseballCardGame/deck_right" instance=ExtResource("3_p6kjw")]
-
-[node name="mickey_bobdogg" parent="BaseballCardGame/deck_right" instance=ExtResource("4_p6kjw")]
-
-[node name="jimmy_jo2" parent="BaseballCardGame/deck_right" instance=ExtResource("3_p6kjw")]
-
-[node name="bobby_bobson" parent="BaseballCardGame/deck_right" instance=ExtResource("2_uc6r2")]
-
-[node name="bobby_bobson2" parent="BaseballCardGame/deck_right" instance=ExtResource("2_uc6r2")]
+[node name="CardRoster" parent="." instance=ExtResource("3_uc6r2")]

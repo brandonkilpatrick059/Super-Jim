@@ -1,13 +1,13 @@
 extends Node2D
 
-@export var deck_left : Node2D
-@export var deck_right : Node2D
 @onready var active_card_left = $active_card_left
 @onready var card_left_2 = $left_2
 @onready var card_left_3 = $left_3
+@onready var card_left_spawn = $left_spawn
 @onready var active_card_right = $active_card_right
 @onready var card_right_2 = $right_2
 @onready var card_right_3 = $right_3
+@onready var card_right_spawn = $right_spawn
 @onready var bat_arms_left = $bat_arms_left
 @onready var bat_arms_right = $bat_arms_right
 @onready var sound_player = $AudioStreamPlayer2D
@@ -16,6 +16,11 @@ extends Node2D
 @onready var back_ground = $back_ground
 @onready var home_win = $home_win
 @onready var away_win = $away_win
+@onready var get_ready = $get_ready
+@onready var fight = $fight
+
+var deck_left : Node2D
+var deck_right : Node2D
 
 var left_index = 0
 var right_index = 0
@@ -26,6 +31,7 @@ var begin_end_timer := Timer.new()
 var shaking_timer := Timer.new()
 var game_timer := Timer.new()
 var killing_timer := Timer.new()
+var cycling_timer := Timer.new()
 var turn_secs = 0.25
 
 var declaring_victor = false
@@ -52,6 +58,12 @@ var card_killing_rotation_step = 0.006
 var killing_timer_step_secs = 0.006
 var killing_time_in_secs = 1.5
 
+var getting_ready = false
+var cycling_cards = false
+var cycling_right_cards = false
+var card_cycle_x_step = 4
+var card_cycle_timer_step_secs = 0.006
+
 var shaking = false
 var shake_right = true
 var shake_magnitude = 0
@@ -63,9 +75,17 @@ var queued_hp_buff_left = 0
 var queued_stamina_buff_left = 0
 var queued_damage_buff_left = 0
 
+var thrown_hp_buff_left = 0
+var thrown_stamina_buff_left = 0
+var thrown_damage_buff_left = 0
+
 var queued_hp_buff_right = 0
 var queued_stamina_buff_right = 0
 var queued_damage_buff_right = 0
+
+var thrown_hp_buff_right = 0
+var thrown_stamina_buff_right = 0
+var thrown_damage_buff_right = 0
 
 var starting = false
 var ending = false
@@ -85,6 +105,8 @@ func _ready():
 	card_right_2.get_child(0).queue_free()
 	card_left_3.get_child(0).queue_free()
 	card_right_3.get_child(0).queue_free()
+	card_left_spawn.get_child(0).queue_free()
+	card_right_spawn.get_child(0).queue_free()
 	game_timer.one_shot = true
 	add_child(game_timer)
 	killing_timer.one_shot = true
@@ -96,6 +118,8 @@ func _ready():
 	add_child(begin_end_timer)
 	flashing_timer.one_shot = true
 	add_child(flashing_timer)
+	cycling_timer.one_shot = true
+	add_child(cycling_timer)
 	hide_cards()
 	begin()
 
@@ -227,6 +251,8 @@ func card_right(num : int = 1):
 		return card_right_2.get_child(0)
 	elif(num == 3):
 		return card_right_3.get_child(0)
+	elif(num == 4):
+		return card_right_spawn.get_child(0)
 	
 func card_left(num : int = 1):
 	if(num == 1):
@@ -235,30 +261,30 @@ func card_left(num : int = 1):
 		return card_left_2.get_child(0)
 	elif(num == 3):
 		return card_left_3.get_child(0)
+	elif(num == 4):
+		return card_left_spawn.get_child(0)
 
 func set_card_right(card : Node2D, num : int = 1):
 	card.visible = true
 	if(num == 1):
 		active_card_right.add_child(card)
-		card.global_position = active_card_right.global_position
 	if(num == 2):
 		card_right_2.add_child(card)
-		card.global_position = card_right_2.global_position
 	if(num == 3):
 		card_right_3.add_child(card)
-		card.global_position = card_right_3.global_position
+	if(num == 4):
+		card_right_spawn.add_child(card)
 	
 func set_card_left(card : Node2D, num : int = 1):
 	card.visible = true
 	if(num == 1):
 		active_card_left.add_child(card)
-		card.global_position = active_card_left.global_position
 	if(num == 2):
 		card_left_2.add_child(card)
-		card.global_position = card_left_2.global_position
 	if(num == 3):
 		card_left_3.add_child(card)
-		card.global_position = card_left_3.global_position
+	if(num == 4):
+		card_left_spawn.add_child(card)
 
 func update_active_cards():
 	enact_effects()
@@ -318,26 +344,40 @@ func end():
 	hide_cards()
 	begin_end_timer.start(back_ground_move_step_time)
 
+func set_starting_cards():
+	var left_card = deck_left.get_child(left_index).duplicate()
+	set_card_left(left_card,1)
+	left_card.global_position = card_left_spawn.global_position
+	if(left_index+1 < deck_left.get_children().size()):
+		left_index = left_index + 1
+		var left_card_2 = deck_left.get_child(left_index).duplicate()
+		set_card_left(left_card_2,2)
+		left_card_2.global_position = card_left_spawn.global_position
+	if(left_index+1 < deck_left.get_children().size()):
+		left_index = left_index + 1
+		var left_card_3 = deck_left.get_child(left_index).duplicate()
+		set_card_left(left_card_3,3)
+		left_card_3.global_position = card_left_spawn.global_position
+
+	var right_card = deck_right.get_child(right_index).duplicate()
+	set_card_right(right_card,1)
+	right_card.global_position = card_right_spawn.global_position
+	if(right_index+1 < deck_right.get_children().size()):
+		right_index = right_index + 1
+		var right_card_2 = deck_right.get_child(right_index).duplicate()
+		set_card_right(right_card_2,2)
+		right_card_2.global_position = card_right_spawn.global_position
+	if(right_index+1 < deck_right.get_children().size()):
+		right_index = right_index + 1
+		var right_card_3 = deck_right.get_child(right_index).duplicate()
+		set_card_right(right_card_3,3)
+		right_card_3.global_position = card_right_spawn.global_position
+
 func start_game():
+	show_cards()
 	starting_global_pos_x = global_position.x
 	game_started = true
-	var left_card = deck_left.get_child(left_index).duplicate()
-	set_card_left(left_card)
-	if(left_index+1 < deck_left.get_children().size()):
-		var left_card_2 = deck_left.get_child(left_index+1).duplicate()
-		set_card_left(left_card_2,2)
-	if(left_index+2 < deck_left.get_children().size()):
-		var left_card_3 = deck_left.get_child(left_index+2).duplicate()
-		set_card_left(left_card_3,3)
-	var right_card = deck_right.get_child(right_index).duplicate()
-	set_card_right(right_card)
-	if(right_index+1 < deck_right.get_children().size()):
-		var right_card_2 = deck_right.get_child(right_index+1).duplicate()
-		set_card_right(right_card_2,2)
-	if(right_index+2 < deck_right.get_children().size()):
-		var right_card_3 = deck_right.get_child(right_index+2).duplicate()
-		set_card_right(right_card_3,3)
-	show_cards()
+	set_starting_cards()
 	sound_player.stream = load("res://audio/soundFX/baseball/baseball.wav")
 	sound_player.play()
 	game_timer.start(3)
@@ -357,8 +397,7 @@ func handle_shake():
 
 func shake_screen(magnitude : int):
 	shaking = true
-	shake_magnitude = magnitude
-	
+	shake_magnitude = magnitude	
 
 func kill_card(kill_right_card : bool):
 	bat_arms_left.visible = false
@@ -380,11 +419,73 @@ func set_deck_right(deck : Node2D):
 	deck_right = deck
 	add_child(deck_right)
 
+func remaining_cards_leave():
+	#make them shuffle off screen (to the spawn) "to fight another day"
+	var _card_left : Array[Node2D] = [active_card_left,card_left_2,card_left_3]
+	var _card_right : Array[Node2D] = [active_card_right,card_right_2,card_right_3]
+	var transfrm = Vector2(card_cycle_x_step,0)
+	if(left_index == deck_left.get_children().size()-1): #player lost
+		var index = 0
+		while(index < 4):
+			if(card_right(index) != null):
+				if(card_right(index).global_position.x < card_right_spawn.global_position.x):
+					var pos = card_right(index).global_position
+					card_right(index).global_position = pos  + transfrm
+			index = index + 1
+	else:
+		var index = 0
+		while(index < 4):
+			if(card_left(index) != null):
+				if(card_left(index).global_position.x > card_left_spawn.global_position.x):
+					var pos = card_left(index).global_position
+					card_left(index).global_position = pos  - transfrm
+			index = index + 1
+		
+
+func need_card_cycling():
+	var need_card_cycle = false
+	var index = 1
+	var _card_left : Array[Node2D] = [active_card_left,card_left_2,card_left_3]
+	var _card_right : Array[Node2D] = [active_card_right,card_right_2,card_right_3]
+	while(index < 4):
+		if(card_left(index) != null):
+			if(_card_left[index-1].global_position != card_left(index).global_position):
+				need_card_cycle = true
+				break
+		if(card_right(index) != null):
+			if(_card_right[index-1].global_position != card_right(index).global_position):
+				need_card_cycle = true
+				break
+		index = index + 1
+	return need_card_cycle
+
+func cycle_card_process():
+	if(cycling_timer.is_stopped()):
+		var transfrm = Vector2(card_cycle_x_step,0)
+		var index = 1
+		var _card_left : Array[Node2D] = [active_card_left,card_left_2,card_left_3]
+		var _card_right : Array[Node2D] = [active_card_right,card_right_2,card_right_3]
+		while(index < 4):
+			if(card_left(index) != null):
+				if(_card_left[index-1].global_position > card_left(index).global_position):
+					var pos = card_left(index).global_position
+					card_left(index).global_position = pos  + transfrm
+				elif(_card_left[index-1].global_position < card_left(index).global_position):
+					card_left(index).global_position = _card_left[index-1].global_position
+			if(card_right(index) != null):
+				if(_card_right[index-1].global_position < card_right(index).global_position):
+					var pos = card_right(index).global_position
+					card_right(index).global_position = pos  - transfrm
+				elif(_card_right[index-1].global_position > card_right(index).global_position):
+					card_right(index).global_position = _card_right[index-1].global_position
+			index = index + 1
+	cycling_timer.start(card_cycle_timer_step_secs)
+
 func killing_card_process():
 	var card = card_left()
 	if(killing_right_card):
 		card = card_right()
-	if(!game_timer.is_stopped()):
+	if(!game_timer.is_stopped()): #drop dead card from screen
 		if(killing_timer.is_stopped()):
 			card.global_position.y = card.global_position.y + card_killing_y_step
 			card_killing_y_step = card_killing_y_step + card_killing_y_step_accel
@@ -393,45 +494,41 @@ func killing_card_process():
 			else:
 				card.rotation = card.rotation - card_killing_rotation_step
 			killing_timer.start(killing_timer_step_secs)
-	else:
+	else: #dead card has dropped from the screen
 		if(killing_right_card):
-			#TODO: should smoothly float into position instead of what I'm abt to do
-			card_right().queue_free()
-			if(card_right(2)):
-				card_right(2).queue_free()
-			if(card_right(3)):
-				card_right(3).queue_free()
-			right_index = right_index + 1
-			if(right_index < deck_right.get_children().size()):	
-				var right_card = deck_right.get_child(right_index).duplicate()
-				set_card_right(right_card)
-				if(right_index + 1 < deck_right.get_children().size()):
-					var right_card_2 = deck_right.get_child(right_index+1).duplicate()
-					set_card_right(right_card_2,2)
-				if(right_index + 2 < deck_right.get_children().size()):
-					var right_card_3 = deck_right.get_child(right_index+2).duplicate()
-					set_card_right(right_card_3,3)
-				
-			else:
-				game_is_over = true
+			card.queue_free()
+			if(card_right(2) != null):	
+				var card_right2 = card_right(2)
+				card_right_2.remove_child(card_right2)
+				set_card_right(card_right2,1)
+				card_right2.global_position = card_right_2.global_position
+				if(card_right(3) != null):
+					var card_right3 = card_right(3)
+					card_right_3.remove_child(card_right3)
+					set_card_right(card_right3,2)
+					card_right3.global_position = card_right_3.global_position
+					if(right_index + 1 < deck_right.get_children().size()):
+						right_index = right_index + 1
+						var new_card_right = deck_right.get_child(right_index).duplicate()
+						set_card_right(new_card_right,3)
+						new_card_right.global_position = card_right_spawn.global_position
 		else:
-			card_left().queue_free()
-			if(card_left(2)):
-				card_left(2).queue_free()
-			if(card_left(3)):
-				card_left(3).queue_free()
-			left_index = left_index + 1
-			if(left_index < deck_left.get_children().size()):	
-				var left_card = deck_left.get_child(left_index).duplicate()
-				set_card_left(left_card)
-				if(left_index + 1 < deck_left.get_children().size()):
-					var left_card_2 = deck_left.get_child(left_index+1).duplicate()
-					set_card_left(left_card_2,2)
-				if(left_index + 2 < deck_left.get_children().size()):
-					var left_card_3 = deck_left.get_child(left_index+2).duplicate()
-					set_card_left(left_card_3,3)
-			else:
-				game_is_over = true
+			card.queue_free()
+			if(card_left(2) != null):	
+				var card_left2 = card_left(2)
+				card_left_2.remove_child(card_left2)
+				set_card_left(card_left2,1)
+				card_left2.global_position = card_left_2.global_position
+				if(card_left(3) != null):
+					var card_left3 = card_left(3)
+					card_left_3.remove_child(card_left3)
+					set_card_left(card_left3,2)
+					card_left3.global_position = card_left_3.global_position
+					if(left_index + 1 < deck_left.get_children().size()):
+						left_index = left_index + 1
+						var new_card_left = deck_left.get_child(left_index).duplicate()
+						set_card_left(new_card_left,3)
+						new_card_left.global_position = card_left_spawn.global_position
 		killing_card = false
 
 func initiate_card_game(deck_left : Array[int], deck_right : Array[int]):
@@ -450,6 +547,12 @@ func set_decks_and_begin(deck_left : Node, deck_right : Node):
 	set_deck_left(deck_left)
 	set_deck_right(deck_right)
 	begin()
+
+func check_game_over():
+	if(active_card_left.get_child_count() == 0):
+		game_is_over = true
+	if(active_card_right.get_child_count() == 0):
+		game_is_over = true
 
 func _physics_process(delta: float):	
 	if(starting && begin_end_timer.is_stopped()):
@@ -472,15 +575,16 @@ func _physics_process(delta: float):
 			back_ground.position.y = back_ground.position.y + back_ground_move_step
 			begin_end_timer.start(back_ground_move_step_time)
 	if(game_started):
+		check_game_over()
 		if(shaking && shaking_timer.is_stopped()):
 			handle_shake()
 		if(declaring_victor && flashing_timer.is_stopped()):
 			if(flashes > 0):
 				var flashing_text
 				left_index
-				if(left_index == deck_left.get_children().size()):
+				if(left_index == deck_left.get_children().size()-1): #player lost
 					flashing_text = away_win
-				else:
+				else: #opponent won
 					flashing_text = home_win
 				flashing_text.visible = !flashing_text.visible
 				flashing_timer.start(flashing_time)
@@ -490,6 +594,8 @@ func _physics_process(delta: float):
 				end()
 		if(killing_card):
 			killing_card_process()
+		elif(!game_is_over && need_card_cycling()):
+			cycle_card_process()
 		elif(game_timer.is_stopped()):
 			if(!game_is_over && !killing_card):
 				update_active_cards()
@@ -499,5 +605,9 @@ func _physics_process(delta: float):
 					else:
 						run_turn(card_left(), card_right())
 					game_timer.start(turn_secs)
-			elif(game_is_over && !declaring_victor && !ending):
-				declaring_victor = true
+			elif(game_is_over):
+				if(!declaring_victor && !ending):
+					declaring_victor = true
+				else:
+					remaining_cards_leave()
+					

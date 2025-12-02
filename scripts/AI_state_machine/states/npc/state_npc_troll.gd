@@ -62,7 +62,7 @@ func physics_process(_delta: float) -> void:
 					if(path_point_index >= path_points.size()):
 						path_point_index = 0
 					current_stage_mark = path_points[path_point_index]
-					set_nav_target.emit(current_stage_mark.position)
+					set_nav_target.emit(current_stage_mark.global_position)
 
 func enter(_msg := {}) -> void:
 	timer = Timer.new()
@@ -76,7 +76,7 @@ func enter(_msg := {}) -> void:
 	path_points = [path_1,path_2,path_3,path_4,path_5]
 	current_stage_mark = path_points[0]
 	if(current_stage_mark != null):
-		set_nav_target.emit(current_stage_mark.position)
+		set_nav_target.emit(current_stage_mark.global_position)
 
 func exit() -> void:
 	timer.queue_free()

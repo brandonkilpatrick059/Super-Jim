@@ -30,11 +30,30 @@ extends Node2D
 @export var flat_buff_stamina_next : int = 0
 @export var flat_buff_damage_next : int = 0
 
-#TODO: implement
 #buffs/debuffs stat to this card each kill
 @export var buff_hp_on_kill : int = 0 
 @export var buff_stamina_on_kill : int = 0
 @export var buff_dmg_on_kill : int = 0
+
+#TODO:implement
+@export var throws_hp : int = 0
+@export var throws_stamina : int = 0
+@export var throws_power: int = 0
+
+@export var throws_remaining_stamina : int = 0
+@export var throws_remaining_power: int = 0
+
+@export var catches_hp : bool = false
+@export var catches_stamina : bool = false
+@export var catches_power : bool = false
+
+@export var catches_opponent_hp : bool = false
+@export var catches_opponent_stamina : bool = false
+@export var catches_opponentTh_power : bool = false
+
+#buffs damage against team
+@export var buff_dmg_against_team : int = 0
+@export var buff_dmg_target_team : String = ""
 
 #TODO: implement
 #stat is  equal to the number of a certain team in deck
@@ -43,6 +62,12 @@ extends Node2D
 @export var team_number_is_dmg : bool = false
 
 var stat_max = 9
+
+func get_buff_dmg_against_team() -> int :
+	return buff_dmg_against_team
+
+func get_buff_dmg_target_team() -> String:
+	return buff_dmg_target_team
 
 func get_strength_rating() -> int:
 	return strength_rating
@@ -77,6 +102,9 @@ func _ready() -> void:
 		_portrait.texture = load(portrait_path)
 	if(description):
 		_label_description.text = description
+
+func get_card_team():
+	return team
 
 func get_card_name():
 	return card_name

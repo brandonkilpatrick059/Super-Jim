@@ -27,11 +27,37 @@ script = ExtResource("1_6bnxi")
 position = Vector2(-64, 0)
 
 [node name="CardBase" parent="active_card_left" instance=ExtResource("2_x31gc")]
+throws_hp = null
+throws_stamina = null
+throws_power = null
+throws_remaining_stamina = null
+throws_remaining_power = null
+catches_hp = null
+catches_stamina = null
+catches_power = null
+catches_opponent_hp = null
+catches_opponent_stamina = null
+catches_opponentTh_power = null
+buff_dmg_against_team = null
+buff_dmg_target_team = null
 
 [node name="active_card_right" type="Node2D" parent="."]
 position = Vector2(64, 0)
 
 [node name="CardBase" parent="active_card_right" instance=ExtResource("2_x31gc")]
+throws_hp = null
+throws_stamina = null
+throws_power = null
+throws_remaining_stamina = null
+throws_remaining_power = null
+catches_hp = null
+catches_stamina = null
+catches_power = null
+catches_opponent_hp = null
+catches_opponent_stamina = null
+catches_opponentTh_power = null
+buff_dmg_against_team = null
+buff_dmg_target_team = null
 
 [node name="bat_arms_left" type="AnimatedSprite2D" parent="."]
 z_index = 2
@@ -57,21 +83,73 @@ bus = &"Effects"
 position = Vector2(-196, 0)
 
 [node name="CardBase" parent="left_2" instance=ExtResource("2_x31gc")]
+throws_hp = null
+throws_stamina = null
+throws_power = null
+throws_remaining_stamina = null
+throws_remaining_power = null
+catches_hp = null
+catches_stamina = null
+catches_power = null
+catches_opponent_hp = null
+catches_opponent_stamina = null
+catches_opponentTh_power = null
+buff_dmg_against_team = null
+buff_dmg_target_team = null
 
 [node name="left_3" type="Node2D" parent="."]
 position = Vector2(-324, 0)
 
 [node name="CardBase" parent="left_3" instance=ExtResource("2_x31gc")]
+throws_hp = null
+throws_stamina = null
+throws_power = null
+throws_remaining_stamina = null
+throws_remaining_power = null
+catches_hp = null
+catches_stamina = null
+catches_power = null
+catches_opponent_hp = null
+catches_opponent_stamina = null
+catches_opponentTh_power = null
+buff_dmg_against_team = null
+buff_dmg_target_team = null
 
 [node name="right_2" type="Node2D" parent="."]
 position = Vector2(196, 0)
 
 [node name="CardBase" parent="right_2" instance=ExtResource("2_x31gc")]
+throws_hp = null
+throws_stamina = null
+throws_power = null
+throws_remaining_stamina = null
+throws_remaining_power = null
+catches_hp = null
+catches_stamina = null
+catches_power = null
+catches_opponent_hp = null
+catches_opponent_stamina = null
+catches_opponentTh_power = null
+buff_dmg_against_team = null
+buff_dmg_target_team = null
 
 [node name="right_3" type="Node2D" parent="."]
 position = Vector2(324, 0)
 
 [node name="CardBase" parent="right_3" instance=ExtResource("2_x31gc")]
+throws_hp = null
+throws_stamina = null
+throws_power = null
+throws_remaining_stamina = null
+throws_remaining_power = null
+catches_hp = null
+catches_stamina = null
+catches_power = null
+catches_opponent_hp = null
+catches_opponent_stamina = null
+catches_opponentTh_power = null
+buff_dmg_against_team = null
+buff_dmg_target_team = null
 
 [node name="back_ground" type="Sprite2D" parent="."]
 z_index = -1

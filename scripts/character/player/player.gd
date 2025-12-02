@@ -653,9 +653,7 @@ func use_item():
 				set_control_frozen(true)
 
 func remove_from_items(item : String):
-	var item_index = items.find(item)
-	items.remove_at(item_index)
-	
+	items.erase(item)
 
 func set_use_item_timer(num : float):
 	use_item_timer.start(num)

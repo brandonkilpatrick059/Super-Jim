@@ -171,6 +171,9 @@ func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 			right_is_going = true
 					
 		var damage_done = attacking_card.get_power()
+		if(attacking_card.get_buff_dmg_against_team() > 0 && 
+		defending_card.get_card_team() == attacking_card.get_buff_dmg_target_team()):
+			damage_done = damage_done + attacking_card.get_buff_dmg_against_team()
 		var defending_hp = defending_card.get_hp()
 		var defending_hp_after_damage = defending_hp - damage_done
 		if(defending_hp_after_damage <= 0):
@@ -301,8 +304,6 @@ func enact_effects():
 			queued_stamina_buff_left = card_left.get_stamina()
 		if(card_left.adds_dmg_next):
 			queued_damage_buff_left = card_left.get_power()
-	
-	#stat carries from previous card
 
 
 func begin():

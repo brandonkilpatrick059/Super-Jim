@@ -4,8 +4,8 @@ extends Node2D
 @onready var label : Label = $Label
 
 var timer = Timer.new()
-var fade_step_secs = 0.1
-var fade_wait = 5.0
+var fade_step_secs = 0.006
+var fade_wait = 1.0
 var text_alpha = 1.0
 var alpha_fade_step = 0.05
 
@@ -16,6 +16,7 @@ var is_buff = false
 
 func _ready():
 	timer.one_shot = true
+	add_child(timer)
 	visible = false
 
 func set_and_fire(num : int):
@@ -38,7 +39,7 @@ func set_and_fire(num : int):
 func _physics_process(delta: float) -> void:
 	if(fired && timer.is_stopped()):
 		if(fade_wait > 0):
-			fade_wait = fade_wait - fade_step_secs
+			fade_wait = fade_wait - 0.1
 		else:
 			if(text_alpha > 0):
 				text_alpha = text_alpha - alpha_fade_step

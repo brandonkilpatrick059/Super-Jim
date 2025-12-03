@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhxsevgsr7a4h"]
+[gd_scene load_steps=10 format=3 uid="uid://bhxsevgsr7a4h"]
 
 [ext_resource type="Script" uid="uid://dn8lth6ua677u" path="res://scripts/baseball/baseball_manager.gd" id="1_6bnxi"]
 [ext_resource type="PackedScene" uid="uid://bocxc8pmuf3na" path="res://baseball/card_base.tscn" id="2_x31gc"]
@@ -12,6 +12,11 @@ light_mode = 1
 [sub_resource type="LabelSettings" id="LabelSettings_3fd7y"]
 font = ExtResource("5_7ut21")
 font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_p53bs"]
+font = ExtResource("5_7ut21")
+font_size = 32
+font_color = Color(1, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_7ut21"]
 font = ExtResource("5_7ut21")
@@ -228,7 +233,7 @@ offset_top = 72.0
 offset_right = 134.0
 offset_bottom = 144.0
 text = "FIGHT!!!"
-label_settings = SubResource("LabelSettings_3fd7y")
+label_settings = SubResource("LabelSettings_p53bs")
 horizontal_alignment = 1
 
 [node name="away_win" type="Label" parent="."]

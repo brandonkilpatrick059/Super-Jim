@@ -100,7 +100,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			_animated_pack.position = Vector2(0,_animated_pack.position.y - y_move_step)
 			rise_up_timer.start(step_secs)
-	if(opening && _animated_pack.frame == _animated_pack.sprite_frames.get_frame_count("opening") - 1):
+	if(opening && _animated_pack.frame == _animated_pack.sprite_frames.get_frame_count(str("opened",pack_skin)) - 1):
 		_animated_pack.play(str("opened",pack_skin))
 		opening = false
 		lowering = true

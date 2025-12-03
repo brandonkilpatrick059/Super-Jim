@@ -53,7 +53,7 @@ var killing_card = false
 var killing_right_card = false
 var card_killing_y_step_start_val = 1
 var card_killing_y_step = card_killing_y_step_start_val
-var card_killing_y_step_accel = 1
+var card_killing_y_step_accel = 0.25
 var card_killing_rotation_step = 0.006
 var killing_timer_step_secs = 0.006
 var killing_time_in_secs = 1.5
@@ -95,6 +95,15 @@ var back_ground_move_step_time = 0.006
 var random = RandomNumberGenerator.new()
 
 var callback_node : Node
+
+var left_cards_killed : int = 0
+var right_cards_killed : int = 0
+
+var right_team_won = false
+var left_team_won = false
+
+var show_fight = true
+var show_get_ready = false
 
 func _ready():
 	bat_arms_left.visible = false
@@ -382,6 +391,7 @@ func start_game():
 	sound_player.play()
 	game_timer.start(3)
 	original_y = active_card_left.global_position.y
+	show_get_ready = true
 
 func handle_shake():
 	if(shake_magnitude <= 0):
@@ -405,6 +415,45 @@ func kill_card(kill_right_card : bool):
 	card_killing_y_step = card_killing_y_step_start_val
 	killing_card = true
 	killing_right_card = kill_right_card
+	if(kill_right_card):
+		left_cards_killed = left_cards_killed + 1
+		right_cards_killed = 0
+	else:
+		right_cards_killed = right_cards_killed + 1
+		left_cards_killed = 0
+		
+	if(right_cards_killed == 2):
+		var particle = load("res://baseball/stat_particle.tscn").instantiate()
+		card_left().add_child(particle)
+		particle.global_position = Vector2(card_left().global_position.x,card_left().global_position.y)
+		particle.set_and_fire_str("DOUBLE KILL")
+	elif(right_cards_killed == 3):
+		var particle = load("res://baseball/stat_particle.tscn").instantiate()
+		card_left().add_child(particle)
+		particle.global_position = Vector2(card_left().global_position.x,card_left().global_position.y)
+		particle.set_and_fire_str("TRIPLE KILL")
+	elif(right_cards_killed > 3):
+		var particle = load("res://baseball/stat_particle.tscn").instantiate()
+		card_left().add_child(particle)
+		particle.global_position = Vector2(card_left().global_position.x,card_left().global_position.y)
+		particle.set_and_fire_str("KILLING SPREE")
+	
+	if(left_cards_killed == 2):
+		var particle = load("res://baseball/stat_particle.tscn").instantiate()
+		card_right().add_child(particle)
+		particle.global_position = Vector2(card_right().global_position.x,card_right().global_position.y)
+		particle.set_and_fire_str("DOUBLE KILL")
+	elif(left_cards_killed == 3):
+		var particle = load("res://baseball/stat_particle.tscn").instantiate()
+		card_right().add_child(particle)
+		particle.global_position = Vector2(card_right().global_position.x,card_right().global_position.y)
+		particle.set_and_fire_str("TRIPLE KILL")
+	elif(left_cards_killed > 3):
+		var particle = load("res://baseball/stat_particle.tscn").instantiate()
+		card_right().add_child(particle)
+		particle.global_position = Vector2(card_right().global_position.x,card_right().global_position.y)
+		particle.set_and_fire_str("KILLING SPREE")
+	
 	game_timer.start(killing_time_in_secs)
 	killing_timer.start(killing_timer_step_secs)
 	sound_player.stream = load("res://audio/soundFX/pizza_lost.wav")
@@ -424,7 +473,7 @@ func remaining_cards_leave():
 	var _card_left : Array[Node2D] = [active_card_left,card_left_2,card_left_3]
 	var _card_right : Array[Node2D] = [active_card_right,card_right_2,card_right_3]
 	var transfrm = Vector2(card_cycle_x_step,0)
-	if(left_index == deck_left.get_children().size()-1): #player lost
+	if(right_team_won): #player lost
 		var index = 0
 		while(index < 4):
 			if(card_right(index) != null):
@@ -432,7 +481,7 @@ func remaining_cards_leave():
 					var pos = card_right(index).global_position
 					card_right(index).global_position = pos  + transfrm
 			index = index + 1
-	else:
+	elif(left_team_won):
 		var index = 0
 		while(index < 4):
 			if(card_left(index) != null):
@@ -551,8 +600,11 @@ func set_decks_and_begin(deck_left : Node, deck_right : Node):
 func check_game_over():
 	if(active_card_left.get_child_count() == 0):
 		game_is_over = true
-	if(active_card_right.get_child_count() == 0):
+		right_team_won = true
+	elif(active_card_right.get_child_count() == 0):
 		game_is_over = true
+		left_team_won = true
+
 
 func _physics_process(delta: float):	
 	if(starting && begin_end_timer.is_stopped()):
@@ -570,9 +622,9 @@ func _physics_process(delta: float):
 	elif(ending && begin_end_timer.is_stopped()):
 		if(back_ground.position.y + back_ground_move_step >512):
 			back_ground.position.y = 512
-			if(left_index == deck_left.get_children().size()):
+			if(right_team_won):
 				callback_node.game_end(2)
-			else:
+			elif(left_team_won):
 				callback_node.game_end(1)
 			queue_free()
 		else:
@@ -580,15 +632,18 @@ func _physics_process(delta: float):
 			begin_end_timer.start(back_ground_move_step_time)
 	if(game_started):
 		check_game_over()
+		if(show_get_ready  && flashing_timer.is_stopped()):
+			get_ready.visible = !get_ready.visible
+			flashing_timer.start(flashing_time)
 		if(shaking && shaking_timer.is_stopped()):
 			handle_shake()
 		if(declaring_victor && flashing_timer.is_stopped()):
 			if(flashes > 0):
 				var flashing_text
 				left_index
-				if(left_index == deck_left.get_children().size()-1): #player lost
+				if(right_team_won): #player lost
 					flashing_text = away_win
-				else: #opponent won
+				elif(left_team_won): #opponent won
 					flashing_text = home_win
 				flashing_text.visible = !flashing_text.visible
 				flashing_timer.start(flashing_time)
@@ -601,7 +656,16 @@ func _physics_process(delta: float):
 		elif(!game_is_over && need_card_cycling()):
 			cycle_card_process()
 		elif(game_timer.is_stopped()):
+			if(show_get_ready):
+				show_get_ready = false
+				get_ready.visible = false
+				fight.visible = true
+				sound_player2.stream = load("res://audio/soundFX/baseball/bell.wav")
+				sound_player2.play()
+			elif(fight.visible):
+				fight.visible = false
 			if(!game_is_over && !killing_card):
+				check_game_over()
 				update_active_cards()
 				if(!killing_card):
 					if(right_is_going):	
@@ -612,6 +676,9 @@ func _physics_process(delta: float):
 			elif(game_is_over):
 				if(!declaring_victor && !ending):
 					declaring_victor = true
+					if(left_team_won):
+						sound_player.stream = load("res://audio/soundFX/baseball/win.wav")
+						sound_player.play()
 				else:
 					remaining_cards_leave()
 					

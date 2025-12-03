@@ -654,6 +654,7 @@ func use_item():
 
 func remove_from_items(item : String):
 	items.erase(item)
+	item_index = 0
 
 func set_use_item_timer(num : float):
 	use_item_timer.start(num)

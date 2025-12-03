@@ -289,9 +289,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ippjf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ippjf")
 }],
 "loop": true,
 "name": &"opening_yellow",

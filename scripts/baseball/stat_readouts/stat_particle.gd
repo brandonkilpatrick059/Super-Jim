@@ -19,6 +19,14 @@ func _ready():
 	add_child(timer)
 	visible = false
 
+func set_and_fire_str(string : String):
+	label.text = string
+	var red = Color (1.0,0.0,0.0,1.0)
+	label.modulate = red
+	visible = true
+	fired = true
+	timer.start(fade_step_secs)
+
 func set_and_fire(num : int):
 	if(num > 0):
 		label.text = str("+",num)

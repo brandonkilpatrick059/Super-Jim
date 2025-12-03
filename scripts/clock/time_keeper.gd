@@ -14,6 +14,8 @@ var timer_song := Timer.new()
 var timer_restart := Timer.new()
 var ambient_dark = null
 
+var end_of_day_script_queue : Array[Node] = []
+
 var time_locked = true
 
 signal new_day()
@@ -142,6 +144,10 @@ func get_input():
 			unpause_parent_tree()
 			get_tree().change_scene_to_file("res://scenes/start_menu.tscn")
 
+func add_end_of_day_script_node(script_node : Node):
+	add_child(script_node)
+	end_of_day_script_queue.append(script_node)
+
 func set_clock(hour : int):
 	clock = hour
 	refresh_npc_locations()
@@ -151,6 +157,12 @@ func advance_day():
 		day_of_the_week = 0
 	else:
 		day_of_the_week = day_of_the_week + 1
+		
+	for node in end_of_day_script_queue:
+		node.run_script()
+		node.queue_free()
+	end_of_day_script_queue = []
+	
 	new_day.emit()
 
 func advance_clock():

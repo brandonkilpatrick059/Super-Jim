@@ -24,8 +24,6 @@ var time_keeper
 
 @export var gives_hp = 1
 @export var gives_dash_secs = 20
-@export var first_time_sleeping_script : Node = null
-var first_time_sleeping = true
 
 
 # Called when the node enters the scene tree for the first time.
@@ -79,9 +77,6 @@ func interact():
 		sound_player.stream = load("res://audio/music/sleep theme.wav")
 		sound_player.play()
 		var game_save_manager = get_tree().get_first_node_in_group("game_save_manager")
-		if(first_time_sleeping):
-			first_time_sleeping_script.run_script()
-			first_time_sleeping = false
 		player_ref.increment_hp()
 		player_ref.give_dash_seconds(20)
 		time_keeper.advance_day()

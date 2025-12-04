@@ -281,7 +281,7 @@ func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 		elif(attacking_stamina == 0):
 			var attacking_power = attacking_card.get_power()
 			if(attacking_power > 1):
-				attacking_card.set_power(attacking_power - 1)
+				attacking_card.set_power(attacking_power/2)
 		game_timer.start(turn_secs)
 		effects_phase = true
 

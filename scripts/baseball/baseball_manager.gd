@@ -158,14 +158,20 @@ func show_cards():
 
 func play_buff_sound(magnitude : int):
 	if(magnitude > 0 && magnitude < 4):
-		sound_player.stream = load("res://audio/soundFX/baseball/buff.wav")
-		sound_player.play()
+		sound_player3.stream = load("res://audio/soundFX/baseball/buff.wav")
+		sound_player3.play()
 	elif(magnitude > 3 && magnitude < 7):
-		sound_player.stream = load("res://audio/soundFX/baseball/buff2.wav")
-		sound_player.play()
-	elif(magnitude > 6):
-		sound_player.stream = load("res://audio/soundFX/baseball/buff3.wav")
-		sound_player.play()
+		sound_player3.stream = load("res://audio/soundFX/baseball/buff2.wav")
+		sound_player3.play()
+	elif(magnitude > 6 && magnitude < 8):
+		sound_player3.stream = load("res://audio/soundFX/baseball/buff3.wav")
+		sound_player3.play()
+	elif(magnitude > 7 && magnitude < 9):
+		sound_player3.stream = load("res://audio/soundFX/baseball/buff4.wav")
+		sound_player3.play()
+	elif(magnitude == 9):
+		sound_player3.stream = load("res://audio/soundFX/baseball/buff5.wav")
+		sound_player3.play()
 
 func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 	if(effects_phase):
@@ -236,18 +242,22 @@ func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 			sound_player2.stream = load("res://audio/soundFX/baseball/drum.wav")
 			sound_player2.play()
 			
+			var final_buff_amt : int = 0
 			if(attacking_card.get_buff_damage_on_kill() > 0):
 				var buff_amt = attacking_card.get_buff_damage_on_kill()
 				attacking_card.set_power(attacking_card.get_power() + buff_amt)
-				play_buff_sound(attacking_card.get_power())
+				final_buff_amt = attacking_card.get_power()
 			if(attacking_card.get_buff_stamina_on_kill() > 0):
 				var buff_amt = attacking_card.get_buff_stamina_on_kill()
 				attacking_card.set_stamina(attacking_card.get_stamina() + buff_amt)
-				play_buff_sound(attacking_card.get_stamina())
+				if(attacking_card.get_stamina() > final_buff_amt):
+					final_buff_amt = attacking_card.get_stamina()
 			if(attacking_card.get_buff_hp_on_kill() > 0):
 				var buff_amt = attacking_card.get_buff_hp_on_kill()
 				attacking_card.set_hp(attacking_card.get_hp() + buff_amt)
-				play_buff_sound(attacking_card.get_hp())
+				if(attacking_card.get_hp() > final_buff_amt):
+					final_buff_amt = attacking_card.get_hp()
+			play_buff_sound(final_buff_amt)
 		if(damage_done <= 3):
 			sound_player.stream = load("res://audio/soundFX/baseball/hit2.wav")
 		elif(damage_done > 3 && damage_done <= 6):
@@ -257,7 +267,7 @@ func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 			shake_screen(4 + added_shake)
 			handle_shake()
 			sound_player.stream = load("res://audio/soundFX/baseball/hit3.wav")
-		if(!right_is_going): #this seems reversed to me too i don't know what's going on
+		if(!right_is_going): #TODO: why is this reversed from what it should be? 
 			card_left().rotation = card_left().rotation - (float(damage_done) / 15)
 		else:
 			card_right().rotation = card_right().rotation + (float(damage_done) / 15)
@@ -443,43 +453,31 @@ func kill_card(kill_right_card : bool):
 	else:
 		right_cards_killed = right_cards_killed + 1
 		left_cards_killed = 0
-		
-	if(right_cards_killed == 2):
-		var particle = load("res://baseball/stat_particle.tscn").instantiate()
-		card_left().add_child(particle)
-		particle.global_position = Vector2(card_left().global_position.x,card_left().global_position.y)
-		particle.set_and_fire_str("DOUBLE KILL")
-	elif(right_cards_killed == 3):
-		var particle = load("res://baseball/stat_particle.tscn").instantiate()
-		card_left().add_child(particle)
-		particle.global_position = Vector2(card_left().global_position.x,card_left().global_position.y)
-		particle.set_and_fire_str("TRIPLE KILL")
-	elif(right_cards_killed > 3):
-		var particle = load("res://baseball/stat_particle.tscn").instantiate()
-		card_left().add_child(particle)
-		particle.global_position = Vector2(card_left().global_position.x,card_left().global_position.y)
-		particle.set_and_fire_str("KILLING SPREE")
 	
-	if(left_cards_killed == 2):
+	if(right_cards_killed > 1):
+		var particle = load("res://baseball/stat_particle.tscn").instantiate()
+		card_left().add_child(particle)
+		particle.global_position = Vector2(card_left().global_position.x,card_left().global_position.y)
+		if(right_cards_killed == 2):
+			particle.set_and_fire_str("DOUBLE KILL")
+		elif(right_cards_killed == 3):
+			particle.set_and_fire_str("TRIPLE KILL")
+		elif(right_cards_killed > 3):
+			particle.set_and_fire_str("KILLING SPREE")
+	
+	if(left_cards_killed > 1):
 		var particle = load("res://baseball/stat_particle.tscn").instantiate()
 		card_right().add_child(particle)
 		particle.global_position = Vector2(card_right().global_position.x,card_right().global_position.y)
-		particle.set_and_fire_str("DOUBLE KILL")
-	elif(left_cards_killed == 3):
-		var particle = load("res://baseball/stat_particle.tscn").instantiate()
-		card_right().add_child(particle)
-		particle.global_position = Vector2(card_right().global_position.x,card_right().global_position.y)
-		particle.set_and_fire_str("TRIPLE KILL")
-	elif(left_cards_killed > 3):
-		var particle = load("res://baseball/stat_particle.tscn").instantiate()
-		card_right().add_child(particle)
-		particle.global_position = Vector2(card_right().global_position.x,card_right().global_position.y)
-		particle.set_and_fire_str("KILLING SPREE")
+		if(left_cards_killed == 2):
+			particle.set_and_fire_str("DOUBLE KILL")
+		elif(left_cards_killed == 3):
+			particle.set_and_fire_str("TRIPLE KILL")
+		elif(left_cards_killed > 3):
+			particle.set_and_fire_str("KILLING SPREE")
 	
 	game_timer.start(killing_time_in_secs)
 	killing_timer.start(killing_timer_step_secs)
-	#sound_player.stream = load("res://audio/soundFX/pizza_lost.wav")
-	#sound_player.play()
 	skip_turn_switch = true
 
 func set_deck_left(deck : Node2D):

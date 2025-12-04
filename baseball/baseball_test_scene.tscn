@@ -6,8 +6,8 @@
 
 [node name="BaseballTestScene" type="Node2D"]
 script = ExtResource("1_c1v5f")
-deck_left_array = Array[int]([6, 7, 11, 18, 12, 14])
-deck_right_array = Array[int]([1, 2, 12, 18, 12, 16])
+deck_left_array = Array[int]([12, 12, 10, 18, 8, 16])
+deck_right_array = Array[int]([10, 8, 10, 8, 2, 16])
 
 [node name="BaseballCardGame" parent="." instance=ExtResource("1_7g13d")]
 position = Vector2(314, 152)

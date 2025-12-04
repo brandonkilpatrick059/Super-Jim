@@ -156,38 +156,56 @@ func show_cards():
 	card_left_2.visible = true
 	card_left_3.visible = true
 
+func play_buff_sound(magnitude : int):
+	if(magnitude > 0 && magnitude < 4):
+		sound_player.stream = load("res://audio/soundFX/baseball/buff.wav")
+		sound_player.play()
+	elif(magnitude > 3 && magnitude < 7):
+		sound_player.stream = load("res://audio/soundFX/baseball/buff2.wav")
+		sound_player.play()
+	elif(magnitude > 6):
+		sound_player.stream = load("res://audio/soundFX/baseball/buff3.wav")
+		sound_player.play()
+
 func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 	if(effects_phase):
-		sound_player.stream = load("res://audio/soundFX/baseball/buff.wav")
+
 		var buff = false
+		var final_stat = 0
 		if(right_is_going):
 			if(queued_hp_buff_right > 0):
-				card_right().set_hp(	card_right().get_hp() + queued_hp_buff_right)
+				card_right().set_hp(card_right().get_hp() + queued_hp_buff_right)
+				final_stat = card_right().get_hp()
 				queued_hp_buff_right = 0
 				buff = true
 			if(queued_stamina_buff_right > 0):
 				card_right().set_stamina(card_right().get_stamina() + queued_stamina_buff_right)
+				final_stat = card_right().get_stamina()
 				queued_stamina_buff_right = 0
 				buff = true
 			if(queued_damage_buff_right > 0):
 				card_right().set_power(card_right().get_power() + queued_damage_buff_right)
+				final_stat = card_right().get_power()
 				queued_damage_buff_right = 0
 				buff = true
 		else:
 			if(queued_hp_buff_left > 0):
 				card_left().set_hp(card_left().get_hp() + queued_hp_buff_left)
+				final_stat = card_left().get_hp()
 				queued_hp_buff_left = 0
 				buff = true
 			if(queued_stamina_buff_left > 0):
 				card_left().set_stamina(card_left().get_stamina() + queued_stamina_buff_left)
+				final_stat = card_left().get_stamina()
 				queued_stamina_buff_left = 0
 				buff = true
 			if(queued_damage_buff_left > 0):
 				card_left().set_power(card_left().get_power() + queued_damage_buff_left)
+				final_stat = card_left().get_power()
 				queued_damage_buff_left = 0
 				buff = true
 		if(buff):
-			sound_player.play()
+			play_buff_sound(final_stat)
 			buff = false
 		effects_phase = false
 	else: #attack phase
@@ -215,24 +233,21 @@ func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 		if(defending_hp_after_damage <= 0):
 			defending_hp_after_damage = 0
 			card_killed = true
-			sound_player2.stream = load("res://audio/soundFX/putdown.wav")
+			sound_player2.stream = load("res://audio/soundFX/baseball/drum.wav")
 			sound_player2.play()
 			
 			if(attacking_card.get_buff_damage_on_kill() > 0):
 				var buff_amt = attacking_card.get_buff_damage_on_kill()
 				attacking_card.set_power(attacking_card.get_power() + buff_amt)
-				sound_player3.stream = load("res://audio/soundFX/baseball/buff.wav")
-				sound_player3.play() 
+				play_buff_sound(attacking_card.get_power())
 			if(attacking_card.get_buff_stamina_on_kill() > 0):
 				var buff_amt = attacking_card.get_buff_stamina_on_kill()
 				attacking_card.set_stamina(attacking_card.get_stamina() + buff_amt)
-				sound_player3.stream = load("res://audio/soundFX/baseball/buff.wav")
-				sound_player3.play() 
+				play_buff_sound(attacking_card.get_stamina())
 			if(attacking_card.get_buff_hp_on_kill() > 0):
 				var buff_amt = attacking_card.get_buff_hp_on_kill()
 				attacking_card.set_hp(attacking_card.get_hp() + buff_amt)
-				sound_player3.stream = load("res://audio/soundFX/baseball/buff.wav")
-				sound_player3.play() 
+				play_buff_sound(attacking_card.get_hp())
 		if(damage_done <= 3):
 			sound_player.stream = load("res://audio/soundFX/baseball/hit2.wav")
 		elif(damage_done > 3 && damage_done <= 6):
@@ -463,8 +478,8 @@ func kill_card(kill_right_card : bool):
 	
 	game_timer.start(killing_time_in_secs)
 	killing_timer.start(killing_timer_step_secs)
-	sound_player.stream = load("res://audio/soundFX/pizza_lost.wav")
-	sound_player.play()
+	#sound_player.stream = load("res://audio/soundFX/pizza_lost.wav")
+	#sound_player.play()
 	skip_turn_switch = true
 
 func set_deck_left(deck : Node2D):

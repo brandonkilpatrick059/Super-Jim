@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhxsevgsr7a4h"]
+[gd_scene load_steps=11 format=3 uid="uid://bhxsevgsr7a4h"]
 
 [ext_resource type="Script" uid="uid://dn8lth6ua677u" path="res://scripts/baseball/baseball_manager.gd" id="1_6bnxi"]
 [ext_resource type="PackedScene" uid="uid://bocxc8pmuf3na" path="res://baseball/card_base.tscn" id="2_x31gc"]
 [ext_resource type="SpriteFrames" uid="uid://dugnyjwub8xs" path="res://sprites/spritesheets/spriteframes/baseball/bat_arms.tres" id="3_ae8mq"]
 [ext_resource type="Texture2D" uid="uid://bklgivc3q1a7v" path="res://sprites/baseball/back_ground.png" id="4_a786n"]
 [ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="5_7ut21"]
+[ext_resource type="PackedScene" uid="uid://cbx6copiqrp2y" path="res://baseball/thrown_stat.tscn" id="6_3fd7y"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7ut21"]
 light_mode = 1
@@ -245,3 +246,21 @@ offset_right = 126.0
 offset_bottom = 144.0
 text = "AWAY TEAM WINS"
 label_settings = SubResource("LabelSettings_7ut21")
+
+[node name="left_thrown_power" parent="." instance=ExtResource("6_3fd7y")]
+position = Vector2(-96, -91)
+
+[node name="left_thrown_stamina" parent="." instance=ExtResource("6_3fd7y")]
+position = Vector2(-64, -91)
+
+[node name="left_thrown_hp" parent="." instance=ExtResource("6_3fd7y")]
+position = Vector2(-32, -91)
+
+[node name="right_thrown_power" parent="." instance=ExtResource("6_3fd7y")]
+position = Vector2(32, -91)
+
+[node name="right_thrown_stamina" parent="." instance=ExtResource("6_3fd7y")]
+position = Vector2(64, -91)
+
+[node name="right_thrown_hp" parent="." instance=ExtResource("6_3fd7y")]
+position = Vector2(96, -91)

@@ -635,6 +635,7 @@ func handle_throw():
 func append_to_items(item : String):
 	if(items.find(item) < 0):
 		items.append(item)
+		item_index = items.find(item)
 
 func use_item():
 	if(items.size() > 0 ):

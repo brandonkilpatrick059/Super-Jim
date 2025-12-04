@@ -14,7 +14,6 @@ var current_alpha = 1
 func _ready():
 	timer.one_shot = true
 	add_child(timer)
-	pass # Replace with function body.
 
 func get_input():
 	if Input.is_action_pressed("transparency"):
@@ -33,9 +32,7 @@ func _process(delta):
 		if(timer.is_stopped() && current_alpha < 1):
 			timer.start(fade_step_time)
 			current_alpha += fade_step_degree
-	
 	sprite.modulate = Color(1,1,1,current_alpha)
-		
 
 func _on_vision_collider_body_entered(body):
 	if(body.is_in_group("player") || body.is_in_group("mobster")):

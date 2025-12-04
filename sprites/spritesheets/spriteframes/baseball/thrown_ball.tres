@@ -1,0 +1,54 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://dnxngqitncw4d"]
+
+[ext_resource type="Texture2D" uid="uid://b3ncq6hn5iqmj" path="res://sprites/baseball/throw_ball.png" id="1_relcd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8l2jo"]
+atlas = ExtResource("1_relcd")
+region = Rect2(0, 0, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4a2g"]
+atlas = ExtResource("1_relcd")
+region = Rect2(78, 0, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_do0ib"]
+atlas = ExtResource("1_relcd")
+region = Rect2(26, 0, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_si6tk"]
+atlas = ExtResource("1_relcd")
+region = Rect2(52, 0, 26, 26)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8l2jo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4a2g")
+}],
+"loop": true,
+"name": &"hp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_do0ib")
+}],
+"loop": true,
+"name": &"power",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_si6tk")
+}],
+"loop": true,
+"name": &"stamina",
+"speed": 5.0
+}]

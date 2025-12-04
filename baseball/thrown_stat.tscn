@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbx6copiqrp2y"]
+
+[ext_resource type="Script" uid="uid://cny5ae5q6q3ij" path="res://scripts/baseball/thrown_stat.gd" id="1_lashv"]
+[ext_resource type="SpriteFrames" uid="uid://dnxngqitncw4d" path="res://sprites/spritesheets/spriteframes/baseball/thrown_ball.tres" id="1_nl1a2"]
+[ext_resource type="Texture2D" uid="uid://bemofc7ty6snj" path="res://sprites/baseball/mitt.png" id="2_30co8"]
+[ext_resource type="LabelSettings" uid="uid://tdffmlt2tqo6" path="res://fonts/card_readout_text.tres" id="3_30co8"]
+
+[node name="left_thrown_power" type="Node2D"]
+script = ExtResource("1_lashv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 40
+sprite_frames = ExtResource("1_nl1a2")
+animation = &"stamina"
+
+[node name="mitt" type="Sprite2D" parent="."]
+texture = ExtResource("2_30co8")
+
+[node name="num_readout" type="Label" parent="."]
+z_index = 50
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -11.0
+offset_right = 21.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "9"
+label_settings = ExtResource("3_30co8")
+horizontal_alignment = 1
+vertical_alignment = 1

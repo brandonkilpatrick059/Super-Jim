@@ -33,6 +33,7 @@ var game_timer := Timer.new()
 var killing_timer := Timer.new()
 var cycling_timer := Timer.new()
 var turn_secs = 0.25
+var rotating_timer := Timer.new()
 
 var declaring_victor = false
 var flashing_timer := Timer.new()
@@ -129,6 +130,8 @@ func _ready():
 	add_child(flashing_timer)
 	cycling_timer.one_shot = true
 	add_child(cycling_timer)
+	rotating_timer.one_shot = true
+	add_child(rotating_timer)
 	hide_cards()
 	begin()
 
@@ -239,6 +242,10 @@ func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 			shake_screen(4 + added_shake)
 			handle_shake()
 			sound_player.stream = load("res://audio/soundFX/baseball/hit3.wav")
+		if(!right_is_going): #this seems reversed to me too i don't know what's going on
+			card_left().rotation = card_left().rotation - (float(damage_done) / 15)
+		else:
+			card_right().rotation = card_right().rotation + (float(damage_done) / 15)
 		defending_card.set_hp(defending_hp_after_damage)
 		sound_player.play()
 		attacking_card.power_glow()
@@ -491,6 +498,16 @@ func remaining_cards_leave():
 			index = index + 1
 		
 
+func correct_rotation():
+	if(card_left() != null && card_left().rotation != 0):
+		card_left().rotation = card_left().rotation + 0.01
+		if (card_left().rotation - 0.005 > 0):
+			card_left().rotation = 0
+	if(card_right() != null && card_right().rotation != 0):
+		card_right().rotation = card_right().rotation - 0.01
+		if (card_right().rotation + 0.005 <  0):
+			card_right().rotation = 0
+
 func need_card_cycling():
 	var need_card_cycle = false
 	var index = 1
@@ -651,6 +668,10 @@ func _physics_process(delta: float):
 			else:
 				declaring_victor = false
 				end()
+		if(!killing_card):
+			if(rotating_timer.is_stopped()):
+				correct_rotation()
+				rotating_timer.start(0.006)
 		if(killing_card):
 			killing_card_process()
 		elif(!game_is_over && need_card_cycling()):

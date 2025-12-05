@@ -76,7 +76,18 @@ func _draw():
 					draw_line(Vector2(), get_transform().affine_inverse() * branch.position, Color(1,0,0,1), -1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _ready():
+	if(Engine.is_editor_hint()):
+		if(speaker_portrait != null):
+			_editor_anim.sprite_frames = speaker_portrait
+			if(speaker_emote != ""):
+				_editor_anim.play(speaker_emote)
+			else:
+				_editor_anim.play("default")
+		queue_redraw()
+
+#COMMENT THIS OUT WHEN YOU ARE DONE
+func _process(delta: float) -> void:
 	if(Engine.is_editor_hint()):
 		if(speaker_portrait != null):
 			_editor_anim.sprite_frames = speaker_portrait

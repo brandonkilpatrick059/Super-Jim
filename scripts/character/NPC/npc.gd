@@ -256,6 +256,7 @@ func teleport_and_update():
 	if(schedules.size() > 0 && !exempt_from_npc_refresh):
 		update_stage_mark()
 		global_position = perceptions.current_stage_mark.global_position
+		_on_set_nav_target(perceptions.current_stage_mark.global_position)
 		var parent_node = perceptions.current_stage_mark.get_reparent_node()
 		reparent(parent_node)
 		_ai_state_machine.transition_to(perceptions.current_stage_mark.get_state())

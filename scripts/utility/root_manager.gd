@@ -19,6 +19,7 @@ var sound_player : AudioStreamPlayer = AudioStreamPlayer.new()
 func _ready():
 	camera_ref = get_tree().get_first_node_in_group("camera")
 	transition_timer.one_shot = true
+	RenderingServer.set_default_clear_color(Color(0.0,0.0,0.0,1.0))
 	self.add_child(transition_timer)
 	add_child(sound_player)
 

@@ -181,8 +181,8 @@ func _on_area_2d_body_entered(body):
 	npcs_using_teleporter.find(body) < 0 &&
 	linked_teleporter.npcs_using_teleporter.find(body) < 0):
 		npcs_using_teleporter.append(body)
-		body.global_position = linked_teleporter.global_position
 		linked_teleporter.npcs_using_teleporter.append(body)
+		body.global_position = linked_teleporter.global_position
 		if(reparent_to_daylight):
 			body.reparent(day_light_ysort)
 		if(reparent_to_no_daylight):

@@ -179,7 +179,7 @@ func _on_area_2d_body_entered(body):
 				player_ref.set_current_v(Vector2(0,enter_y_push))
 	elif(body.is_in_group("npc") && 
 	npcs_using_teleporter.find(body) < 0 &&
-	linked_teleporter.npcs_using_teleporter.find(body) < 0):	
+	linked_teleporter.npcs_using_teleporter.find(body) < 0):
 		npcs_using_teleporter.append(body)
 		body.global_position = linked_teleporter.global_position
 		linked_teleporter.npcs_using_teleporter.append(body)

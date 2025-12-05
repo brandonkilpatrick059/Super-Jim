@@ -15,6 +15,9 @@ extends Node2D
 
 var random = RandomNumberGenerator.new()
 
+func _ready():
+	visible = false
+
 func get_reparent_node() -> Node:
 	var reparent_node 
 	if(reparent_to_daylight):

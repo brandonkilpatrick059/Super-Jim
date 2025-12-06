@@ -37,7 +37,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	_fade_to_black.global_position = Vector2(0,0)
+	#_fade_to_black.global_position = Vector2(0,0)
 	var player_ref = get_tree().get_first_node_in_group("player")
 	if((fading_out || fading_in) &&
 	timer_fade.is_stopped()):
@@ -48,6 +48,8 @@ func _process(delta):
 			elif(fade_alpha >= 1):
 				fading_out = false
 				fading_in = true
+				var camera = player_ref.get_camera_ref()
+				_saving_game.global_position = camera.get_screen_center_position()
 				_saving_game.visible = true
 				time_keeper.set_clock(sleep_end_time)
 				timer_fade.start(long_step_secs)
@@ -70,6 +72,8 @@ func interact():
 		player_ref.stop()
 		player_ref.set_control_frozen(true)
 		player_ref.set_ui_invisible()
+		var camera = player_ref.get_camera_ref()
+		_fade_to_black.global_position = camera.get_screen_center_position()
 		update_fade_alpha()
 		timer_fade.start(fade_step_secs)
 		fading_out = true

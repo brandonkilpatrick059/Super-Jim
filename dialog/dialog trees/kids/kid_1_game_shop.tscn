@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyyql4tt34gs7"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_pihd8"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_y0o1v"]
+
+[node name="kid_1_game_shop" type="Node2D"]
+script = ExtResource("1_pihd8")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_y0o1v")]
+speaker_text = Array[String](["Hi."])
+speaker_portrait = null
+option_branches = [NodePath("../waiting")]
+voice = "sine_voice"
+
+[node name="waiting" parent="." instance=ExtResource("2_y0o1v")]
+position = Vector2(-1, 258)
+speaker_text = Array[String](["I'm waiting for my friend to get his cards ready."])
+speaker_portrait = null
+voice = "sine_voice"

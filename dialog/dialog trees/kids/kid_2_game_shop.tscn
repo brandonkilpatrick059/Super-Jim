@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://toktpvuq14eq"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_f5lfi"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_ihyhi"]
+
+[node name="kid_2_game_shop" type="Node2D"]
+script = ExtResource("1_f5lfi")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ihyhi")]
+speaker_text = Array[String](["Let's see... This card, or this card?"])
+speaker_portrait = null
+option_branches = [NodePath("../waiting")]
+voice = "sine_voice"
+
+[node name="waiting" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ihyhi")]
+position = Vector2(204, 229)
+speaker_text = Array[String](["They both have their strengths and weaknesses..."])
+speaker_portrait = null
+option_branches = [NodePath("../waiting2")]
+voice = "sine_voice"
+
+[node name="waiting2" parent="." instance=ExtResource("2_ihyhi")]
+position = Vector2(-3, 530)
+speaker_text = Array[String](["Hmm..."])
+speaker_portrait = null
+voice = "sine_voice"

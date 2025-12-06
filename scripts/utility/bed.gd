@@ -2,6 +2,8 @@ extends StaticBody2D
 
 @onready var _fade_to_black = $fade_to_black
 @onready var _saving_game = $saving_game
+@onready var _game_saved_label = $saving_game/saving_game_label
+@onready var _door = $saving_game/door
 
 var sound_player := AudioStreamPlayer2D.new()
 
@@ -11,6 +13,11 @@ var fade_step = 0.05
 var fade_step_secs = 0.2
 var long_step_secs = 6
 var timer_fade := Timer.new()
+
+var press_hold_timer := Timer.new()
+var holding_forward = false
+var teleport_wait_secs = 3
+var teleporting = false
 
 var sleep_start_time = 18
 var sleep_end_time = 9
@@ -34,11 +41,32 @@ func _ready():
 	sound_player.bus = "Music"
 	add_child(sound_player)
 	time_keeper = get_tree().get_first_node_in_group("time_keeper")
+	press_hold_timer.one_shot = true
+	add_child(press_hold_timer)
+
+func check_portal_input():
+	if(!holding_forward && Input.is_action_just_pressed("up")):
+		holding_forward = true
+		press_hold_timer.start(teleport_wait_secs)
+	elif(holding_forward && Input.is_action_just_released("up")):
+		holding_forward = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#_fade_to_black.global_position = Vector2(0,0)
 	var player_ref = get_tree().get_first_node_in_group("player")
+	if(_saving_game.visible):
+		check_portal_input()
+		if(_door.frame == _door.sprite_frames.get_frame_count("open") - 1):
+			_door.play("opened")
+		if(!teleporting && holding_forward && press_hold_timer.is_stopped()):
+			teleporting = true
+			_game_saved_label.visible = false
+			var camera = player_ref.get_camera_ref()
+			camera.zoom_to(1.25)
+			camera.fade_out()
+			_door.play("open")
+			
 	if((fading_out || fading_in) &&
 	timer_fade.is_stopped()):
 		if(fading_out):
@@ -54,7 +82,7 @@ func _process(delta):
 				time_keeper.set_clock(sleep_end_time)
 				timer_fade.start(long_step_secs)
 		elif(fading_in):
-			if(fade_alpha > 0):
+			if(fade_alpha > 0 && !holding_forward):
 				_saving_game.visible = false
 				fade_alpha -= fade_step
 				timer_fade.start(fade_step_secs)

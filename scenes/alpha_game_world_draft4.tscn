@@ -142,7 +142,7 @@
 [ext_resource type="PackedScene" uid="uid://6ut1ouaa163n" path="res://entities/props/static props/city/dumpster.tscn" id="108_telwa"]
 [ext_resource type="PackedScene" uid="uid://b0rwjh2e8wc7e" path="res://entities/dynamic world/shop_window.tscn" id="111_qwmka"]
 [ext_resource type="PackedScene" uid="uid://b38g8360ntneo" path="res://entities/dynamic world/open_sign.tscn" id="113_lye04"]
-[ext_resource type="PackedScene" uid="uid://wu60bat886ur" path="res://dialog/dialog trees/gary_bar.tscn" id="123_8blpw"]
+[ext_resource type="PackedScene" uid="uid://wu60bat886ur" path="res://dialog/dialog trees/gary/gary_bar.tscn" id="123_8blpw"]
 [ext_resource type="Texture2D" uid="uid://c8paylt1mf2mk" path="res://sprites/game_world/rail_car_0.png" id="125_nb3qf"]
 [ext_resource type="SpriteFrames" uid="uid://bfvoxxrcwphnp" path="res://sprites/spritesheets/spriteframes/characters/hat/full_sheet/cap_0.tres" id="132_sucve"]
 [ext_resource type="SpriteFrames" uid="uid://c2xs2bbds05s3" path="res://sprites/spritesheets/spriteframes/characters/top/full_sheet/shirt_0.tres" id="133_gyyro"]

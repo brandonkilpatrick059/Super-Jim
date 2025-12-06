@@ -87,12 +87,12 @@ func _ready():
 		queue_redraw()
 
 #COMMENT THIS OUT WHEN YOU ARE DONE
-func _process(delta: float) -> void:
-	if(Engine.is_editor_hint()):
-		if(speaker_portrait != null):
-			_editor_anim.sprite_frames = speaker_portrait
-			if(speaker_emote != ""):
-				_editor_anim.play(speaker_emote)
-			else:
-				_editor_anim.play("default")
-		queue_redraw()
+#func _process(delta: float) -> void:
+	#if(Engine.is_editor_hint()):
+		#if(speaker_portrait != null):
+			#_editor_anim.sprite_frames = speaker_portrait
+			#if(speaker_emote != ""):
+				#_editor_anim.play(speaker_emote)
+			#else:
+				#_editor_anim.play("default")
+		#queue_redraw()

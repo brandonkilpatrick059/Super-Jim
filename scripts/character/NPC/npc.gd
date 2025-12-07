@@ -5,7 +5,6 @@ extends RigidBody2D
 #behavior Directives
 const full_passive = "full_passive"
 const alert_passive = "alert_passive"
-const appears_at_time = "appears_at_time"
 
 @export var talk_radius = 100
 @export var has_passive_text = false

@@ -175,7 +175,6 @@ strength_rating = 12
 hp = 4
 stamina = 0
 power = 4
-buff_dmg_on_kill = 1
 buff_dmg_against_team = 4
 buff_dmg_target_team = "green"
 

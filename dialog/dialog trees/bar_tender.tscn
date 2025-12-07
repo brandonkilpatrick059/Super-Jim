@@ -43,14 +43,14 @@ voice = "low_sine_voice"
 
 [node name="getting around town" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
 position = Vector2(-321, 524)
-speaker_text = Array[String](["With the gangs and the police, the town's locked up."])
+speaker_text = Array[String](["With the gangs and the police, it can be a little tricky."])
 speaker_portrait = null
 option_branches = [NodePath("../getting around town2")]
 voice = "low_sine_voice"
 
 [node name="getting around town2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
 position = Vector2(-311, 709)
-speaker_text = Array[String](["But people have their ways of sneaking around."])
+speaker_text = Array[String](["But people have their ways."])
 speaker_portrait = null
 option_branches = [NodePath("../getting around town3")]
 voice = "low_sine_voice"
@@ -78,7 +78,7 @@ voice = "low_sine_voice"
 
 [node name="sights to see2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
 position = Vector2(-138, 717)
-speaker_text = Array[String](["You been to Fallsboro? A little rough, but it's nice.", "I used to go exploring Onyx Cave when I was a kid.", "You ought to take the train out West, if you can afford it."])
+speaker_text = Array[String](["You been to Fallsboro? A little rough, but it's nice.", "I used to go exploring Onyx Cave when I was a kid.", "You ought to take the train out West, if you can afford it.", "You could head down to Rocktown and see the lighthouse."])
 speaker_portrait = null
 option_branches = [NodePath("../anyways")]
 voice = "low_sine_voice"

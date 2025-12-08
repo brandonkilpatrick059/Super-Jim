@@ -67,9 +67,9 @@ func _ready():
 	add_child(timer_control_back)
 	camera_ref = get_tree().get_first_node_in_group("camera")
 
-func _draw():
-	if(linked_teleporter != null && Engine.is_editor_hint()):
-		draw_line(Vector2(), get_transform().affine_inverse() * linked_teleporter.global_position, Color(0,0,1,1), -1)
+#func _draw():
+	#if(linked_teleporter != null && Engine.is_editor_hint()):
+		#draw_line(Vector2(), get_transform().affine_inverse() * linked_teleporter.global_position, Color(0,0,1,1), -1)
 
 func _process(delta):
 	if(entering || exiting || control_timer_active):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bhxsevgsr7a4h"]
+[gd_scene load_steps=18 format=3 uid="uid://bhxsevgsr7a4h"]
 
 [ext_resource type="Script" uid="uid://dn8lth6ua677u" path="res://scripts/baseball/baseball_manager.gd" id="1_6bnxi"]
 [ext_resource type="PackedScene" uid="uid://bocxc8pmuf3na" path="res://baseball/card_base.tscn" id="2_x31gc"]
@@ -10,14 +10,35 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7ut21"]
 light_mode = 1
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mbxvr"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_keca2"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3fd7y"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_p53bs"]
+light_mode = 1
+
 [sub_resource type="LabelSettings" id="LabelSettings_3fd7y"]
 font = ExtResource("5_7ut21")
 font_size = 32
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oxbwb"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2cbva"]
+light_mode = 1
 
 [sub_resource type="LabelSettings" id="LabelSettings_p53bs"]
 font = ExtResource("5_7ut21")
 font_size = 32
 font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gqjhu"]
+light_mode = 1
 
 [sub_resource type="LabelSettings" id="LabelSettings_7ut21"]
 font = ExtResource("5_7ut21")
@@ -31,11 +52,13 @@ script = ExtResource("1_6bnxi")
 
 [node name="bat_arms_left" type="AnimatedSprite2D" parent="."]
 z_index = 25
+material = SubResource("CanvasItemMaterial_mbxvr")
 position = Vector2(16, -48)
 sprite_frames = ExtResource("3_ae8mq")
 
 [node name="bat_arms_right" type="AnimatedSprite2D" parent="."]
 z_index = 25
+material = SubResource("CanvasItemMaterial_keca2")
 position = Vector2(-16, -47)
 scale = Vector2(-1, 0.955)
 sprite_frames = ExtResource("3_ae8mq")
@@ -97,12 +120,14 @@ position = Vector2(452, 0)
 
 [node name="back_ground" type="Sprite2D" parent="."]
 z_index = -1
+material = SubResource("CanvasItemMaterial_3fd7y")
 position = Vector2(0, 512)
 texture = ExtResource("4_a786n")
 
 [node name="home_win" type="Label" parent="."]
 visible = false
 z_index = 1
+material = SubResource("CanvasItemMaterial_p53bs")
 offset_left = -126.0
 offset_top = 72.0
 offset_right = 134.0
@@ -114,6 +139,7 @@ horizontal_alignment = 1
 [node name="get_ready" type="Label" parent="."]
 visible = false
 z_index = 1
+material = SubResource("CanvasItemMaterial_oxbwb")
 offset_left = -126.0
 offset_top = 72.0
 offset_right = 134.0
@@ -125,6 +151,7 @@ horizontal_alignment = 1
 [node name="fight" type="Label" parent="."]
 visible = false
 z_index = 1
+material = SubResource("CanvasItemMaterial_2cbva")
 offset_left = -126.0
 offset_top = 72.0
 offset_right = 134.0
@@ -136,6 +163,7 @@ horizontal_alignment = 1
 [node name="away_win" type="Label" parent="."]
 visible = false
 z_index = 1
+material = SubResource("CanvasItemMaterial_gqjhu")
 offset_left = -122.0
 offset_top = 72.0
 offset_right = 126.0

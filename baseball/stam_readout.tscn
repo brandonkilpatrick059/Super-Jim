@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpx2t73k84hm6"]
+[gd_scene load_steps=6 format=3 uid="uid://bpx2t73k84hm6"]
 
 [ext_resource type="Script" uid="uid://n8ti4p8mhn2b" path="res://scripts/baseball/stat_readouts/stat_readout.gd" id="1_fpbpa"]
 [ext_resource type="SpriteFrames" uid="uid://bimyv8fai4ycm" path="res://sprites/spritesheets/spriteframes/baseball/stamina_spriteframes.tres" id="2_8uqha"]
 [ext_resource type="LabelSettings" uid="uid://tdffmlt2tqo6" path="res://fonts/card_readout_text.tres" id="3_okux5"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vly34"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fpbpa"]
 light_mode = 1
 
 [node name="StamReadout" type="Node2D"]
@@ -15,6 +18,7 @@ material = SubResource("CanvasItemMaterial_vly34")
 sprite_frames = ExtResource("2_8uqha")
 
 [node name="Label" type="Label" parent="."]
+material = SubResource("CanvasItemMaterial_fpbpa")
 offset_left = -3.0
 offset_top = -8.0
 offset_right = 37.0

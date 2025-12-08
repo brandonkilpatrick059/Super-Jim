@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://3y8mthmml1ay"]
+[gd_scene load_steps=6 format=3 uid="uid://3y8mthmml1ay"]
 
 [ext_resource type="Script" uid="uid://n8ti4p8mhn2b" path="res://scripts/baseball/stat_readouts/stat_readout.gd" id="1_5exru"]
 [ext_resource type="SpriteFrames" uid="uid://cj4qms7ks6udg" path="res://sprites/spritesheets/spriteframes/baseball/hp_spriteframes.tres" id="2_tt3g5"]
 [ext_resource type="LabelSettings" uid="uid://tdffmlt2tqo6" path="res://fonts/card_readout_text.tres" id="3_x1rsp"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4yqhx"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5exru"]
 light_mode = 1
 
 [node name="HpReadout" type="Node2D"]
@@ -15,6 +18,7 @@ material = SubResource("CanvasItemMaterial_4yqhx")
 sprite_frames = ExtResource("2_tt3g5")
 
 [node name="Label" type="Label" parent="."]
+material = SubResource("CanvasItemMaterial_5exru")
 offset_left = -4.0
 offset_top = -8.0
 offset_right = 36.0

@@ -24,8 +24,8 @@ voice = "troll_voice"
 position = Vector2(9, 442)
 speaker_text = Array[String](["i am sorry but i must ask you to pay a fine."])
 speaker_portrait = null
-speech_options = Array[String](["Who are you?", "Can I please not pay the fine?", "Okay"])
-option_branches = [NodePath("../who_are_you"), NodePath("../fine2"), NodePath("../safety")]
+speech_options = Array[String](["Who are you?", "Can I please not pay the fine?", "Okay", "Baseball Cards"])
+option_branches = [NodePath("../who_are_you"), NodePath("../fine2"), NodePath("../safety"), NodePath("../baseball_cards")]
 voice = "troll_voice"
 
 [node name="fine2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
@@ -34,6 +34,76 @@ speaker_text = Array[String](["no."])
 speaker_portrait = null
 option_branches = [NodePath("../safety")]
 voice = "troll_voice"
+
+[node name="baseball_cards" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
+position = Vector2(469, 705)
+speaker_text = Array[String](["i should not neglect my duties..."])
+speaker_portrait = null
+option_branches = [NodePath("../baseball_cards2")]
+voice = "troll_voice"
+
+[node name="baseball_cards2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
+position = Vector2(455, 910)
+speaker_text = Array[String](["...but i suppose one small game couldn't hurt."])
+speaker_portrait = null
+option_branches = [NodePath("../baseball_cards3")]
+voice = "troll_voice"
+
+[node name="baseball_cards3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
+position = Vector2(472, 1145)
+speaker_text = Array[String](["...but i suppose one small game couldn't hurt."])
+speaker_portrait = null
+option_branches = [NodePath("../no_cards"), NodePath("../win"), NodePath("../lose")]
+voice = "troll_voice"
+plays_cards = true
+card_deck = Array[int]([17, 18, 9, 11, 14])
+
+[node name="no_cards" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
+position = Vector2(364, 1383)
+speaker_text = Array[String](["Oh, you don't have any cards."])
+speaker_portrait = null
+option_branches = [NodePath("../anyways")]
+voice = "troll_voice"
+card_deck = Array[int]([0, 0, 0, 0, 0])
+
+[node name="anyways" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
+position = Vector2(352, 1623)
+speaker_text = Array[String](["anyways, about that fine-"])
+speaker_portrait = null
+option_branches = [NodePath("../safety")]
+voice = "troll_voice"
+card_deck = Array[int]([0, 0, 0, 0, 0])
+
+[node name="win" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
+position = Vector2(543, 1386)
+speaker_text = Array[String](["i-impressive victory."])
+speaker_portrait = null
+option_branches = [NodePath("../win3")]
+voice = "troll_voice"
+card_deck = Array[int]([0, 0, 0, 0, 0])
+
+[node name="win3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
+position = Vector2(569, 1815)
+speaker_text = Array[String](["i would have won if not for...hmm.."])
+speaker_portrait = null
+option_branches = [NodePath("../win4")]
+voice = "troll_voice"
+card_deck = Array[int]([0, 0, 0, 0, 0])
+
+[node name="win4" parent="." instance=ExtResource("2_mp261")]
+position = Vector2(576, 2023)
+speaker_text = Array[String](["give me a minute, i just need to work it out..."])
+speaker_portrait = null
+voice = "troll_voice"
+card_deck = Array[int]([0, 0, 0, 0, 0])
+
+[node name="lose" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
+position = Vector2(761, 1547)
+speaker_text = Array[String](["interesting strategy."])
+speaker_portrait = null
+option_branches = [NodePath("../anyways")]
+voice = "troll_voice"
+card_deck = Array[int]([0, 0, 0, 0, 0])
 
 [node name="who_are_you" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_mp261")]
 position = Vector2(-177, 716)

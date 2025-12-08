@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://t2tsw5a0gk6o"]
+[gd_scene load_steps=4 format=3 uid="uid://t2tsw5a0gk6o"]
 
 [ext_resource type="Script" uid="uid://dmvljvkyxkbee" path="res://scripts/baseball/stat_readouts/stat_particle.gd" id="1_e8tmu"]
 [ext_resource type="LabelSettings" uid="uid://tdffmlt2tqo6" path="res://fonts/card_readout_text.tres" id="2_ja7cw"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0tefq"]
+light_mode = 1
 
 [node name="StatParticle" type="Node2D"]
 script = ExtResource("1_e8tmu")
 
 [node name="Label" type="Label" parent="."]
+material = SubResource("CanvasItemMaterial_0tefq")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

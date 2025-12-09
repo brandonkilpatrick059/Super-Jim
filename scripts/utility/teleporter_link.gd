@@ -12,6 +12,7 @@ extends Node2D
 @export var secs_for_control_back : int = 0
 @export var fade_color : Color = Color(0,0,0)
 @export var no_ui_interact = false
+@export var inactive : bool = false
 
 var entering = false
 var loading = false
@@ -99,6 +100,9 @@ func load_wait():
 		exiting = true
 		#player_ref.get_camera_ref().fade_in(0.1)
 
+func make_active():
+	inactive = false
+
 func enter():
 	if(fade_alpha < 1 && timer_fade.is_stopped()):
 		fade_alpha = fade_alpha + fade_step
@@ -164,26 +168,27 @@ func _on_area_2d_body_exited(body):
 		npcs_using_teleporter.remove_at(npcs_using_teleporter.find(body))
 
 func _on_area_2d_body_entered(body):
-	if(body.is_in_group("player")):
-		if(!entering && !loading && !exiting && !exit_only):
-			entering = true
-			#player_ref.get_camera_ref().fade_out(0.1)
-			player_ref.stop()
-			player_ref.set_control_frozen(true)
-			#player_ref.disable_collision()
-			if(!no_ui_interact):
-				player_ref.main_ui_invisible()
-			update_fade_alpha()
-			timer_fade.start(fade_step_secs)
-			if(enter_y_push != 0):
-				player_ref.set_current_v(Vector2(0,enter_y_push))
-	elif(body.is_in_group("npc") && 
-	npcs_using_teleporter.find(body) < 0 &&
-	linked_teleporter.npcs_using_teleporter.find(body) < 0):
-		npcs_using_teleporter.append(body)
-		linked_teleporter.npcs_using_teleporter.append(body)
-		body.global_position = linked_teleporter.global_position
-		if(reparent_to_daylight):
-			body.reparent(day_light_ysort)
-		if(reparent_to_no_daylight):
-			body.reparent(flat_light_ysort)
+	if(not inactive):
+		if(body.is_in_group("player")):
+			if(!entering && !loading && !exiting && !exit_only):
+				entering = true
+				#player_ref.get_camera_ref().fade_out(0.1)
+				player_ref.stop()
+				player_ref.set_control_frozen(true)
+				#player_ref.disable_collision()
+				if(!no_ui_interact):
+					player_ref.main_ui_invisible()
+				update_fade_alpha()
+				timer_fade.start(fade_step_secs)
+				if(enter_y_push != 0):
+					player_ref.set_current_v(Vector2(0,enter_y_push))
+		elif(body.is_in_group("npc") && 
+		npcs_using_teleporter.find(body) < 0 &&
+		linked_teleporter.npcs_using_teleporter.find(body) < 0):
+			npcs_using_teleporter.append(body)
+			linked_teleporter.npcs_using_teleporter.append(body)
+			body.global_position = linked_teleporter.global_position
+			if(reparent_to_daylight):
+				body.reparent(day_light_ysort)
+			if(reparent_to_no_daylight):
+				body.reparent(flat_light_ysort)

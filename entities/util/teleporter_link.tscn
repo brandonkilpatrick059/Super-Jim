@@ -15,6 +15,7 @@ reparent_to_daylight = null
 reparent_to_no_daylight = null
 reparent_to_dark_indoor = null
 no_ui_interact = null
+inactive = null
 
 [node name="link_point" type="AnimatedSprite2D" parent="."]
 visible = false

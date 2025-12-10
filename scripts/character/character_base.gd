@@ -190,6 +190,14 @@ func load_and_set_spriteframes(base : String, hat : String, top: String, bottom 
 		bottom_sprite = load(bottom)
 	set_spriteframes(base_sprite, hat_sprite, top_sprite, bottom_sprite)
 
+func set_spriteframes_include_null(base, hat, top, bottom):
+	_base_sprite.sprite_frames = base
+	_hat.sprite_frames = hat
+	_top.sprite_frames = top
+	_bottom.sprite_frames = bottom
+	if(Engine.is_editor_hint()):
+		queue_redraw()
+
 func set_spriteframes(base, hat, top, bottom):
 	if(_base_sprite != null):
 		_base_sprite.sprite_frames = base

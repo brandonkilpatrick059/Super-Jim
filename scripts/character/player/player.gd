@@ -170,12 +170,6 @@ func load_in():
 		sound_player.stream = load("res://audio/music/sleep theme.wav")
 		sound_player.play()
 
-func update_clothes():
-	var hat_str : String = owned_hats[hats_index]
-	var top_str : String = owned_tops[tops_index]
-	var bottom_str : String = owned_bottoms[bottoms_index]
-	_character_base.load_and_set_spriteframes()
-
 func set_and_update_cloths(hat : int, top : int, bottom : int):
 	hats_index = hat
 	tops_index = top
@@ -183,7 +177,22 @@ func set_and_update_cloths(hat : int, top : int, bottom : int):
 	var hat_str : String = owned_hats[hats_index]
 	var top_str : String = owned_tops[tops_index]
 	var bottom_str : String = owned_bottoms[bottoms_index]
-	_character_base.load_and_set_spriteframes(base_spriteframes.resource_path,hat_str,top_str,bottom_str)
+	if(hat_str != ""):
+		hat_spriteframes = load(hat_str)
+	else:
+		hat_spriteframes = null
+	if(top_str != ""):
+		top_spriteframes = load(top_str)
+	else:
+		top_spriteframes = null
+	if(bottom_str != ""):
+		bottom_spriteframes = load(bottom_str)
+	else:
+		bottom_spriteframes = null
+	_character_base.set_spriteframes_include_null(base_spriteframes,
+	hat_spriteframes,
+	top_spriteframes,
+	bottom_spriteframes)
 	_character_base.stand_dir(facing_dir)
 
 func get_hats_index():
@@ -259,7 +268,13 @@ func get_save_dictionary() -> Dictionary:
 		"bottom_spriteframes" : bottom,
 		"card_deck" : card_deck,
 		"owned_cards" : owned_cards,
-		"items" : items
+		"items" : items,
+		"owned_hats" : owned_hats,
+		"owned_tops" : owned_tops,
+		"owned_bottoms" : owned_bottoms,
+		"hats_index" : hats_index,
+		"tops_index" : tops_index,
+		"bottoms_index" : bottoms_index
 	}
 	return save_dictionary
 
@@ -295,9 +310,29 @@ func load_from_dictionary(load_dictionary : Dictionary):
 		index = index + 1
 	var load_items = load_dictionary.get("items")
 	index = 0
+	
+	var hats_index = load_dictionary.get("hats_index")
+	var tops_index = load_dictionary.get("tops_index")
+	var bottoms_index = load_dictionary.get("bottoms_index")
 	while(index < load_items.size()):
 		items.append(String(load_items[index]))
 		index = index + 1
+	var load_hats = load_dictionary.get("owned_hats")
+	index = 0
+	while(index < load_hats.size()):
+		append_owned_hat(String(load_hats[index]))
+		index = index + 1
+	var load_tops = load_dictionary.get("owned_tops")
+	index = 0
+	while(index < load_tops.size()):
+		append_owned_top(String(load_tops[index]))
+		index = index + 1
+	var load_bottoms = load_dictionary.get("owned_bottoms")
+	index = 0
+	while(index < load_bottoms.size()):
+		append_owned_bottom(String(load_bottoms[index]))
+		index = index + 1
+		
 	var hat = load_dictionary.get("hat_spriteframes")
 	var top = load_dictionary.get("top_spriteframes")
 	var bottom = load_dictionary.get("bottom_spriteframes")

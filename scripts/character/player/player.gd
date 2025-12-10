@@ -107,8 +107,8 @@ var use_item_timer : Timer = Timer.new()
 var hats_index = 0
 var tops_index = 0
 var bottoms_index = 0
-var owned_hats : Array[String] = ["",]
-var owned_tops : Array[String] = ["","res://sprites/spritesheets/spriteframes/characters/top/full_sheet/shirt_1.tres","res://sprites/spritesheets/spriteframes/characters/top/full_sheet/shirt_2.tres"]
+var owned_hats : Array[String] = ["", "res://sprites/spritesheets/spriteframes/characters/hat/full_sheet/cap_0.tres"]
+var owned_tops : Array[String] = ["","res://sprites/spritesheets/spriteframes/characters/top/full_sheet/shirt_0.tres", "res://sprites/spritesheets/spriteframes/characters/top/full_sheet/shirt_1.tres","res://sprites/spritesheets/spriteframes/characters/top/full_sheet/shirt_2.tres"]
 var owned_bottoms : Array[String] = ["res://sprites/spritesheets/spriteframes/characters/bottom/full_sheet/pants_0.tres","res://sprites/spritesheets/spriteframes/characters/bottom/full_sheet/pants_1.tres"]
 
 var items : Array[String] = []
@@ -184,6 +184,7 @@ func set_and_update_cloths(hat : int, top : int, bottom : int):
 	var top_str : String = owned_tops[tops_index]
 	var bottom_str : String = owned_bottoms[bottoms_index]
 	_character_base.load_and_set_spriteframes(base_spriteframes.resource_path,hat_str,top_str,bottom_str)
+	_character_base.stand_dir(facing_dir)
 
 func get_hats_index():
 	return hats_index

@@ -44,15 +44,18 @@ func _ready() -> void:
 	add_child(timer_animation)
 	player_ref.set_control_frozen(true)
 	player_ref.main_ui_invisible()
+	player_ref.visible = false
 
 func update_character_base():
 	if(changed):
+		animation_index = 0
 		var hat : String = hats[hat_index]
 		var top : String = tops[top_index]
 		var bottom : String = bottoms[bottom_index]
 		character_base.load_and_set_spriteframes(player_ref.get_base(),hat,top,bottom)
 		character_base.set_all_materials(base_material)
 		character_base.stand_dir("down")
+		character_base.synch_animations()
 		character_base.set_speed_scales(0.5)
 		changed = false
 
@@ -118,6 +121,7 @@ func close(keep_changes : bool):
 		player_ref.set_and_update_cloths(hat_index,top_index,bottom_index)
 	player_ref.set_control_frozen(false)
 	player_ref.main_ui_visible()
+	player_ref.visible = true
 	queue_free()
 
 func handle_input():

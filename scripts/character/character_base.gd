@@ -11,7 +11,6 @@ extends Node2D
 var arms_raised = false
 var flashing = false
 var is_visible = true
-var current_animation_name : String = ""
 
 var flashing_timer = Timer.new() 
 
@@ -63,16 +62,14 @@ func get_base_animation_framecount(animation_name: String = ""):
 	return base_animation_framecount
 
 func play_animation(animation: String):
-	if(current_animation_name != animation):
-		current_animation_name = animation
-		if(_base_sprite.sprite_frames != null):
-			_base_sprite.play(animation)
-		if(_hat.sprite_frames != null):
-			_hat.play(animation)
-		if(_top.sprite_frames != null):
-			_top.play(animation)
-		if(_bottom.sprite_frames != null):
-			_bottom.play(animation)
+	if(_base_sprite.sprite_frames != null):
+		_base_sprite.play(animation)
+	if(_hat.sprite_frames != null):
+		_hat.play(animation)
+	if(_top.sprite_frames != null):
+		_top.play(animation)
+	if(_bottom.sprite_frames != null):
+		_bottom.play(animation)
 
 func set_speed_scales(scale):
 	if(_base_sprite.sprite_frames != null):
@@ -91,6 +88,12 @@ func stand_dir(direction):
 	if(arms_raised):
 		animation = str(animation,"_arms")
 	play_animation(animation)
+
+func synch_animations():
+	_base_sprite.frame = 0
+	_hat.frame = 0
+	_top.frame = 0
+	_bottom.frame = 0
 
 func walk_dir(direction):
 	if(direction != ""):

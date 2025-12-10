@@ -108,8 +108,8 @@ var hats_index = 0
 var tops_index = 0
 var bottoms_index = 0
 var owned_hats : Array[String] = ["", "res://sprites/spritesheets/spriteframes/characters/hat/full_sheet/cap_0.tres"]
-var owned_tops : Array[String] = ["","res://sprites/spritesheets/spriteframes/characters/top/full_sheet/shirt_0.tres", "res://sprites/spritesheets/spriteframes/characters/top/full_sheet/shirt_1.tres","res://sprites/spritesheets/spriteframes/characters/top/full_sheet/shirt_2.tres"]
-var owned_bottoms : Array[String] = ["res://sprites/spritesheets/spriteframes/characters/bottom/full_sheet/pants_0.tres","res://sprites/spritesheets/spriteframes/characters/bottom/full_sheet/pants_1.tres"]
+var owned_tops : Array[String] = ["", "res://sprites/spritesheets/spriteframes/characters/top/full_sheet/shirt_0.tres"]
+var owned_bottoms : Array[String] = ["", "res://sprites/spritesheets/spriteframes/characters/bottom/full_sheet/pants_0.tres"]
 
 var items : Array[String] = []
 var item_index : int = 0
@@ -203,6 +203,18 @@ func set_tops_index(index : int):
 
 func set_bottoms_index(index : int):
 	bottoms_index = index
+
+func append_owned_hat(resource_path : String):
+	if(!owned_hats.has(resource_path)):
+		owned_hats.append(resource_path)
+
+func append_owned_top(resource_path : String):
+	if(!owned_tops.has(resource_path)):
+		owned_tops.append(resource_path)
+
+func append_owned_bottom(resource_path : String):
+	if(!owned_bottoms.has(resource_path)):
+		owned_bottoms.append(resource_path)
 
 func get_owned_hats() -> Array[String]:
 	return owned_hats

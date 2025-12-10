@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://m3knmad6mwb1"]
+
+[ext_resource type="Script" uid="uid://c2eauyl5k8il2" path="res://scripts/shop/ware.gd" id="1_2ylq2"]
+[ext_resource type="Script" uid="uid://dgcx8v1tax64v" path="res://scripts/shop/ware_clothing.gd" id="2_x0le6"]
+[ext_resource type="Texture2D" uid="uid://bh4hmtgkyk5y3" path="res://sprites/spritesheets/characters/base/mannequin_base.png" id="3_1caeb"]
+[ext_resource type="Texture2D" uid="uid://0d3n5esom4o4" path="res://sprites/lights/small_shadow.png" id="4_60w10"]
+[ext_resource type="SpriteFrames" uid="uid://l8kefhixu0rl" path="res://sprites/spritesheets/spriteframes/characters/bottom/full_sheet/pants_1.tres" id="5_qixc0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8ccd"]
+size = Vector2(20, 13)
+
+[node name="WarePants1" type="Node2D"]
+script = ExtResource("1_2ylq2")
+cost = 25
+ware_name = "Blue Pants - $25"
+
+[node name="script_node" type="Node" parent="."]
+script = ExtResource("2_x0le6")
+is_bottom = true
+resource_path = "res://sprites/spritesheets/spriteframes/characters/bottom/full_sheet/pants_1.tres"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_r8ccd")
+
+[node name="mannequin" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+texture = ExtResource("3_1caeb")
+
+[node name="shadow" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("4_60w10")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -3)
+sprite_frames = ExtResource("5_qixc0")
+speed_scale = 0.0

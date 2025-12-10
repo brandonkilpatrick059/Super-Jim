@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://c1bnbol8xo4yy"]
+
+[ext_resource type="Script" uid="uid://c2eauyl5k8il2" path="res://scripts/shop/ware.gd" id="1_4udqk"]
+[ext_resource type="Script" uid="uid://dgcx8v1tax64v" path="res://scripts/shop/ware_clothing.gd" id="2_si8fa"]
+[ext_resource type="Texture2D" uid="uid://bh4hmtgkyk5y3" path="res://sprites/spritesheets/characters/base/mannequin_base.png" id="4_si8fa"]
+[ext_resource type="Texture2D" uid="uid://0d3n5esom4o4" path="res://sprites/lights/small_shadow.png" id="5_785jj"]
+[ext_resource type="SpriteFrames" uid="uid://djg0luum2gn50" path="res://sprites/spritesheets/spriteframes/characters/top/full_sheet/shirt_1.tres" id="6_785jj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8ccd"]
+size = Vector2(20, 13)
+
+[node name="WareShirt1" type="Node2D"]
+script = ExtResource("1_4udqk")
+cost = 12
+ware_name = "Red Long-Sleeve Shirt - $12"
+
+[node name="script_node" type="Node" parent="."]
+script = ExtResource("2_si8fa")
+is_top = true
+resource_path = "res://sprites/spritesheets/spriteframes/characters/top/full_sheet/shirt_1.tres"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_r8ccd")
+
+[node name="mannequin" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+texture = ExtResource("4_si8fa")
+
+[node name="shadow" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("5_785jj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -3)
+sprite_frames = ExtResource("6_785jj")
+speed_scale = 0.0

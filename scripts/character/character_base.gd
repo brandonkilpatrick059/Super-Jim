@@ -171,6 +171,22 @@ func set_animation_scale(base, remainder, scalar, top_speed):
 func set_animation_scale_ratio(ratio):
 	set_speed_scales(ratio)
 
+#given resource path strings will load those resoruces and set the corresponding spriteframes
+func load_and_set_spriteframes(base : String, hat : String, top: String, bottom : String):
+	var base_sprite : SpriteFrames = null
+	var hat_sprite : SpriteFrames = null
+	var top_sprite : SpriteFrames = null
+	var bottom_sprite : SpriteFrames = null
+	if(base != ""):
+		base_sprite = load(base)
+	if(hat != ""):
+		hat_sprite = load(hat)
+	if(top != ""):
+		top_sprite = load(top)
+	if(bottom != ""):
+		bottom_sprite = load(bottom)
+	set_spriteframes(base_sprite, hat_sprite, top_sprite, bottom_sprite)
+
 func set_spriteframes(base, hat, top, bottom):
 	if(_base_sprite != null):
 		_base_sprite.sprite_frames = base

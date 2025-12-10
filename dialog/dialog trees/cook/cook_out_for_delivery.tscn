@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_xlawg"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_e18lb"]
 [ext_resource type="SpriteFrames" uid="uid://b6grq4ppef8v2" path="res://sprites/spritesheets/spriteframes/portrait/test3.tres" id="3_hpsr7"]
-[ext_resource type="Script" uid="uid://l7oqg346nvjx" path="res://scripts/clear_pizzas.gd" id="4_nfy6m"]
+[ext_resource type="Script" uid="uid://l7oqg346nvjx" path="res://scripts/utility/clear_pizzas.gd" id="4_nfy6m"]
 
 [node name="cook_out_for_delivery" type="Node2D"]
 script = ExtResource("1_xlawg")

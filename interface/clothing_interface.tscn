@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8t08sv7stb2"]
+
+[ext_resource type="PackedScene" uid="uid://h6t3cjbjhfv7" path="res://sprites/spritesheets/spriteframes/characters/base/character_base.tscn" id="1_8t3ah"]
+[ext_resource type="Script" uid="uid://cyvwii351iwuw" path="res://scripts/interface/clothing_interface.gd" id="1_rtgq2"]
+[ext_resource type="SpriteFrames" uid="uid://dy0ok2t6yhqyc" path="res://sprites/spritesheets/spriteframes/characters/base/char_0_base.tres" id="2_k52cg"]
+[ext_resource type="Texture2D" uid="uid://dgcu35dj4gact" path="res://sprites/interface/clothing_interface.png" id="3_i3pbh"]
+[ext_resource type="PackedScene" uid="uid://dp0wwymis3h0l" path="res://interface/clothing_select_arrows.tscn" id="4_1isub"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rtgq2"]
+light_mode = 1
+
+[node name="ClothingInterface" type="Node2D"]
+z_index = 20
+script = ExtResource("1_rtgq2")
+
+[node name="character_base" parent="." instance=ExtResource("1_8t3ah")]
+z_index = 1
+base_spriteframes = ExtResource("2_k52cg")
+
+[node name="background" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_rtgq2")
+texture = ExtResource("3_i3pbh")
+
+[node name="hat_arrows" parent="." instance=ExtResource("4_1isub")]
+
+[node name="top_arrows" parent="." instance=ExtResource("4_1isub")]
+position = Vector2(0, 18)
+
+[node name="bottom_arrows" parent="." instance=ExtResource("4_1isub")]
+position = Vector2(0, 36)

@@ -102,6 +102,15 @@ var dev_occlusion_enabled = true
 
 var use_item_timer : Timer = Timer.new()
 
+#TODO: character gen when the game starts to randomly choose some defaults? Let the player choose defaults?
+#empty string "" -> default, empty slot. Note bottoms default is pants_0
+var hats_index = 0
+var tops_index = 0
+var bottoms_index = 0
+var owned_hats : Array[String] = ["",]
+var owned_tops : Array[String] = ["","res://sprites/spritesheets/spriteframes/characters/top/full_sheet/shirt_1.tres","res://sprites/spritesheets/spriteframes/characters/top/full_sheet/shirt_2.tres"]
+var owned_bottoms : Array[String] = ["res://sprites/spritesheets/spriteframes/characters/bottom/full_sheet/pants_0.tres","res://sprites/spritesheets/spriteframes/characters/bottom/full_sheet/pants_1.tres"]
+
 var items : Array[String] = []
 var item_index : int = 0
 
@@ -161,6 +170,48 @@ func load_in():
 		sound_player.stream = load("res://audio/music/sleep theme.wav")
 		sound_player.play()
 
+func update_clothes():
+	var hat_str : String = owned_hats[hats_index]
+	var top_str : String = owned_tops[tops_index]
+	var bottom_str : String = owned_bottoms[bottoms_index]
+	_character_base.load_and_set_spriteframes()
+
+func set_and_update_cloths(hat : int, top : int, bottom : int):
+	hats_index = hat
+	tops_index = top
+	bottoms_index = bottom
+	var hat_str : String = owned_hats[hats_index]
+	var top_str : String = owned_tops[tops_index]
+	var bottom_str : String = owned_bottoms[bottoms_index]
+	_character_base.load_and_set_spriteframes(base_spriteframes.resource_path,hat_str,top_str,bottom_str)
+
+func get_hats_index():
+	return hats_index
+
+func get_tops_index():
+	return tops_index
+
+func get_bottoms_index():
+	return bottoms_index
+
+func set_hats_index(index : int):
+	hats_index = index
+
+func set_tops_index(index : int):
+	tops_index = index
+
+func set_bottoms_index(index : int):
+	bottoms_index = index
+
+func get_owned_hats() -> Array[String]:
+	return owned_hats
+
+func get_owned_tops() -> Array[String]:
+	return owned_tops
+
+func get_owned_bottoms() -> Array[String]:
+	return owned_bottoms
+
 #called when the player starts a new game
 func new_game():
 	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
@@ -198,6 +249,9 @@ func get_save_dictionary() -> Dictionary:
 		"items" : items
 	}
 	return save_dictionary
+
+func get_base() -> String:
+	return base_spriteframes.resource_path
 
 func push(push_vect : Vector2, time_secs : float):
 	push_timer.start(time_secs)

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dojrobm2ycdqt"]
+
+[ext_resource type="Script" uid="uid://y5ippqr715to" path="res://scripts/player_apartment/furniture.gd" id="1_1yx87"]
+[ext_resource type="Texture2D" uid="uid://bqn3d6wautwax" path="res://sprites/props/furniture/wardrobe_0.png" id="2_3a4l1"]
+[ext_resource type="Script" uid="uid://bsdq5jkaub3go" path="res://scripts/player_apartment/wardrobe.gd" id="3_y3bs0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3a4l1"]
+size = Vector2(28, 19)
+
+[node name="wardrobe_0" type="Node2D"]
+script = ExtResource("1_1yx87")
+path_to_self = "res://entities/props/static props/apartment/furniture/wardrobe/wardrobe_0.tscn"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -22)
+texture = ExtResource("2_3a4l1")
+offset = Vector2(0, 24)
+
+[node name="wardrobe" type="StaticBody2D" parent="." groups=["interactable"]]
+collision_layer = 20
+collision_mask = 0
+script = ExtResource("3_y3bs0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wardrobe"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_3a4l1")
+debug_color = Color(0.109288, 0.640469, 0.287485, 0.42)

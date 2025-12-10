@@ -152,7 +152,7 @@
 [ext_resource type="PackedScene" uid="uid://buj2u4alt2o16" path="res://dialog/dialog trees/bar_tender.tscn" id="139_kjtnq"]
 [ext_resource type="Script" uid="uid://cxdxvmads68ph" path="res://scripts/utility/interact_zone.gd" id="140_8g0fd"]
 [ext_resource type="PackedScene" uid="uid://cjdnphei1be46" path="res://entities/props/static props/city/TV.tscn" id="141_smc0a"]
-[ext_resource type="Script" uid="uid://cbhs1x66jqvio" path="res://team_manager.gd" id="142_r4qkx"]
+[ext_resource type="Script" uid="uid://cbhs1x66jqvio" path="res://scripts/character/mobsters/team_manager.gd" id="142_r4qkx"]
 [ext_resource type="PackedScene" uid="uid://b7k5ha5wjdpvt" path="res://entities/props/static props/city/bar_table.tscn" id="143_67jlk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4p8v"]

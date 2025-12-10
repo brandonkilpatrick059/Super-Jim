@@ -17,7 +17,7 @@ var exiting = false
 var deck_lineup : Array[int] = []
 var used_cards = 0
 
-
+var sound_player := AudioStreamPlayer.new()
 
 func close_binder():
 	player_ref.set_deck(deck_lineup)
@@ -34,6 +34,8 @@ func _ready() -> void:
 	add_child(exit_timer)
 	timer.one_shot = true
 	add_child(timer)
+	sound_player.bus = "Effects"
+	add_child(sound_player)
 	deck_lineup = player_ref.get_deck()
 	lineup.set_lineup(deck_lineup)
 	update_viewed_card()
@@ -73,17 +75,29 @@ func handle_input():
 				var num_selected_card = scroll_list.get_num_selected_card()
 				if(deck_lineup.size() + 1 <= 5 &&
 				deck_lineup.count(indx) < num_selected_card):
+					sound_player.stream = load("res://audio/soundFX/pickup.wav")
+					sound_player.play()
 					deck_lineup.append(indx) 
 					lineup.add_card(indx)
 					update_viewed_card()
+				else:
+					sound_player.stream = load("res://audio/soundFX/bigCollide.wav")
+					sound_player.play()
+			else:
+				sound_player.stream = load("res://audio/soundFX/bigCollide.wav")
+				sound_player.play()
 			timer.start(input_wait_secs)
 		else: if Input.is_action_just_released("use_item"):
 			exiting = false
-			if(scroll_list.get_num_selected_card() > 0):
-				if(deck_lineup.size() != 0):
-					deck_lineup.remove_at(deck_lineup.size()-1)
-					lineup.subtract_card()
-					update_viewed_card()
+			if(deck_lineup.size() != 0):
+				sound_player.stream = load("res://audio/soundFX/putdown.wav")
+				sound_player.play()
+				deck_lineup.remove_at(deck_lineup.size()-1)
+				lineup.subtract_card()
+				update_viewed_card()
+			else:
+				sound_player.stream = load("res://audio/soundFX/bigCollide.wav")
+				sound_player.play()
 			timer.start(input_wait_secs)
 		else: if Input.is_action_just_pressed("use_item"):
 			if(!exiting):

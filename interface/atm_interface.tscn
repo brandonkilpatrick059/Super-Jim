@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cthp3v5qyp44p"]
 
 [ext_resource type="Texture2D" uid="uid://1n5m4whcv75c" path="res://sprites/interface/atm_interface.png" id="1_a5l67"]
-[ext_resource type="Script" uid="uid://bltp14sggcnwy" path="res://scripts/utility/atm_interface.gd" id="1_su81r"]
+[ext_resource type="Script" uid="uid://bltp14sggcnwy" path="res://scripts/interface/atm_interface.gd" id="1_su81r"]
 [ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="2_su81r"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_28h3g"]

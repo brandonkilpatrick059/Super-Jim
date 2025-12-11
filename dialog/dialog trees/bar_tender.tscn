@@ -15,7 +15,7 @@ option_branches = [NodePath("../bye"), NodePath("../Can I buy a soda?"), NodePat
 voice = "low_sine_voice"
 
 [node name="Can I buy a soda?" parent="." instance=ExtResource("2_ct525")]
-position = Vector2(174, 305)
+position = Vector2(174, 308)
 speaker_text = Array[String](["No."])
 speaker_portrait = null
 voice = "low_sine_voice"
@@ -43,7 +43,7 @@ voice = "low_sine_voice"
 
 [node name="getting around town" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
 position = Vector2(-321, 524)
-speaker_text = Array[String](["With the gangs and the police, it can be a little tricky."])
+speaker_text = Array[String](["With the gangs and the cops, it can be a little tricky."])
 speaker_portrait = null
 option_branches = [NodePath("../getting around town2")]
 voice = "low_sine_voice"

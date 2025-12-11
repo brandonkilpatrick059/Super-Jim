@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var test_mode = false
+
 @onready var _animated_pack : AnimatedSprite2D = $animated_pack
 @onready var _card_1 : Node2D = $card_1 #moves left
 @onready var _card_2 : Node2D = $card_2 #does not move - stays in center
@@ -35,6 +37,8 @@ func _ready() -> void:
 	add_child(rise_up_timer)
 	add_child(spread_out_timer)
 	add_child(sound_player)
+	if(test_mode):
+		open(0,18,"green")
 
 func open(in_roster_min : int, in_roster_max : int, team_name : String = ""):
 	if(team_name != ""):
@@ -100,7 +104,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			_animated_pack.position = Vector2(0,_animated_pack.position.y - y_move_step)
 			rise_up_timer.start(step_secs)
-	if(opening && _animated_pack.frame == _animated_pack.sprite_frames.get_frame_count(str("opened",pack_skin)) - 1):
+	if(opening && _animated_pack.frame == _animated_pack.sprite_frames.get_frame_count(str("opening",pack_skin)) - 1):
 		_animated_pack.play(str("opened",pack_skin))
 		opening = false
 		lowering = true

@@ -36,18 +36,9 @@ speaker_name = "speedy"
 [node name="trunk4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_g13i0")]
 position = Vector2(64, 598)
 speaker_text = Array[String](["Congrats."])
-speech_options = Array[String](["What now?", "How does this work?"])
-option_branches = [NodePath("../trunk5"), NodePath("../trunk5")]
+option_branches = [NodePath("../trunk6")]
 voice = "sine_voice"
 speaker_name = "speedy"
-
-[node name="trunk5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_g13i0")]
-position = Vector2(54, 820)
-speaker_text = Array[String](["You ought to rest up before your first day."])
-speaker_portrait = ExtResource("3_g13i0")
-option_branches = [NodePath("../trunk6")]
-voice = "low_sine_voice"
-speaker_name = "cook"
 
 [node name="trunk6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_g13i0")]
 position = Vector2(54, 1025)
@@ -59,14 +50,13 @@ speaker_name = "speedy"
 [node name="trunk7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_g13i0")]
 position = Vector2(54, 1217)
 speaker_text = Array[String](["The place right behind the restaurant?"])
-speech_options = Array[String](["Yeah, that one.", "I think so."])
-option_branches = [NodePath("../trunk8"), NodePath("../trunk8")]
+option_branches = [NodePath("../trunk8")]
 voice = "sine_voice"
 speaker_name = "speedy"
 
 [node name="trunk8" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_g13i0")]
 position = Vector2(54, 1421)
-speaker_text = Array[String](["Just head up there and settle in. Get some shut-eye."])
+speaker_text = Array[String](["Just head up there and settle in. Come talk to us first thing tomorrow."])
 speaker_portrait = ExtResource("3_g13i0")
 option_branches = [NodePath("../trunk9")]
 voice = "low_sine_voice"
@@ -89,7 +79,7 @@ script = ExtResource("5_6v0ol")
 
 [node name="trunk10" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_g13i0")]
 position = Vector2(64, 1834)
-speaker_text = Array[String](["Just come in when you're ready and we'll explain everything."])
+speaker_text = Array[String](["We'll explain everything then."])
 speaker_portrait = ExtResource("3_g13i0")
 voice = "low_sine_voice"
 dialog_script = NodePath("move_to_after_start_2")

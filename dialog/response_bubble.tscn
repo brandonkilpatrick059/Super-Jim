@@ -14,10 +14,12 @@ material = SubResource("CanvasItemMaterial_ct2ck")
 script = ExtResource("1_6wwqt")
 
 [node name="bubble" type="Sprite2D" parent="."]
+z_index = 7
 material = SubResource("CanvasItemMaterial_ct2ck")
 texture = ExtResource("2_okya3")
 
 [node name="Label" type="Label" parent="."]
+z_index = 7
 material = SubResource("CanvasItemMaterial_ct2ck")
 offset_left = -94.0
 offset_top = -55.0
@@ -30,11 +32,13 @@ autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="arrow_r" type="Sprite2D" parent="."]
+z_index = 7
 material = SubResource("CanvasItemMaterial_ct2ck")
 position = Vector2(90, -5)
 texture = ExtResource("3_f7kcr")
 
 [node name="arrow_l" type="Sprite2D" parent="."]
+z_index = 7
 material = SubResource("CanvasItemMaterial_ct2ck")
 position = Vector2(-93, -5)
 texture = ExtResource("3_f7kcr")

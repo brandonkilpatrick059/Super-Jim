@@ -99,10 +99,12 @@ func handle_input():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	visible = false
 	sound_player.bus = "Effects"
 	add_child(sound_player)
 	labels = [resolution_label, full_screen_label, light_quality_label, lock_framerate_label, back_label]
 	set_labels_alpha(menu_alpha)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -115,6 +117,7 @@ func _physics_process(delta):
 	full_screen_label.text = str("FULL SCREEN:\n",full_screen_str)
 	light_quality_label.text = str("LIGHTING QUALITY:\n",SettingsVariables.lighting_settings[SettingsVariables.lighting_index])
 	menu_alpha = 1
+	visible = true
 	set_labels_alpha(menu_alpha)
 	handle_input()
 	update_selection()

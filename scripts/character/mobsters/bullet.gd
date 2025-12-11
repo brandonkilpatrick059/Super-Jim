@@ -11,7 +11,7 @@ var velocity = Vector2.RIGHT
 var source_obj :Node
 
 var range_timer : Timer = Timer.new()
-var range_time_secs = 4
+var range_time_secs = 8
 
 @export var team = "red"
 # Called when the node enters the scene tree for the first time.

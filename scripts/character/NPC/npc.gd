@@ -102,6 +102,13 @@ func set_up_sound_player():
 	sound_player.bus = "Effects"
 	add_child(sound_player)
 
+func play_sound(path : String):
+	sound_player.stream = load(path)
+	sound_player.play()
+
+func stop_sound():
+	sound_player.stop()
+
 func send_perceptions():
 	if(_ai_state_machine != null):
 		_ai_state_machine.receive_perceptions(perceptions)
@@ -190,8 +197,8 @@ func handle_passive_text():
 func _on_set_branching_dialog(tree : dialog_tree):
 	branching_dialog = tree
 
-#func _on_set_ai_directive(directive : String):
-	#ai_directive = directive
+func play_animation(name : String):
+	_character_base.play_animation(name)
 
 func _on_set_nav_target(pos : Vector2):
 	perceptions.nav_target_reached = false
@@ -258,7 +265,11 @@ func teleport_and_update():
 		_on_set_nav_target(perceptions.current_stage_mark.global_position)
 		var parent_node = perceptions.current_stage_mark.get_reparent_node()
 		reparent(parent_node)
+		immobilized = false
 		_ai_state_machine.transition_to(perceptions.current_stage_mark.get_state())
+
+func set_immobilized(input : bool):
+	immobilized = input
 
 func load_from_dictionary(load_dictionary : Dictionary):
 	#global_position = Vector2(load_dictionary.get("pos_x"), load_dictionary.get("pos_y"))

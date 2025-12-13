@@ -1,0 +1,76 @@
+[gd_scene load_steps=13 format=3 uid="uid://2jfgc60u7w8l"]
+
+[ext_resource type="Script" uid="uid://ckj5xwhetys06" path="res://scripts/character/NPC/npc.gd" id="1_n5pv7"]
+[ext_resource type="Texture2D" uid="uid://0d3n5esom4o4" path="res://sprites/lights/small_shadow.png" id="3_6x2q6"]
+[ext_resource type="PackedScene" uid="uid://h6t3cjbjhfv7" path="res://sprites/spritesheets/spriteframes/characters/base/character_base.tscn" id="4_avcl0"]
+[ext_resource type="SpriteFrames" uid="uid://c1diuj0mrj8qr" path="res://sprites/spritesheets/spriteframes/characters/base/sam_base.tres" id="5_55rat"]
+[ext_resource type="PackedScene" uid="uid://biwoi1biy4ynx" path="res://entities/characters/NPC/AI state machine/ai_state_machine.tscn" id="5_g2cgp"]
+[ext_resource type="PackedScene" uid="uid://dqwh40q1ob2i2" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_idle.tscn" id="6_a1iyb"]
+[ext_resource type="Script" uid="uid://bpkh5va4fd55f" path="res://scripts/AI_state_machine/states/npc/state_npc_idle.gd" id="7_ir0e7"]
+[ext_resource type="PackedScene" uid="uid://bstl2betvigap" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_alert_passive.tscn" id="8_q5m1u"]
+[ext_resource type="Script" uid="uid://coomj6ete0utg" path="res://scripts/AI_state_machine/states/npc/sam_play_nonsense.gd" id="9_6x2q6"]
+[ext_resource type="PackedScene" uid="uid://dmcldnrjuk25k" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_transit.tscn" id="9_6x344"]
+[ext_resource type="Script" uid="uid://o04g4me8x2j0" path="res://scripts/AI_state_machine/states/npc/sam_play_music.gd" id="10_avcl0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_68bjs"]
+size = Vector2(19.9688, 13.2813)
+
+[node name="npc_sam" type="RigidBody2D" groups=["interactable", "npc"]]
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 0
+mass = 1000.0
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 5.0
+script = ExtResource("1_n5pv7")
+talk_radius = 200
+base_spriteframes = ExtResource("5_55rat")
+exempt_from_npc_refresh = null
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 4.0
+target_desired_distance = 32.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0.015625, 7.35938)
+shape = SubResource("RectangleShape2D_68bjs")
+
+[node name="shadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 1)
+texture = ExtResource("3_6x2q6")
+
+[node name="character_base" parent="." instance=ExtResource("4_avcl0")]
+position = Vector2(0, -1)
+
+[node name="ai_state_machine" parent="." instance=ExtResource("5_g2cgp")]
+initial_state = NodePath("idle")
+
+[node name="idle" parent="ai_state_machine" instance=ExtResource("6_a1iyb")]
+script = ExtResource("7_ir0e7")
+
+[node name="alert_passive" parent="ai_state_machine" instance=ExtResource("8_q5m1u")]
+
+[node name="play_nonsense" parent="ai_state_machine" instance=ExtResource("8_q5m1u")]
+script = ExtResource("9_6x2q6")
+
+[node name="play_music" parent="ai_state_machine" instance=ExtResource("8_q5m1u")]
+script = ExtResource("10_avcl0")
+
+[node name="transit" parent="ai_state_machine" instance=ExtResource("9_6x344")]
+
+[connection signal="behavior_directive" from="ai_state_machine/alert_passive" to="." method="_on_handle_behavior"]
+[connection signal="immobilize" from="ai_state_machine/play_nonsense" to="." method="set_immobilized"]
+[connection signal="play_animation" from="ai_state_machine/play_nonsense" to="." method="play_animation"]
+[connection signal="play_sound" from="ai_state_machine/play_nonsense" to="." method="play_sound"]
+[connection signal="stop_sound" from="ai_state_machine/play_nonsense" to="." method="stop_sound"]
+[connection signal="immobilize" from="ai_state_machine/play_music" to="." method="set_immobilized"]
+[connection signal="play_animation" from="ai_state_machine/play_music" to="." method="play_animation"]
+[connection signal="play_sound" from="ai_state_machine/play_music" to="." method="play_sound"]
+[connection signal="stop_sound" from="ai_state_machine/play_music" to="." method="stop_sound"]
+[connection signal="advance_navigation" from="ai_state_machine/transit" to="." method="_on_advance_navigation"]
+[connection signal="leave_stage_mark" from="ai_state_machine/transit" to="." method="_on_leave_stage_mark"]
+[connection signal="reach_stage_mark" from="ai_state_machine/transit" to="." method="_on_reach_stage_mark"]
+[connection signal="set_nav_target" from="ai_state_machine/transit" to="." method="_on_set_nav_target"]

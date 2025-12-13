@@ -9,6 +9,7 @@ script = ExtResource("1_1k0mw")
 
 [node name="base_sprite" type="AnimatedSprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_aidk7")
+animation = &"walk_down"
 
 [node name="hat" type="AnimatedSprite2D" parent="."]
 

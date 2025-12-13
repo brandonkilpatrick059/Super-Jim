@@ -5,4 +5,3 @@ class_name npc_states
 const idle = "idle"
 const transit = "transit"
 const alert_passive = "alert_passive"
-

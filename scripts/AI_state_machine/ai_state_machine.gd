@@ -50,7 +50,6 @@ func transition_to(target_state_name: String, msg: Dictionary = {}):
 	var transition_node = get_node(target_state_name)
 	if (transition_node == null):
 		return
-
 	state.exit()
 	state = transition_node
 	state.enter(msg)

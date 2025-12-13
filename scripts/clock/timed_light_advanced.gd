@@ -48,8 +48,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	current_hour = time_keeper.clock #this code only runs once per hour
-	if(time_keeper.clock == 0):
-		get_active_hours()
-	set_light(active_hours[current_hour])
+	if(current_hour != time_keeper.clock):
+		current_hour = time_keeper.clock #this code only runs once per hour
+		if(time_keeper.clock == 0):
+			get_active_hours()
+		set_light(active_hours[current_hour])
 		

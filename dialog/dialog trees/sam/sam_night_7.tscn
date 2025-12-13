@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc6egidmgty6q"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_5snhk"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_v4joa"]
+
+[node name="sam_night_7" type="Node2D"]
+script = ExtResource("1_5snhk")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_v4joa")]
+speaker_text = Array[String](["...Cause the mourning dove had perched above-"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "low_alien_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_v4joa")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["Where the rabbit laid upon the ground."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "low_alien_voice"
+
+[node name="trunk3" parent="." instance=ExtResource("2_v4joa")]
+position = Vector2(-2, 444)
+speaker_text = Array[String](["And thought he was surely dead..."])
+speaker_portrait = null
+voice = "low_alien_voice"

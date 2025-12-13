@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://vecw0jo6lyff"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_necjo"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_3755q"]
+
+[node name="sam_night_4" type="Node2D"]
+script = ExtResource("1_necjo")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_3755q")]
+speaker_text = Array[String](["...The rabbit waited for the night to answer."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "low_alien_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_3755q")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["But the night said nothing more."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "low_alien_voice"
+
+[node name="trunk3" parent="." instance=ExtResource("2_3755q")]
+position = Vector2(-2, 444)
+speaker_text = Array[String](["Till he wondered if it were just himself a-talking..."])
+speaker_portrait = null
+voice = "low_alien_voice"

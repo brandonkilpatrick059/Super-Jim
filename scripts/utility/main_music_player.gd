@@ -21,6 +21,7 @@ func _ready():
 
 func change_stream(new_stream: String):
 	#if(current_stream != ""):
+	current_volume = volume_db
 	changing_streams = true
 	current_stream = new_stream
 	timer.start(fade_step_time)
@@ -32,16 +33,13 @@ func change_stream(new_stream: String):
 		#play()
 
 func set_volume(volume : float):
-	current_volume = volume
-	volume_db = current_volume
+	volume_db = volume
 
 func attenuate(amount : float):
 	if(volume_db + amount > 0):
-		current_volume = 0
-		volume_db = current_volume
+		volume_db = 0
 	else:
-		current_volume = current_volume + amount
-		volume_db = current_volume
+		volume_db = amount
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

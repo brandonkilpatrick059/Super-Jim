@@ -10,7 +10,7 @@ var current_stage_mark : Vector2
 
 var sound_playing : bool = false
 
-var attenuation_distance = 300
+var attenuation_distance = 200
 
 func physics_process(_delta: float) -> void:
 	if(is_instance_valid(ai_state_machine.get_perceptions().current_stage_mark)):
@@ -21,8 +21,6 @@ func physics_process(_delta: float) -> void:
 		if(distance < attenuation_distance):
 			var volume = -((attenuation_distance - distance)/10)
 			music_player.set_volume(volume)
-		else:
-			music_player.set_volume(0)
 		if(current_stage_mark == ai_state_machine.get_perceptions().current_stage_mark.global_position):
 				if(!sound_playing):
 					sound_playing = true

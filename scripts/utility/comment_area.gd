@@ -29,7 +29,8 @@ func _on_body_entered(body : Node2D):
 		if(text_when_zone_entered):
 			if(play_once && !has_played):
 				has_played = true
-				make_comment.emit(text)
+				if(text != ""):
+					make_comment.emit(text)
 				if(script_when_zone_entered && get_children().size() > 0):
 					get_children()[0].run_script()
 			elif(!play_once):

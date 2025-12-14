@@ -103,6 +103,9 @@ func load_wait():
 func make_active():
 	inactive = false
 
+func make_inactive():
+	inactive = true
+
 func enter():
 	if(fade_alpha < 1 && timer_fade.is_stopped()):
 		fade_alpha = fade_alpha + fade_step

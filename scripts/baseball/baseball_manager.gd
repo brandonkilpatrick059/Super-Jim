@@ -19,6 +19,8 @@ extends Node2D
 @onready var get_ready = $get_ready
 @onready var fight = $fight
 
+var sound_players : Array[AudioStreamPlayer2D] = []
+
 var deck_left : Node2D
 var deck_right : Node2D
 
@@ -158,20 +160,25 @@ func show_cards():
 
 func play_buff_sound(magnitude : int):
 	if(magnitude > 0 && magnitude < 4):
-		sound_player3.stream = load("res://audio/soundFX/baseball/buff.wav")
-		sound_player3.play()
+		play_sound("res://audio/soundFX/baseball/buff.wav")
 	elif(magnitude > 3 && magnitude < 7):
-		sound_player3.stream = load("res://audio/soundFX/baseball/buff2.wav")
-		sound_player3.play()
+		play_sound("res://audio/soundFX/baseball/buff2.wav")
 	elif(magnitude > 6 && magnitude < 8):
-		sound_player3.stream = load("res://audio/soundFX/baseball/buff3.wav")
-		sound_player3.play()
+		play_sound("res://audio/soundFX/baseball/buff3.wav")
 	elif(magnitude > 7 && magnitude < 9):
-		sound_player3.stream = load("res://audio/soundFX/baseball/buff4.wav")
-		sound_player3.play()
+		play_sound("res://audio/soundFX/baseball/buff4.wav")
 	elif(magnitude == 9):
-		sound_player3.stream = load("res://audio/soundFX/baseball/buff5.wav")
-		sound_player3.play()
+		play_sound("res://audio/soundFX/baseball/buff5.wav")
+
+func play_sound(path : String):
+	if(sound_players.size() == 0):
+		sound_players = [sound_player, sound_player2, sound_player3]
+	for sound_player in sound_players:
+		if(!sound_player.playing):
+			var stream = load(path)
+			sound_player.stream = stream
+			sound_player.play()
+			return
 
 func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 	if(effects_phase):
@@ -239,8 +246,7 @@ func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 		if(defending_hp_after_damage <= 0):
 			defending_hp_after_damage = 0
 			card_killed = true
-			sound_player2.stream = load("res://audio/soundFX/baseball/drum.wav")
-			sound_player2.play()
+			play_sound("res://audio/soundFX/baseball/drum.wav")
 			
 			var final_buff_amt : int = 0
 			if(attacking_card.get_buff_damage_on_kill() > 0):
@@ -259,20 +265,19 @@ func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 					final_buff_amt = attacking_card.get_hp()
 			play_buff_sound(final_buff_amt)
 		if(damage_done <= 3):
-			sound_player.stream = load("res://audio/soundFX/baseball/hit2.wav")
+			play_sound("res://audio/soundFX/baseball/hit2.wav")
 		elif(damage_done > 3 && damage_done <= 6):
-			sound_player.stream = load("res://audio/soundFX/baseball/hit3.wav")
+			play_sound("res://audio/soundFX/baseball/hit3.wav")
 		elif(damage_done > 6):
 			var added_shake = damage_done - 6
 			shake_screen(4 + added_shake)
 			handle_shake()
-			sound_player.stream = load("res://audio/soundFX/baseball/hit3.wav")
+			play_sound("res://audio/soundFX/baseball/hit3.wav")
 		if(!right_is_going): #TODO: why is this reversed from what it should be? 
 			card_left().rotation = card_left().rotation - (float(damage_done) / 15)
 		else:
 			card_right().rotation = card_right().rotation + (float(damage_done) / 15)
 		defending_card.set_hp(defending_hp_after_damage)
-		sound_player.play()
 		attacking_card.power_glow()
 		#step 2: REDUCE STAMINA + POWER
 		var attacking_stamina = attacking_card.get_stamina()
@@ -419,8 +424,7 @@ func start_game():
 	starting_global_pos_x = global_position.x
 	game_started = true
 	set_starting_cards()
-	sound_player.stream = load("res://audio/soundFX/baseball/baseball.wav")
-	sound_player.play()
+	play_sound("res://audio/soundFX/baseball/baseball.wav")
 	game_timer.start(3)
 	original_y = active_card_left.global_position.y
 	show_get_ready = true
@@ -636,7 +640,7 @@ func check_game_over():
 		left_team_won = true
 
 
-func _physics_process(delta: float):	
+func _physics_process(delta: float):
 	if(starting && begin_end_timer.is_stopped()):
 		if(start_pausing): #end of slight pause
 			starting = false
@@ -694,8 +698,7 @@ func _physics_process(delta: float):
 				show_get_ready = false
 				get_ready.visible = false
 				fight.visible = true
-				sound_player2.stream = load("res://audio/soundFX/baseball/bell.wav")
-				sound_player2.play()
+				play_sound("res://audio/soundFX/baseball/bell.wav")
 			elif(fight.visible):
 				fight.visible = false
 			if(!game_is_over && !killing_card):
@@ -711,8 +714,7 @@ func _physics_process(delta: float):
 				if(!declaring_victor && !ending):
 					declaring_victor = true
 					if(left_team_won):
-						sound_player.stream = load("res://audio/soundFX/baseball/win.wav")
-						sound_player.play()
+						play_sound("res://audio/soundFX/baseball/win.wav")
 				else:
 					remaining_cards_leave()
 					

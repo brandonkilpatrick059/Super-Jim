@@ -26,15 +26,16 @@ func interact():
 
 func _on_body_entered(body : Node2D):
 	if(body.is_in_group("player")):
-		if(text_when_zone_entered):
+		if(text_when_zone_entered || script_when_zone_entered):
 			if(play_once && !has_played):
 				has_played = true
-				if(text != ""):
+				if(text_when_zone_entered && text != ""):
 					make_comment.emit(text)
 				if(script_when_zone_entered && get_children().size() > 0):
 					get_children()[0].run_script()
 			elif(!play_once):
-				make_comment.emit(text)
+				if(text_when_zone_entered):
+					make_comment.emit(text)
 				if(script_when_zone_entered && get_children().size() > 0):
 					get_children()[0].run_script()
 		

@@ -22,7 +22,7 @@ voice = "low_alien_voice"
 
 [node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ofiq4")]
 position = Vector2(-2, 444)
-speaker_text = Array[String](["And the Rabbit said:"])
+speaker_text = Array[String](["And the rabbit said:"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk4")]
 voice = "low_alien_voice"

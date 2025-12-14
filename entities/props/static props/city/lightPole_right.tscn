@@ -39,7 +39,7 @@ scale = Vector2(0.16911, 0.544482)
 shape = SubResource("RectangleShape2D_x7wqg")
 
 [node name="PointLight2D2" type="Sprite2D" parent="."]
-z_index = 400
+z_index = 10
 material = SubResource("CanvasItemMaterial_h4eb8")
 position = Vector2(86, 8)
 scale = Vector2(0.695313, 0.328125)

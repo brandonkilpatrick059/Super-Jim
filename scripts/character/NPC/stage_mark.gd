@@ -13,6 +13,9 @@ extends Node2D
 @export var reparent_to_no_daylight = false
 @export var reparent_to_dark_indoor = false
 
+@export var random_wait_secs : float = 0.0
+@export var passive_face_dir : String = ""
+
 var random = RandomNumberGenerator.new()
 
 func _ready():
@@ -28,6 +31,11 @@ func get_reparent_node() -> Node:
 		reparent_node = get_tree().get_first_node_in_group("dark_indoor_ysort")
 	return reparent_node
 
+func get_passive_face_dir() -> String:
+	return passive_face_dir
+
+func get_wait_time():
+	return random_wait_secs
 
 func get_state():
 	return state

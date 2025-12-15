@@ -245,6 +245,16 @@ func _on_handle_behavior(behavior_directive : String):
 	if(behavior_directive == alert_passive):
 		if(self.global_position.distance_to(player_ref.global_position) < talk_radius):
 			face_player()
+		elif(perceptions.current_stage_mark.get_passive_face_dir() != ""):
+			match(perceptions.current_stage_mark.get_passive_face_dir()):
+				"up":
+					_character_base.face_up()
+				"down":
+					_character_base.face_down()
+				"left":
+					_character_base.face_left()
+				"right":
+					_character_base.face_right()
 		handle_passive_text()
 
 func get_save_dictionary() -> Dictionary:

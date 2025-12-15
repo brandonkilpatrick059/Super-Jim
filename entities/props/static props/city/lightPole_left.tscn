@@ -40,7 +40,7 @@ active_at_mid = true
 active_at_hi = true
 
 [node name="PointLight2D2" type="Sprite2D" parent="."]
-z_index = 10
+z_index = 5
 material = SubResource("CanvasItemMaterial_2lpve")
 position = Vector2(-86, 8)
 scale = Vector2(0.710938, 0.328125)

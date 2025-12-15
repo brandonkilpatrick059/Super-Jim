@@ -58,9 +58,14 @@ func physics_process(_delta: float) -> void:
 				if(!nav_target_reached):
 					advance_navigation.emit(200000)
 				else:
-					path_point_index = path_point_index + 1
-					if(path_point_index >= path_points.size()):
-						path_point_index = 0
+					if(randf_range(0.0,1.0) > 0.25):
+						path_point_index = path_point_index + 1
+						if(path_point_index >= path_points.size()):
+							path_point_index = 0
+					else:
+						path_point_index = path_point_index - 1
+						if(path_point_index < 0):
+							path_point_index = path_points.size() - 1
 					current_stage_mark = path_points[path_point_index]
 					set_nav_target.emit(current_stage_mark.global_position)
 

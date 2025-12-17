@@ -8,23 +8,27 @@ var landlord_ref = null
 #dialog trees
 @export var end_of_day_script : Node
 @export var collect : Node
+@export var collect_unlocked : Node
 @export var locked : Node
+@export var warning : Node
 @export var start : Node
 
-var rent = 20
+var days_since_paid = 0
+var rent = 30
+var apartment_locked = false
 var rent_locked = false
-var owed_money = 0
+var warned = false
 
 var start_mode = false
 var active_mode = true
 
+var stream_temp : String = ""
+
 func add_rent():
 	if(!rent_locked):
-		if(owed_money < rent * 2):
-			owed_money = owed_money + rent
-		else:
-			var door = get_tree().get_first_node_in_group("player_apartment_door")
-			door.lock()
+		days_since_paid = days_since_paid + 1
+		if(days_since_paid > 2):
+			lock_player_apartment()
 		landlord_active()
 
 func _ready() -> void:
@@ -54,25 +58,47 @@ func landlord_inactive():
 	var node = end_of_day_script.duplicate()
 	time_keeper.add_end_of_day_script_node(node)
 
+func lock_player_apartment():
+	apartment_locked = true
+	var door = get_tree().get_first_node_in_group("player_apartment_door")
+	door.lock()
+
+func unlock_player_apartment():
+	apartment_locked = false
+
+func catch_finish():
+	var main_music_player = get_tree().get_first_node_in_group("main_music_player")
+	main_music_player.change_stream(stream_temp)
+
 func catch_player():
+	var main_music_player = get_tree().get_first_node_in_group("main_music_player")
+	stream_temp = main_music_player.get_stream_name()
+	main_music_player.change_stream("res://audio/music/landlords_theme.wav")
 	if(start_mode):
 		landlord_ref._on_set_branching_dialog(start)
 		landlord_ref.interact()
 		landlord_inactive()
 	elif(active_mode):
 		var player_money = player_ref.get_money()
-		if(player_money >= owed_money):
-			landlord_ref._on_set_branching_dialog(collect)
+		if(player_money >= rent):
+			if(apartment_locked):
+				landlord_ref._on_set_branching_dialog(collect_unlocked)
+			else:
+				landlord_ref._on_set_branching_dialog(collect)
 			landlord_ref._on_stop_motion()
 			landlord_ref.interact()
 			landlord_inactive()
-			owed_money = 0
-			var door = get_tree().get_first_node_in_group("player_apartment_door")
-			door.unlock()
-		elif(player_money < owed_money):
-			landlord_ref._on_set_branching_dialog(locked)
+			days_since_paid = 0
+			warned = false
+			unlock_player_apartment()
+		elif(player_money < rent):
+			if(!warned):
+				warned = true
+				landlord_ref._on_set_branching_dialog(warning)
+			else:
+				landlord_ref._on_set_branching_dialog(locked)
+				lock_player_apartment()
 			landlord_ref._on_stop_motion()
 			landlord_ref.interact()
 			landlord_inactive()
-			var door = get_tree().get_first_node_in_group("player_apartment_door")
-			door.lock()
+			

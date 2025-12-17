@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5wey362c01mw"]
+[gd_scene load_steps=4 format=3 uid="uid://b5wey362c01mw"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_2nwbp"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_f51lg"]
+[ext_resource type="Script" uid="uid://cbhoyihujhwen" path="res://scripts/player_apartment/catch_finish.gd" id="3_fdmfw"]
 
 [node name="landlord_start" type="Node2D"]
 script = ExtResource("1_2nwbp")
@@ -64,7 +65,7 @@ voice = "sine_voice"
 
 [node name="trunk10" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_f51lg")]
 position = Vector2(-4, 1505)
-speaker_text = Array[String](["Rent is $20 a day."])
+speaker_text = Array[String](["Rent is $30 a day."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk11")]
 voice = "sine_voice"
@@ -90,8 +91,12 @@ speaker_portrait = null
 option_branches = [NodePath("../trunk14")]
 voice = "sine_voice"
 
-[node name="trunk14" parent="." instance=ExtResource("2_f51lg")]
+[node name="trunk14" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_f51lg")]
 position = Vector2(1, 2358)
 speaker_text = Array[String](["Farewell!"])
 speaker_portrait = null
 voice = "sine_voice"
+dialog_script = NodePath("Node")
+
+[node name="Node" type="Node" parent="trunk14"]
+script = ExtResource("3_fdmfw")

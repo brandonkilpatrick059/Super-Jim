@@ -19,6 +19,9 @@ func _ready():
 	add_child(timer)
 	bus = "Music"
 
+func get_stream_name() -> String:
+	return current_stream
+
 func change_stream(new_stream: String):
 	#if(current_stream != ""):
 	current_volume = volume_db

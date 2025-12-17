@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c54adrhdnxvcn"]
+[gd_scene load_steps=4 format=3 uid="uid://c54adrhdnxvcn"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_rjsfh"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_c88lb"]
+[ext_resource type="Script" uid="uid://cbhoyihujhwen" path="res://scripts/player_apartment/catch_finish.gd" id="3_c88lb"]
 
 [node name="landlord_locked" type="Node2D"]
 script = ExtResource("1_rjsfh")
@@ -15,28 +16,28 @@ voice = "sine_voice"
 
 [node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_c88lb")]
 position = Vector2(2, 218)
-speaker_text = Array[String](["It is that time again..."])
+speaker_text = Array[String](["Do you have my rent money...?"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk3")]
 voice = "sine_voice"
 
 [node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_c88lb")]
 position = Vector2(-2, 444)
-speaker_text = Array[String](["...What's this? You do not have $20 for rent??"])
+speaker_text = Array[String](["Oh my..."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk4")]
 voice = "sine_voice"
 
 [node name="trunk4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_c88lb")]
 position = Vector2(9, 697)
-speaker_text = Array[String](["You really MUST be more careful with your money..."])
+speaker_text = Array[String](["That is unfortunate..."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk5")]
 voice = "sine_voice"
 
 [node name="trunk5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_c88lb")]
 position = Vector2(9, 697)
-speaker_text = Array[String](["Unfortunately, I must lock you out of your home until I am made whole."])
+speaker_text = Array[String](["As much as it pains me, I must lock you out of your home until I am made whole."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk6")]
 voice = "sine_voice"
@@ -55,8 +56,12 @@ speaker_portrait = null
 option_branches = [NodePath("../trunk8")]
 voice = "sine_voice"
 
-[node name="trunk8" parent="." instance=ExtResource("2_c88lb")]
+[node name="trunk8" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_c88lb")]
 position = Vector2(-1, 1441)
 speaker_text = Array[String](["Farewell!"])
 speaker_portrait = null
 voice = "sine_voice"
+dialog_script = NodePath("Node")
+
+[node name="Node" type="Node" parent="trunk8"]
+script = ExtResource("3_c88lb")

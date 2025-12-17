@@ -31,6 +31,8 @@ base_spriteframes = ExtResource("2_rcf8h")
 dialog_offset = Vector2(0, -32)
 starting_index = null
 exempt_from_npc_refresh = null
+has_vision = null
+has_hearing = null
 branching_dialog = NodePath("troll")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

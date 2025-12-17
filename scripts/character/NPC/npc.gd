@@ -25,6 +25,9 @@ const alert_passive = "alert_passive"
 
 @export var save_tag : String = ""
 
+@export var has_vision : bool = false
+@export var has_hearing : bool = false
+
 #array of all schedules this NPC will use
 @export var schedules : Array[schedule] = []
 var schedules_index
@@ -44,13 +47,20 @@ var perceptions: NPCPerceptions = NPCPerceptions.new()
 #state machine reference
 @onready var _ai_state_machine = $ai_state_machine
 
+@onready var _vision : ShapeCast2D = $vision
+
 var _navigation_agent: NavigationAgent2D = NavigationAgent2D.new()
+
+var exclaim_sound = preload("res://audio/soundFX/voice/sine_voice/1.wav")
+var exclaim_bubble = preload("res://entities/characters/NPC/mobsters/communication/exclaim.tscn")
 
 var can_talk_bubble = preload("res://interface/can_talk_bubble.tscn")
 var speech_bubble = preload("res://dialog/speech_bubble.tscn")
 var talking = false
 var has_talked = false
 var showing_bubble = false
+
+var ray_collision_mask = 0b00000000_00000000_00000000_00010001
 
 const top_speed = 125000
 const nav_target_reached_distance = 4 #distance at which nav target is considered reached
@@ -87,6 +97,14 @@ func set_up_character_base():
 	bottom_spriteframes)
 	_character_base.stand_dir(_character_base.facing_dir)
 
+func _on_stand_dir(stand : String):
+	if(stand == ""):
+		_character_base.stand_dir(perceptions.facing_dir)
+		_character_base.set_animation_scale_ratio(1)
+	else:
+		_character_base.stand_dir(stand)
+		_character_base.set_animation_scale_ratio(1)
+
 func get_save_tag() -> String:
 	return save_tag
 
@@ -118,7 +136,12 @@ func update():
 
 func update_branching_dialog():
 	if(schedules.size() > 0):
-		branching_dialog = perceptions.current_stage_mark.get_branching_dialog()
+		if(perceptions.current_stage_mark.get_branching_dialog() != null):
+			branching_dialog = perceptions.current_stage_mark.get_branching_dialog()
+
+func _on_stop_motion():
+	_character_base.set_animation_scale_ratio(1)
+	current_v = Vector2(0,0)
 
 func interact():
 	if (branching_dialog != null):
@@ -137,11 +160,61 @@ func interact():
 		dialog_manager.set_tree_and_start_dialog(branching_dialog)
 		perceptions.in_dialog = true
 
+func check_vision():
+	if (_vision.is_colliding()):
+			var detected_nodes: Array[Node] = []
+			var iterator = 0
+			while(iterator < _vision.get_collision_count()):
+				var entity = _vision.get_collider(iterator)
+				_vision.get
+				if(entity != null ):
+					detected_nodes.append(entity)
+				iterator = iterator + 1
+			perceptions.nodes_in_vision = detected_nodes
+
+func check_hearing():
+	var commotion_notice_distance = 300
+	var commotions = get_tree().get_nodes_in_group("commotion")
+	var nodes_in_hearing: Array[Node] = []
+	for commotion in commotions:
+		if (global_position.distance_to(commotion.global_position) < commotion_notice_distance):
+			nodes_in_hearing.append(commotion)
+	perceptions.nodes_in_hearing = nodes_in_hearing
+
 func out_of_dialog():
 	perceptions.in_dialog = false
 
 func set_schedules_index(index : int):
 	schedules_index = index
+
+func update_line_of_sight_to_target():
+	if(perceptions.target_obj != null):
+		if(active_has_line_of_sight_to_object(perceptions.target_obj)):
+			perceptions.target_pos = perceptions.target_obj.global_position
+			perceptions.has_line_of_sight_to_target = true
+		else:
+			perceptions.has_line_of_sight_to_target = false
+
+func active_has_line_of_sight_to_object(obj):
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(global_position,obj.global_position,ray_collision_mask,[self])
+	var result = null
+	if(space_state != null):
+		result = space_state.intersect_ray(query)
+	
+	#_active_raycast.set_target_position(obj.global_position - _active_raycast.global_position)
+	if(result && result.collider == obj):
+		return true
+	else:
+		perceptions.nodes_in_vision.erase(obj)
+		return false
+
+func _on_set_ai_target(entity : Node):
+	if(entity != null):
+		perceptions.target_obj = entity
+		update_line_of_sight_to_target()
+		send_perceptions()
+		perceptions.target_pos = perceptions.target_obj.global_position
 
 func update_perceptions():
 	perceptions.current_v = current_v
@@ -151,7 +224,25 @@ func update_perceptions():
 	perceptions.linear_velocity = linear_velocity
 	perceptions.speed = linear_velocity.length()
 	
+	if(has_hearing):
+		check_hearing()
+	if(has_vision):
+		update_vision()
+		check_vision()
+		update_line_of_sight_to_target()
+	
 	update_stage_mark()
+
+func update_vision():
+	match(_character_base.get_facing_dir()):
+		direction.right:
+			_vision.set_rotation_degrees(0) 
+		direction.left:
+			_vision.set_rotation_degrees(180)
+		direction.up:
+			_vision.set_rotation_degrees(270)
+		direction.down:
+			_vision.set_rotation_degrees(90)
 
 func update_stage_mark():
 	if(schedules.size() > 0):
@@ -193,6 +284,14 @@ func handle_passive_text():
 		
 		if(!in_talk_radius):
 			has_talked = false
+
+func exclaim():
+	sound_player.stream = exclaim_sound
+	sound_player.play()
+	var exclaimBubble
+	exclaimBubble = exclaim_bubble.instantiate()
+	exclaimBubble.set_source_obj(perceptions.target_obj)
+	self.add_child(exclaimBubble)
 
 func _on_set_branching_dialog(tree : dialog_tree):
 	branching_dialog = tree

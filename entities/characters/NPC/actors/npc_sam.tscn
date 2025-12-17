@@ -27,6 +27,8 @@ script = ExtResource("1_n5pv7")
 talk_radius = 200
 base_spriteframes = ExtResource("5_55rat")
 exempt_from_npc_refresh = null
+has_vision = null
+has_hearing = null
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 4.0

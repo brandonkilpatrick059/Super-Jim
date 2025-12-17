@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm4aw483i18wa"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_2qphp"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_gcf7k"]
+
+[node name="landlord_collect" type="Node2D"]
+script = ExtResource("1_2qphp")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_gcf7k")]
+speaker_text = Array[String](["Hello, my friend!"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_gcf7k")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["It is that time again..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_gcf7k")]
+position = Vector2(-2, 444)
+speaker_text = Array[String](["As always, it is a pleasure doing business with you."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk4")]
+gives_money = -20
+
+[node name="trunk4" parent="." instance=ExtResource("2_gcf7k")]
+position = Vector2(9, 697)
+speaker_text = Array[String](["Farewell!"])
+speaker_portrait = null

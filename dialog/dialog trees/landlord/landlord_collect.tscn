@@ -11,21 +11,25 @@ trunk = NodePath("trunk")
 speaker_text = Array[String](["Hello, my friend!"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
 
 [node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_gcf7k")]
 position = Vector2(2, 218)
 speaker_text = Array[String](["It is that time again..."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk3")]
+voice = "sine_voice"
 
 [node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_gcf7k")]
 position = Vector2(-2, 444)
 speaker_text = Array[String](["As always, it is a pleasure doing business with you."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk4")]
+voice = "sine_voice"
 gives_money = -20
 
 [node name="trunk4" parent="." instance=ExtResource("2_gcf7k")]
 position = Vector2(9, 697)
 speaker_text = Array[String](["Farewell!"])
 speaker_portrait = null
+voice = "sine_voice"

@@ -11,44 +11,52 @@ trunk = NodePath("trunk")
 speaker_text = Array[String](["Hello, my friend!"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
 
 [node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_c88lb")]
 position = Vector2(2, 218)
 speaker_text = Array[String](["It is that time again..."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk3")]
+voice = "sine_voice"
 
 [node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_c88lb")]
 position = Vector2(-2, 444)
 speaker_text = Array[String](["...What's this? You do not have $20 for rent??"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk4")]
+voice = "sine_voice"
 
 [node name="trunk4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_c88lb")]
 position = Vector2(9, 697)
 speaker_text = Array[String](["You really MUST be more careful with your money..."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk5")]
+voice = "sine_voice"
 
 [node name="trunk5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_c88lb")]
 position = Vector2(9, 697)
 speaker_text = Array[String](["Unfortunately, I must lock you out of your home until I am made whole."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk6")]
+voice = "sine_voice"
 
 [node name="trunk6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_c88lb")]
 position = Vector2(5, 949)
 speaker_text = Array[String](["You understand, right?"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk7")]
+voice = "sine_voice"
 
 [node name="trunk7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_c88lb")]
 position = Vector2(3, 1181)
 speaker_text = Array[String](["I look forward to seeing you again under better circumstances."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk8")]
+voice = "sine_voice"
 
 [node name="trunk8" parent="." instance=ExtResource("2_c88lb")]
 position = Vector2(-1, 1441)
 speaker_text = Array[String](["Farewell!"])
 speaker_portrait = null
+voice = "sine_voice"

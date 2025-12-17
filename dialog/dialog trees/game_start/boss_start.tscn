@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://dw4arigo54uju"]
+[gd_scene load_steps=8 format=3 uid="uid://dw4arigo54uju"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_reagj"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_csox7"]
+[ext_resource type="Script" uid="uid://c84vbymfa1e6f" path="res://scripts/player_apartment/start_landlord.gd" id="3_8k887"]
+[ext_resource type="Script" uid="uid://d1l1nehfidrc2" path="res://scripts/utility/add_script_to_end_of_day.gd" id="3_745ah"]
 [ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/adjust_schedules_index.gd" id="3_csox7"]
 [ext_resource type="Script" uid="uid://c2q4w0ekhh3v4" path="res://scripts/utility/lock_unlock_door.gd" id="3_p6wgb"]
+[ext_resource type="Script" uid="uid://b77xty6k23wod" path="res://scripts/utility/first_time_sleeping.gd" id="4_kgpok"]
 
 [node name="boss_start" type="Node2D"]
 script = ExtResource("1_reagj")
@@ -98,19 +101,31 @@ speaker_portrait = null
 option_branches = [NodePath("../whatever2")]
 voice = "low_sine_voice"
 
-[node name="whatever2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_csox7")]
+[node name="whatever2" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_csox7")]
 position = Vector2(-455, 2412)
 speaker_text = Array[String](["If you need a place to live, a friend of mine leased an apartment to your predecessor."])
 speaker_portrait = null
 option_branches = [NodePath("../whatever3")]
 voice = "low_sine_voice"
+dialog_script = NodePath("add_script_to_end_of_day")
 
-[node name="whatever3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_csox7")]
+[node name="add_script_to_end_of_day" type="Node" parent="whatever2" node_paths=PackedStringArray("script_node")]
+script = ExtResource("3_745ah")
+script_node = NodePath("first_time_sleeping")
+
+[node name="first_time_sleeping" type="Node" parent="whatever2/add_script_to_end_of_day"]
+script = ExtResource("4_kgpok")
+
+[node name="whatever3" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_csox7")]
 position = Vector2(-439, 2627)
 speaker_text = Array[String](["Who won't be needing it anymore..."])
 speaker_portrait = null
 option_branches = [NodePath("../whatever4")]
 voice = "low_sine_voice"
+dialog_script = NodePath("start_landlord")
+
+[node name="start_landlord" type="Node" parent="whatever3"]
+script = ExtResource("3_8k887")
 
 [node name="whatever4" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_csox7")]
 position = Vector2(-439, 2848)

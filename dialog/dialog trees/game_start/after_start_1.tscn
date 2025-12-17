@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://0iwp8u5sdyns"]
+[gd_scene load_steps=5 format=3 uid="uid://0iwp8u5sdyns"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_4ghtk"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_g13i0"]
 [ext_resource type="SpriteFrames" uid="uid://b6grq4ppef8v2" path="res://sprites/spritesheets/spriteframes/portrait/test3.tres" id="3_g13i0"]
 [ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/adjust_schedules_index.gd" id="4_ggh0u"]
-[ext_resource type="Script" uid="uid://d1l1nehfidrc2" path="res://scripts/utility/add_script_to_end_of_day.gd" id="4_l218r"]
-[ext_resource type="Script" uid="uid://b77xty6k23wod" path="res://scripts/utility/first_time_sleeping.gd" id="5_6v0ol"]
 
 [node name="after_start_1" type="Node2D"]
 script = ExtResource("1_4ghtk")
@@ -68,14 +66,7 @@ speaker_text = Array[String](["We're open 10 AM to 8 PM every day."])
 speaker_portrait = ExtResource("3_g13i0")
 option_branches = [NodePath("../trunk10")]
 voice = "low_sine_voice"
-dialog_script = NodePath("add_script_to_end_of_day")
-
-[node name="add_script_to_end_of_day" type="Node" parent="trunk9" node_paths=PackedStringArray("script_node")]
-script = ExtResource("4_l218r")
-script_node = NodePath("first_time_sleeping")
-
-[node name="first_time_sleeping" type="Node" parent="trunk9/add_script_to_end_of_day"]
-script = ExtResource("5_6v0ol")
+dialog_script = NodePath("")
 
 [node name="trunk10" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_g13i0")]
 position = Vector2(64, 1834)

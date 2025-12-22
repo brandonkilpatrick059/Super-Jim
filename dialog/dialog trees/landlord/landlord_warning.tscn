@@ -23,7 +23,7 @@ voice = "sine_voice"
 
 [node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_a5reu")]
 position = Vector2(-2, 444)
-speaker_text = Array[String](["...What's this? You do not have $30 for rent??"])
+speaker_text = Array[String](["...What's this? You do not have $20 for rent??"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk4")]
 voice = "sine_voice"

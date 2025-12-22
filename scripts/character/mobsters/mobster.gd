@@ -105,6 +105,8 @@ var offset_vector : Vector2
 var processing_tier = 0
 var processing_timer : Timer = Timer.new()
 
+var on_screen_distance : float = 800
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -208,6 +210,13 @@ func set_up_mobster_team():
 #PERCEPTIONS- functions which deal with the mobster's perceptions
 #################################################################
 
+#used for abstracting bullets when off screen to reduce node count
+#when called has a 1/roll chance to deal damage
+func roll_damage(roll : int):
+	var num = randi_range(1,roll)
+	if(num == 1):
+		_on_reduce_hit_points()
+
 func handle_sparks_combat():
 	if(perceptions.colliding_nodes.size() > 0):
 		for node in perceptions.colliding_nodes:
@@ -292,6 +301,12 @@ func update_perceptions():
 	perceptions.hit_points = hit_points
 	perceptions.invincible = is_invincible
 	perceptions.holding_object = holding_object
+	
+	var player_ref = get_tree().get_first_node_in_group("player")
+	if(player_ref.global_position.distance_to(perceptions.global_position) < on_screen_distance):
+		perceptions.is_on_screen = true
+	else:
+		perceptions.is_on_screen = false
 	
 	if(_ai_state_machine != null):
 		if(_ai_state_machine.get_state().name == mobster_states.shooting ||
@@ -764,7 +779,8 @@ func exclaim():
 			exclaimBubble = exclaim_bubble_red.instantiate()
 		else:
 			exclaimBubble = exclaim_bubble_blu.instantiate()
-	exclaimBubble.set_source_obj(perceptions.target_obj)
+	if(perceptions.target_obj != null):
+		exclaimBubble.set_source_obj(perceptions.target_obj)
 	self.add_child(exclaimBubble)
 
 func _on_exclaim_bubble():

@@ -58,10 +58,11 @@ func physics_process(_delta: float) -> void:
 		#enticed code
 		else:
 			var player_ref = get_tree().get_first_node_in_group("player")
-			var player_distance_to_pizza = player_ref.global_position.distance_to(pizza_ref.global_position)
-			if(player_distance_to_pizza < 32):
-				set_target.emit(player_ref)
-				ai_state_machine.transition_to(mobster_states.exclaiming)
+			if(pizza_ref != null):
+				var player_distance_to_pizza = player_ref.global_position.distance_to(pizza_ref.global_position)
+				if(player_distance_to_pizza < 32):
+					set_target.emit(player_ref)
+					ai_state_machine.transition_to(mobster_states.exclaiming)
 			elif(pizza_ref != null && 
 			!pizza_ref.is_picked_up() &&
 			ai_state_machine.perceptions.reactive_has_line_of_sight_to_target):

@@ -1,51 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://dm4aw483i18wa"]
+[gd_scene load_steps=4 format=3 uid="uid://bevvvhkubxm46"]
 
-[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_2qphp"]
-[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_gcf7k"]
-[ext_resource type="Script" uid="uid://cbhoyihujhwen" path="res://scripts/player_apartment/catch_finish.gd" id="3_gcf7k"]
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_15m4s"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_xfbfs"]
+[ext_resource type="Script" uid="uid://cbhoyihujhwen" path="res://scripts/player_apartment/catch_finish.gd" id="3_8vd8g"]
 
 [node name="landlord_collect" type="Node2D"]
-script = ExtResource("1_2qphp")
+script = ExtResource("1_15m4s")
 trunk = NodePath("trunk")
 
-[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_gcf7k")]
-speaker_text = Array[String](["Hello, my friend."])
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_xfbfs")]
+speaker_text = Array[String](["Hello, my friend!"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
 voice = "sine_voice"
 
-[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_gcf7k")]
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_xfbfs")]
 position = Vector2(2, 218)
-speaker_text = Array[String](["Do you have my rent money?"])
+speaker_text = Array[String](["It is that time again..."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk3")]
 voice = "sine_voice"
 
-[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_gcf7k")]
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_xfbfs")]
 position = Vector2(-2, 444)
-speaker_text = Array[String](["Oh? You do? Good."])
-speaker_portrait = null
-option_branches = [NodePath("../trunk5")]
-voice = "sine_voice"
-gives_money = -30
-
-[node name="trunk5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_gcf7k")]
-position = Vector2(-2, 444)
-speaker_text = Array[String](["I will unlock your door."])
-speaker_portrait = null
-option_branches = [NodePath("../trunk6")]
-voice = "sine_voice"
-gives_money = -30
-
-[node name="trunk6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_gcf7k")]
-position = Vector2(-2, 444)
-speaker_text = Array[String](["Please be more timely with your payments in the future."])
+speaker_text = Array[String](["As always, it is a pleasure doing business with you."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk4")]
 voice = "sine_voice"
-gives_money = -30
+gives_money = -20
 
-[node name="trunk4" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_gcf7k")]
+[node name="trunk4" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_xfbfs")]
 position = Vector2(9, 697)
 speaker_text = Array[String](["Farewell!"])
 speaker_portrait = null
@@ -53,4 +37,4 @@ voice = "sine_voice"
 dialog_script = NodePath("Node")
 
 [node name="Node" type="Node" parent="trunk4"]
-script = ExtResource("3_gcf7k")
+script = ExtResource("3_8vd8g")

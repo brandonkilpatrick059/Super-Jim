@@ -60,13 +60,12 @@ option_branches = [NodePath("../trunk9")]
 voice = "low_sine_voice"
 speaker_name = "cook"
 
-[node name="trunk9" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_g13i0")]
+[node name="trunk9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_g13i0")]
 position = Vector2(54, 1614)
 speaker_text = Array[String](["We're open 10 AM to 8 PM every day."])
 speaker_portrait = ExtResource("3_g13i0")
 option_branches = [NodePath("../trunk10")]
 voice = "low_sine_voice"
-dialog_script = NodePath("")
 
 [node name="trunk10" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_g13i0")]
 position = Vector2(64, 1834)

@@ -9,4 +9,4 @@ speaker_portrait = ExtResource("2_wcrd0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_wcrd0")
-frame_progress = 0.438167
+frame_progress = 0.140525

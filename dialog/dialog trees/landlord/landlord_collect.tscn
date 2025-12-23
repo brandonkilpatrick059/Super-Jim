@@ -27,7 +27,7 @@ speaker_text = Array[String](["As always, it is a pleasure doing business with y
 speaker_portrait = null
 option_branches = [NodePath("../trunk4")]
 voice = "sine_voice"
-gives_money = -20
+gives_money = -30
 
 [node name="trunk4" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_xfbfs")]
 position = Vector2(9, 697)

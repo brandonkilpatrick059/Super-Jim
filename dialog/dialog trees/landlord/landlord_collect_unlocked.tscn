@@ -27,7 +27,7 @@ speaker_text = Array[String](["Oh? You do? Good."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk5")]
 voice = "sine_voice"
-gives_money = -20
+gives_money = -30
 
 [node name="trunk5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_xfbfs")]
 position = Vector2(-2, 444)

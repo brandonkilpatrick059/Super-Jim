@@ -285,6 +285,12 @@ func handle_passive_text():
 		if(!in_talk_radius):
 			has_talked = false
 
+func get_nearest_point_on_mesh(point : Vector2):
+	var rid = _navigation_agent.get_navigation_map()
+	if(NavigationServer2D.map_get_iteration_id(rid) > 0):
+		return NavigationServer2D.map_get_closest_point(rid, point)
+	return global_position
+
 func exclaim():
 	sound_player.stream = exclaim_sound
 	sound_player.play()
@@ -301,7 +307,7 @@ func play_animation(name : String):
 
 func _on_set_nav_target(pos : Vector2):
 	perceptions.nav_target_reached = false
-	_navigation_agent.target_position = pos
+	_navigation_agent.target_position = get_nearest_point_on_mesh(pos)
 
 func _on_turn_right():
 	_character_base.turn_right()

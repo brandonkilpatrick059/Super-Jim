@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b88uqt2d5ac5h"]
+
+[ext_resource type="Texture2D" uid="uid://c2wptmtc4k1us" path="res://sprites/TV/screen_overlay.png" id="1_80xm3"]
+[ext_resource type="Texture2D" uid="uid://do4oaqu6vu2wh" path="res://sprites/TV/background.png" id="2_3ihmn"]
+
+[node name="TvMachine" type="Node2D"]
+
+[node name="overlay" type="Sprite2D" parent="."]
+z_index = 50
+texture = ExtResource("1_80xm3")
+
+[node name="channel_content" type="Node2D" parent="."]
+
+[node name="back_ground" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_3ihmn")

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt8fb4oksk4da"]
+
+[ext_resource type="PackedScene" uid="uid://b88uqt2d5ac5h" path="res://TV/TV_machine.tscn" id="1_7yqp7"]
+
+[node name="TvTestScene" type="Node2D"]
+
+[node name="TvMachine" parent="." instance=ExtResource("1_7yqp7")]
+
+[node name="Camera2D" type="Camera2D" parent="."]

@@ -10,6 +10,8 @@ var can_change_channel = true
 
 var audio_player := AudioStreamPlayer.new()
 
+var camera_ref = null 
+
 func _ready():
 	#channel_text.visible = false
 	update_active_channel()
@@ -57,5 +59,9 @@ func _process(delta: float) -> void:
 		channels = channels_node.get_children()
 	handle_input()
 	channels[channel_index].process()
+	if(camera_ref == null):
+		camera_ref = get_tree().get_first_node_in_group("camera")
+	global_position = camera_ref.get_screen_center_position()
+	
 	
 	

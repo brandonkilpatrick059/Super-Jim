@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhukxxepgmqho"]
+[gd_scene load_steps=5 format=3 uid="uid://dhukxxepgmqho"]
 
 [ext_resource type="Script" uid="uid://dfoyojqoy8wum" path="res://scripts/character/mobsters/bomb.gd" id="1_2op7b"]
 [ext_resource type="SpriteFrames" uid="uid://ui7fw3ecqlnl" path="res://sprites/spritesheets/spriteframes/mobster/bomb.tres" id="2_5524s"]
 [ext_resource type="Script" uid="uid://b3xtkv5igree1" path="res://scripts/utility/play_default_animation.gd" id="3_quw7q"]
-[ext_resource type="Script" uid="uid://b4yio707fbsyr" path="res://scripts/utility/visual_occluder.gd" id="4_5524s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gdewb"]
 radius = 4.0
@@ -17,12 +16,9 @@ team = "red"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_5524s")
-frame_progress = 0.244747
+frame_progress = 0.382277
 offset = Vector2(0, -24)
 script = ExtResource("3_quw7q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_gdewb")
-
-[node name="occluder" type="Node2D" parent="."]
-script = ExtResource("4_5524s")

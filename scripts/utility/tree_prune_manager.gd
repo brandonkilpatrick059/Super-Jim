@@ -9,6 +9,7 @@ class LoadTouple:
 var nodes : Array[Node]
 
 var player_ref : Node = null
+var camera_ref : Node = null
 
 var loadTouples : Array[LoadTouple]
 var deadIndexes : Array[int]
@@ -53,11 +54,13 @@ func prune_tree():
 		if(loadTouple.load_parent != null && loadTouple.load_node != null):
 			var node_pos : Vector2 = loadTouple.load_node.global_position
 			#prune distant objects
-			if(node_pos.distance_to(player_ref.global_position) > load_distance):
+			if(node_pos.distance_to(player_ref.global_position) > load_distance ||
+			node_pos.distance_to(camera_ref.global_position) > load_distance):
 				if(loadTouple.load_node.get_parent() == loadTouple.load_parent):
 					loadTouple.load_parent.remove_child(loadTouple.load_node)
 			#re-add near objects
-			if(node_pos.distance_to(player_ref.global_position) < load_distance):
+			if(node_pos.distance_to(player_ref.global_position) < load_distance ||
+			node_pos.distance_to(camera_ref.global_position) < load_distance):
 					if(loadTouple.load_parent != null && loadTouple.load_node != null):
 						if(loadTouple.load_node.get_parent() != loadTouple.load_parent):
 							loadTouple.load_parent.add_child(loadTouple.load_node)
@@ -78,6 +81,8 @@ func _process(delta: float) -> void:
 	else:
 		if(player_ref == null):
 			player_ref = get_tree().get_first_node_in_group("player")
+		if(camera_ref == null):
+			camera_ref = get_tree().get_first_node_in_group("camera")
 		else:
 			prune_tree()
 			#if(process_timer.is_stopped()):

@@ -16,7 +16,7 @@ light_mode = 1
 font = ExtResource("4_dhaje")
 font_color = Color(0, 1, 0, 1)
 
-[node name="TvMachine" type="Node2D"]
+[node name="TvMachine" type="Node2D" groups=["tv_machine"]]
 z_index = 20
 script = ExtResource("1_q4va0")
 

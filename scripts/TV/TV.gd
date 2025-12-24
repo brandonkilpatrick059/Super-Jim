@@ -10,6 +10,11 @@ var ui = preload("res://TV/TV_machine.tscn")
 @export var can_change_channel = false
 @export var can_turn_off = true
 
+#0 = daylight
+#1 = indoors
+#2 = dark
+@export var layer_index = 0
+
 var ui_ref = null
 var ui_active = false
 
@@ -23,6 +28,9 @@ func _ready() -> void:
 	add_child(audio_player)
 	timer.one_shot = true
 	add_child(timer)
+
+func get_layer_index():
+	return layer_index
 
 func set_up_ui():
 	if(player_ref != null):
@@ -55,6 +63,22 @@ func exit_ui():
 	var camera_ref = player_ref.get_camera_ref()
 	camera_ref.fade_in()
 
+func reset_camera():
+	var daylight_layer = get_tree().get_first_node_in_group("daylight_layer")
+	var dark_layer = get_tree().get_first_node_in_group("dark_layer")
+	match layer_index:
+		0:
+			daylight_layer.visible = true
+			dark_layer.visible = false
+		1:
+			daylight_layer.visible = false
+			dark_layer.visible = false
+		2:
+			daylight_layer.visible = false
+			dark_layer.visible = true
+	var camera_ref = get_tree().get_first_node_in_group("camera")
+	camera_ref.connect_anchor(player_ref)
+
 func _physics_process(delta: float) -> void:
 	if(on):
 		animated_sprite.play("on")
@@ -63,8 +87,10 @@ func _physics_process(delta: float) -> void:
 		animated_sprite.play("off")
 		point_light.enabled = false
 	if(ui_active):
+		ui_ref.global_position = player_ref.get_camera_ref().get_screen_center_position()
 		if Input.is_action_just_pressed("interact"):
 			timer.start(1)
+			reset_camera()
 			exit_ui()
 			if(can_turn_off):
 				on = false

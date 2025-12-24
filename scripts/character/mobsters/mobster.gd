@@ -227,6 +227,9 @@ func handle_sparks_combat():
 					!perceptions.invincible):
 						_on_reduce_hit_points()
 
+func get_state_name() -> String:
+	return _ai_state_machine.get_state().name
+
 func handle_sparks_non_combat():
 	if(perceptions.colliding_nodes.size() > 0):
 		for node in perceptions.colliding_nodes:

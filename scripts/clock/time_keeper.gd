@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 var pause_menu = preload("res://menu/pause menu/pause_menu_manager.tscn")
 
@@ -69,8 +69,8 @@ func _ready():
 	add_child(timer_song)
 	add_child(timer_restart)
 	timer_world.start(hour_length_seconds)
-	ambient_dark = get_tree().get_nodes_in_group("ambient_dark")[0]
-	player_ref = get_parent().get_tree().get_nodes_in_group("player")[0]
+	ambient_dark = get_tree().get_first_node_in_group("ambient_dark")
+	player_ref = get_tree().get_first_node_in_group("player")
 
 func get_hour_length_seconds():
 	return hour_length_seconds
@@ -185,6 +185,7 @@ func _process(delta):
 		#sound_player.stream = load("res://audio/music/Game is paused 2.wav")
 		#sound_player.play()
 	
-	if(player_ref.dead && !is_game_over):
-		game_over()
+	if(player_ref != null):
+		if(player_ref.dead && !is_game_over):
+			game_over()
 		

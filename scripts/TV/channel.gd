@@ -31,6 +31,7 @@ func set_active(set_active : bool):
 func update_active_segment():
 	if(time_keeper_ref == null):
 		time_keeper_ref = get_tree().get_first_node_in_group("time_keeper")
+	current_hour = time_keeper_ref.get_hour()
 	var iter = 0 
 	for segment in segments:
 		if(!active):

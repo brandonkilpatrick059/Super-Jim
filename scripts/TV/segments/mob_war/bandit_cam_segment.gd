@@ -13,6 +13,7 @@ func disable():
 	active = false
 	visible = false
 	audio_player.stop()
+	reset_camera()
 
 func _ready():
 	timer.one_shot = true
@@ -20,6 +21,11 @@ func _ready():
 	add_child(audio_player)
 	audio_player.bus = "effects"
 	audio_player.volume_db = -12.0
+
+func reset_camera():
+	var tv_machine = get_tree().get_first_node_in_group("tv_machine")
+	tv_machine.show_back_ground(true)
+	tv_machine.start_reset_camera()
 
 func find_bandit():
 	var bandits = get_tree().get_nodes_in_group("bandit")
@@ -31,6 +37,7 @@ func find_bandit():
 		camera_ref = get_tree().get_first_node_in_group("camera")
 	camera_ref.connect_anchor(bandit_ref)
 	var tv_machine = get_tree().get_first_node_in_group("tv_machine")
+	tv_machine.show_back_ground(false)
 	tv_machine.global_position = camera_ref.get_screen_center_position()
 
 func set_active(set_active : bool):
@@ -44,6 +51,7 @@ func set_active(set_active : bool):
 	elif(set_active == false && active):
 		active = false
 		audio_player.stop()
+		reset_camera()
 
 func process():
 	if(active):

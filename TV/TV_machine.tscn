@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b88uqt2d5ac5h"]
+[gd_scene load_steps=10 format=3 uid="uid://b88uqt2d5ac5h"]
 
 [ext_resource type="Texture2D" uid="uid://c2wptmtc4k1us" path="res://sprites/TV/screen_overlay.png" id="1_80xm3"]
 [ext_resource type="Script" uid="uid://c7o3mrmj8ml08" path="res://scripts/TV/tv_machine.gd" id="1_q4va0"]
+[ext_resource type="Texture2D" uid="uid://do4oaqu6vu2wh" path="res://sprites/TV/background.png" id="2_3ihmn"]
 [ext_resource type="PackedScene" uid="uid://dfjni2mg6hyfg" path="res://TV/channels/chill_out/chill_out_channel.tscn" id="3_1e47p"]
 [ext_resource type="PackedScene" uid="uid://cuec0rbvev0g8" path="res://TV/channels/mob_war/mob_war_channel.tscn" id="4_1e47p"]
 [ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="4_dhaje"]
@@ -24,6 +25,11 @@ script = ExtResource("1_q4va0")
 z_index = 50
 material = SubResource("CanvasItemMaterial_1e47p")
 texture = ExtResource("1_80xm3")
+
+[node name="back_ground" type="Sprite2D" parent="."]
+z_index = -2
+material = SubResource("CanvasItemMaterial_1e47p")
+texture = ExtResource("2_3ihmn")
 
 [node name="channels" type="Node2D" parent="."]
 

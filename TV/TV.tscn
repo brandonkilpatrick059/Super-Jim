@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cr2cu5ne6880x"]
+
+[ext_resource type="Script" uid="uid://byhaxrvbr0hem" path="res://scripts/TV/TV.gd" id="1_v383r"]
+[ext_resource type="Script" uid="uid://cxdxvmads68ph" path="res://scripts/utility/interact_zone.gd" id="2_7vtij"]
+[ext_resource type="SpriteFrames" uid="uid://d1gbkm2ewgr3h" path="res://sprites/spritesheets/spriteframes/TV/TV.tres" id="2_v383r"]
+[ext_resource type="Texture2D" uid="uid://b6i63ebldyx86" path="res://sprites/lights/2d_lights_and_shadows_neutral_point_light.webp" id="4_v383r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4enx"]
+size = Vector2(24, 16)
+
+[node name="TV" type="Node2D"]
+script = ExtResource("1_v383r")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_v383r")
+animation = &"on"
+frame_progress = 0.444579
+offset = Vector2(0, -8)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." node_paths=PackedStringArray("interact_node") groups=["interactable"]]
+position = Vector2(0, -8)
+collision_layer = 28
+collision_mask = 0
+script = ExtResource("2_7vtij")
+interact_node = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_l4enx")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-13, 2)
+color = Color(0.509804, 1, 1, 1)
+texture = ExtResource("4_v383r")
+texture_scale = 0.25

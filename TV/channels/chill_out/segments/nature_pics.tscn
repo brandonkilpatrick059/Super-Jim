@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c1ng7it76b1p5"]
+[gd_scene load_steps=13 format=3 uid="uid://c1ng7it76b1p5"]
 
 [ext_resource type="Texture2D" uid="uid://dc53u0akbco4c" path="res://sprites/TV/channels/chill_out/image_1.png" id="1_7nuf8"]
 [ext_resource type="Script" uid="uid://d0a08bq8nh8e6" path="res://scripts/TV/segments/chill_out/chill_out_segment_nature_pics.gd" id="1_ssjis"]
@@ -12,6 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://dcuc6lp50wqc5" path="res://sprites/TV/channels/chill_out/image_9.png" id="9_wrsrf"]
 [ext_resource type="Texture2D" uid="uid://k3yhbp18aonf" path="res://sprites/TV/channels/chill_out/image_10.png" id="10_ahxdv"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ssjis"]
+light_mode = 1
+
 [node name="nature_pics" type="Node2D"]
 script = ExtResource("1_ssjis")
 
@@ -19,40 +22,50 @@ script = ExtResource("1_ssjis")
 
 [node name="image_1" type="Sprite2D" parent="pics"]
 modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_ssjis")
 texture = ExtResource("1_7nuf8")
 
 [node name="image_2" type="Sprite2D" parent="pics"]
 modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_ssjis")
 texture = ExtResource("2_ssjis")
 
 [node name="image_3" type="Sprite2D" parent="pics"]
 modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_ssjis")
 texture = ExtResource("3_1upiq")
 
 [node name="image_4" type="Sprite2D" parent="pics"]
 modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_ssjis")
 texture = ExtResource("4_v6hj5")
 
 [node name="image_5" type="Sprite2D" parent="pics"]
 modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_ssjis")
 texture = ExtResource("5_ah1uu")
 
 [node name="image_6" type="Sprite2D" parent="pics"]
 modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_ssjis")
 texture = ExtResource("6_cg2kg")
 
 [node name="image_7" type="Sprite2D" parent="pics"]
 modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_ssjis")
 texture = ExtResource("7_yhiqf")
 
 [node name="image_8" type="Sprite2D" parent="pics"]
 modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_ssjis")
 texture = ExtResource("8_cx7qb")
 
 [node name="image_9" type="Sprite2D" parent="pics"]
 modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_ssjis")
 texture = ExtResource("9_wrsrf")
 
 [node name="image_10" type="Sprite2D" parent="pics"]
 modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_ssjis")
 texture = ExtResource("10_ahxdv")

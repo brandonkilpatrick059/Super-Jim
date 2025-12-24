@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b88uqt2d5ac5h"]
+[gd_scene load_steps=9 format=3 uid="uid://b88uqt2d5ac5h"]
 
 [ext_resource type="Texture2D" uid="uid://c2wptmtc4k1us" path="res://sprites/TV/screen_overlay.png" id="1_80xm3"]
 [ext_resource type="Script" uid="uid://c7o3mrmj8ml08" path="res://scripts/TV/tv_machine.gd" id="1_q4va0"]
@@ -6,15 +6,23 @@
 [ext_resource type="PackedScene" uid="uid://dfjni2mg6hyfg" path="res://TV/channels/chill_out/chill_out_channel.tscn" id="3_1e47p"]
 [ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="4_dhaje"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1e47p"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_abo1u"]
+light_mode = 1
+
 [sub_resource type="LabelSettings" id="LabelSettings_1e47p"]
 font = ExtResource("4_dhaje")
 font_color = Color(0, 1, 0, 1)
 
 [node name="TvMachine" type="Node2D"]
+z_index = 20
 script = ExtResource("1_q4va0")
 
 [node name="overlay" type="Sprite2D" parent="."]
 z_index = 50
+material = SubResource("CanvasItemMaterial_1e47p")
 texture = ExtResource("1_80xm3")
 
 [node name="channels" type="Node2D" parent="."]
@@ -23,9 +31,11 @@ texture = ExtResource("1_80xm3")
 
 [node name="back_ground" type="Sprite2D" parent="."]
 z_index = -1
+material = SubResource("CanvasItemMaterial_1e47p")
 texture = ExtResource("2_3ihmn")
 
 [node name="channel_text" type="Label" parent="."]
+material = SubResource("CanvasItemMaterial_abo1u")
 offset_left = -142.0
 offset_top = -144.0
 offset_right = -18.0

@@ -8,6 +8,8 @@ var time_keeper_ref = null
 
 var active_segment : Node 
 
+var current_hour = 0
+
 func _ready():
 	pass
 
@@ -24,16 +26,16 @@ func set_active(set_active : bool):
 func update_active_segment():
 	if(time_keeper_ref == null):
 		time_keeper_ref = get_tree().get_first_node_in_group("time_keeper")
-	var current_hour : int = time_keeper_ref.get_hour()
-	var iter = 0 
-	for segment in segments:
-		if(iter == current_hour):
-			active_segment = segment
-			segment.set_active(true)
-			break
-		else:
-			segment.set_active(false)
-		iter = iter + 1
+	var check_current_hour : int = time_keeper_ref.get_hour()
+	if(current_hour != check_current_hour):
+		var iter = 0 
+		for segment in segments:
+			if(iter == current_hour):
+				active_segment = segment
+				segment.set_active(true)
+			elif(segment != active_segment):
+				segment.set_active(false)
+			iter = iter + 1
 
 func process():
 	update_active_segment()

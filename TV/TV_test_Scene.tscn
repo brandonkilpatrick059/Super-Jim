@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dt8fb4oksk4da"]
+[gd_scene load_steps=4 format=3 uid="uid://dt8fb4oksk4da"]
 
 [ext_resource type="PackedScene" uid="uid://b88uqt2d5ac5h" path="res://TV/TV_machine.tscn" id="1_7yqp7"]
 [ext_resource type="Script" uid="uid://bhwr4mvnbcx4q" path="res://scripts/clock/time_keeper.gd" id="2_stoq4"]
+[ext_resource type="PackedScene" uid="uid://b23ot5l1o0hli" path="res://entities/characters/player/main_camera.tscn" id="3_icjeh"]
 
 [node name="TvTestScene" type="Node2D"]
 
 [node name="TvMachine" parent="." instance=ExtResource("1_7yqp7")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="Node" type="Node" parent="." groups=["time_keeper"]]
 script = ExtResource("2_stoq4")
+
+[node name="main_camera" parent="." instance=ExtResource("3_icjeh")]

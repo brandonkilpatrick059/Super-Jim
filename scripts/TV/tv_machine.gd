@@ -6,9 +6,19 @@ extends Node2D
 
 var channels : Array[Node] = []
 
+var can_change_channel = true
+
 func _ready():
 	#channel_text.visible = false
 	update_active_channel()
+	var camera_ref = get_tree().get_first_node_in_group("camera")
+	camera_ref.fade_in()
+
+func set_channel_index(input : int):
+	channel_index = input
+
+func set_can_change_channel(input : bool):
+	can_change_channel = input
 
 func handle_input():
 	update_active_channel()

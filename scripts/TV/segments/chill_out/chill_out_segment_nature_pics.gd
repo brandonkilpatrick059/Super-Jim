@@ -29,7 +29,7 @@ func _ready():
 	audio_player.volume_db = -12.0
 
 func set_active(set_active : bool):
-	if(set_active && !active):
+	if(set_active == true && !active):
 		active = true
 		visible = true
 		audio_player.stream = load("res://audio/music/chill_out_theme.wav")
@@ -58,7 +58,7 @@ func process():
 	if(active):
 		if(nature_pics == []):
 			nature_pics = pics.get_children()
-			sprite_index = randi_range(0,nature_pics.size())
+			sprite_index = randi_range(0,nature_pics.size()-1)
 			fading_in_sprite = nature_pics[sprite_index]
 			var fading_out_index = sprite_index - 1
 			if(fading_out_index < 0):

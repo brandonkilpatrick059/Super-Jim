@@ -30,7 +30,7 @@ func set_up_ui():
 		ui_ref.set_can_change_channel(can_change_channel)
 
 func interact():
-	if(on):
+	if(on && timer.is_stopped()):
 		player_ref = get_tree().get_first_node_in_group("player")
 		ui_ref = ui.instantiate()
 		player_ref.set_control_frozen(true)
@@ -64,8 +64,9 @@ func _physics_process(delta: float) -> void:
 		point_light.enabled = false
 	if(ui_active):
 		if Input.is_action_just_pressed("interact"):
-			timer.start(2)
+			timer.start(1)
 			exit_ui()
-			on = false
+			if(can_turn_off):
+				on = false
 			audio_player.stream = load("res://audio/soundFX/smallCollide.wav")
 			audio_player.play()

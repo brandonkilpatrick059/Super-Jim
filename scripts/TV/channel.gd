@@ -3,6 +3,7 @@ extends Node2D
 var active = false
 
 @export var segments : Array[Node] = []
+@export var channel_text : String = ""
 
 var time_keeper_ref = null
 
@@ -12,6 +13,9 @@ var current_hour = 0
 
 func _ready():
 	pass
+
+func get_channel_text() -> String:
+	return channel_text
 
 func set_active(set_active : bool):
 	if(set_active && !active):
@@ -26,8 +30,6 @@ func set_active(set_active : bool):
 func update_active_segment():
 	if(time_keeper_ref == null):
 		time_keeper_ref = get_tree().get_first_node_in_group("time_keeper")
-	var check_current_hour : int = time_keeper_ref.get_hour()
-	if(current_hour != check_current_hour):
 		var iter = 0 
 		for segment in segments:
 			if(iter == current_hour):

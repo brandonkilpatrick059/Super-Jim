@@ -6,5 +6,6 @@
 [node name="ChillOutChannel" type="Node2D" node_paths=PackedStringArray("segments")]
 script = ExtResource("1_7mkho")
 segments = [NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics"), NodePath("nature_pics")]
+channel_text = "CH01 - CHILL OUT"
 
 [node name="nature_pics" parent="." instance=ExtResource("2_25uef")]

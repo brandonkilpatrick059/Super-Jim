@@ -53,6 +53,9 @@ func update_fade_alpha():
 			sprite_index = 0
 		fading_out_sprite = fading_in_sprite
 		fading_in_sprite = nature_pics[sprite_index]
+		var player_ref = get_tree().get_first_node_in_group("player")
+		if(player_ref != null):
+			player_ref.give_dash_seconds(1)
 
 func process():
 	if(active):

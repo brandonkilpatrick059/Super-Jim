@@ -28,6 +28,7 @@ func update_active_channel():
 	for channel in channels:
 		if(iter == channel_index):
 			channel.set_active(true)
+			channel_text.text = channel.get_channel_text()
 		else:
 			channel.set_active(false)
 

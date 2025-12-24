@@ -19,6 +19,8 @@ var num_nearby_friendlies = 0
 
 var random : RandomNumberGenerator = RandomNumberGenerator.new()
 
+var is_contested = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	visible = false
@@ -60,6 +62,17 @@ func check_nearby_friendlies():
 		global_position.distance_to(mob.global_position) < friendly_check_radius):
 			num = num + 1
 	num_nearby_friendlies =  num
+
+func get_is_contested():
+	return is_contested
+
+func check_is_contested():
+	is_contested = false
+	var bandits = get_tree().get_nodes_in_group("bandit")
+	for bandit in bandits:
+		if(bandit.is_in_group(opposing_team)):
+			if(bandit.global_position.distance_to(global_position) < friendly_check_radius):
+				is_contested = true
 
 func spawn_mob():
 	var num_team_mobs = 0
@@ -106,4 +119,5 @@ func _on_body_entered(body: Node):
 func _physics_process(delta: float) -> void:
 	if(friendly_check_timer.is_stopped()):
 		check_nearby_friendlies()
+		check_is_contested()
 		friendly_check_timer.start(random.randf_range(0,max_check_wait_secs))

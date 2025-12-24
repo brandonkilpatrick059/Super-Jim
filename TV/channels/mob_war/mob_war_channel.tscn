@@ -7,7 +7,7 @@
 
 [node name="MobWarChannel" type="Node2D" node_paths=PackedStringArray("segments")]
 script = ExtResource("1_1mlg1")
-segments = [NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam"), NodePath("bandit_cam")]
+segments = [NodePath("capture_points"), NodePath("bandit_cam"), NodePath("capture_points"), NodePath("bandit_cam"), NodePath("capture_points"), NodePath("bandit_cam"), NodePath("capture_points"), NodePath("bandit_cam"), NodePath("capture_points"), NodePath("bandit_cam"), NodePath("capture_points"), NodePath("bandit_cam"), NodePath("capture_points"), NodePath("bandit_cam"), NodePath("capture_points"), NodePath("bandit_cam"), NodePath("capture_points"), NodePath("bandit_cam"), NodePath("capture_points"), NodePath("bandit_cam"), NodePath("capture_points"), NodePath("bandit_cam"), NodePath("capture_points"), NodePath("bandit_cam")]
 channel_text = "CH02 - VIOLENCE CHANNEL"
 
 [node name="capture_points" parent="." instance=ExtResource("2_1wblp")]

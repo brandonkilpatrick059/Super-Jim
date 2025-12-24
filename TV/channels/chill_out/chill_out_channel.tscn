@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dfjni2mg6hyfg"]
 
 [ext_resource type="Script" uid="uid://dt1mevb5a3hy0" path="res://scripts/TV/channel.gd" id="1_7mkho"]
-[ext_resource type="PackedScene" uid="uid://c1ng7it76b1p5" path="res://TV/channels/chill_out/segments/nature_pics.tscn" id="2_25uef"]
+[ext_resource type="PackedScene" uid="uid://c1ng7it76b1p5" path="res://TV/channels/chill_out/segments/nature_pics_segment.tscn" id="2_25uef"]
 
 [node name="ChillOutChannel" type="Node2D" node_paths=PackedStringArray("segments")]
 script = ExtResource("1_7mkho")

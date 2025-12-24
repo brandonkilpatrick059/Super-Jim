@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b6i63ebldyx86" path="res://sprites/lights/2d_lights_and_shadows_neutral_point_light.webp" id="4_v383r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l4enx"]
-size = Vector2(24, 16)
+size = Vector2(31, 26)
 
 [node name="TV" type="Node2D"]
 script = ExtResource("1_v383r")
@@ -15,7 +15,7 @@ script = ExtResource("1_v383r")
 sprite_frames = ExtResource("2_v383r")
 animation = &"on"
 frame_progress = 0.444579
-offset = Vector2(0, -8)
+offset = Vector2(0, 8)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." node_paths=PackedStringArray("interact_node") groups=["interactable"]]
 position = Vector2(0, -8)
@@ -25,7 +25,7 @@ script = ExtResource("2_7vtij")
 interact_node = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 8)
+position = Vector2(1, 19)
 shape = SubResource("RectangleShape2D_l4enx")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

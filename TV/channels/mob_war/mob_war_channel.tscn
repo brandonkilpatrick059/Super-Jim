@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuec0rbvev0g8"]
+
+[ext_resource type="Script" uid="uid://dt1mevb5a3hy0" path="res://scripts/TV/channel.gd" id="1_1mlg1"]
+[ext_resource type="PackedScene" uid="uid://b08a5if67ar8y" path="res://TV/channels/mob_war/segments/capture_points_segment.tscn" id="2_1wblp"]
+[ext_resource type="Script" uid="uid://y1r48j4c177a" path="res://scripts/TV/segments/mob_war/mob_war_segment_capture_points.gd" id="3_36m5n"]
+
+[node name="MobWarChannel" type="Node2D" node_paths=PackedStringArray("segments")]
+script = ExtResource("1_1mlg1")
+segments = [NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points"), NodePath("capture_points")]
+channel_text = "CH02 - VIOLENCE CHANNEL"
+
+[node name="capture_points" parent="." instance=ExtResource("2_1wblp")]
+script = ExtResource("3_36m5n")

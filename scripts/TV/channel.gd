@@ -12,7 +12,8 @@ var active_segment : Node
 var current_hour = 0
 
 func _ready():
-	pass
+	active = false
+	visible = false
 
 func get_channel_text() -> String:
 	return channel_text
@@ -30,8 +31,11 @@ func set_active(set_active : bool):
 func update_active_segment():
 	if(time_keeper_ref == null):
 		time_keeper_ref = get_tree().get_first_node_in_group("time_keeper")
-		var iter = 0 
-		for segment in segments:
+	var iter = 0 
+	for segment in segments:
+		if(!active):
+			segment.disable()
+		else:
 			if(iter == current_hour):
 				active_segment = segment
 				segment.set_active(true)
@@ -39,6 +43,9 @@ func update_active_segment():
 				segment.set_active(false)
 			iter = iter + 1
 
-func process():
+func _process(delta: float) -> void:
 	update_active_segment()
-	active_segment.process()
+
+func process():
+	if(active_segment != null):
+		active_segment.process()

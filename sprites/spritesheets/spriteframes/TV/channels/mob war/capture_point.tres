@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://bxqaknht4dd7q"]
+
+[ext_resource type="Texture2D" uid="uid://brd83h4psl4ui" path="res://sprites/TV/channels/mob_war/blue_point.png" id="1_mdjpy"]
+[ext_resource type="Texture2D" uid="uid://0g2xyrb623sw" path="res://sprites/TV/channels/mob_war/red_point.png" id="2_vi32a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6dp1"]
+atlas = ExtResource("1_mdjpy")
+region = Rect2(0, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxn8y"]
+atlas = ExtResource("2_vi32a")
+region = Rect2(0, 0, 18, 18)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6dp1")
+}],
+"loop": true,
+"name": &"blu",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6dp1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxn8y")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}]

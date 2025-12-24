@@ -28,6 +28,11 @@ func _ready():
 	audio_player.bus = "effects"
 	audio_player.volume_db = -12.0
 
+func disable():
+	active = false
+	visible = false
+	audio_player.stop()
+
 func set_active(set_active : bool):
 	if(set_active == true && !active):
 		active = true

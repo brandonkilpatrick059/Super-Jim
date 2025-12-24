@@ -1,0 +1,80 @@
+[gd_scene load_steps=14 format=3 uid="uid://c1ng7it76b1p5"]
+
+[ext_resource type="Script" uid="uid://d0a08bq8nh8e6" path="res://scripts/TV/segments/chill_out/chill_out_segment_nature_pics.gd" id="1_tmr16"]
+[ext_resource type="Texture2D" uid="uid://dc53u0akbco4c" path="res://sprites/TV/channels/chill_out/image_1.png" id="2_8gxgr"]
+[ext_resource type="Texture2D" uid="uid://btr6s5jgnjler" path="res://sprites/TV/channels/chill_out/image_2.png" id="3_onota"]
+[ext_resource type="Texture2D" uid="uid://dxddhpysb8yi5" path="res://sprites/TV/channels/chill_out/image_3.png" id="4_3rjwo"]
+[ext_resource type="Texture2D" uid="uid://ddgvicmr83yur" path="res://sprites/TV/channels/chill_out/image_4.png" id="5_flulm"]
+[ext_resource type="Texture2D" uid="uid://dn7gcrddpracc" path="res://sprites/TV/channels/chill_out/image_5.png" id="6_j10in"]
+[ext_resource type="Texture2D" uid="uid://merr7asi5xl0" path="res://sprites/TV/channels/chill_out/image_6.png" id="7_nrphe"]
+[ext_resource type="Texture2D" uid="uid://cqj86ojexfwgk" path="res://sprites/TV/channels/chill_out/image_7.png" id="8_173si"]
+[ext_resource type="Texture2D" uid="uid://dcdpekra6w2l1" path="res://sprites/TV/channels/chill_out/image_8.png" id="9_gu6kq"]
+[ext_resource type="Texture2D" uid="uid://dcuc6lp50wqc5" path="res://sprites/TV/channels/chill_out/image_9.png" id="10_i41i3"]
+[ext_resource type="Texture2D" uid="uid://k3yhbp18aonf" path="res://sprites/TV/channels/chill_out/image_10.png" id="11_d34eq"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ssjis"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tmr16"]
+light_mode = 1
+
+[node name="nature_pics" type="Node2D"]
+script = ExtResource("1_tmr16")
+
+[node name="pics" type="Node2D" parent="."]
+
+[node name="image_1" type="Sprite2D" parent="pics"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_ssjis")
+texture = ExtResource("2_8gxgr")
+
+[node name="image_2" type="Sprite2D" parent="pics"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_ssjis")
+texture = ExtResource("3_onota")
+
+[node name="image_3" type="Sprite2D" parent="pics"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_ssjis")
+texture = ExtResource("4_3rjwo")
+
+[node name="image_4" type="Sprite2D" parent="pics"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_ssjis")
+texture = ExtResource("5_flulm")
+
+[node name="image_5" type="Sprite2D" parent="pics"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_ssjis")
+texture = ExtResource("6_j10in")
+
+[node name="image_6" type="Sprite2D" parent="pics"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_ssjis")
+texture = ExtResource("7_nrphe")
+
+[node name="image_7" type="Sprite2D" parent="pics"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_ssjis")
+texture = ExtResource("8_173si")
+
+[node name="image_8" type="Sprite2D" parent="pics"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_ssjis")
+texture = ExtResource("9_gu6kq")
+
+[node name="image_9" type="Sprite2D" parent="pics"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_ssjis")
+texture = ExtResource("10_i41i3")
+
+[node name="image_10" type="Sprite2D" parent="pics"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_ssjis")
+texture = ExtResource("11_d34eq")
+
+[node name="map_back_ground" type="Polygon2D" parent="."]
+z_index = -1
+material = SubResource("CanvasItemMaterial_tmr16")
+color = Color(0.135012, 0.135012, 0.135012, 1)
+polygon = PackedVector2Array(-500, -500, 500, -500, 500, 500, -500, 500)

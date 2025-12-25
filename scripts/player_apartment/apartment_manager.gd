@@ -4,12 +4,22 @@ extends Node2D
 @onready var _desk_slot = $desk_slot
 @onready var _night_stand_slot = $night_stand_slot
 @onready var _wardrobe_slot = $wardrobe_slot
+@onready var _tv_slot = $tv_slot
+
+var has_tv : bool = false
 
 func set_bed_slot(bed : Node):
 	if(_bed_slot.get_child_count() > 0):
 		_bed_slot.get_children()[0].queue_free()
 	_bed_slot.add_child(bed)
 	bed.position = Vector2(0,0)
+
+func add_tv():
+	has_tv = true
+	var TV = load("res://TV/TV.tscn")
+	var new_TV = TV.instantiate()
+	_tv_slot.add_child(new_TV)
+	new_TV.position = Vector2(0,0)
 
 func set_desk_slot(desk : Node):
 	if(_desk_slot.get_child_count() > 0):
@@ -51,7 +61,8 @@ func get_save_dictionary() -> Dictionary:
 		"bed_slot" = bed_slot,
 		"desk_slot" = desk_slot,
 		"night_stand_slot" = night_stand_slot,
-		"wardrobe_slot" = wardrobe_slot
+		"wardrobe_slot" = wardrobe_slot,
+		"has_tv" = has_tv
 	}
 	
 	return save_dictionary
@@ -73,6 +84,8 @@ func load_from_dictionary(load_dictionary : Dictionary):
 		var load_str = String(load_dictionary.get("wardrobe_slot"))
 		var wardrobe : Node = load(load_str).instantiate()
 		set_wardrobe_slot(wardrobe)
+	if(load_dictionary.get("has_tv")):
+		add_tv()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -10,6 +10,7 @@ size = Vector2(31, 26)
 
 [node name="TV" type="Node2D"]
 script = ExtResource("1_v383r")
+can_change_channel = true
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_v383r")
@@ -29,7 +30,7 @@ position = Vector2(1, 19)
 shape = SubResource("RectangleShape2D_l4enx")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-13, 17)
+position = Vector2(-7, 12)
 color = Color(0.509804, 1, 1, 1)
 texture = ExtResource("4_v383r")
-texture_scale = 0.25
+texture_scale = 0.15

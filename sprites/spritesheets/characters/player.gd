@@ -637,6 +637,13 @@ func reduce_hp():
 	else:
 		go_invincible()
 
+func increment_max_hp():
+	if(max_hp < full_max_hp):
+		max_hp = max_hp + 1
+		_ui.set_max_hearts(max_hp)
+		current_hp = max_hp
+		_ui.update_hearts(current_hp)
+
 func _on_body_entered(body:Node):
 	if(body.is_in_group("bullet")):
 		reduce_hp()

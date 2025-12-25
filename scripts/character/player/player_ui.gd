@@ -114,8 +114,13 @@ func show_location_header():
 func show_money():
 	money_label.visible = true
 
-func set_money(num : int):
-	money = num
+func set_money(num : int, no_scroll : bool = false):
+	if(no_scroll): #the money counter is set instantly, rather than ticking up
+		money = num
+		current_money = num
+		set_money_tracker(num)
+	else:
+		money = num
 
 func set_money_tracker(money : int):
 	money_label.text = str("$",money)

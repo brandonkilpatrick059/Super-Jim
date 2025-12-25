@@ -263,6 +263,7 @@ func get_save_dictionary() -> Dictionary:
 		"pos_x" : global_position.x,
 		"pos_y" : global_position.y,
 		"max_hp" : max_hp, 
+		"current_hp" : current_hp,
 		"current_dash_secs" : current_dash_secs,
 		"max_dash_secs" : max_dash_secs,
 		"money" : money,
@@ -297,10 +298,13 @@ func load_from_dictionary(load_dictionary : Dictionary):
 	reparent(parent)
 	global_position = Vector2(load_dictionary.get("pos_x"), load_dictionary.get("pos_y"))
 	max_hp = int(load_dictionary.get("max_hp"))
+	_ui.set_max_hearts(max_hp)
+	current_hp = int(load_dictionary.get("current_hp"))
 	max_dash_secs = load_dictionary.get("max_dash_secs")
 	update_max_dash_meter()
 	current_dash_secs = load_dictionary.get("current_dash_secs")
 	money = int(load_dictionary.get("money"))
+	_ui.set_money(money,true)
 	banked_money = load_dictionary.get("banked_money")
 	base_spriteframes = load(load_dictionary.get("base_spriteframes"))
 	var load_owned_cards = load_dictionary.get("owned_cards")

@@ -71,6 +71,8 @@ var holding_object = false
 var will_grab_object = null
 var grabbed_object = null
 var control_frozen = false
+var movement_frozen = false
+var items_frozen = false
 var current_v = Vector2(0,0)
 
 const full_max_hp = 6
@@ -116,10 +118,13 @@ var item_index : int = 0
 
 var main_ui_hidden = false
 
+var ui_scene_ref = null
+
 #item cosnt
 const flashlight : String = "flashlight"
 const pizza : String = "pizza"
 const cardbinder : String = "card_binder"
+const citymap : String = "city_map"
 
 func _ready():
 	_collision.disabled = no_clip
@@ -723,7 +728,7 @@ func handle_use_item():
 	if(use_item_timer.is_stopped() && Input.is_action_just_pressed("use_item")):
 		use_item()
 		use_item_timer.start(0.25)
-	if(Input.is_action_just_pressed(("switch_item"))):
+	if(Input.is_action_just_pressed(("switch_item")) && !items_frozen):
 		if(items.size() > 1):
 			if(item_index + 1 == items.size()):
 				item_index = 0
@@ -754,6 +759,21 @@ func use_item():
 				get_parent().add_child(binder)
 				main_ui_invisible()
 				set_control_frozen(true)
+			citymap:
+				if(ui_scene_ref == null):
+					stop()
+					set_movement_frozen(true)
+					set_items_frozen(true)
+					var map = load("res://interface/city_map.tscn")
+					ui_scene_ref = map.instantiate()
+					add_scene_to_ui_tree(ui_scene_ref)
+				else:
+					set_movement_frozen(false)
+					set_items_frozen(false)
+					ui_scene_ref.queue_free()
+
+func set_movement_frozen(input: bool):
+	movement_frozen = input
 
 func remove_from_items(item : String):
 	items.erase(item)
@@ -766,6 +786,9 @@ func set_control_frozen(value):
 	control_frozen = value
 	if(value):
 		is_dashing = false
+
+func set_items_frozen(value: bool):
+	items_frozen = value
 
 func set_current_v(vect : Vector2):
 	current_v = vect
@@ -877,13 +900,14 @@ func play_animation(name : String):
 func move():
 	var input_direction = Input.get_vector(direction.left, direction.right, direction.up, direction.down)
 	
-	#accelerate if we have't hit max
-	if(input_direction.length() != 0 && speed() < top_speed):
-		current_v = input_direction * acceleration_quotient 
-	else: 
-		current_v = input_direction * 0
-	
-	_character_base.set_animation_scale(0.2, 0.8, speed(), top_speed)
+	if(!movement_frozen):
+		#accelerate if we have't hit max
+		if(input_direction.length() != 0 && speed() < top_speed):
+			current_v = input_direction * acceleration_quotient 
+		else: 
+			current_v = input_direction * 0
+		
+		_character_base.set_animation_scale(0.2, 0.8, speed(), top_speed)
 
 func finish_load_in():
 	loading_in = false

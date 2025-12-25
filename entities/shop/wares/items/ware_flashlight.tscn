@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bnij1jp6lkofx"]
 
 [ext_resource type="Script" uid="uid://c2eauyl5k8il2" path="res://scripts/shop/ware.gd" id="1_e71jg"]
-[ext_resource type="Script" uid="uid://cboq062yyxxxa" path="res://scripts/shop/ware_flashlight.gd" id="2_13khl"]
+[ext_resource type="Script" uid="uid://cboq062yyxxxa" path="res://scripts/shop/ware_item.gd" id="2_13khl"]
 [ext_resource type="Texture2D" uid="uid://dt4wy3l2kpa2c" path="res://sprites/items/flashlight.png" id="3_13khl"]
 [ext_resource type="Texture2D" uid="uid://cfswbijcll56e" path="res://sprites/game_world/price_tag.png" id="4_2jfrr"]
 [ext_resource type="FontFile" uid="uid://cl55ql7qruw6x" path="res://fonts/VT323-Regular.ttf" id="5_begq0"]
@@ -19,6 +19,7 @@ ware_name = "Flashlight"
 
 [node name="script_node" type="Node" parent="."]
 script = ExtResource("2_13khl")
+item_string = "flashlight"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_13khl")

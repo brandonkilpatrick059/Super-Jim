@@ -1,0 +1,67 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://b6343bexuibvv"]
+
+[ext_resource type="Texture2D" uid="uid://8o0idmwsndnx" path="res://sprites/tilesets/sewer_water_fall.png" id="1_qssrn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewnnx"]
+atlas = ExtResource("1_qssrn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yr3ne"]
+atlas = ExtResource("1_qssrn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5d4y"]
+atlas = ExtResource("1_qssrn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxjdm"]
+atlas = ExtResource("1_qssrn")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b72u6"]
+atlas = ExtResource("1_qssrn")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3myia"]
+atlas = ExtResource("1_qssrn")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljt3a"]
+atlas = ExtResource("1_qssrn")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyx2d"]
+atlas = ExtResource("1_qssrn")
+region = Rect2(224, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewnnx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yr3ne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5d4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxjdm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b72u6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3myia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljt3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iyx2d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]

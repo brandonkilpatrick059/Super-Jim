@@ -41,8 +41,12 @@ var dash_sound = preload("res://audio/soundFX/dash.wav")
 var pickup_sound = preload("res://audio/soundFX/pickup.wav")
 var putdown_sound = preload("res://audio/soundFX/putdown.wav")
 var crystal_sound = preload("res://audio/soundFX/crystal_get.wav")
+var footfall_sound = preload("res://audio/soundFX/footfall_1.wav")
 
 var sound_player := AudioStreamPlayer.new()
+
+var can_play_footfall = false
+var footfall_player := AudioStreamPlayer.new()
 
 var timer_load_in : Timer = Timer.new()
 var loading_in : bool = false
@@ -139,6 +143,10 @@ func _ready():
 	
 	comment_timer.one_shot = true
 	sound_player.bus = "Effects"
+	footfall_player.bus = "Effects"
+	footfall_player.volume_db = -30
+	footfall_player.stream = load("res://audio/soundFX/footfall_1.wav")
+	add_child(footfall_player)
 	add_child(sound_player)
 	add_child(timer_dash)
 	add_child(timer_dash_regen)
@@ -964,6 +972,13 @@ func move():
 			current_v = input_direction * 0
 		
 		_character_base.set_animation_scale(0.2, 0.8, speed(), top_speed)
+		if(current_v.length() > 0):
+			if(_character_base.get_base_current_frame() == 1 || _character_base.get_base_current_frame() == 3):
+				if(can_play_footfall):
+					footfall_player.play()
+					can_play_footfall = false
+			else:
+				can_play_footfall = true
 
 func finish_load_in():
 	loading_in = false

@@ -721,9 +721,11 @@ func handle_interact_text():
 				elif(_grabber.get_collider(index).is_in_group("lookable")):
 					_ui.set_interact_text("look")
 				elif(_grabber.get_collider(index).is_in_group("interactable") &&
-				!_grabber.get_collider(index).is_in_group("npc")):
+				!_grabber.get_collider(index).is_in_group("npc") &&
+				!_grabber.get_collider(index).is_in_group("reads_pickupable")):
 					_ui.set_interact_text("use")
-				elif(_grabber.get_collider(index).is_in_group("pickupable")):
+				elif(_grabber.get_collider(index).is_in_group("pickupable") ||
+				_grabber.get_collider(index).is_in_group("reads_pickupable")):
 					_ui.set_interact_text("pick up")
 				else:
 					if(!holding_object):
@@ -864,6 +866,7 @@ func throw():
 		grabbed_object = null
 		set_holding_object(false)
 		_ui.deactivate_interact()
+		item_text_timer.start(0.25)
 
 func put_down():
 	sound_player.stream = putdown_sound

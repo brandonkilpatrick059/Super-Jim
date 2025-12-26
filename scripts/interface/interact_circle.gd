@@ -43,8 +43,6 @@ func show_interact_text(text : String):
 			drop_label.visible = true
 		"look":
 			look_label.visible = true
-		"":
-			use_label.visible = true
 
 func deactivate_interact():
 	hide_interact_labels()

@@ -23,11 +23,11 @@ texture = ExtResource("1_m4hln")
 z_index = 1
 material = SubResource("CanvasItemMaterial_m4hln")
 sprite_frames = ExtResource("2_vfuvd")
-frame_progress = 0.231382
+frame_progress = 0.679573
 script = ExtResource("3_pn4uc")
 not_prunable = null
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." node_paths=PackedStringArray("interact_node") groups=["interactable"]]
+[node name="StaticBody2D" type="StaticBody2D" parent="." node_paths=PackedStringArray("interact_node") groups=["interactable", "reads_pickupable"]]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("4_vfuvd")

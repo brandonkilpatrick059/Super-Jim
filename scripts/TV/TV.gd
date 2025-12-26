@@ -50,6 +50,7 @@ func interact():
 		ui_active = true
 	elif(timer.is_stopped()):
 		on = true
+		add_to_group("lookable")
 		audio_player.stream = load("res://audio/soundFX/smallCollide.wav")
 		audio_player.play()
 
@@ -68,6 +69,8 @@ func _physics_process(delta: float) -> void:
 	if(on):
 		animated_sprite.play("on")
 		point_light.enabled = true
+		if(!is_in_group("lookable")):
+			add_to_group("lookable")
 	else:
 		animated_sprite.play("off")
 		point_light.enabled = false
@@ -79,5 +82,6 @@ func _physics_process(delta: float) -> void:
 			exit_ui()
 			if(can_turn_off):
 				on = false
+				remove_from_group("lookable")
 			audio_player.stream = load("res://audio/soundFX/smallCollide.wav")
 			audio_player.play()

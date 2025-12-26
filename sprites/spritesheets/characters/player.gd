@@ -102,6 +102,7 @@ var light_on = false
 
 var dev_occlusion_enabled = true
 
+var item_text_timer : Timer = Timer.new()
 var use_item_timer : Timer = Timer.new()
 
 #TODO: character gen when the game starts to randomly choose some defaults? Let the player choose defaults?
@@ -134,6 +135,7 @@ func _ready():
 	use_item_timer.one_shot = true
 	timer_load_in.one_shot = true
 	push_timer.one_shot = true
+	item_text_timer.one_shot = true
 	
 	comment_timer.one_shot = true
 	sound_player.bus = "Effects"
@@ -145,6 +147,7 @@ func _ready():
 	add_child(use_item_timer)
 	add_child(timer_load_in)
 	add_child(push_timer)
+	add_child(item_text_timer)
 	
 	#set up character base
 	_character_base.set_facing_dir(facing_dir)
@@ -467,6 +470,7 @@ func main_ui_invisible():
 	hide_hearts()
 	hide_money()
 	hide_dash()
+	_ui.hide_interact_text()
 	_ui.hide_item_square()
 	main_ui_hidden = true
 
@@ -474,6 +478,7 @@ func main_ui_visible():
 	show_hearts()
 	show_money()
 	show_dash()
+	_ui.show_interact_text()
 	_ui.show_item_square()
 	main_ui_hidden = false
 
@@ -698,37 +703,40 @@ func enable_collision():
 	_collision.disabled = false
 
 func handle_interact_text():
-	if(_grabber.get_collision_count() > 0):
-		var grabObj = _grabber.get_collider(0)
-		var index = 0
-		while(index < _grabber.get_collision_count()):
-			if(_grabber.get_collider(index).is_in_group("npc")):
-				if(_ui.get_interact_text() == "" || 
-				_ui.get_interact_text() == "drop" &&
-				_ui.get_interact_text() != "talk"):
-					_ui.set_interact_text("talk")
-				break
-			elif(_grabber.get_collider(index).is_in_group("interactable")):
-				if(_ui.get_interact_text() == "" || 
-				_ui.get_interact_text() == "drop" &&
-				_ui.get_interact_text() != "use"):
-					_ui.set_interact_text("use")
-				break
-			elif(_grabber.get_collider(index).is_in_group("pickupable")):
-				if(_ui.get_interact_text() == "" &&
-				_ui.get_interact_text() != "pick up"):
+	if(item_text_timer.is_stopped()):
+		if(_grabber.get_collision_count() > 0):
+			var grabObj = _grabber.get_collider(0)
+			var index = 0
+			while(index < _grabber.get_collision_count()):
+				if(_grabber.get_collider(index).is_in_group("interactable") || 
+				_grabber.get_collider(index).is_in_group("pickupable")):
+					grabObj = _grabber.get_collider(index)
+					break
+				index = index + 1
+			if(_grabber.get_collider(index) != null):
+				if(_grabber.get_collider(index).is_in_group("pizza")):
 					_ui.set_interact_text("pick up")
-				break
+				elif(_grabber.get_collider(index).is_in_group("talkable")):
+					_ui.set_interact_text("talk")
+				elif(_grabber.get_collider(index).is_in_group("lookable")):
+					_ui.set_interact_text("look")
+				elif(_grabber.get_collider(index).is_in_group("interactable") &&
+				!_grabber.get_collider(index).is_in_group("npc")):
+					_ui.set_interact_text("use")
+				elif(_grabber.get_collider(index).is_in_group("pickupable")):
+					_ui.set_interact_text("pick up")
+				else:
+					if(!holding_object):
+						_ui.deactivate_interact()
+		else:
+			if(holding_object):
+				_ui.set_interact_text("drop")
 			else:
-				if(_ui.get_interact_text() != "drop"):
-					_ui.deactivate_interact()
-			index = index + 1
-	else:
-		if(_ui.get_interact_text() != "drop"):
-			_ui.deactivate_interact()
+				_ui.deactivate_interact()
+		item_text_timer.start(0.25)
 
 func handle_interact():
-	#handle_interact_text()
+	handle_interact_text()
 	if use_item_timer.is_stopped() && Input.is_action_just_pressed("interact"):
 		use_item_timer.start(0.25)
 		var index = 0
@@ -855,7 +863,7 @@ func throw():
 			grabbed_object.throw(_character_base.get_facing_dir())
 		grabbed_object = null
 		set_holding_object(false)
-		#_ui.deactivate_interact()
+		_ui.deactivate_interact()
 
 func put_down():
 	sound_player.stream = putdown_sound
@@ -868,7 +876,7 @@ func put_down():
 		grabbed_object.put_down(_character_base.get_facing_dir())
 	grabbed_object = null
 	set_holding_object(false)
-	#_ui.deactivate_interact()
+	_ui.deactivate_interact()
 	
 func handle_pick_up():
 	if(will_grab_object != null && !holding_object):
@@ -880,7 +888,7 @@ func handle_pick_up():
 			self.add_to_group("courier")
 			append_to_items("pizza")
 		set_holding_object(true)
-		#_ui.set_interact_text("drop")
+		_ui.set_interact_text("drop")
 	else: if(holding_object):
 		if(_grabber.is_colliding()):
 			if(grabbed_object.is_in_group("pizza")):

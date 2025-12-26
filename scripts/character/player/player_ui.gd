@@ -87,6 +87,14 @@ func deactivate_interact():
 	else:
 		interact_1.deactivate_interact()
 
+func hide_interact_text():
+	interact_1.visible = false
+	interact_2.visible = false
+
+func show_interact_text():
+	interact_1.visible = true
+	interact_2.visible = true
+
 func hide_item_square():
 	item_square.visible = false
 

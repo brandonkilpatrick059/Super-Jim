@@ -144,7 +144,7 @@ func _on_stop_motion():
 	current_v = Vector2(0,0)
 
 func interact():
-	if (branching_dialog != null):
+	if(branching_dialog != null && current_v.length() < 1):
 		face_player()
 		dialog_manager = dialog.instantiate()
 		if(dialog_offset != null):
@@ -398,7 +398,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	if(!Engine.is_editor_hint()):
-		if(!immobilized):
+		if(!immobilized || perceptions.in_dialog):
 			_character_base.face_to_vector(current_v)
 			_character_base.animate_sprite_by_vector(current_v, (speed() >= top_speed))
 		else:
@@ -406,3 +406,12 @@ func _physics_process(delta):
 		
 		#apply velocity thru physics engine
 		apply_force(current_v)
+		
+		if(current_v.length() < 1 &&
+		branching_dialog != null &&
+		!is_in_group("talkable")):
+			add_to_group("talkable")
+		elif(!current_v.length() < 1 ||
+		branching_dialog == null &&
+		is_in_group("talkable")):
+			remove_from_group("talkable")

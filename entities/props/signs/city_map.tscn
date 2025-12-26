@@ -13,7 +13,7 @@ script = ExtResource("1_t3wbd")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_tlw3e")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." node_paths=PackedStringArray("interact_node") groups=["interactable"]]
+[node name="StaticBody2D" type="StaticBody2D" parent="." node_paths=PackedStringArray("interact_node") groups=["interactable", "lookable"]]
 collision_layer = 12
 collision_mask = 0
 script = ExtResource("3_dgkhm")

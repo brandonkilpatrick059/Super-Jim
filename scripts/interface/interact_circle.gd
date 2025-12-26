@@ -42,7 +42,7 @@ func show_interact_text(text : String):
 		"drop":
 			drop_label.visible = true
 		"look":
-			throw_label.visible = true
+			look_label.visible = true
 		"":
 			use_label.visible = true
 
@@ -60,19 +60,22 @@ func get_interact_text() -> String:
 func activate_interact(text: String):
 	if(text != interact_string):
 		interact_sprite.visible = true
+		hide_interact_labels()
 		interact_string = text
 		interact_sprite.play("expand")
 		activating = true
+		if(text != "drop" && throw_active):
+			deactivate_throw()
 
 func activate_throw():
 	throw_sprite.visible = true
 	throw_sprite.play("expand")
 	activating_throw = true
 	throw_active = true
-	deactivating_throw = false
 
 func deactivate_throw():
 	throw_sprite.play("retract")
+	activating_throw = false
 	deactivating_throw = true
 	throw_active = false
 	throw_label.visible = false

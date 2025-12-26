@@ -29,9 +29,9 @@ animation = &"expand"
 [node name="use_label" type="Label" parent="."]
 visible = false
 layout_mode = 0
-offset_left = -34.0
+offset_left = -36.0
 offset_top = 11.0
-offset_right = 6.0
+offset_right = 4.0
 offset_bottom = 34.0
 text = "USE"
 label_settings = SubResource("LabelSettings_locmn")
@@ -39,9 +39,9 @@ label_settings = SubResource("LabelSettings_locmn")
 [node name="talk_label" type="Label" parent="."]
 visible = false
 layout_mode = 0
-offset_left = -37.0
+offset_left = -39.0
 offset_top = 11.0
-offset_right = 3.0
+offset_right = 1.0
 offset_bottom = 34.0
 text = "TALK"
 label_settings = SubResource("LabelSettings_locmn")
@@ -49,18 +49,18 @@ label_settings = SubResource("LabelSettings_locmn")
 [node name="pick_up_label" type="Label" parent="."]
 visible = false
 layout_mode = 0
-offset_left = -36.0
+offset_left = -38.0
 offset_top = 7.0
-offset_right = 4.0
+offset_right = 2.0
 offset_bottom = 30.0
 text = "PICK"
 label_settings = SubResource("LabelSettings_locmn")
 
 [node name="pick_up_label2" type="Label" parent="pick_up_label"]
 layout_mode = 0
-offset_left = 7.0
+offset_left = 8.0
 offset_top = 12.0
-offset_right = 47.0
+offset_right = 48.0
 offset_bottom = 35.0
 text = "UP"
 label_settings = SubResource("LabelSettings_locmn")
@@ -77,10 +77,10 @@ label_settings = SubResource("LabelSettings_locmn")
 [node name="look_label" type="Label" parent="."]
 visible = false
 layout_mode = 0
-offset_left = -37.0
-offset_top = 12.0
-offset_right = 3.0
-offset_bottom = 35.0
+offset_left = -39.0
+offset_top = 11.0
+offset_right = 1.0
+offset_bottom = 34.0
 text = "LOOK"
 label_settings = SubResource("LabelSettings_locmn")
 

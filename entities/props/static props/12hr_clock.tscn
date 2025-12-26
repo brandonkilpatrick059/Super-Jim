@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r5c0s"]
 size = Vector2(14, 25)
 
-[node name="12hr_clock" type="StaticBody2D" groups=["interactable"]]
+[node name="12hr_clock" type="StaticBody2D" groups=["interactable", "lookable"]]
 collision_layer = 8
 script = ExtResource("1_6syrw")
 

@@ -20,7 +20,7 @@ var camera_should_reset : bool = false
 func _ready():
 	#channel_text.visible = false
 	update_active_channel()
-	audio_player.bus = "effects"
+	audio_player.bus = "Effects"
 	add_child(audio_player)
 	var camera_ref = get_tree().get_first_node_in_group("camera")
 	camera_ref.fade_in()

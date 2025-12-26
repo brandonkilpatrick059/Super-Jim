@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://mcdceuvq1y5j"]
+[gd_scene load_steps=11 format=3 uid="uid://mcdceuvq1y5j"]
 
 [ext_resource type="Script" uid="uid://dxrxkn8672j2t" path="res://scripts/character/player/player_ui.gd" id="1_3ah41"]
 [ext_resource type="PackedScene" uid="uid://br7lsjp6dti22" path="res://interface/location_header.tscn" id="2_6r8u7"]
@@ -6,6 +6,7 @@
 [ext_resource type="SpriteFrames" uid="uid://bmgpmudv15sq" path="res://sprites/spritesheets/spriteframes/interface/health_heart.tres" id="4_dwtnx"]
 [ext_resource type="Script" uid="uid://8ro0ia3we2su" path="res://scripts/utility/dash_meter.gd" id="5_apdnc"]
 [ext_resource type="Texture2D" uid="uid://uw3cf5pm1u2u" path="res://sprites/interface/item_box/item_box.png" id="6_rvxvm"]
+[ext_resource type="PackedScene" uid="uid://juqm7h82fyhq" path="res://interface/interact_circle.tscn" id="7_6r8u7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0y31s"]
 font_size = 12
@@ -128,7 +129,6 @@ offset_bottom = 40.0
 script = ExtResource("5_apdnc")
 
 [node name="item_square" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -142,3 +142,13 @@ offset_top = 4.0
 offset_right = -4.0
 offset_bottom = 36.0
 texture = ExtResource("6_rvxvm")
+
+[node name="interact_pos_1" parent="." instance=ExtResource("7_6r8u7")]
+visible = false
+layout_mode = 1
+
+[node name="interact_pos_2" parent="." instance=ExtResource("7_6r8u7")]
+visible = false
+layout_mode = 1
+offset_left = -34.0
+offset_right = -34.0

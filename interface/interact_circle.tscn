@@ -1,0 +1,95 @@
+[gd_scene load_steps=6 format=3 uid="uid://juqm7h82fyhq"]
+
+[ext_resource type="SpriteFrames" uid="uid://du2ttn0muc30i" path="res://sprites/spritesheets/spriteframes/interface/interact_circle.tres" id="1_ufte3"]
+[ext_resource type="Script" uid="uid://ctnlhj788qmsi" path="res://scripts/interface/interact_circle.gd" id="1_w2tm1"]
+[ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="2_i8nvr"]
+[ext_resource type="SpriteFrames" uid="uid://cmknuvyf1if4m" path="res://sprites/spritesheets/spriteframes/interface/throw_circle.tres" id="2_locmn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_locmn"]
+font = ExtResource("2_i8nvr")
+
+[node name="interact_pos_1" type="Control"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+script = ExtResource("1_w2tm1")
+
+[node name="interact_sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-22, 20)
+sprite_frames = ExtResource("1_ufte3")
+animation = &"retract"
+
+[node name="throw_sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-68, 20)
+sprite_frames = ExtResource("2_locmn")
+animation = &"expand"
+
+[node name="use_label" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -34.0
+offset_top = 11.0
+offset_right = 6.0
+offset_bottom = 34.0
+text = "USE"
+label_settings = SubResource("LabelSettings_locmn")
+
+[node name="talk_label" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -37.0
+offset_top = 11.0
+offset_right = 3.0
+offset_bottom = 34.0
+text = "TALK"
+label_settings = SubResource("LabelSettings_locmn")
+
+[node name="pick_up_label" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -36.0
+offset_top = 7.0
+offset_right = 4.0
+offset_bottom = 30.0
+text = "PICK"
+label_settings = SubResource("LabelSettings_locmn")
+
+[node name="pick_up_label2" type="Label" parent="pick_up_label"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 12.0
+offset_right = 47.0
+offset_bottom = 35.0
+text = "UP"
+label_settings = SubResource("LabelSettings_locmn")
+
+[node name="drop_label" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -40.0
+offset_top = 12.0
+offset_bottom = 35.0
+text = "DROP"
+label_settings = SubResource("LabelSettings_locmn")
+
+[node name="look_label" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -37.0
+offset_top = 12.0
+offset_right = 3.0
+offset_bottom = 35.0
+text = "LOOK"
+label_settings = SubResource("LabelSettings_locmn")
+
+[node name="throw_label" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -92.0
+offset_top = 12.0
+offset_right = -42.0
+offset_bottom = 35.0
+text = "THROW"
+label_settings = SubResource("LabelSettings_locmn")

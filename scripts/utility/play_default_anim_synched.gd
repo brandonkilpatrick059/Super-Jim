@@ -6,7 +6,7 @@ extends Node2D
 
 var started_anims = false
 
-func _process(delta: float) -> void:
+func _ready() -> void:
 	if(!started_anims):
 		var children = get_children()
 		for child in children:

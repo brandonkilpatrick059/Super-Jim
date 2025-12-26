@@ -15,6 +15,9 @@ extends Control
 @onready var item_square = $item_square
 @onready var item_square_texture :TextureRect = $item_square/Sprite2D
 
+@onready var interact_1 = $interact_pos_1
+@onready var interact_2 = $interact_pos_2
+
 var fps_counter_visible = false
 
 var sound_player = AudioStreamPlayer.new()
@@ -65,6 +68,24 @@ func update_hearts(points : int):
 		else:
 			hearts[iterator].play("inactive")
 		iterator+=1
+
+func get_interact_text():
+	if(item_square.visible):
+		return interact_2.get_interact_text()
+	else:
+		return interact_1.get_interact_text()
+
+func set_interact_text(text : String):
+	if(item_square.visible):
+		interact_2.activate_interact(text)
+	else:
+		interact_1.activate_interact(text)
+
+func deactivate_interact():
+	if(item_square.visible):
+		interact_2.deactivate_interact()
+	else:
+		interact_1.deactivate_interact()
 
 func hide_item_square():
 	item_square.visible = false

@@ -24,7 +24,7 @@ var audio_player := AudioStreamPlayer.new()
 var timer := Timer.new()
 
 func _ready() -> void:
-	audio_player.bus = "effects"
+	audio_player.bus = "Effects"
 	add_child(audio_player)
 	timer.one_shot = true
 	add_child(timer)

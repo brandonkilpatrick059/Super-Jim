@@ -697,7 +697,38 @@ func disable_collision():
 func enable_collision():
 	_collision.disabled = false
 
+func handle_interact_text():
+	if(_grabber.get_collision_count() > 0):
+		var grabObj = _grabber.get_collider(0)
+		var index = 0
+		while(index < _grabber.get_collision_count()):
+			if(_grabber.get_collider(index).is_in_group("npc")):
+				if(_ui.get_interact_text() == "" || 
+				_ui.get_interact_text() == "drop" &&
+				_ui.get_interact_text() != "talk"):
+					_ui.set_interact_text("talk")
+				break
+			elif(_grabber.get_collider(index).is_in_group("interactable")):
+				if(_ui.get_interact_text() == "" || 
+				_ui.get_interact_text() == "drop" &&
+				_ui.get_interact_text() != "use"):
+					_ui.set_interact_text("use")
+				break
+			elif(_grabber.get_collider(index).is_in_group("pickupable")):
+				if(_ui.get_interact_text() == "" &&
+				_ui.get_interact_text() != "pick up"):
+					_ui.set_interact_text("pick up")
+				break
+			else:
+				if(_ui.get_interact_text() != "drop"):
+					_ui.deactivate_interact()
+			index = index + 1
+	else:
+		if(_ui.get_interact_text() != "drop"):
+			_ui.deactivate_interact()
+
 func handle_interact():
+	#handle_interact_text()
 	if use_item_timer.is_stopped() && Input.is_action_just_pressed("interact"):
 		use_item_timer.start(0.25)
 		var index = 0
@@ -824,6 +855,7 @@ func throw():
 			grabbed_object.throw(_character_base.get_facing_dir())
 		grabbed_object = null
 		set_holding_object(false)
+		#_ui.deactivate_interact()
 
 func put_down():
 	sound_player.stream = putdown_sound
@@ -836,6 +868,7 @@ func put_down():
 		grabbed_object.put_down(_character_base.get_facing_dir())
 	grabbed_object = null
 	set_holding_object(false)
+	#_ui.deactivate_interact()
 	
 func handle_pick_up():
 	if(will_grab_object != null && !holding_object):
@@ -847,6 +880,7 @@ func handle_pick_up():
 			self.add_to_group("courier")
 			append_to_items("pizza")
 		set_holding_object(true)
+		#_ui.set_interact_text("drop")
 	else: if(holding_object):
 		if(_grabber.is_colliding()):
 			if(grabbed_object.is_in_group("pizza")):

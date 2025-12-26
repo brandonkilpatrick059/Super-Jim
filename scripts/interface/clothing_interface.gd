@@ -29,6 +29,8 @@ var animation_change_secs = 2.0
 
 var changed : bool = true
 
+var audio_player : AudioStreamPlayer
+
 func _ready() -> void:
 	player_ref = get_tree().get_first_node_in_group("player")
 	hat_index = player_ref.get_hats_index()
@@ -45,6 +47,10 @@ func _ready() -> void:
 	player_ref.set_control_frozen(true)
 	player_ref.main_ui_invisible()
 	player_ref.visible = false
+	add_child(audio_player)
+	audio_player = get_tree().get_first_node_in_group("main_fx_player")
+	audio_player.stream = load("res://audio/soundFX/voice/sine_voice/1.wav")
+	audio_player.play()
 
 func update_character_base():
 	if(changed):
@@ -131,20 +137,32 @@ func handle_input():
 				arrows_index = 2
 			else:
 				arrows_index = arrows_index - 1
+			audio_player.stream = load("res://audio/soundFX/pickup.wav")
+			audio_player.play()
 		elif(Input.is_action_just_pressed("down")):
 			if(arrows_index == 2):
 				arrows_index = 0
 			else:
 				arrows_index = arrows_index + 1
+			audio_player.stream = load("res://audio/soundFX/pickup.wav")
+			audio_player.play()
 		elif(Input.is_action_just_pressed("left")):
 			decrement_selection()
+			audio_player.stream = load("res://audio/soundFX/woosh.wav")
+			audio_player.play()
 		elif(Input.is_action_just_pressed("right")):
 			increment_selection()
+			audio_player.stream = load("res://audio/soundFX/woosh.wav")
+			audio_player.play()
 		elif(Input.is_action_just_pressed("interact")):
 			var keep_changes = true
+			audio_player.stream = load("res://audio/soundFX/dash_regen.wav")
+			audio_player.play()
 			close(keep_changes)
 		elif(Input.is_action_just_pressed("use_item")):
 			var do_not_keep_changes = false
+			audio_player.stream = load("res://audio/soundFX/putdown.wav")
+			audio_player.play()
 			close(do_not_keep_changes)
 
 func update_animation():

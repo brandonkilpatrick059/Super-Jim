@@ -105,7 +105,7 @@
 [ext_resource type="PackedScene" uid="uid://cujpiynhglxbb" path="res://entities/dynamic world/pizza_neon.tscn" id="69_iaeyf"]
 [ext_resource type="Script" uid="uid://bhwr4mvnbcx4q" path="res://scripts/clock/time_keeper.gd" id="69_ysub4"]
 [ext_resource type="SpriteFrames" uid="uid://bfo7ujtrnmvf2" path="res://sprites/tilesets/water_fall.tres" id="70_hsw6u"]
-[ext_resource type="Script" uid="uid://k2vy5fgi6w" path="res://scripts/utility/play_default_anim_synched.gd" id="70_k76a5"]
+[ext_resource type="Script" uid="uid://k2vy5fgi6w" path="res://sprites/tilesets/play_default_anim_synched.gd" id="70_k76a5"]
 [ext_resource type="Texture2D" uid="uid://bdbcrlpfc1o84" path="res://sprites/lights/square_shadow.png" id="72_817t2"]
 [ext_resource type="PackedScene" uid="uid://blygg1ro7g4fc" path="res://effects/arch_drop_shadow.tscn" id="74_qxg51"]
 [ext_resource type="SpriteFrames" uid="uid://bk20yhmb2c2sn" path="res://sprites/spritesheets/spriteframes/effects/waves_1.tres" id="74_y61j8"]
@@ -151,7 +151,7 @@
 [ext_resource type="PackedScene" uid="uid://bwtlx8yppuhha" path="res://sprites/lights/alien_fortune_teller.tscn" id="138_ihr1y"]
 [ext_resource type="PackedScene" uid="uid://buj2u4alt2o16" path="res://dialog/dialog trees/bar_tender.tscn" id="139_kjtnq"]
 [ext_resource type="Script" uid="uid://cxdxvmads68ph" path="res://scripts/utility/interact_zone.gd" id="140_8g0fd"]
-[ext_resource type="PackedScene" uid="uid://cjdnphei1be46" path="res://entities/props/static props/city/TV.tscn" id="141_smc0a"]
+[ext_resource type="PackedScene" path="res://entities/props/static props/city/TV.tscn" id="141_smc0a"]
 [ext_resource type="Script" uid="uid://cbhs1x66jqvio" path="res://scripts/character/mobsters/team_manager.gd" id="142_r4qkx"]
 [ext_resource type="PackedScene" uid="uid://b7k5ha5wjdpvt" path="res://entities/props/static props/city/bar_table.tscn" id="143_67jlk"]
 

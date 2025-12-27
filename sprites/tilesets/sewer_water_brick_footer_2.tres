@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://nhm4hy6peqg8"]
+
+[ext_resource type="Texture2D" uid="uid://cp2ncfvne3wd6" path="res://sprites/tilesets/sewer_water_brick_footer_2.png" id="1_odlys"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qx8h"]
+atlas = ExtResource("1_odlys")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_de27j"]
+atlas = ExtResource("1_odlys")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6p145"]
+atlas = ExtResource("1_odlys")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fujfn"]
+atlas = ExtResource("1_odlys")
+region = Rect2(96, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qx8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_de27j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6p145")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fujfn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]

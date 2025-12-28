@@ -8,7 +8,7 @@ script = ExtResource("1_hklds")
 trunk = NodePath("trunk")
 
 [node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_yfs5s")]
-speaker_text = Array[String](["...Till the morning cam along-"])
+speaker_text = Array[String](["...Till the morning came along-"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
 voice = "low_alien_voice"

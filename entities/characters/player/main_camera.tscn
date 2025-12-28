@@ -29,3 +29,13 @@ polygon = PackedVector2Array(-118.944, -353.796, 3120, -315.2, 3097.13, 2431.54,
 z_index = -2
 scale = Vector2(0.65, 0.325)
 texture = ExtResource("2_3jtv6")
+
+[node name="flash_light2" type="PointLight2D" parent="."]
+z_index = -2
+scale = Vector2(1, 0.5)
+texture = ExtResource("2_3jtv6")
+
+[node name="flash_light3" type="PointLight2D" parent="."]
+z_index = -2
+scale = Vector2(1.5, 0.75)
+texture = ExtResource("2_3jtv6")

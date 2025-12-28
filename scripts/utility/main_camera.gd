@@ -2,6 +2,8 @@ extends Camera2D
 
 @onready var _fade_to_black = $fade_to_black
 @onready var _flashlight = $flash_light
+@onready var _flashlight2 = $flash_light2
+@onready var _flashlight3 = $flash_light3
 
 var player_ref
 
@@ -31,6 +33,8 @@ var player_connected = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_flashlight.enabled = false
+	_flashlight2.enabled = false
+	_flashlight3.enabled = false
 	pan_timer.one_shot = true
 	timer_fade.one_shot = true
 	timer_zoom.one_shot = true

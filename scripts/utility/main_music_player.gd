@@ -8,10 +8,15 @@ var zero_volume = -60
 var timer : Timer = Timer.new()
 var fade_step = 3
 var fade_step_time = 0.05
+
+var fading_out = false
+var fading_in = false
 #var start_new_stream_wait_time = 1
 
 var changing_streams = false
 #var ready_play_new_stream = false
+
+var skipping_fade_in = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,12 +27,14 @@ func _ready():
 func get_stream_name() -> String:
 	return current_stream
 
-func change_stream(new_stream: String):
+func change_stream(new_stream: String, skip_fade_in : bool = true):
 	#if(current_stream != ""):
 	current_volume = volume_db
 	changing_streams = true
+	fading_out = true
 	current_stream = new_stream
 	timer.start(fade_step_time)
+	skipping_fade_in = skip_fade_in
 	#else:
 		#current_volume = 0
 		#changing_streams = false
@@ -47,16 +54,25 @@ func attenuate(amount : float):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(changing_streams && timer.is_stopped()):
-		if(current_volume > zero_volume):
-			current_volume = current_volume - fade_step
-			volume_db = current_volume
+		if(fading_out && volume_db > zero_volume):
+			volume_db = volume_db - fade_step
 			timer.start(fade_step_time)
-		elif(current_volume <= zero_volume):
-			stop()
+		elif(fading_in && volume_db < 0):
+			volume_db = volume_db + fade_step
+			timer.start(fade_step_time)
+		elif(fading_in && volume_db == 0):
 			changing_streams = false
+			fading_in = false
+		elif(volume_db <= zero_volume):
+			stop()
+			fading_out = false
+			if(skipping_fade_in):
+				fading_in = false
+				skipping_fade_in = false
+				volume_db = 0
+			else:
+				fading_in = true
 			if(current_stream != ""):
-				current_volume = 0
-				volume_db = current_volume
 				stream = load(current_stream)
 				play()
 				

@@ -1,5 +1,6 @@
 extends Node
 @export var song_deck : Array[String]
+@export var skips_fade_in = true
 
 var time_keeper = null
 var main_music_player = null
@@ -24,7 +25,7 @@ func _physics_process(delta: float):
 		song_deck[internal_clock] != "" &&
 		!main_music_player.is_playing()):
 			var new_stream = get_song_deck()[internal_clock]
-			main_music_player.change_stream(new_stream)
+			main_music_player.change_stream(new_stream,skips_fade_in)
 
 func _on_body_entered(body : Node):
 	if(body.is_in_group("player") && !active):
@@ -34,7 +35,7 @@ func _on_body_entered(body : Node):
 			new_stream = get_song_deck()[internal_clock]
 		else:
 			new_stream = get_song_deck()[0] 
-		main_music_player.change_stream(new_stream)
+		main_music_player.change_stream(new_stream,skips_fade_in)
 
 func _on_body_exited(body : Node):
 	if(body.is_in_group("player") && active):

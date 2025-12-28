@@ -49,7 +49,7 @@ func _ready() -> void:
 	player_ref.visible = false
 	add_child(audio_player)
 	audio_player = get_tree().get_first_node_in_group("main_fx_player")
-	audio_player.stream = load("res://audio/soundFX/voice/sine_voice/1.wav")
+	audio_player.stream = load("res://audio/soundFX/woosh.wav")
 	audio_player.play()
 
 func update_character_base():

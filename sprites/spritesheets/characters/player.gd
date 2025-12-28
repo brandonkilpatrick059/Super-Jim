@@ -42,6 +42,7 @@ var pickup_sound = preload("res://audio/soundFX/pickup.wav")
 var putdown_sound = preload("res://audio/soundFX/putdown.wav")
 var crystal_sound = preload("res://audio/soundFX/crystal_get.wav")
 var footfall_sound = preload("res://audio/soundFX/footfall_1.wav")
+var flashlight_sound = preload("res://audio/soundFX/click.ogg")
 
 var sound_player := AudioStreamPlayer.new()
 
@@ -812,6 +813,8 @@ func use_item():
 				grabbed_object.use_item()
 			flashlight:
 				if(camera_connected):
+					sound_player.stream = flashlight_sound
+					sound_player.play()
 					_camera.toggle_flashlight()
 			cardbinder:
 				stop_dash()

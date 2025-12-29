@@ -5,23 +5,23 @@
 [ext_resource type="AudioStream" uid="uid://e6pvyp6hdwyc" path="res://audio/soundFX/snap.ogg" id="3_bri8c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_376au"]
-size = Vector2(58, 24)
+size = Vector2(43, 24)
 
-[node name="alligator" type="RigidBody2D"]
-collision_layer = 8193
-collision_mask = 277
+[node name="alligator" type="RigidBody2D" groups=["prunable"]]
+collision_layer = 0
+collision_mask = 8464
 lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_xbuue")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, 0)
+position = Vector2(10.5, 0)
 shape = SubResource("RectangleShape2D_376au")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_376au")
-frame_progress = 0.52525
+frame_progress = 0.0913368
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_bri8c")

@@ -45,6 +45,11 @@ var footfall_sound = preload("res://audio/soundFX/footfall_1.wav")
 var flashlight_sound = preload("res://audio/soundFX/click.ogg")
 
 var sound_player := AudioStreamPlayer.new()
+var sound_player2 := AudioStreamPlayer.new()
+var sound_player3 := AudioStreamPlayer.new()
+var sound_player4 := AudioStreamPlayer.new()
+var sound_player5 := AudioStreamPlayer.new()
+var sound_players : Array[AudioStreamPlayer] = [sound_player,sound_player2,sound_player3,sound_player4,sound_player5]
 
 var can_play_footfall = false
 var footfall_player := AudioStreamPlayer.new()
@@ -143,12 +148,11 @@ func _ready():
 	item_text_timer.one_shot = true
 	
 	comment_timer.one_shot = true
-	sound_player.bus = "Effects"
+	set_up_sound_players()
 	footfall_player.bus = "Effects"
 	footfall_player.volume_db = -30
 	footfall_player.stream = load("res://audio/soundFX/footfall_1.wav")
 	add_child(footfall_player)
-	add_child(sound_player)
 	add_child(timer_dash)
 	add_child(timer_dash_regen)
 	add_child(invincibility_timer)
@@ -174,6 +178,18 @@ func _ready():
 	if(Engine.is_editor_hint()):
 		queue_redraw()
 
+func set_up_sound_players():
+	for player in sound_players:
+		player.bus = "Effects"
+		add_child(player)
+
+func play_sound(stream : AudioStream):
+	for player in sound_players:
+		if(!player.playing):
+			player.stream = stream
+			player.play()
+			return
+
 #called when the player loads in from a save
 func load_in():
 	if(!loading_in):
@@ -184,8 +200,8 @@ func load_in():
 		var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 		time_keeper.set_clock(9)
 		time_keeper.unlock_time()
-		sound_player.stream = load("res://audio/music/sleep theme.wav")
-		sound_player.play()
+		var stream = load("res://audio/music/sleep theme.wav")
+		play_sound(stream)
 
 func set_and_update_cloths(hat : int, top : int, bottom : int):
 	hats_index = hat
@@ -444,8 +460,7 @@ func add_to_max_dash_secs(num : int):
 	if new_max_dash_secs < full_dash_secs:
 		max_dash_secs = new_max_dash_secs
 	update_dash_meter()
-	sound_player.stream = crystal_sound
-	sound_player.play()
+	play_sound(crystal_sound)
 	_on_make_comment("Cool, a Dash Crystal!")
 
 func show_dash():
@@ -717,11 +732,12 @@ func handle_interact_text():
 			var grabObj = _grabber.get_collider(0)
 			var index = 0
 			while(index < _grabber.get_collision_count()):
-				if(_grabber.get_collider(index).is_in_group("interactable") || 
-				_grabber.get_collider(index).is_in_group("pickupable")):
-					grabObj = _grabber.get_collider(index)
-					break
-				index = index + 1
+				if(_grabber.get_collider(index) != null):
+					if(_grabber.get_collider(index).is_in_group("interactable") || 
+					_grabber.get_collider(index).is_in_group("pickupable")):
+						grabObj = _grabber.get_collider(index)
+						break
+					index = index + 1
 			if(_grabber.get_collider(index) != null):
 				if(_grabber.get_collider(index).is_in_group("pizza")):
 					_ui.set_interact_text("pick up")
@@ -789,12 +805,20 @@ func handle_use_item():
 	if(use_item_timer.is_stopped() && Input.is_action_just_pressed("use_item")):
 		use_item()
 		use_item_timer.start(0.25)
-	if(Input.is_action_just_pressed(("switch_item")) && !items_frozen):
+	if(Input.is_action_just_pressed(("switch_item_right")) && !items_frozen):
+		play_sound(pickup_sound)
 		if(items.size() > 1):
 			if(item_index + 1 == items.size()):
 				item_index = 0
 			else:
 				item_index = item_index + 1
+	elif(Input.is_action_just_pressed(("switch_item_left")) && !items_frozen):
+		play_sound(pickup_sound)
+		if(items.size() > 1):
+			if(item_index - 1 < 0):
+				item_index = items.size() - 1
+			else:
+				item_index = item_index - 1
 
 func handle_throw():
 	if Input.is_action_just_pressed("throw"):
@@ -813,8 +837,7 @@ func use_item():
 				grabbed_object.use_item()
 			flashlight:
 				if(camera_connected):
-					sound_player.stream = flashlight_sound
-					sound_player.play()
+					play_sound(flashlight_sound)
 					_camera.toggle_flashlight()
 			cardbinder:
 				stop_dash()
@@ -865,8 +888,7 @@ func set_holding_object(is_holding):
 
 func throw():
 	if(holding_object && !_grabber.is_colliding() ):
-		sound_player.stream = woosh_sound
-		sound_player.play()
+		play_sound(woosh_sound)
 		
 		if(grabbed_object.is_in_group("pizza")):
 			self.remove_from_group("courier")
@@ -880,8 +902,7 @@ func throw():
 		item_text_timer.start(0.25)
 
 func put_down():
-	sound_player.stream = putdown_sound
-	sound_player.play()
+	play_sound(putdown_sound)
 	if(grabbed_object.is_in_group("pizza")):
 		grabbed_object.put_down(_character_base.get_facing_dir(),Vector2(0,-16))
 		self.remove_from_group("courier")
@@ -894,8 +915,7 @@ func put_down():
 	
 func handle_pick_up():
 	if(will_grab_object != null && !holding_object):
-		sound_player.stream = pickup_sound
-		sound_player.play()
+		play_sound(pickup_sound)
 		will_grab_object.pick_up(self)
 		grabbed_object = will_grab_object
 		if(will_grab_object.is_in_group("pizza")):
@@ -912,17 +932,14 @@ func handle_pick_up():
 					if(global_position.distance_to(door.global_position) < 32):
 						put_down()
 				if(holding_object): #if we didn't find a delivery door
-					sound_player.stream = bump_sound
-					sound_player.play()
+					play_sound(bump_sound)
 			else:
-				sound_player.stream = bump_sound
-				sound_player.play()
+				play_sound(bump_sound)
 		else:
 			put_down()
 
 func return_pizza():
-	sound_player.stream = pickup_sound
-	sound_player.play()
+	play_sound(pickup_sound)
 	var pizza = get_tree().get_first_node_in_group("pizza")
 	self.add_to_group("courier")
 	append_to_items("pizza")
@@ -939,8 +956,7 @@ func stop_dash():
 func dash():
 	if(!is_dashing && Input.get_vector(direction.left, direction.right, direction.up, direction.down).length() > 0):
 		if(current_dash_secs > 0):
-			sound_player.stream = dash_sound
-			sound_player.play()
+			sound_player.play(dash_sound)
 			is_dashing = true
 			current_dash_secs = current_dash_secs - 1
 			timer_dash.start(1)

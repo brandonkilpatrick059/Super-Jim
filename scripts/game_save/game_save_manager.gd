@@ -30,6 +30,8 @@ func load_game():
 				load_spawn(dictionary)
 			"crystal":
 				load_crystal(dictionary)
+			"cash":
+				load_cash(dictionary)
 	save_file.close()
 
 func save_game(): 
@@ -41,6 +43,7 @@ func save_game():
 	save_doors()
 	save_comments()
 	save_crystals()
+	save_cash()
 	save_file.close()
 
 func save_player():
@@ -112,6 +115,19 @@ func load_crystal(dictionary : Dictionary):
 		var crystal_tag = crystal.get_save_tag()
 		if(crystal_tag == dictionary.get("save_tag")):
 			crystal.load_from_dictionary(dictionary)
+
+func save_cash():
+	var cash_pickups = get_tree().get_nodes_in_group("cash")
+	for cash in cash_pickups:
+		var cash_dictionary : Dictionary = cash.get_save_dictionary()
+		save_file.store_line(JSON.stringify(cash_dictionary))
+
+func load_cash(dictionary : Dictionary):
+	var cash_pickups = get_tree().get_nodes_in_group("cash")
+	for cash in cash_pickups:
+		var cash_tag = cash.get_save_tag()
+		if(cash_tag == dictionary.get("save_tag")):
+			cash.load_from_dictionary(dictionary)
 
 func save_doors():
 	var doors = get_tree().get_nodes_in_group("door_persistent")

@@ -65,6 +65,6 @@ func _on_body_entered(body: Node) -> void:
 			body.reduce_hp()
 			right_facing = !right_facing
 			sprite.flip_h = !sprite.flip_h
-	elif(!body.is_in_group("player")):
+	if(!body.is_in_group("player")):
 		right_facing = !right_facing
 		sprite.flip_h = !sprite.flip_h

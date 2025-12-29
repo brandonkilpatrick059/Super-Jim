@@ -7,8 +7,6 @@ const full_passive = "full_passive"
 const alert_passive = "alert_passive"
 
 @export var talk_radius = 100
-@export var has_passive_text = false
-@export var has_monologue_text = false
 @export var facingPosition = "left"
 #@export var ai_directive = full_passive
 @export var voice = "none"
@@ -20,6 +18,14 @@ const alert_passive = "alert_passive"
 @export var facing_dir = "right"
 @export var dialog_offset = Vector2(0,0)
 @export var starting_index = 0
+
+#denotes npcs which do not use the typical character_base
+#generally for mostly stationary npcs with unique
+#shapes and animation patterns. bool=true skips all character_base setup
+#and movement code. This assumes that the script is attached to an npc
+#where _character_base has a character_base_animatronic script
+#and all animation movement will be handled by bespoke scripts
+@export var is_animatronic = false
 
 @export var exempt_from_npc_refresh = false
 
@@ -81,21 +87,26 @@ func _ready():
 	schedules_index = starting_index
 	set_up_character_base()
 	set_up_sound_player()
-	set_up_nav_agent()
-	update_perceptions()
-	send_perceptions()
-	player_ref = get_tree().get_nodes_in_group("player")[0]
-	
-	if(Engine.is_editor_hint()):
+	if(!is_animatronic):
+		set_up_nav_agent()
+		update_perceptions()
+		send_perceptions()
+	if(!Engine.is_editor_hint()):
+		player_ref = get_tree().get_nodes_in_group("player")[0]
+	else:
 		queue_redraw()
 
 func set_up_character_base():
-	_character_base.set_facing_dir(facing_dir)
-	_character_base.set_spriteframes(base_spriteframes,
-	hat_spriteframes,
-	top_spriteframes,
-	bottom_spriteframes)
-	_character_base.stand_dir(_character_base.facing_dir)
+	if(!is_animatronic):
+		_character_base.set_facing_dir(facing_dir)
+		_character_base.set_spriteframes(base_spriteframes,
+		hat_spriteframes,
+		top_spriteframes,
+		bottom_spriteframes)
+		_character_base.stand_dir(_character_base.facing_dir)
+	else:
+		_character_base.set_spriteframes(base_spriteframes)
+		_character_base.play_animation("default")
 
 func _on_stand_dir(stand : String):
 	if(stand == ""):
@@ -377,7 +388,8 @@ func teleport_and_update():
 	if(schedules.size() > 0 && !exempt_from_npc_refresh):
 		update_stage_mark()
 		global_position = perceptions.current_stage_mark.global_position
-		_on_set_nav_target(perceptions.current_stage_mark.global_position)
+		if(!is_animatronic):
+			_on_set_nav_target(perceptions.current_stage_mark.global_position)
 		var parent_node = perceptions.current_stage_mark.get_reparent_node()
 		reparent(parent_node)
 		immobilized = false
@@ -398,14 +410,15 @@ func _process(delta):
 
 func _physics_process(delta):
 	if(!Engine.is_editor_hint()):
-		if(!immobilized || perceptions.in_dialog):
-			_character_base.face_to_vector(current_v)
-			_character_base.animate_sprite_by_vector(current_v, (speed() >= top_speed))
-		else:
-			current_v = current_v * 0
-		
-		#apply velocity thru physics engine
-		apply_force(current_v)
+		if(!is_animatronic):
+			if(!immobilized || perceptions.in_dialog):
+				_character_base.face_to_vector(current_v)
+				_character_base.animate_sprite_by_vector(current_v, (speed() >= top_speed))
+			else:
+				current_v = current_v * 0
+			
+			#apply velocity thru physics engine
+			apply_force(current_v)
 		
 		if(current_v.length() < 1 &&
 		branching_dialog != null &&

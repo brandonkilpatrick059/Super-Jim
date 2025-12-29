@@ -9,6 +9,7 @@ var ui = preload("res://TV/TV_machine.tscn")
 @export var channel : int = 0
 @export var can_change_channel = false
 @export var can_turn_off = true
+@export var ambient_sound : String = ""
 
 #0 = daylight
 #1 = indoors
@@ -21,13 +22,19 @@ var ui_active = false
 var player_ref = null
 
 var audio_player := AudioStreamPlayer.new()
+@onready var audio_player_2d : AudioStreamPlayer2D = $AudioStreamPlayer2D
 var timer := Timer.new()
 
 func _ready() -> void:
 	audio_player.bus = "Effects"
+	audio_player_2d.bus = "Effects"
+	add_child(audio_player_2d)
 	add_child(audio_player)
 	timer.one_shot = true
 	add_child(timer)
+	if(ambient_sound != ""):
+		audio_player_2d.stream = load(ambient_sound)
+		audio_player_2d.play()
 
 func get_layer_index():
 	return layer_index
@@ -63,6 +70,7 @@ func exit_ui():
 	player_ref.set_control_frozen(false)
 	player_ref.main_ui_visible()
 	var camera_ref = player_ref.get_camera_ref()
+	audio_player_2d.play()
 	camera_ref.fade_in()
 
 func _physics_process(delta: float) -> void:
@@ -75,6 +83,7 @@ func _physics_process(delta: float) -> void:
 		animated_sprite.play("off")
 		point_light.enabled = false
 	if(ui_active):
+		audio_player_2d.stop()
 		ui_ref.global_position = player_ref.get_camera_ref().get_screen_center_position()
 		if Input.is_action_just_pressed("interact"):
 			timer.start(1)

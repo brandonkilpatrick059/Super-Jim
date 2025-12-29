@@ -1,0 +1,98 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://l8o7kqml7w6u"]
+
+[ext_resource type="Texture2D" uid="uid://co8kn1u6xvyqq" path="res://sprites/spritesheets/characters/base/alligator_base.png" id="1_2qfhi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qfhi"]
+atlas = ExtResource("1_2qfhi")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff36q"]
+atlas = ExtResource("1_2qfhi")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1vip"]
+atlas = ExtResource("1_2qfhi")
+region = Rect2(0, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8spt8"]
+atlas = ExtResource("1_2qfhi")
+region = Rect2(0, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3oob"]
+atlas = ExtResource("1_2qfhi")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qx74a"]
+atlas = ExtResource("1_2qfhi")
+region = Rect2(0, 0, 64, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qfhi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ff36q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1vip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8spt8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3oob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qx74a")
+}],
+"loop": true,
+"name": &"chomp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qfhi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ff36q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1vip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8spt8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3oob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qx74a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qfhi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ff36q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1vip")
+}],
+"loop": true,
+"name": &"jaw_close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1vip")
+}],
+"loop": true,
+"name": &"stunned",
+"speed": 5.0
+}]

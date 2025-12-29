@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://1cxtilx0gbtm"]
+
+[ext_resource type="Script" uid="uid://y5ippqr715to" path="res://scripts/player_apartment/furniture.gd" id="1_s5thc"]
+[ext_resource type="SpriteFrames" uid="uid://drauw2hemh2yd" path="res://sprites/spritesheets/spriteframes/props/lamp.tres" id="2_ykavq"]
+[ext_resource type="Texture2D" uid="uid://b6i63ebldyx86" path="res://sprites/lights/2d_lights_and_shadows_neutral_point_light.webp" id="3_n1t8m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydt6r"]
+size = Vector2(12, 16)
+
+[node name="Lamp_0" type="Node2D"]
+script = ExtResource("1_s5thc")
+path_to_self = "res://entities/props/static props/apartment/furniture/lamp/lamp_0.tscn"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+z_index = 1
+position = Vector2(0, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_ydt6r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_ykavq")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.831373, 0.764706, 1)
+texture = ExtResource("3_n1t8m")

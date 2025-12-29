@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://crpiufuwv2fg"]
+
+[ext_resource type="PackedScene" uid="uid://dhkq0px7npygr" path="res://entities/characters/NPC/fauna/alligator.tscn" id="1_esjuk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k3lb6"]
+
+[node name="FaunaTestScene" type="Node2D"]
+
+[node name="alligator" parent="." instance=ExtResource("1_esjuk")]
+position = Vector2(214, 117)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 8208
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(102, 115)
+shape = SubResource("RectangleShape2D_k3lb6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(420, 115)
+shape = SubResource("RectangleShape2D_k3lb6")

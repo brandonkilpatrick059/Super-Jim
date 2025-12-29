@@ -34,3 +34,6 @@ position = Vector2(-7, 12)
 color = Color(0.509804, 1, 1, 1)
 texture = ExtResource("4_v383r")
 texture_scale = 0.15
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+max_distance = 500.0

@@ -31,8 +31,6 @@ base_spriteframes = ExtResource("2_rcf8h")
 dialog_offset = Vector2(0, -32)
 starting_index = null
 exempt_from_npc_refresh = null
-has_vision = null
-has_hearing = null
 branching_dialog = NodePath("troll")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -68,6 +66,7 @@ script = ExtResource("9_ty4g0")
 material = SubResource("CanvasItemMaterial_fnoqb")
 sprite_frames = ExtResource("2_rcf8h")
 animation = &"stand_right"
+frame_progress = 0.531225
 offset = Vector2(0, -16)
 
 [node name="hat" type="AnimatedSprite2D" parent="character_base"]

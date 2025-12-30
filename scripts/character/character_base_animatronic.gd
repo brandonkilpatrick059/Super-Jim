@@ -8,6 +8,15 @@ extends Node2D
 @export var base_spriteframes : SpriteFrames = null
 var is_visible = true
 
+var animation_queue : Array[String] = []
+var animation_finished : bool = false
+
+func animation_queue_empty():
+	if(animation_queue.size() == 0):
+		return true
+	else:
+		return false
+
 func get_base_current_animation():
 	return _base_sprite.get_animation()
 
@@ -31,6 +40,11 @@ func get_base_animation_framecount(animation_name: String = ""):
 func play_animation(animation: String):
 	if(_base_sprite.sprite_frames != null):
 		_base_sprite.play(animation)
+
+func play_animations(animations: Array[String]):
+	animation_queue.append_array(animations)
+	animation_finished = false
+	_base_sprite.play(animation_queue[0])
 
 func set_speed_scales(scale):
 	if(_base_sprite.sprite_frames != null):
@@ -85,3 +99,19 @@ func set_visibility(value : bool):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_spriteframes(base_spriteframes)
+
+func handle_animation():
+	if(animation_queue.size() > 0):
+		if(animation_finished):
+			animation_queue.pop_front()
+			if(animation_queue.size() > 0):
+				play_animation(animation_queue[0])
+				animation_finished = false
+		else:
+			var spriteframes = _base_sprite.sprite_frames
+			var animation = animation_queue[0]
+			if(_base_sprite.frame == spriteframes.get_frame_count(animation) - 1):
+				animation_finished = true
+
+func _process(delta: float) -> void:
+	handle_animation()

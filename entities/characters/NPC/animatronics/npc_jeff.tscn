@@ -1,24 +1,43 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5nfeoeq3jpjm"]
+[gd_scene load_steps=9 format=3 uid="uid://c5nfeoeq3jpjm"]
 
 [ext_resource type="Script" uid="uid://ckj5xwhetys06" path="res://scripts/character/NPC/npc.gd" id="1_karpb"]
 [ext_resource type="SpriteFrames" uid="uid://q4pkwgixe2ws" path="res://sprites/spritesheets/spriteframes/characters/base/jeff_base.tres" id="2_ipdhv"]
 [ext_resource type="PackedScene" uid="uid://biwoi1biy4ynx" path="res://entities/characters/NPC/AI state machine/ai_state_machine.tscn" id="4_omukw"]
 [ext_resource type="PackedScene" uid="uid://c1287sosujo5w" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_troll.tscn" id="5_1fg3s"]
 [ext_resource type="Script" uid="uid://dohfsf4f1rv0a" path="res://scripts/character/character_base_animatronic.gd" id="5_omukw"]
+[ext_resource type="Script" uid="uid://cs3figalbrj66" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_jeff_retracted.gd" id="5_xpwu4"]
+[ext_resource type="PackedScene" uid="uid://bd3ubkuhsnvow" path="res://dialog/dialog trees/jeff/jeff_appears.tscn" id="7_xpwu4"]
 
-[node name="NpcJeff" type="RigidBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_omukw"]
+size = Vector2(64, 479)
+
+[node name="NpcJeff" type="RigidBody2D" node_paths=PackedStringArray("branching_dialog") groups=["interactable", "jeff", "npc"]]
+collision_layer = 20
+collision_mask = 0
 script = ExtResource("1_karpb")
 base_spriteframes = ExtResource("2_ipdhv")
+dialog_offset = Vector2(0, 192)
 is_animatronic = true
 save_tag = "NPC_JEFF"
-
-[node name="ai_state_machine" parent="." instance=ExtResource("4_omukw")]
-initial_state = NodePath("troll")
-
-[node name="troll" parent="ai_state_machine" instance=ExtResource("5_1fg3s")]
+branching_dialog = NodePath("jeff_appears")
 
 [node name="character_base" type="Node2D" parent="."]
 script = ExtResource("5_omukw")
 
 [node name="base_sprite" type="AnimatedSprite2D" parent="character_base"]
 sprite_frames = ExtResource("2_ipdhv")
+frame_progress = 0.736964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_omukw")
+
+[node name="jeff_appears" parent="." instance=ExtResource("7_xpwu4")]
+visible = false
+position = Vector2(1011.13, 1514)
+
+[node name="ai_state_machine" parent="." instance=ExtResource("4_omukw")]
+initial_state = NodePath("jeff_retracted")
+
+[node name="jeff_retracted" parent="ai_state_machine" instance=ExtResource("5_1fg3s")]
+script = ExtResource("5_xpwu4")

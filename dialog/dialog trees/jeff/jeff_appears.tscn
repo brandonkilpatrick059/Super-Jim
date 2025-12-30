@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://bd3ubkuhsnvow"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_l0qdd"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_a8kjn"]
+[ext_resource type="Script" uid="uid://6ti2gqjsh5s4" path="res://scripts/utility/animatronic_animation.gd" id="3_yo3vf"]
+
+[node name="jeff_appears" type="Node2D"]
+script = ExtResource("1_l0qdd")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_a8kjn")]
+speaker_text = Array[String](["Gary? Is that you, buddy?"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "low_alien_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_a8kjn")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["Oh!"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "low_alien_voice"
+dialog_script = NodePath("emerge")
+
+[node name="emerge" type="Node" parent="trunk2"]
+script = ExtResource("3_yo3vf")
+animatronic_tag = "jeff"
+animation_queue = Array[String](["extend", "default"])
+
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_a8kjn")]
+position = Vector2(-2, 444)
+speaker_text = Array[String](["Well, I'll be!"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk4")]
+voice = "low_alien_voice"
+
+[node name="trunk4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_a8kjn")]
+position = Vector2(8, 718)
+speaker_text = Array[String](["Ain't often I see a new face around here."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk5")]
+voice = "low_alien_voice"
+
+[node name="trunk5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_a8kjn")]
+position = Vector2(16, 958)
+speaker_text = Array[String](["My name is Jeff."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk6")]
+voice = "low_alien_voice"
+
+[node name="trunk6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_a8kjn")]
+position = Vector2(2, 1190)
+speaker_text = Array[String](["Welcome to my house."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk7")]
+voice = "low_alien_voice"
+
+[node name="trunk7" parent="." instance=ExtResource("2_a8kjn")]
+position = Vector2(2, 1414)
+speaker_text = Array[String](["Make yourself at home!"])
+speaker_portrait = null
+voice = "low_alien_voice"

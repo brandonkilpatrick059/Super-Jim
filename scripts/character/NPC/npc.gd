@@ -143,7 +143,8 @@ func send_perceptions():
 		_ai_state_machine.receive_perceptions(perceptions)
 
 func update():
-	update_perceptions()
+	if(!is_animatronic):
+		update_perceptions()
 
 func update_branching_dialog():
 	if(schedules.size() > 0):
@@ -156,7 +157,8 @@ func _on_stop_motion():
 
 func interact():
 	if(branching_dialog != null && current_v.length() < 1):
-		face_player()
+		if(!is_animatronic):
+			face_player()
 		dialog_manager = dialog.instantiate()
 		if(dialog_offset != null):
 			dialog_manager.set_nudge_vector(dialog_offset)
@@ -315,6 +317,14 @@ func _on_set_branching_dialog(tree : dialog_tree):
 
 func play_animation(name : String):
 	_character_base.play_animation(name)
+
+func animations_finished():
+	if(is_animatronic): #this is only supported by animatronic bases
+		return _character_base.animation_queue_empty()
+
+func play_animations(animations: Array[String]):
+	if(is_animatronic): #this is only supported by animatronic bases
+		_character_base.play_animations(animations)
 
 func _on_set_nav_target(pos : Vector2):
 	perceptions.nav_target_reached = false

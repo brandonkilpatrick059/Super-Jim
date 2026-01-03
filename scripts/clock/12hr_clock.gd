@@ -9,7 +9,8 @@ func _ready():
 	time_keeper = get_tree().get_first_node_in_group("time_keeper")
 
 func interact():
-	comment.emit(str("It is ", time_keeper.get_informal_time_string()))
+	var player_ref = get_tree().get_first_node_in_group("player")
+	player_ref._on_make_comment(str(time_keeper.get_informal_time_string()))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

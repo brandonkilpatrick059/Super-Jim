@@ -29,8 +29,8 @@ func _physics_process(delta: float) -> void:
 	if(chomping):
 		var player_ref = get_tree().get_first_node_in_group("player")
 		if(global_position.distance_to(player_ref.global_position) < 256):
-			if(global_position.y <= player_ref.global_position.y + 8 &&
-			global_position.y >= player_ref.global_position.y - 8):
+			if(global_position.y <= player_ref.global_position.y + 24 &&
+			global_position.y >= player_ref.global_position.y - 24):
 				if(right_facing && global_position.x < player_ref.global_position.x):
 					start_charging()
 				elif(!right_facing && global_position.x > player_ref.global_position.x):

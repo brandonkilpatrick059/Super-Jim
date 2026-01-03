@@ -29,14 +29,14 @@ animation_queue = Array[String](["extend", "default"])
 
 [node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_a8kjn")]
 position = Vector2(-2, 444)
-speaker_text = Array[String](["Well, I'll be!"])
+speaker_text = Array[String](["Well hello!"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk4")]
 voice = "low_alien_voice"
 
 [node name="trunk4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_a8kjn")]
 position = Vector2(8, 718)
-speaker_text = Array[String](["Ain't often I see a new face around here."])
+speaker_text = Array[String](["It isn't often that I see a new face around here."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk5")]
 voice = "low_alien_voice"

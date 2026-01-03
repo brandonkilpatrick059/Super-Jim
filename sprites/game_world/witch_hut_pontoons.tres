@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://df6ryglw8f070"]
+
+[ext_resource type="Texture2D" uid="uid://c315bnhs3p0cd" path="res://sprites/game_world/witch_hut_pontoons.png" id="1_uy56v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uy56v"]
+atlas = ExtResource("1_uy56v")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qgk5"]
+atlas = ExtResource("1_uy56v")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y05xj"]
+atlas = ExtResource("1_uy56v")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xcow"]
+atlas = ExtResource("1_uy56v")
+region = Rect2(96, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uy56v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qgk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y05xj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xcow")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]

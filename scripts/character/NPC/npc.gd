@@ -145,6 +145,8 @@ func send_perceptions():
 func update():
 	if(!is_animatronic):
 		update_perceptions()
+	else:
+		update_stage_mark()
 
 func update_branching_dialog():
 	if(schedules.size() > 0):

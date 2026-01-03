@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bd3ubkuhsnvow"]
+[gd_scene load_steps=5 format=3 uid="uid://bd3ubkuhsnvow"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_l0qdd"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_a8kjn"]
 [ext_resource type="Script" uid="uid://6ti2gqjsh5s4" path="res://scripts/utility/animatronic_animation.gd" id="3_yo3vf"]
+[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/adjust_schedules_index.gd" id="4_fhlqn"]
 
 [node name="jeff_appears" type="Node2D"]
 script = ExtResource("1_l0qdd")
@@ -55,8 +56,14 @@ speaker_portrait = null
 option_branches = [NodePath("../trunk7")]
 voice = "low_alien_voice"
 
-[node name="trunk7" parent="." instance=ExtResource("2_a8kjn")]
+[node name="trunk7" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_a8kjn")]
 position = Vector2(2, 1414)
 speaker_text = Array[String](["Make yourself at home!"])
 speaker_portrait = null
 voice = "low_alien_voice"
+dialog_script = NodePath("jeff to schedule 1")
+
+[node name="jeff to schedule 1" type="Node" parent="trunk7"]
+script = ExtResource("4_fhlqn")
+node_group = "jeff"
+new_index = 1

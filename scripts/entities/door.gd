@@ -11,6 +11,7 @@ var sound_player := AudioStreamPlayer.new()
 
 @export var parent_door : Node2D
 
+@export var trapped_from_south = false
 @export var cannot_trap_player = false
 @export var locked = false
 @export var locked_exception_groups :Array[String]
@@ -105,8 +106,12 @@ func player_is_behind_door():
 	var player_ref = get_tree().get_first_node_in_group("player")
 	var relative_position = global_position.y - player_ref.global_position.y
 	var ret_val = false
-	if(relative_position > 0):
-		ret_val = true
+	if(!trapped_from_south):
+		if(relative_position > 0):
+			ret_val = true
+	else:
+		if(relative_position < 0):
+			ret_val = true
 	return ret_val
 
 func _process(delta: float) -> void:

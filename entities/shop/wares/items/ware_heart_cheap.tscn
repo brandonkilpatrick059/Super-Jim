@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://0qbrrs7ci4ah"]
+
+[ext_resource type="Script" uid="uid://c2eauyl5k8il2" path="res://scripts/shop/ware.gd" id="1_ipeul"]
+[ext_resource type="Script" uid="uid://dkdpvqallvfom" path="res://scripts/shop/ware_heart.gd" id="2_3j11t"]
+[ext_resource type="Texture2D" uid="uid://deh2do3o6xxq4" path="res://sprites/items/heart_in_a_jar.png" id="3_cv10a"]
+
+[node name="WareHeart" type="Node2D"]
+z_index = 1
+script = ExtResource("1_ipeul")
+cost = 75
+ware_name = "Heart in a Jar ($75)"
+
+[node name="script_node" type="Node" parent="."]
+script = ExtResource("2_3j11t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("3_cv10a")

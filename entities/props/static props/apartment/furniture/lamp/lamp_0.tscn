@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ydt6r"]
 size = Vector2(12, 16)
 
-[node name="Lamp_0" type="Node2D"]
+[node name="Lamp_0" type="Node2D" groups=["prunable"]]
 script = ExtResource("1_s5thc")
 path_to_self = "res://entities/props/static props/apartment/furniture/lamp/lamp_0.tscn"
 

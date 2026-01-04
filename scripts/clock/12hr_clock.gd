@@ -11,7 +11,3 @@ func _ready():
 func interact():
 	var player_ref = get_tree().get_first_node_in_group("player")
 	player_ref._on_make_comment(str(time_keeper.get_informal_time_string()))
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

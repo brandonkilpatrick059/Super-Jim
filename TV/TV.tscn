@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l4enx"]
 size = Vector2(31, 26)
 
-[node name="TV" type="Node2D"]
+[node name="TV" type="Node2D" groups=["prunable"]]
 script = ExtResource("1_v383r")
 can_change_channel = true
 

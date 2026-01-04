@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x7wqg"]
 size = Vector2(32, 14)
 
-[node name="crate" type="RigidBody2D" groups=["dynamic", "loadable", "prop"]]
+[node name="crate" type="RigidBody2D" groups=["dynamic", "loadable", "prop", "prunable"]]
 y_sort_enabled = true
 collision_layer = 8
 collision_mask = 31

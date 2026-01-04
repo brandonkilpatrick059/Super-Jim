@@ -25,7 +25,7 @@ script = ExtResource("5_omukw")
 
 [node name="base_sprite" type="AnimatedSprite2D" parent="character_base"]
 sprite_frames = ExtResource("2_ipdhv")
-frame_progress = 0.0530118
+frame_progress = 0.30613
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)

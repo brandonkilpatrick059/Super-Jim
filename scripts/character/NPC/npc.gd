@@ -89,8 +89,8 @@ func _ready():
 	set_up_sound_player()
 	if(!is_animatronic):
 		set_up_nav_agent()
-		update_perceptions()
-		send_perceptions()
+	update_perceptions()
+	send_perceptions()
 	if(!Engine.is_editor_hint()):
 		player_ref = get_tree().get_nodes_in_group("player")[0]
 	else:
@@ -143,10 +143,7 @@ func send_perceptions():
 		_ai_state_machine.receive_perceptions(perceptions)
 
 func update():
-	if(!is_animatronic):
-		update_perceptions()
-	else:
-		update_stage_mark()
+	update_perceptions()
 
 func update_branching_dialog():
 	if(schedules.size() > 0):
@@ -233,7 +230,8 @@ func _on_set_ai_target(entity : Node):
 
 func update_perceptions():
 	perceptions.current_v = current_v
-	perceptions.facing_dir = _character_base.get_facing_dir()
+	if(!is_animatronic):
+		perceptions.facing_dir = _character_base.get_facing_dir()
 	perceptions.position = position
 	perceptions.global_position = global_position
 	perceptions.linear_velocity = linear_velocity

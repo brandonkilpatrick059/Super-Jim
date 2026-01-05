@@ -59,19 +59,19 @@ func prune_tree():
 				if(loadTouple.load_node.get_parent() == loadTouple.load_parent):
 					loadTouple.load_parent.remove_child(loadTouple.load_node)
 			#re-add near objects
-			if(node_pos.distance_to(player_ref.global_position) < load_distance ||
-			node_pos.distance_to(camera_ref.global_position) < load_distance):
+			elif(node_pos.distance_to(player_ref.global_position) <= load_distance ||
+			node_pos.distance_to(camera_ref.global_position) <= load_distance):
 					if(loadTouple.load_parent != null && loadTouple.load_node != null):
 						if(loadTouple.load_node.get_parent() != loadTouple.load_parent):
 							loadTouple.load_parent.add_child(loadTouple.load_node)
-					else:
-						deadIndexes.append(index)
-		else:
-			deadIndexes.append(index)
+					#else:
+						#deadIndexes.append(index)
+		#else:
+			#deadIndexes.append(index)
 		rel_index = rel_index + 1
 		if(index + 1 >= loadTouples.size()):
 			index = 0
-			remove_dead_indexes()
+			#remove_dead_indexes()
 		else:
 			index = index + 1
 

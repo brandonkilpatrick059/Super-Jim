@@ -83,7 +83,8 @@ func spawn_mobs():
 	print(str("Red Mobs:------", num_red_mobs))
 	print(str("+Bandits:------", num_red_bandits))
 	print(str("+Goons:--------", num_red_mobs - num_red_bandits))
-	print(str("PROCESSING:"))
+	var num_bullets = get_tree().get_nodes_in_group("bullet")
+	print(str("# BULLETS: ",num_bullets.size()))
 	while(iter < num_mobs_to_spawn):
 		var red_spawner = get_loneliest_spawner(temp_red_spawners)
 		var blu_spawner = get_loneliest_spawner(temp_blu_spawners)

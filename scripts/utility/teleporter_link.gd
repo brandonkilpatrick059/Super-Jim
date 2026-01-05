@@ -2,6 +2,8 @@
 extends Node2D
 
 @onready var _fade_to_black = $fade_to_black
+@onready var _fader = $teleport_fader
+
 @export var linked_teleporter:Node2D = null
 @export var enter_y_push = 0
 @export var exit_y_push = 0
@@ -68,30 +70,39 @@ func _ready():
 	add_child(timer_control_back)
 	camera_ref = get_tree().get_first_node_in_group("camera")
 
+func is_entering():
+	return entering
+
+func set_entering(value : bool):
+	entering = value
+
+func is_exiting():
+	return exiting
+
+func set_exiting(value : bool):
+	exiting = value
+
+func is_control_timer_active():
+	return control_timer_active
+	
+func set_control_timer_inactive():
+	control_timer_active = false
+
+func is_loading():
+	return loading
+
+func set_loading(value : bool):
+	loading = value
+
+func timer_control_back_is_stopped():
+	return timer_control_back.is_stopped()
+
+func set_fade_to_black_location(loc : Vector2):
+	_fade_to_black.global_position = loc
+
 #func _draw():
 	#if(linked_teleporter != null && Engine.is_editor_hint()):
 		#draw_line(Vector2(), get_transform().affine_inverse() * linked_teleporter.global_position, Color(0,0,1,1), -1)
-
-func _process(delta):
-	if(entering || exiting || control_timer_active):
-		update_fade_alpha()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
-	if(entering || exiting || loading ||  control_timer_active):
-		_fade_to_black.global_position = Vector2(0,0)
-		if(Engine.is_editor_hint()):
-			queue_redraw()
-		if(entering):
-			enter()
-		elif(loading):
-			load_wait() # wait for pruned objects to load in
-		elif(exiting):
-			exit()
-		elif(control_timer_active && timer_control_back.is_stopped()):
-			control_timer_active = false
-			exiting = false
-			player_ref.set_control_frozen(false)
 
 func load_wait():
 	if(timer_load_in.is_stopped()):
@@ -134,10 +145,10 @@ func enter():
 		player_ref.stop()
 		if(linked_teleporter.exit_y_push != 0):
 			player_ref.set_current_v(Vector2(0,linked_teleporter.exit_y_push))
-		linked_teleporter.is_loading()
+		linked_teleporter.begin_loading()
 		entering = false
 
-func is_loading():
+func begin_loading():
 	loading = true
 	timer_load_in.start(teleport_load_in_secs)
 
@@ -156,9 +167,20 @@ func exit():
 			control_timer_active = true
 			timer_control_back.start(secs_for_control_back)
 		else:
+			#detach_fader()
 			player_ref.set_control_frozen(false)
 			if(!no_ui_interact):
 				player_ref.main_ui_visible()
+			detach_fader()
+			linked_teleporter.detach_fader()
+
+func attach_fader():
+	if(_fader.get_parent() != self):
+		add_child(_fader)
+
+func detach_fader():
+	if(_fader.get_parent() == self):
+		remove_child(_fader)
 
 func update_fade_alpha():
 	_fade_to_black.color = Color(fade_color.r,fade_color.g,fade_color.b,fade_alpha)
@@ -174,7 +196,10 @@ func _on_area_2d_body_entered(body):
 	if(not inactive):
 		if(body.is_in_group("player")):
 			if(!entering && !loading && !exiting && !exit_only):
+				attach_fader()
+				linked_teleporter.attach_fader()
 				entering = true
+				#attach_fader()
 				#player_ref.get_camera_ref().fade_out(0.1)
 				player_ref.stop()
 				player_ref.set_control_frozen(true)

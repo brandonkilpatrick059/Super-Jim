@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqua037h47acu"]
+[gd_scene load_steps=3 format=3 uid="uid://bqua037h47acu"]
 
 [ext_resource type="Texture2D" uid="uid://bqmpler812d53" path="res://sprites/props/dumpster.png" id="1_1fgfp"]
-[ext_resource type="Script" uid="uid://b4yio707fbsyr" path="res://scripts/utility/visual_occluder.gd" id="2_bd4ok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x7wqg"]
 size = Vector2(58, 33)
@@ -23,6 +22,3 @@ texture = ExtResource("1_1fgfp")
 y_sort_enabled = true
 position = Vector2(0, 8.5)
 shape = SubResource("RectangleShape2D_x7wqg")
-
-[node name="occluder" type="Node2D" parent="."]
-script = ExtResource("2_bd4ok")

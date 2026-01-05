@@ -106,6 +106,7 @@ var processing_tier = 0
 var processing_timer : Timer = Timer.new()
 
 var on_screen_distance : float = 800
+var max_world_bullets = 30
 
 
 # Called when the node enters the scene tree for the first time.
@@ -305,8 +306,8 @@ func update_perceptions():
 	perceptions.invincible = is_invincible
 	perceptions.holding_object = holding_object
 	
-	var player_ref = get_tree().get_first_node_in_group("player")
-	if(player_ref.global_position.distance_to(perceptions.global_position) < on_screen_distance):
+	var camera_ref = get_tree().get_first_node_in_group("camera")
+	if(camera_ref.global_position.distance_to(perceptions.global_position) < on_screen_distance):
 		perceptions.is_on_screen = true
 	else:
 		perceptions.is_on_screen = false
@@ -626,47 +627,51 @@ func _on_set_strafe_point():
 	_on_set_unadjusted_nav_target(get_strafe_point())
 
 func _on_create_bullet(create_pos: Vector2, rotation_deg):
-	var new_bullet
-	if(team == team_red):
-		new_bullet = red_bullet.instantiate()
-	else: if(team == team_blu):
-		new_bullet = blu_bullet.instantiate()
-	new_bullet.set_source_obj(self)
-	get_parent().add_child(new_bullet)
-	
-	new_bullet.rotation_degrees = rotation_deg
-	new_bullet.position = create_pos
-	new_bullet.apply_velocity()
-	new_bullet.create_spark_benign() #muzzle flash
-	sound_player.stream = bullet_sound
-	sound_player.play()
+	var num_bullets = get_tree().get_nodes_in_group("bullet").size()
+	if(perceptions.is_on_screen ||
+	num_bullets < max_world_bullets):
+		var new_bullet
+		if(team == team_red):
+			new_bullet = red_bullet.instantiate()
+		else: if(team == team_blu):
+			new_bullet = blu_bullet.instantiate()
+		new_bullet.set_source_obj(self)
+		get_parent().add_child(new_bullet)
+		
+		new_bullet.rotation_degrees = rotation_deg
+		new_bullet.position = create_pos
+		new_bullet.apply_velocity()
+		new_bullet.create_spark_benign() #muzzle flash
+		sound_player.stream = bullet_sound
+		sound_player.play()
 
 func _on_create_bomb():
-	var new_bomb
-	var trajectory : Vector2
-	var width = 0.5
-	if(team == team_red):
-		new_bomb = red_bomb.instantiate()
-	else: if(team == team_blu):
-		new_bomb = blu_bomb.instantiate()
-	if(perceptions.facing_dir == direction.right):
-		var y_factor = random.randf_range(-width,width)
-		trajectory = Vector2(1, y_factor)
-	elif(perceptions.facing_dir == direction.left):
-		var y_factor = random.randf_range(-width,width)
-		trajectory = Vector2(-1, y_factor)
-	elif(perceptions.facing_dir == direction.up):
-		var x_factor = random.randf_range(-width,width)
-		trajectory = Vector2(x_factor, -1)
-	elif(perceptions.facing_dir == direction.down):
-		var x_factor = random.randf_range(-width,width)
-		trajectory = Vector2(x_factor, 1)
-	sound_player.stream = throw_bomb_sound
-	sound_player.play()
-	new_bomb.set_trajectory(trajectory)
-	new_bomb.set_source_obj(self)
-	get_parent().add_child(new_bomb)
-	new_bomb.position = position
+	if(perceptions.is_on_screen):
+		var new_bomb
+		var trajectory : Vector2
+		var width = 0.5
+		if(team == team_red):
+			new_bomb = red_bomb.instantiate()
+		else: if(team == team_blu):
+			new_bomb = blu_bomb.instantiate()
+		if(perceptions.facing_dir == direction.right):
+			var y_factor = random.randf_range(-width,width)
+			trajectory = Vector2(1, y_factor)
+		elif(perceptions.facing_dir == direction.left):
+			var y_factor = random.randf_range(-width,width)
+			trajectory = Vector2(-1, y_factor)
+		elif(perceptions.facing_dir == direction.up):
+			var x_factor = random.randf_range(-width,width)
+			trajectory = Vector2(x_factor, -1)
+		elif(perceptions.facing_dir == direction.down):
+			var x_factor = random.randf_range(-width,width)
+			trajectory = Vector2(x_factor, 1)
+		sound_player.stream = throw_bomb_sound
+		sound_player.play()
+		new_bomb.set_trajectory(trajectory)
+		new_bomb.set_source_obj(self)
+		get_parent().add_child(new_bomb)
+		new_bomb.position = position
 
 func _on_set_nav_target(pos : Vector2):
 	perceptions.nav_target_reached = false

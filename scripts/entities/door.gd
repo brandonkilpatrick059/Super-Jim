@@ -40,6 +40,11 @@ var dialog_offset #needed so delivery dialog doesn't throw errors
 
 var exception_group_is_near = false
 
+var will_make_locked_comment = true
+var waiting_to_comment = false
+var locked_comment_timer := Timer.new()
+var locked_comment_time = 1.0
+
 func get_save_tag() -> String:
 	return save_tag
 
@@ -47,11 +52,17 @@ func get_save_tag() -> String:
 func _ready():
 	open_close_timer.one_shot = true
 	add_child(open_close_timer)
+	locked_comment_timer.one_shot = true
+	add_child(locked_comment_timer)
 	time_keeper = get_tree().get_first_node_in_group("time_keeper")
 	last_frame_open = _animated_sprite.sprite_frames.get_frame_count("open")-1 
 	last_frame_close = _animated_sprite.sprite_frames.get_frame_count("close")-1 
 	if(self.is_in_group("delivery_door")):
 		does_not_open = true
+	if(locked):
+		lock()
+	else:
+		unlock()
 
 func get_save_dictionary() -> Dictionary:
 	var save_dictionary = {
@@ -61,8 +72,16 @@ func get_save_dictionary() -> Dictionary:
 	}
 	return save_dictionary
 
+func interact():
+	if(locked):
+		var player_ref = get_tree().get_first_node_in_group("player")
+		player_ref._on_make_comment("It's locked.")
+
 func load_from_dictionary(load_dictionary : Dictionary):
-	locked = load_dictionary.get("locked")
+	if(load_dictionary.get("locked")):
+		lock()
+	else:
+		unlock()
 
 func get_address():
 	return address
@@ -81,7 +100,7 @@ func close():
 		closing = true
 		if(one_time_use):
 			opens_for_groups = []
-			locked = true
+			lock()
 
 func lock():
 	locked = true
@@ -100,6 +119,22 @@ func get_opener_is_near() -> bool:
 					exception_group_is_near = true
 				retVal = true
 	return retVal
+
+func handle_locked_comment():
+	var player_ref = get_tree().get_first_node_in_group("player")
+	var nodes_in_area : Array[Node2D] = _area_2d.get_overlapping_bodies()
+	if(nodes_in_area.has(player_ref) 
+	&& will_make_locked_comment):
+		if(!waiting_to_comment):
+			locked_comment_timer.start(locked_comment_time)
+			waiting_to_comment = true
+		elif(locked_comment_timer.is_stopped()):
+			player_ref._on_make_comment("It's locked.")
+			will_make_locked_comment = false
+	elif(!nodes_in_area.has(player_ref)):
+		will_make_locked_comment = true
+		waiting_to_comment = false
+		
 
 #used so that a player doesn't get trapped behind a locked door
 func player_is_behind_door():
@@ -131,6 +166,9 @@ func _physics_process(delta: float):
 		if(_area_2d.has_overlapping_bodies()):
 			opener_is_near = get_opener_is_near()
 		
+		if(locked || !opens_for_groups.has("player")):
+				handle_locked_comment()
+		
 		if(waiting_to_open):
 			#opener has to stand near the door for a period of time for it to open
 			if(!opened && opener_is_near):
@@ -161,8 +199,8 @@ func _physics_process(delta: float):
 		#set lock by time using bool list locked_hours
 		if(locked_hours.size() == 24):
 			if(locked_hours[time_keeper.clock]):
-				locked = true
-			else: locked = false
+				lock()
+			else: unlock()
 		
 		if(opening && _animated_sprite.frame == last_frame_open):
 			opened = true

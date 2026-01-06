@@ -167,7 +167,7 @@ func _physics_process(delta: float):
 			opener_is_near = get_opener_is_near()
 		
 		if(locked || !opens_for_groups.has("player")):
-				handle_locked_comment()
+			handle_locked_comment()
 		
 		if(waiting_to_open):
 			#opener has to stand near the door for a period of time for it to open

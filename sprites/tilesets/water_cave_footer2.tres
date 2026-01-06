@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bh2goat20lwqf"]
+
+[ext_resource type="Texture2D" uid="uid://csyc8f6giac52" path="res://sprites/tilesets/water_cave_footer_2.png" id="1_vl651"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbmuv"]
+atlas = ExtResource("1_vl651")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etn6w"]
+atlas = ExtResource("1_vl651")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjkl2"]
+atlas = ExtResource("1_vl651")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtgsd"]
+atlas = ExtResource("1_vl651")
+region = Rect2(96, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbmuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etn6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjkl2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtgsd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]

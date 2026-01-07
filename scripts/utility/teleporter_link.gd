@@ -50,6 +50,8 @@ var npcs_using_teleporter : Array[Node] = []
 
 var camera_ref
 
+var becomes_inactive_after_teleport : bool = false
+
 func get_fade_color():
 	return fade_color
 
@@ -174,6 +176,7 @@ func exit():
 			detach_fader()
 			linked_teleporter.detach_fader()
 
+
 func attach_fader():
 	if(_fader.get_parent() != self):
 		add_child(_fader)
@@ -188,6 +191,22 @@ func update_fade_alpha():
 		linked_teleporter._fade_to_black.color = Color(fade_color.r,fade_color.g,fade_color.b,fade_alpha)
 		linked_teleporter.fade_alpha = fade_alpha
 
+func teleport_player():
+	attach_fader()
+	linked_teleporter.attach_fader()
+	entering = true
+	#attach_fader()
+	#player_ref.get_camera_ref().fade_out(0.1)
+	player_ref.stop()
+	player_ref.set_control_frozen(true)
+	#player_ref.disable_collision()
+	if(!no_ui_interact):
+		player_ref.main_ui_invisible()
+	update_fade_alpha()
+	timer_fade.start(fade_step_secs)
+	if(enter_y_push != 0):
+		player_ref.set_current_v(Vector2(0,enter_y_push))
+
 func _on_area_2d_body_exited(body):
 	if(body in npcs_using_teleporter):
 		npcs_using_teleporter.remove_at(npcs_using_teleporter.find(body))
@@ -196,20 +215,7 @@ func _on_area_2d_body_entered(body):
 	if(not inactive):
 		if(body.is_in_group("player")):
 			if(!entering && !loading && !exiting && !exit_only):
-				attach_fader()
-				linked_teleporter.attach_fader()
-				entering = true
-				#attach_fader()
-				#player_ref.get_camera_ref().fade_out(0.1)
-				player_ref.stop()
-				player_ref.set_control_frozen(true)
-				#player_ref.disable_collision()
-				if(!no_ui_interact):
-					player_ref.main_ui_invisible()
-				update_fade_alpha()
-				timer_fade.start(fade_step_secs)
-				if(enter_y_push != 0):
-					player_ref.set_current_v(Vector2(0,enter_y_push))
+				teleport_player()
 		elif(body.is_in_group("npc") && 
 		npcs_using_teleporter.find(body) < 0 &&
 		linked_teleporter.npcs_using_teleporter.find(body) < 0):

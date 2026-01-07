@@ -17,6 +17,8 @@ var nudge_vector = Vector2(0,0)
 
 var playing_cards = false
 
+var waited_ware : Node = null
+
 func set_shop(new_shop : shop_manager):
 	shop = new_shop
 
@@ -132,6 +134,8 @@ func handle_input():
 		if(is_end_of_dialog()):
 			tree.reset()
 			player_ref.exit_dialog()
+			if(waited_ware != null):
+				waited_ware.buy_item()
 			clean_up()
 		elif(dialog_continues()):
 			tree.take_speech_option(0)
@@ -153,7 +157,10 @@ func handle_input():
 					tree.take_speech_option(0) #"nevermind" don't buy anything
 					play_current_branch()
 				elif(player_money >= ware.get_cost()):
-					ware.buy_item()
+					if(ware.waits_until_dialog_ends()):
+						waited_ware = ware
+					else:
+						ware.buy_item()
 					tree.take_speech_option(1)
 					play_current_branch()
 				elif(player_money < ware.get_cost()):

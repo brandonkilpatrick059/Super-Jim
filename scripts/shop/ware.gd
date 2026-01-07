@@ -4,6 +4,7 @@ extends Node
 
 @export var cost : int
 @export var ware_name : String = ""
+@export var wait_until_dialog_ends : bool = false
 
 func buy_item():
 	var player_ref = get_tree().get_first_node_in_group("player")
@@ -15,3 +16,6 @@ func get_ware_name() -> String:
 
 func get_cost() -> int:
 	return cost
+
+func waits_until_dialog_ends():
+	return waits_until_dialog_ends

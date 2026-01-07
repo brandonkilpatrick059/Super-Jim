@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpmyldohm2x83"]
+
+[ext_resource type="Script" uid="uid://c2eauyl5k8il2" path="res://scripts/shop/ware.gd" id="1_be70t"]
+[ext_resource type="Script" uid="uid://dkox8cno6p6ou" path="res://scripts/utility/witch_hut_door_switch.gd" id="2_iuox8"]
+
+[node name="WareTravel_sewer" type="Node2D"]
+z_index = 1
+script = ExtResource("1_be70t")
+cost = 50
+ware_name = "Sail to Sewers ($50)"
+wait_until_dialog_ends = true
+
+[node name="script_node" type="Node" parent="."]
+script = ExtResource("2_iuox8")
+is_sewer_entrance = true

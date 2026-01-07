@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3w7q04ket741"]
+
+[ext_resource type="Script" uid="uid://c2eauyl5k8il2" path="res://scripts/shop/ware.gd" id="1_omvik"]
+[ext_resource type="Script" uid="uid://dkox8cno6p6ou" path="res://scripts/utility/witch_hut_door_switch.gd" id="2_3tir6"]
+
+[node name="WareTravel_cave" type="Node2D"]
+z_index = 1
+script = ExtResource("1_omvik")
+cost = 50
+ware_name = "Sail to Deep Onyx Caves ($50)"
+wait_until_dialog_ends = true
+
+[node name="script_node" type="Node" parent="."]
+script = ExtResource("2_3tir6")
+is_cave_entrance = true

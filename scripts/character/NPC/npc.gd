@@ -82,6 +82,8 @@ var immobilized = false
 
 var player_ref
 
+var reparent_node = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	schedules_index = starting_index

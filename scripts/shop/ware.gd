@@ -17,5 +17,5 @@ func get_ware_name() -> String:
 func get_cost() -> int:
 	return cost
 
-func waits_until_dialog_ends():
-	return waits_until_dialog_ends
+func waits_until_dialog_ends() -> bool:
+	return wait_until_dialog_ends

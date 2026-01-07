@@ -136,6 +136,7 @@ func handle_input():
 			player_ref.exit_dialog()
 			if(waited_ware != null):
 				waited_ware.buy_item()
+				waited_ware = null
 			clean_up()
 		elif(dialog_continues()):
 			tree.take_speech_option(0)

@@ -15,33 +15,21 @@ func get_song_deck():
 func _ready():
 	time_keeper = get_tree().get_first_node_in_group("time_keeper")
 	main_music_player = get_tree().get_first_node_in_group("main_music_player")
-	add_to_group("music_zone")
 
-func update_music_zone():
-	if(song_deck.size() > 1 &&
-	song_deck[internal_clock] != "" &&
-	!main_music_player.is_playing()):
-		var new_stream = get_song_deck()[internal_clock]
-		main_music_player.change_stream(new_stream,skips_fade_in)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float):
-	if(internal_clock != time_keeper.clock &&
-	active == true):
-		internal_clock = time_keeper.clock
-		update_music_zone()
+func turn_off():
+	main_music_player.change_stream("")
+	active = false
 
 func _on_body_entered(body : Node):
 	if(body.is_in_group("player") && !active):
 		active = true
 		var new_stream
 		if(song_deck.size() > 1):
-			new_stream = get_song_deck()[internal_clock]
+			new_stream = get_song_deck()[time_keeper.clock]
 		else:
 			new_stream = get_song_deck()[0] 
 		main_music_player.change_stream(new_stream,skips_fade_in)
 
 func _on_body_exited(body : Node):
 	if(body.is_in_group("player") && active):
-		main_music_player.change_stream("")
-		active = false
+		turn_off()

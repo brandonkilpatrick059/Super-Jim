@@ -13,6 +13,8 @@ var current_hour = 0
 
 var time_keeper = null
 
+var pruned : bool = false
+
 var random : RandomNumberGenerator = RandomNumberGenerator.new()
 
 func turn_light_on():
@@ -45,12 +47,27 @@ func get_active_hours():
 func _ready():
 	time_keeper = get_tree().get_first_node_in_group("time_keeper")
 	get_active_hours()
+	add_to_group("timed_light")
+	update_light()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if(current_hour != time_keeper.clock):
-		current_hour = time_keeper.clock #this code only runs once per hour
-		if(time_keeper.clock == 0):
-			get_active_hours()
-		set_light(active_hours[current_hour])
+func _exit_tree() -> void:
+	pruned = true
+
+func _enter_tree():
+	if(pruned):
+		update_light()
+		pruned = false
+
+func update_light():
+	if(time_keeper.clock == 0):
+		get_active_hours()
+	set_light(active_hours[time_keeper.clock])
+
+## Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+	#if(current_hour != time_keeper.clock):
+		#current_hour = time_keeper.clock #this code only runs once per hour
+		#if(time_keeper.clock == 0):
+			#get_active_hours()
+		#set_light(active_hours[current_hour])
 		

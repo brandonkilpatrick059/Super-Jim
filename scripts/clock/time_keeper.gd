@@ -151,6 +151,7 @@ func add_end_of_day_script_node(script_node : Node):
 func set_clock(hour : int):
 	clock = hour
 	refresh_npc_locations()
+	update_objects()
 
 func advance_day():
 	if(day_of_the_week == 6):
@@ -171,6 +172,15 @@ func advance_clock():
 	else: if(clock == 23):
 		clock = 0
 		advance_day()
+	update_objects()
+
+func update_objects():
+	update_lights()
+
+func update_lights():
+	var lights = get_tree().get_nodes_in_group("timed_light")
+	for light in lights:
+		light.update_light()
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

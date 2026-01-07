@@ -10,7 +10,7 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c4r8x"]
 blend_mode = 1
 
-[node name="train_st_window_1_all_night" type="Node2D"]
+[node name="train_st_window_1_all_night" type="Node2D" groups=["prunable"]]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_c64hi")

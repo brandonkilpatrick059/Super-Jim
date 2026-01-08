@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://beu4tyx4esidt"]
+
+[ext_resource type="Script" uid="uid://dsv4ljenuaipn" path="res://scripts/utility/play_default_offset_node.gd" id="1_1g3dy"]
+
+[node name="PlayDefaultOffsetNode" type="Node"]
+script = ExtResource("1_1g3dy")

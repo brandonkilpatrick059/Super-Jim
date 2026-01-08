@@ -151,7 +151,7 @@ func _ready():
 	comment_timer.one_shot = true
 	set_up_sound_players()
 	footfall_player.bus = "Effects"
-	footfall_player.volume_db = -30
+	footfall_player.volume_db = -26
 	footfall_player.stream = load("res://audio/soundFX/footfall_1.wav")
 	add_child(footfall_player)
 	add_child(timer_dash)

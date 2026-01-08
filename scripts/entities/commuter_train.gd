@@ -1,5 +1,7 @@
 extends Sprite2D
 
+@onready var sound_player : AudioStreamPlayer2D = $AudioStreamPlayer2D
+
 var move_step = 6
 var move_timer_step = 0.006
 var move_step_timer : Timer = Timer.new()
@@ -29,16 +31,20 @@ func _ready() -> void:
 	add_child(station_timer)
 	
 	initial_x = global_position.x
+	sound_player.stop()
 
 func _physics_process(delta: float) -> void:
 	if(station_timer.is_stopped()):
 		if(going_east && global_position.x < east_station_x):
 			if(move_step_timer.is_stopped()):
 				global_position.x = global_position.x + move_step
+				if(!sound_player.playing):
+					sound_player.play()
 				move_step_timer.start(move_timer_step)
 		elif(going_east && global_position.x >= east_station_x):
 			global_position.x = east_station_x
 			station_timer.start(station_wait_secs)
+			sound_player.stop()
 			going_east = false
 			returning_east = true
 		elif(returning_east && global_position.x > initial_x):
@@ -48,24 +54,31 @@ func _physics_process(delta: float) -> void:
 		elif(returning_east && global_position.x <= east_station_x):
 			global_position.x = initial_x
 			station_timer.start(station_wait_secs)
+			sound_player.stop()
 			returning_east = false
 			going_west = true
 		elif(going_west && global_position.x > west_station_x):
 			if(move_step_timer.is_stopped()):
 				global_position.x = global_position.x - move_step
+				if(!sound_player.playing):
+					sound_player.play()
 				move_step_timer.start(move_timer_step)
 		elif(going_west && global_position.x <= west_station_x):
 			global_position.x = west_station_x
 			station_timer.start(station_wait_secs)
+			sound_player.stop()
 			going_west = false
 			returning_west = true
 		elif(returning_west && global_position.x < initial_x):
 			if(move_step_timer.is_stopped()):
 				global_position.x = global_position.x + move_step
+				if(!sound_player.playing):
+					sound_player.play()
 				move_step_timer.start(move_timer_step)
 		elif(returning_west && global_position.x >= initial_x):
 			global_position.x = initial_x
 			station_timer.start(station_wait_secs)
+			sound_player.stop()
 			returning_west = false
 			going_east = true
 		

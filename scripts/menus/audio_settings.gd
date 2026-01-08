@@ -9,7 +9,7 @@ var active_child_menu = null
 var select_index = 0
 var labels: Array[Node] = []
 var menu_alpha = 1
-var sound_player := AudioStreamPlayer2D.new()
+var sound_player := AudioStreamPlayer.new()
 var db_step = 2
 var bottom_volume = 60
 var bus_headroom = 9
@@ -104,7 +104,8 @@ func raise_bus_volume(bus : int):
 func lower_bus_volume(bus : int):
 	if(scroll_timer.is_stopped()):
 		var volume : float = AudioServer.get_bus_volume_db(bus)
-		if(volume == -bottom_volume):
+		if(volume <= -bottom_volume):
+			volume = -bottom_volume
 			sound_player.stream = load("res://audio/soundFX/bigCollide.wav")
 			if(play_bump):
 				sound_player.play()

@@ -10,7 +10,7 @@ var active_child_menu = null
 var select_index = 0
 var labels: Array[Node] = []
 var menu_alpha = 1
-var sound_player := AudioStreamPlayer2D.new()
+var sound_player := AudioStreamPlayer.new()
 
 func advance_index():
 	select_index += 1

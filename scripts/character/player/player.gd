@@ -43,6 +43,7 @@ var putdown_sound = preload("res://audio/soundFX/putdown.wav")
 var crystal_sound = preload("res://audio/soundFX/crystal_get.wav")
 var footfall_sound = preload("res://audio/soundFX/footfall_1.wav")
 var flashlight_sound = preload("res://audio/soundFX/click.ogg")
+var damage_sound = preload("res://audio/soundFX/damage.ogg")
 
 var sound_player := AudioStreamPlayer.new()
 var sound_player2 := AudioStreamPlayer.new()
@@ -664,6 +665,7 @@ func increment_hp():
 func reduce_hp():
 	current_hp = current_hp - 1
 	_ui.update_hearts(current_hp)
+	play_sound(damage_sound)
 	if(current_hp == 0):
 		_character_base.stop_flashing()
 		die()

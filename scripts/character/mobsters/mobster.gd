@@ -106,7 +106,7 @@ var processing_tier = 0
 var processing_timer : Timer = Timer.new()
 
 var on_screen_distance : float = 800
-var max_world_bullets = 20
+var max_world_bullets = 30
 
 
 # Called when the node enters the scene tree for the first time.

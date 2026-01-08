@@ -5,6 +5,7 @@ var sound_player := AudioStreamPlayer.new()
 @onready var _collision_shape = $StaticBody2D/CollisionShape2D
 @onready var _static_body = $StaticBody2D
 @onready var _area_2d = $Area2D
+@onready var _sound_player = $AudioStreamPlayer2D
 
 @export var opens_for_groups: Array[String]
 @export var locked_hours : Array[bool] #should either be empty or size = 24
@@ -21,6 +22,12 @@ var sound_player := AudioStreamPlayer.new()
 @export var address : String = ""
 
 @export var save_tag : String = ""
+
+@export var open_sound_path : String = ""
+@export var close_sound_path : String = ""
+
+var open_sound : AudioStream = null
+var close_sound : AudioStream = null
 
 var time_keeper
 
@@ -63,6 +70,11 @@ func _ready():
 		lock()
 	else:
 		unlock()
+	
+	if(open_sound_path != ""):
+		open_sound = load(open_sound_path)
+	if(close_sound_path != ""):
+		close_sound = load(close_sound_path)
 
 func get_save_dictionary() -> Dictionary:
 	var save_dictionary = {
@@ -87,9 +99,17 @@ func get_address():
 	return address
 
 func open():
-	if(!opened):
+	if(!opened && 
+	!opening):
 		_animated_sprite.play("open")
 		opening = true
+		var player_ref = get_tree().get_first_node_in_group("player")
+		if(open_sound != null &&
+		#we need this or this sound plays once for each door at either end
+		#of a teleporter (IE- it plays twice instead of once)
+		!player_ref.control_is_frozen()):  
+			_sound_player.stream = open_sound
+			_sound_player.play()
 
 func get_parent_door():
 	return parent_door
@@ -212,3 +232,6 @@ func _physics_process(delta: float):
 			closing = false
 			_animated_sprite.play(("closed"))
 			_collision_shape.set_deferred("disabled", false)
+			if(close_sound != null):
+				_sound_player.stream = close_sound
+				_sound_player.play()

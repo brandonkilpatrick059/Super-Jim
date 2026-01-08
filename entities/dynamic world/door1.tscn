@@ -11,6 +11,8 @@ size = Vector2(26, 63)
 
 [node name="door1" type="Node2D" groups=["door"]]
 script = ExtResource("1_l5igb")
+open_sound_path = "res://audio/soundFX/door_open_1.ogg"
+close_sound_path = "res://audio/soundFX/door_close_1.ogg"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_ke1ve")
@@ -33,3 +35,8 @@ collision_mask = 71
 position = Vector2(0, 8.5)
 shape = SubResource("RectangleShape2D_hdbs2")
 debug_color = Color(0.910119, 0.273452, 0.308353, 0.42)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+max_distance = 500.0
+attenuation = 5.27802
+bus = &"Effects"

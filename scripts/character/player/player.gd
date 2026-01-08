@@ -870,6 +870,9 @@ func remove_from_items(item : String):
 func set_use_item_timer(num : float):
 	use_item_timer.start(num)
 
+func control_is_frozen():
+	return control_frozen
+
 func set_control_frozen(value):
 	control_frozen = value
 	if(value):

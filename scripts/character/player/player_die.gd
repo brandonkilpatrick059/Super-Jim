@@ -8,10 +8,22 @@ var facing_direction = "right"
 var running_animation = false
 var frame_count = 0
 
+var finished = false
+var wait_timer := Timer.new()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	wait_timer.one_shot = true
+	add_child(wait_timer)
 	sound_player.bus = "Music"
 	add_child(sound_player)
+	add_to_group("player_die")
+
+func animation_finished():
+	if(finished && wait_timer.is_stopped()):
+		return true
+	else:
+		return false
 
 func set_facing_direction(dir):
 	facing_direction = dir
@@ -33,3 +45,5 @@ func _process(delta):
 			var animation_name = str("fallen_",facing_direction)
 			_character_base.play_animation(animation_name)
 			_tough_luck.visible = true
+			finished = true
+			wait_timer.start(1)

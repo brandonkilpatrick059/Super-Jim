@@ -13,8 +13,8 @@ var nav_target_reached = false
 var setup_done = false
 var host_position
 
-var default_speed = 400000
-var bandit_speed =  500000
+var default_speed = 625000
+var bandit_speed =  700000
 
 func get_host_position():
 	return ai_state_machine.get_perceptions().position

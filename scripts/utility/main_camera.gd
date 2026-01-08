@@ -32,6 +32,12 @@ var player_connected = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if(get_parent().is_in_group("player")):
+		#this is for debugging and testing.
+		#camera will automatically connect, bypassing
+		#the game start sequence in root_manager which
+		#usually handles this
+		get_parent().connect_camera()
 	_flashlight.enabled = false
 	_flashlight2.enabled = false
 	_flashlight3.enabled = false

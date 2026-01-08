@@ -6,7 +6,8 @@ var sound_player := AudioStreamPlayer2D.new()
 var spark = preload("res://effects/bullet_spark.tscn")
 var benign_spark = preload("res://effects/benign_spark.tscn")
 
-var speed = 185
+#185
+var speed = 250
 var velocity = Vector2.RIGHT
 var source_obj :Node
 

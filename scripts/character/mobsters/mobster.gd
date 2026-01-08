@@ -85,8 +85,8 @@ const bandit_max_hit_points = 6
 const max_hit_points = 3
 var hit_points = 0
 var default_speed = 150000
-var default_chase_speed = 400000
-var bandit_chase_speed =  500000
+var default_chase_speed = 625000
+var bandit_chase_speed =  700000
 
 var exclaim_timer = Timer.new()
 var exclaiming = false

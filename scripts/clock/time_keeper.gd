@@ -141,8 +141,10 @@ func get_input():
 		if(!is_game_over):
 			toggle_menu_pause()
 		elif(is_game_over):
-			unpause_parent_tree()
-			get_tree().change_scene_to_file("res://scenes/start_menu.tscn")
+			var ref = get_tree().get_first_node_in_group("player_die")
+			if(ref.animation_finished()):
+				unpause_parent_tree()
+				get_tree().change_scene_to_file("res://scenes/start_menu.tscn")
 
 func add_end_of_day_script_node(script_node : Node):
 	add_child(script_node)
@@ -192,9 +194,7 @@ func _process(delta):
 			advance_clock()
 	elif (is_menu_paused && !is_playing_song && timer_song.is_stopped()):
 		is_playing_song = true
-		#sound_player.stream = load("res://audio/music/Game is paused 2.wav")
-		#sound_player.play()
-	
+
 	if(player_ref != null):
 		if(player_ref.dead && !is_game_over):
 			game_over()

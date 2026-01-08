@@ -6,8 +6,8 @@
 [node name="WareSoup" type="Node2D"]
 z_index = 1
 script = ExtResource("1_gnv2f")
-cost = 15
-ware_name = "Warm Soup ($15)"
+cost = 5
+ware_name = "Warm Soup ($5)"
 
 [node name="script_node" type="Node" parent="."]
 script = ExtResource("2_pjdgx")

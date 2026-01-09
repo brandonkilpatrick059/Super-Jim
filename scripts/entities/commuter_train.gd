@@ -23,6 +23,8 @@ var east_station_x = 6000
 var west_station_x = -4500
 var initial_x
 
+var shake_camera : bool = true
+
 func _ready() -> void:
 	move_step_timer.one_shot = true
 	add_child(move_step_timer)
@@ -33,7 +35,23 @@ func _ready() -> void:
 	initial_x = global_position.x
 	sound_player.stop()
 
+#TODO: get this to work in a way that doesn't look bad
+func handle_camera_shake():
+	var player = get_tree().get_first_node_in_group("player")
+	var distance = global_position.distance_to(player.global_position)
+	var shake_distance = 64
+	if(distance < shake_distance):
+		if(shake_camera):
+			shake_camera = false
+			var magnitude = 8
+			player.shake_camera(magnitude)
+	else:
+		shake_camera = true
+	
+
 func _physics_process(delta: float) -> void:
+	#if(sound_player.playing):
+		#handle_camera_shake()
 	if(station_timer.is_stopped()):
 		if(going_east && global_position.x < east_station_x):
 			if(move_step_timer.is_stopped()):
@@ -50,6 +68,8 @@ func _physics_process(delta: float) -> void:
 		elif(returning_east && global_position.x > initial_x):
 			if(move_step_timer.is_stopped()):
 				global_position.x = global_position.x - move_step
+				if(!sound_player.playing):
+					sound_player.play()
 				move_step_timer.start(move_timer_step)
 		elif(returning_east && global_position.x <= east_station_x):
 			global_position.x = initial_x

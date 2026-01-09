@@ -627,16 +627,10 @@ func handle_dev():
 			else:
 				dev_zoom_level = 0
 				_camera.zoom_to(1.0)
+	#Occluders have been gone for awhile basically use this as a
+	#generic "dev button" to test code I guess
 	if Input.is_action_just_pressed("dev_toggle_occluders"):
-		var occluders = get_tree().get_nodes_in_group("visual_occluder")
-		if(dev_occlusion_enabled):
-			dev_occlusion_enabled = false
-			for occluder in occluders:
-				occluder.occluding_enabled = false
-		else:
-			dev_occlusion_enabled = true
-			for occluder in occluders:
-				occluder.occluding_enabled = true
+		_camera.shake(8)
 	if Input.is_action_just_pressed("dev_toggle_fps"):
 		_ui.toggle_fps_counter()
 	if Input.is_action_just_pressed("dev_advance_time"):
@@ -662,10 +656,14 @@ func increment_hp():
 		current_hp = current_hp + 1
 		_ui.update_hearts(current_hp)
 
+func shake_camera(magnitude : int):
+	_camera.shake(magnitude)
+
 func reduce_hp():
 	current_hp = current_hp - 1
 	_ui.update_hearts(current_hp)
 	play_sound(damage_sound)
+	_camera.shake(8 + (max_hp - current_hp)*2)
 	if(current_hp == 0):
 		_character_base.stop_flashing()
 		die()

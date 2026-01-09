@@ -35,5 +35,6 @@ stream = ExtResource("6_6lhmn")
 volume_db = 9.0
 pitch_scale = 0.75
 autoplay = true
-attenuation = 8.87655
+max_distance = 800.0
+attenuation = 4.14106
 bus = &"Effects"

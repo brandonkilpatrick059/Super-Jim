@@ -4,9 +4,10 @@ extends Node
 @export var locked = false
 
 func run_script():
-	var modify_node = get_tree().get_first_node_in_group(node_group)
-	if(locked):
-		modify_node.lock()
-	else:
-		modify_node.unlock()
+	var modify_nodes = get_tree().get_nodes_in_group(node_group)
+	for node in modify_nodes:
+		if(locked):
+			node.lock()
+		else:
+			node.unlock()
 	

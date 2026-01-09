@@ -18,6 +18,7 @@ const alert_passive = "alert_passive"
 @export var facing_dir = "right"
 @export var dialog_offset = Vector2(0,0)
 @export var starting_index = 0
+@export var no_face_player : bool = false
 
 #denotes npcs which do not use the typical character_base
 #generally for mostly stationary npcs with unique
@@ -158,7 +159,7 @@ func _on_stop_motion():
 
 func interact():
 	if(branching_dialog != null && current_v.length() < 1):
-		if(!is_animatronic):
+		if(!is_animatronic && !no_face_player):
 			face_player()
 		dialog_manager = dialog.instantiate()
 		if(dialog_offset != null):

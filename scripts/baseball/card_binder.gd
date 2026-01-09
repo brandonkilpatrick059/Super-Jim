@@ -65,10 +65,14 @@ func handle_input():
 			scroll_list.decrement_selected()
 			update_viewed_card()
 			timer.start(input_wait_secs)
+			sound_player.stream = load("res://audio/soundFX/click_2.ogg")
+			sound_player.play()
 		else: if Input.is_action_pressed(direction.down):
 			scroll_list.increment_selected()
 			update_viewed_card()
 			timer.start(input_wait_secs)
+			sound_player.stream = load("res://audio/soundFX/click_2.ogg")
+			sound_player.play()
 		else: if Input.is_action_pressed("interact"):
 			if(scroll_list.get_num_selected_card() > 0):
 				var indx = scroll_list.get_selected_index()

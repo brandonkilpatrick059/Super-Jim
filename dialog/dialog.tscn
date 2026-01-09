@@ -12,3 +12,6 @@ script = ExtResource("1_dda65")
 
 [node name="ResponseBubble" parent="." instance=ExtResource("3_6m0wq")]
 script = ExtResource("4_ny70t")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Effects"

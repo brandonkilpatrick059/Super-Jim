@@ -16,6 +16,9 @@ func _ready() -> void:
 
 func interact():
 	if(interact_timer.is_stopped()):
+		var fx_player = get_tree().get_first_node_in_group("main_fx_player")
+		fx_player.stream = load("res://audio/soundFX/maracca.ogg")
+		fx_player.play()
 		player_ref = get_tree().get_first_node_in_group("player")
 		ui_ref = ui.instantiate()
 		player_ref.set_control_frozen(true)
@@ -26,6 +29,9 @@ func exit_ui():
 	ui_active = false
 	ui_ref.queue_free()
 	player_ref.set_control_frozen(false)
+	var fx_player = get_tree().get_first_node_in_group("main_fx_player")
+	fx_player.stream = load("res://audio/soundFX/maracca.ogg")
+	fx_player.play()
 
 func _physics_process(delta: float) -> void:
 	if(ui_active):

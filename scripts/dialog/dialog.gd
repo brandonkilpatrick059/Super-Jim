@@ -4,6 +4,7 @@ var baseball_game = preload("res://baseball/baseball_manager.tscn")
 
 @onready var _DialogBubble = $DialogBubble
 @onready var _ResponseBubble = $ResponseBubble
+@onready var _AudioStreamPlayer = $AudioStreamPlayer
 
 var speaker_node : Node
 var tree : dialog_tree
@@ -109,6 +110,8 @@ func handle_input():
 			_ResponseBubble.set_label(tree.get_speech_option(dialog_choice_index))
 			
 		if(Input.is_action_just_pressed("left")):
+			_AudioStreamPlayer.stream = load("res://audio/soundFX/maracca.ogg")
+			_AudioStreamPlayer.play()
 			if(dialog_choice_index == 0):
 				if(!shopping):
 					dialog_choice_index = tree.get_num_speech_options() - 1
@@ -118,6 +121,8 @@ func handle_input():
 				dialog_choice_index = dialog_choice_index - 1
 		
 		if(Input.is_action_just_pressed("right")):
+			_AudioStreamPlayer.stream = load("res://audio/soundFX/maracca.ogg")
+			_AudioStreamPlayer.play()
 			if(!shopping):
 				if(dialog_choice_index == tree.get_num_speech_options() - 1):
 					dialog_choice_index = 0

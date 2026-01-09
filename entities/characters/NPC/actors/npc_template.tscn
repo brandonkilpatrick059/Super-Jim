@@ -24,7 +24,6 @@ linear_damp = 5.0
 script = ExtResource("1_ihdsv")
 talk_radius = 200
 base_spriteframes = ExtResource("2_ub8ch")
-no_face_player = null
 exempt_from_npc_refresh = null
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

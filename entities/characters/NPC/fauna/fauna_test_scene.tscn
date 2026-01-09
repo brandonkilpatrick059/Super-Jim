@@ -40,5 +40,4 @@ layer_0/tile_data = PackedInt32Array(786450, 786434, 1, 786452, 786434, 1, 91752
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(96, 236)
 sprite_frames = ExtResource("5_hdu08")
-frame = -1
 frame_progress = 1.0

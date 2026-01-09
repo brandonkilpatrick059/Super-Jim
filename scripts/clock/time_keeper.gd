@@ -152,6 +152,12 @@ func get_input():
 			if(ref.animation_finished()):
 				unpause_parent_tree()
 				get_tree().change_scene_to_file("res://scenes/start_menu.tscn")
+	if Input.is_action_just_pressed("interact"):
+		if(is_game_over):
+			var ref = get_tree().get_first_node_in_group("player_die")
+			if(ref.animation_finished()):
+				unpause_parent_tree()
+				get_tree().change_scene_to_file("res://scenes/start_menu.tscn")
 
 func add_end_of_day_script_node(script_node : Node):
 	add_child(script_node)

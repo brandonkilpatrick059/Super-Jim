@@ -17,7 +17,6 @@ collision_mask = 0
 script = ExtResource("1_karpb")
 base_spriteframes = ExtResource("2_ipdhv")
 dialog_offset = Vector2(0, 192)
-no_face_player = null
 is_animatronic = true
 save_tag = "NPC_JEFF"
 

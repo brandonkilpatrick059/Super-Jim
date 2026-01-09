@@ -14,21 +14,25 @@ speech_options = Array[String](["", "", ""])
 option_branches = [NodePath("../no purchase"), NodePath("../purchase"), NodePath("../insufficient money")]
 voice = "sine_voice"
 shows_wares = true
+play_sound_path = null
 
 [node name="insufficient money" parent="." instance=ExtResource("2_qr1h1")]
 position = Vector2(251, 157)
 speaker_text = Array[String](["Come back when you got more cash."])
 speaker_portrait = null
 voice = "sine_voice"
+play_sound_path = null
 
 [node name="no purchase" parent="." instance=ExtResource("2_qr1h1")]
 position = Vector2(-205, 164)
 speaker_text = Array[String](["Well, you know where to find us!"])
 speaker_portrait = null
 voice = "sine_voice"
+play_sound_path = null
 
 [node name="purchase" parent="." instance=ExtResource("2_qr1h1")]
 position = Vector2(5, 178)
 speaker_text = Array[String](["Sure thing!", "You got it!", "Right away!"])
 speaker_portrait = null
 voice = "sine_voice"
+play_sound_path = null

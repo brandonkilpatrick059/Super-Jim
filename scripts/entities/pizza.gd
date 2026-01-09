@@ -75,12 +75,21 @@ func _ready():
 	add_child(use_item_timer)
 	_compass.visible = false
 	_pointer.visible = false
+	get_delivery_doors()
+
+func get_delivery_doors():
 	delivery_doors = get_tree().get_nodes_in_group("delivery_door")
+	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 	var iterator = 0
+	var doors_in_tier : Array[Node] = []
+	selected_delivery_doors = []
+	for door in delivery_doors:
+		if(door.get_tier() <= time_keeper.get_days_passed()):
+			doors_in_tier.append(door)
 	while(iterator < pizzas):
-		var random_index = random.randi_range(0,delivery_doors.size()-1)
-		var delivery_door = delivery_doors[random_index]
-		delivery_doors.remove_at(random_index)
+		var random_index = random.randi_range(0,doors_in_tier.size()-1)
+		var delivery_door = doors_in_tier[random_index]
+		doors_in_tier.remove_at(random_index)
 		selected_delivery_doors.append(delivery_door)
 		iterator += 1
 	destination_door = selected_delivery_doors[0]
@@ -285,16 +294,19 @@ func _physics_process(delta: float):
 		else:
 			_compass.visible = false
 			_pointer.visible = false
-			for door in selected_delivery_doors:
-				if(_prop.global_position.distance_to(door.global_position) < 32):
-					if(!_prop.is_picked_up()):
-						deliver_pizza(door)
 			if(!_prop.is_picked_up()):
-				for door in delivery_doors:
+				var delivered = false
+				for door in selected_delivery_doors:
 					if(_prop.global_position.distance_to(door.global_position) < 32):
-						wrong_door(door)
+						deliver_pizza(door)
+						delivered = true
 						break
-				wrong_door_checked = true
+				if(!delivered):
+					for door in delivery_doors:
+						if(_prop.global_position.distance_to(door.global_position) < 32):
+							wrong_door(door)
+							break
+					wrong_door_checked = true
 					
 	else:
 		destroy_self()

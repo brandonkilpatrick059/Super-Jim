@@ -20,6 +20,7 @@ var sound_player := AudioStreamPlayer.new()
 
 @export var does_not_open = false
 @export var address : String = ""
+@export var tier : int = 1
 
 @export var save_tag : String = ""
 
@@ -75,6 +76,9 @@ func _ready():
 		open_sound = load(open_sound_path)
 	if(close_sound_path != ""):
 		close_sound = load(close_sound_path)
+
+func get_tier() -> int:
+	return tier
 
 func get_save_dictionary() -> Dictionary:
 	var save_dictionary = {

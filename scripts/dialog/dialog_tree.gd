@@ -8,6 +8,9 @@ extends Node
 func reset():
 	current_branch = get_node(trunk)
 
+func get_sound_path() -> String:
+	return current_branch.get_sound_path()
+
 func get_speaker_portrait() -> SpriteFrames:
 	return current_branch.get_speaker_portrait()
 

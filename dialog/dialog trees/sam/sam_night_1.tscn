@@ -12,6 +12,7 @@ speaker_text = Array[String](["...But he was just a-sleepin."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
 voice = "low_alien_voice"
+play_sound_path = null
 
 [node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_lwwcu")]
 position = Vector2(2, 218)
@@ -19,9 +20,11 @@ speaker_text = Array[String](["When the blues jumped a rabbit-"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk3")]
 voice = "low_alien_voice"
+play_sound_path = null
 
 [node name="trunk3" parent="." instance=ExtResource("2_lwwcu")]
 position = Vector2(-2, 444)
 speaker_text = Array[String](["And that rabbit ran a mile..."])
 speaker_portrait = null
 voice = "low_alien_voice"
+play_sound_path = null

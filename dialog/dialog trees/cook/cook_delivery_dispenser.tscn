@@ -31,6 +31,7 @@ speaker_portrait = ExtResource("3_8mdru")
 option_branches = [NodePath("../stay safe")]
 voice = "low_sine_voice"
 dialog_script = NodePath("spawn_pizza")
+play_sound_path = "res://audio/soundFX/dash_regen.wav"
 
 [node name="spawn_pizza" type="Node" parent="order up"]
 script = ExtResource("4_0c4ik")

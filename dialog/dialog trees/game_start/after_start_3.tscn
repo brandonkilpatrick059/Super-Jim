@@ -198,10 +198,11 @@ node_group = "kitchen_door"
 
 [node name="gate key5" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_shkpx")]
 position = Vector2(-130, 4162)
-speaker_text = Array[String](["Here's a copy of the key."])
+speaker_text = Array[String](["Here's a key."])
 option_branches = [NodePath("../gate key6")]
 voice = "sine_voice"
 dialog_script = NodePath("unlock_passage_gate")
+play_sound_path = "res://audio/soundFX/pickup.wav"
 
 [node name="unlock_passage_gate" type="Node" parent="gate key5"]
 script = ExtResource("4_juich")

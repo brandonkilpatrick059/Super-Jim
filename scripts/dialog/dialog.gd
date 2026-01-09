@@ -36,6 +36,9 @@ func _ready():
 	_ResponseBubble.visible = false
 
 func play_current_branch():
+	if(tree.get_sound_path() != null && tree.get_sound_path() != ""):
+		_AudioStreamPlayer.stream = load(tree.get_sound_path())
+		_AudioStreamPlayer.play()
 	if(!tree.get_plays_cards()):
 		responding = false
 		if(tree.get_speaker_name() != null && tree.get_speaker_name() != ""):

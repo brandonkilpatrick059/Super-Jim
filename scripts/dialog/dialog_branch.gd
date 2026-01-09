@@ -20,8 +20,12 @@ extends Node2D
 
 @export var plays_cards : bool = false
 @export var card_deck : Array[int]
+@export var play_sound_path : String = ""
 
 var random = RandomNumberGenerator.new()
+
+func get_sound_path():
+	return play_sound_path
 
 func get_gives_money() -> int:
 	return gives_money

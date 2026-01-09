@@ -13,6 +13,7 @@ var timer_world := Timer.new()
 var timer_song := Timer.new()
 var timer_restart := Timer.new()
 var ambient_dark = null
+var days_passed : int = 0
 
 var end_of_day_script_queue : Array[Node] = []
 
@@ -37,11 +38,17 @@ var player_ref = null
 
 var pause_menu_ref = null
 
+func get_days_passed() -> int:
+	return days_passed
+
 func get_day_of_week():
 	return day_of_the_week
 
 func set_day_of_week(input : int):
 	day_of_the_week = input
+
+func set_days_passed(input : int):
+	days_passed = input
 
 func get_hour():
 	return clock
@@ -165,7 +172,7 @@ func advance_day():
 		node.run_script()
 		node.queue_free()
 	end_of_day_script_queue = []
-	
+	days_passed = days_passed + 1
 	new_day.emit()
 
 func advance_clock():

@@ -2,7 +2,9 @@
 extends Node2D
 
 @onready var _fade_to_black = $fade_to_black
-@onready var _fader = $teleport_fader
+
+var fader : Node = null
+var teleport_fader = preload("res://entities/util/teleport_fader.tscn")
 
 @export var linked_teleporter:Node2D = null
 @export var enter_y_push = 0
@@ -178,12 +180,12 @@ func exit():
 
 
 func attach_fader():
-	if(_fader.get_parent() != self):
-		add_child(_fader)
+	fader = teleport_fader.instantiate()
+	add_child(fader)
 
 func detach_fader():
-	if(_fader.get_parent() == self):
-		remove_child(_fader)
+	if(fader != null):
+		fader.queue_free()
 
 func update_fade_alpha():
 	_fade_to_black.color = Color(fade_color.r,fade_color.g,fade_color.b,fade_alpha)

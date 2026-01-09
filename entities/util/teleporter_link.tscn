@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://u6uyhyfhf4v5"]
+[gd_scene load_steps=4 format=3 uid="uid://u6uyhyfhf4v5"]
 
 [ext_resource type="Script" uid="uid://dyps2228nqjk1" path="res://scripts/utility/teleporter_link.gd" id="1_323ya"]
 [ext_resource type="SpriteFrames" uid="uid://dy0ok2t6yhqyc" path="res://sprites/spritesheets/spriteframes/characters/base/char_0_base.tres" id="2_sj33r"]
-[ext_resource type="Script" uid="uid://d0dxi6vdtiiax" path="res://scripts/utility/teleport_fader.gd" id="3_nwr4w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q7mi1"]
 size = Vector2(32, 32)
@@ -32,9 +31,6 @@ collision_mask = 5
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_q7mi1")
 debug_color = Color(1, 1, 0, 0.419608)
-
-[node name="teleport_fader" type="Node2D" parent="."]
-script = ExtResource("3_nwr4w")
 
 [node name="fade_to_black" type="Polygon2D" parent="."]
 z_index = 5

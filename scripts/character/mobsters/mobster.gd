@@ -188,7 +188,7 @@ func set_up_sound_player():
 	sound_player.bus = "Effects"
 	add_child(sound_player)
 	
-	footfall_player.max_distance = 256
+	footfall_player.max_distance = 500
 	footfall_player.attenuation = 8
 	footfall_player.volume_db = -12
 	add_child(footfall_player)

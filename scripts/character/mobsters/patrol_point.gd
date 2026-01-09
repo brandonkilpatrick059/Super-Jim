@@ -8,7 +8,8 @@ var random = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	if(Engine.is_editor_hint()):
+		queue_redraw()
 
 func has_next_point():
 	return next_points.size() > 0
@@ -40,8 +41,4 @@ func _draw():
 						var other_point = get_transform().affine_inverse() * point.position
 						draw_line(Vector2(), other_point, Color(1,0,0,1), -1)
 						draw_line(other_point, Vector2(other_point.x+16, other_point.y+16),Color(1,0,0,1),-1)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if(Engine.is_editor_hint()):
-		queue_redraw()
+	

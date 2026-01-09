@@ -76,6 +76,14 @@ func _ready():
 		open_sound = load(open_sound_path)
 	if(close_sound_path != ""):
 		close_sound = load(close_sound_path)
+	
+	#by default doors are prunable (will be removed from tree to save processor usage)
+	#but doors which are saved/loaded from memory
+	#are locked/unlocked while offscreen, which would not
+	#be possible if they were pruned (removed from tree). So this code
+	#enforces an exception for doors which are saved/loaded from memory
+	if(!is_in_group("prunable") && save_tag == ""):
+		add_to_group("prunable")
 
 func get_tier() -> int:
 	return tier
@@ -173,14 +181,14 @@ func player_is_behind_door():
 			ret_val = true
 	return ret_val
 
-func _process(delta: float) -> void:
-	#by default doors are prunable (will be removed from tree to save processor usage)
-	#but doors which are saved/loaded from memory
-	#are locked/unlocked while offscreen, which would not
-	#be possible if they were pruned (removed from tree). So this code
-	#enforces an exception for doors which are saved/loaded from memory
-	if(!is_in_group("prunable") && save_tag == ""):
-		add_to_group("prunable")
+#func _process(delta: float) -> void:
+	##by default doors are prunable (will be removed from tree to save processor usage)
+	##but doors which are saved/loaded from memory
+	##are locked/unlocked while offscreen, which would not
+	##be possible if they were pruned (removed from tree). So this code
+	##enforces an exception for doors which are saved/loaded from memory
+	#if(!is_in_group("prunable") && save_tag == ""):
+		#add_to_group("prunable")
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

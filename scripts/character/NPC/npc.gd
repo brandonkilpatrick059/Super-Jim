@@ -137,7 +137,7 @@ func set_up_sound_player():
 	add_child(sound_player)
 	
 	footfall_player.max_distance = 500
-	footfall_player.attenuation = 2
+	footfall_player.attenuation = 8
 	footfall_player.volume_db = -24
 	add_child(footfall_player)
 	footfall_player.stream = load("res://audio/soundFX/footfall_1.wav")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxkp38danudly"]
+
+[ext_resource type="Script" uid="uid://d0dxi6vdtiiax" path="res://scripts/utility/teleport_fader.gd" id="1_fcbv3"]
+
+[node name="teleport_fader" type="Node2D"]
+script = ExtResource("1_fcbv3")

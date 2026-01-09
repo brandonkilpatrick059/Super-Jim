@@ -25,8 +25,6 @@ var index = 0
 var rel_index = 0
 var max_nodes_per = 24
 
-var prune_thread : Thread = Thread.new()
-
 func _ready() -> void:
 	process_timer.one_shot = true
 	add_child(process_timer)
@@ -54,7 +52,7 @@ func prune_tree():
 		if(loadTouple.load_parent != null && loadTouple.load_node != null):
 			var node_pos : Vector2 = loadTouple.load_node.global_position
 			#prune distant objects
-			if(node_pos.distance_to(player_ref.global_position) > load_distance ||
+			if(node_pos.distance_to(player_ref.global_position) > load_distance &&
 			node_pos.distance_to(camera_ref.global_position) > load_distance):
 				if(loadTouple.load_node.get_parent() == loadTouple.load_parent):
 					loadTouple.load_parent.remove_child(loadTouple.load_node)

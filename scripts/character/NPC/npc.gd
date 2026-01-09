@@ -74,6 +74,8 @@ const nav_target_reached_distance = 4 #distance at which nav target is considere
 const nav_path_resolution = 4
 
 var sound_player := AudioStreamPlayer2D.new()
+var footfall_player := AudioStreamPlayer2D.new()
+var can_play_footfall = true
 
 var bubble_instance = null
 var speech_instance = null
@@ -133,6 +135,12 @@ func set_up_sound_player():
 	sound_player.attenuation = 2
 	sound_player.bus = "Effects"
 	add_child(sound_player)
+	
+	footfall_player.max_distance = 500
+	footfall_player.attenuation = 2
+	footfall_player.volume_db = -24
+	add_child(footfall_player)
+	footfall_player.stream = load("res://audio/soundFX/footfall_1.wav")
 
 func play_sound(path : String):
 	sound_player.stream = load(path)
@@ -358,6 +366,14 @@ func _on_advance_navigation(speed : int):
 	var base = 0.4
 	var remainder = 0.6
 	_character_base.set_animation_scale(base,remainder,perceptions.speed,top_speed)
+	
+	if(current_v.length() > 0):
+		if(_character_base.get_base_current_frame() == 1 || _character_base.get_base_current_frame() == 3):
+			if(can_play_footfall):
+				footfall_player.play()
+				can_play_footfall = false
+		else:
+			can_play_footfall = true
 
 func _on_reach_stage_mark():
 	update_branching_dialog()

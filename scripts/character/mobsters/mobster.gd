@@ -2,6 +2,9 @@
 extends RigidBody2D
 
 var sound_player := AudioStreamPlayer2D.new()
+var footfall_player := AudioStreamPlayer2D.new()
+
+var can_play_footfall = true
 
 var blood = preload("res://effects/blood.tscn")
 var question_bubble = preload("res://entities/characters/NPC/mobsters/communication/question.tscn")
@@ -77,7 +80,7 @@ var perceptions: MobsterPerceptions = MobsterPerceptions.new()
 
 var random = RandomNumberGenerator.new()
 
-const top_speed = 125000
+const top_speed = 180
 const nav_target_reached_distance = 32 #distance at which nav target is considered reached
 const nav_path_resolution = 4
 
@@ -107,7 +110,6 @@ var processing_timer : Timer = Timer.new()
 
 var on_screen_distance : float = 800
 var max_world_bullets = 20
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -185,6 +187,12 @@ func set_up_sound_player():
 	sound_player.attenuation = 2
 	sound_player.bus = "Effects"
 	add_child(sound_player)
+	
+	footfall_player.max_distance = 256
+	footfall_player.attenuation = 8
+	footfall_player.volume_db = -12
+	add_child(footfall_player)
+	footfall_player.stream = load("res://audio/soundFX/footfall_1.wav")
 
 func set_up_mobster_team():
 	add_to_group(team)
@@ -700,7 +708,15 @@ func _on_advance_navigation(speed : int):
 	_character_base.animate_sprite_by_vector(current_v, (linear_velocity.length() >= top_speed))
 	var base = 0.4
 	var remainder = 0.6
-	_character_base.set_animation_scale(base,remainder,perceptions.speed,top_speed)
+	_character_base.set_animation_scale(base,remainder,linear_velocity.length(),top_speed)
+	
+	if(current_v.length() > 0):
+		if(_character_base.get_base_current_frame() == 1 || _character_base.get_base_current_frame() == 3):
+			if(can_play_footfall):
+				footfall_player.play()
+				can_play_footfall = false
+		else:
+			can_play_footfall = true
 
 func _on_turn_right():
 	_character_base.turn_right()

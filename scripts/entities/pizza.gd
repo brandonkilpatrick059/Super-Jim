@@ -161,11 +161,14 @@ func use_item():
 		player_ref.set_control_frozen(true)
 		player_ref.stop()
 		player_ref.set_dialog_panning(true)
+		var fx_player = get_tree().get_first_node_in_group("main_fx_player")
+		fx_player.stream = load("res://audio/soundFX/maracca.ogg")
+		fx_player.play()
 		select_pizza_bubble = pizza_select_bubble.instantiate()
 		add_child(select_pizza_bubble)
 		select_pizza_bubble.global_position = player_ref.global_position
 		update_select_bubble()
-		use_item_timer.start(1)
+		use_item_timer.start(0.2)
 
 func update_compass_pointer():
 	var player_ref = get_tree().get_nodes_in_group("player")[0]
@@ -265,9 +268,12 @@ func _physics_process(delta: float):
 				var player_ref = get_tree().get_nodes_in_group("player")[0]
 				if(use_item_timer.is_stopped()  && 
 				Input.is_action_just_pressed("use_item")):
-					player_ref.set_use_item_timer(1)
+					player_ref.set_use_item_timer(0.5)
 					player_ref.set_control_frozen(false)
 					player_ref.set_dialog_panning(false)
+					var fx_player = get_tree().get_first_node_in_group("main_fx_player")
+					fx_player.stream = load("res://audio/soundFX/maracca.ogg")
+					fx_player.play()
 					select_pizza_bubble.queue_free()
 					selecting_pizza = false
 				else:

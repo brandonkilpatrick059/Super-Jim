@@ -14,7 +14,8 @@ var transition_done = false
 func _ready():
 	root_manager = get_tree().get_first_node_in_group("root_manager")
 	main_camera = get_tree().get_first_node_in_group("camera")
-	version_label.text = ProjectSettings.get_setting("application/config/version")
+	if(version_label != null):
+		version_label.text = ProjectSettings.get_setting("application/config/version")
 
 func _process(_delta):
 	if(main_camera.is_faded_out() && !transition_done):

@@ -16,7 +16,7 @@ func physics_process(_delta: float) -> void:
 				if(!sound_playing):
 					sound_playing = true
 					play_sound.emit("res://audio/music/sam_music.wav")
-					play_animation.emit("play_music")
+				play_animation.emit("play_music")
 		else:
 			if(!ai_state_machine.get_perceptions().in_dialog):
 				ai_state_machine.transition_to(npc_states.transit)

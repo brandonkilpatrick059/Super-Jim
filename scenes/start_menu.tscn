@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ba16c0124dsb3"]
+[gd_scene load_steps=11 format=3 uid="uid://ba16c0124dsb3"]
 
 [ext_resource type="Script" uid="uid://8bxn1q8fua5y" path="res://scripts/utility/root_manager.gd" id="1_hwmkm"]
 [ext_resource type="Texture2D" uid="uid://b76rttfua10ki" path="res://sprites/start_screen/starfiend_back.png" id="1_tkgca"]
@@ -8,6 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://ciw22wbkgnx0c" path="res://menu/start menu/start_menu_manager.tscn" id="6_ucxi6"]
 [ext_resource type="AudioStream" uid="uid://b3pbwf0l1i5mh" path="res://audio/music/starfield_theme.wav" id="7_0owee"]
 [ext_resource type="PackedScene" uid="uid://b23ot5l1o0hli" path="res://entities/characters/player/main_camera.tscn" id="7_xjevn"]
+[ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="8_5byqq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e58y3"]
+font = ExtResource("8_5byqq")
+font_size = 8
+font_color = Color(0.212305, 0.212305, 0.212305, 1)
 
 [node name="root_manager" type="Node2D" groups=["root_manager"]]
 process_mode = 3
@@ -35,6 +41,13 @@ autoplay = true
 bus = &"Music"
 
 [node name="start_menu" parent="start_menu" instance=ExtResource("6_ucxi6")]
+
+[node name="version_label" type="Label" parent="start_menu"]
+offset_left = -9.0
+offset_top = 145.0
+offset_right = 31.0
+offset_bottom = 168.0
+label_settings = SubResource("LabelSettings_e58y3")
 
 [node name="main_camera" parent="." instance=ExtResource("7_xjevn")]
 

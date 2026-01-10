@@ -8,10 +8,13 @@ var transition_done = false
 @export var main_scene = false
 @export var start_scene = false
 
+@onready var version_label = $version_label
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	root_manager = get_tree().get_first_node_in_group("root_manager")
 	main_camera = get_tree().get_first_node_in_group("camera")
+	version_label.text = ProjectSettings.get_setting("application/config/version")
 
 func _process(_delta):
 	if(main_camera.is_faded_out() && !transition_done):

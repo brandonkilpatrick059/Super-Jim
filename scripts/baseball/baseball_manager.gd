@@ -241,6 +241,14 @@ func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 		if(attacking_card.get_buff_dmg_against_team() > 0 && 
 		defending_card.get_card_team() == attacking_card.get_buff_dmg_target_team()):
 			damage_done = damage_done + attacking_card.get_buff_dmg_against_team()
+		if(defending_card.get_debuff_dmg_from_team() > 0 &&
+		attacking_card.get_card_team() == defending_card.get_debuff_dmg_target_team()):
+			damage_done = damage_done - defending_card.get_debuff_dmg_from_team()
+		#to prevent a game from stalling out if both cards are doing no damage,
+		#if damage is debuffed to 0, there's still a 50% chance it will do 1 damage
+		if(damage_done == 0):
+			if(randf_range(0.0,1.0) > 0.5):
+				damage_done = 1
 		var defending_hp = defending_card.get_hp()
 		var defending_hp_after_damage = defending_hp - damage_done
 		if(defending_hp_after_damage <= 0):
@@ -264,6 +272,8 @@ func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 				if(attacking_card.get_hp() > final_buff_amt):
 					final_buff_amt = attacking_card.get_hp()
 			play_buff_sound(final_buff_amt)
+		if(damage_done == 0):
+			play_sound("res://audio/soundFX/maracca.ogg")
 		if(damage_done <= 3):
 			play_sound("res://audio/soundFX/baseball/hit2.wav")
 		elif(damage_done > 3 && damage_done <= 6):
@@ -715,6 +725,8 @@ func _physics_process(delta: float):
 					declaring_victor = true
 					if(left_team_won):
 						play_sound("res://audio/soundFX/baseball/win.wav")
+					else:
+						play_sound("res://audio/soundFX/pizza_lost.wav")
 				else:
 					remaining_cards_leave()
 					

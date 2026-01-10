@@ -77,46 +77,62 @@ z_index = 20
 position = Vector2(-64, 0)
 
 [node name="CardBase" parent="active_card_left" instance=ExtResource("2_x31gc")]
+debuff_dmg_from_team = null
+debuff_dmg_target_team = null
 
 [node name="left_2" type="Node2D" parent="."]
 z_index = 10
 position = Vector2(-196, 0)
 
 [node name="CardBase" parent="left_2" instance=ExtResource("2_x31gc")]
+debuff_dmg_from_team = null
+debuff_dmg_target_team = null
 
 [node name="left_3" type="Node2D" parent="."]
 z_index = 15
 position = Vector2(-324, 0)
 
 [node name="CardBase" parent="left_3" instance=ExtResource("2_x31gc")]
+debuff_dmg_from_team = null
+debuff_dmg_target_team = null
 
 [node name="left_spawn" type="Node2D" parent="."]
 position = Vector2(-452, 0)
 
 [node name="CardBase" parent="left_spawn" instance=ExtResource("2_x31gc")]
+debuff_dmg_from_team = null
+debuff_dmg_target_team = null
 
 [node name="active_card_right" type="Node2D" parent="."]
 z_index = 20
 position = Vector2(64, 0)
 
 [node name="CardBase" parent="active_card_right" instance=ExtResource("2_x31gc")]
+debuff_dmg_from_team = null
+debuff_dmg_target_team = null
 
 [node name="right_2" type="Node2D" parent="."]
 z_index = 10
 position = Vector2(196, 0)
 
 [node name="CardBase" parent="right_2" instance=ExtResource("2_x31gc")]
+debuff_dmg_from_team = null
+debuff_dmg_target_team = null
 
 [node name="right_3" type="Node2D" parent="."]
 z_index = 15
 position = Vector2(324, 0)
 
 [node name="CardBase" parent="right_3" instance=ExtResource("2_x31gc")]
+debuff_dmg_from_team = null
+debuff_dmg_target_team = null
 
 [node name="right_spawn" type="Node2D" parent="."]
 position = Vector2(452, 0)
 
 [node name="CardBase" parent="right_spawn" instance=ExtResource("2_x31gc")]
+debuff_dmg_from_team = null
+debuff_dmg_target_team = null
 
 [node name="back_ground" type="Sprite2D" parent="."]
 z_index = -1

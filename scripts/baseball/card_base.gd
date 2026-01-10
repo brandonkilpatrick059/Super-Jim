@@ -55,6 +55,10 @@ extends Node2D
 @export var buff_dmg_against_team : int = 0
 @export var buff_dmg_target_team : String = ""
 
+#debuffs damage from team
+@export var debuff_dmg_from_team : int = 0
+@export var debuff_dmg_target_team : String = ""
+
 #TODO: implement
 #stat is  equal to the number of a certain team in deck
 @export var team_number_is_hp : bool = false
@@ -62,6 +66,12 @@ extends Node2D
 @export var team_number_is_dmg : bool = false
 
 var stat_max = 9
+
+func get_debuff_dmg_from_team() -> int :
+	return debuff_dmg_from_team
+
+func get_debuff_dmg_target_team() -> String:
+	return debuff_dmg_target_team
 
 func get_buff_dmg_against_team() -> int :
 	return buff_dmg_against_team

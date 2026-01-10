@@ -12,7 +12,7 @@ var path_points : Array[stage_mark]
 
 signal set_nav_target(pos : Vector2)
 signal advance_navigation(speed : int)
-signal interact()
+signal interact(bypass : bool)
 signal stop()
 
 var nav_target_reached = false
@@ -49,16 +49,16 @@ func physics_process(_delta: float) -> void:
 			timer.is_stopped()):
 				var point_light = get_tree().get_first_node_in_group("troll").get_child(0)
 				point_light.enabled = true
-				interact.emit()
+				interact.emit(true)
 				stop.emit()
 				timer.start(grace_period_secs)
 			else:
 				var point_light = get_tree().get_first_node_in_group("troll").get_child(0)
 				point_light.enabled = false
 				if(!nav_target_reached):
-					advance_navigation.emit(200000)
+					advance_navigation.emit(250000)
 				else:
-					if(randf_range(0.0,1.0) > 0.25):
+					if(randf_range(0.0,1.0) > 0.50):
 						path_point_index = path_point_index + 1
 						if(path_point_index >= path_points.size()):
 							path_point_index = 0

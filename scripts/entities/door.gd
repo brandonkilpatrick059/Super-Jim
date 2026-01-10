@@ -82,7 +82,9 @@ func _ready():
 	#are locked/unlocked while offscreen, which would not
 	#be possible if they were pruned (removed from tree). So this code
 	#enforces an exception for doors which are saved/loaded from memory
-	if(!is_in_group("prunable") && save_tag == ""):
+	if(!is_in_group("prunable") && 
+	save_tag == "" &&
+	!is_in_group("delivery_door")):
 		add_to_group("prunable")
 
 func get_tier() -> int:

@@ -101,6 +101,14 @@ func game_end(player_won : int):
 		tree.take_speech_option(2)
 		play_current_branch()
 
+func end_dialog():
+	tree.reset()
+	player_ref.exit_dialog()
+	if(waited_ware != null):
+		waited_ware.buy_item()
+		waited_ware = null
+	clean_up()
+
 func handle_input():
 	if(responding):
 		if(tree.get_shows_wares() && shop != null): #display available wares
@@ -140,12 +148,7 @@ func handle_input():
 	if(Input.is_action_just_pressed("interact")):
 		#no options or next nodes = dialog is over
 		if(is_end_of_dialog()):
-			tree.reset()
-			player_ref.exit_dialog()
-			if(waited_ware != null):
-				waited_ware.buy_item()
-				waited_ware = null
-			clean_up()
+			end_dialog()
 		elif(dialog_continues()):
 			tree.take_speech_option(0)
 			play_current_branch()
@@ -188,12 +191,15 @@ func clean_up():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(dialog_started):
-		_DialogBubble.global_position = speaker_node.global_position + Vector2(-48,-96)
-		if(speaker_node.dialog_offset != null):
-			_DialogBubble.global_position = _DialogBubble.global_position + speaker_node.dialog_offset
-		_ResponseBubble.global_position = player_ref.global_position + Vector2(-48,-96)
-		if(_DialogBubble.is_text_done_playing()):
-			handle_input()
+		if(player_ref.global_position.distance_to(speaker_node.global_position) > 300):
+			end_dialog()
+		else:
+			_DialogBubble.global_position = speaker_node.global_position + Vector2(-48,-96)
+			if(speaker_node.dialog_offset != null):
+				_DialogBubble.global_position = _DialogBubble.global_position + speaker_node.dialog_offset
+			_ResponseBubble.global_position = player_ref.global_position + Vector2(-48,-96)
+			if(_DialogBubble.is_text_done_playing()):
+				handle_input()
 
 func set_dialog_tree(in_tree : dialog_tree):
 	tree = in_tree

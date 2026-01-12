@@ -28,10 +28,14 @@ func physics_process(_delta: float) -> void:
 		var player_pos = player_ref.global_position
 		var self_pos = ai_state_machine.get_perceptions().global_position
 		if(player_pos.distance_to(self_pos) <= 64):
-			var landlord_manager = get_tree().get_first_node_in_group("landlord_manager")
-			landlord_manager.catch_player()
-			ai_state_machine.transition_to(npc_states.alert_passive)
-			return
+			#check for frozen controls in an attempt to prevent interrupting
+			#player conversations, card games, catching the player as they
+			#move into a teleporter etc
+			if(!player_ref.control_is_frozen()):
+				var landlord_manager = get_tree().get_first_node_in_group("landlord_manager")
+				landlord_manager.catch_player()
+				ai_state_machine.transition_to(npc_states.alert_passive)
+				return
 		if(!nav_target_reached):
 			advance_navigation.emit(125000)
 			#check vision

@@ -2,20 +2,17 @@
 
 [ext_resource type="Texture2D" uid="uid://br28km70ade0l" path="res://sprites/props/furniture/lamp_0.png" id="1_idn4k"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8g631"]
-atlas = ExtResource("1_idn4k")
-region = Rect2(0, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_o8nfp"]
 atlas = ExtResource("1_idn4k")
 region = Rect2(16, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g631"]
+atlas = ExtResource("1_idn4k")
+region = Rect2(0, 0, 16, 16)
+
 [resource]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8g631")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_o8nfp")
 }],

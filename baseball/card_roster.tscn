@@ -45,6 +45,7 @@ stamina = 4
 power = 3
 debuff_dmg_from_team = 0
 debuff_dmg_target_team = ""
+metadata/_edit_group_ = true
 
 [node name="green_4" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -202,10 +203,8 @@ strength_rating = 12
 hp = 3
 stamina = 0
 power = 3
-buff_dmg_against_team = 4
-buff_dmg_target_team = "green"
-debuff_dmg_from_team = 0
-debuff_dmg_target_team = ""
+debuff_dmg_from_team = 4
+debuff_dmg_target_team = "green"
 
 [node name="yellow_16" parent="." instance=ExtResource("2_yiqgv")]
 visible = false

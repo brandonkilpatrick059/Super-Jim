@@ -38,7 +38,7 @@ func _ready():
 	_saving_game.visible = false
 	timer_fade.one_shot = true
 	add_child(timer_fade)
-	sound_player.bus = "Music"
+	sound_player.bus = "Effects"
 	add_child(sound_player)
 	time_keeper = get_tree().get_first_node_in_group("time_keeper")
 	press_hold_timer.one_shot = true

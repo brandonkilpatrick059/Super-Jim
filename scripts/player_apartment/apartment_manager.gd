@@ -5,6 +5,7 @@ extends Node2D
 @onready var _night_stand_slot = $night_stand_slot
 @onready var _wardrobe_slot = $wardrobe_slot
 @onready var _tv_slot = $tv_slot
+@onready var _lamp_slot = $lamp_slot
 
 var has_tv : bool = false
 
@@ -20,7 +21,7 @@ func add_tv():
 	var new_TV = TV.instantiate()
 	_tv_slot.add_child(new_TV)
 	new_TV.position = Vector2(0,0)
-
+	
 func set_desk_slot(desk : Node):
 	if(_desk_slot.get_child_count() > 0):
 		_desk_slot.get_children()[0].queue_free()
@@ -30,8 +31,19 @@ func set_desk_slot(desk : Node):
 func set_night_stand_slot(night_stand : Node):
 	if(_night_stand_slot.get_child_count() > 0):
 		_night_stand_slot.get_children()[0].queue_free()
+		if(_lamp_slot.get_child_count() > 0):
+			_lamp_slot.get_child(0).position = Vector2(0,14)
 	_night_stand_slot.add_child(night_stand)
-	night_stand.position = Vector2(0,0)
+	night_stand.position = Vector2(0,-16)
+
+func set_lamp_slot(lamp : Node):
+	if(_lamp_slot.get_child_count() > 0):
+		_lamp_slot.get_children()[0].queue_free()
+	_lamp_slot.add_child(lamp)
+	if(_night_stand_slot.get_child_count() > 0):
+		lamp.position = Vector2(0,14)
+	else:
+		lamp.position = Vector2(0,20)
 
 func set_wardrobe_slot(wardrobe : Node):
 	if(_wardrobe_slot.get_child_count() > 0):
@@ -56,13 +68,18 @@ func get_save_dictionary() -> Dictionary:
 	var wardrobe_slot = ""
 	if (_wardrobe_slot.get_children().size() > 0):
 		wardrobe_slot = _wardrobe_slot.get_child(0).get_path_to_self()
+	
+	var lamp_slot = ""
+	if(_lamp_slot.get_children().size() > 0):
+		lamp_slot = _lamp_slot.get_child(0).get_path_to_self()
 		
 	var save_dictionary = {
 		"bed_slot" = bed_slot,
 		"desk_slot" = desk_slot,
 		"night_stand_slot" = night_stand_slot,
 		"wardrobe_slot" = wardrobe_slot,
-		"has_tv" = has_tv
+		"has_tv" = has_tv,
+		"lamp_slot" = lamp_slot
 	}
 	
 	return save_dictionary
@@ -86,6 +103,10 @@ func load_from_dictionary(load_dictionary : Dictionary):
 		set_wardrobe_slot(wardrobe)
 	if(load_dictionary.get("has_tv")):
 		add_tv()
+	if(load_dictionary.get("lamp_slot") != ""):
+		var load_str = String(load_dictionary.get("lamp_slot"))
+		var lamp : Node = load(load_str).instantiate()
+		set_lamp_slot(lamp)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

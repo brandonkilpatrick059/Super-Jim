@@ -246,9 +246,11 @@ func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 			damage_done = damage_done - defending_card.get_debuff_dmg_from_team()
 		#to prevent a game from stalling out if both cards are doing no damage,
 		#if damage is debuffed to 0, there's still a 50% chance it will do 1 damage
-		if(damage_done == 0):
+		if(damage_done <= 0):
 			if(randf_range(0.0,1.0) > 0.5):
 				damage_done = 1
+			else:
+				damage_done = 0
 		var defending_hp = defending_card.get_hp()
 		var defending_hp_after_damage = defending_hp - damage_done
 		if(defending_hp_after_damage <= 0):

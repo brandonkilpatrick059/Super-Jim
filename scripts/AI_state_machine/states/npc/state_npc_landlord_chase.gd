@@ -40,7 +40,7 @@ func physics_process(_delta: float) -> void:
 		advance_navigation.emit(chase_speed)
 
 func enter(_msg := {}) -> void:
-	var last_seen_pos = ai_state_machine.get_perceptions().target_pos
+	var last_seen_pos = ai_state_machine.get_perceptions().target_obj.global_position
 	set_nav_target.emit(last_seen_pos)
 
 func exit() -> void:

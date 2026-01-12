@@ -55,7 +55,7 @@ func physics_process(_delta: float) -> void:
 			else:
 				var point_light = get_tree().get_first_node_in_group("troll").get_child(0)
 				point_light.enabled = false
-				if(!nav_target_reached):
+				if(!ai_state_machine.get_perceptions().nav_target_reached):
 					advance_navigation.emit(250000)
 				else:
 					if(randf_range(0.0,1.0) > 0.50):

@@ -66,13 +66,16 @@ func physics_process(_delta: float) -> void:
 		nav_target_reached = get_host_nav_target_reached()
 		if(nav_target_reached):
 			if(!ai_state_machine.get_perceptions().has_line_of_sight_to_target):
-				ai_state_machine.transition_to(mobster_states.look)
+				if(randf_range(0.0,1.0) < 0.5): #lose a coin toss and they've got a bead on you
+					ai_state_machine.transition_to(mobster_states.chasing)
+				else: #win a coin toss and they haven't a clue
+					ai_state_machine.transition_to(mobster_states.look)
 				return
 			else:
 				ai_state_machine.transition_to(mobster_states.strafing)
 
 func enter(_msg := {}) -> void:
-	var last_seen_pos = ai_state_machine.get_perceptions().target_pos
+	var last_seen_pos = ai_state_machine.get_perceptions().target_obj.global_position
 	set_nav_target.emit(last_seen_pos)
 
 func exit() -> void:

@@ -39,6 +39,9 @@ func interact():
 	var player = get_tree().get_first_node_in_group("player")
 	if(player.get_money() > 0):
 		if(!prophesizing):
+			var camera = get_tree().get_first_node_in_group("camera")
+			camera.zoom_to(1.5)
+			camera
 			player._on_add_money(-1)
 			player.set_control_frozen(true)
 			main_music_player = get_tree().get_first_node_in_group("main_music_player")
@@ -66,3 +69,5 @@ func _physics_process(delta: float) -> void:
 		player.set_control_frozen(false)
 		proclaiming = false
 		speech_instance.queue_free()
+		var camera = get_tree().get_first_node_in_group("camera")
+		camera.zoom_to(1.0)

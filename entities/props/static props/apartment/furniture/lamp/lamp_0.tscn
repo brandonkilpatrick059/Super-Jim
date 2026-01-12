@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://y5ippqr715to" path="res://scripts/player_apartment/furniture.gd" id="1_s5thc"]
 [ext_resource type="Script" uid="uid://bcud7tddpywny" path="res://scripts/entities/lamp.gd" id="2_n1t8m"]
-[ext_resource type="SpriteFrames" uid="uid://drauw2hemh2yd" path="res://sprites/spritesheets/spriteframes/props/lamp.tres" id="2_ykavq"]
+[ext_resource type="SpriteFrames" uid="uid://drauw2hemh2yd" path="res://sprites/spritesheets/spriteframes/game_world/lamp.tres" id="2_ykavq"]
 [ext_resource type="Texture2D" uid="uid://b6i63ebldyx86" path="res://sprites/lights/2d_lights_and_shadows_neutral_point_light.webp" id="3_n1t8m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ydt6r"]

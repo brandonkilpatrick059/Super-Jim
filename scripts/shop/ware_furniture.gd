@@ -5,6 +5,7 @@ extends Node
 @export var is_bed = false
 @export var is_desk = false
 @export var is_night_stand = false
+@export var is_lamp = false
 
 func get_is_bed():
 	return is_bed
@@ -15,6 +16,9 @@ func get_is_desk():
 func get_is_night_stand():
 	return is_night_stand
 
+func get_is_lamp():
+	return is_lamp
+
 func run_script():
 	var apartment_manager = get_tree().get_first_node_in_group("apartment_manager")
 	var entity = furniture_entity.instantiate()
@@ -24,3 +28,5 @@ func run_script():
 		apartment_manager.set_desk_slot(entity)
 	elif(get_is_night_stand()):
 		apartment_manager.set_night_stand_slot(entity)
+	elif(get_is_lamp()):
+		apartment_manager.set_lamp_slot(entity)

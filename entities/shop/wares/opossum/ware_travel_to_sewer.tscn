@@ -6,8 +6,7 @@
 [node name="WareTravel_sewer" type="Node2D"]
 z_index = 1
 script = ExtResource("1_be70t")
-cost = 50
-ware_name = "Sail to Sewers ($50)"
+ware_name = "Sail to Sewers"
 wait_until_dialog_ends = true
 
 [node name="script_node" type="Node" parent="."]

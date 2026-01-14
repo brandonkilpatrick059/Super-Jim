@@ -44,10 +44,10 @@ func _ready():
 
 func set_alternate_bubble(scene_path : String):
 	alternate_dialog_bubble = load(scene_path)
-	var bubble = alternate_dialog_bubble.instantiate()
-	_DialogBubble.queue_free()
-	add_child(bubble)
-	_DialogBubble = bubble
+	#var bubble = alternate_dialog_bubble.instantiate()
+	#_DialogBubble.queue_free()
+	#add_child(bubble)
+	#_DialogBubble = bubble
 
 func play_current_branch():
 	if(tree.get_sound_path() != null && tree.get_sound_path() != ""):

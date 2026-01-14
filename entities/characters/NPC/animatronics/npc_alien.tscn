@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://def20wg814qgd"]
+
+[ext_resource type="Script" uid="uid://ckj5xwhetys06" path="res://scripts/character/NPC/npc.gd" id="1_2y3tc"]
+[ext_resource type="Script" uid="uid://dohfsf4f1rv0a" path="res://scripts/character/character_base_animatronic.gd" id="3_3cbuv"]
+[ext_resource type="SpriteFrames" uid="uid://crq1r8aoqplss" path="res://sprites/spritesheets/spriteframes/characters/base/alien_base.tres" id="4_2wjg3"]
+[ext_resource type="PackedScene" uid="uid://biwoi1biy4ynx" path="res://entities/characters/NPC/AI state machine/ai_state_machine.tscn" id="4_tci7v"]
+[ext_resource type="Script" uid="uid://debyywgf0en1h" path="res://scripts/utility/state_animatronic_anim_state.gd" id="7_2y3tc"]
+[ext_resource type="PackedScene" uid="uid://bstl2betvigap" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_alert_passive.tscn" id="7_meigk"]
+
+[node name="NpcAlien" type="RigidBody2D" groups=["alien", "interactable", "npc"]]
+collision_layer = 20
+collision_mask = 0
+script = ExtResource("1_2y3tc")
+base_spriteframes = ExtResource("4_2wjg3")
+dialog_offset = Vector2(0, 64)
+alt_dlg_bubble_path = null
+is_animatronic = true
+save_tag = "NPC_ALIEN"
+
+[node name="character_base" type="Node2D" parent="."]
+script = ExtResource("3_3cbuv")
+
+[node name="base_sprite" type="AnimatedSprite2D" parent="character_base"]
+sprite_frames = ExtResource("4_2wjg3")
+
+[node name="ai_state_machine" parent="." instance=ExtResource("4_tci7v")]
+initial_state = NodePath("idle_animation")
+
+[node name="alert_passive" parent="ai_state_machine" instance=ExtResource("7_meigk")]
+
+[node name="idle_animation" parent="ai_state_machine" instance=ExtResource("7_meigk")]
+script = ExtResource("7_2y3tc")
+find_group = "alien"
+play_animation = "idle_closed"

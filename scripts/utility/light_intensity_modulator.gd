@@ -23,7 +23,6 @@ func fade_in():
 	enabled = true
 
 func fade_out():
-	energy = energy_max
 	brightening = false
 	fading_out = true
 
@@ -35,9 +34,15 @@ func _physics_process(delta: float) -> void:
 			else:
 				brightening = false
 		else:
-			if(energy > energy_min):
-				energy = energy - rate
-			else:
-				brightening = true
-				if(fading_out):
+			if(fading_out):
+				if(energy > 0.0):
+					energy = energy - rate
+				else:
 					enabled = false
+					fading_out = false
+					energy = 0.0
+			else:
+				if(energy > energy_min):
+					energy = energy - rate
+				else:
+					brightening = true

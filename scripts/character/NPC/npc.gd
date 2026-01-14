@@ -19,6 +19,7 @@ const alert_passive = "alert_passive"
 @export var dialog_offset = Vector2(0,0)
 @export var starting_index = 0
 @export var no_face_player : bool = false
+@export var alt_dlg_bubble_path : String = ""
 
 #denotes npcs which do not use the typical character_base
 #generally for mostly stationary npcs with unique
@@ -172,6 +173,8 @@ func interact(stop_bypass : bool = false):
 		dialog_manager = dialog.instantiate()
 		if(dialog_offset != null):
 			dialog_manager.set_nudge_vector(dialog_offset)
+		if(alt_dlg_bubble_path != ""):
+			dialog_manager.set_alternate_bubble(alt_dlg_bubble_path)
 		dialog_manager.set_speaker_node(self)
 		add_child(dialog_manager)
 		#if(dialog_offset != null):

@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://badstw4jecb6n"]
+
+[ext_resource type="Script" uid="uid://dyji0pe6c3mqi" path="res://scripts/dialog/dialog_bubble.gd" id="1_qj6x6"]
+[ext_resource type="Texture2D" uid="uid://dpei0q7yc25dw" path="res://sprites/dialog/dialog_bubble_dark.png" id="2_qj6x6"]
+[ext_resource type="FontFile" uid="uid://cdf6elivdwcta" path="res://fonts/CourierPrime-Regular.ttf" id="3_qj6x6"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jm16r"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qahwf"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_080c4"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ofqnb"]
+light_mode = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_onojp"]
+font = ExtResource("3_qj6x6")
+font_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[node name="DialogBubbleDark" type="Node2D"]
+material = SubResource("CanvasItemMaterial_jm16r")
+position = Vector2(-48, -96)
+script = ExtResource("1_qj6x6")
+change_label = false
+label_position_default = -63.0
+
+[node name="bubble" type="Sprite2D" parent="."]
+z_index = 7
+material = SubResource("CanvasItemMaterial_qahwf")
+position = Vector2(48, 176)
+texture = ExtResource("2_qj6x6")
+flip_v = true
+
+[node name="portrait" type="AnimatedSprite2D" parent="."]
+z_index = 7
+material = SubResource("CanvasItemMaterial_080c4")
+position = Vector2(-65, -18)
+
+[node name="Label" type="Label" parent="."]
+z_index = 7
+material = SubResource("CanvasItemMaterial_ofqnb")
+offset_left = -64.0
+offset_top = 135.0
+offset_right = 157.0
+offset_bottom = 183.0
+label_settings = SubResource("LabelSettings_onojp")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

@@ -6,6 +6,13 @@ var time_between_chars = 0.06
 @onready var _portrait = $portrait
 @onready var _label = $Label
 
+@export var change_label = true
+
+@export var label_position_default : float = -110.0
+@export var label_size_default : float = 220.0
+@export var label_position_portrait : float = 0.0
+@export var label_size_portrait : float = 110.0
+
 var full_text = ""
 var current_text 
 var characters_displayed = 0
@@ -62,12 +69,13 @@ func _ready():
 	
 
 func _physics_process(delta):
-	if(_portrait.sprite_frames == null):
-		_label.size.x = 220
-		_label.position.x = -110
-	else:
-		_label.size.x = 110
-		_label.position.x = 0
+	if(change_label):
+		if(_portrait.sprite_frames == null):
+			_label.size.x = label_size_default
+			_label.position.x = label_position_default
+		else:
+			_label.size.x = label_size_portrait
+			_label.position.x = label_position_portrait
 	wait_time = wait_time + delta
 	if(full_text_displayed == false):
 		if(wait_time >= time_between_chars):

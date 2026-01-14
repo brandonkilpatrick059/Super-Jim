@@ -6,6 +6,8 @@ var baseball_game = preload("res://baseball/baseball_manager.tscn")
 @onready var _ResponseBubble = $ResponseBubble
 @onready var _AudioStreamPlayer = $AudioStreamPlayer
 
+@export var alternate_dialog_bubble : PackedScene = null
+
 var speaker_node : Node
 var tree : dialog_tree
 var player_ref
@@ -32,8 +34,20 @@ func set_speaker_node(node : Node):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player_ref = get_tree().get_first_node_in_group("player")
+	if(alternate_dialog_bubble != null):
+		var bubble = alternate_dialog_bubble.instantiate()
+		_DialogBubble.queue_free()
+		add_child(bubble)
+		_DialogBubble = bubble
 	_DialogBubble.visible = false
 	_ResponseBubble.visible = false
+
+func set_alternate_bubble(scene_path : String):
+	alternate_dialog_bubble = load(scene_path)
+	var bubble = alternate_dialog_bubble.instantiate()
+	_DialogBubble.queue_free()
+	add_child(bubble)
+	_DialogBubble = bubble
 
 func play_current_branch():
 	if(tree.get_sound_path() != null && tree.get_sound_path() != ""):

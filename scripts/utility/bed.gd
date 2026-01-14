@@ -16,7 +16,7 @@ var timer_fade := Timer.new()
 
 var press_hold_timer := Timer.new()
 var holding_forward = false
-var teleport_wait_secs = 1.5
+var teleport_wait_secs = 1.0
 var teleporting = false
 
 var sleep_start_time = 18

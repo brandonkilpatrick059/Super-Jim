@@ -59,6 +59,9 @@ func unlock_time():
 func lock_time():
 	time_locked = true
 
+func get_hour_length_seconds():
+	return hour_length_seconds
+
 func refresh_npc_locations():
 	var npcs = get_tree().get_nodes_in_group("npc")
 	for npc in npcs:
@@ -78,9 +81,6 @@ func _ready():
 	timer_world.start(hour_length_seconds)
 	ambient_dark = get_tree().get_first_node_in_group("ambient_dark")
 	player_ref = get_tree().get_first_node_in_group("player")
-
-func get_hour_length_seconds():
-	return hour_length_seconds
 
 func get_time_as_ratio_of_full_day() -> float:
 	var ratio = 0.0

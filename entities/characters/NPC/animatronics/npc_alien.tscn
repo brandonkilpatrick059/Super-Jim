@@ -13,7 +13,6 @@ collision_mask = 0
 script = ExtResource("1_2y3tc")
 base_spriteframes = ExtResource("4_2wjg3")
 dialog_offset = Vector2(0, 64)
-alt_dlg_bubble_path = null
 is_animatronic = true
 save_tag = "NPC_ALIEN"
 

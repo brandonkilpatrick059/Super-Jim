@@ -17,7 +17,6 @@ collision_mask = 0
 script = ExtResource("1_karpb")
 base_spriteframes = ExtResource("2_ipdhv")
 dialog_offset = Vector2(0, 192)
-alt_dlg_bubble_path = null
 is_animatronic = true
 save_tag = "NPC_JEFF"
 
@@ -26,7 +25,6 @@ script = ExtResource("5_omukw")
 
 [node name="base_sprite" type="AnimatedSprite2D" parent="character_base"]
 sprite_frames = ExtResource("2_ipdhv")
-frame_progress = 0.455241
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)

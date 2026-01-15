@@ -75,8 +75,12 @@ func physics_process(_delta: float) -> void:
 				ai_state_machine.transition_to(mobster_states.strafing)
 
 func enter(_msg := {}) -> void:
-	var last_seen_pos = ai_state_machine.get_perceptions().target_obj.global_position
-	set_nav_target.emit(last_seen_pos)
+	if(ai_state_machine.get_perceptions().target_obj != null):
+		var last_seen_pos = ai_state_machine.get_perceptions().target_obj.global_position
+		set_nav_target.emit(last_seen_pos)
+	else:
+		var last_seen_pos = ai_state_machine.get_perceptions().target_pos
+		set_nav_target.emit(last_seen_pos)
 
 func exit() -> void:
 	pass

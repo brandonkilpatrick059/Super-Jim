@@ -7,7 +7,8 @@ extends Node
 @export var run_on_ready : bool = false
 
 func _ready() -> void:
-	run_script()
+	if(run_on_ready):
+		run_script()
 
 func run_script():
 	if(add_to_tree):

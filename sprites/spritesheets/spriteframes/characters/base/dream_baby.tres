@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bgkbqtqb7v8nl"]
+
+[ext_resource type="Texture2D" uid="uid://tx8wrl4qyf7t" path="res://sprites/spritesheets/characters/base/dream_baby_base.png" id="1_q4ctt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41g5j"]
+atlas = ExtResource("1_q4ctt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wexju"]
+atlas = ExtResource("1_q4ctt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjkbk"]
+atlas = ExtResource("1_q4ctt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crxd7"]
+atlas = ExtResource("1_q4ctt")
+region = Rect2(32, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41g5j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wexju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjkbk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crxd7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]

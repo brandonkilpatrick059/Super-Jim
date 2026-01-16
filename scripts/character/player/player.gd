@@ -25,6 +25,10 @@ var camera_connected = false
 @export var bottom_spriteframes : SpriteFrames
 @export var facing_dir = "right"
 
+var base_temp_storage : SpriteFrames = null
+@onready var dreamer_spriteframes : SpriteFrames = preload("res://sprites/spritesheets/spriteframes/characters/base/raccoon_base.tres")
+var dreaming = false
+
 var no_clip = false
 var dev_zoom_level = 0
 const no_clip_speed = 3200000
@@ -139,6 +143,9 @@ const pizza : String = "pizza"
 const cardbinder : String = "card_binder"
 const citymap : String = "city_map"
 
+var waking = false
+var waking_control_back = false
+
 func _ready():
 	_collision.disabled = no_clip
 	timer_dash.one_shot = true
@@ -191,6 +198,61 @@ func play_sound(stream : AudioStream):
 			player.stream = stream
 			player.play()
 			return
+
+func begin_dreaming():
+	dreaming = true
+	base_temp_storage = _character_base.get_base_spriteframes()
+	_character_base.set_base_spriteframes(dreamer_spriteframes)
+	_character_base.reduce_to_base()
+	set_ui_invisible()
+	var dark_ysort = get_tree().get_first_node_in_group("dark_indoor_ysort")
+	var flat_light_layer = get_tree().get_first_node_in_group("flat_light_layer")
+	var day_light_layer = get_tree().get_first_node_in_group("daylight_layer")
+	var dark_layer = get_tree().get_first_node_in_group("dark_layer")
+	reparent(dark_ysort)
+	day_light_layer.visible = false
+	flat_light_layer.visible = false
+	dark_layer.visible = true
+	var dream_spawn = get_tree().get_first_node_in_group("player_spawn_dream")
+	global_position = dream_spawn.global_position
+
+func stop_dreaming():
+	dreaming = false
+	_character_base.set_base_spriteframes(base_temp_storage)
+	_character_base.restore_non_base_sprites()
+	var day_light_ysort = get_tree().get_first_node_in_group("daylight_affected_ysort")
+	reparent(day_light_ysort)
+	var day_light_layer = get_tree().get_first_node_in_group("daylight_layer")
+	var dark_layer = get_tree().get_first_node_in_group("dark_layer")
+	var flat_light_layer = get_tree().get_first_node_in_group("flat_light_layer")
+	day_light_layer.visible = false
+	dark_layer.visible = false
+	flat_light_layer.visible = false
+	var bedroom_spawn = get_tree().get_first_node_in_group("player_spawn_bedroom")
+	global_position = bedroom_spawn.global_position
+
+func wake_up():
+	if(!waking):
+		set_control_frozen(true)
+		get_camera_ref().fade_out()
+		timer_load_in.start(2)
+		waking = true
+
+func handle_waking():
+	if(timer_load_in.is_stopped()):
+		if(waking):
+			stop_dreaming()
+			timer_load_in.start(4)
+			waking = false
+			waking_control_back = true
+		elif(waking_control_back):
+			var day_light_layer = get_tree().get_first_node_in_group("daylight_layer")
+			day_light_layer.visible = true
+			get_camera_ref().fade_in()
+			waking_control_back = false
+			set_ui_visible()
+			set_control_frozen(false)
+		
 
 #called when the player loads in from a save
 func load_in():
@@ -781,10 +843,11 @@ func handle_interact():
 			handle_pick_up()
 
 func handle_dash():
-	if Input.is_action_just_pressed("dash"):
-		dash()
-	elif Input.is_action_just_released("dash"):
-		stop_dash()
+	if(!dreaming):
+		if Input.is_action_just_pressed("dash"):
+			dash()
+		elif Input.is_action_just_released("dash"):
+			stop_dash()
 
 func regen_dash_secs(seconds):
 	dash_regen_secs = seconds
@@ -803,23 +866,24 @@ func give_dash_fraction(fraction: float):
 	give_dash_seconds(max_dash_secs * fraction)
 
 func handle_use_item():
-	if(use_item_timer.is_stopped() && Input.is_action_just_pressed("use_item")):
-		use_item()
-		use_item_timer.start(0.25)
-	if(Input.is_action_just_pressed(("switch_item_right")) && !items_frozen):
-		play_sound(pickup_sound)
-		if(items.size() > 1):
-			if(item_index + 1 == items.size()):
-				item_index = 0
-			else:
-				item_index = item_index + 1
-	elif(Input.is_action_just_pressed(("switch_item_left")) && !items_frozen):
-		play_sound(pickup_sound)
-		if(items.size() > 1):
-			if(item_index - 1 < 0):
-				item_index = items.size() - 1
-			else:
-				item_index = item_index - 1
+	if(!dreaming):
+		if(use_item_timer.is_stopped() && Input.is_action_just_pressed("use_item")):
+			use_item()
+			use_item_timer.start(0.25)
+		if(Input.is_action_just_pressed(("switch_item_right")) && !items_frozen):
+			play_sound(pickup_sound)
+			if(items.size() > 1):
+				if(item_index + 1 == items.size()):
+					item_index = 0
+				else:
+					item_index = item_index + 1
+		elif(Input.is_action_just_pressed(("switch_item_left")) && !items_frozen):
+			play_sound(pickup_sound)
+			if(items.size() > 1):
+				if(item_index - 1 < 0):
+					item_index = items.size() - 1
+				else:
+					item_index = item_index - 1
 
 func handle_throw():
 	if Input.is_action_just_pressed("throw"):
@@ -1026,6 +1090,8 @@ func update_item_square():
 
 func _physics_process(delta):
 	if(!Engine.is_editor_hint()):
+		handle_waking()
+		
 		if(timer_load_in.is_stopped() && loading_in):
 			finish_load_in()
 			

@@ -1,0 +1,53 @@
+[gd_scene load_steps=11 format=3 uid="uid://q1u7qhx6n06n"]
+
+[ext_resource type="Script" uid="uid://ckj5xwhetys06" path="res://scripts/character/NPC/npc.gd" id="1_yy3bu"]
+[ext_resource type="Script" uid="uid://dohfsf4f1rv0a" path="res://scripts/character/character_base_animatronic.gd" id="3_oietq"]
+[ext_resource type="SpriteFrames" uid="uid://bgkbqtqb7v8nl" path="res://sprites/spritesheets/spriteframes/characters/base/dream_baby.tres" id="4_8iyjr"]
+[ext_resource type="PackedScene" uid="uid://biwoi1biy4ynx" path="res://entities/characters/NPC/AI state machine/ai_state_machine.tscn" id="4_ilef6"]
+[ext_resource type="PackedScene" uid="uid://bstl2betvigap" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_alert_passive.tscn" id="5_m53me"]
+[ext_resource type="Script" uid="uid://debyywgf0en1h" path="res://scripts/utility/state_animatronic_anim_state.gd" id="6_23bfm"]
+[ext_resource type="Script" uid="uid://b3xtkv5igree1" path="res://scripts/utility/play_default_animation.gd" id="8_ilef6"]
+[ext_resource type="SpriteFrames" uid="uid://mai8517l0v2" path="res://sprites/spritesheets/spriteframes/effects/blood.tres" id="8_m53me"]
+[ext_resource type="PackedScene" uid="uid://civab4k0y1u4x" path="res://dialog/dialog trees/dream_baby.tscn" id="9_ilef6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m53me"]
+size = Vector2(17, 19)
+
+[node name="NpcBaby" type="RigidBody2D" node_paths=PackedStringArray("branching_dialog") groups=["baby", "interactable", "npc"]]
+collision_layer = 20
+collision_mask = 0
+script = ExtResource("1_yy3bu")
+base_spriteframes = ExtResource("4_8iyjr")
+is_animatronic = true
+save_tag = "NPC_ALIEN"
+branching_dialog = NodePath("dream_baby")
+
+[node name="character_base" type="Node2D" parent="."]
+script = ExtResource("3_oietq")
+
+[node name="base_sprite" type="AnimatedSprite2D" parent="character_base"]
+sprite_frames = ExtResource("4_8iyjr")
+frame_progress = 0.609411
+
+[node name="ai_state_machine" parent="." instance=ExtResource("4_ilef6")]
+initial_state = NodePath("idle_animation")
+
+[node name="alert_passive" parent="ai_state_machine" instance=ExtResource("5_m53me")]
+
+[node name="idle_animation" parent="ai_state_machine" instance=ExtResource("5_m53me")]
+script = ExtResource("6_23bfm")
+find_group = "baby"
+play_animation = "default"
+
+[node name="dream_baby" parent="." instance=ExtResource("9_ilef6")]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_m53me")
+
+[node name="blood" type="AnimatedSprite2D" parent="."]
+z_index = -1
+sprite_frames = ExtResource("8_m53me")
+animation = &"done"
+script = ExtResource("8_ilef6")
+not_prunable = true

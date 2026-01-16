@@ -1,6 +1,15 @@
-[gd_resource type="SpriteFrames" load_steps=114 format=3 uid="uid://cotlvoohox8w6"]
+[gd_resource type="SpriteFrames" load_steps=117 format=3 uid="uid://cotlvoohox8w6"]
 
+[ext_resource type="Texture2D" uid="uid://c6ew8he06vwgy" path="res://sprites/spritesheets/characters/base/char_kid_base_1.png" id="1_hvwbk"]
 [ext_resource type="Texture2D" uid="uid://bk2civnh0dg7v" path="res://sprites/spritesheets/characters/base/raccoon_base.png" id="1_mgr0e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6byy"]
+atlas = ExtResource("1_hvwbk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdrjr"]
+atlas = ExtResource("1_hvwbk")
+region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_20wgi"]
 atlas = ExtResource("1_mgr0e")
@@ -453,6 +462,12 @@ region = Rect2(96, 224, 32, 32)
 [resource]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6byy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdrjr")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_20wgi")
 }, {

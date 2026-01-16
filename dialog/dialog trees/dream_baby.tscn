@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://civab4k0y1u4x"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_557yg"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_7hx7j"]
+[ext_resource type="Script" uid="uid://ee70fawk15se" path="res://scripts/utility/wake_player.gd" id="3_s2fq2"]
+
+[node name="dream_baby" type="Node2D"]
+script = ExtResource("1_557yg")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_7hx7j")]
+speaker_text = Array[String](["Help me.", "I'm so scared.", "It's...So...Cold..."])
+speaker_portrait = null
+speech_options = Array[String](["This isn't happening. This can't be happening.", "Help is coming. It will be okay."])
+option_branches = [NodePath("../leave"), NodePath("../stay")]
+voice = "low_alien_voice"
+
+[node name="stay" parent="." instance=ExtResource("2_7hx7j")]
+position = Vector2(157, 216)
+speaker_text = Array[String](["Why won't you do anything?"])
+speaker_portrait = null
+voice = "low_alien_voice"
+
+[node name="leave" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_7hx7j")]
+position = Vector2(-145, 210)
+speaker_text = Array[String](["It's...Getting dark...", "No no no no no...", "Don't go. Please."])
+speaker_portrait = null
+speech_options = Array[String](["", "Help is coming. It will be okay."])
+option_branches = [NodePath("")]
+voice = "low_alien_voice"
+dialog_script = NodePath("wake_player")
+
+[node name="wake_player" type="Node" parent="leave"]
+script = ExtResource("3_s2fq2")

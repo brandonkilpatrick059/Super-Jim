@@ -28,6 +28,10 @@ var fading_out = false
 var player_ref = null
 
 var time_keeper
+var begin_dreaming_timer := Timer.new()
+var dreaming = false
+var dreaming_transition = false
+var dreaming_control_return = false
 
 @export var gives_hp = 1
 @export var gives_dash_secs = 20
@@ -37,6 +41,8 @@ var time_keeper
 func _ready():
 	_saving_game.visible = false
 	timer_fade.one_shot = true
+	begin_dreaming_timer.one_shot = true
+	add_child(begin_dreaming_timer)
 	add_child(timer_fade)
 	sound_player.bus = "Effects"
 	add_child(sound_player)
@@ -59,6 +65,8 @@ func _process(delta):
 		check_portal_input()
 		if(_door.frame == _door.sprite_frames.get_frame_count("open") - 1):
 			_door.play("opened")
+			dreaming = true
+			begin_dreaming_timer.start(4)
 		if(!teleporting && holding_forward && press_hold_timer.is_stopped()):
 			teleporting = true
 			_game_saved_label.visible = false
@@ -66,6 +74,32 @@ func _process(delta):
 			camera.zoom_to(1.25)
 			camera.fade_out()
 			_door.play("open")
+			fading_in = false
+			fading_out = false
+		
+	if(begin_dreaming_timer.is_stopped()):
+		if(dreaming):
+			_saving_game.visible = false
+			_game_saved_label.visible = true
+			fade_alpha = 0.0
+			update_fade_alpha()
+			player_ref.begin_dreaming()
+			dreaming = false
+			dreaming_transition = true
+			begin_dreaming_timer.start(2)
+		elif(dreaming_transition):
+			var camera = player_ref.get_camera_ref()
+			camera.zoom_to(1.0)
+			camera.fade_in()
+			dreaming_transition = false
+			dreaming_control_return = true
+			begin_dreaming_timer.start(2)
+		elif(dreaming_control_return):
+			dreaming_control_return = false
+			teleporting = false
+			_door.play("closed")
+			player_ref.set_control_frozen(false)
+		
 			
 	if((fading_out || fading_in) &&
 	timer_fade.is_stopped()):
@@ -79,11 +113,15 @@ func _process(delta):
 				var camera = player_ref.get_camera_ref()
 				_saving_game.global_position = camera.get_screen_center_position()
 				_saving_game.visible = true
-				time_keeper.set_clock(sleep_end_time)
 				timer_fade.start(long_step_secs)
 		elif(fading_in):
 			if(fade_alpha > 0 && !holding_forward):
 				_saving_game.visible = false
+				time_keeper.set_clock(sleep_end_time)
+				if(time_keeper.clock >= sleep_start_time):
+					time_keeper.advance_day()
+				player_ref.increment_hp()
+				player_ref.give_dash_seconds(20)
 				fade_alpha -= fade_step
 				timer_fade.start(fade_step_secs)
 			elif(fade_alpha <= 0):
@@ -109,9 +147,6 @@ func interact():
 		sound_player.stream = load("res://audio/music/sleep theme.wav")
 		sound_player.play()
 		var game_save_manager = get_tree().get_first_node_in_group("game_save_manager")
-		player_ref.increment_hp()
-		player_ref.give_dash_seconds(20)
-		time_keeper.advance_day()
 		game_save_manager.save_game()
 	else:
 		player_ref._on_make_comment("Can't sleep the day away.")

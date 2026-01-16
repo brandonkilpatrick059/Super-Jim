@@ -198,6 +198,16 @@ func set_spriteframes_include_null(base, hat, top, bottom):
 	if(Engine.is_editor_hint()):
 		queue_redraw()
 
+func reduce_to_base():
+	_hat.visible = false
+	_top.visible = false
+	_bottom.visible = false
+
+func restore_non_base_sprites():
+	_hat.visible = true
+	_top.visible = true
+	_bottom.visible = true
+
 func set_spriteframes(base, hat, top, bottom):
 	if(_base_sprite != null):
 		_base_sprite.sprite_frames = base
@@ -209,6 +219,14 @@ func set_spriteframes(base, hat, top, bottom):
 		_bottom.sprite_frames = bottom
 	if(Engine.is_editor_hint()):
 		queue_redraw()
+
+func set_base_spriteframes(base : SpriteFrames):
+	if(_base_sprite != null):
+		_base_sprite.sprite_frames = base
+		synch_animations()
+
+func get_base_spriteframes() -> SpriteFrames:
+	return _base_sprite.sprite_frames
 
 func set_hat_spriteframes(hat):
 	if(_hat != null):

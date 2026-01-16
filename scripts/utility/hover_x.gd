@@ -3,6 +3,9 @@ extends Node
 @onready var panel1 = $panel1
 @onready var panel2 = $panel2
 @onready var panel3 = $panel3
+@onready var panel4 = $panel4
+@onready var panel5 = $panel5
+@onready var panel6 = $panel6
 
 @export var switch_point : int = -720
 @export var jump_distance : int = 1440
@@ -16,6 +19,9 @@ var timer : Timer = Timer.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	windows.append(panel3)
+	windows.append(panel4)
+	windows.append(panel5)
+	windows.append(panel6)
 	windows.append(panel1)
 	windows.append(panel2)
 	timer.one_shot = true
@@ -37,3 +43,9 @@ func _process(delta):
 		panel2.position.x += jump_distance
 	if(panel3.position.x <= switch_point):
 		panel3.position.x += jump_distance
+	if(panel4.position.x <= switch_point):
+		panel4.position.x += jump_distance
+	if(panel5.position.x <= switch_point):
+		panel5.position.x += jump_distance
+	if(panel6.position.x <= switch_point):
+		panel6.position.x += jump_distance

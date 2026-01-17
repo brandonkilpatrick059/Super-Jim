@@ -252,6 +252,10 @@ func handle_waking():
 			waking_control_back = false
 			set_ui_visible()
 			set_control_frozen(false)
+			var baby_spawner = get_tree().get_first_node_in_group("dream_baby_spawn")
+			var baby = get_tree().get_first_node_in_group("baby")
+			baby.queue_free()
+			baby_spawner.reset_has_played()
 		
 
 #called when the player loads in from a save

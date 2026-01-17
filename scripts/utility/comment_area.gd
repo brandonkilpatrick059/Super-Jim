@@ -20,6 +20,9 @@ func _ready():
 func get_save_tag():
 	return save_tag
 
+func reset_has_played():
+	has_played = false
+
 func interact():
 	if(!text_when_zone_entered):
 		make_comment.emit(text)

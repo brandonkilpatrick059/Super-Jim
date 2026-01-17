@@ -1,0 +1,137 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4tmuvsfss2d2"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_bwlyw"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_42vgl"]
+[ext_resource type="Script" uid="uid://03wkeim8jfat" path="res://scripts/utility/animatronic_light_enabled_disable.gd" id="3_x3fln"]
+[ext_resource type="Script" uid="uid://6ti2gqjsh5s4" path="res://scripts/utility/animatronic_animation.gd" id="4_1fnc6"]
+[ext_resource type="Script" uid="uid://c2q4w0ekhh3v4" path="res://scripts/utility/lock_unlock_door.gd" id="5_42vgl"]
+
+[node name="alien_talks" type="Node2D"]
+script = ExtResource("1_bwlyw")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_42vgl")]
+speaker_text = Array[String](["..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "low_alien_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_42vgl")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["A...Visitor..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "low_alien_voice"
+
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_42vgl")]
+position = Vector2(-2, 444)
+speaker_text = Array[String](["Finds me in the midst of remembering."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk5")]
+voice = "low_alien_voice"
+dialog_script = NodePath("light_on")
+
+[node name="light_on" type="Node" parent="trunk3"]
+script = ExtResource("3_x3fln")
+light_tag = "alien_main_light"
+fade_in = true
+
+[node name="trunk5" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_42vgl")]
+position = Vector2(16, 958)
+speaker_text = Array[String](["Let me see you..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk6")]
+voice = "low_alien_voice"
+dialog_script = NodePath("open_eye")
+
+[node name="open_eye" type="Node" parent="trunk5"]
+script = ExtResource("4_1fnc6")
+animatronic_tag = "alien"
+animation_queue = Array[String](["eye_open", "idle_open"])
+
+[node name="trunk6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_42vgl")]
+position = Vector2(2, 1190)
+speaker_text = Array[String](["I see-"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk7")]
+voice = "low_alien_voice"
+
+[node name="trunk7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_42vgl")]
+position = Vector2(2, 1414)
+speaker_text = Array[String](["A wanderer..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk8")]
+voice = "low_alien_voice"
+
+[node name="trunk8" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_42vgl")]
+position = Vector2(10, 1611)
+speaker_text = Array[String](["Walking in the wake of shadowed visions-"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk9")]
+voice = "low_alien_voice"
+
+[node name="trunk9" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_42vgl")]
+position = Vector2(-1, 1841)
+speaker_text = Array[String](["I have seen your dreams."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk10")]
+voice = "low_alien_voice"
+dialog_script = NodePath("close_eye")
+
+[node name="close_eye" type="Node" parent="trunk9"]
+script = ExtResource("4_1fnc6")
+animatronic_tag = "alien"
+animation_queue = Array[String](["eye_close", "idle_closed"])
+
+[node name="trunk10" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_42vgl")]
+position = Vector2(1, 2036)
+speaker_text = Array[String](["Does the world within reflect the world without?"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk11")]
+voice = "low_alien_voice"
+
+[node name="trunk11" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_42vgl")]
+position = Vector2(-2, 2255)
+speaker_text = Array[String](["Do you believe there is something to find there?"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk12")]
+voice = "low_alien_voice"
+
+[node name="trunk12" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_42vgl")]
+position = Vector2(2, 2475)
+speaker_text = Array[String](["You can test your belief, if you choose..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk13")]
+voice = "low_alien_voice"
+
+[node name="trunk13" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_42vgl")]
+position = Vector2(1, 2756)
+speaker_text = Array[String](["That portal will open to you now."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk14")]
+voice = "low_alien_voice"
+dialog_script = NodePath("open_dream_door")
+play_sound_path = "res://audio/soundFX/dash_regen.wav"
+
+[node name="open_dream_door" type="Node" parent="trunk13"]
+script = ExtResource("5_42vgl")
+node_group = "dream_door"
+
+[node name="trunk14" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_42vgl")]
+position = Vector2(-2, 3004)
+speaker_text = Array[String](["There is another portal you may find-"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk15")]
+voice = "low_alien_voice"
+
+[node name="trunk15" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_42vgl")]
+position = Vector2(-3, 3217)
+speaker_text = Array[String](["Which will draw you through the final veil."])
+speaker_portrait = null
+voice = "low_alien_voice"
+dialog_script = NodePath("light_off")
+
+[node name="light_off" type="Node" parent="trunk15"]
+script = ExtResource("3_x3fln")
+light_tag = "alien_main_light"
+fade_out = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://6g84bfvblcpi"]
+[gd_scene load_steps=3 format=3 uid="uid://pj7pwlxq6uls"]
 
 [ext_resource type="Script" uid="uid://dohfsf4f1rv0a" path="res://scripts/character/character_base_animatronic.gd" id="1_8gd4c"]
 

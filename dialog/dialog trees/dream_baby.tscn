@@ -11,7 +11,7 @@ trunk = NodePath("trunk")
 [node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_7hx7j")]
 speaker_text = Array[String](["Help me.", "I'm so scared.", "It's...So...Cold..."])
 speaker_portrait = null
-speech_options = Array[String](["This isn't happening. This can't be happening.", "Help is coming. It will be okay."])
+speech_options = Array[String](["This isn't happening.", "Help is coming. It will be okay."])
 option_branches = [NodePath("../leave"), NodePath("../stay")]
 voice = "low_alien_voice"
 

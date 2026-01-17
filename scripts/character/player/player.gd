@@ -28,6 +28,8 @@ var camera_connected = false
 var base_temp_storage : SpriteFrames = null
 @onready var dreamer_spriteframes : SpriteFrames = preload("res://sprites/spritesheets/spriteframes/characters/base/raccoon_base.tres")
 var dreaming = false
+var sleep_start_time = 18
+var sleep_end_time = 9
 
 var no_clip = false
 var dev_zoom_level = 0
@@ -199,6 +201,12 @@ func play_sound(stream : AudioStream):
 			player.play()
 			return
 
+func get_sleep_start_time():
+	return sleep_start_time
+
+func get_sleep_end_time():
+	return sleep_end_time
+
 func begin_dreaming():
 	dreaming = true
 	base_temp_storage = _character_base.get_base_spriteframes()
@@ -239,6 +247,12 @@ func wake_up():
 		waking = true
 
 func handle_waking():
+	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+	if(time_keeper.clock > sleep_end_time &&
+	time_keeper.clock < sleep_start_time &&
+	(!waking || waking_control_back) &&
+	dreaming):
+		wake_up()
 	if(timer_load_in.is_stopped()):
 		if(waking):
 			stop_dreaming()
@@ -254,7 +268,8 @@ func handle_waking():
 			set_control_frozen(false)
 			var baby_spawner = get_tree().get_first_node_in_group("dream_baby_spawn")
 			var baby = get_tree().get_first_node_in_group("baby")
-			baby.queue_free()
+			if(baby != null):
+				baby.queue_free()
 			baby_spawner.reset_has_played()
 		
 

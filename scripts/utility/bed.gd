@@ -19,6 +19,8 @@ var holding_forward = false
 var teleport_wait_secs = 1.0
 var teleporting = false
 
+#these are defined here but they
+#are mainly retrieved from the player
 var sleep_start_time = 18
 var sleep_end_time = 9
 
@@ -61,6 +63,8 @@ func check_portal_input():
 func _process(delta):
 	#_fade_to_black.global_position = Vector2(0,0)
 	var player_ref = get_tree().get_first_node_in_group("player")
+	sleep_start_time = player_ref.get_sleep_start_time()
+	sleep_end_time = player_ref.get_sleep_end_time()
 	if(_saving_game.visible):
 		check_portal_input()
 		if(_door.frame == _door.sprite_frames.get_frame_count("open") - 1):

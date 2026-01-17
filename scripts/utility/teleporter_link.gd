@@ -17,6 +17,7 @@ var teleport_fader = preload("res://entities/util/teleport_fader.tscn")
 @export var fade_color : Color = Color(0,0,0)
 @export var no_ui_interact = false
 @export var inactive : bool = false
+@export var no_light_interact = false
 
 var entering = false
 var loading = false
@@ -130,19 +131,22 @@ func enter():
 		player_ref.global_position = linked_teleporter.global_position
 		if(reparent_to_daylight):
 			player_ref.reparent(day_light_ysort)
-			player_ref.turn_light_off()
+			if(!no_light_interact):
+				player_ref.turn_light_off()
 			day_light_layer.visible = true
 			dark_layer.visible = false
 			#flat_light_layer.visible = false
 		elif(reparent_to_no_daylight):
-			player_ref.turn_light_off()
+			if(!no_light_interact):
+				player_ref.turn_light_off()
 			day_light_layer.visible = false
 			dark_layer.visible = false
 			flat_light_layer.visible = true
 			player_ref.reparent(flat_light_ysort)
 		elif(reparent_to_dark_indoor):
 			player_ref.reparent(dark_ysort)
-			player_ref.turn_light_on()
+			if(!no_light_interact):
+				player_ref.turn_light_on()
 			day_light_layer.visible = false
 			dark_layer.visible = true
 			#flat_light_layer.visible = false	

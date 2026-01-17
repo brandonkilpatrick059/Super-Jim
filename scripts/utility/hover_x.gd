@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 @onready var panel1 = $panel1
@@ -10,6 +11,7 @@ extends Node
 @export var switch_point : int = -720
 @export var jump_distance : int = 1440
 @export var shift_pixels : float = 1
+@export var run_in_editor : bool = false
 
 var windows : Array[Node] = []
 var timer : Timer = Timer.new()
@@ -34,18 +36,19 @@ func shift_scrollers(pixels : float):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if(timer.is_stopped()):
-		shift_scrollers(shift_pixels)
-		timer.start(timer_wait_secs)
-	if(panel1.position.x <= switch_point):
-		panel1.position.x += jump_distance
-	if(panel2.position.x <= switch_point):
-		panel2.position.x += jump_distance
-	if(panel3.position.x <= switch_point):
-		panel3.position.x += jump_distance
-	if(panel4.position.x <= switch_point):
-		panel4.position.x += jump_distance
-	if(panel5.position.x <= switch_point):
-		panel5.position.x += jump_distance
-	if(panel6.position.x <= switch_point):
-		panel6.position.x += jump_distance
+	if(!Engine.is_editor_hint() || run_in_editor):
+		if(timer.is_stopped()):
+			shift_scrollers(shift_pixels)
+			timer.start(timer_wait_secs)
+		if(panel1.position.x <= switch_point):
+			panel1.position.x += jump_distance
+		if(panel2.position.x <= switch_point):
+			panel2.position.x += jump_distance
+		if(panel3.position.x <= switch_point):
+			panel3.position.x += jump_distance
+		if(panel4.position.x <= switch_point):
+			panel4.position.x += jump_distance
+		if(panel5.position.x <= switch_point):
+			panel5.position.x += jump_distance
+		if(panel6.position.x <= switch_point):
+			panel6.position.x += jump_distance

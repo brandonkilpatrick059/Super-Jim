@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bg7je0meatila"]
 
-[ext_resource type="Script" uid="uid://cjq5avfnkftkk" path="res://scripts/character/NPC/fauna/dream_musician.gd" id="1_60wmk"]
+[ext_resource type="Script" uid="uid://cjq5avfnkftkk" path="res://scripts/character/NPC/fauna/path_walker.gd" id="1_60wmk"]
 [ext_resource type="SpriteFrames" uid="uid://c1vl07u267467" path="res://sprites/spritesheets/spriteframes/characters/base/oboe_base.tres" id="2_60wmk"]
 [ext_resource type="AudioStream" uid="uid://djklijx2a3md6" path="res://audio/music/oboe.wav" id="3_60wmk"]
 [ext_resource type="Texture2D" uid="uid://b6i63ebldyx86" path="res://sprites/lights/2d_lights_and_shadows_neutral_point_light.webp" id="4_14k45"]
@@ -33,8 +33,9 @@ bus = &"Effects"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.839216, 0.623529, 0.823529, 1)
-energy = 0.34
+energy = 0.3
 texture = ExtResource("4_14k45")
 script = ExtResource("5_v5t5i")
 energy_min = 0.3
 energy_max = 0.5
+rate = 0.005

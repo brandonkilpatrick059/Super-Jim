@@ -26,7 +26,7 @@ position = Vector2(-145, 210)
 speaker_text = Array[String](["It's...Getting dark...", "No no no no no...", "Don't go. Please."])
 speaker_portrait = null
 speech_options = Array[String](["", "Help is coming. It will be okay."])
-option_branches = [NodePath("")]
+option_branches = [null]
 voice = "low_alien_voice"
 dialog_script = NodePath("wake_player")
 

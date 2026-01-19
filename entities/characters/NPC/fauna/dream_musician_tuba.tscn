@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwuwqdaufr30n"]
+
+[ext_resource type="Script" uid="uid://cjq5avfnkftkk" path="res://scripts/character/NPC/fauna/dream_musician.gd" id="1_ugr1x"]
+[ext_resource type="SpriteFrames" uid="uid://cvtv6fu0pg2ql" path="res://sprites/spritesheets/spriteframes/characters/base/tuba_base.tres" id="2_ugr1x"]
+[ext_resource type="AudioStream" uid="uid://c1ic7vwqwepyq" path="res://audio/music/tuba.wav" id="3_ugr1x"]
+[ext_resource type="Texture2D" uid="uid://b6i63ebldyx86" path="res://sprites/lights/2d_lights_and_shadows_neutral_point_light.webp" id="4_lqw4d"]
+[ext_resource type="Script" uid="uid://bmrg8o6vr6upp" path="res://scripts/utility/light_intensity_modulator.gd" id="5_oa4vf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_376au"]
+size = Vector2(11, 16)
+
+[node name="dream_musician_tuba" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 16
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_ugr1x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 2)
+shape = SubResource("RectangleShape2D_376au")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_ugr1x")
+animation = &"walk_left"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ugr1x")
+autoplay = true
+max_distance = 300.0
+bus = &"Effects"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.623529, 0.839216, 0.760784, 1)
+energy = 0.51
+texture = ExtResource("4_lqw4d")
+script = ExtResource("5_oa4vf")
+energy_min = 0.5

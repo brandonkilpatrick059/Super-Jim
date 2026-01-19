@@ -248,30 +248,31 @@ func wake_up():
 
 func handle_waking():
 	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
-	if(time_keeper.clock > sleep_end_time &&
-	time_keeper.clock < sleep_start_time &&
-	(!waking || waking_control_back) &&
-	dreaming):
-		wake_up()
-	if(timer_load_in.is_stopped()):
-		if(waking):
-			stop_dreaming()
-			timer_load_in.start(4)
-			waking = false
-			waking_control_back = true
-		elif(waking_control_back):
-			var day_light_layer = get_tree().get_first_node_in_group("daylight_layer")
-			day_light_layer.visible = true
-			get_camera_ref().fade_in()
-			waking_control_back = false
-			set_ui_visible()
-			set_control_frozen(false)
-			var baby_spawner = get_tree().get_first_node_in_group("dream_baby_spawn")
-			var baby = get_tree().get_first_node_in_group("baby")
-			if(baby != null):
-				baby.queue_free()
-			baby_spawner.reset_has_played()
-		
+	if(time_keeper != null):
+		if(time_keeper.clock > sleep_end_time &&
+		time_keeper.clock < sleep_start_time &&
+		(!waking || waking_control_back) &&
+		dreaming):
+			wake_up()
+		if(timer_load_in.is_stopped()):
+			if(waking):
+				stop_dreaming()
+				timer_load_in.start(4)
+				waking = false
+				waking_control_back = true
+			elif(waking_control_back):
+				var day_light_layer = get_tree().get_first_node_in_group("daylight_layer")
+				day_light_layer.visible = true
+				get_camera_ref().fade_in()
+				waking_control_back = false
+				set_ui_visible()
+				set_control_frozen(false)
+				var baby_spawner = get_tree().get_first_node_in_group("dream_baby_spawn")
+				var baby = get_tree().get_first_node_in_group("baby")
+				if(baby != null):
+					baby.queue_free()
+				baby_spawner.reset_has_played()
+			
 
 #called when the player loads in from a save
 func load_in():

@@ -18,37 +18,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D2"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1617.5, -12)
+position = Vector2(-1655.5, -12)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D2"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1275.5, -16)
+position = Vector2(-1313.5, -16)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D2"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-834.5, -16)
+position = Vector2(-872.5, -16)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D2"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1893.5, -16)
+position = Vector2(-1931.5, -16)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D2"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1467.5, -16)
+position = Vector2(-1505.5, -16)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D2"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-558.5, -16)
+position = Vector2(-596.5, -16)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D3" type="Parallax2D" parent="."]
@@ -65,37 +65,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D3"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1251.25, -47)
+position = Vector2(-1279.75, -47)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D3"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-909.25, -51)
+position = Vector2(-937.75, -51)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D3"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1968.25, -51)
+position = Vector2(-1996.75, -51)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D3"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1527.25, -51)
+position = Vector2(-1555.75, -51)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D3"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1101.25, -51)
+position = Vector2(-1129.75, -51)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D3"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1692.25, -51)
+position = Vector2(-1720.75, -51)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D4" type="Parallax2D" parent="."]
@@ -112,37 +112,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D4"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-731.028, -53)
+position = Vector2(-761.428, -53)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D4"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1889.05, -57)
+position = Vector2(-1919.45, -57)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D4"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1448.04, -57)
+position = Vector2(-1478.44, -57)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D4"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1007.01, -57)
+position = Vector2(-1037.41, -57)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D4"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-581.009, -57)
+position = Vector2(-611.409, -57)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D4"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1172.02, -57)
+position = Vector2(-1202.42, -57)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D5" type="Parallax2D" parent="."]
@@ -159,37 +159,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D5"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1171.47, -61)
+position = Vector2(-1205.67, -61)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D5"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-829.467, -65)
+position = Vector2(-863.668, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D5"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1888.47, -65)
+position = Vector2(-1922.67, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D5"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1447.47, -65)
+position = Vector2(-1481.67, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D5"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1021.47, -65)
+position = Vector2(-1055.67, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D5"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1612.47, -65)
+position = Vector2(-1646.67, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D6" type="Parallax2D" parent="."]
@@ -206,37 +206,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D6"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1321.03, -72)
+position = Vector2(-1343.83, -72)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D6"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-979.031, -76)
+position = Vector2(-1001.83, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D6"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-538.033, -76)
+position = Vector2(-560.832, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D6"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1597.03, -76)
+position = Vector2(-1619.83, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D6"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1171.03, -76)
+position = Vector2(-1193.83, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D6"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1762.03, -76)
+position = Vector2(-1784.83, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D42" type="Parallax2D" parent="."]
@@ -251,37 +251,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D42"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1617.5, -12)
+position = Vector2(-1655.5, -12)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D42"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1275.5, -16)
+position = Vector2(-1313.5, -16)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D42"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-834.5, -16)
+position = Vector2(-872.5, -16)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D42"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1893.5, -16)
+position = Vector2(-1931.5, -16)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D42"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1467.5, -16)
+position = Vector2(-1505.5, -16)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D42"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-558.5, -16)
+position = Vector2(-596.5, -16)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D43" type="Parallax2D" parent="."]
@@ -298,37 +298,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D43"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1251.25, -47)
+position = Vector2(-1279.75, -47)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D43"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-909.25, -51)
+position = Vector2(-937.75, -51)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D43"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1968.25, -51)
+position = Vector2(-1996.75, -51)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D43"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1527.25, -51)
+position = Vector2(-1555.75, -51)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D43"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1101.25, -51)
+position = Vector2(-1129.75, -51)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D43"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1692.25, -51)
+position = Vector2(-1720.75, -51)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D44" type="Parallax2D" parent="."]
@@ -345,37 +345,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D44"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-731.028, -53)
+position = Vector2(-761.428, -53)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D44"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1889.05, -57)
+position = Vector2(-1919.45, -57)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D44"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1448.04, -57)
+position = Vector2(-1478.44, -57)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D44"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1007.01, -57)
+position = Vector2(-1037.41, -57)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D44"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-581.009, -57)
+position = Vector2(-611.409, -57)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D44"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1172.02, -57)
+position = Vector2(-1202.42, -57)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D45" type="Parallax2D" parent="."]
@@ -392,37 +392,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D45"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1171.47, -61)
+position = Vector2(-1205.67, -61)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D45"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-829.467, -65)
+position = Vector2(-863.668, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D45"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1888.47, -65)
+position = Vector2(-1922.67, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D45"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1447.47, -65)
+position = Vector2(-1481.67, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D45"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1021.47, -65)
+position = Vector2(-1055.67, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D45"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1612.47, -65)
+position = Vector2(-1646.67, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D46" type="Parallax2D" parent="."]
@@ -439,37 +439,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D46"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1321.03, -72)
+position = Vector2(-1343.83, -72)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D46"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-979.031, -76)
+position = Vector2(-1001.83, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D46"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-538.033, -76)
+position = Vector2(-560.832, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D46"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1597.03, -76)
+position = Vector2(-1619.83, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D46"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1171.03, -76)
+position = Vector2(-1193.83, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D46"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1762.03, -76)
+position = Vector2(-1784.83, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D47" type="Parallax2D" parent="."]
@@ -484,37 +484,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D47"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1617.5, -12)
+position = Vector2(-1655.5, -12)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D47"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1275.5, -16)
+position = Vector2(-1313.5, -16)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D47"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-834.5, -16)
+position = Vector2(-872.5, -16)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D47"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1893.5, -16)
+position = Vector2(-1931.5, -16)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D47"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1467.5, -16)
+position = Vector2(-1505.5, -16)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D47"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-558.5, -16)
+position = Vector2(-596.5, -16)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D48" type="Parallax2D" parent="."]
@@ -531,37 +531,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D48"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1251.25, -47)
+position = Vector2(-1279.75, -47)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D48"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-909.25, -51)
+position = Vector2(-937.75, -51)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D48"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1968.25, -51)
+position = Vector2(-1996.75, -51)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D48"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1527.25, -51)
+position = Vector2(-1555.75, -51)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D48"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1101.25, -51)
+position = Vector2(-1129.75, -51)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D48"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1692.25, -51)
+position = Vector2(-1720.75, -51)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D49" type="Parallax2D" parent="."]
@@ -578,37 +578,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D49"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-731.028, -53)
+position = Vector2(-761.428, -53)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D49"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1889.05, -57)
+position = Vector2(-1919.45, -57)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D49"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1448.04, -57)
+position = Vector2(-1478.44, -57)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D49"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1007.01, -57)
+position = Vector2(-1037.41, -57)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D49"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-581.009, -57)
+position = Vector2(-611.409, -57)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D49"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1172.02, -57)
+position = Vector2(-1202.42, -57)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D50" type="Parallax2D" parent="."]
@@ -625,37 +625,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D50"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1171.47, -61)
+position = Vector2(-1205.67, -61)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D50"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-829.467, -65)
+position = Vector2(-863.668, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D50"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1888.47, -65)
+position = Vector2(-1922.67, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D50"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1447.47, -65)
+position = Vector2(-1481.67, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D50"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1021.47, -65)
+position = Vector2(-1055.67, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D50"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1612.47, -65)
+position = Vector2(-1646.67, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D51" type="Parallax2D" parent="."]
@@ -672,37 +672,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D51"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1321.03, -72)
+position = Vector2(-1343.83, -72)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D51"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-979.031, -76)
+position = Vector2(-1001.83, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D51"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-538.033, -76)
+position = Vector2(-560.832, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D51"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1597.03, -76)
+position = Vector2(-1619.83, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D51"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1171.03, -76)
+position = Vector2(-1193.83, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D51"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1762.03, -76)
+position = Vector2(-1784.83, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D7" type="Parallax2D" parent="."]
@@ -719,37 +719,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D7"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1802.46, -63)
+position = Vector2(-1829.06, -63)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D7"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1460.46, -67)
+position = Vector2(-1487.06, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D7"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1019.47, -67)
+position = Vector2(-1046.07, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D7"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-578.467, -67)
+position = Vector2(-605.067, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D7"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1652.5, -67)
+position = Vector2(-1679.1, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D7"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-743.471, -67)
+position = Vector2(-770.071, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D8" type="Parallax2D" parent="."]
@@ -766,37 +766,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D8"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-857, -59)
+position = Vector2(-876, -59)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D8"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-515, -63)
+position = Vector2(-534, -63)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D8"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1574, -63)
+position = Vector2(-1593, -63)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D8"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1133, -63)
+position = Vector2(-1152, -63)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D8"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-707, -63)
+position = Vector2(-726, -63)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D8"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1298, -63)
+position = Vector2(-1317, -63)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D9" type="Parallax2D" parent="."]
@@ -812,37 +812,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D9"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1584.5, -67)
+position = Vector2(-1622.5, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D9"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1242.5, -71)
+position = Vector2(-1280.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D9"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-801.5, -71)
+position = Vector2(-839.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D9"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1860.5, -71)
+position = Vector2(-1898.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D9"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1434.5, -71)
+position = Vector2(-1472.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D9"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-525.5, -71)
+position = Vector2(-563.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D26" type="Parallax2D" parent="."]
@@ -859,37 +859,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D26"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-731.028, -53)
+position = Vector2(-761.428, -53)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D26"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1889.05, -57)
+position = Vector2(-1919.45, -57)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D26"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1448.04, -57)
+position = Vector2(-1478.44, -57)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D26"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1007.01, -57)
+position = Vector2(-1037.41, -57)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D26"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-581.009, -57)
+position = Vector2(-611.409, -57)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D26"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1172.02, -57)
+position = Vector2(-1202.42, -57)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D27" type="Parallax2D" parent="."]
@@ -906,37 +906,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D27"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1171.47, -61)
+position = Vector2(-1205.67, -61)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D27"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-829.467, -65)
+position = Vector2(-863.668, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D27"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1888.47, -65)
+position = Vector2(-1922.67, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D27"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1447.47, -65)
+position = Vector2(-1481.67, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D27"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1021.47, -65)
+position = Vector2(-1055.67, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D27"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1612.47, -65)
+position = Vector2(-1646.67, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D28" type="Parallax2D" parent="."]
@@ -953,37 +953,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D28"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1321.03, -72)
+position = Vector2(-1343.83, -72)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D28"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-979.031, -76)
+position = Vector2(-1001.83, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D28"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-538.033, -76)
+position = Vector2(-560.832, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D28"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1597.03, -76)
+position = Vector2(-1619.83, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D28"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1171.03, -76)
+position = Vector2(-1193.83, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D28"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1762.03, -76)
+position = Vector2(-1784.83, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D29" type="Parallax2D" parent="."]
@@ -1000,37 +1000,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D29"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1802.46, -63)
+position = Vector2(-1829.06, -63)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D29"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1460.46, -67)
+position = Vector2(-1487.06, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D29"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1019.47, -67)
+position = Vector2(-1046.07, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D29"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-578.467, -67)
+position = Vector2(-605.067, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D29"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1652.5, -67)
+position = Vector2(-1679.1, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D29"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-743.471, -67)
+position = Vector2(-770.071, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D30" type="Parallax2D" parent="."]
@@ -1047,37 +1047,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D30"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-857, -59)
+position = Vector2(-876, -59)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D30"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-515, -63)
+position = Vector2(-534, -63)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D30"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1574, -63)
+position = Vector2(-1593, -63)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D30"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1133, -63)
+position = Vector2(-1152, -63)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D30"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-707, -63)
+position = Vector2(-726, -63)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D30"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1298, -63)
+position = Vector2(-1317, -63)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D31" type="Parallax2D" parent="."]
@@ -1093,37 +1093,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D31"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1584.5, -67)
+position = Vector2(-1622.5, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D31"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1242.5, -71)
+position = Vector2(-1280.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D31"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-801.5, -71)
+position = Vector2(-839.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D31"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1860.5, -71)
+position = Vector2(-1898.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D31"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1434.5, -71)
+position = Vector2(-1472.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D31"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-525.5, -71)
+position = Vector2(-563.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D21" type="Parallax2D" parent="."]
@@ -1140,37 +1140,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D21"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1171.47, -61)
+position = Vector2(-1205.67, -61)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D21"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-829.467, -65)
+position = Vector2(-863.668, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D21"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1888.47, -65)
+position = Vector2(-1922.67, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D21"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1447.47, -65)
+position = Vector2(-1481.67, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D21"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1021.47, -65)
+position = Vector2(-1055.67, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D21"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1612.47, -65)
+position = Vector2(-1646.67, -65)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D22" type="Parallax2D" parent="."]
@@ -1187,37 +1187,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D22"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1321.03, -72)
+position = Vector2(-1343.83, -72)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D22"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-979.031, -76)
+position = Vector2(-1001.83, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D22"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-538.033, -76)
+position = Vector2(-560.832, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D22"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1597.03, -76)
+position = Vector2(-1619.83, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D22"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1171.03, -76)
+position = Vector2(-1193.83, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D22"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1762.03, -76)
+position = Vector2(-1784.83, -76)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D23" type="Parallax2D" parent="."]
@@ -1234,37 +1234,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D23"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1802.46, -63)
+position = Vector2(-1829.06, -63)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D23"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1460.46, -67)
+position = Vector2(-1487.06, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D23"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1019.47, -67)
+position = Vector2(-1046.07, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D23"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-578.467, -67)
+position = Vector2(-605.067, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D23"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1652.5, -67)
+position = Vector2(-1679.1, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D23"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-743.471, -67)
+position = Vector2(-770.071, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D24" type="Parallax2D" parent="."]
@@ -1281,37 +1281,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D24"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-857, -59)
+position = Vector2(-876, -59)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D24"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-515, -63)
+position = Vector2(-534, -63)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D24"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1574, -63)
+position = Vector2(-1593, -63)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D24"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1133, -63)
+position = Vector2(-1152, -63)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D24"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-707, -63)
+position = Vector2(-726, -63)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D24"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1298, -63)
+position = Vector2(-1317, -63)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D25" type="Parallax2D" parent="."]
@@ -1327,37 +1327,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D25"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1584.5, -67)
+position = Vector2(-1622.5, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D25"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1242.5, -71)
+position = Vector2(-1280.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D25"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-801.5, -71)
+position = Vector2(-839.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D25"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1860.5, -71)
+position = Vector2(-1898.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D25"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1434.5, -71)
+position = Vector2(-1472.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D25"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-525.5, -71)
+position = Vector2(-563.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D10" type="Parallax2D" parent="."]
@@ -1374,37 +1374,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D10"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1320.03, -69)
+position = Vector2(-1342.83, -69)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D10"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-978.031, -73)
+position = Vector2(-1000.83, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D10"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-537.033, -73)
+position = Vector2(-559.832, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D10"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1596.03, -73)
+position = Vector2(-1618.83, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D10"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1170.03, -73)
+position = Vector2(-1192.83, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D10"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1761.03, -73)
+position = Vector2(-1783.83, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D11" type="Parallax2D" parent="."]
@@ -1421,37 +1421,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D11"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1199.25, -77)
+position = Vector2(-1227.75, -77)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D11"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-857.25, -81)
+position = Vector2(-885.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D11"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1916.25, -81)
+position = Vector2(-1944.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D11"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1475.25, -81)
+position = Vector2(-1503.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D11"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1049.25, -81)
+position = Vector2(-1077.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D11"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1640.25, -81)
+position = Vector2(-1668.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D12" type="Parallax2D" parent="."]
@@ -1468,37 +1468,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D12"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-933, -70)
+position = Vector2(-952, -70)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D12"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-591, -74)
+position = Vector2(-610, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D12"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1650, -74)
+position = Vector2(-1669, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D12"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1209, -74)
+position = Vector2(-1228, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D12"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-783, -74)
+position = Vector2(-802, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D12"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1374, -74)
+position = Vector2(-1393, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D13" type="Parallax2D" parent="."]
@@ -1514,37 +1514,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D13"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1584.5, -67)
+position = Vector2(-1622.5, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D13"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1242.5, -71)
+position = Vector2(-1280.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D13"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-801.5, -71)
+position = Vector2(-839.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D13"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1860.5, -71)
+position = Vector2(-1898.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D13"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1434.5, -71)
+position = Vector2(-1472.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D13"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-525.5, -71)
+position = Vector2(-563.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D14" type="Parallax2D" parent="."]
@@ -1561,37 +1561,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D14"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1320.03, -69)
+position = Vector2(-1342.83, -69)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D14"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-978.031, -73)
+position = Vector2(-1000.83, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D14"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-537.033, -73)
+position = Vector2(-559.832, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D14"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1596.03, -73)
+position = Vector2(-1618.83, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D14"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1170.03, -73)
+position = Vector2(-1192.83, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D14"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1761.03, -73)
+position = Vector2(-1783.83, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D15" type="Parallax2D" parent="."]
@@ -1608,37 +1608,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D15"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1199.25, -77)
+position = Vector2(-1227.75, -77)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D15"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-857.25, -81)
+position = Vector2(-885.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D15"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1916.25, -81)
+position = Vector2(-1944.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D15"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1475.25, -81)
+position = Vector2(-1503.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D15"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1049.25, -81)
+position = Vector2(-1077.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D15"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1640.25, -81)
+position = Vector2(-1668.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D16" type="Parallax2D" parent="."]
@@ -1655,37 +1655,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D16"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-933, -70)
+position = Vector2(-952, -70)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D16"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-591, -74)
+position = Vector2(-610, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D16"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1650, -74)
+position = Vector2(-1669, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D16"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1209, -74)
+position = Vector2(-1228, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D16"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-783, -74)
+position = Vector2(-802, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D16"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1374, -74)
+position = Vector2(-1393, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D32" type="Parallax2D" parent="."]
@@ -1702,37 +1702,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D32"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-933, -70)
+position = Vector2(-952, -70)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D32"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-591, -74)
+position = Vector2(-610, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D32"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1650, -74)
+position = Vector2(-1669, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D32"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1209, -74)
+position = Vector2(-1228, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D32"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-783, -74)
+position = Vector2(-802, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D32"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1374, -74)
+position = Vector2(-1393, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D33" type="Parallax2D" parent="."]
@@ -1748,37 +1748,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D33"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1584.5, -67)
+position = Vector2(-1622.5, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D33"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1242.5, -71)
+position = Vector2(-1280.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D33"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-801.5, -71)
+position = Vector2(-839.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D33"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1860.5, -71)
+position = Vector2(-1898.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D33"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1434.5, -71)
+position = Vector2(-1472.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D33"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-525.5, -71)
+position = Vector2(-563.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D34" type="Parallax2D" parent="."]
@@ -1795,37 +1795,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D34"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1320.03, -69)
+position = Vector2(-1342.83, -69)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D34"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-978.031, -73)
+position = Vector2(-1000.83, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D34"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-537.033, -73)
+position = Vector2(-559.832, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D34"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1596.03, -73)
+position = Vector2(-1618.83, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D34"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1170.03, -73)
+position = Vector2(-1192.83, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D34"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1761.03, -73)
+position = Vector2(-1783.83, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D35" type="Parallax2D" parent="."]
@@ -1842,37 +1842,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D35"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1199.25, -77)
+position = Vector2(-1227.75, -77)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D35"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-857.25, -81)
+position = Vector2(-885.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D35"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1916.25, -81)
+position = Vector2(-1944.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D35"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1475.25, -81)
+position = Vector2(-1503.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D35"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1049.25, -81)
+position = Vector2(-1077.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D35"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1640.25, -81)
+position = Vector2(-1668.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D36" type="Parallax2D" parent="."]
@@ -1889,37 +1889,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D36"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-933, -70)
+position = Vector2(-952, -70)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D36"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-591, -74)
+position = Vector2(-610, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D36"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1650, -74)
+position = Vector2(-1669, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D36"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1209, -74)
+position = Vector2(-1228, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D36"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-783, -74)
+position = Vector2(-802, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D36"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1374, -74)
+position = Vector2(-1393, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D37" type="Parallax2D" parent="."]
@@ -1936,37 +1936,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D37"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-933, -70)
+position = Vector2(-952, -70)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D37"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-591, -74)
+position = Vector2(-610, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D37"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1650, -74)
+position = Vector2(-1669, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D37"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1209, -74)
+position = Vector2(-1228, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D37"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-783, -74)
+position = Vector2(-802, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D37"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1374, -74)
+position = Vector2(-1393, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D38" type="Parallax2D" parent="."]
@@ -1982,37 +1982,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D38"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1584.5, -67)
+position = Vector2(-1622.5, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D38"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1242.5, -71)
+position = Vector2(-1280.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D38"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-801.5, -71)
+position = Vector2(-839.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D38"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1860.5, -71)
+position = Vector2(-1898.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D38"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1434.5, -71)
+position = Vector2(-1472.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D38"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-525.5, -71)
+position = Vector2(-563.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D39" type="Parallax2D" parent="."]
@@ -2029,37 +2029,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D39"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1320.03, -69)
+position = Vector2(-1342.83, -69)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D39"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-978.031, -73)
+position = Vector2(-1000.83, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D39"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-537.033, -73)
+position = Vector2(-559.832, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D39"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1596.03, -73)
+position = Vector2(-1618.83, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D39"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1170.03, -73)
+position = Vector2(-1192.83, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D39"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1761.03, -73)
+position = Vector2(-1783.83, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D40" type="Parallax2D" parent="."]
@@ -2076,37 +2076,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D40"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1199.25, -77)
+position = Vector2(-1227.75, -77)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D40"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-857.25, -81)
+position = Vector2(-885.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D40"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1916.25, -81)
+position = Vector2(-1944.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D40"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1475.25, -81)
+position = Vector2(-1503.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D40"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1049.25, -81)
+position = Vector2(-1077.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D40"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1640.25, -81)
+position = Vector2(-1668.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D41" type="Parallax2D" parent="."]
@@ -2123,37 +2123,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D41"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-933, -70)
+position = Vector2(-952, -70)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D41"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-591, -74)
+position = Vector2(-610, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D41"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1650, -74)
+position = Vector2(-1669, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D41"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1209, -74)
+position = Vector2(-1228, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D41"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-783, -74)
+position = Vector2(-802, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D41"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1374, -74)
+position = Vector2(-1393, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D17" type="Parallax2D" parent="."]
@@ -2169,37 +2169,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D17"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1584.5, -67)
+position = Vector2(-1622.5, -67)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D17"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1242.5, -71)
+position = Vector2(-1280.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D17"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-801.5, -71)
+position = Vector2(-839.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D17"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1860.5, -71)
+position = Vector2(-1898.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D17"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1434.5, -71)
+position = Vector2(-1472.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D17"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-525.5, -71)
+position = Vector2(-563.5, -71)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D18" type="Parallax2D" parent="."]
@@ -2216,37 +2216,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D18"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1320.03, -69)
+position = Vector2(-1342.83, -69)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D18"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-978.031, -73)
+position = Vector2(-1000.83, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D18"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-537.033, -73)
+position = Vector2(-559.832, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D18"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1596.03, -73)
+position = Vector2(-1618.83, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D18"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1170.03, -73)
+position = Vector2(-1192.83, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D18"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1761.03, -73)
+position = Vector2(-1783.83, -73)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D19" type="Parallax2D" parent="."]
@@ -2263,37 +2263,37 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D19"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1199.25, -77)
+position = Vector2(-1227.75, -77)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D19"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-857.25, -81)
+position = Vector2(-885.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D19"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1916.25, -81)
+position = Vector2(-1944.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D19"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1475.25, -81)
+position = Vector2(-1503.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D19"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1049.25, -81)
+position = Vector2(-1077.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D19"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1640.25, -81)
+position = Vector2(-1668.75, -81)
 texture = ExtResource("2_yw37w")
 
 [node name="Parallax2D20" type="Parallax2D" parent="."]
@@ -2310,35 +2310,35 @@ run_in_editor = true
 [node name="panel2" type="Sprite2D" parent="Parallax2D20"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-933, -70)
+position = Vector2(-952, -70)
 texture = ExtResource("2_yw37w")
 
 [node name="panel3" type="Sprite2D" parent="Parallax2D20"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-591, -74)
+position = Vector2(-610, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel4" type="Sprite2D" parent="Parallax2D20"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1650, -74)
+position = Vector2(-1669, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel5" type="Sprite2D" parent="Parallax2D20"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1209, -74)
+position = Vector2(-1228, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel6" type="Sprite2D" parent="Parallax2D20"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-783, -74)
+position = Vector2(-802, -74)
 texture = ExtResource("2_yw37w")
 
 [node name="panel1" type="Sprite2D" parent="Parallax2D20"]
 modulate = Color(0.231373, 0.560784, 0.329412, 1)
 z_index = -5
-position = Vector2(-1374, -74)
+position = Vector2(-1393, -74)
 texture = ExtResource("2_yw37w")

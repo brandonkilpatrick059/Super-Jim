@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://c32knii3ylyba"]
+
+[ext_resource type="Texture2D" uid="uid://d4hrbn7g8hf6y" path="res://sprites/lights/square_gradient.png" id="1_s1bmo"]
+
+[node name="pit_shadow" type="Node2D"]
+
+[node name="pit_shadow" type="Sprite2D" parent="."]
+position = Vector2(11061.5, 10147)
+scale = Vector2(6.03125, 2)
+texture = ExtResource("1_s1bmo")
+
+[node name="pit_shadow2" type="Sprite2D" parent="."]
+position = Vector2(11061.5, 10147)
+scale = Vector2(6.03125, 2)
+texture = ExtResource("1_s1bmo")
+
+[node name="pit_shadow3" type="Sprite2D" parent="."]
+position = Vector2(11061.5, 10147)
+scale = Vector2(6.03125, 2)
+texture = ExtResource("1_s1bmo")
+
+[node name="pit_shadow4" type="Sprite2D" parent="."]
+position = Vector2(11061.5, 10147)
+scale = Vector2(6.03125, 2)
+texture = ExtResource("1_s1bmo")
+
+[node name="pit_shadow5" type="Sprite2D" parent="."]
+position = Vector2(11061.5, 10147)
+scale = Vector2(6.03125, 2)
+texture = ExtResource("1_s1bmo")
+
+[node name="pit_shadow6" type="Sprite2D" parent="."]
+position = Vector2(11061.5, 10147)
+scale = Vector2(6.03125, 2)
+texture = ExtResource("1_s1bmo")
+
+[node name="pit_shadow7" type="Sprite2D" parent="."]
+position = Vector2(11061.5, 10147)
+scale = Vector2(6.03125, 2)
+texture = ExtResource("1_s1bmo")

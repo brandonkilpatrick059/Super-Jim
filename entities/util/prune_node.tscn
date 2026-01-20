@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://badgctp8a2ru8"]
+
+[ext_resource type="Script" uid="uid://mrsah8cy803" path="res://scripts/utility/timed_prune_node.gd" id="1_vtu05"]
+
+[node name="PruneNode" type="Node"]
+script = ExtResource("1_vtu05")

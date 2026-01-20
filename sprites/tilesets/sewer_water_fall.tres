@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://b6343bexuibvv"]
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://b6343bexuibvv"]
 
 [ext_resource type="Texture2D" uid="uid://8o0idmwsndnx" path="res://sprites/tilesets/sewer_water_fall.png" id="1_qssrn"]
 
@@ -30,10 +30,6 @@ region = Rect2(160, 0, 32, 32)
 atlas = ExtResource("1_qssrn")
 region = Rect2(192, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iyx2d"]
-atlas = ExtResource("1_qssrn")
-region = Rect2(224, 0, 32, 32)
-
 [resource]
 animations = [{
 "frames": [{
@@ -57,11 +53,8 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ljt3a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iyx2d")
 }],
 "loop": true,
 "name": &"default",
-"speed": 8.0
+"speed": 4.0
 }]

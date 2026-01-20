@@ -5,6 +5,8 @@ extends PointLight2D
 @export var energy_max : float = 1.0
 @export var rate : float = 0.01
 
+@export var fade_out_and_queue_free : bool = false
+
 var step : float = 0.006
 
 var timer := Timer.new()
@@ -45,4 +47,7 @@ func _physics_process(delta: float) -> void:
 				if(energy > energy_min):
 					energy = energy - rate
 				else:
-					brightening = true
+					if(!fade_out_and_queue_free):
+						brightening = true
+					else:
+						queue_free()

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://be756ghlylf8e"]
+
+[ext_resource type="Texture2D" uid="uid://b6i63ebldyx86" path="res://sprites/lights/2d_lights_and_shadows_neutral_point_light.webp" id="1_bwywg"]
+[ext_resource type="Script" uid="uid://bmrg8o6vr6upp" path="res://scripts/utility/light_intensity_modulator.gd" id="1_kb1tn"]
+
+[node name="PointLight2D" type="PointLight2D" groups=["dream_light_source"]]
+color = Color(0.999999, 0.995886, 0.758254, 1)
+texture = ExtResource("1_bwywg")
+script = ExtResource("1_kb1tn")
+rate = 0.001
+fade_out_and_queue_free = true

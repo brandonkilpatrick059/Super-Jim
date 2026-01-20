@@ -27,6 +27,9 @@ func interact():
 	if(!text_when_zone_entered):
 		make_comment.emit(text)
 
+func run_script():
+	get_children()[0].run_script()
+
 func _on_body_entered(body : Node2D):
 	if(body.is_in_group("player")):
 		if(text_when_zone_entered || script_when_zone_entered):
@@ -35,12 +38,12 @@ func _on_body_entered(body : Node2D):
 				if(text_when_zone_entered && text != ""):
 					make_comment.emit(text)
 				if(script_when_zone_entered && get_children().size() > 0):
-					get_children()[0].run_script()
+					run_script()
 			elif(!play_once):
 				if(text_when_zone_entered):
 					make_comment.emit(text)
 				if(script_when_zone_entered && get_children().size() > 0):
-					get_children()[0].run_script()
+					run_script()
 		
 
 func get_save_dictionary() -> Dictionary:

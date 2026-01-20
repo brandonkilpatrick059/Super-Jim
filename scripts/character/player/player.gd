@@ -148,6 +148,10 @@ const citymap : String = "city_map"
 var waking = false
 var waking_control_back = false
 
+var checking_light_distance : bool = false
+var light_distance_check_timer := Timer.new()
+var should_wake_up = false
+
 func _ready():
 	_collision.disabled = no_clip
 	timer_dash.one_shot = true
@@ -157,6 +161,7 @@ func _ready():
 	timer_load_in.one_shot = true
 	push_timer.one_shot = true
 	item_text_timer.one_shot = true
+	light_distance_check_timer.one_shot = true
 	
 	comment_timer.one_shot = true
 	set_up_sound_players()
@@ -172,6 +177,7 @@ func _ready():
 	add_child(timer_load_in)
 	add_child(push_timer)
 	add_child(item_text_timer)
+	add_child(light_distance_check_timer)
 	
 	#set up character base
 	_character_base.set_facing_dir(facing_dir)
@@ -188,6 +194,9 @@ func _ready():
 	
 	if(Engine.is_editor_hint()):
 		queue_redraw()
+
+func set_checking_light_distance(value : bool):
+	checking_light_distance = value
 
 func set_up_sound_players():
 	for player in sound_players:
@@ -238,41 +247,69 @@ func stop_dreaming():
 	flat_light_layer.visible = false
 	var bedroom_spawn = get_tree().get_first_node_in_group("player_spawn_bedroom")
 	global_position = bedroom_spawn.global_position
+	#we have to go and execute all the triggered pruners since the
+	#player may exit the dream from anywhere
+	var dream_pruners = get_tree().get_nodes_in_group("dream_pruners")
+	for pruner in dream_pruners:
+		pruner.run_script()
 
 func wake_up():
 	if(!waking):
+		stop()
+		linear_velocity = Vector2(0,0)
 		set_control_frozen(true)
 		get_camera_ref().fade_out()
-		timer_load_in.start(2)
+		timer_load_in.start(1)
 		waking = true
 
+#check_light
+func light_is_on_screen():
+	var lights = get_tree().get_nodes_in_group("dream_light_source")
+	var check_distance = 100
+	var light_on_screen = false
+	for light in lights:
+		var test : Vector2 = self.global_position
+		var test2: Vector2 = light.global_position
+		if(self.global_position.distance_to(light.global_position) < check_distance):
+			light_on_screen = true
+			break
+	return light_on_screen
+
 func handle_waking():
-	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
-	if(time_keeper != null):
-		if(time_keeper.clock > sleep_end_time &&
-		time_keeper.clock < sleep_start_time &&
-		(!waking || waking_control_back) &&
-		dreaming):
+	if(checking_light_distance):
+		if(!should_wake_up && !light_is_on_screen()):
+			should_wake_up = true
+			light_distance_check_timer.start(0.5)
+		elif(should_wake_up && light_is_on_screen()):
+			should_wake_up = false
+		elif(light_distance_check_timer.is_stopped() && should_wake_up):
 			wake_up()
-		if(timer_load_in.is_stopped()):
-			if(waking):
-				stop_dreaming()
-				timer_load_in.start(4)
-				waking = false
-				waking_control_back = true
-			elif(waking_control_back):
-				var day_light_layer = get_tree().get_first_node_in_group("daylight_layer")
-				day_light_layer.visible = true
-				get_camera_ref().fade_in()
-				waking_control_back = false
-				set_ui_visible()
-				set_control_frozen(false)
-				var baby_spawner = get_tree().get_first_node_in_group("dream_baby_spawn")
-				var baby = get_tree().get_first_node_in_group("baby")
-				if(baby != null):
-					baby.queue_free()
-				baby_spawner.reset_has_played()
-			
+			should_wake_up = false
+			checking_light_distance = false
+	if(!waking || waking_control_back):
+		var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+		if(time_keeper != null):
+			if(time_keeper.clock > sleep_end_time &&
+			time_keeper.clock < sleep_start_time &&
+			(!waking || waking_control_back) &&
+			dreaming):
+				wake_up()
+
+	if(timer_load_in.is_stopped()):
+		if(waking):
+			stop_dreaming()
+			timer_load_in.start(4)
+			waking = false
+			waking_control_back = true
+		elif(waking_control_back):
+			var day_light_layer = get_tree().get_first_node_in_group("daylight_layer")
+			day_light_layer.visible = true
+			get_camera_ref().fade_in()
+			waking_control_back = false
+			set_ui_visible()
+			set_control_frozen(false)
+			var baby_spawner = get_tree().get_first_node_in_group("dream_baby_spawn")
+			baby_spawner.reset_has_played()
 
 #called when the player loads in from a save
 func load_in():

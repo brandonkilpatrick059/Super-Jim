@@ -16,7 +16,7 @@ func run_script():
 	adding = true
 
 func _process(delta: float) -> void:
-	if(timer.is_stopped() && adding):
+	if((timer.is_stopped() || wait_secs == 0.0) && adding):
 		var add_node = node.instantiate()
 		add_node.global_position = global_position
 		node_parent.add_child(add_node)

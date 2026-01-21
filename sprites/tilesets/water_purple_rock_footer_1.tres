@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://0i181nm8elwy"]
+
+[ext_resource type="Texture2D" uid="uid://dkwc1pgrac4qg" path="res://sprites/tilesets/purple_rock_footer_1.png" id="1_ajwa8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nh58"]
+atlas = ExtResource("1_ajwa8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sp6x"]
+atlas = ExtResource("1_ajwa8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qe3wa"]
+atlas = ExtResource("1_ajwa8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lfgk"]
+atlas = ExtResource("1_ajwa8")
+region = Rect2(96, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nh58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0sp6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qe3wa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lfgk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]

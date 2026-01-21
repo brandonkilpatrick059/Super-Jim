@@ -217,6 +217,8 @@ func get_sleep_end_time():
 	return sleep_end_time
 
 func begin_dreaming():
+	if(holding_object):
+		put_down()
 	dreaming = true
 	base_temp_storage = _character_base.get_base_spriteframes()
 	_character_base.set_base_spriteframes(dreamer_spriteframes)

@@ -20,10 +20,10 @@ script = ExtResource("1_apwxg")
 
 [node name="fade_to_black" type="Polygon2D" parent="."]
 z_index = 601
-position = Vector2(-335, -167)
-scale = Vector2(0.21859, 0.155457)
+position = Vector2(-430.521, -236.399)
+scale = Vector2(0.312496, 0.192901)
 color = Color(0, 0, 0, 0)
-polygon = PackedVector2Array(-118.944, -353.796, 3120, -315.2, 3097.13, 2431.54, -137.243, 2412.25)
+polygon = PackedVector2Array(-1495.95, -2392.94, 4248.12, -2263.34, 4222.52, 4506.98, -1521.55, 4553.63)
 
 [node name="flash_light" type="PointLight2D" parent="."]
 z_index = -2

@@ -5,6 +5,7 @@
 
 [node name="PointLight2D" type="PointLight2D" groups=["dream_light_source"]]
 color = Color(0.999999, 0.995886, 0.758254, 1)
+energy = 0.0
 texture = ExtResource("1_bwywg")
 script = ExtResource("1_kb1tn")
 rate = 0.001

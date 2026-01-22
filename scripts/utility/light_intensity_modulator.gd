@@ -7,6 +7,9 @@ extends PointLight2D
 
 @export var fade_out_and_queue_free : bool = false
 
+@export var spin_clockwise : bool = false
+@export var spin_speed : float = 0.0
+
 var step : float = 0.006
 
 var timer := Timer.new()
@@ -30,6 +33,8 @@ func fade_out():
 
 func _physics_process(delta: float) -> void:
 	if(timer.is_stopped()):
+		if(spin_clockwise):
+			rotation_degrees = rotation_degrees + spin_speed
 		if(brightening):
 			if(energy < energy_max):
 				energy = energy + rate

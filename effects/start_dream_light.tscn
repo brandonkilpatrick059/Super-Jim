@@ -10,3 +10,4 @@ texture = ExtResource("1_bwywg")
 script = ExtResource("1_kb1tn")
 rate = 0.001
 fade_out_and_queue_free = true
+start_at_max = null

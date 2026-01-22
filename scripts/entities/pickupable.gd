@@ -13,6 +13,7 @@ var showing_arrow = false
 var distance_for_pickup = 100
 var spark = preload("res://effects/spark.tscn")
 var arrow_instance = null 
+@export var script_node_on_pickup : Node = null
 
 var sound_player := AudioStreamPlayer2D.new()
 
@@ -37,7 +38,7 @@ var timer_fall := Timer.new()
 var timer_fall_step = 0.05
 var falling = false
 var current_scale = 1
-var scale_step = 0.2
+var scale_step = 0.05
 
 var prop_home : Vector2 = Vector2(0,0)
 var return_home_distance = 600
@@ -105,6 +106,8 @@ func pick_up(actor_ref : Node):
 	picked_up = true
 	will_pickup = false
 	signal_picked_up.emit()
+	if(script_node_on_pickup != null):
+		script_node_on_pickup.run_script()
 
 func put_down(dir, offset : Vector2 = Vector2(0,0)):
 	if(picked_up):
@@ -160,7 +163,10 @@ func return_to_home():
 	set_physics_pos(prop_home)
 	_collision_shape.disabled = false
 	reparent(original_parent)
+	linear_velocity = Vector2(0,0)
 	falling = false
+	if(script_node_on_pickup != null):
+		script_node_on_pickup.run_return_script()
 
 func use_item():
 	on_use_item.emit()
@@ -173,7 +179,7 @@ func _physics_process(delta):
 		if(current_scale - scale_step > 0):
 			current_scale = current_scale - scale_step
 			sprite.scale = Vector2(current_scale, current_scale)
-			linear_velocity = linear_velocity + Vector2(0,100)
+			linear_velocity = linear_velocity + Vector2(0,50)
 		else:
 			if(is_in_group("pizza")):
 				destroy_self.emit()

@@ -237,6 +237,8 @@ func begin_dreaming():
 
 func stop_dreaming():
 	dreaming = false
+	if(holding_object):
+		put_down(false)
 	_character_base.set_base_spriteframes(base_temp_storage)
 	_character_base.restore_non_base_sprites()
 	var day_light_ysort = get_tree().get_first_node_in_group("daylight_affected_ysort")
@@ -254,6 +256,7 @@ func stop_dreaming():
 	var dream_pruners = get_tree().get_nodes_in_group("dream_pruners")
 	for pruner in dream_pruners:
 		pruner.run_script()
+	
 
 func wake_up():
 	if(!waking):
@@ -1030,8 +1033,9 @@ func throw():
 		_ui.deactivate_interact()
 		item_text_timer.start(0.25)
 
-func put_down():
-	play_sound(putdown_sound)
+func put_down(play_sound = true):
+	if(play_sound):
+		play_sound(putdown_sound)
 	if(grabbed_object.is_in_group("pizza")):
 		grabbed_object.put_down(_character_base.get_facing_dir(),Vector2(0,-16))
 		self.remove_from_group("courier")

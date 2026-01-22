@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://dt3i8h51dkora"]
+
+[ext_resource type="Script" uid="uid://bkt2mviy7eonh" path="res://scripts/entities/pickupable.gd" id="1_tlu7q"]
+[ext_resource type="Texture2D" uid="uid://cf3bcgp5yyr37" path="res://sprites/props/dynamic props/light_orb.png" id="2_jaaun"]
+[ext_resource type="Script" uid="uid://b4yio707fbsyr" path="res://scripts/utility/visual_occluder.gd" id="3_jqa0m"]
+[ext_resource type="Script" uid="uid://d2f28k3jclvg4" path="res://scripts/entities/dream_light_orb_add_light.gd" id="4_4cg8m"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1gs3y"]
+bounce = 0.2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7wqg"]
+size = Vector2(16, 13)
+
+[node name="light_orb" type="RigidBody2D" node_paths=PackedStringArray("script_node_on_pickup") groups=["dynamic", "pickupable", "prop", "prunable"]]
+y_sort_enabled = true
+collision_layer = 8
+collision_mask = 4187
+mass = 4.0
+physics_material_override = SubResource("PhysicsMaterial_1gs3y")
+gravity_scale = 0.0
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 1
+linear_damp = 2.0
+script = ExtResource("1_tlu7q")
+force_factor = 1000
+script_node_on_pickup = NodePath("add_light")
+
+[node name="sprite" type="Sprite2D" parent="." groups=["dynamic", "pickupable", "prop"]]
+y_sort_enabled = true
+texture = ExtResource("2_jaaun")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["dynamic", "pickupable", "prop"]]
+y_sort_enabled = true
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_x7wqg")
+
+[node name="occluder" type="Node2D" parent="."]
+script = ExtResource("3_jqa0m")
+
+[node name="add_light" type="Node" parent="."]
+script = ExtResource("4_4cg8m")

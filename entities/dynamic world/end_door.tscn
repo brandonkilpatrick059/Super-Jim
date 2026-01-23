@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://dj4c8stopa740"]
+
+[ext_resource type="Script" uid="uid://b2xaniea3y6nq" path="res://scripts/entities/door.gd" id="1_kglei"]
+[ext_resource type="SpriteFrames" uid="uid://c8yb1djxe5cov" path="res://sprites/spritesheets/spriteframes/game_world/end_door.tres" id="2_kglei"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j02e0"]
+size = Vector2(26, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hdbs2"]
+size = Vector2(26, 63)
+
+[node name="door1" type="Node2D" groups=["door"]]
+script = ExtResource("1_kglei")
+open_sound_path = "res://audio/soundFX/gate_open_1.ogg"
+close_sound_path = "res://audio/soundFX/gate_close_1.ogg"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_kglei")
+animation = &"open"
+frame_progress = 0.746029
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-3, 14)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3, -5)
+shape = SubResource("RectangleShape2D_j02e0")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 71
+collision_mask = 71
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 8.5)
+shape = SubResource("RectangleShape2D_hdbs2")
+debug_color = Color(0.910119, 0.273452, 0.308353, 0.42)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+max_distance = 500.0
+attenuation = 5.27802
+bus = &"Effects"

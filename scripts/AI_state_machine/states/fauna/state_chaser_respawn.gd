@@ -25,10 +25,14 @@ func physics_process(_delta: float) -> void:
 		else:
 			var spawns = get_tree().get_nodes_in_group("dream_chaser_spawn")
 			var viable_spawns : Array[Node] = []
+			var chosen_spawn = null
 			for spawn in spawns:
 				if(spawn.global_position.distance_to(chaser.global_position) > 500):
 					viable_spawns.append(spawn)
-			var chosen_spawn = viable_spawns[randi_range(0,viable_spawns.size()-1)]
+			if(viable_spawns.size() == 0):
+				chosen_spawn = spawns[0]
+			else:
+				chosen_spawn = viable_spawns[randi_range(0,viable_spawns.size()-1)]
 			chaser.global_position = chosen_spawn.global_position
 			chaser.modulate.a = 1.0
 			chaser.transition_ai_state("transit")

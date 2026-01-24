@@ -9,15 +9,15 @@ func _ready():
 	player_ref = get_tree().get_first_node_in_group("player")
 	add_to_group("visual_occluder")
 
-#func _physics_process(delta: float) -> void:
-	#if(occluding_enabled):
-		#var player_distance = global_position.distance_to(player_ref.global_position)
-		#if(player_distance < occlusion_distance):
-			#is_occluding = false
-			#get_parent().visible = true
-		#else:
-			#is_occluding = true
-			#get_parent().visible = false
-	#else:
-		#get_parent().visible = true
+func _physics_process(delta: float) -> void:
+	if(occluding_enabled):
+		var player_distance = global_position.distance_to(player_ref.global_position)
+		if(player_distance < occlusion_distance):
+			is_occluding = false
+			get_parent().visible = true
+		else:
+			is_occluding = true
+			get_parent().visible = false
+	else:
+		get_parent().visible = true
 		

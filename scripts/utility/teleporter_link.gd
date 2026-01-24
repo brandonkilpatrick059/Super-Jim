@@ -18,6 +18,7 @@ var teleport_fader = preload("res://entities/util/teleport_fader.tscn")
 @export var no_ui_interact = false
 @export var inactive : bool = false
 @export var no_light_interact = false
+@export var remove_held_items = false
 
 var entering = false
 var loading = false
@@ -129,6 +130,8 @@ func enter():
 	else: if(fade_alpha >= 1):
 		fade_alpha = 1
 		player_ref.global_position = linked_teleporter.global_position
+		if(remove_held_items):
+			player_ref.put_down_and_return()
 		if(reparent_to_daylight):
 			player_ref.reparent(day_light_ysort)
 			if(!no_light_interact):

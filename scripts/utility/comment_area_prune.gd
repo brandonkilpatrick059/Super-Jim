@@ -12,7 +12,7 @@ func _ready() -> void:
 func run_script():
 	if(add_to_tree):
 		for node in prune_nodes:
-			if(node.get_parent() != node_parent):
+			if(node != null && node.get_parent() != node_parent):
 				node_parent.add_child(node)
 	elif(remove_from_tree):
 		var prune_node = pruner.instantiate()

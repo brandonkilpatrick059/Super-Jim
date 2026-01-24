@@ -21,6 +21,10 @@ const alert_passive = "alert_passive"
 @export var no_face_player : bool = false
 @export var alt_dlg_bubble_path : String = ""
 
+#assign this with a node that has a script you wanna
+#on the event of a collision
+@export var body_enter_script_node : Node = null 
+
 #denotes npcs which do not use the typical character_base
 #generally for mostly stationary npcs with unique
 #shapes and animation patterns. bool=true skips all character_base setup
@@ -405,6 +409,10 @@ func _on_handle_behavior(behavior_directive : String):
 					_character_base.face_right()
 		handle_passive_text()
 
+func _on_body_entered(body : Node):
+	if(body_enter_script_node != null):
+		body_enter_script_node.run_script(body)
+
 func get_save_dictionary() -> Dictionary:
 	var save_tag : String = get_save_tag()
 	var save_dictionary = {
@@ -415,6 +423,12 @@ func get_save_dictionary() -> Dictionary:
 		"schedules_index" : int(schedules_index)
 	}
 	return save_dictionary
+
+func get_ai_state():
+	return _ai_state_machine.state.name
+
+func transition_ai_state(state: String):
+	_ai_state_machine.transition_to(state)
 
 func teleport_and_update():
 	if(schedules.size() > 0 && !exempt_from_npc_refresh):

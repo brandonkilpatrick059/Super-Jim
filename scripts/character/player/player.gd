@@ -269,6 +269,8 @@ func wake_up():
 
 #check_light
 func light_is_on_screen():
+	if(no_clip):
+		return true
 	var lights = get_tree().get_nodes_in_group("dream_light_source")
 	var check_distance = 100
 	var light_on_screen = false
@@ -1045,6 +1047,11 @@ func put_down(play_sound = true):
 	grabbed_object = null
 	set_holding_object(false)
 	_ui.deactivate_interact()
+	
+func put_down_and_return():
+	var temp = grabbed_object
+	put_down(false)
+	temp.return_to_home()
 	
 func handle_pick_up():
 	if(will_grab_object != null && !holding_object):

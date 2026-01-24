@@ -184,6 +184,10 @@ switch_item_left={
 2d_render/snap/snap_2d_transforms_to_pixel=false
 2d_render/snap/snap_2d_vertices_to_pixel=false
 
+[navigation]
+
+2d/default_edge_connection_margin=4.0
+
 [physics]
 
 common/max_physics_steps_per_frame=4

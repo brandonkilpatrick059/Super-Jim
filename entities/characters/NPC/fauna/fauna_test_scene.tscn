@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://crpiufuwv2fg"]
+[gd_scene load_steps=17 format=3 uid="uid://crpiufuwv2fg"]
 
 [ext_resource type="PackedScene" uid="uid://dhkq0px7npygr" path="res://entities/characters/NPC/fauna/alligator.tscn" id="1_esjuk"]
 [ext_resource type="PackedScene" uid="uid://c21jsew46j2v0" path="res://entities/characters/player/player.tscn" id="1_rydr7"]
@@ -9,9 +9,20 @@
 [ext_resource type="PackedScene" uid="uid://plrhvwqbv1cl" path="res://entities/characters/NPC/actors/util/stage_mark.tscn" id="7_mhg35"]
 [ext_resource type="PackedScene" uid="uid://cwuwqdaufr30n" path="res://entities/characters/NPC/fauna/dream_musician_tuba.tscn" id="7_xy4hu"]
 [ext_resource type="PackedScene" uid="uid://bg7je0meatila" path="res://entities/characters/NPC/fauna/dream_musician_oboe.tscn" id="9_xy4hu"]
+[ext_resource type="PackedScene" uid="uid://dt3i8h51dkora" path="res://entities/props/dynamic props/props_dynamic_pickupable/dreams/light_orb.tscn" id="10_oigwy"]
+[ext_resource type="PackedScene" uid="uid://c5ekxk6eapo36" path="res://entities/characters/NPC/fauna/dream_chaser.tscn" id="11_6v6jt"]
+[ext_resource type="SpriteFrames" uid="uid://bfvoxxrcwphnp" path="res://sprites/spritesheets/spriteframes/characters/hat/full_sheet/cap_0.tres" id="12_1wwu2"]
+[ext_resource type="SpriteFrames" uid="uid://c2xs2bbds05s3" path="res://sprites/spritesheets/spriteframes/characters/top/full_sheet/shirt_0.tres" id="12_uciga"]
+[ext_resource type="SpriteFrames" uid="uid://cup3rjtibtd7s" path="res://sprites/spritesheets/spriteframes/characters/bottom/full_sheet/pants_0.tres" id="14_8se4m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3lb6"]
 size = Vector2(20, 63)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_oigwy"]
+vertices = PackedVector2Array(612, 315, 30, 311, 38, 25, 616, 14)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(38, 25, 30, 311, 612, 315, 616, 14)])
+agent_radius = 0.0
 
 [node name="FaunaTestScene" type="Node2D"]
 y_sort_enabled = true
@@ -22,10 +33,11 @@ position = Vector2(307, 201)
 [node name="main_camera" parent="player" instance=ExtResource("2_ahs2s")]
 
 [node name="alligator" parent="." instance=ExtResource("1_esjuk")]
-position = Vector2(214, 117)
+position = Vector2(214, -435)
 collision_mask = 8465
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -552)
 collision_layer = 8208
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -48,25 +60,47 @@ sprite_frames = ExtResource("5_hdu08")
 frame_progress = 1.0
 
 [node name="dream_musician_trumpet" parent="." node_paths=PackedStringArray("stage_marks") instance=ExtResource("6_ix06l")]
-position = Vector2(317, 340)
+position = Vector2(325, 1119)
 stage_marks = [NodePath("../StageMark"), NodePath("../StageMark2"), NodePath("../StageMark3"), NodePath("../StageMark4")]
 
 [node name="dream_musician_tuba" parent="." node_paths=PackedStringArray("stage_marks") instance=ExtResource("7_xy4hu")]
-position = Vector2(344, 340)
+position = Vector2(352, 1119)
 stage_marks = [NodePath("../StageMark"), NodePath("../StageMark2"), NodePath("../StageMark3"), NodePath("../StageMark4")]
 
 [node name="StageMark" parent="." instance=ExtResource("7_mhg35")]
-position = Vector2(139, 343)
+position = Vector2(147, 1122)
 
 [node name="StageMark2" parent="." instance=ExtResource("7_mhg35")]
-position = Vector2(151, 254)
+position = Vector2(159, 1033)
 
 [node name="StageMark3" parent="." instance=ExtResource("7_mhg35")]
-position = Vector2(428, 267)
+position = Vector2(436, 1046)
 
 [node name="StageMark4" parent="." instance=ExtResource("7_mhg35")]
-position = Vector2(420, 346)
+position = Vector2(428, 1125)
 
 [node name="dream_musician_oboe" parent="." node_paths=PackedStringArray("stage_marks") instance=ExtResource("9_xy4hu")]
-position = Vector2(373, 340)
+position = Vector2(381, 1119)
 stage_marks = [NodePath("../StageMark"), NodePath("../StageMark2"), NodePath("../StageMark3"), NodePath("../StageMark4")]
+
+[node name="Ambient_Dark" type="CanvasModulate" parent="." groups=["ambient_dark"]]
+process_mode = 3
+position = Vector2(-3, 75)
+color = Color(0, 0, 0, 1)
+
+[node name="light_orb" parent="." instance=ExtResource("10_oigwy")]
+position = Vector2(283, 207)
+
+[node name="light_orb2" parent="." instance=ExtResource("10_oigwy")]
+position = Vector2(345, 383)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_oigwy")
+
+[node name="dream_chaser" parent="." instance=ExtResource("11_6v6jt")]
+position = Vector2(135, 192)
+hat_spriteframes = ExtResource("12_1wwu2")
+top_spriteframes = ExtResource("12_uciga")
+bottom_spriteframes = ExtResource("14_8se4m")
+
+[node name="dream_chaser_spawn" type="Node2D" parent="." groups=["dream_chaser_spawn"]]

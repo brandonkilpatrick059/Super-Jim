@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://v6fen4ttoff4"]
+
+[ext_resource type="Script" uid="uid://6tfvffs7apmd" path="res://scripts/AI_state_machine/states/fauna/state_chaser_transit.gd" id="1_occmf"]
+
+[node name="transit" type="Node"]
+script = ExtResource("1_occmf")

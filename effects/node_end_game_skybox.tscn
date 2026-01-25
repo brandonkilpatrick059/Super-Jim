@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwrau1e5y6cny"]
+
+[ext_resource type="PackedScene" uid="uid://7lbvlnmgufgu" path="res://effects/end_game_skybox.tscn" id="1_j4pxo"]
+
+[node name="NodeEndGameSkybox" type="Node2D"]
+
+[node name="Parallax2D" parent="." instance=ExtResource("1_j4pxo")]
+scroll_scale = Vector2(0.1, 0.1)

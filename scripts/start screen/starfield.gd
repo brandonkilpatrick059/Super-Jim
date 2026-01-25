@@ -9,7 +9,7 @@ var switch_point = -720
 var windows : Array[Node] = []
 var timer : Timer = Timer.new()
 
-@export var timer_wait_secs = 0.01
+@export var timer_wait_secs = 0.0006
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,7 +22,7 @@ func _ready():
 
 func shift_scrollers(pixels : int):
 	for panel in windows:
-		panel.global_position.y -= pixels
+		panel.position.y -= pixels
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -30,9 +30,9 @@ func _process(delta):
 	if(timer.is_stopped()):
 		shift_scrollers(1)
 		timer.start(timer_wait_secs)
-	if(panel1.global_position.y <= switch_point):
-		panel1.global_position.y += jump_distance
-	if(panel2.global_position.y <= switch_point):
-		panel2.global_position.y += jump_distance
-	if(panel3.global_position.y <= switch_point):
-		panel3.global_position.y += jump_distance
+	if(panel1.position.y <= switch_point):
+		panel1.position.y += jump_distance
+	if(panel2.position.y <= switch_point):
+		panel2.position.y += jump_distance
+	if(panel3.position.y <= switch_point):
+		panel3.position.y += jump_distance

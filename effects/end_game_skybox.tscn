@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://7lbvlnmgufgu"]
+
+[ext_resource type="PackedScene" uid="uid://nytcodu5ljvj" path="res://menu/start menu/starfield.tscn" id="1_v3g66"]
+[ext_resource type="Texture2D" uid="uid://b76rttfua10ki" path="res://sprites/start_screen/starfiend_back.png" id="2_bdtn5"]
+[ext_resource type="PackedScene" uid="uid://f4ngkupjl7mr" path="res://menu/start menu/starfield_far.tscn" id="3_bdtn5"]
+
+[node name="Parallax2D" type="Parallax2D"]
+z_index = -5
+scroll_scale = Vector2(0.2, 0.2)
+
+[node name="space" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(30.4999, -203)
+scale = Vector2(5.25156, 6.82917)
+texture = ExtResource("2_bdtn5")
+
+[node name="starfield" parent="." instance=ExtResource("1_v3g66")]
+timer_wait_secs = 0.3
+
+[node name="starfield2" parent="." instance=ExtResource("3_bdtn5")]
+timer_wait_secs = 0.8
+
+[node name="starfield3" parent="." instance=ExtResource("1_v3g66")]
+position = Vector2(-658, -411)
+timer_wait_secs = 0.3
+
+[node name="starfield4" parent="." instance=ExtResource("3_bdtn5")]
+position = Vector2(-658, -411)
+timer_wait_secs = 0.8
+
+[node name="starfield5" parent="." instance=ExtResource("1_v3g66")]
+position = Vector2(634, -411)
+timer_wait_secs = 0.3
+
+[node name="starfield6" parent="." instance=ExtResource("3_bdtn5")]
+position = Vector2(634, -411)
+timer_wait_secs = 0.8

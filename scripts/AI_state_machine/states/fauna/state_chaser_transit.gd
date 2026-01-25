@@ -20,7 +20,7 @@ func get_host_nav_target_reached():
 func physics_process(_delta: float) -> void:
 	nav_target_reached = get_host_nav_target_reached()
 	if(!nav_target_reached):
-		advance_navigation.emit(450000)
+		advance_navigation.emit(600000)
 	else:
 		pass
 		#player_ref.wake_up()

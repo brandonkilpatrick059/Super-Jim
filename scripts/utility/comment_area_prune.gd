@@ -14,6 +14,7 @@ func run_script():
 		for node in prune_nodes:
 			if(node != null && node.get_parent() != node_parent):
 				node_parent.add_child(node)
+				node.visible = true
 	elif(remove_from_tree):
 		var prune_node = pruner.instantiate()
 		add_child(prune_node)

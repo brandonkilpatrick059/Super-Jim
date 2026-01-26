@@ -5,6 +5,7 @@ extends Node
 @export var add_to_tree : bool = false
 @export var remove_from_tree : bool = false
 @export var run_on_ready : bool = false
+@export var wait_seconds : float = 0.0
 func _ready() -> void:
 	if(run_on_ready):
 		run_script()
@@ -19,4 +20,4 @@ func run_script():
 		var prune_node = pruner.instantiate()
 		add_child(prune_node)
 		prune_node.set_prune_nodes_and_parent(prune_nodes, node_parent)
-		prune_node.launch()
+		prune_node.launch(wait_seconds)

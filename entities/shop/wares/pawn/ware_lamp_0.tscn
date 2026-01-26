@@ -17,7 +17,7 @@ font_color = Color(1, 0, 0, 1)
 
 [node name="WareLamp" type="Node2D"]
 script = ExtResource("1_4frsw")
-cost = 15
+cost = 10
 ware_name = "Lamp"
 
 [node name="script_node" type="Node" parent="."]
@@ -47,7 +47,7 @@ offset_left = -21.0
 offset_top = -11.0
 offset_right = -6.0
 offset_bottom = 10.0
-text = "$15"
+text = "$10"
 label_settings = SubResource("LabelSettings_i0gyc")
 horizontal_alignment = 1
 vertical_alignment = 1

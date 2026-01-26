@@ -2,7 +2,7 @@ extends Node
 #used by comment area prune
 
 var timer := Timer.new()
-var wait_seconds : float = 2.0
+#var wait_seconds : float = 2.0
 
 var prune_nodes : Array[Node] = []
 var node_parent : Node
@@ -16,7 +16,7 @@ func set_prune_nodes_and_parent(nodes : Array[Node], parent : Node):
 	prune_nodes = nodes
 	node_parent = parent
 
-func launch():
+func launch(wait_seconds : float):
 	launched = true
 	timer.start(wait_seconds)
 

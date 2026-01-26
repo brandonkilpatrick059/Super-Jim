@@ -122,7 +122,7 @@ dialog_script = NodePath("move_to_pre_start_2")
 [node name="move_to_pre_start_2" type="Node" parent="apply-yes7"]
 script = ExtResource("5_5blbd")
 node_group = "cook"
-new_index = 5
+new_index = 4
 
 [node name="nothing" parent="." instance=ExtResource("2_ow61d")]
 position = Vector2(252, 133)

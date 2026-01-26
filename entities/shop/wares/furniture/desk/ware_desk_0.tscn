@@ -17,7 +17,7 @@ font_color = Color(1, 0, 0, 1)
 
 [node name="WareDesk0" type="Node2D"]
 script = ExtResource("1_xp712")
-cost = 53
+cost = 20
 ware_name = "Used Oak Desk"
 
 [node name="script_node" type="Node" parent="."]
@@ -44,7 +44,7 @@ texture = ExtResource("5_i5w2f")
 offset_left = -21.0
 offset_right = 22.0
 offset_bottom = 17.0
-text = "$53"
+text = "$20"
 label_settings = SubResource("LabelSettings_i0gyc")
 horizontal_alignment = 1
 vertical_alignment = 1

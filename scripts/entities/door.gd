@@ -212,7 +212,7 @@ func _physics_process(delta: float):
 			#if that period of time has elapsed and the opener is still there, open
 			if(open_close_timer.is_stopped()):
 				if(opener_is_near):
-					if(!locked || (locked && locked_hours.size() > 0 && !cannot_trap_player && player_is_behind_door()) ||
+					if(!locked || ((locked && locked_hours.size() > 0 || !cannot_trap_player) && player_is_behind_door()) ||
 					(locked && exception_group_is_near)):
 						open()
 				else:

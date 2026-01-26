@@ -17,7 +17,7 @@ font_color = Color(1, 0, 0, 1)
 
 [node name="WareBed1" type="Node2D"]
 script = ExtResource("1_x1frt")
-cost = 150
+cost = 60
 ware_name = "Used Green Bed"
 
 [node name="script_node" type="Node" parent="."]
@@ -46,7 +46,7 @@ offset_left = -21.0
 offset_top = 16.0
 offset_right = 22.0
 offset_bottom = 33.0
-text = "$150"
+text = "$60"
 label_settings = SubResource("LabelSettings_i0gyc")
 horizontal_alignment = 1
 vertical_alignment = 1

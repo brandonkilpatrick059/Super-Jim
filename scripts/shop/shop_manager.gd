@@ -12,12 +12,15 @@ var wares_staged = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	add_to_group("shop_manager")
+	shuffle_staged_items()
+	wares_staged = true
 
 func dispose_of_staged_wares():
 	for ware in staged_wares:
 		ware.queue_free()
 	staged_wares = []
+	
 
 func shuffle_staged_items():
 	dispose_of_staged_wares()
@@ -40,7 +43,6 @@ func buy_ware(index : int):
 	staged_wares[index].buy_item()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if(!wares_staged):
-		shuffle_staged_items()
-		wares_staged = true
+#func _process(delta):
+	#if(!wares_staged):
+		

@@ -124,7 +124,7 @@ func _ready():
 	var bus_headroom = 9
 	#automatically decrease music bus to comfy level
 	#but leave 6db in case the user wants to really blast it
-	AudioServer.set_bus_volume_db(1, -(bus_headroom + 9)) #set music headroom
+	AudioServer.set_bus_volume_db(1, -bus_headroom) #set music headroom
 	AudioServer.set_bus_volume_db(2, -bus_headroom) #set effects headroom
 	load_settings()
 	music_player = get_parent().get_child(3)

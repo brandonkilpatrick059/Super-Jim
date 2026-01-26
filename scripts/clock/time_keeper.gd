@@ -166,7 +166,7 @@ func add_end_of_day_script_node(script_node : Node):
 func set_clock(hour : int):
 	clock = hour
 	refresh_npc_locations()
-	update_objects()
+	hourly_update_objects()
 
 func advance_day():
 	if(day_of_the_week == 6):
@@ -179,7 +179,7 @@ func advance_day():
 		node.queue_free()
 	end_of_day_script_queue = []
 	days_passed = days_passed + 1
-	new_day.emit()
+	daily_update_objects()
 
 func advance_clock():
 	if(clock != 23):
@@ -187,10 +187,18 @@ func advance_clock():
 	else: if(clock == 23):
 		clock = 0
 		advance_day()
-	update_objects()
+	hourly_update_objects()
 
-func update_objects():
+func daily_update_objects():
+	update_shops()
+
+func hourly_update_objects():
 	update_lights()
+
+func update_shops():
+	var shops = get_tree().get_nodes_in_group("shop_manager")
+	for shop in shops:
+		shop.shuffle_staged_items()
 
 func update_lights():
 	var lights = get_tree().get_nodes_in_group("timed_light")

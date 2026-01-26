@@ -142,7 +142,7 @@ voice = "sine_voice"
 
 [node name="tell me about the city2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
 position = Vector2(446, 527)
-speaker_text = Array[String](["Old as the hills, this place. Maybe older."])
+speaker_text = Array[String](["I love it here. Lived here my whole life."])
 speaker_portrait = null
 option_branches = [NodePath("../tell me about the city3")]
 voice = "sine_voice"

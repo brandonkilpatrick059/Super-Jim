@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://vghtf4vfrm55"
+path="res://.godot/imported/delivery theme 2.ogg-a9ee1102a106105151431191c0b4e3f6.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/delivery theme 2.ogg"
+dest_files=["res://.godot/imported/delivery theme 2.ogg-a9ee1102a106105151431191c0b4e3f6.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

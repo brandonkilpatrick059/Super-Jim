@@ -38,6 +38,8 @@ var dreaming_control_return = false
 @export var gives_hp = 1
 @export var gives_dash_secs = 20
 
+var no_dream_sleep : bool = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -59,10 +61,19 @@ func check_portal_input():
 	elif(holding_forward && Input.is_action_just_released("up")):
 		holding_forward = false
 
+func slept_through_night():
+	if(time_keeper.clock >= sleep_start_time):
+		time_keeper.advance_day()
+	time_keeper.set_clock(sleep_end_time)
+	player_ref.increment_hp()
+	player_ref.give_dash_seconds(20)
+	var game_save_manager = get_tree().get_first_node_in_group("game_save_manager")
+	game_save_manager.save_game()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#_fade_to_black.global_position = Vector2(0,0)
-	var player_ref = get_tree().get_first_node_in_group("player")
+	player_ref = get_tree().get_first_node_in_group("player")
 	sleep_start_time = player_ref.get_sleep_start_time()
 	sleep_end_time = player_ref.get_sleep_end_time()
 	if(_saving_game.visible):
@@ -119,13 +130,11 @@ func _process(delta):
 				_saving_game.visible = true
 				timer_fade.start(long_step_secs)
 		elif(fading_in):
+			if(!no_dream_sleep):
+				no_dream_sleep = true
+				slept_through_night()
 			if(fade_alpha > 0 && !holding_forward):
 				_saving_game.visible = false
-				time_keeper.set_clock(sleep_end_time)
-				if(time_keeper.clock >= sleep_start_time):
-					time_keeper.advance_day()
-				player_ref.increment_hp()
-				player_ref.give_dash_seconds(20)
 				fade_alpha -= fade_step
 				timer_fade.start(fade_step_secs)
 			elif(fade_alpha <= 0):
@@ -150,6 +159,7 @@ func interact():
 		sound_player.global_position = player_ref.global_position
 		sound_player.stream = load("res://audio/music/sleep theme.wav")
 		sound_player.play()
+		no_dream_sleep = false
 		var game_save_manager = get_tree().get_first_node_in_group("game_save_manager")
 		game_save_manager.save_game()
 	else:

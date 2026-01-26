@@ -572,6 +572,7 @@ func enter_dialog():
 	is_dashing = false
 	dialog_panning = true
 	in_dialog = true
+	_camera.turn_off_flashlight()
 
 func set_dialog_panning(input: bool):
 	dialog_panning = input

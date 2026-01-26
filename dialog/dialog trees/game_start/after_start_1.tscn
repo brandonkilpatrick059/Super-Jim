@@ -77,4 +77,4 @@ dialog_script = NodePath("move_to_after_start_2")
 [node name="move_to_after_start_2" type="Node" parent="trunk10"]
 script = ExtResource("4_ggh0u")
 node_group = "cook"
-new_index = 7
+new_index = 6

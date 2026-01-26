@@ -17,7 +17,7 @@ font_color = Color(1, 0, 0, 1)
 
 [node name="WareNightStand0" type="Node2D"]
 script = ExtResource("1_csgan")
-cost = 42
+cost = 10
 ware_name = "Used Oak Night Stand"
 
 [node name="script_node" type="Node" parent="."]
@@ -45,7 +45,7 @@ offset_left = -22.0
 offset_top = -21.0
 offset_right = 21.0
 offset_bottom = -4.0
-text = "$42"
+text = "$10"
 label_settings = SubResource("LabelSettings_i0gyc")
 horizontal_alignment = 1
 vertical_alignment = 1

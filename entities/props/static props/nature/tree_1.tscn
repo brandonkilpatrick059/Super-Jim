@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x7wqg"]
 size = Vector2(10, 17.5)
 
-[node name="tree_1" type="StaticBody2D" groups=["prop"]]
+[node name="tree_1" type="StaticBody2D" groups=["prop", "prunable"]]
 y_sort_enabled = true
 
 [node name="tree_1" type="Sprite2D" parent="." groups=["prop"]]

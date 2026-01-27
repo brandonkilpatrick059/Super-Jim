@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://y2mlxtgsixc" path="res://sprites/props/bush_0.png" id="1_e6ol4"]
 [ext_resource type="Texture2D" uid="uid://0d3n5esom4o4" path="res://sprites/lights/small_shadow.png" id="2_ef74l"]
 
-[node name="Bush0" type="Node2D"]
+[node name="Bush0" type="Node2D" groups=["prunable"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_e6ol4")

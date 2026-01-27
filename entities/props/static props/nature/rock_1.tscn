@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pa3bf"]
 size = Vector2(22, 10)
 
-[node name="rock1" type="Node2D"]
+[node name="rock1" type="Node2D" groups=["prunable"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_jpcv8")

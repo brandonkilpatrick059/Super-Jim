@@ -20,7 +20,7 @@ var rent_locked = false
 var warned = false
 
 var start_mode = false
-var active_mode = true
+var active_mode = false
 
 var stream_temp : String = ""
 
@@ -55,6 +55,9 @@ func landlord_inactive():
 	start_mode = false
 	active_mode = false
 	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+	#add scripts to the end of the day which 
+	#prime the landlord to come searching
+	#for rent again the next day
 	var node = end_of_day_script.duplicate()
 	time_keeper.add_end_of_day_script_node(node)
 

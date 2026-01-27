@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ob1ay"]
 size = Vector2(8, 13)
 
-[node name="TreeAspen" type="Node2D"]
+[node name="TreeAspen" type="Node2D" groups=["prunable"]]
 
 [node name="trunk" type="Sprite2D" parent="."]
 position = Vector2(1, 0)

@@ -85,6 +85,8 @@ func spawn_mobs():
 	print(str("+Goons:--------", num_red_mobs - num_red_bandits))
 	var num_bullets = get_tree().get_nodes_in_group("bullet")
 	print(str("# BULLETS: ",num_bullets.size()))
+	var num_nodes = get_tree().get_node_count()
+	print(str("# TOTAL NODES: "), num_nodes)
 	#var num_teles = get_tree().get_nodes_in_group("teleporter")
 	#print(str("# teleporters: ",num_teles.size()))
 	while(iter < num_mobs_to_spawn):

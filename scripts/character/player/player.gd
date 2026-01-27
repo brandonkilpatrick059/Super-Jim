@@ -146,6 +146,9 @@ const cardbinder : String = "card_binder"
 const citymap : String = "city_map"
 const firecracker: String = "fire_cracker"
 
+var num_fire_crackers : int = 0
+var max_fire_crackers : int = 9
+
 var waking = false
 var waking_control_back = false
 
@@ -437,7 +440,8 @@ func get_save_dictionary() -> Dictionary:
 		"owned_bottoms" : owned_bottoms,
 		"hats_index" : hats_index,
 		"tops_index" : tops_index,
-		"bottoms_index" : bottoms_index
+		"bottoms_index" : bottoms_index,
+		"num_fire_crackers" : num_fire_crackers
 	}
 	return save_dictionary
 
@@ -477,6 +481,9 @@ func load_from_dictionary(load_dictionary : Dictionary):
 	var load_items = load_dictionary.get("items")
 	index = 0
 	
+	var load_num_fire_crackers = int(load_dictionary.get("num_fire_crackers"))
+	num_fire_crackers = load_num_fire_crackers
+	
 	var hats_index = load_dictionary.get("hats_index")
 	var tops_index = load_dictionary.get("tops_index")
 	var bottoms_index = load_dictionary.get("bottoms_index")
@@ -498,7 +505,7 @@ func load_from_dictionary(load_dictionary : Dictionary):
 	while(index < load_bottoms.size()):
 		append_owned_bottom(String(load_bottoms[index]))
 		index = index + 1
-		
+	
 	var hat = load_dictionary.get("hat_spriteframes")
 	var top = load_dictionary.get("top_spriteframes")
 	var bottom = load_dictionary.get("bottom_spriteframes")
@@ -566,6 +573,15 @@ func set_ui_invisible():
 func get_camera_global_pos():
 	var pos = _camera.global_position + _camera.offset
 	return pos
+
+func add_fire_crackers(num : int):
+	if(num_fire_crackers == 0):
+		append_to_items(firecracker)
+	if(num_fire_crackers + num > max_fire_crackers):
+		num_fire_crackers = max_fire_crackers
+	else:
+		num_fire_crackers = num_fire_crackers + num
+	_ui.update_quantity_label_text(str(num_fire_crackers))
 
 func enter_dialog():
 	stop()
@@ -991,11 +1007,17 @@ func use_item():
 					set_items_frozen(false)
 					ui_scene_ref.queue_free()
 			firecracker:
-				var scene_fire_cracker = load("res://entities/props/dynamic props/fire_cracker.tscn")
-				var fire_cracker = scene_fire_cracker.instantiate()
-				fire_cracker.global_position = global_position
-				add_child(fire_cracker)
-				fire_cracker.throw_bypass_pickup(_character_base.get_facing_dir(), self)
+				if(num_fire_crackers > 0):
+					var scene_fire_cracker = load("res://entities/props/dynamic props/fire_cracker.tscn")
+					var fire_cracker = scene_fire_cracker.instantiate()
+					fire_cracker.global_position = global_position
+					add_child(fire_cracker)
+					fire_cracker.throw_bypass_pickup(_character_base.get_facing_dir(), self)
+					num_fire_crackers = num_fire_crackers - 1
+					_ui.update_quantity_label_text(str(num_fire_crackers))
+				if(num_fire_crackers <= 0):
+					num_fire_crackers = 0
+					remove_from_items(firecracker)
 
 func set_movement_frozen(input: bool):
 	movement_frozen = input
@@ -1159,6 +1181,7 @@ func finish_load_in():
 	#as the player loads in
 	_ui.turn_on_ui_noises()
 	_camera.fade_in()
+	_ui.update_quantity_label_text(str(num_fire_crackers))
 
 func update_item_square():
 	if(items.size() > 0 && item_index < items.size() && !main_ui_hidden):

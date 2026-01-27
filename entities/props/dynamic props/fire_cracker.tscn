@@ -34,7 +34,7 @@ shape = SubResource("RectangleShape2D_x7wqg")
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_22q12")
-frame_progress = 0.173011
+frame_progress = 0.0881507
 script = ExtResource("3_862d5")
 
 [node name="fuse" type="Node" parent="."]

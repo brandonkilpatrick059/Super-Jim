@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://mcdceuvq1y5j"]
+[gd_scene load_steps=13 format=3 uid="uid://mcdceuvq1y5j"]
 
 [ext_resource type="Script" uid="uid://dxrxkn8672j2t" path="res://scripts/character/player/player_ui.gd" id="1_3ah41"]
 [ext_resource type="PackedScene" uid="uid://br7lsjp6dti22" path="res://interface/location_header.tscn" id="2_6r8u7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://8ro0ia3we2su" path="res://scripts/utility/dash_meter.gd" id="5_apdnc"]
 [ext_resource type="Texture2D" uid="uid://uw3cf5pm1u2u" path="res://sprites/interface/item_box/item_box.png" id="6_rvxvm"]
 [ext_resource type="PackedScene" uid="uid://juqm7h82fyhq" path="res://interface/interact_circle.tscn" id="7_6r8u7"]
+[ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="7_bmrsi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0y31s"]
 font_size = 12
@@ -19,6 +20,9 @@ font_size = 24
 font = ExtResource("3_bmrsi")
 font_size = 64
 font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dwtnx"]
+font = ExtResource("7_bmrsi")
 
 [node name="player_ui" type="Control"]
 z_index = 6
@@ -129,7 +133,6 @@ offset_bottom = 40.0
 script = ExtResource("5_apdnc")
 
 [node name="item_square" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -143,6 +146,15 @@ offset_top = 4.0
 offset_right = -4.0
 offset_bottom = 36.0
 texture = ExtResource("6_rvxvm")
+
+[node name="quantity_label" type="Label" parent="item_square/Sprite2D"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 15.0
+offset_right = 63.0
+offset_bottom = 38.0
+text = "1"
+label_settings = SubResource("LabelSettings_dwtnx")
 
 [node name="interact_pos_1" parent="." instance=ExtResource("7_6r8u7")]
 layout_mode = 1

@@ -14,6 +14,7 @@ extends Control
 @onready var dash_meter = $dash_meter
 @onready var item_square = $item_square
 @onready var item_square_texture :TextureRect = $item_square/Sprite2D
+@onready var quantity_label : Label = $item_square/Sprite2D/quantity_label
 
 @onready var interact_1 = $interact_pos_1
 @onready var interact_2 = $interact_pos_2
@@ -163,7 +164,17 @@ func toggle_fps_counter():
 func activate_header(label : String):
 	location_header.activate_header(label)
 
+func update_quantity_label_text(str : String):
+	quantity_label.text = str
+
+func show_quantity_label():
+	quantity_label.visible = true
+
+func hide_quantity_label():
+	quantity_label.visible = false
+
 func set_item_square(id : String):
+	hide_quantity_label()
 	match id:
 		"" :
 			item_square_texture.texture = load("res://sprites/interface/item_box/item_box.png")
@@ -175,7 +186,8 @@ func set_item_square(id : String):
 			item_square_texture.texture = load("res://sprites/interface/item_box/item_card_binder.png")
 		"city_map" :
 			item_square_texture.texture = load("res://sprites/interface/item_box/item_map.png")
-		"fire_cracker": 
+		"fire_cracker":
+			show_quantity_label()
 			item_square_texture.texture = load("res://sprites/interface/item_box/item_fire_cracker.png")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

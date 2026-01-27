@@ -144,6 +144,7 @@ const flashlight : String = "flashlight"
 const pizza : String = "pizza"
 const cardbinder : String = "card_binder"
 const citymap : String = "city_map"
+const firecracker: String = "fire_cracker"
 
 var waking = false
 var waking_control_back = false
@@ -989,6 +990,12 @@ func use_item():
 					set_movement_frozen(false)
 					set_items_frozen(false)
 					ui_scene_ref.queue_free()
+			firecracker:
+				var scene_fire_cracker = load("res://entities/props/dynamic props/fire_cracker.tscn")
+				var fire_cracker = scene_fire_cracker.instantiate()
+				fire_cracker.global_position = global_position
+				add_child(fire_cracker)
+				fire_cracker.throw_bypass_pickup(_character_base.get_facing_dir(), self)
 
 func set_movement_frozen(input: bool):
 	movement_frozen = input
@@ -1024,13 +1031,13 @@ func set_holding_object(is_holding):
 func throw():
 	if(holding_object && !_grabber.is_colliding() ):
 		play_sound(woosh_sound)
-		
-		if(grabbed_object.is_in_group("pizza")):
-			self.remove_from_group("courier")
-			remove_from_items("pizza")
-			grabbed_object.throw(_character_base.get_facing_dir(),Vector2(0,-16))
-		else:
-			grabbed_object.throw(_character_base.get_facing_dir())
+		if(grabbed_object != null):
+			if(grabbed_object.is_in_group("pizza")):
+				self.remove_from_group("courier")
+				remove_from_items("pizza")
+				grabbed_object.throw(_character_base.get_facing_dir(),Vector2(0,-16))
+			else:
+				grabbed_object.throw(_character_base.get_facing_dir())
 		grabbed_object = null
 		set_holding_object(false)
 		_ui.deactivate_interact()
@@ -1039,12 +1046,13 @@ func throw():
 func put_down(play_sound = true):
 	if(play_sound):
 		play_sound(putdown_sound)
-	if(grabbed_object.is_in_group("pizza")):
-		grabbed_object.put_down(_character_base.get_facing_dir(),Vector2(0,-16))
-		self.remove_from_group("courier")
-		remove_from_items("pizza")
-	else:
-		grabbed_object.put_down(_character_base.get_facing_dir())
+	if(grabbed_object != null):
+		if(grabbed_object.is_in_group("pizza")):
+			grabbed_object.put_down(_character_base.get_facing_dir(),Vector2(0,-16))
+			self.remove_from_group("courier")
+			remove_from_items("pizza")
+		else:
+			grabbed_object.put_down(_character_base.get_facing_dir())
 	grabbed_object = null
 	set_holding_object(false)
 	_ui.deactivate_interact()

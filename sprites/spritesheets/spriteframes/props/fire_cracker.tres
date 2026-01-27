@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://bvdtgm78xdf1"]
+
+[ext_resource type="Texture2D" uid="uid://b4uasofg4dfa2" path="res://sprites/spritesheets/props/fire_cracker.png" id="1_2nr7u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6wl7"]
+atlas = ExtResource("1_2nr7u")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mm1tk"]
+atlas = ExtResource("1_2nr7u")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vda5o"]
+atlas = ExtResource("1_2nr7u")
+region = Rect2(32, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6wl7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mm1tk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vda5o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]

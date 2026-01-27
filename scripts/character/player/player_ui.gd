@@ -175,6 +175,8 @@ func set_item_square(id : String):
 			item_square_texture.texture = load("res://sprites/interface/item_box/item_card_binder.png")
 		"city_map" :
 			item_square_texture.texture = load("res://sprites/interface/item_box/item_map.png")
+		"fire_cracker": 
+			item_square_texture.texture = load("res://sprites/interface/item_box/item_fire_cracker.png")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(money_timer.is_stopped()):

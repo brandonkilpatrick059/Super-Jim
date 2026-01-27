@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://pan13iu7vjqi"]
+
+[ext_resource type="Script" uid="uid://bkt2mviy7eonh" path="res://scripts/entities/pickupable.gd" id="1_51tmt"]
+[ext_resource type="SpriteFrames" uid="uid://bvdtgm78xdf1" path="res://sprites/spritesheets/spriteframes/props/fire_cracker.tres" id="2_22q12"]
+[ext_resource type="Script" uid="uid://b3xtkv5igree1" path="res://scripts/utility/play_default_animation.gd" id="3_862d5"]
+[ext_resource type="Script" uid="uid://sdf8h4qajfpa" path="res://scripts/entities/fire_cracker.gd" id="3_cwq5b"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1gs3y"]
+bounce = 0.1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7wqg"]
+size = Vector2(7, 10)
+
+[node name="fire_cracker" type="RigidBody2D" groups=["dynamic", "pickupable", "prop", "prunable"]]
+y_sort_enabled = true
+collision_layer = 8
+collision_mask = 4187
+physics_material_override = SubResource("PhysicsMaterial_1gs3y")
+gravity_scale = 0.0
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 1
+linear_damp = 4.0
+script = ExtResource("1_51tmt")
+has_home = false
+force_factor = 600
+sleep_if_occluded = false
+spark_time_secs = 0.006
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["dynamic", "pickupable", "prop"]]
+y_sort_enabled = true
+position = Vector2(-0.5, 3)
+shape = SubResource("RectangleShape2D_x7wqg")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_22q12")
+frame_progress = 0.173011
+script = ExtResource("3_862d5")
+
+[node name="fuse" type="Node" parent="."]
+script = ExtResource("3_cwq5b")

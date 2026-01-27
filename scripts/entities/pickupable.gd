@@ -97,6 +97,11 @@ func throw(dir, offset : Vector2 = Vector2(0,0)):
 				global_position = pickup_actor_ref.global_position + Vector2(0, base_offset) + offset
 				set_physics_pos(pickup_actor_ref.global_position + Vector2(0, base_offset) + offset)
 
+func throw_bypass_pickup(dir, actor_ref):
+	picked_up = true
+	pickup_actor_ref = actor_ref
+	throw(dir)
+
 func pick_up(actor_ref : Node):
 	sprite.offset = Vector2(0,-y_sort_offset)
 	_collision_shape.disabled = true

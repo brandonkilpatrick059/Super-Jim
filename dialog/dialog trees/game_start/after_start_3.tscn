@@ -257,7 +257,7 @@ speaker_name = "speedy"
 
 [node name="delivery7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
 position = Vector2(336, 2478)
-speaker_text = Array[String](["Once you head out the green compass will show you where to go."])
+speaker_text = Array[String](["The green compass will show you where to go."])
 option_branches = [NodePath("../delivery8")]
 voice = "sine_voice"
 

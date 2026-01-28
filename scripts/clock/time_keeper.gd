@@ -191,6 +191,7 @@ func advance_clock():
 
 func daily_update_objects():
 	update_shops()
+	update_landlord()
 
 func hourly_update_objects():
 	update_lights()
@@ -199,6 +200,10 @@ func update_shops():
 	var shops = get_tree().get_nodes_in_group("shop_manager")
 	for shop in shops:
 		shop.shuffle_staged_items()
+
+func update_landlord():
+	var landlord_manager = get_tree().get_first_node_in_group("landlord_manager")
+	landlord_manager.add_rent()
 
 func update_lights():
 	var lights = get_tree().get_nodes_in_group("timed_light")

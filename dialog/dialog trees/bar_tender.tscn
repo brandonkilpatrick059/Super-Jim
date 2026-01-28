@@ -92,7 +92,7 @@ voice = "low_sine_voice"
 
 [node name="dealing with gangster2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
 position = Vector2(45, 719)
-speaker_text = Array[String](["When they stop to look around, it's either clockwise or counter clockwise.", "They're cosntantly gunning for more territory.", "But sometimes I get caught in the crossfire.", "It's scary, running into one a those guys in a dark alley.", "Especially the guys in the sunglasses, they carry some heavy ordinance."])
+speaker_text = Array[String](["When they stop to look around, it's either clockwise or counter clockwise.", "They're always gunning for more territory.", "But sometimes I get caught in the crossfire.", "It's scary running into one of those guys in a dark alley.", "Especially the guys in the sunglasses, they carry some heavy ordinance."])
 speaker_portrait = null
 option_branches = [NodePath("../anyways")]
 voice = "low_sine_voice"

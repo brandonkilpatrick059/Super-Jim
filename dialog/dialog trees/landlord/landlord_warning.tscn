@@ -23,14 +23,14 @@ voice = "sine_voice"
 
 [node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_a5reu")]
 position = Vector2(-2, 444)
-speaker_text = Array[String](["...What's this? You do not have $30 for rent??"])
+speaker_text = Array[String](["...What's this? You do not have money for rent??"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk4")]
 voice = "sine_voice"
 
 [node name="trunk4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_a5reu")]
 position = Vector2(9, 697)
-speaker_text = Array[String](["You really MUST be more careful with your money..."])
+speaker_text = Array[String](["You really MUST be more careful with your finances..."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk5")]
 voice = "sine_voice"
@@ -61,7 +61,7 @@ position = Vector2(-1, 1441)
 speaker_text = Array[String](["Farewell!"])
 speaker_portrait = null
 voice = "sine_voice"
-dialog_script = NodePath("Node")
+dialog_script = NodePath("catch_finish")
 
-[node name="Node" type="Node" parent="trunk8"]
+[node name="catch_finish" type="Node" parent="trunk8"]
 script = ExtResource("3_x0jq4")

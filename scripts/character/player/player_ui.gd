@@ -78,8 +78,13 @@ func get_interact_text():
 
 func set_interact_text(text : String):
 	if(item_square.visible):
+		interact_2.visible = true
+		interact_1.visible = false
 		interact_2.activate_interact(text)
+
 	else:
+		interact_1.visible = true
+		interact_2.visible = false
 		interact_1.activate_interact(text)
 
 func deactivate_interact():

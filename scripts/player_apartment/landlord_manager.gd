@@ -13,22 +13,28 @@ var landlord_ref = null
 @export var warning : Node
 @export var start : Node
 
-var days_since_paid = 0
 var rent = 30
 var apartment_locked = false
 var rent_locked = false
 var warned = false
 
 var start_mode = false
-var active_mode = false
+var active_mode = true
+var wait_mode = false
 
 var stream_temp : String = ""
 
 func add_rent():
 	if(!rent_locked):
-		days_since_paid = days_since_paid + 1
-		if(days_since_paid > 2):
-			lock_player_apartment()
+		var days_since_paid = player_ref.get_days_since_paid_rent()
+		player_ref.set_days_since_paid_rent(days_since_paid + 1)
+		check_if_rent_overdue()
+
+func check_if_rent_overdue():
+	var days_since_paid = player_ref.get_days_since_paid_rent()
+	if(days_since_paid > 2):
+		landlord_active_wait()
+	else:
 		landlord_active()
 
 func _ready() -> void:
@@ -49,17 +55,19 @@ func landlord_active():
 	landlord_ref.set_schedules_index(1)
 	start_mode = false
 	active_mode = true
+	wait_mode = false
+
+func landlord_active_wait():
+	landlord_ref.set_schedules_index(2)
+	start_mode = false
+	active_mode = true
+	wait_mode = true
 
 func landlord_inactive():
 	landlord_ref.set_schedules_index(0)
 	start_mode = false
 	active_mode = false
 	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
-	#add scripts to the end of the day which 
-	#prime the landlord to come searching
-	#for rent again the next day
-	var node = end_of_day_script.duplicate()
-	time_keeper.add_end_of_day_script_node(node)
 
 func lock_player_apartment():
 	apartment_locked = true
@@ -72,6 +80,7 @@ func unlock_player_apartment():
 func catch_finish():
 	var main_music_player = get_tree().get_first_node_in_group("main_music_player")
 	main_music_player.change_stream(stream_temp)
+	landlord_inactive()
 
 func catch_player():
 	var main_music_player = get_tree().get_first_node_in_group("main_music_player")
@@ -80,21 +89,19 @@ func catch_player():
 	if(start_mode):
 		landlord_ref._on_set_branching_dialog(start)
 		landlord_ref.interact()
-		landlord_inactive()
 	elif(active_mode):
 		var player_money = player_ref.get_money()
-		if(player_money >= rent):
+		if(player_money > 0):
 			if(apartment_locked):
 				landlord_ref._on_set_branching_dialog(collect_unlocked)
 			else:
 				landlord_ref._on_set_branching_dialog(collect)
 			landlord_ref._on_stop_motion()
 			landlord_ref.interact()
-			landlord_inactive()
-			days_since_paid = 0
+			player_ref.set_days_since_paid_rent(0)
 			warned = false
 			unlock_player_apartment()
-		elif(player_money < rent):
+		elif(player_money <= 0):
 			if(!warned):
 				warned = true
 				landlord_ref._on_set_branching_dialog(warning)
@@ -103,5 +110,5 @@ func catch_player():
 				lock_player_apartment()
 			landlord_ref._on_stop_motion()
 			landlord_ref.interact()
-			landlord_inactive()
+			
 			

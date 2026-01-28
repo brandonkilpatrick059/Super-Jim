@@ -360,7 +360,7 @@ func _on_turn_left():
 #and animate accordingly
 func _on_advance_navigation(speed : int):
 	if (!perceptions.nav_target_reached &&
-	global_position.distance_to(_navigation_agent.target_position) >= nav_target_reached_distance):
+	global_position.distance_to(_navigation_agent.target_position) > nav_target_reached_distance):
 		var current_agent_position: Vector2 = global_position
 		var next_path_position: Vector2 = _navigation_agent.get_next_path_position()
 		current_v = current_agent_position.direction_to(next_path_position) * speed
@@ -436,6 +436,7 @@ func teleport_and_update():
 		global_position = perceptions.current_stage_mark.global_position
 		if(!is_animatronic):
 			_on_set_nav_target(perceptions.current_stage_mark.global_position)
+			current_v = current_v * 0
 		var parent_node = perceptions.current_stage_mark.get_reparent_node()
 		reparent(parent_node)
 		immobilized = false

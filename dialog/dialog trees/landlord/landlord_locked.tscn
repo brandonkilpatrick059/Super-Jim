@@ -61,7 +61,7 @@ position = Vector2(-1, 1441)
 speaker_text = Array[String](["Farewell!"])
 speaker_portrait = null
 voice = "sine_voice"
-dialog_script = NodePath("Node")
+dialog_script = NodePath("catch_finish")
 
-[node name="Node" type="Node" parent="trunk8"]
+[node name="catch_finish" type="Node" parent="trunk8"]
 script = ExtResource("3_c88lb")

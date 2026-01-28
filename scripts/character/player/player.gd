@@ -85,6 +85,8 @@ var dash_regen_secs = 0
 var in_dialog = false
 var dialog_panning = false #checked by main camera
 
+var days_since_rent_paid = 0
+
 var holding_object = false
 var will_grab_object = null
 var grabbed_object = null
@@ -198,6 +200,12 @@ func _ready():
 	
 	if(Engine.is_editor_hint()):
 		queue_redraw()
+
+func get_days_since_paid_rent():
+	return days_since_rent_paid
+
+func set_days_since_paid_rent(num : int):
+	days_since_rent_paid = num
 
 func set_checking_light_distance(value : bool):
 	checking_light_distance = value
@@ -441,7 +449,8 @@ func get_save_dictionary() -> Dictionary:
 		"hats_index" : hats_index,
 		"tops_index" : tops_index,
 		"bottoms_index" : bottoms_index,
-		"num_fire_crackers" : num_fire_crackers
+		"num_fire_crackers" : num_fire_crackers,
+		"days_since_rent_paid" : days_since_rent_paid
 	}
 	return save_dictionary
 
@@ -483,6 +492,9 @@ func load_from_dictionary(load_dictionary : Dictionary):
 	
 	var load_num_fire_crackers = int(load_dictionary.get("num_fire_crackers"))
 	num_fire_crackers = load_num_fire_crackers
+	
+	var load_days_since_rent_paid = int(load_dictionary.get("days_since_rent_paid"))
+	days_since_rent_paid = load_days_since_rent_paid
 	
 	var hats_index = load_dictionary.get("hats_index")
 	var tops_index = load_dictionary.get("tops_index")
@@ -1182,6 +1194,9 @@ func finish_load_in():
 	_ui.turn_on_ui_noises()
 	_camera.fade_in()
 	_ui.update_quantity_label_text(str(num_fire_crackers))
+	
+	var landlord_manager = get_tree().get_first_node_in_group("landlord_manager")
+	landlord_manager.check_if_rent_overdue()
 
 func update_item_square():
 	if(items.size() > 0 && item_index < items.size() && !main_ui_hidden):

@@ -253,7 +253,7 @@ func handle_sparks_non_combat():
 						_ai_state_machine.transition_to(mobster_states.exclaiming)
 
 func is_knocked_out():
-	return perceptions.knocked_out
+	return _ai_state_machine.get_state().name == mobster_states.knockedout
 
 func handle_death():
 	if(perceptions.hit_points <= 0):

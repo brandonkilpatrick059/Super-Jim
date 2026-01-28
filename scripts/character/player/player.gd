@@ -1129,6 +1129,7 @@ func return_pizza():
 	self.add_to_group("courier")
 	append_to_items("pizza")
 	pizza.pick_up(self)
+	_ui.set_interact_text("drop")
 	grabbed_object = pizza
 	set_holding_object(true)
 

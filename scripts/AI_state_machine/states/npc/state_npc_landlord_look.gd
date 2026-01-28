@@ -25,15 +25,17 @@ func physics_process(_delta: float):
 		return
 	#check vision
 	#check nodes in vision for player
-	if(nodes_in_vision.size() > 0):
-		for node in nodes_in_vision:
-			if(node != null):
-				#check for player
-				if(node.is_in_group("player")):
-					set_target.emit(node)
-					if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
-						ai_state_machine.transition_to(npc_states.landlord_exclaim)
-						return
+	var landlord_manager = get_tree().get_first_node_in_group("landlord_manager")
+	if(!landlord_manager.get_waiting()):
+		if(nodes_in_vision.size() > 0):
+			for node in nodes_in_vision:
+				if(node != null):
+					#check for player
+					if(node.is_in_group("player")):
+						set_target.emit(node)
+						if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
+							ai_state_machine.transition_to(npc_states.landlord_exclaim)
+							return
 	#check nodes in hearing
 	#TODO: support for this
 	#if(nodes_in_hearing.size() > 0):

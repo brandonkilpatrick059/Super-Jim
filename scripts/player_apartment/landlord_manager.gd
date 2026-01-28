@@ -45,11 +45,15 @@ func _ready() -> void:
 func set_active():
 	active = true
 
+func get_waiting():
+	return wait_mode
+
 func landlord_start():
 	landlord_ref.set_schedules_index(2)
 	landlord_ref.teleport_and_update()
 	start_mode = true
 	active_mode = false
+	wait_mode = true
 
 func landlord_active():
 	landlord_ref.set_schedules_index(1)
@@ -88,6 +92,7 @@ func catch_player():
 	main_music_player.change_stream("res://audio/music/landlords_theme.wav")
 	if(start_mode):
 		landlord_ref._on_set_branching_dialog(start)
+		landlord_ref._on_stop_motion()
 		landlord_ref.interact()
 	elif(active_mode):
 		var player_money = player_ref.get_money()

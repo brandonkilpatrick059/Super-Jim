@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Jim"
-config/version="A.7.7"
+config/version="A.7.8"
 run/main_scene="res://scenes/start_menu.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/image="res://sprites/start_screen/dire_logo_2.png"

@@ -906,8 +906,9 @@ func handle_interact_text():
 				!_grabber.get_collider(index).is_in_group("npc") &&
 				!_grabber.get_collider(index).is_in_group("reads_pickupable")):
 					_ui.set_interact_text("use")
-				elif(_grabber.get_collider(index).is_in_group("pickupable") ||
-				_grabber.get_collider(index).is_in_group("reads_pickupable")):
+				elif(!holding_object && 
+				(_grabber.get_collider(index).is_in_group("pickupable") ||
+				_grabber.get_collider(index).is_in_group("reads_pickupable"))):
 					_ui.set_interact_text("pick up")
 				else:
 					if(!holding_object):

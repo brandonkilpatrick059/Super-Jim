@@ -36,6 +36,8 @@ var money = 0
 var pizza_loss_timer = Timer.new()
 var pizza_loss_on_screen_seconds = 2
 
+var interact_text_visible = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	visible = true
@@ -77,29 +79,22 @@ func get_interact_text():
 		return interact_1.get_interact_text()
 
 func set_interact_text(text : String):
-	if(item_square.visible):
-		interact_2.visible = true
-		interact_1.visible = false
-		interact_2.activate_interact(text)
-
-	else:
-		interact_1.visible = true
-		interact_2.visible = false
-		interact_1.activate_interact(text)
+	interact_2.activate_interact(text)
+	interact_1.activate_interact(text)
 
 func deactivate_interact():
-	if(item_square.visible):
-		interact_2.deactivate_interact()
-	else:
-		interact_1.deactivate_interact()
+	interact_2.deactivate_interact()
+	interact_1.deactivate_interact()
 
 func hide_interact_text():
 	interact_1.visible = false
 	interact_2.visible = false
+	interact_text_visible = false
 
 func show_interact_text():
 	interact_1.visible = true
 	interact_2.visible = true
+	interact_text_visible = true
 
 func hide_item_square():
 	item_square.visible = false
@@ -196,6 +191,13 @@ func set_item_square(id : String):
 			item_square_texture.texture = load("res://sprites/interface/item_box/item_fire_cracker.png")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(interact_text_visible):
+		if(item_square.visible):
+			interact_2.visible = true
+			interact_1.visible = false
+		else:
+			interact_1.visible = true
+			interact_2.visible = false
 	if(money_timer.is_stopped()):
 		if(current_money < money):
 			current_money = current_money + 1

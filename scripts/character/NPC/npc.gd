@@ -300,7 +300,8 @@ func stop():
 
 func handle_passive_text():
 	var passive_text = perceptions.current_stage_mark.get_passive_text()
-	if(passive_text != ""):
+	if(passive_text != "" &&
+	global_position == perceptions.current_stage_mark.global_position):
 		var in_talk_radius = self.global_position.distance_to(player_ref.global_position) < talk_radius
 		if(!player_ref.in_dialog && !talking && in_talk_radius && !has_talked):
 			speech_instance = speech_bubble.instantiate()

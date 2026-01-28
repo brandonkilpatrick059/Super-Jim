@@ -961,23 +961,25 @@ func give_dash_fraction(fraction: float):
 
 func handle_use_item():
 	if(!dreaming):
-		if(use_item_timer.is_stopped() && Input.is_action_just_pressed("use_item")):
-			use_item()
-			use_item_timer.start(0.25)
-		if(Input.is_action_just_pressed(("switch_item_right")) && !items_frozen):
-			play_sound(pickup_sound)
+		if(items.size() > 0):
+			if(use_item_timer.is_stopped() && Input.is_action_just_pressed("use_item")):
+				use_item()
+				use_item_timer.start(0.25)
 			if(items.size() > 1):
-				if(item_index + 1 == items.size()):
-					item_index = 0
-				else:
-					item_index = item_index + 1
-		elif(Input.is_action_just_pressed(("switch_item_left")) && !items_frozen):
-			play_sound(pickup_sound)
-			if(items.size() > 1):
-				if(item_index - 1 < 0):
-					item_index = items.size() - 1
-				else:
-					item_index = item_index - 1
+				if(Input.is_action_just_pressed(("switch_item_right")) && !items_frozen):
+					play_sound(pickup_sound)
+					if(items.size() > 1):
+						if(item_index + 1 == items.size()):
+							item_index = 0
+						else:
+							item_index = item_index + 1
+				elif(Input.is_action_just_pressed(("switch_item_left")) && !items_frozen):
+					play_sound(pickup_sound)
+					if(items.size() > 1):
+						if(item_index - 1 < 0):
+							item_index = items.size() - 1
+						else:
+							item_index = item_index - 1
 
 func handle_throw():
 	if Input.is_action_just_pressed("throw"):

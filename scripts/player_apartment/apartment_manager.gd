@@ -31,8 +31,8 @@ func set_desk_slot(desk : Node):
 func set_night_stand_slot(night_stand : Node):
 	if(_night_stand_slot.get_child_count() > 0):
 		_night_stand_slot.get_children()[0].queue_free()
-		if(_lamp_slot.get_child_count() > 0):
-			_lamp_slot.get_child(0).position = Vector2(0,14)
+	if(_lamp_slot.get_child_count() > 0):
+		_lamp_slot.get_children()[0].position = Vector2(0,14)
 	_night_stand_slot.add_child(night_stand)
 	night_stand.position = Vector2(0,-16)
 

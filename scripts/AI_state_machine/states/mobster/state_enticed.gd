@@ -63,23 +63,24 @@ func physics_process(_delta: float) -> void:
 				if(player_distance_to_pizza < 32):
 					set_target.emit(player_ref)
 					ai_state_machine.transition_to(mobster_states.exclaiming)
-			elif(pizza_ref != null && 
-			!pizza_ref.is_picked_up() &&
-			ai_state_machine.perceptions.reactive_has_line_of_sight_to_target):
-				nav_target_reached = get_host_nav_target_reached()
-				if(nav_target_reached):
+				elif(!pizza_ref.is_picked_up() && 
+				ai_state_machine.perceptions.reactive_has_line_of_sight_to_target):
+					nav_target_reached = get_host_nav_target_reached()
 					var global_pos = ai_state_machine.get_perceptions().global_position
 					var distance_to_pizza = global_pos.distance_to(pizza_ref.global_position)
-					if(distance_to_pizza < 64):
+					if(distance_to_pizza < 32):
 						if(!pizza_ref.is_picked_up()):
 							pick_up.emit(pizza_ref)
+							stop_movement.emit()
 							ai_state_machine.transition_to(mobster_states.returning) 
-						else:
+						else: #picked up by another mob
 							stop_movement.emit()
 							ai_state_machine.transition_to(mobster_states.look)
-					else:
-						stop_movement.emit()
-						ai_state_machine.transition_to(mobster_states.look)
+					elif(nav_target_reached):
+						set_nav_target.emit(pizza_ref.global_position)
+				else:
+					stop_movement.emit()
+					ai_state_machine.transition_to(mobster_states.look)
 			else:
 				stop_movement.emit()
 				ai_state_machine.transition_to(mobster_states.look)

@@ -72,7 +72,7 @@ func physics_process(_delta: float) -> void:
 				ai_state_machine.transition_to(mobster_states.look)
 
 func distance_to_current_point() -> int:
-	return get_host_position().distance_to(spawner_patrol_point.position)
+	return get_host_position().distance_to(spawner_patrol_point.global_position)
 
 func distance_to_position(pos: Vector2):
 	return get_host_position().distance_to(pos)
@@ -82,7 +82,7 @@ func spawner_point_to_closest_point():
 	spawner_patrol_point = patrol_points[0]
 	for patrol_point in patrol_points:
 		var distance_to_current_point = distance_to_current_point()
-		var distance_to_other_point = distance_to_position(patrol_point.position)
+		var distance_to_other_point = distance_to_position(patrol_point.global_position)
 		if(distance_to_other_point < distance_to_current_point):
 			spawner_patrol_point = patrol_point
 
@@ -90,7 +90,7 @@ func enter(_msg := {}) -> void:
 	spawner_point_to_closest_point()
 	
 	if(spawner_patrol_point != null):
-		set_nav_target.emit(spawner_patrol_point.position)
+		set_nav_target.emit(spawner_patrol_point.global_position)
 
 func exit() -> void:
 	pass

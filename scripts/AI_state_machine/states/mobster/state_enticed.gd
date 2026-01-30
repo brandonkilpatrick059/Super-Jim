@@ -60,7 +60,7 @@ func physics_process(_delta: float) -> void:
 			var player_ref = get_tree().get_first_node_in_group("player")
 			if(pizza_ref != null):
 				var player_distance_to_pizza = player_ref.global_position.distance_to(pizza_ref.global_position)
-				if(player_distance_to_pizza < 32):
+				if(player_distance_to_pizza < 80):
 					set_target.emit(player_ref)
 					ai_state_machine.transition_to(mobster_states.exclaiming)
 				elif(!pizza_ref.is_picked_up() && 

@@ -148,8 +148,8 @@ func interact():
 	var player_ref = get_tree().get_first_node_in_group("player")
 	if(time_keeper.clock > sleep_start_time ||
 	time_keeper.clock < sleep_end_time):
-		player_ref.stop()
 		player_ref.set_control_frozen(true)
+		player_ref.stop()
 		player_ref.set_ui_invisible()
 		var camera = player_ref.get_camera_ref()
 		_fade_to_black.global_position = camera.get_screen_center_position()

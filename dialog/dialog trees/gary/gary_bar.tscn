@@ -37,7 +37,7 @@ voice = "sine_voice"
 
 [node name="are you from around here" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
 position = Vector2(2, 299)
-speaker_text = Array[String](["We're ALL from around here, buddy."])
+speaker_text = Array[String](["We're ALL from around here, friendo."])
 speaker_portrait = null
 option_branches = [NodePath("../are you from around here2")]
 voice = "sine_voice"
@@ -163,7 +163,7 @@ voice = "sine_voice"
 
 [node name="are you from around here2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
 position = Vector2(-8, 539)
-speaker_text = Array[String](["I'm a citizen of planet Earth, my man."])
+speaker_text = Array[String](["I'm a citizen of planet Earth, you know?"])
 speaker_portrait = null
 option_branches = [NodePath("../vibes are good")]
 voice = "sine_voice"

@@ -14,7 +14,7 @@ font_color = Color(1, 0, 0, 1)
 [node name="WareHeart" type="Node2D"]
 z_index = 1
 script = ExtResource("1_6kivc")
-cost = 50
+cost = 40
 ware_name = "Heart in a Jar"
 
 [node name="script_node" type="Node" parent="."]
@@ -33,7 +33,7 @@ offset_left = 7.0
 offset_top = -16.0
 offset_right = 26.0
 offset_bottom = 5.0
-text = "$50"
+text = "$40"
 label_settings = SubResource("LabelSettings_w0ue2")
 horizontal_alignment = 1
 vertical_alignment = 1

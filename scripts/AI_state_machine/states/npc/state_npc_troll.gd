@@ -22,8 +22,17 @@ var current_stage_mark : Node = null
 var timer : Timer
 var grace_period_secs = 120
 
+var stuck_timer := Timer.new()
+var check_pos : Vector2 
+var stuck : bool = false
+
 const distance_to_break_current_point = 128
 
+
+func _ready() -> void:
+	stuck_timer.one_shot = true
+	add_child(stuck_timer)
+	
 func get_host_position():
 	return ai_state_machine.get_perceptions().position
 
@@ -39,6 +48,12 @@ func process(_delta: float) -> void:
 		#set_nav_target.emit(current_stage_mark.position)
 
 func physics_process(_delta: float) -> void:
+	#reset the troll if he guts stuck for some reason
+	if(stuck_timer.is_stopped()):
+		if(check_pos.distance_to(ai_state_machine.get_perceptions().global_position) <= 4):
+			stuck = true
+		check_pos = ai_state_machine.get_perceptions().global_position
+		stuck_timer.start(2)
 	if(current_stage_mark != null):
 		nav_target_reached = get_host_nav_target_reached()
 		var player_ref = get_tree().get_first_node_in_group("player")
@@ -55,9 +70,10 @@ func physics_process(_delta: float) -> void:
 			else:
 				var point_light = get_tree().get_first_node_in_group("troll").get_child(0)
 				point_light.enabled = false
-				if(!ai_state_machine.get_perceptions().nav_target_reached):
+				if(!stuck && !ai_state_machine.get_perceptions().nav_target_reached):
 					advance_navigation.emit(250000)
 				else:
+					stuck = false
 					if(randf_range(0.0,1.0) > 0.50):
 						path_point_index = path_point_index + 1
 						if(path_point_index >= path_points.size()):

@@ -75,7 +75,7 @@ var showing_bubble = false
 var ray_collision_mask = 0b00000000_00000000_00000000_00010001
 
 const top_speed = 125000
-const nav_target_reached_distance = 4 #distance at which nav target is considered reached
+const nav_target_reached_distance = 8.0 #distance at which nav target is considered reached
 const nav_path_resolution = 4
 
 var sound_player := AudioStreamPlayer2D.new()
@@ -133,7 +133,7 @@ func set_up_nav_agent():
 	#nav agent setup stuff
 	add_child(_navigation_agent)
 	_navigation_agent.path_desired_distance = 4.0
-	_navigation_agent.target_desired_distance = nav_target_reached_distance
+	_navigation_agent.target_desired_distance = 4.0
 
 func set_up_sound_player():
 	sound_player.max_distance = 500
@@ -301,7 +301,7 @@ func stop():
 func handle_passive_text():
 	var passive_text = perceptions.current_stage_mark.get_passive_text()
 	if(passive_text != "" &&
-	global_position == perceptions.current_stage_mark.global_position):
+	global_position.distance_to(perceptions.current_stage_mark.global_position) < 8):
 		var in_talk_radius = self.global_position.distance_to(player_ref.global_position) < talk_radius
 		if(!player_ref.in_dialog && !talking && in_talk_radius && !has_talked):
 			speech_instance = speech_bubble.instantiate()

@@ -6,8 +6,8 @@
 [node name="WareFireCracker" type="Node2D"]
 z_index = 1
 script = ExtResource("1_8uaw2")
-cost = 10
-ware_name = "3 Fire Crackers ($10)"
+cost = 2
+ware_name = "3 Fire Crackers ($2)"
 
 [node name="script_node" type="Node" parent="."]
 script = ExtResource("2_vqqkm")

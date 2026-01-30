@@ -3,7 +3,7 @@ extends StaticBody2D
 @onready var point_light : PointLight2D = $PointLight2D
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 
-var active = false
+var active = true
 
 func ready():
 	active =  true

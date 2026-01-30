@@ -30,7 +30,7 @@ voice = "sine_voice"
 
 [node name="trunk4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_f51lg")]
 position = Vector2(9, 697)
-speaker_text = Array[String](["Your apartment  is just up the stairs, at the end of the hall."])
+speaker_text = Array[String](["Your apartment is just up the stairs, at the end of the hall."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk5")]
 voice = "sine_voice"
@@ -79,7 +79,7 @@ voice = "sine_voice"
 
 [node name="trunk12" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_f51lg")]
 position = Vector2(0, 1949)
-speaker_text = Array[String](["I will simply lock you out of your apartment until I am paid."])
+speaker_text = Array[String](["I'm a very reasonable guy."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk13")]
 voice = "sine_voice"

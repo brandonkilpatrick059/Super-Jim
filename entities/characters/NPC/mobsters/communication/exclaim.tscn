@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dtcyjgea8ii5"]
 
 [ext_resource type="Script" uid="uid://b26t6upggnqwl" path="res://scripts/utility/animation_destroy_source.gd" id="1_hxebi"]
-[ext_resource type="SpriteFrames" uid="uid://ipxjp4atfxm3" path="res://sprites/spritesheets/spriteframes/mobster/exclaim.tres" id="2_alvm1"]
+[ext_resource type="SpriteFrames" uid="uid://ceee8o28cixew" path="res://sprites/spritesheets/spriteframes/mobster/pizza_bubble.tres" id="2_67ag6"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4lqkf"]
 light_mode = 1
@@ -13,5 +13,5 @@ script = ExtResource("1_hxebi")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["interface"]]
 material = SubResource("CanvasItemMaterial_4lqkf")
 position = Vector2(16, 0)
-sprite_frames = ExtResource("2_alvm1")
+sprite_frames = ExtResource("2_67ag6")
 offset = Vector2(0, -32)

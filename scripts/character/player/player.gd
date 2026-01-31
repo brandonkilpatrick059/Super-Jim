@@ -1061,6 +1061,10 @@ func set_current_v(vect : Vector2):
 func stop():
 	current_v = Vector2(0,0)
 
+func complete_stop():
+	current_v = Vector2(0,0)
+	linear_velocity = Vector2(0,0)
+
 func set_holding_object(is_holding):
 	holding_object = is_holding
 	_character_base.set_arms_raised(is_holding)

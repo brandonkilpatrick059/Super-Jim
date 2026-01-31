@@ -99,6 +99,10 @@ var is_invincible = false
 var holding_object = false
 var held_obj : Node
 
+var stuck_timer = Timer.new()
+var stuck_check_time_secs = 90
+var stuck_check_pos : Vector2 = Vector2(0,0)
+
 #var pathfinding_timer = Timer.new()
 #var pathfinding_wait = 0.5
 var next_path_position: Vector2 = Vector2(0,0)
@@ -127,6 +131,9 @@ func _ready():
 		
 		processing_timer.one_shot = true
 		add_child(processing_timer)
+		
+		stuck_timer.one_shot = true
+		add_child(stuck_timer)
 		
 		_ai_state_machine.set_mob_ref(self)
 		
@@ -876,6 +883,21 @@ func update_vision():
 		direction.down:
 			_vision.set_rotation_degrees(90)
 
+#double check that they have moved significantly in the last minute and, if not, put them back on the
+#mesh at the nearest point and put them in the stationary "look" state to reset their nav situation
+#handles a situation where the mob gets stuck for whatever reason 
+#(pushed off navmesh, navigating somewhere unreachable, etc)
+func check_mob_stuck():
+	if(stuck_timer.is_stopped()):
+		if(stuck_check_pos.distance_to(_ai_state_machine.get_perceptions().global_position) <= 4):
+			reset()
+		stuck_check_pos = _ai_state_machine.get_perceptions().global_position
+		stuck_timer.start(stuck_check_time_secs)
+
+func reset():
+	global_position = get_nearest_point_on_mesh((global_position))
+	_ai_state_machine.transition_to("look")
+
 ##############
 #PROCESS STUFF
 ##############
@@ -900,6 +922,7 @@ func _physics_process(delta):
 	if(!Engine.is_editor_hint()):
 		update()
 		send_perceptions()
+		check_mob_stuck()
 		
 		if(is_invincible && invincibility_timer.is_stopped()):
 			go_vincible()

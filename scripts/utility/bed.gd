@@ -114,6 +114,7 @@ func _process(delta):
 			teleporting = false
 			_door.play("closed")
 			player_ref.set_control_frozen(false)
+			player_ref.set_movement_frozen(false)
 		
 			
 	if((fading_out || fading_in) &&
@@ -141,27 +142,32 @@ func _process(delta):
 				fade_alpha = 0.0
 				fading_in = false
 				player_ref.set_control_frozen(false)
+				player_ref.set_movement_frozen(false)
 				player_ref.set_ui_visible()
 	update_fade_alpha()
+
+func begin_sleeping():
+	player_ref.set_control_frozen(true)
+	player_ref.complete_stop()
+	player_ref.set_movement_frozen(true)
+	player_ref.set_ui_invisible()
+	var camera = player_ref.get_camera_ref()
+	_fade_to_black.global_position = camera.get_screen_center_position()
+	update_fade_alpha()
+	timer_fade.start(fade_step_secs)
+	fading_out = true
+	sound_player.global_position = player_ref.global_position
+	sound_player.stream = load("res://audio/music/sleep theme.wav")
+	sound_player.play()
+	no_dream_sleep = false
+	var game_save_manager = get_tree().get_first_node_in_group("game_save_manager")
+	game_save_manager.save_game()
 
 func interact():
 	var player_ref = get_tree().get_first_node_in_group("player")
 	if(time_keeper.clock > sleep_start_time ||
 	time_keeper.clock < sleep_end_time):
-		player_ref.set_control_frozen(true)
-		player_ref.stop()
-		player_ref.set_ui_invisible()
-		var camera = player_ref.get_camera_ref()
-		_fade_to_black.global_position = camera.get_screen_center_position()
-		update_fade_alpha()
-		timer_fade.start(fade_step_secs)
-		fading_out = true
-		sound_player.global_position = player_ref.global_position
-		sound_player.stream = load("res://audio/music/sleep theme.wav")
-		sound_player.play()
-		no_dream_sleep = false
-		var game_save_manager = get_tree().get_first_node_in_group("game_save_manager")
-		game_save_manager.save_game()
+		begin_sleeping()
 	else:
 		player_ref._on_make_comment("Can't sleep the day away.")
 

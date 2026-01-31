@@ -27,6 +27,8 @@ var sound_player := AudioStreamPlayer.new()
 @export var open_sound_path : String = ""
 @export var close_sound_path : String = ""
 
+@export var opens_from_other_side : bool = false
+
 var open_sound : AudioStream = null
 var close_sound : AudioStream = null
 
@@ -157,17 +159,21 @@ func get_opener_is_near() -> bool:
 func handle_locked_comment():
 	var player_ref = get_tree().get_first_node_in_group("player")
 	var nodes_in_area : Array[Node2D] = _area_2d.get_overlapping_bodies()
-	if(nodes_in_area.has(player_ref) 
-	&& will_make_locked_comment):
-		if(!waiting_to_comment):
-			locked_comment_timer.start(locked_comment_time)
-			waiting_to_comment = true
-		elif(locked_comment_timer.is_stopped()):
-			player_ref._on_make_comment("It's locked.")
-			will_make_locked_comment = false
-	elif(!nodes_in_area.has(player_ref)):
-		will_make_locked_comment = true
-		waiting_to_comment = false
+	if(!opening && !opened):
+		if(nodes_in_area.has(player_ref) 
+		&& will_make_locked_comment):
+			if(!waiting_to_comment):
+				locked_comment_timer.start(locked_comment_time)
+				waiting_to_comment = true
+			elif(locked_comment_timer.is_stopped()):
+				if(opens_from_other_side):
+					player_ref._on_make_comment("It only opens the other way.")
+				else:
+					player_ref._on_make_comment("It's locked.")
+				will_make_locked_comment = false
+		elif(!nodes_in_area.has(player_ref)):
+			will_make_locked_comment = true
+			waiting_to_comment = false
 		
 
 #used so that a player doesn't get trapped behind a locked door

@@ -92,12 +92,14 @@ func spawn_mobs():
 	while(iter < num_mobs_to_spawn):
 		var red_spawner = get_loneliest_spawner(temp_red_spawners)
 		var blu_spawner = get_loneliest_spawner(temp_blu_spawners)
-		red_spawner.spawn_mob()
-		if(temp_red_spawners.size() > 1):
-			temp_red_spawners.remove_at(temp_red_spawners.find(red_spawner))
-		blu_spawner.spawn_mob()
-		if(temp_blu_spawners.size() > 1):
-			temp_blu_spawners.remove_at(temp_blu_spawners.find(blu_spawner))
+		if(red_spawner != null):
+			red_spawner.spawn_mob()
+			if(temp_red_spawners.size() > 1):
+				temp_red_spawners.remove_at(temp_red_spawners.find(red_spawner))
+		if(blu_spawner != null):
+			blu_spawner.spawn_mob()
+			if(temp_blu_spawners.size() > 1):
+				temp_blu_spawners.remove_at(temp_blu_spawners.find(blu_spawner))
 		iter = iter + 1
 
 func get_loneliest_spawner(spawners : Array[Node]):

@@ -66,10 +66,12 @@ func _ready():
 func enter(_msg := {}) -> void:
 	timer.start(investigate_time_secs)
 	question_bubble.emit()
-	heard_pos = ai_state_machine.get_perceptions().nodes_in_hearing[0].global_position
-	stop.emit()
-	face_pos.emit(heard_pos)
+	if(ai_state_machine.get_perceptions().nodes_in_hearing[0] != null):
+		heard_pos = ai_state_machine.get_perceptions().nodes_in_hearing[0].global_position
+		face_pos.emit(heard_pos)
 	stand.emit("")
+	stop.emit()
+	
 
 func exit() -> void:
 	pass

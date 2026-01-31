@@ -49,7 +49,15 @@ func set_team(input_team : String):
 		add_to_group("blu")
 
 func turn_over():
-	set_team(opposing_team)
+	var points = get_tree().get_nodes_in_group("capture_point")
+	points.erase(self)
+	var is_not_last_spawn = false
+	for point in points:
+		if(point.get_team() == get_team()):
+			is_not_last_spawn = true
+			break
+	if(is_not_last_spawn):
+		set_team(opposing_team)
 
 func get_save_tag():
 	return save_tag

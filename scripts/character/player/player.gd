@@ -410,7 +410,7 @@ func get_owned_bottoms() -> Array[String]:
 #called when the player starts a new game
 func new_game():
 	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
-	time_keeper.set_clock(10)
+	time_keeper.set_clock(17)
 
 func turn_on_ui_noises():
 	_ui.turn_on_ui_noises() 

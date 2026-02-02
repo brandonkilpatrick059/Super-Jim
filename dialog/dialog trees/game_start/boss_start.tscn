@@ -203,7 +203,7 @@ position = Vector2(220, 918)
 speaker_text = Array[String](["The organized crime situation..."])
 speaker_portrait = null
 speech_options = Array[String](["(sign forms accepting liability for injury or death while delivering pizzas)", "(don't sign forms accepting liability for injury or death while delivering pizzas)", "What organized crime situation?"])
-option_branches = [NodePath("../sign"), NodePath("../get out of here"), NodePath("../what situation")]
+option_branches = [NodePath("../signed forms"), NodePath("../get out of here"), NodePath("../what situation")]
 voice = "low_sine_voice"
 
 [node name="what situation" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_csox7")]

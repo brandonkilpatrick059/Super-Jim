@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://g8q516mt8mta"]
+[gd_scene load_steps=6 format=3 uid="uid://g8q516mt8mta"]
 
 [ext_resource type="Script" uid="uid://b2xaniea3y6nq" path="res://scripts/entities/door.gd" id="1_l5igb"]
 [ext_resource type="SpriteFrames" uid="uid://m6t412rcckj5" path="res://sprites/spritesheets/spriteframes/game_world/door1.tres" id="2_ke1ve"]
@@ -8,6 +8,10 @@ size = Vector2(26, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hdbs2"]
 size = Vector2(26, 63)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hdbs2"]
+radius = 16.0
+height = 32.0
 
 [node name="door1" type="Node2D" groups=["door"]]
 script = ExtResource("1_l5igb")
@@ -40,3 +44,17 @@ debug_color = Color(0.910119, 0.273452, 0.308353, 0.42)
 max_distance = 500.0
 attenuation = 5.27802
 bus = &"Effects"
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-32, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_hdbs2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(32, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_hdbs2")

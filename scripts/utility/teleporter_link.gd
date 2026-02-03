@@ -213,8 +213,20 @@ func teleport_player():
 		player_ref.main_ui_invisible()
 	update_fade_alpha()
 	timer_fade.start(fade_step_secs)
+	var push_vector = Vector2(0,0)
+	var horizontal_push_force = 5000
 	if(enter_y_push != 0):
-		player_ref.set_current_v(Vector2(0,enter_y_push))
+		push_vector = push_vector + Vector2(0,enter_y_push)
+	if(player_ref.global_position.x < global_position.x):
+		var force_quot = ((global_position.x - player_ref.global_position.x)/16)
+		var force = horizontal_push_force * force_quot
+		push_vector = push_vector + (Vector2.RIGHT * force)
+	elif(player_ref.global_position.x > global_position.x):
+		var force_quot = ((player_ref.global_position.x - global_position.x)/16)
+		var force = horizontal_push_force * force_quot
+		push_vector = push_vector + (Vector2.LEFT * force)
+		
+	player_ref.set_current_v(push_vector)
 
 func _on_area_2d_body_exited(body):
 	if(body in npcs_using_teleporter):

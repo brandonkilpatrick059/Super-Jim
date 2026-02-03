@@ -189,6 +189,17 @@ func player_is_behind_door():
 			ret_val = true
 	return ret_val
 
+func apply_door_suction():
+	var player_ref = get_tree().get_first_node_in_group("player")
+	var relative_position = global_position.y - player_ref.global_position.y
+	var force : float = 20000
+	var push_vect : Vector2
+	if(relative_position > 0):
+		push_vect = Vector2.DOWN * force
+	elif(relative_position < 0):
+		push_vect = Vector2.UP * force
+	player_ref.push(push_vect, 2.0)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
 	if(!does_not_open):
@@ -237,6 +248,7 @@ func _physics_process(delta: float):
 			opening = false
 			_animated_sprite.play(("opened"))
 			_collision_shape.set_deferred("disabled", true)
+			#apply_door_suction()
 		elif(closing && _animated_sprite.frame == last_frame_close):
 			opened = false
 			closing = false

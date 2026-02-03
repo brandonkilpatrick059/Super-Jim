@@ -4,14 +4,13 @@
 [ext_resource type="SpriteFrames" uid="uid://m6t412rcckj5" path="res://sprites/spritesheets/spriteframes/game_world/door1.tres" id="2_ke1ve"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j02e0"]
-size = Vector2(26, 28)
+size = Vector2(64, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hdbs2"]
 size = Vector2(26, 63)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hdbs2"]
-radius = 16.0
-height = 32.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_hdbs2"]
+radius = 15.0
 
 [node name="door1" type="Node2D" groups=["door"]]
 script = ExtResource("1_l5igb")
@@ -50,11 +49,9 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(-32, 8)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_hdbs2")
+position = Vector2(-32, 9)
+shape = SubResource("CircleShape2D_hdbs2")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(32, 8)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_hdbs2")
+position = Vector2(32, 9)
+shape = SubResource("CircleShape2D_hdbs2")

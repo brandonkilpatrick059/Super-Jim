@@ -2178,10 +2178,9 @@ next_points = [NodePath("../patrol_point22"), NodePath("../patrol_point24")]
 position = Vector2(-2430, -613)
 next_points = [NodePath("../patrol_point13"), NodePath("../patrol_point23"), NodePath("../patrol_point25")]
 
-[node name="patrol_point25" parent="dev_layer/patrol_points" node_paths=PackedStringArray("next_points", "prev_point") instance=ExtResource("1_oro3k")]
+[node name="patrol_point25" parent="dev_layer/patrol_points" node_paths=PackedStringArray("next_points") instance=ExtResource("1_oro3k")]
 position = Vector2(-2427, -975)
 next_points = [NodePath("../patrol_point26"), NodePath("../patrol_point29"), NodePath("../patrol_point24")]
-prev_point = NodePath("../patrol_point24")
 
 [node name="patrol_point26" parent="dev_layer/patrol_points" node_paths=PackedStringArray("next_points") instance=ExtResource("1_oro3k")]
 position = Vector2(-2074, -1071)
@@ -2836,7 +2835,7 @@ position = Vector2(-3240, -776)
 [node name="static_props" type="Node2D" parent="daylight_affected_section/daylight_affected_ysort/game_world"]
 y_sort_enabled = true
 
-[node name="12hr_clock2" parent="daylight_affected_section/daylight_affected_ysort/game_world/static_props" groups=["interactable"] instance=ExtResource("41_17l7n")]
+[node name="12hr_clock2" parent="daylight_affected_section/daylight_affected_ysort/game_world/static_props" instance=ExtResource("41_17l7n")]
 position = Vector2(35507, -30912)
 
 [node name="PoliceBarrier4" parent="daylight_affected_section/daylight_affected_ysort/game_world/static_props" instance=ExtResource("20_5hre3")]
@@ -3825,7 +3824,6 @@ y_sort_enabled = true
 position = Vector2(32872, -26841)
 mass = 10000.0
 talk_radius = 64
-has_passive_text = true
 voice = "low_sine_voice"
 
 [node name="dialog_tester" parent="no_daylight_layer/no_daylight_section/no_daylight_ysort" node_paths=PackedStringArray("branching_dialog") groups=["delivery"] instance=ExtResource("38_u63at")]
@@ -3972,7 +3970,7 @@ offset = Vector2(0, 8)
 z_index = 4
 position = Vector2(32872, -26608)
 
-[node name="12hr_clock" parent="no_daylight_layer/no_daylight_section/no_daylight_ysort/pizzeria_interior" groups=["interactable"] instance=ExtResource("41_17l7n")]
+[node name="12hr_clock" parent="no_daylight_layer/no_daylight_section/no_daylight_ysort/pizzeria_interior" instance=ExtResource("41_17l7n")]
 position = Vector2(32903, -26832)
 
 [node name="delivery_doors" type="Node2D" parent="no_daylight_layer/no_daylight_section/no_daylight_ysort"]
@@ -4061,7 +4059,6 @@ position = Vector2(29864, -26685)
 
 [node name="furniture_salesman" parent="no_daylight_layer/no_daylight_section/no_daylight_ysort" instance=ExtResource("38_u63at")]
 position = Vector2(32423, -28555)
-has_passive_text = true
 voice = "sine_voice"
 
 [node name="TileMap_mid" type="TileMap" parent="no_daylight_layer/no_daylight_section"]

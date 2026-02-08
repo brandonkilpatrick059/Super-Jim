@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dy0ok2t6yhqyc" path="res://sprites/spritesheets/spriteframes/characters/base/char_0_base.tres" id="2_sj33r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q7mi1"]
-size = Vector2(32, 88)
+size = Vector2(32, 82)
 
 [node name="telporter_link" type="Node2D" groups=["teleporter"]]
 z_index = 500
@@ -30,7 +30,7 @@ collision_layer = 0
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 2)
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_q7mi1")
 debug_color = Color(1, 1, 0, 0.419608)
 

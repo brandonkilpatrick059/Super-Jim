@@ -96,8 +96,8 @@ var items_frozen = false
 var current_v = Vector2(0,0)
 
 const full_max_hp = 6
-var max_hp = 2
-var current_hp = 2
+var max_hp = 3
+var current_hp = 3
 var is_invincible = false
 var invincibility_timer := Timer.new()
 var damage_collision_layer = 13

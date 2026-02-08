@@ -11,9 +11,12 @@ var num_mobs_to_spawn = 3
 
 var spawns_locked = true
 
+var total_prune_nodes : int = 0
+
 func _ready() -> void:
 	spawn_timer.one_shot = true
 	add_child(spawn_timer)
+	total_prune_nodes = get_tree().get_nodes_in_group("prunable").size()
 
 func initiate_mob_war():
 	#randomize spawner allegiance roughly down the middle,
@@ -72,7 +75,9 @@ func spawn_mobs():
 			if(mob.is_in_group("bandit")):
 				num_blu_bandits = num_blu_bandits + 1
 	var iter = 0
-	print("=======================")
+	print("===================================")
+	print("FRAME: ",Engine.get_frames_drawn())
+	print("==========MOB WAR==========")
 	print(str("Total Mobs-----", current_mobs.size()))
 	print(str("Total Bandits:-", num_red_bandits + num_blu_bandits))
 	print(str("BLU:-----------", num_blu_points))
@@ -86,7 +91,12 @@ func spawn_mobs():
 	var num_bullets = get_tree().get_nodes_in_group("bullet")
 	print(str("# BULLETS: ",num_bullets.size()))
 	var num_nodes = get_tree().get_node_count()
+	print("==========PERFORMANCE==========")
 	print(str("# TOTAL NODES: "), num_nodes)
+	var prune_nodes = get_tree().get_nodes_in_group("prunable")
+	print(str("+prunable total:---"), total_prune_nodes)
+	print(str("+prunable loaded:--"), prune_nodes.size())
+	print(str("FRAMERATE: ",Engine.get_frames_per_second()))
 	#var num_teles = get_tree().get_nodes_in_group("teleporter")
 	#print(str("# teleporters: ",num_teles.size()))
 	while(iter < num_mobs_to_spawn):

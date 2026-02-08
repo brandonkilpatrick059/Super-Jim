@@ -203,6 +203,8 @@ strength_rating = 12
 hp = 3
 stamina = 0
 power = 3
+buff_dmg_against_team = 4
+buff_dmg_target_team = "green"
 debuff_dmg_from_team = 4
 debuff_dmg_target_team = "green"
 

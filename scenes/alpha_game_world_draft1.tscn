@@ -625,7 +625,7 @@ size = Vector2(128, 62)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8jmhr"]
 size = Vector2(321, 34)
 
-[node name="alpha_game_world" type="Node2D"]
+[node name="alpha_game_world2" type="Node2D"]
 z_as_relative = false
 position = Vector2(-3, 75)
 metadata/_edit_horizontal_guides_ = [-1128.0]

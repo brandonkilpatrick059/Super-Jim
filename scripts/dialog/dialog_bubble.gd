@@ -1,7 +1,7 @@
 class_name dialog_bubble
 extends Node2D
 
-var time_between_chars = 0.06
+var time_between_chars = 0.03
 
 @onready var _portrait = $portrait
 @onready var _label = $Label

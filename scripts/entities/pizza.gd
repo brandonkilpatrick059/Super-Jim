@@ -252,7 +252,7 @@ func deliver_pizza(door : Node2D):
 		pizza_kitchen_door.unlock()
 		var cook_ref = get_tree().get_first_node_in_group("cook")
 		if(hits < 3):
-			cook_ref.set_schedules_index(0)
+			cook_ref.set_schedules_index(8)
 		destroy_self()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -75,11 +75,10 @@ voice = "low_sine_voice"
 
 [node name="refund2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_e18lb")]
 position = Vector2(234, 970)
-speaker_text = Array[String](["Give me 10 bucks, if you can."])
+speaker_text = Array[String](["That means no bonus for you. Sorry."])
 speaker_portrait = ExtResource("3_hpsr7")
 option_branches = [NodePath("../refund3")]
 voice = "low_sine_voice"
-gives_money = -10
 
 [node name="refund3" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_e18lb")]
 position = Vector2(234, 1183)

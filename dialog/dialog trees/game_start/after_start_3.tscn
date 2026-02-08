@@ -251,13 +251,27 @@ speaker_name = "cook"
 [node name="delivery6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
 position = Vector2(336, 2253)
 speaker_text = Array[String](["They're not gonna be happy."])
+option_branches = [NodePath("../delivery9")]
+voice = "sine_voice"
+speaker_name = "speedy"
+
+[node name="delivery9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
+position = Vector2(718, 2354)
+speaker_text = Array[String](["But losing pizzas is inevitable. It's part of the job."])
+option_branches = [NodePath("../delivery10")]
+voice = "sine_voice"
+speaker_name = "speedy"
+
+[node name="delivery10" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
+position = Vector2(727, 2542)
+speaker_text = Array[String](["So you get a $3 bonus for every run without a lost pizza."])
 option_branches = [NodePath("../delivery7")]
 voice = "sine_voice"
 speaker_name = "speedy"
 
 [node name="delivery7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_shkpx")]
 position = Vector2(336, 2478)
-speaker_text = Array[String](["The green compass will show you where to go."])
+speaker_text = Array[String](["Once you have your pizzas, the green compass will show you where to go."])
 option_branches = [NodePath("../delivery8")]
 voice = "sine_voice"
 

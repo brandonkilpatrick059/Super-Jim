@@ -20,6 +20,12 @@ var teleport_fader = preload("res://entities/util/teleport_fader.tscn")
 @export var no_light_interact = false
 @export var remove_held_items = false
 
+
+@export var scripts_on_enter : Array[Node] = []
+@export var scripts_on_exit : Array[Node] = []
+
+var run_enter_scripts = false
+var run_exit_scripts = false
 var entering = false
 var loading = false
 var exiting = false
@@ -124,6 +130,9 @@ func make_inactive():
 	inactive = true
 
 func enter():
+	if(scripts_on_enter != null && run_enter_scripts):
+		for script in scripts_on_enter:
+			script.run_script()
 	if(fade_alpha < 1 && timer_fade.is_stopped()):
 		fade_alpha = fade_alpha + fade_step
 		timer_fade.start(fade_step_secs)
@@ -164,6 +173,9 @@ func begin_loading():
 	timer_load_in.start(teleport_load_in_secs)
 
 func exit():
+	if(scripts_on_exit != null && run_exit_scripts):
+		for script in scripts_on_exit:
+			script.run_script()
 	if(fade_alpha > 0 && timer_fade.is_stopped()):
 		if(exit_dir != ""):
 			player_ref.face_dir(exit_dir)
@@ -204,6 +216,8 @@ func teleport_player():
 	attach_fader()
 	linked_teleporter.attach_fader()
 	entering = true
+	run_enter_scripts = true
+	linked_teleporter.run_exit_scripts = true
 	#attach_fader()
 	#player_ref.get_camera_ref().fade_out(0.1)
 	player_ref.stop()
@@ -213,8 +227,23 @@ func teleport_player():
 		player_ref.main_ui_invisible()
 	update_fade_alpha()
 	timer_fade.start(fade_step_secs)
+	var push_vector = Vector2(0,0)
+	var horizontal_push_force = 5000
 	if(enter_y_push != 0):
-		player_ref.set_current_v(Vector2(0,enter_y_push))
+		if(enter_y_push > 0):
+			push_vector = push_vector + Vector2(0,40000)
+		else:
+			push_vector = push_vector + Vector2(0,-40000)
+	if(player_ref.global_position.x < global_position.x):
+		var force_quot = ((global_position.x - player_ref.global_position.x)/16)
+		var force = horizontal_push_force * force_quot
+		push_vector = push_vector + (Vector2.RIGHT * force)
+	elif(player_ref.global_position.x > global_position.x):
+		var force_quot = ((player_ref.global_position.x - global_position.x)/16)
+		var force = horizontal_push_force * force_quot
+		push_vector = push_vector + (Vector2.LEFT * force)
+		
+	player_ref.set_current_v(push_vector)
 
 func _on_area_2d_body_exited(body):
 	if(body in npcs_using_teleporter):

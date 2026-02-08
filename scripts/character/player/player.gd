@@ -619,7 +619,6 @@ func add_to_max_dash_secs(num : int):
 		max_dash_secs = new_max_dash_secs
 	update_dash_meter()
 	play_sound(crystal_sound)
-	_on_make_comment("Cool, a Dash Crystal!")
 
 func show_dash():
 	update_dash_meter()

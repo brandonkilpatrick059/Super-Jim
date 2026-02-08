@@ -12,8 +12,9 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3o5m8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3v7o"]
-size = Vector2(20, 13)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mx21o"]
+radius = 6.5
+height = 20.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ys81"]
 
@@ -37,7 +38,8 @@ bottom_spriteframes = ExtResource("4_mx21o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5.5)
-shape = SubResource("RectangleShape2D_w3v7o")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_mx21o")
 
 [node name="grabber" type="ShapeCast2D" parent="."]
 rotation = 4.71239

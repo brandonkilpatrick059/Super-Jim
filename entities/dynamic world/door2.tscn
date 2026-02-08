@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://3ygj2lrsi3xy"]
+[gd_scene load_steps=6 format=3 uid="uid://3ygj2lrsi3xy"]
 
 [ext_resource type="Script" uid="uid://b2xaniea3y6nq" path="res://scripts/entities/door.gd" id="1_5k0j3"]
 [ext_resource type="SpriteFrames" uid="uid://dc470q7nsy17b" path="res://sprites/spritesheets/spriteframes/game_world/door2.tres" id="2_5k0j3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j02e0"]
-size = Vector2(26, 28)
+size = Vector2(62, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hdbs2"]
 size = Vector2(26, 63)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5k0j3"]
+radius = 15.0
 
 [node name="door1" type="Node2D" groups=["door"]]
 script = ExtResource("1_5k0j3")
@@ -40,3 +43,16 @@ debug_color = Color(0.910119, 0.273452, 0.308353, 0.42)
 max_distance = 500.0
 attenuation = 5.27802
 bus = &"Effects"
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+z_index = 10
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-31, 9)
+shape = SubResource("CircleShape2D_5k0j3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(31, 9)
+shape = SubResource("CircleShape2D_5k0j3")

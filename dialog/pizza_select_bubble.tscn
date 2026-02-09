@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dyp7uuojqxrvv"]
 
-[ext_resource type="Script" uid="uid://dbifpjkrik5ek" path="res://scripts/entities/pizza_select_bubble.gd" id="1_8cexv"]
+[ext_resource type="Script" uid="uid://dbifpjkrik5ek" path="res://scripts/entities/pizza/pizza_select_bubble.gd" id="1_8cexv"]
 [ext_resource type="Texture2D" uid="uid://dd741i5mc6gg8" path="res://sprites/dialog/dialog_bubble2.png" id="2_8cexv"]
 [ext_resource type="LabelSettings" uid="uid://ca2608v2da05w" path="res://dialog/bubble_settings.tres" id="3_gxpsl"]
 [ext_resource type="Texture2D" uid="uid://tky7m7ktiahc" path="res://sprites/interface/compass_arrow.png" id="4_2acsk"]

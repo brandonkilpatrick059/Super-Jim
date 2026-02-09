@@ -8,7 +8,7 @@
 size = Vector2(16, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_14bso"]
-size = Vector2(325, 143)
+size = Vector2(325, 78)
 
 [node name="TrainTracks" type="Node2D" groups=["prunable"]]
 script = ExtResource("1_vrd6i")
@@ -29,7 +29,7 @@ shape = SubResource("RectangleShape2D_6cc5q")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="vision_collider"]
-position = Vector2(6.5, -103.5)
+position = Vector2(6.5, -105)
 shape = SubResource("RectangleShape2D_14bso")
 
 [node name="shadow" type="Sprite2D" parent="."]

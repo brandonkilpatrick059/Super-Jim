@@ -34,6 +34,12 @@ func load_game():
 			"cash":
 				load_cash(dictionary)
 	save_file.close()
+	handle_queue_free_on_load()
+
+func handle_queue_free_on_load():
+	var nodes = get_tree().get_nodes_in_group("queue_free_on_load")
+	for node in nodes:
+		node.queue_free()
 
 func save_game(): 
 	save_file= FileAccess.open("user://game_save_0.pizz", FileAccess.WRITE)

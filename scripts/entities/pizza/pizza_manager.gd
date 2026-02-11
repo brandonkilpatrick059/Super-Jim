@@ -99,7 +99,6 @@ func restock_pizzas_at_end_of_day():
 		script_node.set_node_group("cook")
 		script_node.set_new_index(0)
 	time_keeper.add_end_of_day_script_node(script_node)
-	reset_pizzas_delivered_today()
 
 func leave_tutorial():
 	var time_keeper = get_tree().get_first_node_in_group("time_keeper")

@@ -192,6 +192,7 @@ func advance_clock():
 func daily_update_objects():
 	update_shops()
 	update_landlord()
+	update_pizzas()
 
 func hourly_update_objects():
 	update_lights()
@@ -209,6 +210,10 @@ func update_lights():
 	var lights = get_tree().get_nodes_in_group("timed_light")
 	for light in lights:
 		light.update_light()
+
+func update_pizzas():
+	var pizza_manager = get_tree().get_first_node_in_group("pizza_manager")
+	pizza_manager.reset_pizzas_delivered_today()
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

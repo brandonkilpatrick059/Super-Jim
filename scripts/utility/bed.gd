@@ -16,7 +16,7 @@ var timer_fade := Timer.new()
 
 var press_hold_timer := Timer.new()
 var holding_forward = false
-var teleport_wait_secs = 1.0
+var teleport_wait_secs = 0.5
 var teleporting = false
 
 #these are defined here but they
@@ -94,6 +94,13 @@ func _process(delta):
 		
 	if(begin_dreaming_timer.is_stopped()):
 		if(dreaming):
+			#all dreams start at midnight
+			#ensures that "end of day" scripts are run
+			if(time_keeper.clock > sleep_start_time):
+				time_keeper.advance_day()
+				time_keeper.set_clock(0)
+				var game_save_manager = get_tree().get_first_node_in_group("game_save_manager")
+				game_save_manager.save_game()
 			_saving_game.visible = false
 			_game_saved_label.visible = true
 			fade_alpha = 0.0

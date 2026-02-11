@@ -85,6 +85,10 @@ func spawn_mobs():
 	var iter = 0
 	print("===================================")
 	print("FRAME: ",Engine.get_frames_drawn())
+	var pizza_manager = get_tree().get_first_node_in_group("pizza_manager")
+	print("=========PROGRESS==========")
+	print(str("LEVEL:  "), pizza_manager.get_level())
+	print(str("Pizzas: "), pizza_manager.get_total_pizzas_delivered())
 	print("==========MOB WAR==========")
 	print(str("Total Mobs-----", current_mobs.size()))
 	print(str("Total Bandits:-", num_red_bandits + num_blu_bandits))

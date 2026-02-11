@@ -3,7 +3,7 @@ extends Node2D
 
 var mobster = preload("res://entities/characters/NPC/mobsters/mobster.tscn")
 
-var max_mobs_per_team = 40
+#var max_mobs_per_team = 40
 var max_bandits_per_team = 10
 var spawns_since_bandit = 0
 var spawns_until_bandit = 3
@@ -20,6 +20,15 @@ var num_nearby_friendlies = 0
 var random : RandomNumberGenerator = RandomNumberGenerator.new()
 
 var is_contested = false
+
+#indexed by level property in pizza_manager.gd
+var max_mobs_per_team : Array[int] = [
+	20, #0
+	20, #1
+	24, #2
+	28, #3
+	32, #4
+]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -82,6 +91,12 @@ func check_is_contested():
 			if(bandit.global_position.distance_to(global_position) < friendly_check_radius):
 				is_contested = true
 
+func get_max_mobs_per_team() -> int:
+	var pizza_manager = get_tree().get_first_node_in_group("pizza_manager")
+	var level = pizza_manager.get_level()
+	return max_mobs_per_team[level]
+	
+
 func spawn_mob():
 	var num_team_mobs = 0
 	var num_team_bandits = 0
@@ -91,7 +106,7 @@ func spawn_mob():
 			num_team_mobs = num_team_mobs + 1
 			if(mob.is_in_group("bandit")):
 				num_team_bandits = num_team_bandits +1
-	if(num_team_mobs < max_mobs_per_team):
+	if(num_team_mobs < get_max_mobs_per_team()):
 		var new_mob = mobster.instantiate()
 		new_mob.set_team(spawner_team)
 		spawns_since_bandit = spawns_since_bandit + 1

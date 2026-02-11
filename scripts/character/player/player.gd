@@ -470,6 +470,7 @@ func load_from_dictionary(load_dictionary : Dictionary):
 	max_hp = int(load_dictionary.get("max_hp"))
 	_ui.set_max_hearts(max_hp)
 	current_hp = int(load_dictionary.get("current_hp"))
+	_ui.update_hearts(current_hp)
 	max_dash_secs = load_dictionary.get("max_dash_secs")
 	update_max_dash_meter()
 	current_dash_secs = load_dictionary.get("current_dash_secs")

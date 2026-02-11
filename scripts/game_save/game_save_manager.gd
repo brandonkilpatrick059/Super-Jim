@@ -12,6 +12,7 @@ func load_game():
 	save_file = FileAccess.open("user://game_save_0.pizz", FileAccess.READ)
 	load_player()
 	load_time_keeper()
+	load_pizza_manager()
 	while(save_file.get_position() < save_file.get_length()):
 	# Read data):
 		var line = save_file.get_line()
@@ -38,6 +39,7 @@ func save_game():
 	save_file= FileAccess.open("user://game_save_0.pizz", FileAccess.WRITE)
 	save_player()
 	save_time_keeper()
+	save_pizza_manager()
 	save_mob_war()
 	save_npcs()
 	save_doors()
@@ -169,3 +171,20 @@ func load_time_keeper():
 	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 	time_keeper.set_day_of_week(int(time_keeper_dictionary.get("day_of_the_week")))
 	time_keeper.set_days_passed(int(time_keeper_dictionary.get("days_passed")))
+
+
+func save_pizza_manager():
+	var pizza_manager = get_tree().get_first_node_in_group("pizza_manager")
+	var pizza_manager_dictionary : Dictionary = {
+		"level" = pizza_manager.get_level(),
+		"total_pizzas_delivered" = pizza_manager.get_total_pizzas_delivered()
+	}
+	save_file.store_line(JSON.stringify(pizza_manager_dictionary))
+	
+func load_pizza_manager():
+	var pizza_manager_string = save_file.get_line() #always fourth line
+	var pizza_manager_dictionary : Dictionary = JSON.parse_string(pizza_manager_string)
+	var pizza_manager = get_tree().get_first_node_in_group("pizza_manager")
+	pizza_manager.set_level(int(pizza_manager_dictionary.get("level")))
+	pizza_manager.set_total_pizzas_delivered(int(pizza_manager_dictionary.get("total_pizzas_delivered")))
+	pizza_manager.set_level(int(pizza_manager_dictionary.get("level")))

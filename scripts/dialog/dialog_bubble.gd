@@ -21,7 +21,6 @@ var wait_time = 0
 var voice : String = "none"
 
 var sound_player := AudioStreamPlayer2D.new()
-var rnd = RandomNumberGenerator.new()
 
 func set_portrait(sprite : SpriteFrames, animation_name : String):
 	_portrait.sprite_frames = sprite
@@ -81,7 +80,7 @@ func _physics_process(delta):
 		if(wait_time >= time_between_chars):
 			wait_time = 0
 			if(voice != "none" && isVowel(full_text.substr(characters_displayed,1))):
-				var voice_num = rnd.randi_range(1,5)
+				var voice_num = randi_range(1,5)
 				sound_player.stream = load(str("res://audio/soundFX/voice/",voice,"/",voice_num,".wav"))
 				sound_player.play()
 			characters_displayed = characters_displayed + 1

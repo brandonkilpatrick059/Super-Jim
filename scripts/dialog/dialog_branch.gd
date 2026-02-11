@@ -22,6 +22,8 @@ extends Node2D
 @export var card_deck : Array[int]
 @export var play_sound_path : String = ""
 
+@export var conditional_option_script : Node 
+
 var random = RandomNumberGenerator.new()
 
 func get_sound_path():
@@ -48,6 +50,12 @@ func get_speech_options():
 
 func get_option_branches():
 	return option_branches
+
+func get_conditional_option_script():
+	return conditional_option_script
+
+func has_conditional_option_script():
+	return !(conditional_option_script == null)
 
 func get_voice():
 	return voice

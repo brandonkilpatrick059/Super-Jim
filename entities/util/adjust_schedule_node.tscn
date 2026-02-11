@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdheokca6nuv3"]
+
+[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/adjust_schedules_index.gd" id="1_ci1iu"]
+
+[node name="AdjustScheduleNode" type="Node2D"]
+script = ExtResource("1_ci1iu")

@@ -85,6 +85,9 @@ func is_end_of_dialog() -> bool:
 func dialog_continues() -> bool:
 	return tree.get_num_speech_options() == 0 && tree.get_num_option_branches() == 1
 
+func has_conditional_option_script() -> bool:
+	return tree.has_conditional_option_script()
+
 func has_speech_options() -> bool:
 	return tree.get_num_speech_options() > 0
 
@@ -165,6 +168,11 @@ func handle_input():
 			end_dialog()
 		elif(dialog_continues()):
 			tree.take_speech_option(0)
+			play_current_branch()
+		elif(has_conditional_option_script()):
+			var script_node = tree.get_conditional_option_script()
+			var choice = script_node.run_conditional() #returns integer
+			tree.take_speech_option(choice)
 			play_current_branch()
 		elif(has_speech_options() && !responding):
 			_DialogBubble.visible = false

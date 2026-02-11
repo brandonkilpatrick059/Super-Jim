@@ -9,6 +9,8 @@ var level : int = 0
 #level = 3 : tier 1-3, 56 mobs, capture points active
 #level = 4 : tier 1-4 , 64 mobs, capture points active
 
+var pizzas_delivered_today : int = 0
+
 var pizza_checkpoints : Array[int] = [
 	0, #0
 	6, #1
@@ -25,10 +27,21 @@ var mob_limits : Array[int] = [
 	64  #level = 4
 ]
 
+var max_pizzas : Array[int] = [
+	6, #level = 0
+	9, #level = 1
+	9, #level = 2
+	9, #level = 3
+	9  #level = 4
+]
+
 var tutorial_doors : Array[Node] = []
 
+var is_leaving_tutorial : bool = false
+
+var has_delivered_max_pizzas = false
+
 func _ready() -> void:
-	add_to_group("pizza_manager")
 	set_up_tutorial_doors()
 
 func set_up_tutorial_doors():
@@ -52,11 +65,17 @@ func get_total_pizzas_delivered() -> int:
 
 func set_total_pizzas_delivered(num : int):
 	total_pizzas_delivered = num
-	update_level()
 
 func add_pizzas_delivered(num : int):
 	total_pizzas_delivered = total_pizzas_delivered + num
+	pizzas_delivered_today = pizzas_delivered_today + num
 	update_level()
+
+func reset_pizzas_delivered_today():
+	pizzas_delivered_today = 0
+
+func has_hit_max_daily_deliveries():
+	return has_delivered_max_pizzas
 
 func update_level():
 	var index = 0
@@ -65,18 +84,43 @@ func update_level():
 		if(total_pizzas_delivered >= pizza_checkpoints[index]):
 			check_level = index
 		index = index + 1
+	if(max_pizzas[level] <= pizzas_delivered_today):
+		has_delivered_max_pizzas = true
 	level = check_level
+
+func restock_pizzas_at_end_of_day():
+	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+	var script_node = load("res://entities/util/adjust_schedule_node.tscn").instantiate()
+	if(is_leaving_tutorial):
+		script_node.set_node_group("cook")
+		script_node.set_new_index(10)
+		is_leaving_tutorial = false
+	else:
+		script_node.set_node_group("cook")
+		script_node.set_new_index(0)
+	time_keeper.add_end_of_day_script_node(script_node)
+	reset_pizzas_delivered_today()
+
+func leave_tutorial():
+	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+	var script_node = Node.new()
+	script_node.set_script(load("res://scripts/utility/adjust_schedules_index.gd"))
+	script_node.set_node_group("cook")
+	script_node.set_new_index(10)
+	time_keeper.add_end_of_day_script_node(script_node)
 
 func get_tutorial_doors() -> Array[Node]:
 	var selected_delivery_doors : Array[Node] = []
 	var num_pizzas = 3
 	var index = 0
 	while(index < num_pizzas):
-		selected_delivery_doors.append(selected_delivery_doors[index])
+		selected_delivery_doors.append(tutorial_doors[index])
 		index = index + 1
 
 	for door in selected_delivery_doors:
-		selected_delivery_doors.erase(door)
+		tutorial_doors.erase(door)
+	if(tutorial_doors.size() == 0):
+		is_leaving_tutorial = true
 
 	return selected_delivery_doors
 

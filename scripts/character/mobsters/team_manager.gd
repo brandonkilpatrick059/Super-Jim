@@ -74,6 +74,14 @@ func spawn_mobs():
 			num_blu_mobs = num_blu_mobs + 1
 			if(mob.is_in_group("bandit")):
 				num_blu_bandits = num_blu_bandits + 1
+	#you may ask yourself
+	#"what made me put these logs here?"
+	#you may ask yourself
+	#"where should I move this code to?"
+	#and you may ask yourself
+	#"am I right, am I wrong?"
+	#And you may say to yourself
+	#"My God, what have I done?"
 	var iter = 0
 	print("===================================")
 	print("FRAME: ",Engine.get_frames_drawn())

@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://q3n3smxtvp7d"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_c54ky"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_h3x8r"]
+[ext_resource type="SpriteFrames" uid="uid://b6grq4ppef8v2" path="res://sprites/spritesheets/spriteframes/portrait/test3.tres" id="3_rihkr"]
+
+[node name="cook_no_pizzas" type="Node2D"]
+script = ExtResource("1_c54ky")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_h3x8r")]
+position = Vector2(0, -16)
+speaker_text = Array[String](["That's all the pizzas we have for you today."])
+speaker_portrait = ExtResource("3_rihkr")
+option_branches = [NodePath("../trunk2")]
+voice = "low_sine_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_h3x8r")]
+position = Vector2(54, 180)
+speaker_text = Array[String](["Speedy here will handle the rest."])
+speaker_portrait = ExtResource("3_rihkr")
+option_branches = [NodePath("../trunk3")]
+voice = "low_sine_voice"
+
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_h3x8r")]
+position = Vector2(54, 392)
+speaker_text = Array[String](["Lucky me..."])
+option_branches = [NodePath("../trunk10")]
+voice = "sine_voice"
+speaker_name = "speedy"
+
+[node name="trunk10" parent="." instance=ExtResource("2_h3x8r")]
+position = Vector2(64, 678)
+speaker_text = Array[String](["You're done for the day. We'll see you tomorrow."])
+speaker_portrait = ExtResource("3_rihkr")
+voice = "low_sine_voice"
+speaker_name = "cook"

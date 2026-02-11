@@ -22,6 +22,8 @@ var playing_cards = false
 
 var waited_ware : Node = null
 
+var queued_script : Node = null
+
 func set_shop(new_shop : shop_manager):
 	shop = new_shop
 
@@ -69,7 +71,10 @@ func play_current_branch():
 		player_ref._on_add_money(branch_gives_money_amount)
 		var branch_script = tree.get_dialog_script()
 		if(branch_script != null):
-			branch_script.run_script()
+			if(tree.script_runs_after_dialog()):
+				queued_script = branch_script
+			else:
+				branch_script.run_script()
 	else:
 		play_cards()
 
@@ -164,6 +169,9 @@ func handle_input():
 		
 	if(Input.is_action_just_pressed("interact")):
 		#no options or next nodes = dialog is over
+		if(queued_script != null):
+			queued_script.run_script()
+			queued_script = null
 		if(is_end_of_dialog()):
 			end_dialog()
 		elif(dialog_continues()):
@@ -213,7 +221,8 @@ func clean_up():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(dialog_started):
-		if(player_ref.global_position.distance_to(speaker_node.global_position) > 300):
+		if(player_ref.global_position.distance_to(speaker_node.global_position) > 300 &&
+		!tree.bypass_distance_check()):
 			end_dialog()
 		else:
 			_DialogBubble.global_position = speaker_node.global_position + Vector2(-48,-96)

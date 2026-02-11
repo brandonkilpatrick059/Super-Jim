@@ -16,7 +16,9 @@ speaker_text = Array[String](["Looks like all the pies made it safely."])
 speaker_portrait = ExtResource("3_gewjf")
 option_branches = [NodePath("../bonus"), NodePath("../bonus2")]
 voice = "low_sine_voice"
+script_runs_after_dialog = null
 conditional_option_script = NodePath("check_out_of_pizzas")
+bypass_distance_check = null
 
 [node name="check_out_of_pizzas" type="Node" parent="trunk"]
 script = ExtResource("4_4h7n1")
@@ -28,6 +30,8 @@ speaker_portrait = ExtResource("3_gewjf")
 voice = "low_sine_voice"
 gives_money = 3
 dialog_script = NodePath("set_to_delivery_dispenser")
+script_runs_after_dialog = null
+bypass_distance_check = null
 
 [node name="set_to_delivery_dispenser" type="Node" parent="bonus"]
 script = ExtResource("4_hy8hd")
@@ -40,6 +44,8 @@ speaker_portrait = ExtResource("3_gewjf")
 voice = "low_sine_voice"
 gives_money = 3
 dialog_script = NodePath("set_to_out_of_pizzas")
+script_runs_after_dialog = null
+bypass_distance_check = null
 
 [node name="set_to_out_of_pizzas" type="Node" parent="bonus2"]
 script = ExtResource("4_hy8hd")

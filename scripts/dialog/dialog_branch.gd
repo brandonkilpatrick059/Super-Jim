@@ -15,6 +15,7 @@ extends Node2D
 
 @export var gives_money : int = 0
 @export var dialog_script : Node = null
+@export var script_runs_after_dialog : bool = false
 
 @export var shows_wares : bool = false
 
@@ -24,6 +25,8 @@ extends Node2D
 
 @export var conditional_option_script : Node 
 
+@export var bypass_distance_check : bool = false
+
 var random = RandomNumberGenerator.new()
 
 func get_sound_path():
@@ -31,6 +34,12 @@ func get_sound_path():
 
 func get_gives_money() -> int:
 	return gives_money
+
+func get_script_runs_after_dialog() -> bool:
+	return script_runs_after_dialog
+
+func get_bypass_distance_check() -> bool:
+	return bypass_distance_check
 
 func get_speaker_portrait():
 	return speaker_portrait

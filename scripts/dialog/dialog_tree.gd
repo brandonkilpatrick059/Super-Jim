@@ -14,6 +14,12 @@ func get_sound_path() -> String:
 func has_conditional_option_script():
 	return current_branch.has_conditional_option_script()
 
+func bypass_distance_check():
+	return current_branch.get_bypass_distance_check()
+
+func script_runs_after_dialog():
+	return current_branch.get_script_runs_after_dialog()
+
 func get_conditional_option_script():
 	return current_branch.get_conditional_option_script()
 

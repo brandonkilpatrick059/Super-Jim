@@ -212,6 +212,7 @@ bypass_distance_check = null
 script = ExtResource("3_csox7")
 node_group = "cook"
 new_index = 5
+new_key = "post_start_1"
 
 [node name="dont know" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_csox7")]
 position = Vector2(349, 1613)

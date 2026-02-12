@@ -177,3 +177,4 @@ bypass_distance_check = null
 [node name="start_main_loop" type="Node" parent="done"]
 script = ExtResource("5_fsis8")
 node_group = "cook"
+new_key = "delivery_dispenser"

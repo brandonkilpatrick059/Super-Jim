@@ -41,6 +41,7 @@ const alert_passive = "alert_passive"
 @export var has_hearing : bool = false
 
 #array of all schedules this NPC will use
+@export var schedule_keys : Array[String] = []
 @export var schedules : Array[schedule] = []
 var schedules_index
 
@@ -216,6 +217,16 @@ func out_of_dialog():
 
 func set_schedules_index(index : int):
 	schedules_index = index
+
+func get_schedules_index() -> int:
+	return schedules_index
+
+func set_schedule_key(key : String):
+	var index = schedule_keys.find(key)
+	set_schedules_index(index)
+
+func get_schedule_key() -> String:
+	return schedule_keys[schedules_index]
 
 func update_line_of_sight_to_target():
 	if(perceptions.target_obj != null):

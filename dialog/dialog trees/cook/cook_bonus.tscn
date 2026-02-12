@@ -36,6 +36,7 @@ bypass_distance_check = null
 [node name="set_to_delivery_dispenser" type="Node" parent="bonus"]
 script = ExtResource("4_hy8hd")
 node_group = "cook"
+new_key = "delivery_dispenser"
 
 [node name="bonus2" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_4h7n1")]
 position = Vector2(152, 148)
@@ -51,3 +52,4 @@ bypass_distance_check = null
 script = ExtResource("4_hy8hd")
 node_group = "cook"
 new_index = 9
+new_key = "out_of_pizzas"

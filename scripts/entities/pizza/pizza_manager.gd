@@ -95,19 +95,24 @@ func restock_pizzas_at_end_of_day():
 	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 	var cook_ref = get_tree().get_first_node_in_group("cook")
 	if(is_leaving_tutorial):
-		cook_ref.set_schedules_index(10)
+		cook_ref.set_schedules_key("gate") #conversation where gates are unlocked
 		is_leaving_tutorial = false
 	else:
-		cook_ref.set_schedules_index(0)
+		var key = cook_ref.get_schedules_key()
+		if(key == "out_for_delivery"): #leaving a pizza out all night fails the delivery
+			cook_ref.set_schedules_key("delivery_failed")
+		elif(key == "no_pizzas"):
+			cook_ref.set_schedules_key("delivery_dispenser")
+	reset_pizzas_delivered_today()
 	doors_ordered_to_today.clear()
 
-func leave_tutorial():
-	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
-	var script_node = Node.new()
-	script_node.set_script(load("res://scripts/utility/adjust_schedules_index.gd"))
-	script_node.set_node_group("cook")
-	script_node.set_new_index(10)
-	time_keeper.add_end_of_day_script_node(script_node)
+#func leave_tutorial():
+	#var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+	#var script_node = Node.new()
+	#script_node.set_script(load("res://scripts/utility/adjust_schedules_index.gd"))
+	#script_node.set_node_group("cook")
+	#script_node.set_new_index(10)
+	#time_keeper.add_end_of_day_script_node(script_node)
 
 func get_tutorial_doors() -> Array[Node]:
 	var selected_delivery_doors : Array[Node] = []
@@ -121,6 +126,7 @@ func get_tutorial_doors() -> Array[Node]:
 		tutorial_doors.erase(door)
 	if(tutorial_doors.size() == 0):
 		is_leaving_tutorial = true
+		has_delivered_max_pizzas = true
 
 	return selected_delivery_doors
 

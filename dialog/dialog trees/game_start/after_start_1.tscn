@@ -96,3 +96,4 @@ bypass_distance_check = null
 script = ExtResource("4_ggh0u")
 node_group = "cook"
 new_index = 6
+new_key = "post_start_2"

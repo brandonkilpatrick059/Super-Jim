@@ -151,7 +151,7 @@ bypass_distance_check = null
 script = ExtResource("5_5blbd")
 node_group = "cook"
 new_index = 4
-new_key = "pre_start_1"
+new_key = "pre_start_2"
 
 [node name="nothing" parent="." instance=ExtResource("2_ow61d")]
 position = Vector2(252, 133)

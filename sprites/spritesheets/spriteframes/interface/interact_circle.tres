@@ -86,7 +86,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"expand",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -114,5 +114,5 @@ animations = [{
 }],
 "loop": true,
 "name": &"retract",
-"speed": 10.0
+"speed": 15.0
 }]

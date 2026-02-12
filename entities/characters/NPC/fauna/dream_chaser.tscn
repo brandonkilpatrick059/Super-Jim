@@ -30,6 +30,7 @@ talk_radius = 200
 base_spriteframes = ExtResource("2_ktoqj")
 body_enter_script_node = NodePath("collision_script")
 exempt_from_npc_refresh = null
+schedule_keys = null
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 4.0

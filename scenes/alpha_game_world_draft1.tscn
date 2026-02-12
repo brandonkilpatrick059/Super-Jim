@@ -2606,6 +2606,7 @@ position = Vector2(32936, -26841)
 position = Vector2(32872, -26841)
 talk_radius = 64
 voice = "low_sine_voice"
+schedule_keys = null
 
 [node name="pizza_spawner" parent="no_daylight_layer/no_daylight_section/no_daylight_ysort" instance=ExtResource("39_8k4lg")]
 position = Vector2(32872, -26822)

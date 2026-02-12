@@ -221,11 +221,11 @@ func set_schedules_index(index : int):
 func get_schedules_index() -> int:
 	return schedules_index
 
-func set_schedule_key(key : String):
+func set_schedules_key(key : String):
 	var index = schedule_keys.find(key)
 	set_schedules_index(index)
 
-func get_schedule_key() -> String:
+func get_schedules_key() -> String:
 	return schedule_keys[schedules_index]
 
 func update_line_of_sight_to_target():

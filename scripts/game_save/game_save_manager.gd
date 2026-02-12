@@ -183,7 +183,9 @@ func save_pizza_manager():
 	var pizza_manager = get_tree().get_first_node_in_group("pizza_manager")
 	var pizza_manager_dictionary : Dictionary = {
 		"level" = pizza_manager.get_level(),
-		"total_pizzas_delivered" = pizza_manager.get_total_pizzas_delivered()
+		"total_pizzas_delivered" = pizza_manager.get_total_pizzas_delivered(),
+		"has_delivered_max_pizzas" = pizza_manager.has_hit_max_daily_deliveries(),
+		"is_leaving_tutorial" = pizza_manager.get_is_leaving_tutorial()
 	}
 	save_file.store_line(JSON.stringify(pizza_manager_dictionary))
 	
@@ -194,3 +196,5 @@ func load_pizza_manager():
 	pizza_manager.set_level(int(pizza_manager_dictionary.get("level")))
 	pizza_manager.set_total_pizzas_delivered(int(pizza_manager_dictionary.get("total_pizzas_delivered")))
 	pizza_manager.set_level(int(pizza_manager_dictionary.get("level")))
+	pizza_manager.set_has_delivered_max_pizzas(pizza_manager_dictionary.get("has_delivered_max_pizzas"))
+	pizza_manager.set_is_leaving_tutorial(pizza_manager_dictionary.get("is_leaving_tutorial"))

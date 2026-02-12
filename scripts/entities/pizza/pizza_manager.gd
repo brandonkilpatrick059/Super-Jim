@@ -46,12 +46,22 @@ var doors_ordered_to_today : Array[Node]
 func _ready() -> void:
 	set_up_tutorial_doors()
 
+
 func set_up_tutorial_doors():
 	var delivery_doors = get_tree().get_nodes_in_group("delivery_door")
 	var iterator = 0
 	for door in delivery_doors:
 		if(door.get_tier() == 0):
 			tutorial_doors.append(door)
+
+func get_is_leaving_tutorial() -> bool:
+	return is_leaving_tutorial
+
+func set_is_leaving_tutorial(value : bool):
+	is_leaving_tutorial = value
+
+func set_has_delivered_max_pizzas(value : bool):
+	has_delivered_max_pizzas = value
 
 #func get_mob_limit() -> int:
 	#return mob_limits[level]
@@ -89,6 +99,9 @@ func update_level():
 		if(total_pizzas_delivered >= pizza_checkpoints[index]):
 			check_level = index
 		index = index + 1
+	if(level == 0 && level != check_level):
+		is_leaving_tutorial = true
+		has_delivered_max_pizzas = true
 	level = check_level
 
 func restock_pizzas_at_end_of_day():
@@ -124,9 +137,6 @@ func get_tutorial_doors() -> Array[Node]:
 
 	for door in selected_delivery_doors:
 		tutorial_doors.erase(door)
-	if(tutorial_doors.size() == 0):
-		is_leaving_tutorial = true
-		has_delivered_max_pizzas = true
 
 	return selected_delivery_doors
 

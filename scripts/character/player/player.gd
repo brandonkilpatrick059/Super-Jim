@@ -840,13 +840,14 @@ func _on_body_entered(body:Node):
 		reduce_hp()
 
 func _on_make_comment(text : String):
-	if(speech_instance != null):
-		speech_instance.queue_free()
-	speech_instance = speech_bubble.instantiate()
-	self.add_child(speech_instance)
-	speech_instance.play_passive_text(text, "sine_voice")
-	comment_timer.start(comment_timer_wait_secs)
-	comment_waiting = false
+	if(!dreaming):
+		if(speech_instance != null):
+			speech_instance.queue_free()
+		speech_instance = speech_bubble.instantiate()
+		self.add_child(speech_instance)
+		speech_instance.play_passive_text(text, "sine_voice")
+		comment_timer.start(comment_timer_wait_secs)
+		comment_waiting = false
 
 func die():
 	if(!dead):

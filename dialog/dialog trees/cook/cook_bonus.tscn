@@ -52,4 +52,4 @@ bypass_distance_check = null
 script = ExtResource("4_hy8hd")
 node_group = "cook"
 new_index = 9
-new_key = "out_of_pizzas"
+new_key = "no_pizzas"

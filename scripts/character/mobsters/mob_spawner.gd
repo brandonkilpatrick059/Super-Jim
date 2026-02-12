@@ -23,8 +23,8 @@ var is_contested = false
 
 #indexed by level property in pizza_manager.gd
 var max_mobs_per_team : Array[int] = [
-	20, #0
-	20, #1
+	15, #0
+	15, #1
 	24, #2
 	28, #3
 	32, #4

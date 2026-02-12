@@ -214,6 +214,7 @@ func update_lights():
 func update_pizzas():
 	var pizza_manager = get_tree().get_first_node_in_group("pizza_manager")
 	pizza_manager.reset_pizzas_delivered_today()
+	pizza_manager.restock_pizzas_at_end_of_day()
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

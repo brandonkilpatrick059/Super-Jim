@@ -19,13 +19,13 @@ var pizza_checkpoints : Array[int] = [
 	42, #4
 ]
 
-var mob_limits : Array[int] = [
-	40, #level = 0
-	40, #level = 1
-	48, #level = 2
-	56, #level = 3
-	64  #level = 4
-]
+#var mob_limits : Array[int] = [
+	#40, #level = 0
+	#40, #level = 1
+	#48, #level = 2
+	#56, #level = 3
+	#64  #level = 4
+#]
 
 var max_pizzas : Array[int] = [
 	6, #level = 0
@@ -39,7 +39,9 @@ var tutorial_doors : Array[Node] = []
 
 var is_leaving_tutorial : bool = false
 
-var has_delivered_max_pizzas = false
+var has_delivered_max_pizzas : bool = false
+
+var doors_ordered_to_today : Array[Node]
 
 func _ready() -> void:
 	set_up_tutorial_doors()
@@ -51,8 +53,8 @@ func set_up_tutorial_doors():
 		if(door.get_tier() == 0):
 			tutorial_doors.append(door)
 
-func get_mob_limit() -> int:
-	return mob_limits[level]
+#func get_mob_limit() -> int:
+	#return mob_limits[level]
 
 func get_level() -> int:
 	return level
@@ -69,10 +71,13 @@ func set_total_pizzas_delivered(num : int):
 func add_pizzas_delivered(num : int):
 	total_pizzas_delivered = total_pizzas_delivered + num
 	pizzas_delivered_today = pizzas_delivered_today + num
+	if(max_pizzas[level] <= pizzas_delivered_today):
+		has_delivered_max_pizzas = true
 	update_level()
 
 func reset_pizzas_delivered_today():
 	pizzas_delivered_today = 0
+	has_delivered_max_pizzas = false
 
 func has_hit_max_daily_deliveries():
 	return has_delivered_max_pizzas
@@ -84,21 +89,17 @@ func update_level():
 		if(total_pizzas_delivered >= pizza_checkpoints[index]):
 			check_level = index
 		index = index + 1
-	if(max_pizzas[level] <= pizzas_delivered_today):
-		has_delivered_max_pizzas = true
 	level = check_level
 
 func restock_pizzas_at_end_of_day():
 	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
-	var script_node = load("res://entities/util/adjust_schedule_node.tscn").instantiate()
+	var cook_ref = get_tree().get_first_node_in_group("cook")
 	if(is_leaving_tutorial):
-		script_node.set_node_group("cook")
-		script_node.set_new_index(10)
+		cook_ref.set_schedules_index(10)
 		is_leaving_tutorial = false
 	else:
-		script_node.set_node_group("cook")
-		script_node.set_new_index(0)
-	time_keeper.add_end_of_day_script_node(script_node)
+		cook_ref.set_schedules_index(0)
+	doors_ordered_to_today.clear()
 
 func leave_tutorial():
 	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
@@ -130,13 +131,15 @@ func get_delivery_doors_by_tier(tier: int, num_pizzas : int = 3) -> Array[Node]:
 	var doors_in_tier : Array[Node] = []
 	selected_delivery_doors = []
 	for door in delivery_doors:
-		if(door.get_tier() <= tier):
+		if(door.get_tier() <= tier &&
+		!doors_ordered_to_today.has(door)):
 			doors_in_tier.append(door)
 	while(iterator < num_pizzas):
 		var random_index = randi_range(0,doors_in_tier.size()-1)
 		var delivery_door = doors_in_tier[random_index]
 		doors_in_tier.remove_at(random_index)
 		selected_delivery_doors.append(delivery_door)
+		doors_ordered_to_today.append(delivery_door)
 		iterator += 1
 	return selected_delivery_doors
 	

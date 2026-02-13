@@ -840,7 +840,7 @@ func _on_body_entered(body:Node):
 		reduce_hp()
 
 func _on_make_comment(text : String):
-	if(!dreaming):
+	if(!dreaming && !in_dialog):
 		if(speech_instance != null):
 			speech_instance.queue_free()
 		speech_instance = speech_bubble.instantiate()

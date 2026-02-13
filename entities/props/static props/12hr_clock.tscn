@@ -5,10 +5,11 @@
 [ext_resource type="Script" uid="uid://cxi3plipn5gyw" path="res://scripts/clock/clock_anim.gd" id="2_euoqj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r5c0s"]
-size = Vector2(14, 25)
+size = Vector2(14, 31.5)
 
 [node name="12hr_clock" type="StaticBody2D" groups=["interactable", "lookable"]]
-collision_layer = 8
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_6syrw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -16,6 +17,6 @@ sprite_frames = ExtResource("1_jiotl")
 script = ExtResource("2_euoqj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(0, 11.25)
 shape = SubResource("RectangleShape2D_r5c0s")
 debug_color = Color(0.239216, 0.623529, 0.4, 0.419608)

@@ -36,7 +36,7 @@ bypass_distance_check = null
 
 [node name="trunk4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_f51lg")]
 position = Vector2(9, 697)
-speaker_text = Array[String](["Your apartment is just up the stairs, at the end of the hall."])
+speaker_text = Array[String](["Your apartment is the one at the end of the hall."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk5")]
 voice = "sine_voice"

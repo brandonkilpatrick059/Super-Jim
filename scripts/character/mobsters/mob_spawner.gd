@@ -25,8 +25,8 @@ var is_contested = false
 var max_mobs_per_team : Array[int] = [
 	15, #0
 	15, #1
-	24, #2
-	28, #3
+	28, #2
+	30, #3
 	32, #4
 ]
 

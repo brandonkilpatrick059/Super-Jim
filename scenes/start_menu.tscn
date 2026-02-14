@@ -43,11 +43,12 @@ bus = &"Music"
 [node name="start_menu" parent="start_menu" instance=ExtResource("6_ucxi6")]
 
 [node name="version_label" type="Label" parent="start_menu"]
-offset_left = -9.0
+offset_left = -20.0
 offset_top = 145.0
-offset_right = 31.0
+offset_right = 20.0
 offset_bottom = 168.0
 label_settings = SubResource("LabelSettings_e58y3")
+horizontal_alignment = 1
 
 [node name="main_camera" parent="." instance=ExtResource("7_xjevn")]
 

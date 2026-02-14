@@ -23,7 +23,7 @@ var process_step_range : float = 0.25
 
 var index = 0
 var rel_index = 0
-var max_nodes_per = 24
+var max_nodes_per = 48
 
 func _ready() -> void:
 	process_timer.one_shot = true

@@ -125,7 +125,11 @@ func game_end(player_won : int):
 
 func end_dialog():
 	tree.reset()
-	player_ref.exit_dialog()
+	if(tree.tree_does_not_return_control()): #start text scroll tree does not give control back
+		var control_stays_frozen : bool = true
+		player_ref.exit_dialog(control_stays_frozen) 
+	else:
+		player_ref.exit_dialog()
 	if(waited_ware != null):
 		waited_ware.buy_item()
 		waited_ware = null

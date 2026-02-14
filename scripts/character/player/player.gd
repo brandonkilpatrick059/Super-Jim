@@ -680,10 +680,10 @@ func add_scene_to_ui_tree(scene : Node):
 func get_camera_ref() -> Node:
 	return _camera
 
-func exit_dialog():
+func exit_dialog(set_control_frozen : bool = false):
 	use_item_timer.start(0.25)
 	in_dialog = false
-	control_frozen = false
+	control_frozen = set_control_frozen
 	dialog_panning = false
 
 func get_money():

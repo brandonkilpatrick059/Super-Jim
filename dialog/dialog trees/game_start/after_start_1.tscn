@@ -76,7 +76,7 @@ bypass_distance_check = null
 
 [node name="trunk9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_g13i0")]
 position = Vector2(54, 1614)
-speaker_text = Array[String](["We're open 10 AM to 8 PM every day."])
+speaker_text = Array[String](["We're open 9 AM to 8 PM every day."])
 speaker_portrait = ExtResource("3_g13i0")
 option_branches = [NodePath("../trunk10")]
 voice = "low_sine_voice"

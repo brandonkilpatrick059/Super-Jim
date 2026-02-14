@@ -9,4 +9,4 @@
 sprite_frames = ExtResource("1_wbgme")
 animation = &"off"
 script = ExtResource("2_n1gd0")
-running_hours = Array[bool]([false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, false, false, false])
+running_hours = Array[bool]([false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false])

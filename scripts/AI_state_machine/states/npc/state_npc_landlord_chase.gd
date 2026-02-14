@@ -8,7 +8,7 @@ var nav_target_reached = false
 var setup_done = false
 var host_position
 
-var chase_speed = 425000
+var chase_speed = 625000
 
 func get_host_position():
 	return ai_state_machine.get_perceptions().position

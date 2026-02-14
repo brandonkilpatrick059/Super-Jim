@@ -107,6 +107,8 @@ func fade_in(in_fade_step : float = fade_step_default):
 
 func connect_player(input : Node):
 	player_ref = input
+	reparent(player_ref)
+	offset = position
 	position = Vector2(0,0)
 	player_connected = true
 

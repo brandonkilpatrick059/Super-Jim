@@ -2,11 +2,15 @@ class_name dialog_tree
 extends Node
 
 @export var trunk := NodePath()
+@export var does_not_return_control : bool = false
 
 @onready var current_branch: dialog_branch = get_node(trunk)
 
 func reset():
 	current_branch = get_node(trunk)
+
+func tree_does_not_return_control() -> bool:
+	return does_not_return_control
 
 func get_sound_path() -> String:
 	return current_branch.get_sound_path()

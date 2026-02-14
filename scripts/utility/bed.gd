@@ -163,9 +163,10 @@ func begin_sleeping():
 	update_fade_alpha()
 	timer_fade.start(fade_step_secs)
 	fading_out = true
-	sound_player.global_position = player_ref.global_position
-	sound_player.stream = load("res://audio/music/sleep theme.wav")
-	sound_player.play()
+	var music_player = get_tree().get_first_node_in_group("main_music_player")
+	music_player.change_stream("res://audio/music/sleep theme.wav")
+	#sound_player.stream = load("res://audio/music/sleep theme.wav")
+	#sound_player.play()
 	no_dream_sleep = false
 	var game_save_manager = get_tree().get_first_node_in_group("game_save_manager")
 	game_save_manager.save_game()

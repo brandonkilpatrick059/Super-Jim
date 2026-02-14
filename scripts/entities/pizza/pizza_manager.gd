@@ -3,29 +3,21 @@ extends Node
 var total_pizzas_delivered : int = 0
 
 var level : int = 0
-#level = 0 : central area, 40 mobs (TUTORIAL)
-#level = 1 : tier 1, 40 mobs
-#level = 2 : tier 1-2, 48 mobs
-#level = 3 : tier 1-3, 56 mobs, capture points active
-#level = 4 : tier 1-4 , 64 mobs, capture points active
+#level = 0 : central area, 30 mobs (TUTORIAL)
+#level = 1 : tier 1, 30 mobs
+#level = 2 : tier 1-2, 56 mobs
+#level = 3 : tier 1-3, 60 mobs
+#level = 4 : tier 1-4 , 64 mobs
 
 var pizzas_delivered_today : int = 0
 
 var pizza_checkpoints : Array[int] = [
 	0, #0
 	6, #1
-	18, #2
+	15, #2
 	30, #3
 	42, #4
 ]
-
-#var mob_limits : Array[int] = [
-	#40, #level = 0
-	#40, #level = 1
-	#48, #level = 2
-	#56, #level = 3
-	#64  #level = 4
-#]
 
 var max_pizzas : Array[int] = [
 	6, #level = 0

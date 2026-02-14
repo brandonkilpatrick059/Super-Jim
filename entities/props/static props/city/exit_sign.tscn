@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bctmlfvoxww75"]
+
+[ext_resource type="Texture2D" uid="uid://b261c14incfq" path="res://sprites/props/exit_sign.png" id="1_k6716"]
+[ext_resource type="Texture2D" uid="uid://b6i63ebldyx86" path="res://sprites/lights/2d_lights_and_shadows_neutral_point_light.webp" id="2_gdxan"]
+
+[node name="exit_sign" type="Sprite2D"]
+z_index = 3
+texture = ExtResource("1_k6716")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0, 0, 1)
+energy = 0.5
+texture = ExtResource("2_gdxan")
+texture_scale = 0.2

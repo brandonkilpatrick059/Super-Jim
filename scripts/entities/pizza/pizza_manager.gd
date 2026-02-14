@@ -16,7 +16,7 @@ var pizza_checkpoints : Array[int] = [
 	6, #1
 	15, #2
 	30, #3
-	42, #4
+	50, #4
 ]
 
 var max_pizzas : Array[int] = [

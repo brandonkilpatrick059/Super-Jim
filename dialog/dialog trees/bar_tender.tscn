@@ -13,24 +13,18 @@ speaker_portrait = null
 speech_options = Array[String](["See you later", "Can I buy a soda for $2?", "Can I get some advice?"])
 option_branches = [NodePath("../bye"), NodePath("../Can I buy a soda?"), NodePath("../Can you give me some advice?")]
 voice = "low_sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="Can I buy a soda?" parent="." instance=ExtResource("2_ct525")]
 position = Vector2(174, 308)
 speaker_text = Array[String](["No."])
 speaker_portrait = null
 voice = "low_sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="bye" parent="." instance=ExtResource("2_ct525")]
 position = Vector2(-233, 261)
 speaker_text = Array[String](["Till next time.", "Adios."])
 speaker_portrait = null
 voice = "low_sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="Can you give me some advice?" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
 position = Vector2(1, 306)
@@ -39,8 +33,6 @@ speaker_portrait = null
 speech_options = Array[String](["Making money?", "Getting around town?", "Any sights I should see?", "Gangsters?"])
 option_branches = [NodePath("../Making money"), NodePath("../getting around town"), NodePath("../sights to see"), NodePath("../dealing with gangster")]
 voice = "low_sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="Making money" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
 position = Vector2(-498, 529)
@@ -48,8 +40,6 @@ speaker_text = Array[String](["Get a job."])
 speaker_portrait = null
 option_branches = [NodePath("../anyways")]
 voice = "low_sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="getting around town" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
 position = Vector2(-321, 524)
@@ -57,8 +47,6 @@ speaker_text = Array[String](["With the gangs and the cops, it can be a little t
 speaker_portrait = null
 option_branches = [NodePath("../getting around town2")]
 voice = "low_sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="getting around town2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
 position = Vector2(-311, 709)
@@ -66,8 +54,6 @@ speaker_text = Array[String](["But people have their ways."])
 speaker_portrait = null
 option_branches = [NodePath("../getting around town3")]
 voice = "low_sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="getting around town3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
 position = Vector2(-307, 882)
@@ -75,8 +61,6 @@ speaker_text = Array[String](["It's good to check doors to see if they go somewh
 speaker_portrait = null
 option_branches = [NodePath("../anyways")]
 voice = "low_sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="anyways" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
 position = Vector2(-531, 137)
@@ -84,8 +68,6 @@ speaker_text = Array[String](["Anyways..."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk")]
 voice = "low_sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="sights to see" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
 position = Vector2(-153, 535)
@@ -93,8 +75,6 @@ speaker_text = Array[String](["Maybe..."])
 speaker_portrait = null
 option_branches = [NodePath("../sights to see2")]
 voice = "low_sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="sights to see2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
 position = Vector2(-138, 717)
@@ -102,8 +82,6 @@ speaker_text = Array[String](["You been to Fallsboro? A little rough, but it's n
 speaker_portrait = null
 option_branches = [NodePath("../anyways")]
 voice = "low_sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="dealing with gangster" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
 position = Vector2(36, 528)
@@ -111,8 +89,6 @@ speaker_text = Array[String](["I try to steer clear of 'em."])
 speaker_portrait = null
 option_branches = [NodePath("../dealing with gangster2")]
 voice = "low_sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="dealing with gangster2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ct525")]
 position = Vector2(45, 719)
@@ -120,5 +96,3 @@ speaker_text = Array[String](["When they stop to look around, it's either clockw
 speaker_portrait = null
 option_branches = [NodePath("../anyways")]
 voice = "low_sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null

@@ -246,6 +246,14 @@ func deliver_pizza(door : Node2D):
 			cook_ref.set_schedules_key("bonus")
 		destroy_self()
 
+func close_pizza_bubble():
+	var player_ref = get_tree().get_nodes_in_group("player")[0]
+	player_ref.set_use_item_timer(0.5)
+	player_ref.set_control_frozen(false)
+	player_ref.set_dialog_panning(false)
+	select_pizza_bubble.queue_free()
+	selecting_pizza = false
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
 	if(_prop != null):
@@ -259,14 +267,10 @@ func _physics_process(delta: float):
 				var player_ref = get_tree().get_nodes_in_group("player")[0]
 				if(use_item_timer.is_stopped()  && 
 				Input.is_action_just_pressed("use_item")):
-					player_ref.set_use_item_timer(0.5)
-					player_ref.set_control_frozen(false)
-					player_ref.set_dialog_panning(false)
 					var fx_player = get_tree().get_first_node_in_group("main_fx_player")
 					fx_player.stream = load("res://audio/soundFX/maracca.ogg")
 					fx_player.play()
-					select_pizza_bubble.queue_free()
-					selecting_pizza = false
+					close_pizza_bubble()
 				else:
 					player_ref.stop()
 					update_select_bubble()

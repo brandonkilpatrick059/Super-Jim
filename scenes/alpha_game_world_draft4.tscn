@@ -1,6 +1,6 @@
 [gd_scene load_steps=924 format=3 uid="uid://cdqi1t4ffkn68"]
 
-[ext_resource type="Script" uid="uid://b6jomjtxpe43f" path="res://scripts/utility/active_root.gd" id="1_kkdxt"]
+[ext_resource type="Script" uid="uid://b6jomjtxpe43f" path="res://scripts/tree_management/active_root.gd" id="1_kkdxt"]
 [ext_resource type="PackedScene" uid="uid://dt6metcfd7qcq" path="res://entities/util/bed.tscn" id="2_w73on"]
 [ext_resource type="PackedScene" uid="uid://yh1sdoo12jth" path="res://entities/characters/NPC/mobsters/util/patrol_point.tscn" id="3_a8ra8"]
 [ext_resource type="Script" uid="uid://buu7jmkglbi6r" path="res://scripts/utility/bottomless_pit.gd" id="3_gfved"]

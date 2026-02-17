@@ -6099,12 +6099,10 @@ mass = 10000.0
 talk_radius = 64
 voice = "low_sine_voice"
 base_spriteframes = ExtResource("58_lw18a")
-schedule_keys = null
 
 [node name="dialog_tester" parent="no_daylight_layer/no_daylight_section/no_daylight_ysort" node_paths=PackedStringArray("branching_dialog") groups=["delivery"] instance=ExtResource("52_6odpx")]
 position = Vector2(32840, -26807)
 mass = 10000.0
-schedule_keys = null
 branching_dialog = NodePath("Multichar_test")
 
 [node name="MultilineTest" parent="no_daylight_layer/no_daylight_section/no_daylight_ysort/dialog_tester" instance=ExtResource("53_crbnu")]
@@ -6466,7 +6464,6 @@ position = Vector2(78, 150)
 [node name="furniture_salesman" parent="no_daylight_layer/no_daylight_section/no_daylight_ysort/central_furniture_store" node_paths=PackedStringArray("shop", "branching_dialog") instance=ExtResource("52_6odpx")]
 position = Vector2(32424, -28546)
 voice = "sine_voice"
-schedule_keys = null
 shop = NodePath("../store_manager")
 branching_dialog = NodePath("TestTree")
 

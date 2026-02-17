@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_hy8hd"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_4h7n1"]
 [ext_resource type="SpriteFrames" uid="uid://b6grq4ppef8v2" path="res://sprites/spritesheets/spriteframes/portrait/test3.tres" id="3_gewjf"]
-[ext_resource type="Script" uid="uid://cf57ypqpguyls" path="res://scripts/utility/check_out_of_pizzas.gd" id="4_4h7n1"]
-[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/adjust_schedules_index.gd" id="4_hy8hd"]
+[ext_resource type="Script" uid="uid://cf57ypqpguyls" path="res://scripts/utility/run_conditionals/check_out_of_pizzas.gd" id="4_4h7n1"]
+[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="4_hy8hd"]
 
 [node name="cook_bonus" type="Node2D"]
 script = ExtResource("1_hy8hd")
@@ -16,9 +16,7 @@ speaker_text = Array[String](["Looks like all the pies made it safely."])
 speaker_portrait = ExtResource("3_gewjf")
 option_branches = [NodePath("../bonus"), NodePath("../bonus2")]
 voice = "low_sine_voice"
-script_runs_after_dialog = null
 conditional_option_script = NodePath("check_out_of_pizzas")
-bypass_distance_check = null
 
 [node name="check_out_of_pizzas" type="Node" parent="trunk"]
 script = ExtResource("4_4h7n1")
@@ -30,8 +28,6 @@ speaker_portrait = ExtResource("3_gewjf")
 voice = "low_sine_voice"
 gives_money = 3
 dialog_script = NodePath("set_to_delivery_dispenser")
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="set_to_delivery_dispenser" type="Node" parent="bonus"]
 script = ExtResource("4_hy8hd")
@@ -45,8 +41,6 @@ speaker_portrait = ExtResource("3_gewjf")
 voice = "low_sine_voice"
 gives_money = 3
 dialog_script = NodePath("set_to_out_of_pizzas")
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="set_to_out_of_pizzas" type="Node" parent="bonus2"]
 script = ExtResource("4_hy8hd")

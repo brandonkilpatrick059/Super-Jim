@@ -14,8 +14,6 @@ speaker_text = Array[String](["That's all the pizzas we have for you today."])
 speaker_portrait = ExtResource("3_rihkr")
 option_branches = [NodePath("../trunk2")]
 voice = "low_sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_h3x8r")]
 position = Vector2(54, 180)
@@ -23,8 +21,6 @@ speaker_text = Array[String](["Speedy here will handle the rest."])
 speaker_portrait = ExtResource("3_rihkr")
 option_branches = [NodePath("../trunk3")]
 voice = "low_sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_h3x8r")]
 position = Vector2(54, 392)
@@ -32,8 +28,6 @@ speaker_text = Array[String](["Lucky me..."])
 option_branches = [NodePath("../trunk10")]
 voice = "sine_voice"
 speaker_name = "speedy"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="trunk10" parent="." instance=ExtResource("2_h3x8r")]
 position = Vector2(64, 678)
@@ -41,5 +35,3 @@ speaker_text = Array[String](["You're done for the day. We'll see you tomorrow."
 speaker_portrait = ExtResource("3_rihkr")
 voice = "low_sine_voice"
 speaker_name = "cook"
-script_runs_after_dialog = null
-bypass_distance_check = null

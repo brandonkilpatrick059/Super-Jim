@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://br7lsjp6dti22" path="res://interface/location_header.tscn" id="2_6r8u7"]
 [ext_resource type="FontFile" uid="uid://cl55ql7qruw6x" path="res://fonts/VT323-Regular.ttf" id="3_bmrsi"]
 [ext_resource type="SpriteFrames" uid="uid://bmgpmudv15sq" path="res://sprites/spritesheets/spriteframes/interface/health_heart.tres" id="4_dwtnx"]
-[ext_resource type="Script" uid="uid://8ro0ia3we2su" path="res://scripts/utility/dash_meter.gd" id="5_apdnc"]
+[ext_resource type="Script" uid="uid://8ro0ia3we2su" path="res://scripts/interface/dash_meter.gd" id="5_apdnc"]
 [ext_resource type="Texture2D" uid="uid://uw3cf5pm1u2u" path="res://sprites/interface/item_box/item_box.png" id="6_rvxvm"]
 [ext_resource type="PackedScene" uid="uid://juqm7h82fyhq" path="res://interface/interact_circle.tscn" id="7_6r8u7"]
 [ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="7_bmrsi"]

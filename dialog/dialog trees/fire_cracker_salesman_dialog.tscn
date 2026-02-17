@@ -13,30 +13,22 @@ speaker_portrait = null
 speech_options = Array[String](["", "", ""])
 option_branches = [NodePath("../no purchase"), NodePath("../purchase"), NodePath("../insufficient money")]
 voice = "sine_voice"
-script_runs_after_dialog = null
 shows_wares = true
-bypass_distance_check = null
 
 [node name="insufficient money" parent="." instance=ExtResource("2_f01i7")]
 position = Vector2(251, 157)
 speaker_text = Array[String](["What? You can't afford it?"])
 speaker_portrait = null
 voice = "sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="no purchase" parent="." instance=ExtResource("2_f01i7")]
 position = Vector2(-205, 164)
 speaker_text = Array[String](["Remember: this conversation never happened."])
 speaker_portrait = null
 voice = "sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="purchase" parent="." instance=ExtResource("2_f01i7")]
 position = Vector2(5, 178)
 speaker_text = Array[String](["If anyone asks, you didn't get those from me."])
 speaker_portrait = null
 voice = "sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null

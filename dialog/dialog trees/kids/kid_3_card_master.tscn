@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_k2lo8"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_iwa66"]
-[ext_resource type="Script" uid="uid://c2q4w0ekhh3v4" path="res://scripts/utility/lock_unlock_door.gd" id="3_iwa66"]
+[ext_resource type="Script" uid="uid://c2q4w0ekhh3v4" path="res://scripts/utility/run_scripts/lock_unlock_door.gd" id="3_iwa66"]
 
 [node name="kid_3_card_master" type="Node2D"]
 script = ExtResource("1_k2lo8")

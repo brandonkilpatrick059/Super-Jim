@@ -102,6 +102,6 @@ position = Vector2(135, 192)
 hat_spriteframes = ExtResource("12_1wwu2")
 top_spriteframes = ExtResource("12_uciga")
 bottom_spriteframes = ExtResource("14_8se4m")
-schedule_keys = null
+schedule_keys = Array[String]([])
 
 [node name="dream_chaser_spawn" type="Node2D" parent="." groups=["dream_chaser_spawn"]]

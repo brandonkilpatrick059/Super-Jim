@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_557yg"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_7hx7j"]
-[ext_resource type="Script" uid="uid://ee70fawk15se" path="res://scripts/utility/wake_player.gd" id="3_s2fq2"]
+[ext_resource type="Script" uid="uid://ee70fawk15se" path="res://scripts/utility/run_scripts/wake_player.gd" id="3_s2fq2"]
 
 [node name="dream_baby" type="Node2D"]
 script = ExtResource("1_557yg")

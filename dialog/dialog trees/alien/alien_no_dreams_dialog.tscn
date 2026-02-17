@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_xhqmu"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_wg80m"]
-[ext_resource type="Script" uid="uid://03wkeim8jfat" path="res://scripts/utility/animatronic_light_enabled_disable.gd" id="3_ipd8p"]
-[ext_resource type="Script" uid="uid://6ti2gqjsh5s4" path="res://scripts/utility/animatronic_animation.gd" id="4_ekaxd"]
+[ext_resource type="Script" uid="uid://03wkeim8jfat" path="res://scripts/utility/run_scripts/animatronic_light_enabled_disable.gd" id="3_ipd8p"]
+[ext_resource type="Script" uid="uid://6ti2gqjsh5s4" path="res://scripts/utility/run_scripts/animatronic_animation.gd" id="4_ekaxd"]
 
 [node name="alien_talks" type="Node2D"]
 script = ExtResource("1_xhqmu")

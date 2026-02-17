@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_wo0y2"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_ow61d"]
 [ext_resource type="SpriteFrames" uid="uid://b6grq4ppef8v2" path="res://sprites/spritesheets/spriteframes/portrait/test3.tres" id="3_n2k0p"]
-[ext_resource type="Script" uid="uid://c2q4w0ekhh3v4" path="res://scripts/utility/lock_unlock_door.gd" id="4_a312a"]
-[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/adjust_schedules_index.gd" id="5_5blbd"]
+[ext_resource type="Script" uid="uid://c2q4w0ekhh3v4" path="res://scripts/utility/run_scripts/lock_unlock_door.gd" id="4_a312a"]
+[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="5_5blbd"]
 
 [node name="before_start_1" type="Node2D"]
 script = ExtResource("1_wo0y2")
@@ -17,8 +17,6 @@ speaker_portrait = ExtResource("3_n2k0p")
 speech_options = Array[String](["I'd like to buy a pizza.", "I want to apply for a job.", "Nothing, actually."])
 option_branches = [NodePath("../pizza"), NodePath("../apply"), NodePath("../nothing")]
 voice = "low_sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="pizza" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
 position = Vector2(-227, 152)
@@ -27,16 +25,12 @@ speaker_portrait = ExtResource("3_n2k0p")
 speech_options = Array[String](["I don't have any money..."])
 option_branches = [NodePath("../pizza2")]
 voice = "low_sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="pizza2" parent="." instance=ExtResource("2_ow61d")]
 position = Vector2(-236, 332)
 speaker_text = Array[String](["Well then we don't have any pies for you."])
 speaker_portrait = ExtResource("3_n2k0p")
 voice = "low_sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="apply" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
 position = Vector2(10, 143)
@@ -44,8 +38,6 @@ speaker_text = Array[String](["Listen pal, there's only one Cook here, and it's 
 speaker_portrait = ExtResource("3_n2k0p")
 option_branches = [NodePath("../apply2")]
 voice = "low_sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="apply2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
 position = Vector2(10, 353)
@@ -54,8 +46,6 @@ speaker_portrait = ExtResource("3_n2k0p")
 option_branches = [NodePath("../apply3")]
 voice = "low_sine_voice"
 speaker_name = "cook"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="apply3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
 position = Vector2(10, 536)
@@ -64,8 +54,6 @@ speech_options = Array[String](["Yes", "No"])
 option_branches = [NodePath("../apply-yes"), NodePath("../apply-no")]
 voice = "sine_voice"
 speaker_name = "speedy"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="apply-no" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
 position = Vector2(223, 733)
@@ -73,8 +61,6 @@ speaker_text = Array[String](["Then you better look elsewhere."])
 option_branches = [NodePath("../apply-no2")]
 voice = "sine_voice"
 speaker_name = "speedy"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="apply-no2" parent="." instance=ExtResource("2_ow61d")]
 position = Vector2(223, 918)
@@ -82,8 +68,6 @@ speaker_text = Array[String](["Figures..."])
 speaker_portrait = ExtResource("3_n2k0p")
 voice = "low_sine_voice"
 speaker_name = "cook"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="apply-yes" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
 position = Vector2(-163, 733)
@@ -91,8 +75,6 @@ speaker_text = Array[String](["Really?"])
 option_branches = [NodePath("../apply-yes2")]
 voice = "sine_voice"
 speaker_name = "speedy"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="apply-yes3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
 position = Vector2(-163, 1235)
@@ -100,8 +82,6 @@ speaker_text = Array[String](["Don't scare 'em off..."])
 option_branches = [NodePath("../apply-yes5")]
 voice = "sine_voice"
 speaker_name = "speedy"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="apply-yes2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
 position = Vector2(-163, 958)
@@ -110,8 +90,6 @@ speaker_portrait = ExtResource("3_n2k0p")
 option_branches = [NodePath("../apply-yes3")]
 voice = "low_sine_voice"
 speaker_name = "cook"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="apply-yes5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ow61d")]
 position = Vector2(-154, 1685)
@@ -120,8 +98,6 @@ speaker_portrait = ExtResource("3_n2k0p")
 option_branches = [NodePath("../apply-yes6")]
 voice = "low_sine_voice"
 speaker_name = "cook"
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="apply-yes6" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_ow61d")]
 position = Vector2(-154, 1883)
@@ -131,8 +107,6 @@ option_branches = [NodePath("../apply-yes7")]
 voice = "low_sine_voice"
 speaker_name = "cook"
 dialog_script = NodePath("unlock_office_door")
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="unlock_office_door" type="Node" parent="apply-yes6"]
 script = ExtResource("4_a312a")
@@ -144,8 +118,6 @@ speaker_text = Array[String](["Good luck..."])
 voice = "sine_voice"
 speaker_name = "speedy"
 dialog_script = NodePath("move_to_pre_start_2")
-script_runs_after_dialog = null
-bypass_distance_check = null
 
 [node name="move_to_pre_start_2" type="Node" parent="apply-yes7"]
 script = ExtResource("5_5blbd")
@@ -158,5 +130,3 @@ position = Vector2(252, 133)
 speaker_text = Array[String](["Whatever."])
 speaker_portrait = ExtResource("3_n2k0p")
 voice = "low_sine_voice"
-script_runs_after_dialog = null
-bypass_distance_check = null

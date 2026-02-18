@@ -32,7 +32,11 @@ func find_bandit():
 	if(bandit_ref != null):
 		#do not want to include the current bandit in list for finding a new bandit
 		bandits.erase(bandit_ref) 
-	bandit_ref = bandits[randi_range(0,bandits.size() - 1)]
+	if(bandits.size() > 0):
+		bandit_ref = bandits[randi_range(0,bandits.size() - 1)]
+	else:
+		var mobs = get_tree().get_nodes_in_group("mobster")
+		bandit_ref = mobs[randi_range(0,mobs.size() - 1)]
 	if(camera_ref == null):
 		camera_ref = get_tree().get_first_node_in_group("camera")
 	camera_ref.connect_anchor(bandit_ref)

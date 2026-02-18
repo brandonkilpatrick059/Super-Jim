@@ -55,6 +55,8 @@ func set_is_leaving_tutorial(value : bool):
 func set_has_delivered_max_pizzas(value : bool):
 	has_delivered_max_pizzas = value
 
+
+
 #func get_mob_limit() -> int:
 	#return mob_limits[level]
 
@@ -119,7 +121,7 @@ func restock_pizzas_at_end_of_day():
 	#script_node.set_new_index(10)
 	#time_keeper.add_end_of_day_script_node(script_node)
 
-func get_tutorial_doors() -> Array[Node]:
+func get_delivery_tutorial_doors() -> Array[Node]:
 	var selected_delivery_doors : Array[Node] = []
 	var num_pizzas = 3
 	var index = 0
@@ -154,6 +156,6 @@ func get_delivery_doors_by_tier(tier: int, num_pizzas : int = 3) -> Array[Node]:
 
 func get_delivery_doors() -> Array[Node]:
 	if(level == 0):
-		return get_tutorial_doors()
+		return get_delivery_tutorial_doors()
 	else:
 		return get_delivery_doors_by_tier(level)

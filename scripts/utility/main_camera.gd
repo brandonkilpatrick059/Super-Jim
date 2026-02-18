@@ -59,6 +59,12 @@ func _ready():
 	fade_alpha = 1
 	update_fade_alpha()
 
+func get_pan_y_max() -> float:
+	return pan_y_max
+
+func get_pan_x_max() -> float:
+	return pan_x_max
+
 func shake(magnitude : int):
 	shaking = true
 	shake_amount = magnitude

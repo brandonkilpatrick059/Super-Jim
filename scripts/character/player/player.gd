@@ -28,8 +28,8 @@ var camera_connected = false
 var base_temp_storage : SpriteFrames = null
 @onready var dreamer_spriteframes : SpriteFrames = preload("res://sprites/spritesheets/spriteframes/characters/base/raccoon_base.tres")
 var dreaming = false
-var sleep_start_time = 18
-var sleep_end_time = 9
+#var sleep_start_time = 18
+#var sleep_end_time = 9
 
 var no_clip = false
 var dev_zoom_level = 0
@@ -222,11 +222,11 @@ func play_sound(stream : AudioStream):
 			player.play()
 			return
 
-func get_sleep_start_time():
-	return sleep_start_time
-
-func get_sleep_end_time():
-	return sleep_end_time
+#func get_sleep_start_time():
+	#return sleep_start_time
+#
+#func get_sleep_end_time():
+	#return sleep_end_time
 
 func begin_dreaming():
 	if(holding_object):
@@ -305,14 +305,14 @@ func handle_waking():
 			wake_up()
 			should_wake_up = false
 			checking_light_distance = false
-	if(!waking || waking_control_back):
-		var time_keeper = get_tree().get_first_node_in_group("time_keeper")
-		if(time_keeper != null):
-			if(time_keeper.clock > sleep_end_time &&
-			time_keeper.clock < sleep_start_time &&
-			(!waking || waking_control_back) &&
-			dreaming):
-				wake_up()
+	#if(!waking || waking_control_back):
+		#var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+		#if(time_keeper != null):
+			#if(time_keeper.clock > sleep_end_time &&
+			#time_keeper.clock < sleep_start_time &&
+			#(!waking || waking_control_back) &&
+			#dreaming):
+				#wake_up()
 
 	if(timer_load_in.is_stopped()):
 		if(waking):
@@ -336,9 +336,9 @@ func load_in():
 		loading_in = true
 		set_ui_invisible()
 		control_frozen = true
-		timer_load_in.start(5)
+		timer_load_in.start(6)
 		var time_keeper = get_tree().get_first_node_in_group("time_keeper")
-		time_keeper.set_clock(9)
+		#time_keeper.set_clock(9)
 		time_keeper.unlock_time()
 		var stream = load("res://audio/music/sleep theme.wav")
 		play_sound(stream)

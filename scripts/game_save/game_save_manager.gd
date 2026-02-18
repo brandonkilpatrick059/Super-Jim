@@ -167,7 +167,8 @@ func save_time_keeper():
 	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 	var time_keeper_dictionary : Dictionary = {
 		"day_of_the_week" = time_keeper.get_day_of_week(),
-		"days_passed" = time_keeper.get_days_passed()
+		"days_passed" = time_keeper.get_days_passed(),
+		"hour" = time_keeper.get_hour()
 	}
 	save_file.store_line(JSON.stringify(time_keeper_dictionary))
 	
@@ -177,6 +178,7 @@ func load_time_keeper():
 	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 	time_keeper.set_day_of_week(int(time_keeper_dictionary.get("day_of_the_week")))
 	time_keeper.set_days_passed(int(time_keeper_dictionary.get("days_passed")))
+	time_keeper.set_clock(int(time_keeper_dictionary.get("hour")))
 
 
 func save_pizza_manager():

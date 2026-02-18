@@ -16,7 +16,7 @@ var slow_1hit = preload ("res://dialog/dialog trees/delivery_trees/slow_1hit.tsc
 var slow_2hit = preload("res://dialog/dialog trees/delivery_trees/slow_2hit.tscn")
 var _3hit = preload("res://dialog/dialog trees/delivery_trees/3hits.tscn")
 var wrong_door_dialog = preload("res://dialog/dialog trees/delivery_trees/wrong_door.tscn")
-var pizza_select_bubble = preload("res://dialog/pizza_select_bubble.tscn")
+var pizza_select_bubble = preload("res://dialog/select_bubble.tscn")
 
 var transform_mod
 
@@ -275,11 +275,17 @@ func _physics_process(delta: float):
 					player_ref.stop()
 					update_select_bubble()
 					if(Input.is_action_just_pressed(direction.right)):
+						var fx_player = get_tree().get_first_node_in_group("main_fx_player")
+						fx_player.stream = load("res://audio/soundFX/shaker.ogg")
+						fx_player.play()
 						if(current_door + 1 < selected_delivery_doors.size()):
 							current_door = current_door + 1
 						else:
 							current_door = 0
 					elif(Input.is_action_just_pressed(direction.left)):
+						var fx_player = get_tree().get_first_node_in_group("main_fx_player")
+						fx_player.stream = load("res://audio/soundFX/shaker.ogg")
+						fx_player.play()
 						if(current_door - 1 >= 0):
 							current_door = current_door - 1
 						else:

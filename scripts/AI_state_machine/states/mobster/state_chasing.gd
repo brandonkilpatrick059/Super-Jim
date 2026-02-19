@@ -43,17 +43,27 @@ func physics_process(_delta: float) -> void:
 		var nodes_in_hearing = ai_state_machine.get_perceptions().nodes_in_hearing
 		for node in nodes_in_vision:
 			#mobster takes priority over player
+			var pizza = get_tree().get_first_node_in_group("pizza")
 			if(ai_state_machine.get_perceptions().target_obj != null && 
 			ai_state_machine.get_perceptions().target_obj.is_in_group("courier") &&
 			node != null && 
 			node.is_in_group("mobster") &&
 			node.is_in_group(ai_state_machine.get_perceptions().opposing_team) &&
-			 node != ai_state_machine.get_perceptions().target_obj &&
-			!ai_state_machine.get_perceptions().has_line_of_sight_to_target):
+			node != ai_state_machine.get_perceptions().target_obj):
 				set_target.emit(node)
 				if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
 					ai_state_machine.transition_to(mobster_states.exclaiming)
 					return
+			elif(pizza != null &&
+				node != null &&
+				!ai_state_machine.perceptions.holding_object &&
+				!ai_state_machine.get_perceptions().target_obj.is_in_group("mobster") &&
+				node.is_in_group("pizza") && 
+				!pizza.is_picked_up()):
+					set_target.emit(node)
+					if(ai_state_machine.get_perceptions().reactive_has_line_of_sight_to_target):
+						ai_state_machine.transition_to(mobster_states.enticed)
+						return
 			elif(ai_state_machine.get_perceptions().target_obj != null &&
 			!ai_state_machine.get_perceptions().target_obj.is_in_group("courier") &&
 			node != null &&

@@ -100,7 +100,7 @@ var holding_object = false
 var held_obj : Node
 
 var stuck_timer = Timer.new()
-var stuck_check_time_secs = 90
+var stuck_check_time_secs = 60
 var stuck_check_pos : Vector2 = Vector2(0,0)
 
 #var pathfinding_timer = Timer.new()
@@ -377,7 +377,6 @@ func active_has_line_of_sight_to_object(obj):
 	if(space_state != null):
 		result = space_state.intersect_ray(query)
 	
-	#_active_raycast.set_target_position(obj.global_position - _active_raycast.global_position)
 	if(result && result.collider == obj):
 		return true
 	else:
@@ -889,7 +888,7 @@ func update_vision():
 #(pushed off navmesh, navigating somewhere unreachable, etc)
 func check_mob_stuck():
 	if(stuck_timer.is_stopped()):
-		if(stuck_check_pos.distance_to(_ai_state_machine.get_perceptions().global_position) <= 4):
+		if(stuck_check_pos.distance_to(_ai_state_machine.get_perceptions().global_position) <= 16):
 			reset()
 		stuck_check_pos = _ai_state_machine.get_perceptions().global_position
 		stuck_timer.start(stuck_check_time_secs)

@@ -77,6 +77,7 @@ func check_portal_input():
 func slept_through_night():
 	if(advances_day):
 		time_keeper.advance_day()
+		advances_day = false
 	time_keeper.set_clock(sleep_end_hour)
 	if(current_select_time > 6):
 		player_ref.increment_hp()
@@ -113,7 +114,7 @@ func handle_select_time_process():
 			if(current_select_time < max_time):
 				current_select_time = current_select_time + 1
 			else:
-				current_select_time = 1
+				current_select_time = 8
 		elif(Input.is_action_just_pressed(direction.left)):
 			var fx_player = get_tree().get_first_node_in_group("main_fx_player")
 			fx_player.stream = load("res://audio/soundFX/shaker.ogg")

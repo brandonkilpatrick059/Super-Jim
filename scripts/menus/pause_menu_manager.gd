@@ -1,6 +1,7 @@
 extends MarginContainer
 
 #@onready var resume_label = $CenterContainer/VBoxContainer/resume_game_label
+@onready var resume_label = $CenterContainer/VBoxContainer/resume_label
 @onready var settings_label = $CenterContainer/VBoxContainer/settings_label
 @onready var quit_label = $CenterContainer/VBoxContainer/quit_label
 
@@ -9,7 +10,7 @@ var active_child_menu = null
 var select_index = 0
 var labels: Array[Node] = []
 var menu_alpha = 1
-var sound_player := AudioStreamPlayer2D.new()
+var sound_player := AudioStreamPlayer.new()
 
 func advance_index():
 	select_index += 1
@@ -41,14 +42,18 @@ func update_selection():
 		iterator+=1
 
 func handle_selection():
-	if(select_index == 0): #settings
-		var child_settings_menu = settings_menu.instantiate()
-		active_child_menu = child_settings_menu
-		get_parent().add_child(child_settings_menu)
-	elif(select_index == 1): #quit to start menu
-		get_parent().get_tree().paused = false
-		get_tree().change_scene_to_file("res://scenes/start_menu.tscn") #TODO: ask if they are sure
-		
+	match select_index:
+		0: #resume
+			var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+			time_keeper.close_pause_menu()
+		1: #settings
+			var child_settings_menu = settings_menu.instantiate()
+			active_child_menu = child_settings_menu
+			get_parent().add_child(child_settings_menu)
+		2: #quit
+			get_parent().get_tree().paused = false
+			get_tree().change_scene_to_file("res://scenes/start_menu.tscn") #TODO: ask if they are sure
+
 func handle_input():
 	if Input.is_action_just_pressed(direction.up):
 		if(select_index > 0):
@@ -67,7 +72,7 @@ func handle_input():
 func _ready():
 	sound_player.bus = "Effects"
 	add_child(sound_player)
-	labels = [settings_label, quit_label]
+	labels = [resume_label, settings_label, quit_label]
 	set_labels_alpha(menu_alpha)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

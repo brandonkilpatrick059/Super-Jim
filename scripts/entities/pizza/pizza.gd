@@ -144,20 +144,8 @@ func update_select_bubble():
 		select_pizza_bubble.set_label(address)
 
 func use_item():
-	var player_ref = get_tree().get_nodes_in_group("player")[0]
 	if(!selecting_pizza):
-		selecting_pizza = true
-		player_ref.set_control_frozen(true)
-		player_ref.stop()
-		player_ref.set_dialog_panning(true)
-		var fx_player = get_tree().get_first_node_in_group("main_fx_player")
-		fx_player.stream = load("res://audio/soundFX/maracca.ogg")
-		fx_player.play()
-		select_pizza_bubble = pizza_select_bubble.instantiate()
-		add_child(select_pizza_bubble)
-		select_pizza_bubble.global_position = player_ref.global_position
-		update_select_bubble()
-		use_item_timer.start(0.2)
+		open_pizza_bubble()
 
 func update_compass_pointer():
 	var player_ref = get_tree().get_nodes_in_group("player")[0]
@@ -246,6 +234,23 @@ func deliver_pizza(door : Node2D):
 			cook_ref.set_schedules_key("bonus")
 		destroy_self()
 
+func open_pizza_bubble():
+	var player_ref = get_tree().get_nodes_in_group("player")[0]
+	selecting_pizza = true
+	player_ref.set_control_frozen(true)
+	player_ref.stop()
+	player_ref.set_dialog_panning(true)
+	var fx_player = get_tree().get_first_node_in_group("main_fx_player")
+	fx_player.stream = load("res://audio/soundFX/maracca.ogg")
+	fx_player.play()
+	select_pizza_bubble = pizza_select_bubble.instantiate()
+	add_child(select_pizza_bubble)
+	select_pizza_bubble.global_position = player_ref.global_position
+	update_select_bubble()
+	use_item_timer.start(0.2)
+	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+	time_keeper.pause_parent_tree()
+
 func close_pizza_bubble():
 	var player_ref = get_tree().get_nodes_in_group("player")[0]
 	player_ref.set_use_item_timer(0.5)
@@ -253,6 +258,8 @@ func close_pizza_bubble():
 	player_ref.set_dialog_panning(false)
 	select_pizza_bubble.queue_free()
 	selecting_pizza = false
+	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+	time_keeper.unpause_parent_tree()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):

@@ -94,6 +94,9 @@ func toggle_pause_parent_tree():
 	else:
 		get_parent().get_tree().paused = false
 
+func pause_parent_tree():
+	get_parent().get_tree().paused = true
+
 func unpause_parent_tree():
 	get_parent().get_tree().paused = false
 

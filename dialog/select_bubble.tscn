@@ -9,6 +9,7 @@
 light_mode = 1
 
 [node name="ResponseBubble" type="Node2D"]
+process_mode = 3
 z_index = 30
 material = SubResource("CanvasItemMaterial_ct2ck")
 script = ExtResource("1_n1wja")

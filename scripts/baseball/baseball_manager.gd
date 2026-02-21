@@ -92,7 +92,7 @@ var thrown_damage_buff_right = 0
 var starting = false
 var start_pausing = false
 var ending = false
-var back_ground_move_step = 6
+var back_ground_move_step = 12
 var back_ground_move_step_time = 0.006
 
 var random = RandomNumberGenerator.new()

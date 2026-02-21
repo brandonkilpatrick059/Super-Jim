@@ -11,9 +11,9 @@ visible = false
 team = "green"
 card_name = "Squidge McTervish"
 portrait_path = "res://sprites/baseball/portraits/test_1.png"
-description = "+2 [color=red]damage[/color] against 🟡"
+description = "+2 [color=red]damage[/color] against [img]res://sprites/baseball/y_sym.png[/img]"
 strength_rating = 9
-hp = 4
+hp = 2
 power = 2
 buff_dmg_against_team = 2
 buff_dmg_target_team = "yellow"
@@ -23,7 +23,7 @@ visible = false
 team = "green"
 card_name = "Kyle \"Corky\" Batts"
 portrait_path = "res://sprites/baseball/portraits/test_2.png"
-description = "-2 [color=red]damage[/color] from 🟡"
+description = "2 [img]res://sprites/baseball/sh_sym.png[/img] against [img]res://sprites/baseball/y_sym.png[/img]"
 strength_rating = 9
 hp = 3
 stamina = 0
@@ -36,7 +36,7 @@ visible = false
 team = "green"
 card_name = "Sammy Salsalito"
 portrait_path = "res://sprites/baseball/portraits/test_3.png"
-description = "+ remaining 🔵
+description = "+ remaining [img]res://sprites/baseball/s_sym.png[/img]
 to next card"
 strength_rating = 9
 hp = 2
@@ -48,9 +48,10 @@ adds_stamina_next = true
 visible = false
 team = "green"
 portrait_path = "res://sprites/baseball/portraits/test_4.png"
-description = "+2 [color=red]damage[/color] against 🟡"
+description = "+2 [color=red]damage[/color] against [img]res://sprites/baseball/y_sym.png[/img]"
 strength_rating = 9
-hp = 7
+hp = 4
+stamina = 0
 buff_dmg_against_team = 2
 buff_dmg_target_team = "yellow"
 
@@ -59,7 +60,7 @@ visible = false
 team = "green"
 card_name = "Beary Long"
 portrait_path = "res://sprites/baseball/portraits/test_5.png"
-description = "+ remaining🔶 
+description = "+ remaining [img]res://sprites/baseball/p_sym.png[/img] 
 to next card."
 strength_rating = 9
 hp = 3
@@ -70,11 +71,11 @@ visible = false
 team = "green"
 card_name = "Danny Overs Jr."
 portrait_path = "res://sprites/baseball/portraits/test_6.png"
-description = "+4 [color=red]damage[/color] against 🟡"
+description = "+2 [color=red]damage[/color] against [img]res://sprites/baseball/y_sym.png[/img]"
 strength_rating = 12
 hp = 5
 power = 2
-buff_dmg_against_team = 4
+buff_dmg_against_team = 2
 buff_dmg_target_team = "yellow"
 
 [node name="green_7" parent="." instance=ExtResource("2_yiqgv")]
@@ -82,7 +83,7 @@ visible = false
 team = "green"
 card_name = "Grimo Johnsonson"
 portrait_path = "res://sprites/baseball/portraits/test_7.png"
-description = "-4 [color=red]damage[/color] from 🟡"
+description = "4 [img]res://sprites/baseball/sh_sym.png[/img] against [img]res://sprites/baseball/y_sym.png[/img]"
 strength_rating = 12
 hp = 3
 power = 4
@@ -94,7 +95,7 @@ visible = false
 team = "green"
 card_name = "Hudson Scudd"
 portrait_path = "res://sprites/baseball/portraits/test_9.png"
-description = "+2 ❤️to next card."
+description = "+2 [img]res://sprites/baseball/h_sym.png[/img] to next card."
 strength_rating = 12
 hp = 5
 power = 4
@@ -105,7 +106,7 @@ visible = false
 team = "green"
 card_name = "Gustopher Leeds"
 portrait_path = "res://sprites/baseball/portraits/test_11.png"
-description = "+4 🔶 to next card"
+description = "+4 [img]res://sprites/baseball/p_sym.png[/img] to next card"
 strength_rating = 12
 hp = 6
 flat_buff_damage_next = 4
@@ -115,7 +116,7 @@ visible = false
 team = "yellow"
 card_name = "Marchie Saintsgo"
 portrait_path = "res://sprites/baseball/portraits/test_1.png"
-description = "+2 🔵 to next card"
+description = "+2 [img]res://sprites/baseball/s_sym.png[/img] to next card"
 strength_rating = 9
 hp = 3
 stamina = 2
@@ -127,7 +128,7 @@ visible = false
 team = "yellow"
 card_name = "Rich “Dicky” Dodge"
 portrait_path = "res://sprites/baseball/portraits/test_2.png"
-description = "+ remaining🔶 
+description = "+ remaining [img]res://sprites/baseball/p_sym.png[/img] 
 to next card"
 strength_rating = 9
 hp = 3
@@ -140,11 +141,10 @@ visible = false
 team = "yellow"
 card_name = "Jimothy Stole"
 portrait_path = "res://sprites/baseball/portraits/test_3.png"
-description = "+2 [color=red]damage[/color] against 🟢"
+description = "+2 [color=red]damage[/color] against [img]res://sprites/baseball/g_sym.png[/img]"
 strength_rating = 9
 hp = 2
 stamina = 2
-power = 3
 buff_dmg_against_team = 2
 buff_dmg_target_team = "green"
 
@@ -153,7 +153,7 @@ visible = false
 team = "yellow"
 card_name = "Laniel Willy-Song"
 portrait_path = "res://sprites/baseball/portraits/test_4.png"
-description = "-2 [color=red]damage[/color] from 🟢"
+description = "2 [img]res://sprites/baseball/sh_sym.png[/img] against [img]res://sprites/baseball/g_sym.png[/img]"
 strength_rating = 9
 hp = 3
 stamina = 0
@@ -167,7 +167,7 @@ position = Vector2(0, -1)
 team = "yellow"
 card_name = "Brichard Socks"
 portrait_path = "res://sprites/baseball/portraits/test_5.png"
-description = "+3 ❤️ each kill"
+description = "+3 [img]res://sprites/baseball/h_sym.png[/img] each kill"
 strength_rating = 9
 hp = 5
 stamina = 0
@@ -179,13 +179,13 @@ visible = false
 team = "yellow"
 card_name = "PJ Bottoms"
 portrait_path = "res://sprites/baseball/portraits/test_6.png"
-description = "+4 [color=red]damage[/color] against 🟢 
--4 [color=red]damage[/color] from 🟢"
+description = "+2 [color=red]damage[/color] against [img]res://sprites/baseball/g_sym.png[/img] 
+4 [img]res://sprites/baseball/sh_sym.png[/img] against [img]res://sprites/baseball/g_sym.png[/img]"
 strength_rating = 12
 hp = 2
 stamina = 0
 power = 2
-buff_dmg_against_team = 4
+buff_dmg_against_team = 2
 buff_dmg_target_team = "green"
 debuff_dmg_from_team = 4
 debuff_dmg_target_team = "green"
@@ -195,8 +195,8 @@ visible = false
 team = "yellow"
 card_name = "Frack MacBack"
 portrait_path = "res://sprites/baseball/portraits/test_7.png"
-description = "+2 🔵 to next card 
-+1 🔶 to next card"
+description = "+2 [img]res://sprites/baseball/s_sym.png[/img] to next card 
++1 [img]res://sprites/baseball/p_sym.png[/img] to next card"
 strength_rating = 12
 hp = 5
 stamina = 0
@@ -208,7 +208,7 @@ visible = false
 team = "yellow"
 card_name = "Gordy Feet"
 portrait_path = "res://sprites/baseball/portraits/test_9.png"
-description = "+2 ❤️ and + remaining 🔵 
+description = "+2 [img]res://sprites/baseball/h_sym.png[/img] and + remaining [img]res://sprites/baseball/s_sym.png[/img] 
 to next card"
 strength_rating = 12
 hp = 2
@@ -221,7 +221,7 @@ visible = false
 team = "yellow"
 card_name = "“Court-Order” Joe"
 portrait_path = "res://sprites/baseball/portraits/test_11.png"
-description = "+2 🔶each kill"
+description = "+2 [img]res://sprites/baseball/p_sym.png[/img] each kill"
 strength_rating = 12
 hp = 4
 power = 3

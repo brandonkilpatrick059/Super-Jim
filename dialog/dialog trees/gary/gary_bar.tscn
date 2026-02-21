@@ -170,7 +170,7 @@ voice = "sine_voice"
 
 [node name="vibes are good" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
 position = Vector2(-531, 137)
-speaker_text = Array[String](["Vibes are good-"])
+speaker_text = Array[String](["Vibes are good."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk")]
 voice = "sine_voice"

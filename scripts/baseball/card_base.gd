@@ -10,12 +10,13 @@ extends Node2D
 @onready var _label_description = $DESCRIPTION
 @onready var _effect_node = $effect_node
 @onready var _team_symbol = $team_symbol
+@onready var _base_border = $base_border
 
 @export var team = ""
 
 @export var card_name : String = "Todd Bonzalez"
 @export var portrait_path : String = ""
-@export var description : String = ""
+@export_multiline var description : String = ""
 @export var strength_rating: int = 0
 @export var hp : int = 1
 @export var stamina : int = 1
@@ -111,7 +112,15 @@ func _ready() -> void:
 	if(portrait_path):
 		_portrait.texture = load(portrait_path)
 	if(description):
-		_label_description.text = description
+		var text = str(description)
+		_label_description.parse_bbcode(text)
+	
+	if(team == "green"):
+		_base_border.modulate = Color(0.7,1.0,0.7)
+	elif(team == "yellow"):
+		_base_border.modulate = Color(1.0,1.0,0.7)
+	elif(team == "gray"):
+		_base_border.modulate = Color(0.4,0.4,0.4)
 
 func get_card_team():
 	return team

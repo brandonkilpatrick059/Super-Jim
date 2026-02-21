@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bocxc8pmuf3na"]
+[gd_scene load_steps=18 format=3 uid="uid://bocxc8pmuf3na"]
 
 [ext_resource type="Script" uid="uid://xm51ra1miw1i" path="res://scripts/baseball/card_base.gd" id="1_y3q1y"]
 [ext_resource type="Texture2D" uid="uid://bc3h2dltwyv7u" path="res://sprites/baseball/card_base.png" id="2_uqmeo"]
 [ext_resource type="Texture2D" uid="uid://citmxsuewhe8x" path="res://sprites/baseball/portraits/test_2.png" id="3_ubpcq"]
 [ext_resource type="LabelSettings" uid="uid://du7h04cuqn7f6" path="res://fonts/card_text_label_settings.tres" id="4_jghjo"]
 [ext_resource type="Script" uid="uid://bbkrydieo1hg7" path="res://scripts/baseball/effects/blank_effect.gd" id="5_5t3vm"]
+[ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="5_uqmeo"]
 [ext_resource type="PackedScene" uid="uid://3y8mthmml1ay" path="res://baseball/hp_readout.tscn" id="6_f5lln"]
 [ext_resource type="PackedScene" uid="uid://dsobaybaolmd6" path="res://baseball/pow_readout.tscn" id="7_psc4y"]
 [ext_resource type="PackedScene" uid="uid://bpx2t73k84hm6" path="res://baseball/stam_readout.tscn" id="8_5d8u1"]
@@ -25,6 +26,10 @@ light_mode = 1
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_f5lln"]
 light_mode = 1
 
+[sub_resource type="Theme" id="Theme_ubpcq"]
+default_font = ExtResource("5_uqmeo")
+default_font_size = 8
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ubpcq"]
 light_mode = 1
 
@@ -32,8 +37,6 @@ light_mode = 1
 material = SubResource("CanvasItemMaterial_y3q1y")
 script = ExtResource("1_y3q1y")
 team = null
-debuff_dmg_from_team = null
-debuff_dmg_target_team = null
 
 [node name="base_border" type="Sprite2D" parent="."]
 z_index = 1
@@ -54,17 +57,19 @@ offset_bottom = -38.0
 text = "Todd Bonzalez"
 label_settings = ExtResource("4_jghjo")
 
-[node name="DESCRIPTION" type="Label" parent="."]
+[node name="DESCRIPTION" type="RichTextLabel" parent="."]
 z_index = 1
 material = SubResource("CanvasItemMaterial_f5lln")
 offset_left = -47.0
 offset_top = 43.0
 offset_right = 47.0
 offset_bottom = 63.0
-text = "\"what a guy!\""
-label_settings = ExtResource("4_jghjo")
-horizontal_alignment = 1
+theme = SubResource("Theme_ubpcq")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+scroll_active = false
 autowrap_mode = 2
+horizontal_alignment = 1
 
 [node name="effect_node" type="Node2D" parent="."]
 material = SubResource("CanvasItemMaterial_ubpcq")

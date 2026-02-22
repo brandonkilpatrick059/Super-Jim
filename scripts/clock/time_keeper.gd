@@ -90,15 +90,20 @@ func get_time_as_ratio_of_full_day() -> float:
 
 func toggle_pause_parent_tree():
 	if(!get_parent().get_tree().paused):
-		get_parent().get_tree().paused = true
+		pause_parent_tree()
 	else:
-		get_parent().get_tree().paused = false
+		unpause_parent_tree()
 
-func pause_parent_tree():
+func pause_parent_tree(music_continues : bool = false):
 	get_parent().get_tree().paused = true
+	if(!music_continues):
+		var main_music_player = get_tree().get_first_node_in_group("main_music_player")
+		main_music_player.pause()
 
 func unpause_parent_tree():
 	get_parent().get_tree().paused = false
+	var main_music_player = get_tree().get_first_node_in_group("main_music_player")
+	main_music_player.unpause()
 
 func toggle_menu_pause():
 	if(!is_game_over):

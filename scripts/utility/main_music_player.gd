@@ -18,6 +18,9 @@ var changing_streams = false
 
 var skipping_fade_in = false
 
+var current_playback_position : float = 0.0
+var paused : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer.one_shot = true
@@ -42,8 +45,22 @@ func change_stream(new_stream: String, skip_fade_in : bool = true):
 		#stream = load(new_stream)
 		#play()
 
+func pause():
+	if(!paused):
+		current_playback_position = get_playback_position()
+		stop()
+		paused = true
+
+func unpause():
+	if(paused):
+		play(current_playback_position)
+		paused = false
+
 func set_volume(volume : float):
 	volume_db = volume
+
+func set_volume_ratio(ratio : float):
+	volume_db = (1.0 - ratio) * zero_volume
 
 func attenuate(amount : float):
 	if(volume_db + amount > 0):

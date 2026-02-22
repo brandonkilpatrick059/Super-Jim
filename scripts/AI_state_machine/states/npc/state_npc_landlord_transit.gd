@@ -27,7 +27,7 @@ func physics_process(_delta: float) -> void:
 		var player_ref = get_tree().get_first_node_in_group("player")
 		var player_pos = player_ref.global_position
 		var self_pos = ai_state_machine.get_perceptions().global_position
-		if(player_pos.distance_to(self_pos) <= 64):
+		if(player_pos.distance_to(self_pos) <= 32):
 			#check for frozen controls in an attempt to prevent interrupting
 			#player conversations, card games, catching the player as they
 			#move into a teleporter etc

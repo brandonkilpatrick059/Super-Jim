@@ -7,6 +7,7 @@ extends MarginContainer
 
 var video_settings_menu = preload("res://menu/settings menu/video_settings.tscn")
 var audio_settings_menu = preload("res://menu/settings menu/audio_settings.tscn")
+var conrols_settings_menu = preload("res://menu/settings menu/controls_settings.tscn")
 var active_child_menu = null
 var select_index = 0
 var labels: Array[Node] = []
@@ -69,7 +70,9 @@ func handle_selection():
 			active_child_menu = child_settings_menu
 			get_parent().add_child(child_settings_menu)
 		2: #controls
-			pass #TODO: implement
+			var child_settings_menu = conrols_settings_menu.instantiate()
+			active_child_menu = child_settings_menu
+			get_parent().add_child(child_settings_menu)
 		3: #back 
 			back_selected()
 
@@ -95,7 +98,7 @@ func handle_input():
 			block_index()
 	if Input.is_action_just_pressed("interact"):
 		handle_selection()
-	if Input.is_action_just_pressed("use_item"):
+	if Input.is_action_just_pressed("back"):
 		back_selected()
 
 # Called when the node enters the scene tree for the first time.

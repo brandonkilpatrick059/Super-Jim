@@ -89,7 +89,7 @@ func handle_input():
 			play_bump = true
 	if Input.is_action_just_pressed("interact"):
 		handle_selection()
-	if Input.is_action_just_pressed("use_item"):
+	if Input.is_action_just_pressed("back"):
 		back_selected()
 
 func raise_bus_volume(bus : int):

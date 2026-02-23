@@ -80,7 +80,7 @@ func handle_input():
 			block_index()
 	if Input.is_action_just_pressed("interact"):
 		handle_selection()
-	if Input.is_action_just_pressed("use_item"):
+	if Input.is_action_just_pressed("back"):
 		back_selected()
 
 # Called when the node enters the scene tree for the first time.

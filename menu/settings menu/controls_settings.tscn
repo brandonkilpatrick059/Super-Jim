@@ -1,0 +1,539 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqrcaawfoeus0"]
+
+[ext_resource type="Script" uid="uid://c8qpyyg054gse" path="res://scripts/menus/controls_settings.gd" id="1_ve2l4"]
+[ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="2_r7i1j"]
+
+[node name="controls_menu" type="MarginContainer"]
+process_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -31.0
+offset_right = 22.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ve2l4")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="rebind_note" type="RichTextLabel" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "([img]res://sprites/interface/glyphs/keyboard/q_key.png[/img] TO REBIND)"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="column_1" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1"]
+layout_mode = 2
+
+[node name="actions" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer"]
+layout_mode = 2
+
+[node name="action_1_1" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions"]
+layout_mode = 2
+
+[node name="name" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions/action_1_1"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "LEFT:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="inputs" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions/action_1_1"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="action_1_2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions"]
+layout_mode = 2
+
+[node name="name" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions/action_1_2"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "RIGHT:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="inputs" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions/action_1_2"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="action_1_3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions"]
+layout_mode = 2
+
+[node name="name" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions/action_1_3"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "UP:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="inputs" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions/action_1_3"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="action_1_4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions"]
+layout_mode = 2
+
+[node name="name" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions/action_1_4"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "DOWN:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="inputs" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions/action_1_4"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="action_1_5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions"]
+layout_mode = 2
+
+[node name="name" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions/action_1_5"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "LOOK LEFT:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="inputs" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions/action_1_5"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="action_1_6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions"]
+layout_mode = 2
+
+[node name="name" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions/action_1_6"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "LOOK RIGHT:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="inputs" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions/action_1_6"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="action_1_7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions"]
+layout_mode = 2
+
+[node name="name" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions/action_1_7"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "LOOK UP:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="inputs" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions/action_1_7"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="action_1_8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions"]
+layout_mode = 2
+
+[node name="name" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions/action_1_8"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "LOOK DOWN:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="inputs" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions/action_1_8"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]/[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]/[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="spacer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="box_1_1" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/spacer"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "		"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="column_2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2"]
+layout_mode = 2
+
+[node name="actions" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer"]
+layout_mode = 2
+
+[node name="action_2_1" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions"]
+layout_mode = 2
+
+[node name="name" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_1"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "INTERACT:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="inputs" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_1"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="action_2_2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions"]
+layout_mode = 2
+
+[node name="name" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_2"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "THROW:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="inputs" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_2"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="action_2_3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions"]
+layout_mode = 2
+
+[node name="name" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_3"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "DASH:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="inputs" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_3"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="action_2_4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions"]
+layout_mode = 2
+
+[node name="name" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_4"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "USE ITEM:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="inputs" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_4"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="action_2_5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions"]
+layout_mode = 2
+
+[node name="name" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_5"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "NEXT ITEM:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="inputs" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_5"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="action_2_6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions"]
+layout_mode = 2
+
+[node name="name" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_6"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "PREV ITEM:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="inputs" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_6"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="action_2_7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions"]
+layout_mode = 2
+
+[node name="name" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_7"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "JOURNAL:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="inputs" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_7"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="action_2_8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions"]
+layout_mode = 2
+
+[node name="name" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_8"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "PAUSE:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="inputs" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_8"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="spacer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="box_1_1" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/spacer2"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "		"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="back_label" type="RichTextLabel" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "BACK"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

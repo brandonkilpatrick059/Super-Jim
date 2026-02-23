@@ -171,6 +171,9 @@ func _on_stop_motion():
 	_character_base.set_animation_scale_ratio(1)
 	current_v = Vector2(0,0)
 
+func get_is_animatronic():
+	return is_animatronic
+
 func interact(stop_bypass : bool = false):
 	if(branching_dialog != null && (current_v.length() < 1 || stop_bypass)):
 		if(!is_animatronic && !no_face_player):

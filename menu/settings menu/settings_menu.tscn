@@ -45,6 +45,14 @@ label_settings = SubResource("LabelSettings_0j45f")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="controls_label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "CONTROLS
+"
+label_settings = SubResource("LabelSettings_0j45f")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="back_label" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "BACK

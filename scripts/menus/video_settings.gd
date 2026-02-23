@@ -1,7 +1,6 @@
 extends MarginContainer
 
 @onready var resolution_label = $CenterContainer/VBoxContainer/resolution
-@onready var lock_framerate_label = $CenterContainer/VBoxContainer/lock_framerate
 @onready var full_screen_label = $CenterContainer/VBoxContainer/full_screen
 @onready var light_quality_label = $CenterContainer/VBoxContainer/light_settings
 @onready var back_label = $CenterContainer/VBoxContainer/back_label
@@ -42,6 +41,8 @@ func update_selection():
 		iterator+=1
 
 func handle_selection():
+	sound_player.stream = load("res://audio/soundFX/maracca.ogg")
+	sound_player.play()
 	if(select_index == 0): #resolution
 		if(SettingsVariables.resolution_index < SettingsVariables.supported_resolutions.size() -1):
 			SettingsVariables.resolution_index += 1
@@ -59,30 +60,13 @@ func handle_selection():
 			SettingsVariables.lighting_index += 1
 		else:
 			SettingsVariables.lighting_index = 0
-	elif(select_index == 3): #lock framerate
-		if(SettingsVariables.lock_framerate_index < SettingsVariables.lock_framerate_settings.size() -1):
-			SettingsVariables.lock_framerate_index += 1
-		else:
-			SettingsVariables.lock_framerate_index = 0
-		match SettingsVariables.lock_framerate_index:
-			0:
-				Engine.max_fps = 0
-			1:
-				Engine.max_fps = 30
-			2:
-				Engine.max_fps = 40
-			3:
-				Engine.max_fps = 50
-			4:
-				Engine.max_fps = 60
-		#SettingsVariables.integer_scaling = !SettingsVariables.integer_scaling
-		#if(SettingsVariables.integer_scaling):
-			#get_viewport().content_scale_stretch = 1 #integer
-		#else:
-			#get_viewport().content_scale_stretch = 0 #fractional 
-	elif(select_index == 4): #back
-		queue_free()
-		
+	elif(select_index == 3): #back
+		back_selected()
+
+func back_selected():
+	get_parent().play_sound("res://audio/soundFX/maracca.ogg")
+	queue_free()
+
 func handle_input():
 	if Input.is_action_just_pressed(direction.up):
 		if(select_index > 0):
@@ -96,13 +80,15 @@ func handle_input():
 			block_index()
 	if Input.is_action_just_pressed("interact"):
 		handle_selection()
+	if Input.is_action_just_pressed("use_item"):
+		back_selected()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	visible = false
 	sound_player.bus = "Effects"
 	add_child(sound_player)
-	labels = [resolution_label, full_screen_label, light_quality_label, lock_framerate_label, back_label]
+	labels = [resolution_label, full_screen_label, light_quality_label, back_label]
 	set_labels_alpha(menu_alpha)
 	
 
@@ -110,7 +96,6 @@ func _ready():
 func _physics_process(delta):
 	var resolution = SettingsVariables.supported_resolutions[SettingsVariables.resolution_index]
 	resolution_label.text = str("RESOLUTION:\n",str(str(resolution.x,"x"),resolution.y))
-	lock_framerate_label.text = str("LOCK FRAMERATE:\n",SettingsVariables.lock_framerate_settings[SettingsVariables.lock_framerate_index])
 	var full_screen_str = "ON"
 	if(!SettingsVariables.full_screen):
 		full_screen_str = "OFF"

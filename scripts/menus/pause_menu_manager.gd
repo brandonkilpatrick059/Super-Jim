@@ -41,15 +41,21 @@ func update_selection():
 			labels[iterator].modulate = Color(1,1,1,1)
 		iterator+=1
 
+func play_sound(sound_path : String):
+	sound_player.stream = load(sound_path)
+	sound_player.play()
+
 func handle_selection():
 	match select_index:
 		0: #resume
 			var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 			time_keeper.close_pause_menu()
 		1: #settings
+			sound_player.stream = load("res://audio/soundFX/voice/low_sine_voice/1.wav")
+			sound_player.play()
 			var child_settings_menu = settings_menu.instantiate()
 			active_child_menu = child_settings_menu
-			get_parent().add_child(child_settings_menu)
+			add_child(child_settings_menu)
 		2: #quit
 			get_parent().get_tree().paused = false
 			get_tree().change_scene_to_file("res://scenes/start_menu.tscn") #TODO: ask if they are sure

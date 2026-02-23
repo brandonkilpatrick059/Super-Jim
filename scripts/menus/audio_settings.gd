@@ -63,8 +63,12 @@ func handle_selection():
 	elif(select_index == 2): #effects volume
 		pass
 	elif(select_index == 3): #back
-		queue_free()
-		
+		back_selected()
+
+func back_selected():
+	get_parent().play_sound("res://audio/soundFX/maracca.ogg")
+	queue_free()
+
 func handle_input():
 	if Input.is_action_just_pressed(direction.up):
 		if(select_index > 0):
@@ -85,6 +89,8 @@ func handle_input():
 			play_bump = true
 	if Input.is_action_just_pressed("interact"):
 		handle_selection()
+	if Input.is_action_just_pressed("use_item"):
+		back_selected()
 
 func raise_bus_volume(bus : int):
 	if(scroll_timer.is_stopped()):

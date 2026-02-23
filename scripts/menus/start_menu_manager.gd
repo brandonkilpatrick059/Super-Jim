@@ -15,7 +15,7 @@ var alpha_step_time_secs = 0.05
 var done_fading = false
 var scene_changing = false
 
-var sound_player := AudioStreamPlayer2D.new()
+var sound_player := AudioStreamPlayer.new()
 var music_player : AudioStreamPlayer
 var timer = Timer.new()
 
@@ -58,12 +58,18 @@ func handle_selection():
 		scene_changing = true
 		transition_to_main_scene.emit()
 	elif(select_index == 1): #settings
+		sound_player.stream = load("res://audio/soundFX/maracca.ogg")
+		sound_player.play()
 		var child_settings_menu = settings_menu.instantiate()
 		active_child_menu = child_settings_menu
-		get_parent().add_child(child_settings_menu)
+		add_child(child_settings_menu)
 	elif(select_index == 2): #quit
 		get_tree().quit()
-		
+
+func play_sound(sound_path : String):
+	sound_player.stream = load(sound_path)
+	sound_player.play()
+
 func handle_input():
 	if(done_fading && !scene_changing):
 		if Input.is_action_just_pressed(direction.up):
@@ -93,23 +99,11 @@ func load_settings():
 		SettingsVariables.resolution_index = settings.get("resolution_index")
 		SettingsVariables.lighting_index = settings.get("lighting_index")
 		SettingsVariables.full_screen = settings.get("full_screen")
-		SettingsVariables.lock_framerate_index = settings.get("lock_framerate_index")
 		get_viewport().content_scale_size = SettingsVariables.supported_resolutions[SettingsVariables.resolution_index]
 		if(SettingsVariables.full_screen):
 			get_viewport().mode = 4 #fullscreen
 		else:
 			get_viewport().mode = 2 #maximized 
-		match int(SettingsVariables.lock_framerate_index):
-			0:
-				Engine.max_fps = 0
-			1:
-				Engine.max_fps = 30
-			2:
-				Engine.max_fps = 40
-			3:
-				Engine.max_fps = 50
-			4:
-				Engine.max_fps = 60
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

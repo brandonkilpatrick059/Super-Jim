@@ -77,15 +77,8 @@ func advance_column():
 
 func update_glyphs():
 	var rebind_text = "("
-	
-	#TODO: factor this out
-	var glyphs_string = ""
 	var events : Array[InputEvent] =  InputMap.action_get_events("interact")
-	for event in events:
-		if event is InputEventKey:
-			var glyph_path = input_map_manager.get_glyph_path_from_keycode(event.physical_keycode)
-			if(glyphs_string == ""):
-				glyphs_string = str("[img]",str(glyph_path,"[/img]"))
+	var glyphs_string = get_glyphs_string(events)
 	rebind_text = str(str(rebind_text,glyphs_string), " TO REBIND)")
 	rebind_note.parse_bbcode(rebind_text)
 	update_glyphs_column(action_column_1, action_map_1)
@@ -95,15 +88,33 @@ func update_glyphs_column(column : Array[Node], action_map : Array[String]):
 	var index = 0
 	for action in column:
 		var events : Array[InputEvent] = InputMap.action_get_events(action_map[index])
-		var glyphs_string = ""
-		for event in events:
-			if event is InputEventKey:
-				var glyph_path = input_map_manager.get_glyph_path_from_keycode(event.physical_keycode)
-				if(glyphs_string == ""):
-					glyphs_string = str("[img]",str(glyph_path,"[/img]"))
+		var glyphs_string = get_glyphs_string(events)
 		var richTextLabel = action.get_child(1)
 		richTextLabel.parse_bbcode(glyphs_string)
 		index = index+1
+
+func get_glyphs_string(events : Array[InputEvent]) -> String:
+	var glyphs_string : String = ""
+	for event in events:
+		if event is InputEventKey:
+			var glyph_path = input_map_manager.get_glyph_path_from_keycode(event.physical_keycode)
+			glyphs_string = concat_glyphs_string(glyphs_string,glyph_path)
+		elif event is InputEventJoypadButton:
+			var glyph_path = input_map_manager.get_glyph_path_from_joybutton(event.button_index)
+			glyphs_string = concat_glyphs_string(glyphs_string,glyph_path)
+		elif event is InputEventJoypadMotion:
+			var glyph_path = input_map_manager.get_glyph_path_from_joyaxis(event.axis, event.axis_value)
+			glyphs_string = concat_glyphs_string(glyphs_string,glyph_path)
+	return glyphs_string
+
+func concat_glyphs_string(glyphs_string : String, glyph_path : String) -> String:
+	var new_glyph_string = ""
+	var bbcode_path : String = str("[img]",str(glyph_path,"[/img]"))
+	if(glyphs_string == ""):
+		new_glyph_string = bbcode_path
+	else:
+		new_glyph_string = str(glyphs_string,str(" / ",bbcode_path))
+	return new_glyph_string
 
 func reduce_column():
 	if(select_column == 2):
@@ -171,7 +182,7 @@ func update_selection():
 	#settings_file.close()
 
 func handle_selection():
-	if(select_index == action_column_1.size()):
+	if(select_index == action_column_1.size()) && select_column == 1:
 		back_selected()
 	#sound_player.stream = load("res://audio/soundFX/maracca.ogg")
 	#sound_player.play()

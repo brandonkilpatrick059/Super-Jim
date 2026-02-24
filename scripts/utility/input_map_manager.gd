@@ -1,5 +1,9 @@
 extends Node
 
+enum controller_type {XBOX, PLAYSTATION}
+
+var current_controller : controller_type = controller_type.XBOX
+
 var mappable_keys : Array[Key] = [
 	KEY_Q,
 	KEY_W,
@@ -122,6 +126,79 @@ var key_glyph_path : Array[String] = [
 	"res://sprites/interface/glyphs/keyboard/minus_key.png",
 ]
 
+var mappable_joypad : Array[JoyButton] = [
+	JOY_BUTTON_A,
+	JOY_BUTTON_B,
+	JOY_BUTTON_X,
+	JOY_BUTTON_Y,
+	JOY_BUTTON_BACK,
+	JOY_BUTTON_START,
+	JOY_BUTTON_LEFT_STICK,
+	JOY_BUTTON_RIGHT_STICK,
+	JOY_BUTTON_DPAD_UP,
+	JOY_BUTTON_DPAD_DOWN,
+	JOY_BUTTON_DPAD_LEFT,
+	JOY_BUTTON_DPAD_RIGHT,
+	JOY_BUTTON_RIGHT_SHOULDER,
+	JOY_BUTTON_LEFT_SHOULDER
+]
+
+var joybutton_glyph_path_xbox : Array[String] = [
+	"res://sprites/interface/glyphs/controller/xbox/a_button_xb.png",
+	"res://sprites/interface/glyphs/controller/xbox/b_button_xb.png",
+	"res://sprites/interface/glyphs/controller/xbox/x_button_xb.png",
+	"res://sprites/interface/glyphs/controller/xbox/y_button_xb.png",
+	"res://sprites/interface/glyphs/controller/xbox/select_button_xb.png",
+	"res://sprites/interface/glyphs/controller/xbox/start_button_xb.png",
+	"res://sprites/interface/glyphs/controller/L_stick_button.png",
+	"res://sprites/interface/glyphs/controller/R_stick_button.png",
+	"res://sprites/interface/glyphs/controller/pad_up.png",
+	"res://sprites/interface/glyphs/controller/pad_down.png",
+	"res://sprites/interface/glyphs/controller/pad_left.png",
+	"res://sprites/interface/glyphs/controller/pad_right.png",
+	"res://sprites/interface/glyphs/controller/right_bumper.png",
+	"res://sprites/interface/glyphs/controller/left_bumper.png"
+]
+
+var mappable_joy_axis : Array[JoyAxis] = [
+	JOY_AXIS_LEFT_X,
+	JOY_AXIS_LEFT_Y,
+	JOY_AXIS_RIGHT_X,
+	JOY_AXIS_RIGHT_Y,
+	JOY_AXIS_TRIGGER_LEFT,
+	JOY_AXIS_TRIGGER_RIGHT
+]
+
+var pos_axis_glyph_path : Array[String] = [
+	"res://sprites/interface/glyphs/controller/L_stick_right.png",
+	"res://sprites/interface/glyphs/controller/L_stick_down.png",
+	"res://sprites/interface/glyphs/controller/R_stick_right.png",
+	"res://sprites/interface/glyphs/controller/R_stick_down.png",
+	"res://sprites/interface/glyphs/controller/L_trigger.png",
+	"res://sprites/interface/glyphs/controller/R_trigger.png",
+]
+
+var neg_axis_glyph_path : Array[String] = [
+	"res://sprites/interface/glyphs/controller/L_stick_left.png",
+	"res://sprites/interface/glyphs/controller/L_stick_up.png",
+	"res://sprites/interface/glyphs/controller/R_stick_left.png",
+	"res://sprites/interface/glyphs/controller/R_stick_up.png",
+	"res://sprites/interface/glyphs/controller/L_trigger.png",
+	"res://sprites/interface/glyphs/controller/R_trigger.png",
+]
+
 func get_glyph_path_from_keycode(key : Key) -> String:
 	var index = mappable_keys.find(key)
 	return key_glyph_path[index]
+
+func get_glyph_path_from_joybutton(button : JoyButton):
+	var index = mappable_joypad.find(button)
+	if(current_controller == controller_type.XBOX):
+		return joybutton_glyph_path_xbox[index]
+
+func get_glyph_path_from_joyaxis(axis : JoyAxis, value: float):
+	var index = mappable_joy_axis.find(axis)
+	if(value > 0):
+		return pos_axis_glyph_path[index]
+	else:
+		return neg_axis_glyph_path[index]

@@ -1,6 +1,7 @@
 extends MarginContainer
 
 @onready var back_label = $CenterContainer/VBoxContainer/back_label
+@onready var rebind_note = $CenterContainer/VBoxContainer/rebind_note
 
 @onready var action1_1 = $CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions/action_1_1
 @onready var action1_2 = $CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions/action_1_2
@@ -19,9 +20,35 @@ extends MarginContainer
 @onready var action2_6 = $CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_6
 @onready var action2_7 = $CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_7
 @onready var action2_8 = $CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_8
+@onready var action2_9 = $CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_9
+
+@onready var input_map_manager = $input_map_manager
 
 var action_column_1 : Array[Node] = []
 var action_column_2 : Array[Node] = []
+
+var action_map_1: Array[String] = [
+	"left",
+	"right",
+	"up",
+	"down",
+	"pan_left",
+	"pan_right",
+	"pan_up",
+	"pan_down"
+]
+
+var action_map_2: Array[String] = [
+	"interact",
+	"throw",
+	"dash",
+	"use_item",
+	"switch_item_right",
+	"switch_item_left",
+	"journal",
+	"start",
+	"transparency"
+]
 
 var menu_alpha = 1
 var sound_player := AudioStreamPlayer.new()
@@ -47,6 +74,36 @@ func advance_column():
 	elif(select_column == 2):
 		sound_player.stream = load("res://audio/soundFX/bigCollide.wav")
 		sound_player.play()
+
+func update_glyphs():
+	var rebind_text = "("
+	
+	#TODO: factor this out
+	var glyphs_string = ""
+	var events : Array[InputEvent] =  InputMap.action_get_events("interact")
+	for event in events:
+		if event is InputEventKey:
+			var glyph_path = input_map_manager.get_glyph_path_from_keycode(event.physical_keycode)
+			if(glyphs_string == ""):
+				glyphs_string = str("[img]",str(glyph_path,"[/img]"))
+	rebind_text = str(str(rebind_text,glyphs_string), " TO REBIND)")
+	rebind_note.parse_bbcode(rebind_text)
+	update_glyphs_column(action_column_1, action_map_1)
+	update_glyphs_column(action_column_2, action_map_2)
+
+func update_glyphs_column(column : Array[Node], action_map : Array[String]):
+	var index = 0
+	for action in column:
+		var events : Array[InputEvent] = InputMap.action_get_events(action_map[index])
+		var glyphs_string = ""
+		for event in events:
+			if event is InputEventKey:
+				var glyph_path = input_map_manager.get_glyph_path_from_keycode(event.physical_keycode)
+				if(glyphs_string == ""):
+					glyphs_string = str("[img]",str(glyph_path,"[/img]"))
+		var richTextLabel = action.get_child(1)
+		richTextLabel.parse_bbcode(glyphs_string)
+		index = index+1
 
 func reduce_column():
 	if(select_column == 2):
@@ -94,7 +151,7 @@ func update_selection():
 		else:
 			action_column_2[iterator].get_child(0).modulate = Color(1,1,1,1)
 		iterator+=1
-	if(select_index == action_column_1.size()):
+	if(select_index == action_column_1.size() && select_column == 1):
 		back_label.modulate = Color(1,1,0,1)
 	else:
 		back_label.modulate = Color(1,1,1,1)
@@ -165,8 +222,10 @@ func handle_input():
 func _ready():
 	sound_player.bus = "Effects"
 	add_child(sound_player)
-	action_column_1 = [action1_1,action1_2,action1_3,action1_4,action1_5,action1_6,action1_7,action1_8]
-	action_column_2 = [action2_1,action2_2,action2_3,action2_4,action2_5,action2_6,action2_7,action2_8]
+	action_column_1 = [action1_1,action1_2,action1_3,action1_4,
+	action1_5,action1_6,action1_7,action1_8]
+	action_column_2 = [action2_1,action2_2,action2_3,action2_4,
+	action2_5,action2_6,action2_7,action2_8,action2_9]
 	set_labels_alpha(menu_alpha)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -175,3 +234,4 @@ func _physics_process(delta: float):
 	set_labels_alpha(menu_alpha)
 	handle_input()
 	update_selection()
+	update_glyphs()

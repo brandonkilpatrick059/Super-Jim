@@ -510,6 +510,33 @@ autowrap_mode = 0
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="action_2_9" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions"]
+layout_mode = 2
+
+[node name="name" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_9"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "TRANSPARENCY:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="inputs" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_9"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]/[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]/[img]res://sprites/interface/glyphs/keyboard/q_key.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="spacer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 alignment = 1

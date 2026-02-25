@@ -38,6 +38,18 @@ horizontal_alignment = 2
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="rebind_mode" type="RichTextLabel" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "MODE: KEYBOARD"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -568,6 +580,18 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="restore_label" type="RichTextLabel" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_r7i1j")
+bbcode_enabled = true
+text = "RESTORE DEFAULT"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 

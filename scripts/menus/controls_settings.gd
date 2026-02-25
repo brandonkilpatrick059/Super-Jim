@@ -2,6 +2,8 @@ extends MarginContainer
 
 @onready var back_label = $CenterContainer/VBoxContainer/back_label
 @onready var rebind_note = $CenterContainer/VBoxContainer/rebind_note
+@onready var rebind_mode = $CenterContainer/VBoxContainer/rebind_mode
+@onready var restore_default = $CenterContainer/VBoxContainer/restore_label
 
 @onready var action1_1 = $CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions/action_1_1
 @onready var action1_2 = $CenterContainer/VBoxContainer/HBoxContainer/column_1/HBoxContainer/actions/action_1_2
@@ -26,6 +28,9 @@ extends MarginContainer
 
 var action_column_1 : Array[Node] = []
 var action_column_2 : Array[Node] = []
+
+var modes : Array[String] = ["KEYBOARD", "CONTROLLER", "SECONDARY"]
+var mode_index = 0
 
 var action_map_1: Array[String] = [
 	"left",
@@ -69,52 +74,15 @@ func reduce_index():
 func advance_column():
 	if(select_column == 1):
 		select_column = 2
+		if(select_index >= action_column_2.size()):
+			select_index = action_column_2.size() - 1
+		elif(select_index < 0):
+			select_index = 0
 		sound_player.stream = load("res://audio/soundFX/voice/low_sine_voice/1.wav")
 		sound_player.play()
 	elif(select_column == 2):
 		sound_player.stream = load("res://audio/soundFX/bigCollide.wav")
 		sound_player.play()
-
-func update_glyphs():
-	var rebind_text = "("
-	var events : Array[InputEvent] =  InputMap.action_get_events("interact")
-	var glyphs_string = get_glyphs_string(events)
-	rebind_text = str(str(rebind_text,glyphs_string), " TO REBIND)")
-	rebind_note.parse_bbcode(rebind_text)
-	update_glyphs_column(action_column_1, action_map_1)
-	update_glyphs_column(action_column_2, action_map_2)
-
-func update_glyphs_column(column : Array[Node], action_map : Array[String]):
-	var index = 0
-	for action in column:
-		var events : Array[InputEvent] = InputMap.action_get_events(action_map[index])
-		var glyphs_string = get_glyphs_string(events)
-		var richTextLabel = action.get_child(1)
-		richTextLabel.parse_bbcode(glyphs_string)
-		index = index+1
-
-func get_glyphs_string(events : Array[InputEvent]) -> String:
-	var glyphs_string : String = ""
-	for event in events:
-		if event is InputEventKey:
-			var glyph_path = input_map_manager.get_glyph_path_from_keycode(event.physical_keycode)
-			glyphs_string = concat_glyphs_string(glyphs_string,glyph_path)
-		elif event is InputEventJoypadButton:
-			var glyph_path = input_map_manager.get_glyph_path_from_joybutton(event.button_index)
-			glyphs_string = concat_glyphs_string(glyphs_string,glyph_path)
-		elif event is InputEventJoypadMotion:
-			var glyph_path = input_map_manager.get_glyph_path_from_joyaxis(event.axis, event.axis_value)
-			glyphs_string = concat_glyphs_string(glyphs_string,glyph_path)
-	return glyphs_string
-
-func concat_glyphs_string(glyphs_string : String, glyph_path : String) -> String:
-	var new_glyph_string = ""
-	var bbcode_path : String = str("[img]",str(glyph_path,"[/img]"))
-	if(glyphs_string == ""):
-		new_glyph_string = bbcode_path
-	else:
-		new_glyph_string = str(glyphs_string,str(" / ",bbcode_path))
-	return new_glyph_string
 
 func reduce_column():
 	if(select_column == 2):
@@ -124,6 +92,71 @@ func reduce_column():
 	elif(select_column == 1):
 		sound_player.stream = load("res://audio/soundFX/bigCollide.wav")
 		sound_player.play()
+
+func advance_mode():
+	get_parent().play_sound("res://audio/soundFX/maracca.ogg")
+	if(mode_index < modes.size()-1):
+		mode_index = mode_index + 1
+	else:
+		mode_index = 0
+
+func update_glyphs():
+	var mode_text = str("MODE: ",modes[mode_index])
+	rebind_mode.parse_bbcode(mode_text)
+	var rebind_text = "("
+	var events : Array[InputEvent] =  InputMap.action_get_events("interact")
+	var glyphs_string = get_glyphs_string(events, "KEYBOARD")
+	glyphs_string = str(glyphs_string,str(" / ",get_glyphs_string(events, "CONTROLLER")))
+	var secondary_string = get_glyphs_string(events, "SECONDARY")
+	if(secondary_string != ""):
+		glyphs_string = str(glyphs_string,str(" / ",))
+	rebind_text = str(str(rebind_text,glyphs_string), " TO SELECT)")
+	rebind_note.parse_bbcode(rebind_text)
+	update_glyphs_column(action_column_1, action_map_1)
+	update_glyphs_column(action_column_2, action_map_2)
+
+func update_glyphs_column(column : Array[Node], action_map : Array[String]):
+	var index = 0
+	for action in column:
+		var events : Array[InputEvent] = InputMap.action_get_events(action_map[index])
+		var glyphs_string = get_glyphs_string(events,modes[mode_index])
+		var richTextLabel = action.get_child(1)
+		richTextLabel.parse_bbcode(glyphs_string)
+		index = index+1
+
+func get_glyphs_string(events : Array[InputEvent], mode : String) -> String:
+	var glyphs_string : String = ""
+	if(mode == "KEYBOARD"):
+		var event = events[0]
+		if event is InputEventKey:
+			glyphs_string = input_map_manager.get_glyph_path_from_keycode(event.physical_keycode)
+	elif(mode == "CONTROLLER"):
+		var event = events[1]
+		if event is InputEventJoypadButton:
+			glyphs_string = input_map_manager.get_glyph_path_from_joybutton(event.button_index)
+		elif event is InputEventJoypadMotion:
+			glyphs_string = input_map_manager.get_glyph_path_from_joyaxis(event.axis, event.axis_value)
+	elif(mode == "SECONDARY"):
+		if(events.size() == 3):
+			var event = events[2]
+			if event is InputEventJoypadButton:
+				glyphs_string = input_map_manager.get_glyph_path_from_joybutton(event.button_index)
+			elif event is InputEventJoypadMotion:
+				glyphs_string = input_map_manager.get_glyph_path_from_joyaxis(event.axis, event.axis_value)
+			elif event is InputEventKey:
+				glyphs_string = input_map_manager.get_glyph_path_from_keycode(event.physical_keycode)
+		else:
+			return ""
+	return str("[img]",str(glyphs_string,"[/img]"))
+
+func concat_glyphs_string(glyphs_string : String, glyph_path : String) -> String:
+	var new_glyph_string = ""
+	var bbcode_path : String = str("[img]",str(glyph_path,"[/img]"))
+	if(glyphs_string == ""):
+		new_glyph_string = bbcode_path
+	else:
+		new_glyph_string = str(glyphs_string,str(" / ",bbcode_path))
+	return new_glyph_string
 
 func block_index():
 	sound_player.stream = load("res://audio/soundFX/bigCollide.wav")
@@ -162,7 +195,15 @@ func update_selection():
 		else:
 			action_column_2[iterator].get_child(0).modulate = Color(1,1,1,1)
 		iterator+=1
+	if(select_index == -1 && select_column == 1):
+		rebind_mode.modulate = Color(1,1,0,1)
+	else:
+		rebind_mode.modulate = Color(1,1,1,1)
 	if(select_index == action_column_1.size() && select_column == 1):
+		restore_default.modulate = Color(1,1,0,1)
+	else:
+		restore_default.modulate = Color(1,1,1,1)
+	if(select_index == action_column_1.size() + 1 && select_column == 1):
 		back_label.modulate = Color(1,1,0,1)
 	else:
 		back_label.modulate = Color(1,1,1,1)
@@ -182,7 +223,9 @@ func update_selection():
 	#settings_file.close()
 
 func handle_selection():
-	if(select_index == action_column_1.size()) && select_column == 1:
+	if(select_index == -1 && select_column == 1):
+		advance_mode()
+	if(select_index == (action_column_1.size()) + 1) && select_column == 1:
 		back_selected()
 	#sound_player.stream = load("res://audio/soundFX/maracca.ogg")
 	#sound_player.play()
@@ -211,15 +254,27 @@ func back_selected():
 
 func handle_input():
 	if Input.is_action_just_pressed(direction.up):
-		if(select_index > 0):
-			reduce_index()
-		else:
-			block_index()
+		if(select_column == 1):
+			if(select_index > -1):
+				reduce_index()
+			else:
+				block_index()
+		if(select_column == 2):
+			if(select_index > 0):
+				reduce_index()
+			else:
+				block_index()
 	if Input.is_action_just_pressed(direction.down):
-		if(select_index < action_column_1.size()):
-			advance_index()
-		else:
-			block_index()
+		if(select_column == 1):
+			if(select_index < action_column_1.size() + 1):
+				advance_index()
+			else:
+				block_index()
+		if(select_column == 2):
+			if(select_index < action_column_2.size() - 1):
+				advance_index()
+			else:
+				block_index()
 	if Input.is_action_just_pressed(direction.right):
 		advance_column()
 	if Input.is_action_just_pressed(direction.left):

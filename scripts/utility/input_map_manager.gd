@@ -4,6 +4,9 @@ enum controller_type {XBOX, PLAYSTATION}
 
 var current_controller : controller_type = controller_type.XBOX
 
+var default_mapping : control_actions_mapping
+var current_mapping : control_actions_mapping
+
 var mappable_keys : Array[Key] = [
 	KEY_Q,
 	KEY_W,
@@ -63,6 +66,7 @@ var mappable_keys : Array[Key] = [
 	KEY_SPACE,
 	KEY_PLUS,
 	KEY_MINUS,
+	KEY_ENTER
 ]
 
 var key_glyph_path : Array[String] = [
@@ -124,6 +128,7 @@ var key_glyph_path : Array[String] = [
 	"res://sprites/interface/glyphs/keyboard/space_key.png",
 	"res://sprites/interface/glyphs/keyboard/plus_key.png",
 	"res://sprites/interface/glyphs/keyboard/minus_key.png",
+	"res://sprites/interface/glyphs/keyboard/enter_key.png"
 ]
 
 var mappable_joypad : Array[JoyButton] = [
@@ -187,6 +192,32 @@ var neg_axis_glyph_path : Array[String] = [
 	"res://sprites/interface/glyphs/controller/R_trigger.png",
 ]
 
+func _ready():
+	var inputmap_on_start : control_actions_mapping = get_inputmap_as_control_actions_mapping()
+	default_mapping = inputmap_on_start
+	current_mapping = default_mapping
+
+func get_current_mapping() -> control_actions_mapping:
+	return current_mapping
+
+func get_inputmap_as_control_actions_mapping() -> control_actions_mapping:
+	var inputmap_mapping : control_actions_mapping = control_actions_mapping.new()
+	var actions : Array[StringName] = InputMap.get_actions()
+	
+	var keyboard_mapping : actions_mapping = actions_mapping.new()
+	var controller_mapping : actions_mapping = actions_mapping.new()
+	
+	for action in actions:
+		if (keyboard_mapping.actions.find(action) >= 0):
+			var events = InputMap.action_get_events(action)
+			keyboard_mapping.set_action_event(action,events[0])
+			controller_mapping.set_action_event(action,events[1])
+	
+	inputmap_mapping.set_keyboard_mapping(keyboard_mapping)
+	inputmap_mapping.set_controller_mapping(controller_mapping)
+	
+	return inputmap_mapping
+
 func get_glyph_path_from_keycode(key : Key) -> String:
 	var index = mappable_keys.find(key)
 	return key_glyph_path[index]
@@ -198,7 +229,130 @@ func get_glyph_path_from_joybutton(button : JoyButton):
 
 func get_glyph_path_from_joyaxis(axis : JoyAxis, value: float):
 	var index = mappable_joy_axis.find(axis)
-	if(value > 0):
+	if(value >= 0):
 		return pos_axis_glyph_path[index]
 	else:
 		return neg_axis_glyph_path[index]
+
+func clear_input_map():
+	var act_map = actions_mapping.new()
+	var actions : Array[StringName] = act_map.get_actions()
+	for action in actions:
+		InputMap.action_erase_events(action)
+
+func restore_default_mapping():
+	apply_control_actions_mapping(default_mapping)
+
+func apply_control_actions_mapping(mapping: control_actions_mapping):
+	clear_input_map()
+	apply_action_mapping(mapping.keyboard)
+	apply_action_mapping(mapping.controller)
+	current_mapping = mapping
+
+func apply_action_mapping(mapping : actions_mapping):
+	var actions : Array[StringName] = InputMap.get_actions()
+	for action in actions:
+		var event = mapping.get_action_event(action)
+		if(event != null):
+			InputMap.action_add_event(action,event)
+
+#class representing a complete, loadable control scheme
+class control_actions_mapping:
+	var keyboard : actions_mapping
+	var controller : actions_mapping
+	
+	func set_keyboard_action_event(action: StringName, event : InputEventKey):
+		var keyboard_check_action = keyboard.has_event(event)
+		if(keyboard_check_action != ""):
+			keyboard.unbind_action_event(keyboard_check_action)
+		keyboard.set_action_event(action, event)
+	
+	func set_controller_action_event(action: StringName, event : InputEvent):
+		var controller_check_action = controller.has_event(event)
+		if(controller_check_action != ""):
+			controller.unbind_action_event(controller_check_action)
+		controller.set_action_event(action, event)
+	
+	func get_keyboard_mapping() -> actions_mapping:
+		return keyboard
+	
+	func get_controller_mapping() -> actions_mapping:
+		return controller
+	
+	func set_keyboard_mapping(mapping : actions_mapping):
+		keyboard = mapping
+	
+	func set_controller_mapping(mapping : actions_mapping):
+		controller = mapping
+
+#class for representing a 1:1 mapping of input actions and InputEvents
+#where each action corresponds to exactly one event
+class actions_mapping:
+	var actions : Array[StringName]
+	var events : Array[InputEvent]
+	
+	func _init():
+		var inMap = InputMap.get_actions()
+		#actions_mapping only has mappable actions in it
+		#IE no menu or dev-only actions are included
+		for action in inMap:
+			if(is_mappable_action(action)):
+				actions.append(action)
+		for action in actions:
+			events.append(null)
+	
+	func get_actions() -> Array[StringName]:
+		return actions
+	
+	func is_mappable_action(action : StringName):
+		var is_mappable = true
+		if(action.contains("dev")):
+			is_mappable = false
+		if(action.contains("menu")):
+			is_mappable = false
+		if(action.contains("ui")):
+			is_mappable = false
+		return is_mappable
+	
+	func get_action_event(action : StringName) -> InputEvent:
+		var index = actions.find(action)
+		if(index >= 0):
+			return events[index]
+		else:
+			return null
+	
+	func set_action_event(action: StringName, event : InputEvent):
+		var index = actions.find(action)
+		if(index >= 0):
+			events[index] = event
+	
+	func unbind_action_event(action : StringName):
+		var index = actions.find(action)
+		if(index >= 0):
+			events[index] = null
+	
+	#if an event is present in the mapping, return the associated action.
+	#otherwise return an empty string
+	func has_event(event : InputEvent) -> String:
+		var ret_action : String = ""
+		
+		for action in actions:
+			var action_event = get_action_event(action)
+			if (event_check_equivalent(action_event,event)):
+				ret_action = action
+				break
+		return ret_action
+	
+	func event_check_equivalent(event1 : InputEvent, event2: InputEvent):
+		var equivalent = false
+		if(event1 is InputEventKey &&
+		event2 is InputEventKey):
+			equivalent = event1.physical_keycode == event2.physical_keycode
+		elif(event1 is InputEventJoypadButton &&
+		event2 is InputEventJoypadButton):
+			equivalent = event1.button_index == event2.button_index
+		elif(event1 is InputEventJoypadMotion &&
+		event2 is InputEventJoypadMotion):
+			equivalent = event1.axis == event2.axis
+			equivalent = equivalent && (event1.axis_value == event2.axis_value)
+		return equivalent

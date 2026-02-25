@@ -86,19 +86,19 @@ func back_selected():
 	queue_free()
 
 func handle_input():
-	if Input.is_action_just_pressed(direction.up):
+	if Input.is_action_just_pressed("menu_up"):
 		if(select_index > 0):
 			reduce_index()
 		else:
 			block_index()
-	if Input.is_action_just_pressed(direction.down):
+	if Input.is_action_just_pressed("menu_down"):
 		if(select_index < labels.size()-1):
 			advance_index()
 		else:
 			block_index()
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("menu_select"):
 		handle_selection()
-	if Input.is_action_just_pressed("back"):
+	if Input.is_action_just_pressed("menu_back"):
 		back_selected()
 
 # Called when the node enters the scene tree for the first time.

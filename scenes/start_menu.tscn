@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ba16c0124dsb3"]
+[gd_scene load_steps=12 format=3 uid="uid://ba16c0124dsb3"]
 
 [ext_resource type="Script" uid="uid://8bxn1q8fua5y" path="res://scripts/tree_management/root_manager.gd" id="1_hwmkm"]
 [ext_resource type="Texture2D" uid="uid://b76rttfua10ki" path="res://sprites/start_screen/starfiend_back.png" id="1_tkgca"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://b3pbwf0l1i5mh" path="res://audio/music/starfield_theme.wav" id="7_0owee"]
 [ext_resource type="PackedScene" uid="uid://b23ot5l1o0hli" path="res://entities/characters/player/main_camera.tscn" id="7_xjevn"]
 [ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="8_5byqq"]
+[ext_resource type="Script" uid="uid://0r0hgwt6et0u" path="res://scripts/utility/input_map_manager.gd" id="10_e58y3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_e58y3"]
 font = ExtResource("8_5byqq")
@@ -51,6 +52,10 @@ label_settings = SubResource("LabelSettings_e58y3")
 horizontal_alignment = 1
 
 [node name="main_camera" parent="." instance=ExtResource("7_xjevn")]
+
+[node name="input_map_manager" type="Node" parent="." groups=["input_map_manager"]]
+process_mode = 3
+script = ExtResource("10_e58y3")
 
 [connection signal="transition_to_main_scene" from="start_menu/start_menu" to="." method="_on_transition_to_main_scene"]
 [connection signal="transition_to_main_scene" from="start_menu/start_menu" to="." method="_on_transition_to_main_scene_init"]

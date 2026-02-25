@@ -72,21 +72,20 @@ func play_sound(sound_path : String):
 
 func handle_input():
 	if(done_fading && !scene_changing):
-		if Input.is_action_just_pressed(direction.up):
+		if Input.is_action_just_pressed("menu_up"):
 			if(select_index > 0):
 				reduce_index()
 			else:
 				block_index()
-		if Input.is_action_just_pressed(direction.down):
+		if Input.is_action_just_pressed("menu_down"):
 			if(select_index < labels.size()-1):
 				advance_index()
 			else:
 				block_index()
-		if Input.is_action_just_pressed("interact"):
+		if Input.is_action_just_pressed("menu_select"):
 			handle_selection()
 	else: #skip the fading
-		if (Input.is_action_just_pressed("start")||
-		Input.is_action_just_pressed("interact")):
+		if (Input.is_action_just_pressed("menu_select")):
 			menu_alpha = 1
 			set_labels_alpha(menu_alpha)
 			return

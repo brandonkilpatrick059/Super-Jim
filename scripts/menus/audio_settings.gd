@@ -70,26 +70,26 @@ func back_selected():
 	queue_free()
 
 func handle_input():
-	if Input.is_action_just_pressed(direction.up):
+	if Input.is_action_just_pressed("menu_up"):
 		if(select_index > 0):
 			reduce_index()
 		else:
 			block_index()
-	if Input.is_action_just_pressed(direction.down):
+	if Input.is_action_just_pressed("menu_down"):
 		if(select_index < labels.size()-1):
 			advance_index()
 		else:
 			block_index()
 	if(select_index != 3):
-		if Input.is_action_pressed(direction.left):
+		if Input.is_action_pressed("menu_left"):
 			lower_bus_volume(select_index)
-		elif Input.is_action_pressed(direction.right):
+		elif Input.is_action_pressed("menu_right"):
 			raise_bus_volume(select_index)
 		else:
 			play_bump = true
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("menu_select"):
 		handle_selection()
-	if Input.is_action_just_pressed("back"):
+	if Input.is_action_just_pressed("menu_back"):
 		back_selected()
 
 func raise_bus_volume(bus : int):

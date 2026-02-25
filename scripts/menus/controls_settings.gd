@@ -24,12 +24,12 @@ extends MarginContainer
 @onready var action2_8 = $CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_8
 @onready var action2_9 = $CenterContainer/VBoxContainer/HBoxContainer/column_2/HBoxContainer/actions/action_2_9
 
-@onready var input_map_manager = $input_map_manager
+@onready var input_map_manager
 
 var action_column_1 : Array[Node] = []
 var action_column_2 : Array[Node] = []
 
-var modes : Array[String] = ["KEYBOARD", "CONTROLLER", "SECONDARY"]
+var modes : Array[String] = ["KEYBOARD", "CONTROLLER"]
 var mode_index = 0
 
 var action_map_1: Array[String] = [
@@ -104,13 +104,10 @@ func update_glyphs():
 	var mode_text = str("MODE: ",modes[mode_index])
 	rebind_mode.parse_bbcode(mode_text)
 	var rebind_text = "("
-	var events : Array[InputEvent] =  InputMap.action_get_events("interact")
-	var glyphs_string = get_glyphs_string(events, "KEYBOARD")
-	glyphs_string = str(glyphs_string,str(" / ",get_glyphs_string(events, "CONTROLLER")))
-	var secondary_string = get_glyphs_string(events, "SECONDARY")
-	if(secondary_string != ""):
-		glyphs_string = str(glyphs_string,str(" / ",))
-	rebind_text = str(str(rebind_text,glyphs_string), " TO SELECT)")
+	var events : Array[InputEvent] =  InputMap.action_get_events("menu_select")
+	var glyph_string = get_glyph_string(events[0])
+	glyph_string = str(glyph_string,str(" / ",get_glyph_string(events[3])))
+	rebind_text = str(str(rebind_text,glyph_string), " TO SELECT)")
 	rebind_note.parse_bbcode(rebind_text)
 	update_glyphs_column(action_column_1, action_map_1)
 	update_glyphs_column(action_column_2, action_map_2)
@@ -118,36 +115,27 @@ func update_glyphs():
 func update_glyphs_column(column : Array[Node], action_map : Array[String]):
 	var index = 0
 	for action in column:
-		var events : Array[InputEvent] = InputMap.action_get_events(action_map[index])
-		var glyphs_string = get_glyphs_string(events,modes[mode_index])
+		var event : InputEvent
+		if(modes[mode_index] == "KEYBOARD"):
+			var keyboard_mapping = input_map_manager.get_current_mapping().get_keyboard_mapping()
+			event = keyboard_mapping.get_action_event(action_map[index])
+		elif(modes[mode_index] == "CONTROLLER"):
+			var controller_mapping = input_map_manager.get_current_mapping().get_controller_mapping()
+			event = controller_mapping.get_action_event(action_map[index])
+		var glyphs_string = get_glyph_string(event)
 		var richTextLabel = action.get_child(1)
 		richTextLabel.parse_bbcode(glyphs_string)
 		index = index+1
 
-func get_glyphs_string(events : Array[InputEvent], mode : String) -> String:
-	var glyphs_string : String = ""
-	if(mode == "KEYBOARD"):
-		var event = events[0]
-		if event is InputEventKey:
-			glyphs_string = input_map_manager.get_glyph_path_from_keycode(event.physical_keycode)
-	elif(mode == "CONTROLLER"):
-		var event = events[1]
-		if event is InputEventJoypadButton:
-			glyphs_string = input_map_manager.get_glyph_path_from_joybutton(event.button_index)
-		elif event is InputEventJoypadMotion:
-			glyphs_string = input_map_manager.get_glyph_path_from_joyaxis(event.axis, event.axis_value)
-	elif(mode == "SECONDARY"):
-		if(events.size() == 3):
-			var event = events[2]
-			if event is InputEventJoypadButton:
-				glyphs_string = input_map_manager.get_glyph_path_from_joybutton(event.button_index)
-			elif event is InputEventJoypadMotion:
-				glyphs_string = input_map_manager.get_glyph_path_from_joyaxis(event.axis, event.axis_value)
-			elif event is InputEventKey:
-				glyphs_string = input_map_manager.get_glyph_path_from_keycode(event.physical_keycode)
-		else:
-			return ""
-	return str("[img]",str(glyphs_string,"[/img]"))
+func get_glyph_string(event : InputEvent) -> String:
+	var glyph_string : String = ""
+	if event is InputEventKey:
+		glyph_string = input_map_manager.get_glyph_path_from_keycode(event.physical_keycode)
+	elif event is InputEventJoypadButton:
+		glyph_string = input_map_manager.get_glyph_path_from_joybutton(event.button_index)
+	elif event is InputEventJoypadMotion:
+		glyph_string = input_map_manager.get_glyph_path_from_joyaxis(event.axis, event.axis_value)
+	return str("[img]",str(glyph_string,"[/img]"))
 
 func concat_glyphs_string(glyphs_string : String, glyph_path : String) -> String:
 	var new_glyph_string = ""
@@ -253,7 +241,7 @@ func back_selected():
 	queue_free()
 
 func handle_input():
-	if Input.is_action_just_pressed(direction.up):
+	if Input.is_action_just_pressed("menu_up"):
 		if(select_column == 1):
 			if(select_index > -1):
 				reduce_index()
@@ -264,7 +252,7 @@ func handle_input():
 				reduce_index()
 			else:
 				block_index()
-	if Input.is_action_just_pressed(direction.down):
+	if Input.is_action_just_pressed("menu_down"):
 		if(select_column == 1):
 			if(select_index < action_column_1.size() + 1):
 				advance_index()
@@ -275,13 +263,13 @@ func handle_input():
 				advance_index()
 			else:
 				block_index()
-	if Input.is_action_just_pressed(direction.right):
+	if Input.is_action_just_pressed("menu_right"):
 		advance_column()
-	if Input.is_action_just_pressed(direction.left):
+	if Input.is_action_just_pressed("menu_left"):
 		reduce_column()
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("menu_select"):
 		handle_selection()
-	if Input.is_action_just_pressed("back"):
+	if Input.is_action_just_pressed("menu_back"):
 		back_selected()
 
 # Called when the node enters the scene tree for the first time.
@@ -293,6 +281,7 @@ func _ready():
 	action_column_2 = [action2_1,action2_2,action2_3,action2_4,
 	action2_5,action2_6,action2_7,action2_8,action2_9]
 	set_labels_alpha(menu_alpha)
+	input_map_manager = get_tree().get_first_node_in_group("input_map_manager")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):

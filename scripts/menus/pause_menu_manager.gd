@@ -61,17 +61,17 @@ func handle_selection():
 			get_tree().change_scene_to_file("res://scenes/start_menu.tscn") #TODO: ask if they are sure
 
 func handle_input():
-	if Input.is_action_just_pressed(direction.up):
+	if Input.is_action_just_pressed("menu_up"):
 		if(select_index > 0):
 			reduce_index()
 		else:
 			block_index()
-	if Input.is_action_just_pressed(direction.down):
+	if Input.is_action_just_pressed("menu_down"):
 		if(select_index < labels.size()-1):
 			advance_index()
 		else:
 			block_index()
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("menu_select"):
 		handle_selection()
 
 # Called when the node enters the scene tree for the first time.

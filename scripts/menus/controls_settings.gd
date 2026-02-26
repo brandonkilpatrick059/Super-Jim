@@ -32,6 +32,8 @@ var action_column_2 : Array[Node] = []
 var modes : Array[String] = ["KEYBOARD", "CONTROLLER"]
 var mode_index = 0
 
+var listening_for_input : bool = false
+
 var action_map_1: Array[String] = [
 	"left",
 	"right",
@@ -60,6 +62,8 @@ var sound_player := AudioStreamPlayer.new()
 
 var select_index = 0
 var select_column = 1
+
+var action_timer := Timer.new()
 
 func advance_index():
 	select_index += 1
@@ -109,22 +113,28 @@ func update_glyphs():
 	glyph_string = str(glyph_string,str(" / ",get_glyph_string(events[3])))
 	rebind_text = str(str(rebind_text,glyph_string), " TO SELECT)")
 	rebind_note.parse_bbcode(rebind_text)
-	update_glyphs_column(action_column_1, action_map_1)
-	update_glyphs_column(action_column_2, action_map_2)
+	update_glyphs_column(action_column_1, action_map_1, 1)
+	update_glyphs_column(action_column_2, action_map_2, 2)
 
-func update_glyphs_column(column : Array[Node], action_map : Array[String]):
+func update_glyphs_column(column : Array[Node], action_map : Array[String], column_num : int):
 	var index = 0
 	for action in column:
-		var event : InputEvent
-		if(modes[mode_index] == "KEYBOARD"):
-			var keyboard_mapping = input_map_manager.get_current_mapping().get_keyboard_mapping()
-			event = keyboard_mapping.get_action_event(action_map[index])
-		elif(modes[mode_index] == "CONTROLLER"):
-			var controller_mapping = input_map_manager.get_current_mapping().get_controller_mapping()
-			event = controller_mapping.get_action_event(action_map[index])
-		var glyphs_string = get_glyph_string(event)
-		var richTextLabel = action.get_child(1)
-		richTextLabel.parse_bbcode(glyphs_string)
+		if(select_index == index && 
+		select_column == column_num &&
+		listening_for_input):
+			var richTextLabel = action.get_child(1)
+			richTextLabel.parse_bbcode("(NEW INPUT)")
+		else:
+			var event : InputEvent
+			if(modes[mode_index] == "KEYBOARD"):
+				var keyboard_mapping = input_map_manager.get_current_mapping().get_keyboard_mapping()
+				event = keyboard_mapping.get_action_event(action_map[index])
+			elif(modes[mode_index] == "CONTROLLER"):
+				var controller_mapping = input_map_manager.get_current_mapping().get_controller_mapping()
+				event = controller_mapping.get_action_event(action_map[index])
+			var glyphs_string = get_glyph_string(event)
+			var richTextLabel = action.get_child(1)
+			richTextLabel.parse_bbcode(glyphs_string)
 		index = index+1
 
 func get_glyph_string(event : InputEvent) -> String:
@@ -145,6 +155,21 @@ func concat_glyphs_string(glyphs_string : String, glyph_path : String) -> String
 	else:
 		new_glyph_string = str(glyphs_string,str(" / ",bbcode_path))
 	return new_glyph_string
+
+func _input(event: InputEvent) -> void:
+	if(listening_for_input &&
+	action_timer.is_stopped()):
+		var mapping = input_map_manager.get_current_mapping()
+		var column = get_action_map(select_column)
+		var action : StringName = column[select_index]
+		if(modes[mode_index] == "KEYBOARD"):
+			if(event is InputEventKey):
+				input_map_manager.set_current_keyboard_action_event(action,event)
+		elif(modes[mode_index] == "CONTROLLER"):
+			if(event is InputEventJoypadButton ||
+			event is InputEventJoypadMotion ):
+				input_map_manager.set_current_controller_action_event(action,event)
+		listening_for_input = false
 
 func block_index():
 	sound_player.stream = load("res://audio/soundFX/bigCollide.wav")
@@ -167,6 +192,14 @@ func get_action_column(index : int) -> Array[Node]:
 		2:
 			return action_column_2
 	return action_column_1
+
+func get_action_map(index : int) -> Array[String]:
+	match(index):
+		1:
+			return action_map_1
+		2:
+			return action_map_2
+	return action_map_1
 
 func update_selection():
 	var iterator = 0
@@ -213,23 +246,14 @@ func update_selection():
 func handle_selection():
 	if(select_index == -1 && select_column == 1):
 		advance_mode()
-	if(select_index == (action_column_1.size()) + 1) && select_column == 1:
+	elif(select_index == (action_column_1.size()) + 1) && select_column == 1:
 		back_selected()
-	#sound_player.stream = load("res://audio/soundFX/maracca.ogg")
-	#sound_player.play()
-	#match select_index:
-		#0: #audio
-			#var child_settings_menu = audio_settings_menu.instantiate()
-			#active_child_menu = child_settings_menu
-			#get_parent().add_child(child_settings_menu)
-		#1: #video
-			#var child_settings_menu = video_settings_menu.instantiate()
-			#active_child_menu = child_settings_menu
-			#get_parent().add_child(child_settings_menu)
-		#2: #controls
-			#pass #TODO: implement
-		#3: #back 
-			#back_selected()
+	elif(select_index == (action_column_1.size())) && select_column == 1:
+		input_map_manager.restore_default_mapping()
+	else:
+		if(!listening_for_input):
+			listening_for_input = true
+			action_timer.start(0.2)
 
 func play_sound(sound_path : String):
 	sound_player.stream = load(sound_path)
@@ -241,36 +265,37 @@ func back_selected():
 	queue_free()
 
 func handle_input():
-	if Input.is_action_just_pressed("menu_up"):
-		if(select_column == 1):
-			if(select_index > -1):
-				reduce_index()
-			else:
-				block_index()
-		if(select_column == 2):
-			if(select_index > 0):
-				reduce_index()
-			else:
-				block_index()
-	if Input.is_action_just_pressed("menu_down"):
-		if(select_column == 1):
-			if(select_index < action_column_1.size() + 1):
-				advance_index()
-			else:
-				block_index()
-		if(select_column == 2):
-			if(select_index < action_column_2.size() - 1):
-				advance_index()
-			else:
-				block_index()
-	if Input.is_action_just_pressed("menu_right"):
-		advance_column()
-	if Input.is_action_just_pressed("menu_left"):
-		reduce_column()
-	if Input.is_action_just_pressed("menu_select"):
-		handle_selection()
-	if Input.is_action_just_pressed("menu_back"):
-		back_selected()
+	if(!listening_for_input):
+		if Input.is_action_just_pressed("menu_up"):
+			if(select_column == 1):
+				if(select_index > -1):
+					reduce_index()
+				else:
+					block_index()
+			if(select_column == 2):
+				if(select_index > 0):
+					reduce_index()
+				else:
+					block_index()
+		if Input.is_action_just_pressed("menu_down"):
+			if(select_column == 1):
+				if(select_index < action_column_1.size() + 1):
+					advance_index()
+				else:
+					block_index()
+			if(select_column == 2):
+				if(select_index < action_column_2.size() - 1):
+					advance_index()
+				else:
+					block_index()
+		if Input.is_action_just_pressed("menu_right"):
+			advance_column()
+		if Input.is_action_just_pressed("menu_left"):
+			reduce_column()
+		if Input.is_action_just_pressed("menu_select"):
+			handle_selection()
+		if Input.is_action_just_pressed("menu_back"):
+			back_selected()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -282,11 +307,13 @@ func _ready():
 	action2_5,action2_6,action2_7,action2_8,action2_9]
 	set_labels_alpha(menu_alpha)
 	input_map_manager = get_tree().get_first_node_in_group("input_map_manager")
+	action_timer.one_shot = true
+	add_child(action_timer)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
 	menu_alpha = 1
 	set_labels_alpha(menu_alpha)
 	handle_input()
-	update_selection()
 	update_glyphs()
+	update_selection()

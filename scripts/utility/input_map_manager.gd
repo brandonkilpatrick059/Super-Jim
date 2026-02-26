@@ -193,9 +193,8 @@ var neg_axis_glyph_path : Array[String] = [
 ]
 
 func _ready():
-	var inputmap_on_start : control_actions_mapping = get_inputmap_as_control_actions_mapping()
-	default_mapping = inputmap_on_start
-	current_mapping = default_mapping
+	default_mapping = get_inputmap_as_control_actions_mapping()
+	current_mapping = get_inputmap_as_control_actions_mapping()
 
 func get_current_mapping() -> control_actions_mapping:
 	return current_mapping
@@ -256,12 +255,21 @@ func apply_action_mapping(mapping : actions_mapping):
 		if(event != null):
 			InputMap.action_add_event(action,event)
 
+func set_current_keyboard_action_event(action: StringName, event : InputEvent):
+	current_mapping.set_keyboard_action_event(action, event)
+	apply_control_actions_mapping(current_mapping)
+
+func set_current_controller_action_event(action: StringName, event : InputEvent):
+	current_mapping.set_controller_action_event(action, event)
+	apply_control_actions_mapping(current_mapping)
+
 #class representing a complete, loadable control scheme
+#for in-game actions
 class control_actions_mapping:
 	var keyboard : actions_mapping
 	var controller : actions_mapping
 	
-	func set_keyboard_action_event(action: StringName, event : InputEventKey):
+	func set_keyboard_action_event(action: StringName, event : InputEvent):
 		var keyboard_check_action = keyboard.has_event(event)
 		if(keyboard_check_action != ""):
 			keyboard.unbind_action_event(keyboard_check_action)
@@ -285,7 +293,7 @@ class control_actions_mapping:
 	func set_controller_mapping(mapping : actions_mapping):
 		controller = mapping
 
-#class for representing a 1:1 mapping of input actions and InputEvents
+#class for representing a 1:1 mapping of in-game input actions and InputEvents
 #where each action corresponds to exactly one event
 class actions_mapping:
 	var actions : Array[StringName]

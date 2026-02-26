@@ -43,20 +43,6 @@ func update_selection():
 			labels[iterator].modulate = Color(1,1,1,1)
 		iterator+=1
 
-func get_settings_dictionary() -> Dictionary:
-	var settings_dictionary = {
-		"lighting_index" = SettingsVariables.lighting_index,
-		"resolution_index" = SettingsVariables.resolution_index,
-		"full_screen" = SettingsVariables.full_screen
-	}
-	return settings_dictionary
-
-func save_settings():
-	var settings : Dictionary = get_settings_dictionary()
-	var settings_file : FileAccess = FileAccess.open("user://settings.save", FileAccess.WRITE)
-	settings_file.store_line(JSON.stringify(settings))
-	settings_file.close()
-
 func handle_selection():
 	sound_player.stream = load("res://audio/soundFX/maracca.ogg")
 	sound_player.play()
@@ -82,7 +68,8 @@ func play_sound(sound_path : String):
 
 func back_selected():
 	get_parent().play_sound("res://audio/soundFX/maracca.ogg")
-	save_settings()
+	var game_save_manager = get_tree().get_first_node_in_group("game_save_manager")
+	game_save_manager.save_settings()
 	queue_free()
 
 func handle_input():

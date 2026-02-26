@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://ba16c0124dsb3"]
+[gd_scene load_steps=13 format=3 uid="uid://ba16c0124dsb3"]
 
 [ext_resource type="Script" uid="uid://8bxn1q8fua5y" path="res://scripts/tree_management/root_manager.gd" id="1_hwmkm"]
 [ext_resource type="Texture2D" uid="uid://b76rttfua10ki" path="res://sprites/start_screen/starfiend_back.png" id="1_tkgca"]
 [ext_resource type="Script" uid="uid://b6jomjtxpe43f" path="res://scripts/tree_management/active_root.gd" id="2_u4qax"]
+[ext_resource type="Script" uid="uid://dyqp2dyqevgkf" path="res://scripts/game_save/game_save_manager.gd" id="3_apowk"]
 [ext_resource type="PackedScene" uid="uid://f4ngkupjl7mr" path="res://menu/start menu/starfield_far.tscn" id="4_8yvp3"]
 [ext_resource type="PackedScene" uid="uid://bgbawsiajvalm" path="res://menu/start menu/starfield_farthest.tscn" id="5_re6l0"]
 [ext_resource type="PackedScene" uid="uid://ciw22wbkgnx0c" path="res://menu/start menu/start_menu_manager.tscn" id="6_ucxi6"]
@@ -19,6 +20,13 @@ font_color = Color(0.212305, 0.212305, 0.212305, 1)
 [node name="root_manager" type="Node2D" groups=["root_manager"]]
 process_mode = 3
 script = ExtResource("1_hwmkm")
+
+[node name="input_map_manager" type="Node" parent="." groups=["input_map_manager"]]
+process_mode = 3
+script = ExtResource("10_e58y3")
+
+[node name="game_save_manager" type="Node" parent="." groups=["game_save_manager"]]
+script = ExtResource("3_apowk")
 
 [node name="start_menu" type="Node2D" parent="." groups=["active_root"]]
 script = ExtResource("2_u4qax")
@@ -52,10 +60,6 @@ label_settings = SubResource("LabelSettings_e58y3")
 horizontal_alignment = 1
 
 [node name="main_camera" parent="." instance=ExtResource("7_xjevn")]
-
-[node name="input_map_manager" type="Node" parent="." groups=["input_map_manager"]]
-process_mode = 3
-script = ExtResource("10_e58y3")
 
 [connection signal="transition_to_main_scene" from="start_menu/start_menu" to="." method="_on_transition_to_main_scene"]
 [connection signal="transition_to_main_scene" from="start_menu/start_menu" to="." method="_on_transition_to_main_scene_init"]

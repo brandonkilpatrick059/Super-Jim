@@ -201,16 +201,18 @@ func get_current_mapping() -> control_actions_mapping:
 
 func get_inputmap_as_control_actions_mapping() -> control_actions_mapping:
 	var inputmap_mapping : control_actions_mapping = control_actions_mapping.new()
-	var actions : Array[StringName] = InputMap.get_actions()
-	
 	var keyboard_mapping : actions_mapping = actions_mapping.new()
 	var controller_mapping : actions_mapping = actions_mapping.new()
+	var actions : Array[StringName] = keyboard_mapping.get_actions()
 	
 	for action in actions:
 		if (keyboard_mapping.actions.find(action) >= 0):
 			var events = InputMap.action_get_events(action)
-			keyboard_mapping.set_action_event(action,events[0])
-			controller_mapping.set_action_event(action,events[1])
+			for event in events:
+				if(event is InputEventKey):
+					keyboard_mapping.set_action_event(action,event)
+				else:
+					controller_mapping.set_action_event(action,event)
 	
 	inputmap_mapping.set_keyboard_mapping(keyboard_mapping)
 	inputmap_mapping.set_controller_mapping(controller_mapping)
@@ -247,6 +249,19 @@ func apply_control_actions_mapping(mapping: control_actions_mapping):
 	apply_action_mapping(mapping.keyboard)
 	apply_action_mapping(mapping.controller)
 	current_mapping = mapping.duplicate()
+
+func apply_new_mapping_from_dictionaries(keyboard_dict : Dictionary, controller_dict : Dictionary):
+	var keyboard_mapping : actions_mapping = actions_mapping.new()
+	var controller_mapping : actions_mapping = actions_mapping.new()
+	keyboard_mapping.load_from_dictionary(keyboard_dict)
+	controller_mapping.load_from_dictionary(controller_dict)
+	apply_new_mapping(keyboard_mapping,controller_mapping)
+
+func apply_new_mapping(keyboard_mapping : actions_mapping, controller_mapping : actions_mapping):
+	var new_mapping : control_actions_mapping = control_actions_mapping.new()
+	new_mapping.set_keyboard_mapping(keyboard_mapping)
+	new_mapping.set_controller_mapping(controller_mapping)
+	apply_control_actions_mapping(new_mapping)
 
 func apply_action_mapping(mapping : actions_mapping):
 	var actions : Array[StringName] = InputMap.get_actions()
@@ -293,6 +308,12 @@ class control_actions_mapping:
 	func set_controller_mapping(mapping : actions_mapping):
 		controller = mapping
 	
+	func get_keyboard_dictionary() -> Dictionary:
+		return keyboard.get_dictionary()
+
+	func get_controller_dictionary() -> Dictionary:
+		return controller.get_dictionary()
+	
 	func duplicate() -> control_actions_mapping:
 		var new_control_actions_mapping = control_actions_mapping.new()
 		var new_controller_mapping = controller.duplicate()
@@ -300,13 +321,6 @@ class control_actions_mapping:
 		new_control_actions_mapping.set_controller_mapping(new_controller_mapping)
 		new_control_actions_mapping.set_keyboard_mapping(new_keyboard_mapping)
 		return new_control_actions_mapping
-
-	func get_dictionary() -> Dictionary:
-		var mapping_dictionary : Dictionary
-		return mapping_dictionary
-	
-	func load_from_dictionary(load_dictionary : Dictionary):
-		pass
 
 #class for representing a 1:1 mapping of in-game input actions and InputEvents
 #where each action corresponds to exactly one event
@@ -373,6 +387,78 @@ class actions_mapping:
 				ret_action = action
 				break
 		return ret_action
+	
+	func get_dictionary() -> Dictionary:
+		var mapping_dictionary : Dictionary
+		
+		for action in actions:
+			var event = get_action_event(action)
+			var event_string :String
+			if(event is InputEventKey):
+				event_string = get_key_as_string(event)
+			if(event is InputEventJoypadButton):
+				event_string = get_joybutton_as_string(event)
+			if(event is InputEventJoypadMotion):
+				event_string = get_joymotion_as_string(event)
+			mapping_dictionary.set(action,event_string)
+		
+		return mapping_dictionary
+	
+	func load_from_dictionary(load_dictionary : Dictionary):
+		for action in actions:
+			var event_string = load_dictionary.get(action)
+			var type = event_string.get_slice("_",0)
+			var event : InputEvent 
+			if(type == "JoyMotion"):
+				event = get_joymotion_from_string(event_string)
+			elif(type == "JoyButton"):
+				event = get_joybutton_from_string(event_string)
+			elif(type == "Key"):
+				event = get_key_from_string(event_string)
+			set_action_event(action,event)
+	
+	func get_joymotion_as_string(event : InputEventJoypadMotion) -> String:
+		var output_string = "JoyMotion_"
+		if(event.axis_value > 0):
+			output_string = str(output_string,str(event.axis,"_+"))
+		elif(event.axis_value < 0):
+			output_string = str(output_string,str(event.axis,"_-"))
+		return output_string
+	
+	func get_joymotion_from_string(string : String) -> InputEventJoypadMotion:
+		var motion : InputEventJoypadMotion = InputEventJoypadMotion.new()
+		var axis : String = string.get_slice("_",1)
+		var value_key : String = string.get_slice("_",2)
+		var axis_value : float = 0.0
+		if(value_key == "+"):
+			axis_value = 1.0
+		elif(value_key == "-"):
+			axis_value = -1.0
+		motion.axis = int(axis)
+		motion.axis_value = axis_value
+		return motion
+	
+	func get_joybutton_as_string(event : InputEventJoypadButton) -> String:
+		var output_string = "JoyButton"
+		output_string = str(str(output_string,"_"),event.button_index)
+		return output_string
+	
+	func get_joybutton_from_string(string : String) -> InputEventJoypadButton:
+		var button : InputEventJoypadButton = InputEventJoypadButton.new()
+		var button_index : String = string.get_slice("_",1)
+		button.button_index = int(button_index)
+		return button
+	
+	func get_key_as_string(event : InputEventKey) -> String:
+		var output_string = "Key"
+		output_string = str(str(output_string,"_"),event.physical_keycode)
+		return output_string
+	
+	func get_key_from_string(string: String) -> InputEventKey:
+		var key : InputEventKey = InputEventKey.new()
+		var physical_keycode : String = string.get_slice("_",1)
+		key.physical_keycode = int(physical_keycode)
+		return key
 	
 	func event_check_equivalent(event1 : InputEvent, event2: InputEvent):
 		var equivalent = false

@@ -180,7 +180,6 @@ func load_time_keeper():
 	time_keeper.set_days_passed(int(time_keeper_dictionary.get("days_passed")))
 	time_keeper.set_clock(int(time_keeper_dictionary.get("hour")))
 
-
 func save_pizza_manager():
 	var pizza_manager = get_tree().get_first_node_in_group("pizza_manager")
 	var pizza_manager_dictionary : Dictionary = {
@@ -200,3 +199,27 @@ func load_pizza_manager():
 	pizza_manager.set_level(int(pizza_manager_dictionary.get("level")))
 	pizza_manager.set_has_delivered_max_pizzas(pizza_manager_dictionary.get("has_delivered_max_pizzas"))
 	pizza_manager.set_is_leaving_tutorial(pizza_manager_dictionary.get("is_leaving_tutorial"))
+
+func save_settings():
+	#user settings
+	var settings : Dictionary = get_settings_dictionary()
+	var settings_file : FileAccess = FileAccess.open("user://settings.save", FileAccess.WRITE)
+	settings_file.store_line(JSON.stringify(settings))
+	
+	#input map settings
+	var input_map_manager = get_tree().get_first_node_in_group("input_map_manager")
+	var current_mapping = input_map_manager.get_current_mapping()
+	var keyboard_dictionary : Dictionary = current_mapping.get_keyboard_dictionary()
+	var controller_dictionary : Dictionary = current_mapping.get_controller_dictionary()
+	settings_file.store_line(JSON.stringify(keyboard_dictionary))
+	settings_file.store_line(JSON.stringify(controller_dictionary))
+	
+	settings_file.close()
+
+func get_settings_dictionary() -> Dictionary:
+	var settings_dictionary = {
+		"lighting_index" = SettingsVariables.lighting_index,
+		"resolution_index" = SettingsVariables.resolution_index,
+		"full_screen" = SettingsVariables.full_screen
+	}
+	return settings_dictionary

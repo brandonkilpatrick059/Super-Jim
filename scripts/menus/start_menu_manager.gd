@@ -64,6 +64,8 @@ func handle_selection():
 		active_child_menu = child_settings_menu
 		add_child(child_settings_menu)
 	elif(select_index == 2): #quit
+		var game_save_manager = get_tree().get_first_node_in_group("game_save_manager")
+		game_save_manager.save_settings()
 		get_tree().quit()
 
 func play_sound(sound_path : String):
@@ -103,6 +105,12 @@ func load_settings():
 			get_viewport().mode = 4 #fullscreen
 		else:
 			get_viewport().mode = 2 #maximized 
+		var keyboard_string = settings_file.get_line()
+		var keyboard_map : Dictionary = JSON.parse_string(keyboard_string)
+		var controller_string = settings_file.get_line()
+		var controller_map : Dictionary = JSON.parse_string(controller_string)
+		var input_map_manager = get_tree().get_first_node_in_group("input_map_manager")
+		input_map_manager.apply_new_mapping_from_dictionaries(keyboard_map,controller_map)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -165,11 +165,25 @@ func _input(event: InputEvent) -> void:
 		if(modes[mode_index] == "KEYBOARD"):
 			if(event is InputEventKey):
 				input_map_manager.set_current_keyboard_action_event(action,event)
+				get_parent().play_sound("res://audio/soundFX/maracca.ogg")
+				listening_for_input = false
+				action_timer.start(0.2)
 		elif(modes[mode_index] == "CONTROLLER"):
-			if(event is InputEventJoypadButton ||
-			event is InputEventJoypadMotion ):
+			if(event is InputEventJoypadButton):
 				input_map_manager.set_current_controller_action_event(action,event)
-		listening_for_input = false
+				get_parent().play_sound("res://audio/soundFX/maracca.ogg")
+				listening_for_input = false
+				action_timer.start(0.2)
+			elif(event is InputEventJoypadMotion):
+				if(absf(event.axis_value) > 0.5):
+					if(event.axis_value < 0):
+						event.axis_value = -1.0
+					elif(event.axis_value > 0):
+						event.axis_value = 1.0
+					input_map_manager.set_current_controller_action_event(action,event)
+					get_parent().play_sound("res://audio/soundFX/maracca.ogg")
+					listening_for_input = false
+					action_timer.start(0.2)
 
 func block_index():
 	sound_player.stream = load("res://audio/soundFX/bigCollide.wav")
@@ -229,29 +243,17 @@ func update_selection():
 	else:
 		back_label.modulate = Color(1,1,1,1)
 
-#func get_settings_dictionary() -> Dictionary:
-	#var settings_dictionary = {
-		#"lighting_index" = SettingsVariables.lighting_index,
-		#"resolution_index" = SettingsVariables.resolution_index,
-		#"full_screen" = SettingsVariables.full_screen
-	#}
-	#return settings_dictionary
-
-#func save_settings():
-	#var settings : Dictionary = get_settings_dictionary()
-	#var settings_file : FileAccess = FileAccess.open("user://settings.save", FileAccess.WRITE)
-	#settings_file.store_line(JSON.stringify(settings))
-	#settings_file.close()
-
 func handle_selection():
 	if(select_index == -1 && select_column == 1):
 		advance_mode()
 	elif(select_index == (action_column_1.size()) + 1) && select_column == 1:
 		back_selected()
 	elif(select_index == (action_column_1.size())) && select_column == 1:
+		get_parent().play_sound("res://audio/soundFX/maracca.ogg")
 		input_map_manager.restore_default_mapping()
 	else:
 		if(!listening_for_input):
+			get_parent().play_sound("res://audio/soundFX/maracca.ogg")
 			listening_for_input = true
 			action_timer.start(0.2)
 
@@ -265,7 +267,7 @@ func back_selected():
 	queue_free()
 
 func handle_input():
-	if(!listening_for_input):
+	if(!listening_for_input && action_timer.is_stopped()):
 		if Input.is_action_just_pressed("menu_up"):
 			if(select_column == 1):
 				if(select_index > -1):

@@ -246,7 +246,7 @@ func apply_control_actions_mapping(mapping: control_actions_mapping):
 	clear_input_map()
 	apply_action_mapping(mapping.keyboard)
 	apply_action_mapping(mapping.controller)
-	current_mapping = mapping
+	current_mapping = mapping.duplicate()
 
 func apply_action_mapping(mapping : actions_mapping):
 	var actions : Array[StringName] = InputMap.get_actions()
@@ -292,6 +292,21 @@ class control_actions_mapping:
 	
 	func set_controller_mapping(mapping : actions_mapping):
 		controller = mapping
+	
+	func duplicate() -> control_actions_mapping:
+		var new_control_actions_mapping = control_actions_mapping.new()
+		var new_controller_mapping = controller.duplicate()
+		var new_keyboard_mapping = keyboard.duplicate()
+		new_control_actions_mapping.set_controller_mapping(new_controller_mapping)
+		new_control_actions_mapping.set_keyboard_mapping(new_keyboard_mapping)
+		return new_control_actions_mapping
+
+	func get_dictionary() -> Dictionary:
+		var mapping_dictionary : Dictionary
+		return mapping_dictionary
+	
+	func load_from_dictionary(load_dictionary : Dictionary):
+		pass
 
 #class for representing a 1:1 mapping of in-game input actions and InputEvents
 #where each action corresponds to exactly one event
@@ -328,6 +343,14 @@ class actions_mapping:
 			return events[index]
 		else:
 			return null
+	
+	func duplicate() -> actions_mapping:
+		var new_mapping = actions_mapping.new()
+		var index = 0
+		for action in actions:
+			new_mapping.set_action_event(action,get_action_event(action))
+			index = index + 1
+		return new_mapping
 	
 	func set_action_event(action: StringName, event : InputEvent):
 		var index = actions.find(action)

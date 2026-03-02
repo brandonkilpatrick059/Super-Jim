@@ -8,6 +8,8 @@ size = Vector2(10, 17.5)
 
 [node name="tree_1" type="StaticBody2D" groups=["prop", "prunable"]]
 y_sort_enabled = true
+collision_layer = 16
+collision_mask = 16
 
 [node name="tree_1" type="Sprite2D" parent="." groups=["prop"]]
 y_sort_enabled = true

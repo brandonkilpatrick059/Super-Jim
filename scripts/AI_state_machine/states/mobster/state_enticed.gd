@@ -68,7 +68,7 @@ func physics_process(_delta: float) -> void:
 					nav_target_reached = get_host_nav_target_reached()
 					var global_pos = ai_state_machine.get_perceptions().global_position
 					var distance_to_pizza = global_pos.distance_to(pizza_ref.global_position)
-					if(distance_to_pizza < 80):
+					if(nav_target_reached && distance_to_pizza < 80):
 						if(!pizza_ref.is_picked_up()):
 							pick_up.emit(pizza_ref)
 							stop_movement.emit()

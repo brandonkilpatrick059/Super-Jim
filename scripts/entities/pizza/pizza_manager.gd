@@ -142,6 +142,7 @@ func get_delivery_doors_by_tier(tier: int, num_pizzas : int = 3) -> Array[Node]:
 	selected_delivery_doors = []
 	for door in delivery_doors:
 		if(door.get_tier() <= tier &&
+		door.get_tier() != 0 &&
 		!doors_ordered_to_today.has(door)):
 			doors_in_tier.append(door)
 	while(iterator < num_pizzas):

@@ -16,6 +16,11 @@ var host_position
 var default_speed = 625000
 var bandit_speed =  700000
 
+var evaded_roll_max = 1.0
+var evaded_roll = evaded_roll_max
+var default_roll_decay = 0.40
+var bandit_roll_decay = 0.20
+
 func get_host_position():
 	return ai_state_machine.get_perceptions().position
 
@@ -76,13 +81,22 @@ func physics_process(_delta: float) -> void:
 		nav_target_reached = get_host_nav_target_reached()
 		if(nav_target_reached):
 			if(!ai_state_machine.get_perceptions().has_line_of_sight_to_target):
-				if(randf_range(0.0,1.0) < 0.5): #lose a coin toss and they've got a bead on you
+				if(randf_range(0.0,1.0) < evaded_roll): 
+					decay_evaded_roll()
 					ai_state_machine.transition_to(mobster_states.chasing)
-				else: #win a coin toss and they haven't a clue
+				else: 
+					evaded_roll = evaded_roll_max
 					ai_state_machine.transition_to(mobster_states.look)
 				return
 			else:
+				evaded_roll = evaded_roll_max
 				ai_state_machine.transition_to(mobster_states.strafing)
+
+func decay_evaded_roll():
+	if(ai_state_machine.get_perceptions().is_bandit):
+		evaded_roll = evaded_roll - bandit_roll_decay
+	else:
+		evaded_roll = evaded_roll - default_roll_decay
 
 func enter(_msg := {}) -> void:
 	if(ai_state_machine.get_perceptions().target_obj != null):

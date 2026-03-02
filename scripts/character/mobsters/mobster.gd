@@ -10,6 +10,7 @@ var blood = preload("res://effects/blood.tscn")
 var question_bubble = preload("res://entities/characters/NPC/mobsters/communication/question.tscn")
 var pizza_bubble = preload("res://entities/characters/NPC/mobsters/communication/pizza_bubble.tscn")
 var exclaim_bubble = preload("res://entities/characters/NPC/mobsters/communication/exclaim.tscn")
+var exclaim_pizza = preload("res://entities/characters/NPC/mobsters/communication/exclaim_pizza.tscn")
 var exclaim_bubble_blu = preload("res://entities/characters/NPC/mobsters/communication/exclaim_blu.tscn")
 var exclaim_bubble_red = preload("res://entities/characters/NPC/mobsters/communication/exclaim_red.tscn")
 var flag_bubble_blu = preload("res://entities/characters/NPC/mobsters/communication/flag_blu.tscn")
@@ -803,7 +804,10 @@ func exclaim():
 	var exclaimBubble
 	if(perceptions.target_obj != null && 
 	perceptions.target_obj.is_in_group("player")):
-		exclaimBubble = exclaim_bubble.instantiate()
+		if(perceptions.target_obj.is_in_group("courier")):
+			exclaimBubble = exclaim_pizza.instantiate()
+		else:
+			exclaimBubble = exclaim_bubble.instantiate()
 	else:
 		if(team == team_blu):
 			exclaimBubble = exclaim_bubble_red.instantiate()

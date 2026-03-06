@@ -5,6 +5,7 @@ extends Node2D
 
 var fader : Node = null
 var teleport_fader = preload("res://entities/util/teleport_fader.tscn")
+var prune_node = preload("res://entities/util/prune_node.tscn")
 
 @export var linked_teleporter:Node2D = null
 @export var enter_y_push = 0
@@ -18,11 +19,23 @@ var teleport_fader = preload("res://entities/util/teleport_fader.tscn")
 @export var no_ui_interact = false
 @export var inactive : bool = false
 @export var no_light_interact = false
+@export var turn_off_light = false
 @export var remove_held_items = false
 
 
 @export var scripts_on_enter : Array[Node] = []
 @export var scripts_on_exit : Array[Node] = []
+
+@export var adds_and_removes_nodes : bool = false 
+
+@export var add_enter_nodes_parent_map : Array[Node] = []
+@export var add_nodes_on_enter : Array[Node] = []
+@export var remove_nodes_on_enter : Array[Node] = []
+@export var add_nodes_on_exit : Array[Node] = []
+@export var add_exit_nodes_parent_map : Array[Node] = []
+@export var remove_nodes_on_exit : Array[Node] = []
+@export var remove_nodes_on_ready: bool = false
+@export var remove_wait : float = 2.0
 
 var run_enter_scripts = false
 var run_exit_scripts = false
@@ -81,6 +94,9 @@ func _ready():
 	add_child(timer_fade)
 	add_child(timer_control_back)
 	camera_ref = get_tree().get_first_node_in_group("camera")
+	if(adds_and_removes_nodes && remove_nodes_on_ready):
+		remove_nodes(remove_nodes_on_exit)
+		remove_nodes(remove_nodes_on_enter)
 
 func is_entering():
 	return entering
@@ -129,10 +145,29 @@ func make_active():
 func make_inactive():
 	inactive = true
 
+func add_nodes(nodes_list : Array[Node], parent_map : Array[Node]):
+	var index : int = 0
+	for node in nodes_list:
+		var parent = parent_map[index]
+		if(node.get_parent() != parent):
+			parent.add_child(node)
+
+func remove_nodes(nodes_list : Array[Node]):
+	for node in nodes_list:
+		if(node.get_parent() != null):
+			var parent = node.get_parent()
+			var pruner = prune_node.instantiate()
+			var node_array : Array[Node] = [node]
+			pruner.set_prune_nodes_and_parent(node_array,parent)
+			pruner.launch(remove_wait)
+
 func enter():
 	if(scripts_on_enter != null && run_enter_scripts):
 		for script in scripts_on_enter:
 			script.run_script()
+	if(adds_and_removes_nodes):
+		add_nodes(add_nodes_on_enter, add_enter_nodes_parent_map)
+		remove_nodes(remove_nodes_on_enter)
 	if(fade_alpha < 1 && timer_fade.is_stopped()):
 		fade_alpha = fade_alpha + fade_step
 		timer_fade.start(fade_step_secs)
@@ -143,12 +178,16 @@ func enter():
 			player_ref.put_down_and_return()
 		if(reparent_to_daylight):
 			player_ref.reparent(day_light_ysort)
+			if(turn_off_light):
+				player_ref.turn_light_off()
 			if(!no_light_interact):
 				player_ref.turn_light_off()
 			day_light_layer.visible = true
 			dark_layer.visible = false
 			#flat_light_layer.visible = false
 		elif(reparent_to_no_daylight):
+			if(turn_off_light):
+				player_ref.turn_light_off()
 			if(!no_light_interact):
 				player_ref.turn_light_off()
 			day_light_layer.visible = false
@@ -157,6 +196,8 @@ func enter():
 			player_ref.reparent(flat_light_ysort)
 		elif(reparent_to_dark_indoor):
 			player_ref.reparent(dark_ysort)
+			if(turn_off_light):
+				player_ref.turn_light_off()
 			if(!no_light_interact):
 				player_ref.turn_light_on()
 			day_light_layer.visible = false
@@ -176,6 +217,9 @@ func exit():
 	if(scripts_on_exit != null && run_exit_scripts):
 		for script in scripts_on_exit:
 			script.run_script()
+	if(adds_and_removes_nodes):
+		add_nodes(add_nodes_on_exit, add_exit_nodes_parent_map)
+		remove_nodes(remove_nodes_on_exit)
 	if(fade_alpha > 0 && timer_fade.is_stopped()):
 		if(exit_dir != ""):
 			player_ref.face_dir(exit_dir)

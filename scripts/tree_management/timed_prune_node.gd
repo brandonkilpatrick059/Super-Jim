@@ -1,5 +1,5 @@
 extends Node
-#used by comment area prune
+#used by comment area prune and teleporter link
 
 var timer := Timer.new()
 #var wait_seconds : float = 2.0

@@ -18,8 +18,8 @@ var bandit_speed =  700000
 
 var evaded_roll_max = 1.0
 var evaded_roll = evaded_roll_max
-var default_roll_decay = 0.40
-var bandit_roll_decay = 0.20
+var default_roll_decay = 0.60
+var bandit_roll_decay = 0.40
 
 func get_host_position():
 	return ai_state_machine.get_perceptions().position

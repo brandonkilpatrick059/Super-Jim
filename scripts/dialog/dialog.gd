@@ -63,7 +63,8 @@ func play_current_branch():
 		_ResponseBubble.visible = false
 		_DialogBubble.set_label("")
 		_DialogBubble.global_position = speaker_node.global_position + Vector2(-48,-96) + nudge_vector
-		_DialogBubble.set_portrait(tree.get_speaker_portrait(), tree.get_speaker_emote())
+		#_DialogBubble.set_portrait(tree.get_speaker_portrait(), tree.get_speaker_emote())
+		_DialogBubble.set_portrait(null, "") #no portraits :(
 		_DialogBubble.visible = true
 		_DialogBubble.play_text(tree.get_speaker_text(), tree.get_voice())
 		

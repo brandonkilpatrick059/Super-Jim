@@ -308,3 +308,5 @@ func _on_area_2d_body_entered(body):
 				body.reparent(day_light_ysort)
 			if(reparent_to_no_daylight):
 				body.reparent(flat_light_ysort)
+			if(reparent_to_dark_indoor):
+				body.reparent(dark_ysort)

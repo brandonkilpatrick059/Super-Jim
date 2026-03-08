@@ -147,11 +147,26 @@ func use_item():
 	if(!selecting_pizza):
 		open_pizza_bubble()
 
+func is_in_daylight_ysort():
+	var check_node = _prop.get_parent()
+	var is_in_daylight = false
+	while(check_node != get_tree().root):
+		if(check_node.is_in_group("daylight_affected_ysort")):
+			is_in_daylight = true
+			break
+		else:
+			check_node = check_node.get_parent()
+	return is_in_daylight
+
 func update_compass_pointer():
 	var player_ref = get_tree().get_nodes_in_group("player")[0]
+	if(_compass.get_parent() != player_ref): 
+		#we have to do this to maintain visibility (I guess?)
+		_compass.reparent(player_ref)
+		_pointer.reparent(player_ref)
 	_compass.global_position = player_ref.global_position
 	_compass.look_at(current_guide_point)
-	if(_prop.get_parent().get_parent().is_in_group("daylight_affected_ysort")):
+	if(is_in_daylight_ysort()):
 		if(distance_to_position(current_guide_point) < switch_to_pointer_distance):
 			_compass.visible = false
 			_pointer.global_position = current_guide_point
@@ -181,8 +196,8 @@ func wrong_door(door : Node):
 func deliver_pizza(door : Node2D):
 	dialog_manager = dialog.instantiate()
 	dialog_manager.set_speaker_node(door)
-	get_parent().add_child(dialog_manager)
 	var player_ref = get_tree().get_nodes_in_group("player")[0]
+	player_ref.add_child(dialog_manager)
 	player_ref.enter_dialog()
 	
 	#delivering destroyed pizza
@@ -215,6 +230,7 @@ func deliver_pizza(door : Node2D):
 		else:
 			delivery_dialog_tree = normal_2hit.instantiate()
 	
+	delivery_dialog_tree.visible = false
 	dialog_manager.add_child(delivery_dialog_tree)
 	dialog_manager.set_tree_and_start_dialog(delivery_dialog_tree)	
 	pizzas -= 1
@@ -244,7 +260,7 @@ func open_pizza_bubble():
 	fx_player.stream = load("res://audio/soundFX/maracca.ogg")
 	fx_player.play()
 	select_pizza_bubble = pizza_select_bubble.instantiate()
-	add_child(select_pizza_bubble)
+	player_ref.add_child(select_pizza_bubble)
 	select_pizza_bubble.global_position = player_ref.global_position
 	update_select_bubble()
 	use_item_timer.start(0.2)
@@ -262,6 +278,35 @@ func close_pizza_bubble():
 	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 	time_keeper.unpause_parent_tree()
 
+func handle_select_pizza():
+	var player_ref = get_tree().get_nodes_in_group("player")[0]
+	if(use_item_timer.is_stopped()  && 
+	Input.is_action_just_pressed("use_item")):
+		var fx_player = get_tree().get_first_node_in_group("main_fx_player")
+		fx_player.stream = load("res://audio/soundFX/maracca.ogg")
+		fx_player.play()
+		close_pizza_bubble()
+	else:
+		player_ref.stop()
+		update_select_bubble()
+		if(Input.is_action_just_pressed(direction.right)):
+			var fx_player = get_tree().get_first_node_in_group("main_fx_player")
+			fx_player.stream = load("res://audio/soundFX/shaker.ogg")
+			fx_player.play()
+			if(current_door + 1 < selected_delivery_doors.size()):
+				current_door = current_door + 1
+			else:
+				current_door = 0
+		elif(Input.is_action_just_pressed(direction.left)):
+			var fx_player = get_tree().get_first_node_in_group("main_fx_player")
+			fx_player.stream = load("res://audio/soundFX/shaker.ogg")
+			fx_player.play()
+			if(current_door - 1 >= 0):
+				current_door = current_door - 1
+			else:
+				current_door = selected_delivery_doors.size() - 1
+		destination_door = selected_delivery_doors[current_door]
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
 	if(_prop != null):
@@ -272,34 +317,7 @@ func _physics_process(delta: float):
 		_prop.get_parent().is_in_group("player") && 
 		!_prop.get_parent().dead):
 			if(selecting_pizza):
-				var player_ref = get_tree().get_nodes_in_group("player")[0]
-				if(use_item_timer.is_stopped()  && 
-				Input.is_action_just_pressed("use_item")):
-					var fx_player = get_tree().get_first_node_in_group("main_fx_player")
-					fx_player.stream = load("res://audio/soundFX/maracca.ogg")
-					fx_player.play()
-					close_pizza_bubble()
-				else:
-					player_ref.stop()
-					update_select_bubble()
-					if(Input.is_action_just_pressed(direction.right)):
-						var fx_player = get_tree().get_first_node_in_group("main_fx_player")
-						fx_player.stream = load("res://audio/soundFX/shaker.ogg")
-						fx_player.play()
-						if(current_door + 1 < selected_delivery_doors.size()):
-							current_door = current_door + 1
-						else:
-							current_door = 0
-					elif(Input.is_action_just_pressed(direction.left)):
-						var fx_player = get_tree().get_first_node_in_group("main_fx_player")
-						fx_player.stream = load("res://audio/soundFX/shaker.ogg")
-						fx_player.play()
-						if(current_door - 1 >= 0):
-							current_door = current_door - 1
-						else:
-							current_door = selected_delivery_doors.size() - 1
-					destination_door = selected_delivery_doors[current_door]
-				
+				handle_select_pizza()
 			if(distance_to_position(destination_door.global_position) < switch_to_pointer_distance):
 				current_guide_point = destination_door.global_position
 			else:

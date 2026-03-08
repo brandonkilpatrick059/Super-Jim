@@ -48,6 +48,8 @@ func set_active(set_active : bool):
 	if(set_active == true && !active):
 		var daylight_layer = get_tree().get_first_node_in_group("daylight_layer")
 		daylight_layer.visible = true
+		var tv_machine = get_tree().get_first_node_in_group("tv_machine")
+		tv_machine.reparent(daylight_layer)
 		var dark_layer = get_tree().get_first_node_in_group("dark_layer")
 		dark_layer.visible = false
 		find_bandit()

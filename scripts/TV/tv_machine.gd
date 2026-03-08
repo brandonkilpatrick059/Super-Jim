@@ -14,6 +14,9 @@ var audio_player := AudioStreamPlayer.new()
 var camera_ref = null 
 
 var layer_index : int = 0
+#0 = daylight
+#1 = no light
+#2 = dark
 
 var camera_should_reset : bool = false
 
@@ -51,12 +54,14 @@ func reset_camera():
 		0:
 			daylight_layer.visible = true
 			dark_layer.visible = false
+			reparent(daylight_layer)
 		1:
 			daylight_layer.visible = false
 			dark_layer.visible = false
 		2:
 			daylight_layer.visible = false
 			dark_layer.visible = true
+			reparent(dark_layer)
 	var camera_ref = get_tree().get_first_node_in_group("camera")
 	var player_ref = get_tree().get_first_node_in_group("player")
 	camera_ref.connect_anchor(player_ref)

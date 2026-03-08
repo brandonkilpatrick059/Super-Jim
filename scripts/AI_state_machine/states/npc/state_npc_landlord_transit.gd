@@ -44,7 +44,7 @@ func physics_process(_delta: float) -> void:
 				for node in nodes_in_vision:
 					if(node != null):
 						#check for player
-						if(node.is_in_group("player")):
+						if(node.is_in_group("player") && !player_ref.control_is_frozen()):
 							set_target.emit(node)
 							if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
 								ai_state_machine.transition_to(npc_states.landlord_exclaim)

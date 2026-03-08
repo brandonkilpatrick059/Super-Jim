@@ -170,6 +170,7 @@ func update_branching_dialog():
 func _on_stop_motion():
 	_character_base.set_animation_scale_ratio(1)
 	current_v = Vector2(0,0)
+	linear_velocity = Vector2(0,0)
 
 func get_is_animatronic():
 	return is_animatronic

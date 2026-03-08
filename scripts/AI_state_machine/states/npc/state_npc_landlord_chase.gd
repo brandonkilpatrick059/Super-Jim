@@ -30,8 +30,11 @@ func physics_process(_delta: float) -> void:
 			ai_state_machine.transition_to(npc_states.alert_passive)
 			return
 	nav_target_reached = get_host_nav_target_reached()
-	if(nav_target_reached):
-		if(!ai_state_machine.get_perceptions().has_line_of_sight_to_target):
+	if(nav_target_reached || player_ref.control_is_frozen()):
+		if(!ai_state_machine.get_perceptions().has_line_of_sight_to_target || player_ref.control_is_frozen()):
+			var landlord = get_tree().get_first_node_in_group("landlord")
+			if(player_ref.control_is_frozen()):
+				landlord._on_stop_motion()
 			ai_state_machine.transition_to(npc_states.landlord_look)
 			return
 	else:

@@ -180,7 +180,7 @@ func enter():
 			player_ref.reparent(day_light_ysort)
 			if(turn_off_light):
 				player_ref.turn_light_off()
-			if(!no_light_interact):
+			elif(!no_light_interact):
 				player_ref.turn_light_off()
 			day_light_layer.visible = true
 			dark_layer.visible = false
@@ -188,7 +188,7 @@ func enter():
 		elif(reparent_to_no_daylight):
 			if(turn_off_light):
 				player_ref.turn_light_off()
-			if(!no_light_interact):
+			elif(!no_light_interact):
 				player_ref.turn_light_off()
 			day_light_layer.visible = false
 			dark_layer.visible = false
@@ -198,7 +198,7 @@ func enter():
 			player_ref.reparent(dark_ysort)
 			if(turn_off_light):
 				player_ref.turn_light_off()
-			if(!no_light_interact):
+			elif(!no_light_interact):
 				player_ref.turn_light_on()
 			day_light_layer.visible = false
 			dark_layer.visible = true

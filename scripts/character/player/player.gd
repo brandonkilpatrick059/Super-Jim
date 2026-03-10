@@ -836,6 +836,7 @@ func shake_camera(magnitude : int):
 	_camera.shake(magnitude)
 
 func reduce_hp():
+	stop_skateboarding()
 	current_hp = current_hp - 1
 	_ui.update_hearts(current_hp)
 	play_sound(damage_sound)
@@ -1055,23 +1056,29 @@ func use_item():
 					remove_from_items(firecracker)
 			skateboard:
 				if(!skating):
-					skating = true
-					play_sound(maracca_sound)
-					skateboard_player.play()
-					_skateboard.visible = true
-					if(is_dashing):
-						linear_velocity = linear_velocity * 1.5
-					physics_material_override.bounce = 1.0
-					linear_damp = skating_linear_damp
-					skating_top_speed = speed()
+					start_skateboarding()
 				else:
-					skateboard_player.stop()
-					_skateboard.visible = false
-					play_sound(maracca_sound)
-					skating = false
-					linear_damp = default_linear_damp
-					physics_material_override.bounce = 0.0
-					skating_top_speed = 0.0
+					stop_skateboarding()
+
+func start_skateboarding():
+	skating = true
+	play_sound(maracca_sound)
+	skateboard_player.play()
+	_skateboard.visible = true
+	if(is_dashing):
+		linear_velocity = linear_velocity * 1.5
+	physics_material_override.bounce = 1.0
+	linear_damp = skating_linear_damp
+	skating_top_speed = speed()
+
+func stop_skateboarding():
+	skateboard_player.stop()
+	_skateboard.visible = false
+	play_sound(maracca_sound)
+	skating = false
+	linear_damp = default_linear_damp
+	physics_material_override.bounce = 0.0
+	skating_top_speed = 0.0
 
 func set_movement_frozen(input: bool):
 	movement_frozen = input

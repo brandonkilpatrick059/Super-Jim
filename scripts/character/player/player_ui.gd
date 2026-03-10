@@ -189,6 +189,8 @@ func set_item_square(id : String):
 		"fire_cracker":
 			show_quantity_label()
 			item_square_texture.texture = load("res://sprites/interface/item_box/item_fire_cracker.png")
+		"skateboard" :
+			item_square_texture.texture = load("res://sprites/interface/item_box/item_skateboard.png")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(interact_text_visible):

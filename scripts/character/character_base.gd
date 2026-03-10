@@ -71,6 +71,16 @@ func play_animation(animation: String):
 	if(_bottom.sprite_frames != null):
 		_bottom.play(animation)
 
+func set_frames(frame: int):
+	if(_base_sprite.sprite_frames != null):
+		_base_sprite.frame = frame
+	if(_hat.sprite_frames != null):
+		_hat.frame = frame
+	if(_top.sprite_frames != null):
+		_top.frame = frame
+	if(_bottom.sprite_frames != null):
+		_bottom.frame = frame
+
 func set_speed_scales(scale):
 	if(_base_sprite.sprite_frames != null):
 		_base_sprite.set_speed_scale(scale)
@@ -80,6 +90,11 @@ func set_speed_scales(scale):
 		_top.set_speed_scale(scale)
 	if(_bottom.sprite_frames != null):
 		_bottom.set_speed_scale(scale)
+
+func play_animation_frame(animation : String, frame : int):
+	play_animation(animation)
+	set_speed_scales(0.0)
+	set_frames(frame)
 
 func stand_dir(direction):
 	if(direction != ""):
@@ -102,6 +117,14 @@ func walk_dir(direction):
 	if(arms_raised):
 		animation = str(animation,"_arms")
 	play_animation(animation)
+
+func walk_dir_frame(direction, frame : int):
+	if(direction != ""):
+		facing_dir = direction
+	var animation = str("walk_",facing_dir)
+	if(arms_raised):
+		animation = str(animation,"_arms")
+	play_animation_frame(animation,frame)
 
 func set_all_materials(material):
 	if(_base_sprite.sprite_frames != null):
@@ -129,10 +152,23 @@ func face_to_vector(vector):
 
 #animate sprite based on a given vectors and its magnitude
 func animate_sprite_by_vector(in_vector :Vector2, walk_override := false):
+	#in_vector doesn't affect facing_dir???
+	#it really should. I thought it did.
+	#in practice, it seems to.
+	#idk how
+	#but this code is working and I'm too scared to touch it...
 	if(in_vector.length() > 0 || walk_override):
 		walk_dir(facing_dir)
 	else: 
 		stand_dir(facing_dir)
+
+func skate_pose_sprite_by_vector(in_vector : Vector2):
+	if(in_vector.length() > 0):
+		face_to_vector(in_vector)
+		var frame : int = 1
+		if(facing_dir == direction.up):
+			frame = 3
+		walk_dir_frame(facing_dir, frame)
 
 func turn_right():
 	match(facing_dir):

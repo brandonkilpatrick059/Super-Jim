@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c21jsew46j2v0"]
+[gd_scene load_steps=15 format=3 uid="uid://c21jsew46j2v0"]
 
 [ext_resource type="Material" uid="uid://dhx7fk0igp2jl" path="res://entities/characters/player/player_material.tres" id="1_m0gj2"]
 [ext_resource type="Script" uid="uid://cogilhe2xxfbn" path="res://scripts/character/player/player.gd" id="1_srksq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://drhb8omp3qpc2" path="res://sprites/die_text.png" id="6_o3xy8"]
 [ext_resource type="PackedScene" uid="uid://mcdceuvq1y5j" path="res://entities/characters/player/player_ui.tscn" id="6_ya2x2"]
 [ext_resource type="Texture2D" uid="uid://7xytxntsgyls" path="res://sprites/lights/diffuse_circle.png" id="8_0d5hj"]
+[ext_resource type="SpriteFrames" uid="uid://ejgt0higrbol" path="res://sprites/spritesheets/spriteframes/item/skateboard.tres" id="10_sybl7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3o5m8"]
 
@@ -60,7 +61,6 @@ radius = 64.0
 
 [node name="character_base" parent="." instance=ExtResource("3_f7037")]
 position = Vector2(0, -3)
-base_spriteframes = ExtResource("2_ai6r1")
 hat_spriteframes = SubResource("SpriteFrames_smo0f")
 top_spriteframes = SubResource("SpriteFrames_smo0f")
 bottom_spriteframes = SubResource("SpriteFrames_smo0f")
@@ -78,5 +78,12 @@ texture = ExtResource("6_o3xy8")
 z_index = -1
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("8_0d5hj")
+
+[node name="skateboard" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = -2
+position = Vector2(0, 2)
+sprite_frames = ExtResource("10_sybl7")
+animation = &"down"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

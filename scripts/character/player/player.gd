@@ -8,6 +8,7 @@ extends RigidBody2D
 @onready var _ui_canvas = $ui_canvas
 @onready var _ui = $ui_canvas/player_ui
 @onready var _light = $player_light
+@onready var _skateboard = $skateboard
 @export var card_deck : Array[int] = []
 @export var owned_cards : Array[int] = [0,0,0,0,0,0,0,0,0, #green
 										0,0,0,0,0,0,0,0,0, #yellow
@@ -51,6 +52,7 @@ var footfall_sound = preload("res://audio/soundFX/footfall_1.wav")
 var flashlight_sound = preload("res://audio/soundFX/click.ogg")
 var damage_sound = preload("res://audio/soundFX/damage.ogg")
 var maracca_sound = preload("res://audio/soundFX/maracca.ogg")
+var skateboard_sound = preload("res://audio/soundFX/skateboard.ogg")
 
 var sound_player := AudioStreamPlayer.new()
 var sound_player2 := AudioStreamPlayer.new()
@@ -61,6 +63,8 @@ var sound_players : Array[AudioStreamPlayer] = [sound_player,sound_player2,sound
 
 var can_play_footfall = false
 var footfall_player := AudioStreamPlayer.new()
+
+var skateboard_player := AudioStreamPlayer.new()
 
 var timer_load_in : Timer = Timer.new()
 var loading_in : bool = false
@@ -134,8 +138,13 @@ var owned_hats : Array[String] = ["", "res://sprites/spritesheets/spriteframes/c
 var owned_tops : Array[String] = ["", "res://sprites/spritesheets/spriteframes/characters/top/full_sheet/shirt_0.tres"]
 var owned_bottoms : Array[String] = ["", "res://sprites/spritesheets/spriteframes/characters/bottom/full_sheet/pants_0.tres"]
 
-var items : Array[String] = []
+var items : Array[String] = ["skateboard"]
 var item_index : int = 0
+
+var default_linear_damp : float = 6.0
+var skating_linear_damp : float = 0.1
+var skating : bool = false
+var skating_top_speed : float = -1.0
 
 var main_ui_hidden = false
 
@@ -147,6 +156,7 @@ const pizza : String = "pizza"
 const cardbinder : String = "card_binder"
 const citymap : String = "city_map"
 const firecracker: String = "fire_cracker"
+const skateboard : String = "skateboard"
 
 var num_fire_crackers : int = 0
 var max_fire_crackers : int = 9
@@ -173,7 +183,10 @@ func _ready():
 	set_up_sound_players()
 	footfall_player.bus = "Effects"
 	footfall_player.volume_db = -26
-	footfall_player.stream = load("res://audio/soundFX/footfall_1.wav")
+	footfall_player.stream = footfall_sound
+	skateboard_player.bus = "Effects"
+	skateboard_player.stream = skateboard_sound
+	add_child(skateboard_player)
 	add_child(footfall_player)
 	add_child(timer_dash)
 	add_child(timer_dash_regen)
@@ -749,14 +762,19 @@ func _activate_location_header(name : String):
 func get_input():
 	if(!control_frozen):
 		#orient and player according to input
-		if Input.is_action_pressed(direction.right):
-			_character_base.face_right()
-		else: if Input.is_action_pressed(direction.left):
-			_character_base.face_left()
-		else: if Input.is_action_pressed(direction.up):
-			_character_base.face_up()
-		else: if Input.is_action_pressed(direction.down):
-			_character_base.face_down()
+		if(!skating):
+			if Input.is_action_pressed(direction.right):
+				_character_base.face_right()
+			else: if Input.is_action_pressed(direction.left):
+				_character_base.face_left()
+			else: if Input.is_action_pressed(direction.up):
+				_character_base.face_up()
+			else: if Input.is_action_pressed(direction.down):
+				_character_base.face_down()
+		else:
+			_skateboard.play(_character_base.facing_dir)
+			_skateboard.speed_scale = speed()/top_speed
+			_character_base.skate_pose_sprite_by_vector(linear_velocity)
 		handle_interact()
 		handle_throw()
 		handle_dash()
@@ -1035,6 +1053,25 @@ func use_item():
 				if(num_fire_crackers <= 0):
 					num_fire_crackers = 0
 					remove_from_items(firecracker)
+			skateboard:
+				if(!skating):
+					skating = true
+					play_sound(maracca_sound)
+					skateboard_player.play()
+					_skateboard.visible = true
+					if(is_dashing):
+						linear_velocity = linear_velocity * 1.5
+					physics_material_override.bounce = 1.0
+					linear_damp = skating_linear_damp
+					skating_top_speed = speed()
+				else:
+					skateboard_player.stop()
+					_skateboard.visible = false
+					play_sound(maracca_sound)
+					skating = false
+					linear_damp = default_linear_damp
+					physics_material_override.bounce = 0.0
+					skating_top_speed = 0.0
 
 func set_movement_frozen(input: bool):
 	movement_frozen = input
@@ -1178,9 +1215,11 @@ func move():
 	
 	if(!movement_frozen):
 		#accelerate if we have't hit max
-		if(input_direction.length() != 0 && speed() < top_speed):
-			current_v = input_direction * acceleration_quotient 
-		else: 
+		if(!skating && input_direction.length() != 0 && speed() < top_speed):
+			current_v = input_direction * acceleration_quotient
+		elif(skating && input_direction.length() != 0 && speed() != 0 && speed() < skating_top_speed):
+			current_v = input_direction * normal_speed
+		else:
 			current_v = input_direction * 0
 		
 		_character_base.set_animation_scale(0.2, 0.8, speed(), top_speed)
@@ -1226,6 +1265,11 @@ func _physics_process(delta):
 			_camera.handle_camera_pan()
 		if(!dead):
 			get_input()
+			
+			if(skating):
+				skating_top_speed = skating_top_speed - 0.1
+				if(speed() < skating_top_speed):
+					skating_top_speed = speed()
 			if(in_dialog):
 				current_v = Vector2(0,0)
 			if(push_timer.is_stopped()):
@@ -1242,7 +1286,11 @@ func _physics_process(delta):
 			
 			update_item_square()
 			
-			_character_base.animate_sprite_by_vector(current_v, (speed() >= top_speed))
+			if(!skating):
+				_character_base.animate_sprite_by_vector(current_v, (speed() >= top_speed))
+			elif(skating):
+				_character_base.animate_sprite_by_vector(linear_velocity, (speed() >= top_speed))
+				skateboard_player.volume_db = (-80.0 + (50.0 * (speed()/top_speed)))
 			update_grabber()
 			will_grab_object = null
 			#check grabber for pick-upable objects

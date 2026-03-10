@@ -243,6 +243,10 @@ func handle_sparks_combat():
 					if(node.is_in_group(perceptions.opposing_team) &&
 					!perceptions.invincible):
 						_on_reduce_hit_points()
+						if(perceptions.target_obj.is_in_group("player")):
+							var assailant_obj = node.get_source_obj()
+							_on_set_ai_target(assailant_obj)
+							_ai_state_machine.transition_to(mobster_states.exclaiming)
 
 func get_state_name() -> String:
 	return _ai_state_machine.get_state().name

@@ -138,7 +138,7 @@ var owned_hats : Array[String] = ["", "res://sprites/spritesheets/spriteframes/c
 var owned_tops : Array[String] = ["", "res://sprites/spritesheets/spriteframes/characters/top/full_sheet/shirt_0.tres"]
 var owned_bottoms : Array[String] = ["", "res://sprites/spritesheets/spriteframes/characters/bottom/full_sheet/pants_0.tres"]
 
-var items : Array[String] = ["skateboard"]
+var items : Array[String] = []
 var item_index : int = 0
 
 var default_linear_damp : float = 6.0
@@ -1297,6 +1297,9 @@ func _physics_process(delta):
 				_character_base.animate_sprite_by_vector(current_v, (speed() >= top_speed))
 			elif(skating):
 				_character_base.animate_sprite_by_vector(linear_velocity, (speed() >= top_speed))
+				var vol : float = (-80.0 + (50.0 * (speed()/top_speed)))
+				if (vol > -20.0): #defending the player's ear drums
+					vol = -20.0
 				skateboard_player.volume_db = (-80.0 + (50.0 * (speed()/top_speed)))
 			update_grabber()
 			will_grab_object = null

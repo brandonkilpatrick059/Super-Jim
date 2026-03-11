@@ -18,8 +18,10 @@ var flag_bubble_red = preload("res://entities/characters/NPC/mobsters/communicat
 var die_skull = preload("res://effects/kill_skull.tscn")
 var red_bullet = preload("res://entities/characters/NPC/mobsters/red_bullet.tscn")
 var blu_bullet = preload("res://entities/characters/NPC/mobsters/blu_bullet.tscn")
+var fake_bullet = preload("res://entities/characters/NPC/mobsters/fake_bullet.tscn")
 var blu_bomb = preload("res://entities/characters/NPC/mobsters/blu_bomb.tscn")
 var red_bomb = preload("res://entities/characters/NPC/mobsters/red_bomb.tscn")
+var tutorial_base = preload("res://sprites/spritesheets/spriteframes/characters/base/tutorial_mobster_base.tres")
 var blu_base = preload("res://sprites/spritesheets/spriteframes/characters/base/blu_mobster_base.tres")
 var red_base = preload("res://sprites/spritesheets/spriteframes/characters/base/red_mobster_base.tres")
 var red_hat = preload("res://sprites/spritesheets/spriteframes/characters/hat/full_sheet/cowboy_hat_1.tres")
@@ -30,6 +32,7 @@ var speech_bubble = preload("res://dialog/speech_bubble.tscn")
 
 #audio preloads
 var bullet_sound = preload("res://audio/soundFX/gunshot.wav")
+var fake_bullet_sound = preload("res://audio/soundFX/fake_gunshot.ogg")
 var pick_up_sound = preload("res://audio/soundFX/pickup.wav")
 var put_down_sound = preload("res://audio/soundFX/putdown.wav")
 var throw_bomb_sound = preload("res://audio/soundFX/throw_bomb.wav")
@@ -63,6 +66,8 @@ var blu_ray_collision_mask = 0b00000000_00000000_00000010_00010001
 var ray_collision_mask = 0
 var ray_reactive_collision_mask = 0b00000000_00000000_00001000_00010000
 
+@export var is_tutorial = false
+
 #character composition
 @onready var _character_base = $character_base
 @export var base_spriteframes : SpriteFrames
@@ -87,7 +92,7 @@ const nav_path_resolution = 4
 
 const bandit_max_hit_points = 6
 const max_hit_points = 3
-var hit_points = 0
+var hit_points = 3
 var default_speed = 150000
 var default_chase_speed = 625000
 var bandit_chase_speed =  700000
@@ -140,6 +145,8 @@ func _ready():
 		
 		#pathfinding_timer.one_shot = true
 		#add_child(pathfinding_timer)
+	if(is_tutorial):
+		initialize_mob()
 	
 	#for updating character composition in the editor
 	if(Engine.is_editor_hint()):
@@ -171,18 +178,22 @@ func set_team(team_name : String):
 	team = team_name
 
 func set_up_character_base():
-	if(team == team_red):
-		base_spriteframes = red_base
+	if(!is_tutorial):
+		if(team == team_red):
+			base_spriteframes = red_base
+			hat_spriteframes = red_hat
+		else: if(team == team_blu):
+			base_spriteframes = blu_base
+			top_spriteframes = blue_top
+			hat_spriteframes = null
+	else:
+		base_spriteframes = tutorial_base
 		hat_spriteframes = red_hat
-	else: if(team == team_blu):
-		base_spriteframes = blu_base
-		top_spriteframes = blue_top
-		hat_spriteframes = null
-	_character_base.set_facing_dir(start_facing_dir)
 	_character_base.set_spriteframes(base_spriteframes,
 	hat_spriteframes,
 	top_spriteframes,
 	bottom_spriteframes)
+	_character_base.set_facing_dir(start_facing_dir)
 	_character_base.stand_dir("")
 
 func set_up_nav_agent():
@@ -268,7 +279,9 @@ func is_knocked_out():
 	return _ai_state_machine.get_state().name == mobster_states.knockedout
 
 func handle_death():
-	if(perceptions.hit_points <= 0):
+	if(perceptions.hit_points <= 0 &&
+	_ai_state_machine.get_state().name != mobster_states.dead &&
+	_ai_state_machine.get_state().name != mobster_states.falling):
 		_ai_state_machine.transition_to(mobster_states.falling)
 
 func send_perceptions():
@@ -314,6 +327,7 @@ func initiate_perceptions():
 	perceptions.hit_points = hit_points
 	perceptions.invincible = is_invincible
 	perceptions.holding_object = holding_object
+	perceptions.is_tutorial = is_tutorial
 
 func update_perceptions():
 	perceptions.current_v = current_v
@@ -403,6 +417,9 @@ func reactive_has_line_of_sight_to_object(obj):
 	else:
 		perceptions.nodes_in_vision.erase(obj)
 		return false
+
+func get_is_tutorial():
+	return is_tutorial
 
 func get_save_dictionary() -> Dictionary:
 	var hat : String = ""
@@ -650,9 +667,12 @@ func _on_create_bullet(create_pos: Vector2, rotation_deg):
 	if(perceptions.is_on_screen ||
 	num_bullets < max_world_bullets):
 		var new_bullet
-		if(team == team_red):
+		if(is_tutorial):
+			new_bullet = fake_bullet.instantiate()
+			new_bullet.add_to_group("nonlethal")
+		elif(team == team_red):
 			new_bullet = red_bullet.instantiate()
-		else: if(team == team_blu):
+		elif(team == team_blu):
 			new_bullet = blu_bullet.instantiate()
 		new_bullet.set_source_obj(self)
 		get_parent().add_child(new_bullet)
@@ -662,6 +682,8 @@ func _on_create_bullet(create_pos: Vector2, rotation_deg):
 		new_bullet.apply_velocity()
 		new_bullet.create_spark_benign() #muzzle flash
 		sound_player.stream = bullet_sound
+		if(is_tutorial):
+			sound_player.stream = fake_bullet_sound
 		sound_player.play()
 
 func _on_create_bomb():

@@ -78,13 +78,16 @@ func distance_to_position(pos: Vector2):
 	return get_host_position().distance_to(pos)
 
 func spawner_point_to_closest_point():
-	var patrol_points = get_tree().get_nodes_in_group("spawner_point")
-	spawner_patrol_point = patrol_points[0]
-	for patrol_point in patrol_points:
-		var distance_to_current_point = distance_to_current_point()
-		var distance_to_other_point = distance_to_position(patrol_point.global_position)
-		if(distance_to_other_point < distance_to_current_point):
-			spawner_patrol_point = patrol_point
+	if(!ai_state_machine.get_perceptions().is_tutorial):
+		var patrol_points = get_tree().get_nodes_in_group("spawner_point")
+		spawner_patrol_point = patrol_points[0]
+		for patrol_point in patrol_points:
+			var distance_to_current_point = distance_to_current_point()
+			var distance_to_other_point = distance_to_position(patrol_point.global_position)
+			if(distance_to_other_point < distance_to_current_point):
+				spawner_patrol_point = patrol_point
+	else:
+		spawner_patrol_point = get_tree().get_first_node_in_group("tutorial_point")
 
 func enter(_msg := {}) -> void:		
 	spawner_point_to_closest_point()

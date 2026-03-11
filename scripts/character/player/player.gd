@@ -835,9 +835,9 @@ func increment_hp():
 func shake_camera(magnitude : int):
 	_camera.shake(magnitude)
 
-func reduce_hp():
+func reduce_hp(amount : int = 1):
 	stop_skateboarding()
-	current_hp = current_hp - 1
+	current_hp = current_hp - amount
 	_ui.update_hearts(current_hp)
 	play_sound(damage_sound)
 	_camera.shake(8 + (max_hp - current_hp)*2)
@@ -856,7 +856,10 @@ func increment_max_hp():
 
 func _on_body_entered(body:Node):
 	if(body.is_in_group("bullet")):
-		reduce_hp()
+		if(body.is_in_group("nonlethal")):
+			reduce_hp(0)
+		else:
+			reduce_hp()
 
 func _on_make_comment(text : String):
 	if(!dreaming && !in_dialog):

@@ -7,7 +7,7 @@ func process(_delta: float) -> void:
 	pass
 
 func physics_process(_delta: float) -> void:
-	ai_state_machine.transition_to(mobster_states.look)
+	ai_state_machine.transition_to(mobster_states.transit)
 
 func enter(_msg := {}) -> void:
 	pass

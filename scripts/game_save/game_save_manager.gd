@@ -75,8 +75,9 @@ func load_player():
 func save_mob_war():
 	var mobs = get_tree().get_nodes_in_group("mobster")
 	for mob in mobs:
-		var mob_dictionary = mob.get_save_dictionary()
-		save_file.store_line(JSON.stringify(mob_dictionary))
+		if(!mob.get_is_tutorial()):
+			var mob_dictionary = mob.get_save_dictionary()
+			save_file.store_line(JSON.stringify(mob_dictionary))
 	var spawners = get_tree().get_nodes_in_group("capture_point")
 	for spawner in spawners:
 		var spawn_dictionary = spawner.get_save_dictionary()

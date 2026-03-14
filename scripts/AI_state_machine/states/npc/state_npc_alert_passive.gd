@@ -3,8 +3,6 @@ extends State
 
 signal behavior_directive(alert_passive : String)
 
-var current_stage_mark : Vector2
-
 var wait_timer := Timer.new()
 var waiting_to_transit = false
 
@@ -14,7 +12,7 @@ func _ready():
 
 func physics_process(_delta: float) -> void:
 	if(is_instance_valid(ai_state_machine.get_perceptions().current_stage_mark)):
-		if(current_stage_mark == ai_state_machine.get_perceptions().current_stage_mark.global_position):
+		if(ai_state_machine.get_perceptions().global_position == ai_state_machine.get_perceptions().current_stage_mark.global_position):
 				behavior_directive.emit(NPC.alert_passive)
 		else:
 			if(not waiting_to_transit):
@@ -32,7 +30,6 @@ func physics_process(_delta: float) -> void:
 
 func enter(_msg := {}) -> void:
 	waiting_to_transit = false
-	current_stage_mark = ai_state_machine.get_perceptions().current_stage_mark.global_position
 
 func exit() -> void:
 	pass

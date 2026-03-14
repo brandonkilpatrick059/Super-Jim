@@ -223,6 +223,7 @@ func out_of_dialog():
 
 func set_schedules_index(index : int):
 	schedules_index = index
+	update_stage_mark()
 
 func get_schedules_index() -> int:
 	return schedules_index

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ovfy4v7j5p0m"]
+
+[ext_resource type="Script" uid="uid://dwoatekv68q8g" path="res://scripts/tree_management/timed_queue_free.gd" id="1_f78u0"]
+
+[node name="FreeNode" type="Node"]
+script = ExtResource("1_f78u0")

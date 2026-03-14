@@ -26,7 +26,7 @@ position = Vector2(-118, 148)
 speaker_text = Array[String](["Nice work out there.", "Good hustle.", "Keep it up."])
 speaker_portrait = ExtResource("3_gewjf")
 voice = "low_sine_voice"
-gives_money = 3
+gives_money = 5
 dialog_script = NodePath("set_to_delivery_dispenser")
 
 [node name="set_to_delivery_dispenser" type="Node" parent="bonus"]

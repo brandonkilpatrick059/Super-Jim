@@ -99,13 +99,13 @@ speaker_name = "speedy"
 [node name="delivery9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ouw6x")]
 position = Vector2(718, 2354)
 speaker_text = Array[String](["But losing pizzas is inevitable. It's part of the job."])
-option_branches = [NodePath("../delivery10")]
+option_branches = [NodePath("../delivery10(bonus)")]
 voice = "sine_voice"
 speaker_name = "speedy"
 
-[node name="delivery10" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ouw6x")]
+[node name="delivery10(bonus)" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ouw6x")]
 position = Vector2(727, 2542)
-speaker_text = Array[String](["So you get a $3 bonus for every run without a lost pizza."])
+speaker_text = Array[String](["So you get a $5 bonus for every run without a lost pizza."])
 option_branches = [NodePath("../delivery7")]
 voice = "sine_voice"
 speaker_name = "speedy"

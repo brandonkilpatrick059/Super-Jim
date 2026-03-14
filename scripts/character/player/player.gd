@@ -1148,9 +1148,10 @@ func put_down(play_sound = true):
 	_ui.deactivate_interact()
 	
 func put_down_and_return():
-	var temp = grabbed_object
-	put_down(false)
-	temp.return_to_home()
+	if(grabbed_object != null):
+		var temp = grabbed_object
+		put_down(false)
+		temp.return_to_home()
 	
 func handle_pick_up():
 	if(will_grab_object != null && !holding_object):
@@ -1159,7 +1160,9 @@ func handle_pick_up():
 		grabbed_object = will_grab_object
 		if(will_grab_object.is_in_group("pizza")):
 			self.add_to_group("courier")
-			append_to_items("pizza")
+			var pizza_parent = get_tree().get_first_node_in_group("pizza_parent")
+			if(!pizza_parent.get_is_tutorial()):
+				append_to_items("pizza")
 		set_holding_object(true)
 		_ui.set_interact_text("drop")
 	else: if(holding_object):
@@ -1180,8 +1183,10 @@ func handle_pick_up():
 func return_pizza():
 	play_sound(pickup_sound)
 	var pizza = get_tree().get_first_node_in_group("pizza")
+	var pizza_parent = get_tree().get_first_node_in_group("pizza_parent")
 	self.add_to_group("courier")
-	append_to_items("pizza")
+	if(!pizza_parent.get_is_tutorial()):
+		append_to_items("pizza")
 	pizza.pick_up(self)
 	_ui.set_interact_text("drop")
 	grabbed_object = pizza

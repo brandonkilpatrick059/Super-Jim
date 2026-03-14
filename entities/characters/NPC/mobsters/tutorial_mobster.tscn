@@ -1,7 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://mxs8qqlvp6c4"]
+[gd_scene load_steps=26 format=3 uid="uid://mxs8qqlvp6c4"]
 
 [ext_resource type="Script" uid="uid://bma2uox3e4jyx" path="res://scripts/character/mobsters/mobster.gd" id="1_m2jec"]
 [ext_resource type="Texture2D" uid="uid://0d3n5esom4o4" path="res://sprites/lights/small_shadow.png" id="2_b4opu"]
+[ext_resource type="SpriteFrames" uid="uid://cn64e1rls64tf" path="res://sprites/spritesheets/spriteframes/characters/base/tutorial_mobster_base.tres" id="2_ll4qb"]
+[ext_resource type="SpriteFrames" uid="uid://brsf7khfc33uh" path="res://sprites/spritesheets/spriteframes/characters/hat/full_sheet/cowboy_hat_1.tres" id="3_it2ap"]
 [ext_resource type="PackedScene" uid="uid://dnpeta8s5h5t6" path="res://entities/characters/character_base.tscn" id="3_ll4qb"]
 [ext_resource type="SpriteFrames" uid="uid://bhasc4hba2oa3" path="res://sprites/spritesheets/spriteframes/characters/base/red_mobster_base.tres" id="4_it2ap"]
 [ext_resource type="PackedScene" uid="uid://biwoi1biy4ynx" path="res://entities/characters/NPC/AI state machine/ai_state_machine.tscn" id="5_qtkye"]
@@ -34,7 +36,7 @@ radius = 20.0
 
 [node name="tutorial_mobster" type="RigidBody2D" groups=["mobster"]]
 y_sort_enabled = true
-collision_layer = 0
+collision_layer = 514
 collision_mask = 8193
 mass = 1000.0
 gravity_scale = 0.0
@@ -44,6 +46,8 @@ max_contacts_reported = 3
 linear_damp = 5.0
 script = ExtResource("1_m2jec")
 is_tutorial = true
+base_spriteframes = ExtResource("2_ll4qb")
+hat_spriteframes = ExtResource("3_it2ap")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
@@ -63,7 +67,7 @@ self_modulate = Color(1, 1, 0, 1)
 shape = SubResource("ConvexPolygonShape2D_ldxv5")
 target_position = Vector2(0, 0)
 max_results = 4
-collision_mask = 2049
+collision_mask = 3073
 
 [node name="shadow" type="Sprite2D" parent="."]
 z_index = -1

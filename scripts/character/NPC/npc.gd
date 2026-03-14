@@ -166,6 +166,8 @@ func update_branching_dialog():
 	if(schedules.size() > 0):
 		if(perceptions.current_stage_mark.get_branching_dialog() != null):
 			branching_dialog = perceptions.current_stage_mark.get_branching_dialog()
+		else:
+			branching_dialog = null
 
 func _on_stop_motion():
 	_character_base.set_animation_scale_ratio(1)
@@ -319,11 +321,7 @@ func handle_passive_text():
 	global_position.distance_to(perceptions.current_stage_mark.global_position) < 8):
 		var in_talk_radius = self.global_position.distance_to(player_ref.global_position) < talk_radius
 		if(!player_ref.in_dialog && !talking && in_talk_radius && !has_talked):
-			speech_instance = speech_bubble.instantiate()
-			self.add_child(speech_instance)
-			speech_instance.play_passive_text(passive_text, voice)
-			has_talked = true
-			talking = true
+			_on_make_comment(passive_text)
 		elif (speech_instance != null && 
 		player_ref.in_dialog || talking && speech_instance.ready_to_disappear):
 			speech_instance.queue_free()
@@ -331,6 +329,13 @@ func handle_passive_text():
 		
 		if(!in_talk_radius):
 			has_talked = false
+
+func _on_make_comment(text : String):
+	speech_instance = speech_bubble.instantiate()
+	self.add_child(speech_instance)
+	speech_instance.play_passive_text(text, voice)
+	has_talked = true
+	talking = true
 
 func get_nearest_point_on_mesh(point : Vector2):
 	var rid = _navigation_agent.get_navigation_map()

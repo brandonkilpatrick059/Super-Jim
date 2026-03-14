@@ -147,6 +147,7 @@ func _ready():
 		#add_child(pathfinding_timer)
 	if(is_tutorial):
 		initialize_mob()
+		self.add_to_group("fake_mob")
 	
 	#for updating character composition in the editor
 	if(Engine.is_editor_hint()):
@@ -630,10 +631,15 @@ func _on_put_down():
 func _put_down_and_destroy():
 	if(holding_object):
 		held_obj.put_down(direction.get_opposite(_character_base.get_facing_dir()))
-		held_obj.queue_free()
-		set_holding_object(false)
 		var player_ref = get_tree().get_first_node_in_group("player")
 		player_ref._on_pizza_lost()
+		var pizza_ref = get_tree().get_first_node_in_group("pizza_parent")
+		#if(pizza_ref.get_is_tutorial()):
+			#player_ref.return_pizza()
+		#else:
+		held_obj.queue_free()
+		set_holding_object(false)
+		
 
 func _on_queue_free():
 	queue_free()

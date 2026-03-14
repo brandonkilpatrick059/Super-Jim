@@ -51,6 +51,8 @@ var select_pizza_bubble = null
 
 var use_item_timer : Timer = Timer.new()
 
+var is_tutorial = false
+
 func destroy_self():
 	if(_prop != null):
 		_prop.queue_free()
@@ -59,6 +61,12 @@ func destroy_self():
 	if (_pointer != null):
 		_pointer.queue_free()
 	queue_free()
+
+func get_is_tutorial():
+	return is_tutorial
+
+func set_is_tutorial(value : bool):
+	is_tutorial = value
 
 func pizza_destroyed():
 	var player_ref = get_tree().get_nodes_in_group("player")[0]

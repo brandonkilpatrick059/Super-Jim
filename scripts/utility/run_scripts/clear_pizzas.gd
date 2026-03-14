@@ -11,4 +11,6 @@ func run_script():
 		cook_ref.set_schedules_key("no_pizzas")
 	else:
 		cook_ref.set_schedules_key("delivery_dispenser")
+	var courier_ref = get_tree().get_first_node_in_group("speedy")
+	courier_ref.set_schedules_key("shop_tutorial")
 	

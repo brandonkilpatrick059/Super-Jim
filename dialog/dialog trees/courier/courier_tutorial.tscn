@@ -1,0 +1,172 @@
+[gd_scene load_steps=6 format=3 uid="uid://7ar0j7y7sxip"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_spkub"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_4fnb6"]
+[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="3_exk1f"]
+[ext_resource type="Script" uid="uid://bykw7oghhnoq2" path="res://scripts/utility/run_scripts/give_tutorial_pizza.gd" id="3_yif0b"]
+[ext_resource type="Script" uid="uid://c2q4w0ekhh3v4" path="res://scripts/utility/run_scripts/lock_unlock_door.gd" id="5_lfetw"]
+
+[node name="courier_tutorial" type="Node2D"]
+script = ExtResource("1_spkub")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(7, -19)
+speaker_text = Array[String](["Any questions before we start?"])
+speech_options = Array[String](["What happens now?", "What should I know about mobsters?", "Let's do this."])
+option_branches = [NodePath("../what happens now"), NodePath("../what should I know"), NodePath("../ready_1")]
+voice = "sine_voice"
+
+[node name="what happens now" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(-359, 116)
+speaker_text = Array[String](["I figure the best way to learn is through practice."])
+option_branches = [NodePath("../what happens now2")]
+voice = "sine_voice"
+
+[node name="what happens now2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(-423, 373)
+speaker_text = Array[String](["When you're ready I'll go in this closet here, put on my cowboy hat-"])
+option_branches = [NodePath("../what happens now3")]
+voice = "sine_voice"
+
+[node name="what happens now3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(-460, 668)
+speaker_text = Array[String](["-and I'm gonna pretend to be a mobster to get you acquainted."])
+option_branches = [NodePath("../trunk")]
+voice = "sine_voice"
+
+[node name="ready_1" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(416, 437)
+speaker_text = Array[String](["Want some last-minute advice, or are you ready to go?"])
+speech_options = Array[String](["I'm ready.", "What should I know about mobsters?"])
+option_branches = [NodePath("../ready_2"), NodePath("../what should I know")]
+voice = "sine_voice"
+
+[node name="ready_2" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_4fnb6")]
+position = Vector2(705, 814)
+speaker_text = Array[String](["Cool. Here's a dummy pizza for you to use."])
+option_branches = [NodePath("../ready_3")]
+voice = "sine_voice"
+dialog_script = NodePath("give_tutorial_pizza")
+
+[node name="give_tutorial_pizza" type="Node" parent="ready_2"]
+script = ExtResource("3_yif0b")
+
+[node name="ready_3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(705, 1032)
+speaker_text = Array[String](["I get a little \"in the zone\" when I do this, so don't try to talk to me."])
+option_branches = [NodePath("../ready_4")]
+voice = "sine_voice"
+
+[node name="ready_4" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_4fnb6")]
+position = Vector2(724, 1294)
+speaker_text = Array[String](["When you're done, just head back upstairs."])
+option_branches = [NodePath("../ready_5")]
+voice = "sine_voice"
+dialog_script = NodePath("lock_basement_door")
+
+[node name="lock_basement_door" type="Node" parent="ready_4"]
+script = ExtResource("5_lfetw")
+node_group = "basement_door"
+locked = true
+
+[node name="ready_5" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_4fnb6")]
+position = Vector2(724, 1582)
+speaker_text = Array[String](["Anyways, let's go."])
+voice = "sine_voice"
+dialog_script = NodePath("move_to_basement_closet")
+
+[node name="move_to_basement_closet" type="Node" parent="ready_5"]
+script = ExtResource("3_exk1f")
+node_group = "speedy"
+new_key = "tutorial_closet"
+
+[node name="what should I know" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(32, 445)
+speaker_text = Array[String](["Mobsters will only pick a fight with you in two circumstances:"])
+option_branches = [NodePath("../what should I know2")]
+voice = "sine_voice"
+
+[node name="what should I know2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(0, 668)
+speaker_text = Array[String](["You either go up to them and pick a fight with them first-"])
+option_branches = [NodePath("../what should I know3")]
+voice = "sine_voice"
+
+[node name="what should I know3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(7, 927)
+speaker_text = Array[String](["-or they see you holding a pizza."])
+option_branches = [NodePath("../what should I know4")]
+voice = "sine_voice"
+
+[node name="what should I know4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(0, 1158)
+speaker_text = Array[String](["In which case they will open fire and chase you down for it."])
+option_branches = [NodePath("../what should I know6")]
+voice = "sine_voice"
+
+[node name="what should I know6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(0, 1629)
+speaker_text = Array[String](["If you drop the pizza, or they see one lying around, they will try to pick it up."])
+option_branches = [NodePath("../what should I know7")]
+voice = "sine_voice"
+
+[node name="what should I know7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(7, 1842)
+speaker_text = Array[String](["Then they'll try to take it to the nearest friendly watering hole and eat it."])
+option_branches = [NodePath("../what should I know8")]
+voice = "sine_voice"
+
+[node name="what should I know8" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(0, 2081)
+speaker_text = Array[String](["Other than that, you gotta remember: mobsters are all bluster."])
+option_branches = [NodePath("../what should I know9")]
+voice = "sine_voice"
+
+[node name="what should I know9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(7, 2312)
+speaker_text = Array[String](["They're lousy shots, and if you whack 'em over the head with a bottle or something-"])
+option_branches = [NodePath("../what should I know10")]
+voice = "sine_voice"
+
+[node name="what should I know10" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(0, 2542)
+speaker_text = Array[String](["-they'll go down for a few seconds."])
+option_branches = [NodePath("../what should I know11")]
+voice = "sine_voice"
+
+[node name="what should I know11" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(0, 2765)
+speaker_text = Array[String](["Don't tell Cook I told you this..."])
+option_branches = [NodePath("../what should I know12")]
+voice = "sine_voice"
+
+[node name="what should I know12" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(0, 3017)
+speaker_text = Array[String](["...But in a pinch you can even whack 'em with the pizza box."])
+option_branches = [NodePath("../what should I know13")]
+voice = "sine_voice"
+
+[node name="what should I know13" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(7, 3288)
+speaker_text = Array[String](["You might have noticed the boxes are made out of plywood."])
+option_branches = [NodePath("../what should I know14")]
+voice = "sine_voice"
+
+[node name="what should I know14" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(0, 3508)
+speaker_text = Array[String](["There's a good reason for that. They can take a few hits."])
+option_branches = [NodePath("../what should I know15")]
+voice = "sine_voice"
+
+[node name="what should I know15" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(7, 3773)
+speaker_text = Array[String](["But if they take more than a few, customers will probably want a refund."])
+option_branches = [NodePath("../what should I know16")]
+voice = "sine_voice"
+
+[node name="what should I know16" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_4fnb6")]
+position = Vector2(7, 3995)
+speaker_text = Array[String](["Anyways, the rest will be easier to explain in practice."])
+option_branches = [NodePath("../ready_1")]
+voice = "sine_voice"

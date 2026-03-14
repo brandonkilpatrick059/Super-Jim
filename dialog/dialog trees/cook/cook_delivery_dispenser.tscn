@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhpgw2t2gyth"]
+[gd_scene load_steps=6 format=3 uid="uid://bhpgw2t2gyth"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_4cd3j"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_0c4ik"]
 [ext_resource type="SpriteFrames" uid="uid://b6grq4ppef8v2" path="res://sprites/spritesheets/spriteframes/portrait/test3.tres" id="3_8mdru"]
 [ext_resource type="Script" uid="uid://dqbdq476y0spg" path="res://scripts/utility/run_scripts/spawn_pizza.gd" id="4_0c4ik"]
+[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="4_8mdru"]
 
 [node name="cook_delivery_dispenser" type="Node2D"]
 script = ExtResource("1_4cd3j")
@@ -17,12 +18,18 @@ speech_options = Array[String](["Give me some pizzas.", "I'm not ready yet."])
 option_branches = [NodePath("../yes"), NodePath("../no")]
 voice = "low_sine_voice"
 
-[node name="yes" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_0c4ik")]
+[node name="yes" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_0c4ik")]
 position = Vector2(-118, 148)
 speaker_text = Array[String](["Right on.", "Cool.", "Nice."])
 speaker_portrait = ExtResource("3_8mdru")
 option_branches = [NodePath("../order up")]
 voice = "low_sine_voice"
+dialog_script = NodePath("move_courier_to_shop")
+
+[node name="move_courier_to_shop" type="Node" parent="yes"]
+script = ExtResource("4_8mdru")
+node_group = "speedy"
+new_key = "shop"
 
 [node name="order up" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_0c4ik")]
 position = Vector2(-118, 332)

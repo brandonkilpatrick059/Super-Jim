@@ -9,6 +9,7 @@ signal make_comment(String)
 @export var text_when_zone_entered : bool = false
 @export var script_when_zone_entered : bool = false
 @export var play_once : bool = false
+@export var groups_trigger : Array[String] = []
 var has_played = false
 
 @export var save_tag : String = ""
@@ -31,7 +32,12 @@ func run_script():
 	get_children()[0].run_script()
 
 func _on_body_entered(body : Node2D):
-	if(body.is_in_group("player")):
+	var in_trigger_groups : bool = false
+	for group in groups_trigger:
+		if body.is_in_group(group):
+			in_trigger_groups = true
+			break
+	if(body.is_in_group("player") || in_trigger_groups):
 		if(text_when_zone_entered || script_when_zone_entered):
 			if(play_once && !has_played):
 				has_played = true
@@ -57,6 +63,6 @@ func get_save_dictionary() -> Dictionary:
 func load_from_dictionary(load_dictionary : Dictionary):
 	has_played = load_dictionary.get("has_played")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+## Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+	#pass

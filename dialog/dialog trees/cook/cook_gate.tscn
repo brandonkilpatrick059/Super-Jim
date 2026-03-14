@@ -56,7 +56,7 @@ speaker_name = "cook"
 
 [node name="gangs4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-685, 1712)
-speaker_text = Array[String](["Haven't you noticed all the dudes in cowboy hats and leather vests?"])
+speaker_text = Array[String](["Haven't you noticed all the dudes in cowboy hats and biker vests?"])
 option_branches = [NodePath("../gangs7")]
 voice = "sine_voice"
 speaker_name = "speedy"
@@ -143,12 +143,18 @@ option_branches = [NodePath("../if youre worried"), NodePath("../if youre worrie
 voice = "sine_voice"
 speaker_name = "speedy"
 
-[node name="if youre worried" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
+[node name="if youre worried" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_w4fpj")]
 position = Vector2(-357, 5171)
-speaker_text = Array[String](["If you're worried about running into gangsters, let me know."])
+speaker_text = Array[String](["If you're worried about running into mobsters, let me know."])
 option_branches = [NodePath("../tricks")]
 voice = "sine_voice"
 speaker_name = "speedy"
+dialog_script = NodePath("move_to_shop_tutorial")
+
+[node name="move_to_shop_tutorial" type="Node" parent="if youre worried"]
+script = ExtResource("5_72elk")
+node_group = "speedy"
+new_key = "shop_tutorial"
 
 [node name="tricks" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-238, 5447)

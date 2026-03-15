@@ -62,6 +62,7 @@ func physics_process(_delta: float) -> void:
 			elif(pizza != null &&
 				node != null &&
 				!ai_state_machine.perceptions.holding_object &&
+				ai_state_machine.get_perceptions().target_obj != null &&
 				!ai_state_machine.get_perceptions().target_obj.is_in_group("mobster") &&
 				node.is_in_group("pizza") && 
 				!pizza.is_picked_up()):

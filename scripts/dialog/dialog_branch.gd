@@ -8,7 +8,7 @@ extends Node2D
 @export var speaker_portrait : SpriteFrames
 @export var speaker_emote : String #animation to run on sprite
 
-@export var speech_options : Array[String]
+@export_multiline var speech_options : Array[String]
 @export var option_branches: Array[dialog_branch]
 @export var voice : String
 @export var speaker_name : String

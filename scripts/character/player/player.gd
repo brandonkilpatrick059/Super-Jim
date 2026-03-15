@@ -474,6 +474,7 @@ func push(push_vect : Vector2, time_secs : float):
 	push_timer.start(time_secs)
 	stop()
 	push_vector = push_vect
+	stop_skateboarding()
 
 func load_from_dictionary(load_dictionary : Dictionary):
 	var parent_group = String(load_dictionary.get("parent_group"))

@@ -4,7 +4,7 @@ extends Node2D
 
 @onready var _editor_anim = $AnimatedSprite2D
 
-@export var speaker_text : Array[String]
+@export_multiline var speaker_text : Array[String]
 @export var speaker_portrait : SpriteFrames
 @export var speaker_emote : String #animation to run on sprite
 

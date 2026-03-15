@@ -882,11 +882,11 @@ func update():
 		update_vision()
 		update_perceptions()
 		if(_ai_state_machine.get_state().name != mobster_states.dead):
-			if(!perceptions.nav_target_reached):
-				update_navigation()
 			if(_ai_state_machine.get_state().name != mobster_states.falling &&
 			_ai_state_machine.get_state().name != mobster_states.recovering &&
 			_ai_state_machine.get_state().name != mobster_states.dead):
+				if(!perceptions.nav_target_reached):
+					update_navigation()
 				if(_ai_state_machine.get_state().name == mobster_states.chasing ||
 				_ai_state_machine.get_state().name == mobster_states.shooting ||
 				_ai_state_machine.get_state().name == mobster_states.strafing ||

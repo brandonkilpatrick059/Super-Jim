@@ -8,8 +8,12 @@ signal die_skull()
 signal blood()
 signal adjust_offset(adjustment : Vector2)
 var timer := Timer.new() 
-var disappear_time_secs = 60
+var disappear_time_secs = 10
 var sprite_offset_amt = 16
+
+func _ready() -> void:
+	timer.one_shot = true
+	add_child(timer)
 
 func physics_process(_delta: float) -> void:
 	if(timer.is_stopped()):
@@ -21,8 +25,6 @@ func enter(_msg := {}) -> void:
 	adjust_offset.emit(Vector2(0,sprite_offset_amt))
 	die_skull.emit()
 	blood.emit()
-	timer.one_shot = true
-	add_child(timer)
 	timer.start(disappear_time_secs)
 
 func exit() -> void:

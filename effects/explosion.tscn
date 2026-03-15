@@ -24,7 +24,7 @@ speed_scale = 0.4
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_2bmfb")
 sprite_frames = ExtResource("3_rkyet")
-frame_progress = 0.998082
+frame_progress = 0.107161
 speed_scale = 0.4
 script = ExtResource("4_yc3gs")
 

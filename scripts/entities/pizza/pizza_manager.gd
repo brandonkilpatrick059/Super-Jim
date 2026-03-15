@@ -5,9 +5,9 @@ var total_pizzas_delivered : int = 0
 var level : int = 0
 #level = 0 : central area, 30 mobs (TUTORIAL)
 #level = 1 : tier 1, 30 mobs
-#level = 2 : tier 1-2, 56 mobs
-#level = 3 : tier 1-3, 60 mobs
-#level = 4 : tier 1-4 , 64 mobs
+#level = 2 : tier 1-2, 56 mobs, bandits spawn
+#level = 3 : tier 1-3, 60 mobs, bandits spawn
+#level = 4 : tier 1-4 , 64 mobs, bandits spawn
 
 var pizzas_delivered_today : int = 0
 

@@ -16,6 +16,7 @@ const burst_num_bullets = bust_num_sweeps * burst_bullets_per_sweep
 const burst_cool_down_secs = 2
 var timer_burst_cool_down : Timer = Timer.new()
 const time_between_shots_secs = 0.4
+const time_between_shots_secs_fast = 0.1
 var timer_between_shots : Timer = Timer.new()
 const shoot_arc_degrees = 50 #keep it even
 var num_bullets_fired = 0
@@ -90,14 +91,27 @@ func shoot_burst():
 	if(timer_between_shots.is_stopped() 
 		&& num_bullets_fired < burst_num_bullets):
 		if(ai_state_machine.get_perceptions().has_line_of_sight_to_target):
-			create_bullet()
+			if(ai_state_machine.get_perceptions().team == "blu" &&
+			ai_state_machine.get_perceptions().is_bandit):
+				var num_bullet_blast = 3
+				var b_num = 0
+				while(b_num < num_bullet_blast):
+					create_bullet()
+					b_num = b_num + 1
+					num_bullets_fired = num_bullets_fired + 1
+			else:
+				create_bullet()
 		else:
 			#for each bullet they don't see you, coin toss 
 			#to determine if they give chase
 			if(random.randi_range(0,1) > 0): 
 				ai_state_machine.transition_to(mobster_states.chasing)
 		num_bullets_fired = num_bullets_fired + 1
-		timer_between_shots.start(time_between_shots_secs)
+		if(ai_state_machine.get_perceptions().team == "red" &&
+		ai_state_machine.get_perceptions().is_bandit):
+			timer_between_shots.start(time_between_shots_secs_fast)
+		else:
+			timer_between_shots.start(time_between_shots_secs)
 	else: if(num_bullets_fired >= burst_num_bullets):
 		if(ai_state_machine.get_perceptions().is_bandit):
 			throw_bomb.emit()

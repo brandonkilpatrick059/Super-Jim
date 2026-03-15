@@ -112,7 +112,11 @@ func spawn_mob():
 		spawns_since_bandit = spawns_since_bandit + 1
 		ysort_node.add_child(new_mob)
 		new_mob.initialize_mob()
-		if(spawns_since_bandit > spawns_until_bandit &&
+		
+		var pizza_manager = get_tree().get_first_node_in_group("pizza_manager")
+		var level = pizza_manager.get_level()
+		if(level >= 2 &&
+		spawns_since_bandit > spawns_until_bandit &&
 		num_team_bandits + 1 < max_bandits_per_team):
 			new_mob.make_bandit()
 			spawns_since_bandit = 0

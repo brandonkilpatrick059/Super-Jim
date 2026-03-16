@@ -2,6 +2,8 @@
 class_name dialog_branch
 extends Node2D
 
+@onready var test_label = $test_label
+
 @onready var _editor_anim = $AnimatedSprite2D
 
 @export_multiline var speaker_text : Array[String]
@@ -105,6 +107,7 @@ func _ready():
 				_editor_anim.play(speaker_emote)
 			else:
 				_editor_anim.play("default")
+		test_label.text = get_speaker_text()
 		queue_redraw()
 
 #COMMENT THIS OUT WHEN YOU ARE DONE

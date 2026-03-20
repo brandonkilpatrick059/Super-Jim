@@ -165,7 +165,8 @@ func update():
 func update_branching_dialog():
 	if(schedules.size() > 0):
 		if(perceptions.current_stage_mark.get_branching_dialog() != null):
-			branching_dialog = perceptions.current_stage_mark.get_branching_dialog()
+			if(global_position.distance_to(perceptions.current_stage_mark.global_position) <= 8):
+				branching_dialog = perceptions.current_stage_mark.get_branching_dialog()
 		else:
 			branching_dialog = null
 

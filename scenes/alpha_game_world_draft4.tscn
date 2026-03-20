@@ -101,7 +101,7 @@
 [ext_resource type="PackedScene" uid="uid://b5jckbjmeftco" path="res://entities/shop/wares/furniture/bed/ware_bed_0.tscn" id="65_txlpt"]
 [ext_resource type="PackedScene" uid="uid://cw2yo3p1q2qbv" path="res://entities/shop/wares/furniture/desk/ware_desk_0.tscn" id="66_bqntb"]
 [ext_resource type="PackedScene" uid="uid://b0kmgt0e8v37o" path="res://entities/shop/wares/furniture/night stand/ware_night_stand_0.tscn" id="67_x0xn3"]
-[ext_resource type="PackedScene" uid="uid://dfp1kw82je072" path="res://dialog/dialog trees/furniture_salesman.tscn" id="68_onnxe"]
+[ext_resource type="PackedScene" uid="uid://dfp1kw82je072" path="res://dialog/dialog trees/furniture_salesman/furniture_salesman.tscn" id="68_onnxe"]
 [ext_resource type="PackedScene" uid="uid://cujpiynhglxbb" path="res://entities/dynamic world/pizza_neon.tscn" id="69_iaeyf"]
 [ext_resource type="Script" uid="uid://bhwr4mvnbcx4q" path="res://scripts/clock/time_keeper.gd" id="69_ysub4"]
 [ext_resource type="SpriteFrames" uid="uid://bfo7ujtrnmvf2" path="res://sprites/tilesets/water_fall.tres" id="70_hsw6u"]

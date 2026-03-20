@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvemkneb13uqf"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_u34ow"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_c730r"]
+
+[node name="pawn_shop_active" type="Node2D"]
+script = ExtResource("1_u34ow")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_c730r")]
+speaker_text = Array[String](["Looking to buy some Baseball Cards?"])
+speaker_portrait = null
+speech_options = Array[String](["", "", ""])
+option_branches = [NodePath("../nevermind"), NodePath("../sale"), NodePath("../not enough money")]
+voice = "sine_voice"
+shows_wares = true
+
+[node name="nevermind" parent="." instance=ExtResource("2_c730r")]
+position = Vector2(-176, 268)
+speaker_text = Array[String](["Gotcha. No problemo."])
+speaker_portrait = null
+voice = "sine_voice"
+
+[node name="sale" parent="." instance=ExtResource("2_c730r")]
+position = Vector2(80, 291)
+speaker_text = Array[String](["Hope you get some good pulls!"])
+speaker_portrait = null
+voice = "sine_voice"
+
+[node name="not enough money" parent="." instance=ExtResource("2_c730r")]
+position = Vector2(337, 268)
+speaker_text = Array[String](["Uh, the packs cost more than that..."])
+speaker_portrait = null
+voice = "sine_voice"

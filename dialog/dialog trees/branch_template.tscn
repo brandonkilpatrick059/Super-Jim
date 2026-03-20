@@ -11,7 +11,7 @@ speaker_portrait = ExtResource("2_wcrd0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_wcrd0")
-frame_progress = 0.297521
+frame_progress = 0.354397
 
 [node name="test_bubble" type="Sprite2D" parent="."]
 position = Vector2(-48, -117)
@@ -22,6 +22,7 @@ offset_left = -157.0
 offset_top = -169.0
 offset_right = 57.0
 offset_bottom = -82.0
+text = "<null>"
 label_settings = ExtResource("4_5uct8")
 horizontal_alignment = 1
 vertical_alignment = 1

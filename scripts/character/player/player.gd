@@ -1309,7 +1309,7 @@ func _physics_process(delta):
 				var vol : float = (-80.0 + (50.0 * (speed()/top_speed)))
 				if (vol > -20.0): #defending the player's ear drums
 					vol = -20.0
-				skateboard_player.volume_db = (-80.0 + (50.0 * (speed()/top_speed)))
+				skateboard_player.volume_db = vol
 			update_grabber()
 			will_grab_object = null
 			#check grabber for pick-upable objects

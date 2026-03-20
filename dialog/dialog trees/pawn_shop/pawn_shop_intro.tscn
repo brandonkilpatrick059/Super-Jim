@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgba86ix7p1tl"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_wkpac"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_1evsm"]
+[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="3_6ckm7"]
+
+[node name="pawn_shop_intro" type="Node2D"]
+script = ExtResource("1_wkpac")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_1evsm")]
+speaker_text = Array[String](["Welcome to Dawn's Pawn."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_1evsm")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["I'm Dawn-"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "sine_voice"
+
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_1evsm")]
+position = Vector2(35, 504)
+speaker_text = Array[String](["And this is my Pawn."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk4")]
+voice = "sine_voice"
+
+[node name="trunk4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_1evsm")]
+position = Vector2(66, 798)
+speaker_text = Array[String](["We've got all kinds of odds and ends here."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk5")]
+voice = "sine_voice"
+
+[node name="trunk5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_1evsm")]
+position = Vector2(92, 1095)
+speaker_text = Array[String](["Everyday knick-knacks, ancient artifacts, family heirlooms..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk7")]
+voice = "sine_voice"
+
+[node name="trunk7" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_1evsm")]
+position = Vector2(82, 1379)
+speaker_text = Array[String](["Let me know if you see something you like."])
+speaker_portrait = null
+voice = "sine_voice"
+dialog_script = NodePath("move_to_active")
+
+[node name="move_to_active" type="Node" parent="trunk7"]
+script = ExtResource("3_6ckm7")
+node_group = "pawn_shop_owner"
+new_key = "active"

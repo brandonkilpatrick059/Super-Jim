@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwwjlwuv15r6a"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_gxjwx"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_kno68"]
+
+[node name="dave_corner_1" type="Node2D"]
+script = ExtResource("1_gxjwx")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_kno68")]
+speaker_text = Array[String](["I'm trying to peek past the barricade."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "low_sine_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_kno68")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["It's been forever since I've been to Canal Town."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "low_sine_voice"
+
+[node name="trunk3" parent="." instance=ExtResource("2_kno68")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["That was back during my Biker days..."])
+speaker_portrait = null
+voice = "low_sine_voice"

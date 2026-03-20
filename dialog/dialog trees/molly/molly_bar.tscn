@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfjw65oejbtw"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_vfkb1"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_o5wta"]
+
+[node name="molly_bar" type="Node2D"]
+script = ExtResource("1_vfkb1")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_o5wta")]
+speaker_text = Array[String](["Don't try to buy me a drink. I don't drink."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
+
+[node name="trunk2" parent="." instance=ExtResource("2_o5wta")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["Wait a minute, are you even old enough to be here?"])
+speaker_portrait = null
+voice = "sine_voice"

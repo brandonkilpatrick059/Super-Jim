@@ -68,7 +68,7 @@
 [ext_resource type="PackedScene" uid="uid://b4efoimpws80n" path="res://entities/shop/wares/furniture/bed/ware_bed_1.tscn" id="61_kpem5"]
 [ext_resource type="PackedScene" uid="uid://b5jckbjmeftco" path="res://entities/shop/wares/furniture/bed/ware_bed_0.tscn" id="62_qddpl"]
 [ext_resource type="PackedScene" uid="uid://cw2yo3p1q2qbv" path="res://entities/shop/wares/furniture/desk/ware_desk_0.tscn" id="63_ddvoa"]
-[ext_resource type="PackedScene" uid="uid://dfp1kw82je072" path="res://dialog/dialog trees/furniture_salesman.tscn" id="63_xgkpv"]
+[ext_resource type="PackedScene" uid="uid://dfp1kw82je072" path="res://dialog/dialog trees/furniture_salesman/furniture_salesman.tscn" id="63_xgkpv"]
 [ext_resource type="PackedScene" uid="uid://b0kmgt0e8v37o" path="res://entities/shop/wares/furniture/night stand/ware_night_stand_0.tscn" id="64_g457r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4p8v"]

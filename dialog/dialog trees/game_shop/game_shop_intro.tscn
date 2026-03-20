@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfvvdsyaywdhm"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_u2da1"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_02xd6"]
+[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="3_3gtpo"]
+
+[node name="game_shop_intro" type="Node2D"]
+script = ExtResource("1_u2da1")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_02xd6")]
+speaker_text = Array[String](["Hey hey, welcome to The Game Korner."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_02xd6")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["Arcade cabinets are a dollar a game."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "sine_voice"
+
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_02xd6")]
+position = Vector2(35, 504)
+speaker_text = Array[String](["If you're looking for Baseball Cards, we got green and yellow packs."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk4")]
+voice = "sine_voice"
+
+[node name="trunk4" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_02xd6")]
+position = Vector2(66, 798)
+speaker_text = Array[String](["Plenty of players come in here, might even be able to scare up a few matches."])
+speaker_portrait = null
+voice = "sine_voice"
+dialog_script = NodePath("move_to_active")
+
+[node name="move_to_active" type="Node" parent="trunk4"]
+script = ExtResource("3_3gtpo")
+node_group = "game_shop"
+new_key = "active"

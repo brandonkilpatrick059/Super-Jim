@@ -38,7 +38,6 @@ visible = false
 
 [node name="MobWarChannel" parent="channels" instance=ExtResource("4_1e47p")]
 visible = false
-channel_text = "CH02 - WAR"
 
 [node name="channel_text" type="Label" parent="."]
 material = SubResource("CanvasItemMaterial_abo1u")
@@ -46,5 +45,5 @@ offset_left = -142.0
 offset_top = -144.0
 offset_right = -18.0
 offset_bottom = -121.0
-text = "CH01 - CHILL OUT"
+text = "CHANNEL 01 - CHILL OUT"
 label_settings = SubResource("LabelSettings_1e47p")

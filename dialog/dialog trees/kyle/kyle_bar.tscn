@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://uqpaewc6xaac"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_cfsj6"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_o5xcc"]
+
+[node name="kyle_bar" type="Node2D"]
+script = ExtResource("1_cfsj6")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_o5xcc")]
+speaker_text = Array[String](["Hey, don't block the TV-"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
+
+[node name="trunk2" parent="." instance=ExtResource("2_o5xcc")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["I'm watching the war."])
+speaker_portrait = null
+voice = "sine_voice"

@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0trve7tdqcq"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_03p8v"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_a32dl"]
+
+[node name="kid_1_overpass" type="Node2D"]
+script = ExtResource("1_03p8v")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_a32dl")]
+speaker_text = Array[String](["Oh, hi."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_a32dl")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["I'm just sitting here watching the train come and go."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "sine_voice"
+
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_a32dl")]
+position = Vector2(57, 479)
+speaker_text = Array[String](["I've never left the city..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk4")]
+voice = "sine_voice"
+
+[node name="trunk4" parent="." instance=ExtResource("2_a32dl")]
+position = Vector2(57, 771)
+speaker_text = Array[String](["I wonder what it's like out there?"])
+speaker_portrait = null
+voice = "sine_voice"

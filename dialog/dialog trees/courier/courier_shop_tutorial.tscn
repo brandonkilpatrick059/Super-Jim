@@ -64,13 +64,13 @@ voice = "sine_voice"
 
 [node name="what should I know6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(0, 1629)
-speaker_text = Array[String](["If you drop the pizza, or they see one lying around, they will try to pick it up."])
+speaker_text = Array[String](["If you drop the pizza, they will try to pick it up."])
 option_branches = [NodePath("../what should I know7")]
 voice = "sine_voice"
 
 [node name="what should I know7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(7, 1842)
-speaker_text = Array[String](["Then they'll try to take it to the nearest friendly watering hole and eat it."])
+speaker_text = Array[String](["Then they'll try to take it to the nearest watering hole and eat it."])
 option_branches = [NodePath("../what should I know8")]
 voice = "sine_voice"
 
@@ -82,7 +82,7 @@ voice = "sine_voice"
 
 [node name="what should I know9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(7, 2312)
-speaker_text = Array[String](["They're lousy shots, and if you whack 'em over the head with a bottle or something-"])
+speaker_text = Array[String](["If you whack 'em over the head with a bottle or something-"])
 option_branches = [NodePath("../what should I know10")]
 voice = "sine_voice"
 

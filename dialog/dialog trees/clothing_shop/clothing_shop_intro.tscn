@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://boswy6wg4dexb"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_7kkss"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_1x2uh"]
+[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="3_bul06"]
+
+[node name="clothing_shop_intro" type="Node2D"]
+script = ExtResource("1_7kkss")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_1x2uh")]
+speaker_text = Array[String](["Welcome to Maude's Clothing Exchange."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "low_sine_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_1x2uh")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["I am Maude."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "low_sine_voice"
+
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_1x2uh")]
+position = Vector2(35, 504)
+speaker_text = Array[String](["I exchange clothing..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk4")]
+voice = "low_sine_voice"
+
+[node name="trunk4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_1x2uh")]
+position = Vector2(66, 798)
+speaker_text = Array[String](["...For money."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk5")]
+voice = "low_sine_voice"
+
+[node name="trunk5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_1x2uh")]
+position = Vector2(92, 1095)
+speaker_text = Array[String](["I hope you will find something which expresses your inner self."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk7")]
+voice = "low_sine_voice"
+
+[node name="trunk7" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_1x2uh")]
+position = Vector2(82, 1379)
+speaker_text = Array[String](["And before you ask-"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk6")]
+voice = "low_sine_voice"
+dialog_script = NodePath("../trunk6/move_to_active")
+
+[node name="trunk6" parent="." instance=ExtResource("2_1x2uh")]
+position = Vector2(99, 1676)
+speaker_text = Array[String](["No, I do not have any cowboy hats or leather vests available."])
+speaker_portrait = null
+voice = "low_sine_voice"
+
+[node name="move_to_active" type="Node" parent="trunk6"]
+script = ExtResource("3_bul06")
+node_group = "clothing_shop"
+new_key = "active"
+
+[node name="trunk8" parent="." instance=ExtResource("2_1x2uh")]
+position = Vector2(99, 1676)
+speaker_text = Array[String](["I simply cannot keep up with demand."])
+speaker_portrait = null
+voice = "low_sine_voice"

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1w71c0wnwx0v"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_yexff"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_7xkeh"]
+
+[node name="kyle_corner_2" type="Node2D"]
+script = ExtResource("1_yexff")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_7xkeh")]
+speaker_text = Array[String](["You can kinda see Cliffside from here."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
+
+[node name="trunk2" parent="." instance=ExtResource("2_7xkeh")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["I hope I get to see a Cowboy waste some Bikers."])
+speaker_portrait = null
+voice = "sine_voice"

@@ -255,7 +255,8 @@ func handle_sparks_combat():
 					if(node.is_in_group(perceptions.opposing_team) &&
 					!perceptions.invincible):
 						_on_reduce_hit_points()
-						if(perceptions.target_obj.is_in_group("player")):
+						if(perceptions.target_obj != null &&
+						perceptions.target_obj.is_in_group("player")):
 							var assailant_obj = node.get_source_obj()
 							_on_set_ai_target(assailant_obj)
 							_ai_state_machine.transition_to(mobster_states.exclaiming)
@@ -924,9 +925,9 @@ func update_vision():
 #(pushed off navmesh, navigating somewhere unreachable, etc)
 func check_mob_stuck():
 	if(stuck_timer.is_stopped()):
-		if(stuck_check_pos.distance_to(_ai_state_machine.get_perceptions().global_position) <= 16):
+		if(stuck_check_pos.distance_to(global_position) <= 16):
 			reset()
-		stuck_check_pos = _ai_state_machine.get_perceptions().global_position
+		stuck_check_pos = global_position
 		stuck_timer.start(stuck_check_time_secs)
 
 func reset():

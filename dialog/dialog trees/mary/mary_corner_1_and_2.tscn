@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://ma07spcce7gp"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_pqm1q"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_8w3bp"]
+
+[node name="mary_corner_1_and_2" type="Node2D"]
+script = ExtResource("1_pqm1q")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_8w3bp")]
+speaker_text = Array[String](["I'm just watching the clouds."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_8w3bp")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["Oh, look at that one!"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "sine_voice"
+
+[node name="trunk3" parent="." instance=ExtResource("2_8w3bp")]
+position = Vector2(2, 568)
+speaker_text = Array[String](["It looks like a turtle!", "It looks like a giraffe!", "It looks like a three-toed sloth!", "It looks like a fire truck!", "It looks like a butterfly!", "It looks like a cockroach!", "It looks like a hot dog!", "It looks like an everything bagel!", "It looks like an open door!", "It has a silver lining!", "It looks like a cowboy hat!"])
+speaker_portrait = null
+voice = "sine_voice"

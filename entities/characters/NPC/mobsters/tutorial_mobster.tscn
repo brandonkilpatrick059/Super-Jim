@@ -46,6 +46,8 @@ max_contacts_reported = 3
 linear_damp = 5.0
 script = ExtResource("1_m2jec")
 is_tutorial = true
+is_player_controlled = null
+ready_initialize = null
 base_spriteframes = ExtResource("2_ll4qb")
 hat_spriteframes = ExtResource("3_it2ap")
 

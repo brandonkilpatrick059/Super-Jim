@@ -12,3 +12,4 @@ var in_combat = false
 var knocked_out = false
 var is_on_screen = false
 var is_tutorial = false
+var is_player_controlled = false

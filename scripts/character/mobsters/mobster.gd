@@ -55,7 +55,7 @@ const team_red = "red"
 const team_blu = "blu"
 @export var team = team_red
 var opposing_team 
-var is_bandit = false
+@export var is_bandit = false
 
 #perceptors
 @onready var _vision = $vision
@@ -67,6 +67,8 @@ var ray_collision_mask = 0
 var ray_reactive_collision_mask = 0b00000000_00000000_00001000_00010000
 
 @export var is_tutorial = false
+@export var is_player_controlled = false
+@export var ready_initialize = false
 
 #character composition
 @onready var _character_base = $character_base
@@ -145,9 +147,10 @@ func _ready():
 		
 		#pathfinding_timer.one_shot = true
 		#add_child(pathfinding_timer)
-	if(is_tutorial):
+	if(is_tutorial || is_player_controlled || ready_initialize):
 		initialize_mob()
-		self.add_to_group("fake_mob")
+		if(is_tutorial):
+			self.add_to_group("fake_mob")
 	
 	#for updating character composition in the editor
 	if(Engine.is_editor_hint()):
@@ -256,7 +259,8 @@ func handle_sparks_combat():
 					!perceptions.invincible):
 						_on_reduce_hit_points()
 						if(perceptions.target_obj != null &&
-						perceptions.target_obj.is_in_group("player")):
+						perceptions.target_obj.is_in_group("player") &&
+						!perceptions.is_player_controlled):
 							var assailant_obj = node.get_source_obj()
 							_on_set_ai_target(assailant_obj)
 							_ai_state_machine.transition_to(mobster_states.exclaiming)
@@ -273,9 +277,10 @@ func handle_sparks_non_combat():
 					if(node.is_in_group(perceptions.opposing_team) &&
 					!perceptions.invincible):
 						_on_reduce_hit_points()
-						var assailant_obj = node.get_source_obj()
-						_on_set_ai_target(assailant_obj)
-						_ai_state_machine.transition_to(mobster_states.exclaiming)
+						if(!perceptions.is_player_controlled):
+							var assailant_obj = node.get_source_obj()
+							_on_set_ai_target(assailant_obj)
+							_ai_state_machine.transition_to(mobster_states.exclaiming)
 
 func is_knocked_out():
 	return _ai_state_machine.get_state().name == mobster_states.knockedout
@@ -330,6 +335,7 @@ func initiate_perceptions():
 	perceptions.invincible = is_invincible
 	perceptions.holding_object = holding_object
 	perceptions.is_tutorial = is_tutorial
+	perceptions.is_player_controlled = is_player_controlled
 
 func update_perceptions():
 	perceptions.current_v = current_v
@@ -728,6 +734,36 @@ func _on_set_nav_target(pos : Vector2):
 func _on_set_unadjusted_nav_target(pos : Vector2):
 	perceptions.nav_target_reached = false
 	_navigation_agent.target_position = get_nearest_point_on_mesh(pos)
+
+func _on_input_move():
+	if Input.is_action_pressed(direction.right):
+		_character_base.face_right()
+	else: if Input.is_action_pressed(direction.left):
+		_character_base.face_left()
+	else: if Input.is_action_pressed(direction.up):
+		_character_base.face_up()
+	else: if Input.is_action_pressed(direction.down):
+		_character_base.face_down()
+				
+	var input_direction = Input.get_vector(direction.left, direction.right, direction.up, direction.down)
+		#accelerate if we have't hit max
+	if(input_direction.length() != 0 && linear_velocity.length() < bandit_chase_speed):
+		current_v = input_direction * 700000 #match value in state_chasing.gd
+	else:
+		current_v = input_direction * 0
+	
+	_character_base.animate_sprite_by_vector(current_v, (linear_velocity.length() >= top_speed))
+	var base = 0.4
+	var remainder = 0.6
+	_character_base.set_animation_scale(base,remainder,linear_velocity.length(),top_speed)
+	
+	if(current_v.length() > 0):
+		if(_character_base.get_base_current_frame() == 1 || _character_base.get_base_current_frame() == 3):
+			if(can_play_footfall):
+				footfall_player.play()
+				can_play_footfall = false
+		else:
+			can_play_footfall = true
 
 #move mobster along A* navigation path towards navigation target
 #and animate accordingly

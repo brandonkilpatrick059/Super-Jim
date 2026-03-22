@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbqoso5spfj84"]
+
+[ext_resource type="Script" uid="uid://bhnftt143korp" path="res://scripts/AI_state_machine/states/mobster/state_input_move.gd" id="1_iqrfr"]
+
+[node name="input_move" type="Node"]
+script = ExtResource("1_iqrfr")

@@ -114,6 +114,8 @@ func physics_process(_delta: float) -> void:
 	if(handle_knockout()):
 		return
 	else:
+		#if(Input.is_action_just_released("interact")):
+			#ai_state_machine.transition_to(mobster_states.input_move)
 		if(!burst_cool_down):
 			shoot_burst()
 		if(timer_burst_cool_down.is_stopped() && burst_cool_down):

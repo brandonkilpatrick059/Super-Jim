@@ -68,6 +68,38 @@ ready_initialize = true
 base_spriteframes = ExtResource("3_0k1ax")
 top_spriteframes = ExtResource("5_wkj5c")
 
+[node name="mobster10" parent="." instance=ExtResource("2_1bljh")]
+position = Vector2(-19, 57)
+collision_layer = 1088
+team = "blu"
+ready_initialize = true
+base_spriteframes = ExtResource("3_0k1ax")
+top_spriteframes = ExtResource("5_wkj5c")
+
+[node name="mobster11" parent="." instance=ExtResource("2_1bljh")]
+position = Vector2(1, 386)
+collision_layer = 1088
+team = "blu"
+ready_initialize = true
+base_spriteframes = ExtResource("3_0k1ax")
+top_spriteframes = ExtResource("5_wkj5c")
+
+[node name="mobster12" parent="." instance=ExtResource("2_1bljh")]
+position = Vector2(591, 363)
+collision_layer = 1088
+team = "blu"
+ready_initialize = true
+base_spriteframes = ExtResource("3_0k1ax")
+top_spriteframes = ExtResource("5_wkj5c")
+
+[node name="mobster13" parent="." instance=ExtResource("2_1bljh")]
+position = Vector2(583, 51)
+collision_layer = 1088
+team = "blu"
+ready_initialize = true
+base_spriteframes = ExtResource("3_0k1ax")
+top_spriteframes = ExtResource("5_wkj5c")
+
 [node name="mobster7" parent="." instance=ExtResource("2_1bljh")]
 position = Vector2(84, 365)
 collision_layer = 1088

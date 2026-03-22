@@ -23,6 +23,7 @@ var active_mode = true
 var wait_mode = false
 
 var stream_temp : String = ""
+var was_playing : bool = false
 
 func add_rent():
 	if(!rent_locked):
@@ -82,13 +83,15 @@ func unlock_player_apartment():
 	apartment_locked = false
 
 func catch_finish():
-	var main_music_player = get_tree().get_first_node_in_group("main_music_player")
-	main_music_player.change_stream(stream_temp)
+	if(was_playing):
+		var main_music_player = get_tree().get_first_node_in_group("main_music_player")
+		main_music_player.change_stream(stream_temp)
 	landlord_inactive()
 
 func catch_player():
 	var main_music_player = get_tree().get_first_node_in_group("main_music_player")
 	stream_temp = main_music_player.get_stream_name()
+	was_playing = main_music_player.is_playing()
 	main_music_player.change_stream("res://audio/music/landlords_theme.wav")
 	if(start_mode):
 		landlord_ref._on_set_branching_dialog(start)

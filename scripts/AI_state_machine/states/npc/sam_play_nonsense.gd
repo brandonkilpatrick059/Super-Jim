@@ -18,7 +18,7 @@ func physics_process(_delta: float) -> void:
 		var player_ref = get_tree().get_first_node_in_group("player")
 		var distance = player_ref.global_position.distance_to(ai_state_machine.get_perceptions().global_position)
 		var music_player = get_tree().get_first_node_in_group("main_music_player")
-		if(distance < attenuation_distance):
+		if(distance < attenuation_distance && !music_player.is_changing_streams()):
 			var volume = -((attenuation_distance - distance)/10)
 			music_player.set_volume(volume)
 		if(current_stage_mark == ai_state_machine.get_perceptions().current_stage_mark.global_position):

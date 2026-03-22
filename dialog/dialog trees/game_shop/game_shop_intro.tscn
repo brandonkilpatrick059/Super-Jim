@@ -16,21 +16,22 @@ voice = "sine_voice"
 
 [node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_02xd6")]
 position = Vector2(2, 218)
-speaker_text = Array[String](["Arcade cabinets are a dollar a game."])
+speaker_text = Array[String](["Arcade cabinets take full dollar bills. No change required."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk3")]
 voice = "sine_voice"
 
 [node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_02xd6")]
 position = Vector2(35, 504)
-speaker_text = Array[String](["If you're looking for Baseball Cards, we got green and yellow packs."])
+speaker_text = Array[String](["If you're looking for Baseball Cards, we got green and Yellow packs."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk4")]
 voice = "sine_voice"
+metadata/_edit_group_ = true
 
 [node name="trunk4" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_02xd6")]
 position = Vector2(66, 798)
-speaker_text = Array[String](["Plenty of players come in here, might even be able to scare up a few matches."])
+speaker_text = Array[String](["Plenty of players come in here. You might even be able to scare up a few matches."])
 speaker_portrait = null
 voice = "sine_voice"
 dialog_script = NodePath("move_to_active")

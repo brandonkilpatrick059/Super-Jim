@@ -53,11 +53,15 @@ func pause():
 
 func unpause():
 	if(paused):
-		play(current_playback_position)
+		if(current_stream != ""):
+			play(current_playback_position)
 		paused = false
 
 func set_volume(volume : float):
 	volume_db = volume
+
+func is_changing_streams():
+	return changing_streams
 
 func set_volume_ratio(ratio : float):
 	volume_db = (1.0 - ratio) * zero_volume
@@ -85,6 +89,7 @@ func _process(delta):
 			fading_out = false
 			if(skipping_fade_in):
 				fading_in = false
+				changing_streams = false
 				skipping_fade_in = false
 				volume_db = 0
 			else:

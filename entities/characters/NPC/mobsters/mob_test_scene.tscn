@@ -1,13 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://bj4olwtq6nkyb"]
+[gd_scene load_steps=15 format=3 uid="uid://bj4olwtq6nkyb"]
 
 [ext_resource type="TileSet" uid="uid://dfyrmia6itd31" path="res://sprites/tilesets/indoor_test_set_1.tres" id="1_fax4b"]
 [ext_resource type="PackedScene" uid="uid://dpruoc10tcsh5" path="res://entities/characters/NPC/mobsters/mobster.tscn" id="2_1bljh"]
 [ext_resource type="SpriteFrames" uid="uid://cpe2jw8jk1hqg" path="res://sprites/spritesheets/spriteframes/characters/base/blu_mobster_base.tres" id="3_0k1ax"]
 [ext_resource type="PackedScene" uid="uid://b23ot5l1o0hli" path="res://entities/characters/player/main_camera.tscn" id="3_1bljh"]
-[ext_resource type="SpriteFrames" uid="uid://bhasc4hba2oa3" path="res://sprites/spritesheets/spriteframes/characters/base/red_mobster_base.tres" id="3_wkj5c"]
 [ext_resource type="PackedScene" uid="uid://yh1sdoo12jth" path="res://entities/characters/NPC/mobsters/util/patrol_point.tscn" id="4_bkd8j"]
-[ext_resource type="SpriteFrames" uid="uid://lclhsoas1rwp" path="res://sprites/spritesheets/spriteframes/characters/hat/full_sheet/red_bandit_mask.tres" id="4_jybwc"]
+[ext_resource type="SpriteFrames" uid="uid://c1yilgy44b5um" path="res://sprites/spritesheets/spriteframes/characters/hat/full_sheet/blu_bandit_mask.tres" id="4_jybwc"]
 [ext_resource type="SpriteFrames" uid="uid://cpp0eytgtwa1r" path="res://sprites/spritesheets/spriteframes/characters/top/full_sheet/biker_vest_1.tres" id="5_wkj5c"]
+[ext_resource type="Texture2D" uid="uid://c3h0pnps10dsv" path="res://sprites/arcade/screen_overlay.png" id="7_886p1"]
+[ext_resource type="SpriteFrames" uid="uid://bhasc4hba2oa3" path="res://sprites/spritesheets/spriteframes/characters/base/red_mobster_base.tres" id="8_886p1"]
+[ext_resource type="SpriteFrames" uid="uid://brsf7khfc33uh" path="res://sprites/spritesheets/spriteframes/characters/hat/full_sheet/cowboy_hat_1.tres" id="9_v43dr"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1bljh"]
 vertices = PackedVector2Array(154, 224, 149, 425, 13, 366, 53, 175, -26, 3, 72, 8, 57, 138, 338, 226, 213, 174, 304, 182, 472, 181, 458, 5, 649, 11, 653, 369, 371, 426, 201, -3, 318, -1)
@@ -39,12 +41,18 @@ layer_0/tile_data = PackedInt32Array(786450, 786434, 1, 786452, 786434, 1, 91752
 [node name="mobster" parent="." instance=ExtResource("2_1bljh")]
 position = Vector2(276, 218)
 collision_layer = 1602
+team = "blu"
 is_bandit = true
 is_player_controlled = true
-base_spriteframes = ExtResource("3_wkj5c")
+base_spriteframes = ExtResource("3_0k1ax")
 hat_spriteframes = ExtResource("4_jybwc")
+top_spriteframes = ExtResource("5_wkj5c")
 
 [node name="main_camera" parent="mobster" instance=ExtResource("3_1bljh")]
+
+[node name="Sprite2D" type="Sprite2D" parent="mobster/main_camera"]
+z_index = 50
+texture = ExtResource("7_886p1")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_1bljh")
@@ -54,99 +62,59 @@ navigation_polygon = SubResource("NavigationPolygon_0k1ax")
 
 [node name="mobster2" parent="." instance=ExtResource("2_1bljh")]
 position = Vector2(33, 45)
-collision_layer = 1088
-team = "blu"
+collision_layer = 1602
 ready_initialize = true
-base_spriteframes = ExtResource("3_0k1ax")
-top_spriteframes = ExtResource("5_wkj5c")
+base_spriteframes = ExtResource("8_886p1")
+hat_spriteframes = ExtResource("9_v43dr")
 
 [node name="mobster6" parent="." instance=ExtResource("2_1bljh")]
 position = Vector2(17, 92)
-collision_layer = 1088
-team = "blu"
+collision_layer = 1602
 ready_initialize = true
-base_spriteframes = ExtResource("3_0k1ax")
-top_spriteframes = ExtResource("5_wkj5c")
-
-[node name="mobster10" parent="." instance=ExtResource("2_1bljh")]
-position = Vector2(-19, 57)
-collision_layer = 1088
-team = "blu"
-ready_initialize = true
-base_spriteframes = ExtResource("3_0k1ax")
-top_spriteframes = ExtResource("5_wkj5c")
+base_spriteframes = ExtResource("8_886p1")
+hat_spriteframes = ExtResource("9_v43dr")
 
 [node name="mobster11" parent="." instance=ExtResource("2_1bljh")]
 position = Vector2(1, 386)
-collision_layer = 1088
-team = "blu"
+collision_layer = 1602
 ready_initialize = true
-base_spriteframes = ExtResource("3_0k1ax")
-top_spriteframes = ExtResource("5_wkj5c")
+base_spriteframes = ExtResource("8_886p1")
+hat_spriteframes = ExtResource("9_v43dr")
 
 [node name="mobster12" parent="." instance=ExtResource("2_1bljh")]
 position = Vector2(591, 363)
-collision_layer = 1088
-team = "blu"
+collision_layer = 1602
 ready_initialize = true
-base_spriteframes = ExtResource("3_0k1ax")
-top_spriteframes = ExtResource("5_wkj5c")
+base_spriteframes = ExtResource("8_886p1")
+hat_spriteframes = ExtResource("9_v43dr")
 
 [node name="mobster13" parent="." instance=ExtResource("2_1bljh")]
 position = Vector2(583, 51)
-collision_layer = 1088
-team = "blu"
+collision_layer = 1602
 ready_initialize = true
-base_spriteframes = ExtResource("3_0k1ax")
-top_spriteframes = ExtResource("5_wkj5c")
+base_spriteframes = ExtResource("8_886p1")
+hat_spriteframes = ExtResource("9_v43dr")
 
 [node name="mobster7" parent="." instance=ExtResource("2_1bljh")]
 position = Vector2(84, 365)
-collision_layer = 1088
-team = "blu"
+collision_layer = 1602
 ready_initialize = true
-base_spriteframes = ExtResource("3_0k1ax")
-top_spriteframes = ExtResource("5_wkj5c")
+base_spriteframes = ExtResource("8_886p1")
+hat_spriteframes = ExtResource("9_v43dr")
 
 [node name="mobster8" parent="." instance=ExtResource("2_1bljh")]
 position = Vector2(500, 380)
-collision_layer = 1088
-team = "blu"
+collision_layer = 1602
 ready_initialize = true
-base_spriteframes = ExtResource("3_0k1ax")
-top_spriteframes = ExtResource("5_wkj5c")
+base_spriteframes = ExtResource("8_886p1")
+hat_spriteframes = ExtResource("9_v43dr")
 
 [node name="mobster9" parent="." instance=ExtResource("2_1bljh")]
 position = Vector2(484, 36)
-collision_layer = 1088
-team = "blu"
+collision_layer = 1602
 ready_initialize = true
-base_spriteframes = ExtResource("3_0k1ax")
-top_spriteframes = ExtResource("5_wkj5c")
-
-[node name="mobster3" parent="." instance=ExtResource("2_1bljh")]
-position = Vector2(545, 60)
-collision_layer = 1088
-team = "blu"
-ready_initialize = true
-base_spriteframes = ExtResource("3_0k1ax")
-top_spriteframes = ExtResource("5_wkj5c")
-
-[node name="mobster4" parent="." instance=ExtResource("2_1bljh")]
-position = Vector2(22, 319)
-collision_layer = 1088
-team = "blu"
-ready_initialize = true
-base_spriteframes = ExtResource("3_0k1ax")
-top_spriteframes = ExtResource("5_wkj5c")
-
-[node name="mobster5" parent="." instance=ExtResource("2_1bljh")]
-position = Vector2(555, 316)
-collision_layer = 1088
-team = "blu"
-ready_initialize = true
-base_spriteframes = ExtResource("3_0k1ax")
-top_spriteframes = ExtResource("5_wkj5c")
+base_spriteframes = ExtResource("8_886p1")
+hat_spriteframes = ExtResource("9_v43dr")
 
 [node name="patrol_point" parent="." instance=ExtResource("4_bkd8j")]
 position = Vector2(316, 204)

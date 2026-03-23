@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://nm6utlxrpk37"]
+
+[ext_resource type="Texture2D" uid="uid://c3h0pnps10dsv" path="res://sprites/arcade/screen_overlay.png" id="1_sigs0"]
+[ext_resource type="Script" uid="uid://d2ewwb4ejj5nq" path="res://scripts/arcade/bandit_game/bandit_arcade_machine.gd" id="1_v4hur"]
+[ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="3_8e8a1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3w3jm"]
+font = ExtResource("3_8e8a1")
+font_size = 32
+font_color = Color(1, 1, 0, 1)
+
+[node name="BanditArcadeMachine" type="Node2D"]
+script = ExtResource("1_v4hur")
+
+[node name="overlay" type="Sprite2D" parent="."]
+z_index = 30
+texture = ExtResource("1_sigs0")
+
+[node name="color_filter" type="Polygon2D" parent="."]
+z_index = 29
+position = Vector2(-305, -157)
+scale = Vector2(0.21859, 0.155457)
+color = Color(0, 0, 1, 0.0784314)
+polygon = PackedVector2Array(-200.25, 13.5)
+uv = PackedVector2Array(-200.25, 13.5)
+
+[node name="center_label" type="Label" parent="."]
+z_index = 38
+offset_left = -244.0
+offset_top = -144.0
+offset_right = 244.0
+offset_bottom = 144.0
+label_settings = SubResource("LabelSettings_3w3jm")
+horizontal_alignment = 1
+vertical_alignment = 1

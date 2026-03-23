@@ -161,6 +161,7 @@ func initialize_mob():
 	set_up_mobster_team()
 	if(is_bandit):
 		make_bandit()
+	update_perceptions()
 
 func make_bandit():
 	is_bandit = true
@@ -177,6 +178,10 @@ func make_bandit():
 	hit_points = bandit_max_hit_points
 	add_to_group("bandit")
 	perceptions.is_bandit = is_bandit
+
+func make_player_controlled():
+	is_player_controlled = true
+	_ai_state_machine.transition_to(mobster_states.input_move)
 
 func set_team(team_name : String):
 	team = team_name
@@ -260,7 +265,7 @@ func handle_sparks_combat():
 						_on_reduce_hit_points()
 						if(perceptions.target_obj != null &&
 						perceptions.target_obj.is_in_group("player") &&
-						!perceptions.is_player_controlled):
+						!is_player_controlled):
 							var assailant_obj = node.get_source_obj()
 							_on_set_ai_target(assailant_obj)
 							_ai_state_machine.transition_to(mobster_states.exclaiming)
@@ -277,7 +282,7 @@ func handle_sparks_non_combat():
 					if(node.is_in_group(perceptions.opposing_team) &&
 					!perceptions.invincible):
 						_on_reduce_hit_points()
-						if(!perceptions.is_player_controlled):
+						if(!is_player_controlled):
 							var assailant_obj = node.get_source_obj()
 							_on_set_ai_target(assailant_obj)
 							_ai_state_machine.transition_to(mobster_states.exclaiming)
@@ -388,7 +393,8 @@ func _on_body_entered(body: Node):
 		if(_ai_state_machine.get_state().name == "transit" ||
 		_ai_state_machine.get_state().name == "look" ||
 		_ai_state_machine.get_state().name == "investigate" ||
-		_ai_state_machine.get_state().name == "enticed"):
+		_ai_state_machine.get_state().name == "enticed" &&
+		!is_player_controlled):
 			_on_set_ai_target(body)
 			_ai_state_machine.transition_to("exclaiming")
 	
@@ -665,6 +671,9 @@ func _on_reduce_hit_points():
 
 func _on_add_hit_point():
 	hit_points += 1
+
+func get_hit_points() -> int:
+	return hit_points
 
 func heal_to_max():
 	if(is_bandit):
@@ -961,7 +970,8 @@ func update_vision():
 #(pushed off navmesh, navigating somewhere unreachable, etc)
 func check_mob_stuck():
 	if(stuck_timer.is_stopped()):
-		if(stuck_check_pos.distance_to(global_position) <= 16):
+		if(stuck_check_pos.distance_to(global_position) <= 16 &&
+		!is_player_controlled):
 			reset()
 		stuck_check_pos = global_position
 		stuck_timer.start(stuck_check_time_secs)

@@ -18,7 +18,7 @@ var call_to_arms_timer : Timer
 var call_to_arms_freq_secs = 45
 
 func get_host_position():
-	return ai_state_machine.get_perceptions().position
+	return ai_state_machine.get_perceptions().global_position
 
 func get_host_nav_target_reached():
 	return ai_state_machine.get_perceptions().nav_target_reached

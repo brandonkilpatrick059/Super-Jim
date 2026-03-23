@@ -108,7 +108,8 @@ func shoot_burst():
 		if(ai_state_machine.get_perceptions().is_bandit):
 			throw_bomb.emit()
 		burst_cool_down = true
-		timer_burst_cool_down.start(burst_cool_down_secs)	
+		ai_state_machine.transition_to(mobster_states.input_move)
+		#timer_burst_cool_down.start(burst_cool_down_secs)	
 
 func physics_process(_delta: float) -> void:
 	if(handle_knockout()):
@@ -121,7 +122,7 @@ func physics_process(_delta: float) -> void:
 		if(timer_burst_cool_down.is_stopped() && burst_cool_down):
 			burst_cool_down = false
 			num_bullets_fired = 0
-			ai_state_machine.transition_to(mobster_states.input_move)
+			#ai_state_machine.transition_to(mobster_states.input_move)
 
 func _ready():
 	timer_burst_cool_down.one_shot = true

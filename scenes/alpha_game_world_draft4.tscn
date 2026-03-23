@@ -148,7 +148,7 @@
 [ext_resource type="SpriteFrames" uid="uid://c2xs2bbds05s3" path="res://sprites/spritesheets/spriteframes/characters/top/full_sheet/shirt_0.tres" id="133_gyyro"]
 [ext_resource type="PackedScene" uid="uid://dyu0exunlarfo" path="res://entities/props/static props/city/bar_1.tscn" id="135_67jlk"]
 [ext_resource type="PackedScene" uid="uid://xq8rqbbcvrhk" path="res://entities/props/static props/city/bar_2.tscn" id="136_smc0a"]
-[ext_resource type="PackedScene" uid="uid://bwtlx8yppuhha" path="res://sprites/lights/alien_fortune_teller.tscn" id="138_ihr1y"]
+[ext_resource type="PackedScene" uid="uid://bwtlx8yppuhha" path="res://entities/dynamic world/alien_fortune_teller.tscn" id="138_ihr1y"]
 [ext_resource type="PackedScene" uid="uid://buj2u4alt2o16" path="res://dialog/dialog trees/bar_tender.tscn" id="139_kjtnq"]
 [ext_resource type="Script" uid="uid://cxdxvmads68ph" path="res://scripts/utility/interact_zone.gd" id="140_8g0fd"]
 [ext_resource type="PackedScene" path="res://entities/props/static props/city/TV.tscn" id="141_smc0a"]

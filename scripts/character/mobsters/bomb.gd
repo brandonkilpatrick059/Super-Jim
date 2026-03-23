@@ -50,7 +50,8 @@ func explode():
 			new_bullet = red_shrapnel.instantiate()
 		else: if(team == "blu"):
 			new_bullet = blu_shrapnel.instantiate()
-		new_bullet.set_source_obj(source_obj)
+		if(source_obj != null):
+			new_bullet.set_source_obj(source_obj)
 		get_parent().add_child(new_bullet)
 		rot = rot + rot_step
 		new_bullet.rotation_degrees = rot

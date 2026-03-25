@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b44yar83mie0w"]
+
+[ext_resource type="Script" uid="uid://kgcoxi4ismhr" path="res://scripts/AI_state_machine/states/mobster/state_courier_transit.gd" id="1_cavlc"]
+
+[node name="courier_transit" type="Node"]
+script = ExtResource("1_cavlc")

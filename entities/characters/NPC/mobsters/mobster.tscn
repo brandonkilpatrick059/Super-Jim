@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dpruoc10tcsh5"]
+[gd_scene load_steps=27 format=3 uid="uid://dpruoc10tcsh5"]
 
 [ext_resource type="Script" uid="uid://bma2uox3e4jyx" path="res://scripts/character/mobsters/mobster.gd" id="1_1jg0u"]
 [ext_resource type="SpriteFrames" uid="uid://bhasc4hba2oa3" path="res://sprites/spritesheets/spriteframes/characters/base/red_mobster_base.tres" id="2_qkhc6"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://c4fuff11h56j4" path="res://entities/characters/NPC/AI state machine/mobster states/state_returning.tscn" id="19_hqtsi"]
 [ext_resource type="PackedScene" uid="uid://bbqoso5spfj84" path="res://entities/characters/NPC/AI state machine/mobster states/state_input_move.tscn" id="20_6d6u4"]
 [ext_resource type="PackedScene" uid="uid://b5bc4ta35kuc6" path="res://entities/characters/NPC/AI state machine/mobster states/state_input_shooting.tscn" id="21_ky6pn"]
+[ext_resource type="PackedScene" uid="uid://b44yar83mie0w" path="res://entities/characters/NPC/AI state machine/mobster states/state_courier_transit.tscn" id="22_8kf5n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_68bjs"]
 size = Vector2(19.9688, 13)
@@ -119,6 +120,8 @@ initial_state = NodePath("idle")
 
 [node name="input_shooting" parent="ai_state_machine" instance=ExtResource("21_ky6pn")]
 
+[node name="courier_transit" parent="ai_state_machine" instance=ExtResource("22_8kf5n")]
+
 [node name="spark_detector" type="Area2D" parent="."]
 collision_layer = 256
 collision_mask = 256
@@ -202,3 +205,4 @@ shape = SubResource("CircleShape2D_lksb6")
 [connection signal="shoot" from="ai_state_machine/input_shooting" to="." method="_on_create_bullet"]
 [connection signal="stop_motion" from="ai_state_machine/input_shooting" to="." method="_on_stop_motion"]
 [connection signal="throw_bomb" from="ai_state_machine/input_shooting" to="." method="_on_create_bomb"]
+[connection signal="set_nav_target" from="ai_state_machine/courier_transit" to="." method="_on_set_nav_target"]

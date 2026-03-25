@@ -7,6 +7,8 @@ var opposing_team = ""
 var hit_points
 var invincible = false
 var is_bandit = false
+var no_point_capture = false
+var no_aggro = false
 var advancing_navigation = false
 var in_combat = false
 var knocked_out = false

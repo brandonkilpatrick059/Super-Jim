@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvtrigwtr1x76"]
+
+[ext_resource type="Texture2D" uid="uid://enoj6dtvrhii" path="res://sprites/props/basic_pizza_sprite.png" id="2_eywgd"]
+[ext_resource type="Script" uid="uid://bkt2mviy7eonh" path="res://scripts/entities/pickupable.gd" id="2_x7yys"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_486n2"]
+bounce = 0.05
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bjers"]
+radius = 7.0
+height = 22.0
+
+[node name="arcade_pizza" type="RigidBody2D" groups=["arcade_pizza", "dynamic", "pickupable", "pizza", "prop"]]
+y_sort_enabled = true
+collision_layer = 22536
+collision_mask = 4187
+mass = 3.0
+physics_material_override = SubResource("PhysicsMaterial_486n2")
+gravity_scale = 0.0
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 1
+linear_damp = 5.0
+script = ExtResource("2_x7yys")
+has_home = false
+force_factor = 2000
+spark_time_secs = 0.2
+
+[node name="sprite" type="Sprite2D" parent="." groups=["dynamic", "pickupable", "prop"]]
+y_sort_enabled = true
+position = Vector2(0, 6)
+texture = ExtResource("2_eywgd")
+offset = Vector2(0, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["dynamic", "pickupable", "prop"]]
+y_sort_enabled = true
+position = Vector2(0, 22)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_bjers")

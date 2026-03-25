@@ -28,6 +28,7 @@ var red_hat = preload("res://sprites/spritesheets/spriteframes/characters/hat/fu
 var red_bandit_hat = preload("res://sprites/spritesheets/spriteframes/characters/hat/full_sheet/red_bandit_mask.tres")
 var blue_top = preload("res://sprites/spritesheets/spriteframes/characters/top/full_sheet/biker_vest_1.tres")
 var blue_bandit_hat = preload("res://sprites/spritesheets/spriteframes/characters/hat/full_sheet/blu_bandit_mask.tres")
+var arcade_courier_hat = preload("res://sprites/spritesheets/spriteframes/characters/hat/full_sheet/cap_0.tres")
 var speech_bubble = preload("res://dialog/speech_bubble.tscn")
 
 #audio preloads
@@ -98,6 +99,10 @@ var hit_points = 3
 var default_speed = 150000
 var default_chase_speed = 625000
 var bandit_chase_speed =  700000
+var no_point_capture = false #bandit won't attempt to capture points
+
+var no_aggro = false #bandit won't enter combat states
+var is_arcade_courier = false #courier in the bandit arcade game is secretly a mob
 
 var exclaim_timer = Timer.new()
 var exclaiming = false
@@ -163,7 +168,7 @@ func initialize_mob():
 		make_bandit()
 	update_perceptions()
 
-func make_bandit():
+func make_bandit(not_aggressive : bool = false):
 	is_bandit = true
 	if(team == team_red):
 		hat_spriteframes = red_bandit_hat
@@ -178,6 +183,11 @@ func make_bandit():
 	hit_points = bandit_max_hit_points
 	add_to_group("bandit")
 	perceptions.is_bandit = is_bandit
+	perceptions.no_point_capture = not_aggressive
+
+func make_arcade_courier():
+	no_aggro = true
+	is_arcade_courier = true
 
 func make_player_controlled():
 	is_player_controlled = true
@@ -187,7 +197,7 @@ func set_team(team_name : String):
 	team = team_name
 
 func set_up_character_base():
-	if(!is_tutorial):
+	if(!is_tutorial && !is_arcade_courier):
 		if(team == team_red):
 			base_spriteframes = red_base
 			hat_spriteframes = red_hat
@@ -195,9 +205,12 @@ func set_up_character_base():
 			base_spriteframes = blu_base
 			top_spriteframes = blue_top
 			hat_spriteframes = null
-	else:
+	elif(is_tutorial):
 		base_spriteframes = tutorial_base
 		hat_spriteframes = red_hat
+	elif(is_arcade_courier):
+		base_spriteframes = tutorial_base
+		hat_spriteframes = arcade_courier_hat
 	_character_base.set_spriteframes(base_spriteframes,
 	hat_spriteframes,
 	top_spriteframes,
@@ -265,7 +278,8 @@ func handle_sparks_combat():
 						_on_reduce_hit_points()
 						if(perceptions.target_obj != null &&
 						perceptions.target_obj.is_in_group("player") &&
-						!is_player_controlled):
+						!is_player_controlled &&
+						!no_aggro):
 							var assailant_obj = node.get_source_obj()
 							_on_set_ai_target(assailant_obj)
 							_ai_state_machine.transition_to(mobster_states.exclaiming)
@@ -282,7 +296,7 @@ func handle_sparks_non_combat():
 					if(node.is_in_group(perceptions.opposing_team) &&
 					!perceptions.invincible):
 						_on_reduce_hit_points()
-						if(!is_player_controlled):
+						if(!is_player_controlled && !no_aggro):
 							var assailant_obj = node.get_source_obj()
 							_on_set_ai_target(assailant_obj)
 							_ai_state_machine.transition_to(mobster_states.exclaiming)
@@ -341,6 +355,7 @@ func initiate_perceptions():
 	perceptions.holding_object = holding_object
 	perceptions.is_tutorial = is_tutorial
 	perceptions.is_player_controlled = is_player_controlled
+	perceptions.no_point_capture = no_point_capture
 
 func update_perceptions():
 	perceptions.current_v = current_v
@@ -387,16 +402,22 @@ func update_perceptions():
 
 func _on_body_entered(body: Node):
 	perceptions.colliding_nodes.append(body)
-	if(body.is_in_group("player")):
-		var vect : Vector2 = body.get_current_v()
-		body.push(-vect,0.35)
-		if(_ai_state_machine.get_state().name == "transit" ||
-		_ai_state_machine.get_state().name == "look" ||
-		_ai_state_machine.get_state().name == "investigate" ||
-		_ai_state_machine.get_state().name == "enticed" &&
-		!is_player_controlled):
-			_on_set_ai_target(body)
-			_ai_state_machine.transition_to("exclaiming")
+	if(body != null):
+		if(body.is_in_group("player")):
+			var vect : Vector2 = body.get_current_v()
+			body.push(-vect,0.35)
+			if(_ai_state_machine.get_state().name == "transit" ||
+			_ai_state_machine.get_state().name == "look" ||
+			_ai_state_machine.get_state().name == "investigate" ||
+			_ai_state_machine.get_state().name == "enticed" &&
+			!is_player_controlled):
+				_on_set_ai_target(body)
+				_ai_state_machine.transition_to("exclaiming")
+		if(!is_arcade_courier && body.is_in_group("arcade_pizza")):
+			sound_player.stream = load("res://audio/soundFX/dash_regen.wav")
+			sound_player.play()
+			heal_to_max()
+			body.queue_free()
 	
 
 func _on_body_exited(body: Node):
@@ -665,6 +686,9 @@ func _on_enable_all_collision():
 	_on_enable_head_collider()
 	_body_collider.disabled = false
 
+func set_hit_points(hp : int):
+	hit_points = hp
+
 func _on_reduce_hit_points():
 	go_invincible()
 	hit_points -= 1
@@ -674,6 +698,9 @@ func _on_add_hit_point():
 
 func get_hit_points() -> int:
 	return hit_points
+
+func get_max_hit_points() -> int:
+	return max_hit_points
 
 func heal_to_max():
 	if(is_bandit):
@@ -944,7 +971,8 @@ func update():
 
 func update_navigation():
 	if(_ai_state_machine.get_state().name == mobster_states.chasing ||
-	_ai_state_machine.get_state().name == mobster_states.strafing):
+	_ai_state_machine.get_state().name == mobster_states.strafing ||
+	_ai_state_machine.get_state().name == mobster_states.courier_transit):
 		if(is_bandit):
 			_on_advance_navigation(bandit_chase_speed)
 		else:

@@ -117,7 +117,8 @@ func current_point_to_closest_point():
 			current_patrol_point = patrol_point
 
 func enter(_msg := {}) -> void:		
-	if(ai_state_machine.get_perceptions().is_bandit):
+	if(ai_state_machine.get_perceptions().is_bandit && 
+	!ai_state_machine.get_perceptions().no_point_capture):
 		current_point_to_closest_capture_point()
 	else:
 		if(current_patrol_point == null ||

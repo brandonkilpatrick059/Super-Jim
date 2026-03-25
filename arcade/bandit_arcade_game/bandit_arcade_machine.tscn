@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://nm6utlxrpk37"]
+[gd_scene load_steps=8 format=3 uid="uid://nm6utlxrpk37"]
 
 [ext_resource type="Texture2D" uid="uid://c3h0pnps10dsv" path="res://sprites/arcade/screen_overlay.png" id="1_sigs0"]
 [ext_resource type="Script" uid="uid://d2ewwb4ejj5nq" path="res://scripts/arcade/bandit_game/bandit_arcade_machine.gd" id="1_v4hur"]
@@ -7,6 +7,18 @@
 [sub_resource type="LabelSettings" id="LabelSettings_3w3jm"]
 font = ExtResource("3_8e8a1")
 font_size = 32
+font_color = Color(1, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8e8a1"]
+font = ExtResource("3_8e8a1")
+font_color = Color(1, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l5ekx"]
+font = ExtResource("3_8e8a1")
+font_color = Color(1, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_motum"]
+font = ExtResource("3_8e8a1")
 font_color = Color(1, 1, 0, 1)
 
 [node name="BanditArcadeMachine" type="Node2D"]
@@ -20,8 +32,8 @@ texture = ExtResource("1_sigs0")
 z_index = 29
 position = Vector2(-305, -157)
 scale = Vector2(0.21859, 0.155457)
-color = Color(0, 0, 1, 0.0784314)
-polygon = PackedVector2Array(-200.25, 13.5)
+color = Color(0, 0.568627, 0.560784, 0.192157)
+polygon = PackedVector2Array(2923.28, 2335.05, 2854.66, -379.526, -22.8739, -302.334, 0, 0, 18.2991, 2328.62)
 uv = PackedVector2Array(-200.25, 13.5)
 
 [node name="center_label" type="Label" parent="."]
@@ -33,3 +45,29 @@ offset_bottom = 144.0
 label_settings = SubResource("LabelSettings_3w3jm")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="remain_label" type="Label" parent="."]
+z_index = 38
+offset_left = 156.0
+offset_top = -144.0
+offset_right = 241.0
+offset_bottom = -121.0
+label_settings = SubResource("LabelSettings_8e8a1")
+horizontal_alignment = 2
+
+[node name="wave_label" type="Label" parent="."]
+z_index = 38
+offset_left = -244.0
+offset_top = -144.0
+offset_right = 244.0
+offset_bottom = -121.0
+label_settings = SubResource("LabelSettings_l5ekx")
+horizontal_alignment = 1
+
+[node name="hp_label" type="Label" parent="."]
+z_index = 38
+offset_left = -241.0
+offset_top = -144.0
+offset_right = -195.0
+offset_bottom = -121.0
+label_settings = SubResource("LabelSettings_motum")

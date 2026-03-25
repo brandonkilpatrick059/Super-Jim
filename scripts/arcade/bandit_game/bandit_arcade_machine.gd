@@ -121,12 +121,12 @@ func generate_leveled_mob_wave():
 		2:
 			generate_mob_wave(2)
 		3:
-			generate_mob_wave(3)
+			generate_mob_wave()
+			generate_mob_wave()
 		4:
-			generate_mob_wave(4)
+			generate_mob_wave(3)
 		5:
-			generate_mob_wave()
-			generate_mob_wave()
+			generate_mob_wave(4)
 		6:
 			generate_mob_wave()
 			generate_mob_wave(1)
@@ -136,9 +136,10 @@ func generate_leveled_mob_wave():
 		8:
 			generate_mob_wave()
 			generate_mob_wave(3)
-		9:
+		_:
 			generate_mob_wave()
 			generate_mob_wave(4)
+		
 
 func generate_mob_wave(num_bandits : int = 0):
 	spawned_courier = false

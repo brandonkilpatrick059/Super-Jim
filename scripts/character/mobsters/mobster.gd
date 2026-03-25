@@ -692,6 +692,8 @@ func set_hit_points(hp : int):
 func _on_reduce_hit_points():
 	go_invincible()
 	hit_points -= 1
+	if(hit_points < 0):
+		hit_points = 0
 
 func _on_add_hit_point():
 	hit_points += 1

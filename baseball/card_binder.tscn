@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://n8dfy4d7h82j"]
+[gd_scene load_steps=12 format=3 uid="uid://n8dfy4d7h82j"]
 
 [ext_resource type="Script" uid="uid://bqk71nh4cjmij" path="res://scripts/baseball/card_binder.gd" id="1_jwmym"]
 [ext_resource type="Texture2D" uid="uid://dqei57x371nxa" path="res://sprites/baseball/binder_ui_background.png" id="1_lctft"]
@@ -15,6 +15,9 @@ light_mode = 1
 light_mode = 1
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_706po"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_diofx"]
 light_mode = 1
 
 [node name="CardBinder" type="Node2D"]
@@ -80,6 +83,7 @@ position = Vector2(429, 98)
 position = Vector2(541, 98)
 
 [node name="num_card" type="Label" parent="."]
+material = SubResource("CanvasItemMaterial_diofx")
 offset_left = 53.0
 offset_top = 5.0
 offset_right = 93.0

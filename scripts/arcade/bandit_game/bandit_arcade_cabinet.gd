@@ -51,7 +51,7 @@ func set_up_ui():
 func interact():
 	if(timer.is_stopped()):
 		player_ref = get_tree().get_first_node_in_group("player")
-		if(player_ref.get_money() > cost):
+		if(player_ref.get_money() >= cost):
 			player_ref.set_money(player_ref.get_money() - cost)
 			fading = true
 			var camera_ref = get_tree().get_first_node_in_group("camera")

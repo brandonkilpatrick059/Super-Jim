@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://nm6utlxrpk37"]
+[gd_scene load_steps=9 format=3 uid="uid://nm6utlxrpk37"]
 
 [ext_resource type="Texture2D" uid="uid://c3h0pnps10dsv" path="res://sprites/arcade/screen_overlay.png" id="1_sigs0"]
 [ext_resource type="Script" uid="uid://d2ewwb4ejj5nq" path="res://scripts/arcade/bandit_game/bandit_arcade_machine.gd" id="1_v4hur"]
 [ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="3_8e8a1"]
+[ext_resource type="AudioStream" uid="uid://b105ur5xe3f06" path="res://audio/music/bandit_game_song.wav" id="4_3w3jm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3w3jm"]
 font = ExtResource("3_8e8a1")
@@ -71,3 +72,8 @@ offset_top = -144.0
 offset_right = -195.0
 offset_bottom = -121.0
 label_settings = SubResource("LabelSettings_motum")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3w3jm")
+autoplay = true
+bus = &"Music"

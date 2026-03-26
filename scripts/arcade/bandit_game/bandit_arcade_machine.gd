@@ -45,6 +45,8 @@ var spawned_courier : bool = false
 var courier : Node = null
 var last_checked_size : int = 0
 
+var player_bandit_hp_last_checked : int = 0
+
 func _ready():
 	audio_player.bus = "Effects"
 	add_child(audio_player)
@@ -107,6 +109,7 @@ func start_game():
 		camera_ref = get_tree().get_first_node_in_group("camera")
 	camera_ref.connect_anchor(player_bandit)
 	generate_leveled_mob_wave()
+	player_bandit_hp_last_checked = player_bandit.get_hit_points()
 
 func generate_leveled_mob_wave():
 	center_label.text = str("WAVE ",wave_level+1)
@@ -205,6 +208,11 @@ func check_player_dead():
 		center_label.visible = true
 		game_over = true
 		timer.start(3)
+	if(player_bandit_hp_last_checked < player_bandit.get_hit_points()):
+		center_label.text = "FULL HEAL"
+		center_label.visible = true
+		timer.start(1)
+	player_bandit_hp_last_checked = player_bandit.get_hit_points()
 
 func clean_up():
 	reset_camera()

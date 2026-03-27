@@ -1,24 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://bu1wcchavpksa"]
+[gd_scene load_steps=6 format=3 uid="uid://bu1wcchavpksa"]
 
 [ext_resource type="Script" uid="uid://c2eauyl5k8il2" path="res://scripts/shop/ware.gd" id="1_4frsw"]
 [ext_resource type="Script" uid="uid://brs35wel42e0d" path="res://scripts/shop/ware_furniture.gd" id="2_re8c1"]
 [ext_resource type="PackedScene" uid="uid://1cxtilx0gbtm" path="res://entities/props/static props/apartment/furniture/lamp/lamp_0.tscn" id="3_0isgg"]
 [ext_resource type="SpriteFrames" uid="uid://drauw2hemh2yd" path="res://sprites/spritesheets/spriteframes/game_world/lamp.tres" id="4_re8c1"]
-[ext_resource type="Texture2D" uid="uid://cfswbijcll56e" path="res://sprites/game_world/price_tag.png" id="4_t4q4g"]
-[ext_resource type="FontFile" uid="uid://cl55ql7qruw6x" path="res://fonts/VT323-Regular.ttf" id="5_qatgs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r8ccd"]
 size = Vector2(8, 16.25)
 
-[sub_resource type="LabelSettings" id="LabelSettings_i0gyc"]
-font = ExtResource("5_qatgs")
-font_size = 12
-font_color = Color(1, 0, 0, 1)
-
 [node name="WareLamp" type="Node2D"]
 script = ExtResource("1_4frsw")
 cost = 10
-ware_name = "Lamp"
+ware_name = "Table Lamp"
 
 [node name="script_node" type="Node" parent="."]
 script = ExtResource("2_re8c1")
@@ -36,18 +29,3 @@ collision_layer = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(1, -4.125)
 shape = SubResource("RectangleShape2D_r8ccd")
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(-14, -1)
-scale = Vector2(0.875, 0.6875)
-texture = ExtResource("4_t4q4g")
-
-[node name="Label" type="Label" parent="."]
-offset_left = -21.0
-offset_top = -11.0
-offset_right = -6.0
-offset_bottom = 10.0
-text = "$10"
-label_settings = SubResource("LabelSettings_i0gyc")
-horizontal_alignment = 1
-vertical_alignment = 1

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://drjl5eu8pamh5"]
+
+[ext_resource type="SpriteFrames" uid="uid://b3x6rermaqoak" path="res://sprites/spritesheets/spriteframes/characters/base/cat_base.tres" id="1_6uyt2"]
+
+[node name="Cat" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_6uyt2")
+animation = &"walk_left"
+frame_progress = 0.932809

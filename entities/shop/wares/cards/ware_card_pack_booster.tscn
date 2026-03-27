@@ -8,7 +8,7 @@
 z_index = 1
 script = ExtResource("1_gs728")
 cost = 40
-ware_name = "Dual Booster Pack - $40"
+ware_name = "Dual Booster Pack"
 
 [node name="script_node" type="Node" parent="."]
 script = ExtResource("2_u03vw")

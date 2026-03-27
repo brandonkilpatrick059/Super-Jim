@@ -12,7 +12,7 @@ font_size = 8
 z_index = 1
 script = ExtResource("1_84oca")
 cost = 3
-ware_name = "regular coffee"
+ware_name = "Black Coffee"
 
 [node name="script_node" type="Node" parent="."]
 script = ExtResource("2_rg55s")

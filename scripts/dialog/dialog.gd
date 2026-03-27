@@ -143,7 +143,10 @@ func handle_input():
 			if(dialog_choice_index == 0):
 				_ResponseBubble.set_label("Nevermind")
 			else:
-				_ResponseBubble.set_label(shop.get_staged_wares()[dialog_choice_index-1].get_ware_name())
+				var ware_name = shop.get_staged_wares()[dialog_choice_index-1].get_ware_name()
+				var ware_price : int = shop.get_staged_wares()[dialog_choice_index-1].get_cost()
+				var price_string : String = str(" for $",ware_price)
+				_ResponseBubble.set_label(str(ware_name,price_string))
 		else:
 			_ResponseBubble.set_label(tree.get_speech_option(dialog_choice_index))
 			

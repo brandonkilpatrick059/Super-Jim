@@ -1,0 +1,44 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://b3x6rermaqoak"]
+
+[ext_resource type="Texture2D" uid="uid://crexv2w86xhtp" path="res://sprites/spritesheets/characters/base/oboe_base.png" id="1_d36oe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkfbe"]
+atlas = ExtResource("1_d36oe")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6ghn"]
+atlas = ExtResource("1_d36oe")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nuugm"]
+atlas = ExtResource("1_d36oe")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4i16a"]
+atlas = ExtResource("1_d36oe")
+region = Rect2(96, 32, 32, 32)
+
+[resource]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkfbe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6ghn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nuugm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4i16a")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}]

@@ -1,15 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnij1jp6lkofx"]
+[gd_scene load_steps=4 format=3 uid="uid://bnij1jp6lkofx"]
 
 [ext_resource type="Script" uid="uid://c2eauyl5k8il2" path="res://scripts/shop/ware.gd" id="1_e71jg"]
 [ext_resource type="Script" uid="uid://cboq062yyxxxa" path="res://scripts/shop/ware_item.gd" id="2_13khl"]
 [ext_resource type="Texture2D" uid="uid://dt4wy3l2kpa2c" path="res://sprites/items/flashlight.png" id="3_13khl"]
-[ext_resource type="Texture2D" uid="uid://cfswbijcll56e" path="res://sprites/game_world/price_tag.png" id="4_2jfrr"]
-[ext_resource type="FontFile" uid="uid://cl55ql7qruw6x" path="res://fonts/VT323-Regular.ttf" id="5_begq0"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_2b0tt"]
-font = ExtResource("5_begq0")
-font_size = 12
-font_color = Color(1, 0, 0, 1)
 
 [node name="WareFlashlight" type="Node2D"]
 z_index = 1
@@ -23,17 +16,3 @@ item_string = "flashlight"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_13khl")
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(16, -1)
-texture = ExtResource("4_2jfrr")
-
-[node name="Label" type="Label" parent="."]
-offset_left = -5.0
-offset_top = -9.0
-offset_right = 38.0
-offset_bottom = 8.0
-text = "$25"
-label_settings = SubResource("LabelSettings_2b0tt")
-horizontal_alignment = 1
-vertical_alignment = 1

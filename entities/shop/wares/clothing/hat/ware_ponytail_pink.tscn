@@ -12,7 +12,7 @@ size = Vector2(20, 13)
 [node name="WarePonytailPink" type="Node2D"]
 script = ExtResource("1_lk5vl")
 cost = 10
-ware_name = "Pink Ponytail - $10"
+ware_name = "Pink Ponytail"
 
 [node name="script_node" type="Node" parent="."]
 script = ExtResource("2_bxtqs")

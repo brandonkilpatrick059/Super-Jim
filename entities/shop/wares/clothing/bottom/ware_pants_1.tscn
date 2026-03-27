@@ -12,7 +12,7 @@ size = Vector2(20, 13)
 [node name="WarePants1" type="Node2D"]
 script = ExtResource("1_2ylq2")
 cost = 25
-ware_name = "Blue Pants - $25"
+ware_name = "Blue Pants"
 
 [node name="script_node" type="Node" parent="."]
 script = ExtResource("2_x0le6")

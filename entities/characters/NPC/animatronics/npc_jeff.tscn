@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://biwoi1biy4ynx" path="res://entities/characters/NPC/AI state machine/ai_state_machine.tscn" id="4_omukw"]
 [ext_resource type="PackedScene" uid="uid://c1287sosujo5w" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_troll.tscn" id="5_1fg3s"]
 [ext_resource type="Script" uid="uid://dohfsf4f1rv0a" path="res://scripts/character/character_base_animatronic.gd" id="5_omukw"]
-[ext_resource type="Script" uid="uid://cs3figalbrj66" path="res://scripts/AI_state_machine/states/npc/state_npc_jeff_retracted.gd" id="5_xpwu4"]
+[ext_resource type="Script" uid="uid://cs3figalbrj66" path="res://scripts/AI_state_machine/states/npc/misc/state_npc_jeff_retracted.gd" id="5_xpwu4"]
 [ext_resource type="PackedScene" uid="uid://bstl2betvigap" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_alert_passive.tscn" id="7_xpwu4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_omukw"]

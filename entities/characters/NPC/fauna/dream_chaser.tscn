@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://dpapu2xo51c7w" path="res://scripts/utility/modulate_light_by_distance.gd" id="8_gtleh"]
 [ext_resource type="Script" uid="uid://bahui43ce4gqr" path="res://scripts/entities/dream_chaser_collision_script.gd" id="9_dmb78"]
 [ext_resource type="AudioStream" uid="uid://b5pjxve4gsdx6" path="res://audio/music/tunnel_stems/drone 1.wav" id="11_fivfp"]
-[ext_resource type="Script" uid="uid://bpkh5va4fd55f" path="res://scripts/AI_state_machine/states/npc/state_npc_idle.gd" id="13_s1rv6"]
+[ext_resource type="Script" uid="uid://bpkh5va4fd55f" path="res://scripts/AI_state_machine/states/npc/general/state_npc_idle.gd" id="13_s1rv6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_68bjs"]
 size = Vector2(19.9688, 13.2813)

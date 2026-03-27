@@ -1,0 +1,72 @@
+[gd_scene load_steps=13 format=3 uid="uid://cym0ki5ydwkag"]
+
+[ext_resource type="Script" uid="uid://ckj5xwhetys06" path="res://scripts/character/NPC/npc.gd" id="1_75g7y"]
+[ext_resource type="Texture2D" uid="uid://0d3n5esom4o4" path="res://sprites/lights/small_shadow.png" id="3_bn1l5"]
+[ext_resource type="PackedScene" uid="uid://dnpeta8s5h5t6" path="res://entities/characters/character_base.tscn" id="4_0ybo4"]
+[ext_resource type="SpriteFrames" uid="uid://b3x6rermaqoak" path="res://sprites/spritesheets/spriteframes/characters/base/cat_base.tres" id="5_usoy8"]
+[ext_resource type="PackedScene" uid="uid://biwoi1biy4ynx" path="res://entities/characters/NPC/AI state machine/ai_state_machine.tscn" id="5_uwrpx"]
+[ext_resource type="PackedScene" uid="uid://dqwh40q1ob2i2" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_idle.tscn" id="6_vj57e"]
+[ext_resource type="Script" uid="uid://bpkh5va4fd55f" path="res://scripts/AI_state_machine/states/npc/general/state_npc_idle.gd" id="7_u6rmh"]
+[ext_resource type="Script" uid="uid://cr3ljjf53xe0l" path="res://scripts/AI_state_machine/states/npc/cat/state_npc_cat_transit.gd" id="8_usoy8"]
+[ext_resource type="Script" uid="uid://b1dbjy8nrn1kd" path="res://scripts/AI_state_machine/states/npc/cat/state_npc_cat_sit.gd" id="9_75g7y"]
+[ext_resource type="Script" uid="uid://cbcqeo7mq6v0s" path="res://scripts/AI_state_machine/states/npc/cat/state_npc_cat_enticed.gd" id="10_c1xd6"]
+[ext_resource type="Script" uid="uid://dhviuq4t2terd" path="res://scripts/AI_state_machine/states/npc/cat/state_npc_cat_picked_up.gd" id="11_bn1l5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5rody"]
+radius = 4.64062
+height = 9.28124
+
+[node name="npc_cat" type="RigidBody2D" groups=["interactable", "npc"]]
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 0
+mass = 1000.0
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 5.0
+script = ExtResource("1_75g7y")
+talk_radius = 200
+base_spriteframes = ExtResource("5_usoy8")
+no_face_player = true
+exempt_from_npc_refresh = null
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 4.0
+target_desired_distance = 32.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 6)
+shape = SubResource("CapsuleShape2D_5rody")
+
+[node name="shadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 1)
+texture = ExtResource("3_bn1l5")
+
+[node name="character_base" parent="." instance=ExtResource("4_0ybo4")]
+position = Vector2(0, -2)
+base_spriteframes = ExtResource("5_usoy8")
+
+[node name="ai_state_machine" parent="." instance=ExtResource("5_uwrpx")]
+initial_state = NodePath("idle")
+
+[node name="idle" parent="ai_state_machine" instance=ExtResource("6_vj57e")]
+script = ExtResource("7_u6rmh")
+
+[node name="transit" type="Node" parent="ai_state_machine"]
+script = ExtResource("8_usoy8")
+speed = null
+
+[node name="transit_flee" type="Node" parent="ai_state_machine"]
+script = ExtResource("8_usoy8")
+speed = 350000.0
+
+[node name="sit" type="Node" parent="ai_state_machine"]
+script = ExtResource("9_75g7y")
+
+[node name="enticed" type="Node" parent="ai_state_machine"]
+script = ExtResource("10_c1xd6")
+
+[node name="picked_up" type="Node" parent="ai_state_machine"]
+script = ExtResource("11_bn1l5")

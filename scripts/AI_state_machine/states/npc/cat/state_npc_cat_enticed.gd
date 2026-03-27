@@ -6,6 +6,8 @@ signal advance_navigation(speed : int)
 signal reach_stage_mark()
 signal leave_stage_mark()
 
+@export var speed : float = 125000
+
 var nav_target_reached = false
 var host_position
 var current_stage_mark : Node = null
@@ -27,7 +29,7 @@ func physics_process(_delta: float) -> void:
 	if(current_stage_mark != null):
 		nav_target_reached = get_host_nav_target_reached()
 		if(!nav_target_reached):
-			advance_navigation.emit(125000)
+			advance_navigation.emit(speed)
 		else:
 			var stage_mark_state : String = current_stage_mark.get_state()
 			#current_stage_mark = null

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c1287sosujo5w"]
 
-[ext_resource type="Script" uid="uid://c1ddapiolkxxy" path="res://scripts/AI_state_machine/states/npc/state_npc_troll.gd" id="1_3wexv"]
+[ext_resource type="Script" uid="uid://c1ddapiolkxxy" path="res://scripts/AI_state_machine/states/npc/misc/state_npc_troll.gd" id="1_3wexv"]
 
 [node name="troll" type="Node"]
 script = ExtResource("1_3wexv")

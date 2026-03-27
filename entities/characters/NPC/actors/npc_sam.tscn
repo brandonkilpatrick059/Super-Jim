@@ -6,11 +6,11 @@
 [ext_resource type="SpriteFrames" uid="uid://c1diuj0mrj8qr" path="res://sprites/spritesheets/spriteframes/characters/base/sam_base.tres" id="5_55rat"]
 [ext_resource type="PackedScene" uid="uid://biwoi1biy4ynx" path="res://entities/characters/NPC/AI state machine/ai_state_machine.tscn" id="5_g2cgp"]
 [ext_resource type="PackedScene" uid="uid://dqwh40q1ob2i2" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_idle.tscn" id="6_a1iyb"]
-[ext_resource type="Script" uid="uid://bpkh5va4fd55f" path="res://scripts/AI_state_machine/states/npc/state_npc_idle.gd" id="7_ir0e7"]
+[ext_resource type="Script" uid="uid://bpkh5va4fd55f" path="res://scripts/AI_state_machine/states/npc/general/state_npc_idle.gd" id="7_ir0e7"]
 [ext_resource type="PackedScene" uid="uid://bstl2betvigap" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_alert_passive.tscn" id="8_q5m1u"]
-[ext_resource type="Script" uid="uid://coomj6ete0utg" path="res://scripts/AI_state_machine/states/npc/sam_play_nonsense.gd" id="9_6x2q6"]
+[ext_resource type="Script" uid="uid://coomj6ete0utg" path="res://scripts/AI_state_machine/states/npc/sam/sam_play_nonsense.gd" id="9_6x2q6"]
 [ext_resource type="PackedScene" uid="uid://dmcldnrjuk25k" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_transit.tscn" id="9_6x344"]
-[ext_resource type="Script" uid="uid://o04g4me8x2j0" path="res://scripts/AI_state_machine/states/npc/sam_play_music.gd" id="10_avcl0"]
+[ext_resource type="Script" uid="uid://o04g4me8x2j0" path="res://scripts/AI_state_machine/states/npc/sam/sam_play_music.gd" id="10_avcl0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_68bjs"]
 size = Vector2(19.9688, 13.2813)

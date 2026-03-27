@@ -7,7 +7,7 @@
 z_index = 1
 script = ExtResource("1_8uaw2")
 cost = 2
-ware_name = "3 Fire Crackers ($2)"
+ware_name = "3 Fire Crackers"
 
 [node name="script_node" type="Node" parent="."]
 script = ExtResource("2_vqqkm")

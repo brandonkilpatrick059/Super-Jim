@@ -32,11 +32,42 @@ var days_in_week = [
 	"Saturday"
 ]
 
+var day_of_moon_cycle = 0
+var moon_phase = [
+	Moon_Phase.new_moon,
+	Moon_Phase.new_moon,
+	Moon_Phase.new_moon,
+	Moon_Phase.waxing_crescent,
+	Moon_Phase.waxing_crescent,
+	Moon_Phase.waxing_crescent,
+	Moon_Phase.first_quarter,
+	Moon_Phase.first_quarter,
+	Moon_Phase.first_quarter,
+	Moon_Phase.waxing_gibbous,
+	Moon_Phase.waxing_gibbous,
+	Moon_Phase.waxing_gibbous,
+	Moon_Phase.full_moon,
+	Moon_Phase.full_moon,
+	Moon_Phase.full_moon,
+	Moon_Phase.waning_gibbous,
+	Moon_Phase.waning_gibbous,
+	Moon_Phase.waning_gibbous,
+	Moon_Phase.second_quarter,
+	Moon_Phase.second_quarter,
+	Moon_Phase.second_quarter,
+	Moon_Phase.waning_crescent,
+	Moon_Phase.waning_crescent,
+	Moon_Phase.waning_crescent,
+]
+
 var restart_wait_sec = 30
 
 var player_ref = null
 
 var pause_menu_ref = null
+
+func get_moon_phase() -> String:
+	return moon_phase[day_of_moon_cycle]
 
 func get_days_passed() -> int:
 	return days_passed
@@ -157,6 +188,10 @@ func get_informal_time_string() -> String:
 	informal_string = str(informal_string, ", ", days_in_week[day_of_the_week])
 	return informal_string
 
+
+func set_day_of_moon_cycle(day : int):
+	day_of_moon_cycle = day
+
 func get_input():
 	if Input.is_action_just_pressed("start"):
 		if(!is_game_over):
@@ -193,6 +228,12 @@ func advance_day():
 		node.queue_free()
 	end_of_day_script_queue = []
 	days_passed = days_passed + 1
+	
+	if(day_of_moon_cycle + 1 == moon_phase.size()):
+		day_of_moon_cycle = 0
+	else:
+		day_of_moon_cycle = day_of_moon_cycle + 1
+	
 	daily_update_objects()
 
 func advance_clock():

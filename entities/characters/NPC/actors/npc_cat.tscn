@@ -56,7 +56,6 @@ script = ExtResource("7_u6rmh")
 
 [node name="transit" type="Node" parent="ai_state_machine"]
 script = ExtResource("8_usoy8")
-speed = null
 
 [node name="transit_flee" type="Node" parent="ai_state_machine"]
 script = ExtResource("8_usoy8")

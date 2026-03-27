@@ -1,4 +1,4 @@
-class_name NPC_Transit_State
+class_name NPC_Cat_Transit_State
 extends State
 
 signal set_nav_target(pos : Vector2)

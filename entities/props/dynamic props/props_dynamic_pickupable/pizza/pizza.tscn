@@ -28,7 +28,7 @@ script = ExtResource("1_rrs1i")
 [node name="pizza" type="RigidBody2D" parent="." groups=["dynamic", "pickupable", "pizza", "prop", "usable"]]
 y_sort_enabled = true
 collision_layer = 22536
-collision_mask = 4187
+collision_mask = 4443
 mass = 3.0
 physics_material_override = SubResource("PhysicsMaterial_486n2")
 gravity_scale = 0.0
@@ -67,7 +67,6 @@ material = SubResource("CanvasItemMaterial_obeqb")
 texture = ExtResource("6_cfod4")
 
 [connection signal="body_entered" from="pizza" to="." method="_on_body_entered"]
-[connection signal="body_entered" from="pizza" to="pizza" method="_on_body_entered"]
 [connection signal="destroy_self" from="pizza" to="." method="pizza_destroyed"]
 [connection signal="on_use_item" from="pizza" to="." method="use_item"]
 [connection signal="signal_picked_up" from="pizza" to="." method="_on_picked_up"]

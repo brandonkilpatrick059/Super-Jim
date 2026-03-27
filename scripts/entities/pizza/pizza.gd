@@ -115,8 +115,7 @@ func get_closest_indoor_exit() -> Vector2:
 	return nearest_exit
 
 func _on_body_entered(body: Node):
-	if(body.is_in_group("spark") && 
-	(body.is_in_group("red") || body.is_in_group("blu"))):
+	if(body.is_in_group("bullet_spark")):
 		damage_pizza()
 
 func update_pizza_stack():

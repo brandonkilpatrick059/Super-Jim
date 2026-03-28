@@ -109,7 +109,7 @@ connected_spawner = "cp_rock_town_3"
 [node name="cp_11" type="AnimatedSprite2D" parent="points"]
 z_index = 2
 material = SubResource("CanvasItemMaterial_ebeoe")
-position = Vector2(-26, 54)
+position = Vector2(-27, 66)
 sprite_frames = ExtResource("3_ebeoe")
 script = ExtResource("4_ebeoe")
 connected_spawner = "cp_cliff_side_2"
@@ -117,28 +117,12 @@ connected_spawner = "cp_cliff_side_2"
 [node name="cp_12" type="AnimatedSprite2D" parent="points"]
 z_index = 2
 material = SubResource("CanvasItemMaterial_ebeoe")
-position = Vector2(-38, 78)
-sprite_frames = ExtResource("3_ebeoe")
-script = ExtResource("4_ebeoe")
-connected_spawner = "cp_cliff_side_3"
-
-[node name="cp_13" type="AnimatedSprite2D" parent="points"]
-z_index = 2
-material = SubResource("CanvasItemMaterial_ebeoe")
 position = Vector2(-81, 71)
 sprite_frames = ExtResource("3_ebeoe")
 script = ExtResource("4_ebeoe")
 connected_spawner = "cp_cliff_side_1"
 
-[node name="cp_14" type="AnimatedSprite2D" parent="points"]
-z_index = 2
-material = SubResource("CanvasItemMaterial_ebeoe")
-position = Vector2(-109, 30)
-sprite_frames = ExtResource("3_ebeoe")
-script = ExtResource("4_ebeoe")
-connected_spawner = "cp_west_side_1"
-
-[node name="cp_15" type="AnimatedSprite2D" parent="points"]
+[node name="cp_13" type="AnimatedSprite2D" parent="points"]
 z_index = 2
 material = SubResource("CanvasItemMaterial_ebeoe")
 position = Vector2(-109, -7)

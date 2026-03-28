@@ -13,6 +13,7 @@ size = Vector2(70.3931, 27.5491)
 blend_mode = 1
 
 [node name="lightPole" type="StaticBody2D" groups=["prop", "prunable"]]
+collision_layer = 32768
 
 [node name="lightPole" type="Sprite2D" parent="." groups=["prop"]]
 y_sort_enabled = true

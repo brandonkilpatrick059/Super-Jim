@@ -138,7 +138,7 @@ func load_from_dictionary(load_dictionary : Dictionary):
 
 func _on_body_entered(body: Node):
 	if(body.is_in_group("mobster") && 
-	body.is_in_group("bandit") && 
+	#body.is_in_group("bandit") && 
 	body.is_in_group(opposing_team)):
 		turn_over()
 		body.heal_to_max()

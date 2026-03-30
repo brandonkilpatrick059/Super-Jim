@@ -11,8 +11,8 @@ trunk = NodePath("trunk")
 [node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(7, -19)
 speaker_text = Array[String](["What's up?"])
-speech_options = Array[String](["Can I get some advice on handling mobsters?", "Nevermind"])
-option_branches = [NodePath("../ready_1"), NodePath("../nevermind")]
+speech_options = Array[String](["Can you remind me how to get to the West Side?", "Can I get some advice on handling mobsters?", "Nevermind"])
+option_branches = [NodePath("../leaving central"), NodePath("../ready_1"), NodePath("../nevermind")]
 voice = "sine_voice"
 
 [node name="nevermind" parent="." instance=ExtResource("2_np1u4")]
@@ -25,6 +25,35 @@ position = Vector2(416, 437)
 speaker_text = Array[String](["Sure. We can even do a practice session, if you want."])
 speech_options = Array[String](["Let's practice.", "What should I know about mobsters?", "Nevermind."])
 option_branches = [NodePath("../ready_2"), NodePath("../what should I know"), NodePath("../nevermind")]
+voice = "sine_voice"
+
+[node name="leaving central" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
+position = Vector2(732, 34)
+speaker_text = Array[String](["It's real easy."])
+option_branches = [NodePath("../leaving central2")]
+voice = "sine_voice"
+
+[node name="leaving central2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
+position = Vector2(922, 314)
+speaker_text = Array[String](["Walk out the door and follow the street North, towards your apartment."])
+option_branches = [NodePath("../leaving central3")]
+voice = "sine_voice"
+
+[node name="leaving central3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
+position = Vector2(986, 617)
+speaker_text = Array[String](["When you see the rail overpass, follow it to the left."])
+option_branches = [NodePath("../leaving central4")]
+voice = "sine_voice"
+
+[node name="leaving central4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
+position = Vector2(1073, 955)
+speaker_text = Array[String](["If you keep going left under the rail line, you'll see a metal gate."])
+option_branches = [NodePath("../leaving central5")]
+voice = "sine_voice"
+
+[node name="leaving central5" parent="." instance=ExtResource("2_np1u4")]
+position = Vector2(1066, 1272)
+speaker_text = Array[String](["That will take you to the West Side."])
 voice = "sine_voice"
 
 [node name="ready_2" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_np1u4")]

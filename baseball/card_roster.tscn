@@ -65,6 +65,7 @@ to next card."
 strength_rating = 9
 hp = 3
 power = 3
+adds_dmg_next = true
 
 [node name="green_6" parent="." instance=ExtResource("2_yiqgv")]
 visible = false

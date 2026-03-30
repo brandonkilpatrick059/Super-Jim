@@ -10,7 +10,7 @@ func physics_process(_delta: float) -> void:
 	if(ai_state_machine.get_perceptions().is_player_controlled):
 		ai_state_machine.transition_to(mobster_states.input_move)
 	else:
-		ai_state_machine.transition_to(mobster_states.transit)
+		ai_state_machine.transition_to(mobster_states.look)
 
 func enter(_msg := {}) -> void:
 	pass

@@ -57,8 +57,10 @@ func handle_selection():
 			active_child_menu = child_settings_menu
 			add_child(child_settings_menu)
 		2: #quit
+			var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 			get_parent().get_tree().paused = false
 			get_tree().change_scene_to_file("res://scenes/start_menu.tscn") #TODO: ask if they are sure
+
 
 func handle_input():
 	if Input.is_action_just_pressed("menu_up"):

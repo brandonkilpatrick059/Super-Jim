@@ -14,7 +14,6 @@ func load_game():
 	load_time_keeper()
 	load_pizza_manager()
 	while(save_file.get_position() < save_file.get_length()):
-	# Read data):
 		var line = save_file.get_line()
 		var dictionary : Dictionary = JSON.parse_string(line)
 		var type = String(dictionary.get("type"))
@@ -35,6 +34,8 @@ func load_game():
 				load_cash(dictionary)
 	save_file.close()
 	handle_queue_free_on_load()
+
+
 
 func handle_queue_free_on_load():
 	var nodes = get_tree().get_nodes_in_group("queue_free_on_load")

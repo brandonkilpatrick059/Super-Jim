@@ -21,7 +21,7 @@ var pizza_checkpoints : Array[int] = [
 
 var max_pizzas : Array[int] = [
 	6, #level = 0
-	9, #level = 1
+	6, #level = 1
 	9, #level = 2
 	9, #level = 3
 	9  #level = 4

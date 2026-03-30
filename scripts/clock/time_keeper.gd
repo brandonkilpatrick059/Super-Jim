@@ -69,6 +69,9 @@ var pause_menu_ref = null
 func get_moon_phase() -> String:
 	return moon_phase[day_of_moon_cycle]
 
+func get_day_of_moon_cycle():
+	return day_of_moon_cycle
+
 func get_days_passed() -> int:
 	return days_passed
 
@@ -192,21 +195,21 @@ func get_informal_time_string() -> String:
 func set_day_of_moon_cycle(day : int):
 	day_of_moon_cycle = day
 
+func go_to_start_menu():
+	var ref = get_tree().get_first_node_in_group("player_die")
+	if(ref.animation_finished()):
+		unpause_parent_tree()
+		get_tree().change_scene_to_file("res://scenes/start_menu.tscn")	
+
 func get_input():
 	if Input.is_action_just_pressed("start"):
 		if(!is_game_over):
 			toggle_menu_pause()
 		elif(is_game_over):
-			var ref = get_tree().get_first_node_in_group("player_die")
-			if(ref.animation_finished()):
-				unpause_parent_tree()
-				get_tree().change_scene_to_file("res://scenes/start_menu.tscn")
+			go_to_start_menu()
 	if Input.is_action_just_pressed("interact"):
 		if(is_game_over):
-			var ref = get_tree().get_first_node_in_group("player_die")
-			if(ref.animation_finished()):
-				unpause_parent_tree()
-				get_tree().change_scene_to_file("res://scenes/start_menu.tscn")
+			go_to_start_menu()
 
 func add_end_of_day_script_node(script_node : Node):
 	add_child(script_node)

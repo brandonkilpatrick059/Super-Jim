@@ -250,8 +250,6 @@ func deliver_pizza(door : Node2D):
 		destination_door = selected_delivery_doors[0]
 		current_door = 0
 	else:
-		var pizza_kitchen_door = get_tree().get_first_node_in_group("kitchen_door")
-		pizza_kitchen_door.unlock()
 		var cook_ref = get_tree().get_first_node_in_group("cook")
 		if(hits < 3):
 			cook_ref.set_schedules_key("bonus")

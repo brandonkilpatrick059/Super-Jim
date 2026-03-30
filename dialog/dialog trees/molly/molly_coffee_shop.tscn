@@ -18,7 +18,7 @@ position = Vector2(2, 218)
 speaker_text = Array[String](["What's your go-to coffee drink?"])
 speaker_portrait = null
 speech_options = Array[String](["Black coffee", "Cream and sugar", "Latte", "Cappuccino", "Espresso", "Americano", "Bingo", "I don't like coffee.", "I prefer tea.", "The coffee industry is bad for the environment."])
-option_branches = [NodePath("../black coffee"), NodePath("../cream and sugar"), NodePath("../latte"), NodePath("../espresso"), NodePath("../cappuccino"), NodePath("../americano"), NodePath("../bingo"), NodePath("../dont like it"), NodePath("../prefer tea"), NodePath("../coffee bad")]
+option_branches = [NodePath("../black coffee"), NodePath("../cream and sugar"), NodePath("../latte"), NodePath("../cappuccino"), NodePath("../espresso"), NodePath("../americano"), NodePath("../bingo"), NodePath("../dont like it"), NodePath("../prefer tea"), NodePath("../coffee bad")]
 voice = "sine_voice"
 
 [node name="black coffee" parent="." instance=ExtResource("2_o5wta")]

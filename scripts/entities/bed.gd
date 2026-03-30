@@ -106,7 +106,7 @@ func handle_select_time_process():
 	else:
 		player_ref.stop()
 		update_select_bubble()
-		var max_time = 12
+		var max_time = 24
 		if(Input.is_action_just_pressed(direction.right)):
 			var fx_player = get_tree().get_first_node_in_group("main_fx_player")
 			fx_player.stream = load("res://audio/soundFX/shaker.ogg")

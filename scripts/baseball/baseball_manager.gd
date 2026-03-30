@@ -769,6 +769,14 @@ func check_game_over():
 	elif(active_card_right.get_child_count() == 0):
 		game_is_over = true
 		left_team_won = true
+	if(game_is_over):
+		left_thrown_hp.visible = false
+		left_thrown_power.visible = false
+		left_thrown_shield.visible = false
+		right_thrown_hp.visible = false
+		right_thrown_power.visible = false
+		right_thrown_shield.visible = false
+		catch_notification.visible = false
 
 
 func _physics_process(delta: float):

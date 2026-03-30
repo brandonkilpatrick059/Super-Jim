@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bhxsevgsr7a4h"]
+[gd_scene load_steps=24 format=3 uid="uid://bhxsevgsr7a4h"]
 
 [ext_resource type="Script" uid="uid://dn8lth6ua677u" path="res://scripts/baseball/baseball_manager.gd" id="1_6bnxi"]
 [ext_resource type="PackedScene" uid="uid://bocxc8pmuf3na" path="res://baseball/card_base.tscn" id="2_x31gc"]
@@ -46,6 +46,15 @@ light_mode = 1
 font = ExtResource("5_7ut21")
 font_size = 32
 font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3v5e7"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6t50s"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5bn38"]
+light_mode = 1
 
 [sub_resource type="LabelSettings" id="LabelSettings_oxbwb"]
 font = ExtResource("5_7ut21")
@@ -207,16 +216,19 @@ position = Vector2(96, -91)
 stat = "hp"
 
 [node name="catch_notification" type="Node2D" parent="."]
+material = SubResource("CanvasItemMaterial_3v5e7")
 script = ExtResource("7_oxbwb")
 
 [node name="glyph" type="Sprite2D" parent="catch_notification"]
-position = Vector2(-104, 81)
+material = SubResource("CanvasItemMaterial_6t50s")
+position = Vector2(-95, 81)
 texture = ExtResource("7_p53bs")
 
 [node name="to_catch" type="Label" parent="catch_notification"]
-offset_left = -89.0
+material = SubResource("CanvasItemMaterial_5bn38")
+offset_left = -80.0
 offset_top = 72.0
-offset_right = -15.0
+offset_right = -6.0
 offset_bottom = 95.0
-text = "TO CATCH!"
+text = " CATCH!"
 label_settings = SubResource("LabelSettings_oxbwb")

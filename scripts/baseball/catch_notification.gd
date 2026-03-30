@@ -7,6 +7,8 @@ var alpha_step = 0.05
 var time_step = 0.006
 var fading_in = false
 
+@onready var glyph : Sprite2D = $glyph
+
 func make_active():
 	visible = true
 	active = true
@@ -20,6 +22,11 @@ func _ready() -> void:
 	visible = false
 
 func _physics_process(delta: float) -> void:
+	var input_manager = get_tree().get_first_node_in_group("input_map_manager")
+	if(input_manager != null):
+		var glyph_path = input_manager.get_glyph_path_for_action("interact")
+		var new_tex = load(glyph_path)
+		glyph.texture = new_tex
 	if(active):
 		if(timer.is_stopped()):
 			if(fading_in):

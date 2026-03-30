@@ -7,6 +7,10 @@ var current_controller : controller_type = controller_type.XBOX
 var default_mapping : control_actions_mapping
 var current_mapping : control_actions_mapping
 
+var mode_controller : String = "CONTROLLER"
+var mode_keyboard : String = "KEYBOARD"
+var input_mode : String = ""
+
 var mappable_keys : Array[Key] = [
 	KEY_Q,
 	KEY_W,
@@ -195,9 +199,17 @@ var neg_axis_glyph_path : Array[String] = [
 func _ready():
 	default_mapping = get_inputmap_as_control_actions_mapping()
 	current_mapping = get_inputmap_as_control_actions_mapping()
+	input_mode = mode_controller
 
 func get_current_mapping() -> control_actions_mapping:
 	return current_mapping
+
+func _input(event: InputEvent) -> void:
+	if(event is InputEventJoypadButton ||
+	event is InputEventJoypadMotion):
+		input_mode = mode_controller
+	elif(event is InputEventKey):
+		input_mode = mode_keyboard
 
 func get_inputmap_as_control_actions_mapping() -> control_actions_mapping:
 	var inputmap_mapping : control_actions_mapping = control_actions_mapping.new()
@@ -219,9 +231,19 @@ func get_inputmap_as_control_actions_mapping() -> control_actions_mapping:
 	
 	return inputmap_mapping
 
-#TODO: implement
-#func get_glyph_path_for_action(action : String) -> String:
-	#var action_event = current_mapping
+#gets a path to the glyph for the input mapped to the given action
+#in the current input mode (controller or keyboard)
+func get_glyph_path_for_action(action : StringName) -> String:
+	var glyph_path : String = ""
+	if(input_mode == mode_controller):
+		var controller_mapping = current_mapping.get_controller_mapping()
+		var event : InputEvent = controller_mapping.get_action_event(action)
+		glyph_path = get_glyph_path_from_inputevent(event)
+	elif(input_mode == mode_keyboard):
+		var keyboard_mapping = current_mapping.get_keyboard_mapping()
+		var event : InputEvent = keyboard_mapping.get_action_event(action)
+		glyph_path = get_glyph_path_from_inputevent(event)
+	return glyph_path
 
 func get_glyph_path_from_inputevent(inputEvent : InputEvent):
 	var event_string : String = ""

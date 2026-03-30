@@ -11,10 +11,11 @@ visible = false
 team = "green"
 card_name = "Squidge McTervish"
 portrait_path = "res://sprites/baseball/portraits/test_1.png"
-description = "+2 [color=red]damage[/color] against [img]res://sprites/baseball/y_sym.png[/img]"
+description = "+2 [color=red]damage[/color] against [img]res://sprites/baseball/y_sym.png[/img] throw 2 hp"
 strength_rating = 9
 hp = 2
 power = 2
+throws_hp = 2
 buff_dmg_against_team = 2
 buff_dmg_target_team = "yellow"
 

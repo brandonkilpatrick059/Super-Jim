@@ -10,6 +10,7 @@ light_mode = 1
 script = ExtResource("1_e8tmu")
 
 [node name="Label" type="Label" parent="."]
+z_index = 1
 material = SubResource("CanvasItemMaterial_0tefq")
 anchors_preset = 15
 anchor_right = 1.0

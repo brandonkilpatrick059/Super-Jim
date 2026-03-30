@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bhxsevgsr7a4h"]
+[gd_scene load_steps=21 format=3 uid="uid://bhxsevgsr7a4h"]
 
 [ext_resource type="Script" uid="uid://dn8lth6ua677u" path="res://scripts/baseball/baseball_manager.gd" id="1_6bnxi"]
 [ext_resource type="PackedScene" uid="uid://bocxc8pmuf3na" path="res://baseball/card_base.tscn" id="2_x31gc"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bklgivc3q1a7v" path="res://sprites/baseball/back_ground.png" id="4_a786n"]
 [ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="5_7ut21"]
 [ext_resource type="PackedScene" uid="uid://cbx6copiqrp2y" path="res://baseball/thrown_stat.tscn" id="6_3fd7y"]
+[ext_resource type="Script" uid="uid://cyd6jg0jugxe6" path="res://scripts/baseball/catch_notification.gd" id="7_oxbwb"]
+[ext_resource type="Texture2D" uid="uid://qmbdv0olep04" path="res://sprites/interface/glyphs/controller/xbox/a_button_xb.png" id="7_p53bs"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7ut21"]
 light_mode = 1
@@ -45,6 +47,9 @@ font = ExtResource("5_7ut21")
 font_size = 32
 font_color = Color(1, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_oxbwb"]
+font = ExtResource("5_7ut21")
+
 [node name="BaseballCardGame" type="Node2D"]
 z_index = 10
 material = SubResource("CanvasItemMaterial_7ut21")
@@ -72,67 +77,57 @@ bus = &"Effects"
 [node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="."]
 bus = &"Effects"
 
+[node name="AudioStreamPlayer2D4" type="AudioStreamPlayer2D" parent="."]
+bus = &"Effects"
+
+[node name="AudioStreamPlayer2D5" type="AudioStreamPlayer2D" parent="."]
+bus = &"Effects"
+
 [node name="active_card_left" type="Node2D" parent="."]
 z_index = 20
 position = Vector2(-64, 0)
 
 [node name="CardBase" parent="active_card_left" instance=ExtResource("2_x31gc")]
-debuff_dmg_from_team = null
-debuff_dmg_target_team = null
 
 [node name="left_2" type="Node2D" parent="."]
 z_index = 10
 position = Vector2(-196, 0)
 
 [node name="CardBase" parent="left_2" instance=ExtResource("2_x31gc")]
-debuff_dmg_from_team = null
-debuff_dmg_target_team = null
 
 [node name="left_3" type="Node2D" parent="."]
 z_index = 15
 position = Vector2(-324, 0)
 
 [node name="CardBase" parent="left_3" instance=ExtResource("2_x31gc")]
-debuff_dmg_from_team = null
-debuff_dmg_target_team = null
 
 [node name="left_spawn" type="Node2D" parent="."]
 position = Vector2(-452, 0)
 
 [node name="CardBase" parent="left_spawn" instance=ExtResource("2_x31gc")]
-debuff_dmg_from_team = null
-debuff_dmg_target_team = null
 
 [node name="active_card_right" type="Node2D" parent="."]
 z_index = 20
 position = Vector2(64, 0)
 
 [node name="CardBase" parent="active_card_right" instance=ExtResource("2_x31gc")]
-debuff_dmg_from_team = null
-debuff_dmg_target_team = null
 
 [node name="right_2" type="Node2D" parent="."]
 z_index = 10
 position = Vector2(196, 0)
 
 [node name="CardBase" parent="right_2" instance=ExtResource("2_x31gc")]
-debuff_dmg_from_team = null
-debuff_dmg_target_team = null
 
 [node name="right_3" type="Node2D" parent="."]
 z_index = 15
 position = Vector2(324, 0)
 
 [node name="CardBase" parent="right_3" instance=ExtResource("2_x31gc")]
-debuff_dmg_from_team = null
-debuff_dmg_target_team = null
 
 [node name="right_spawn" type="Node2D" parent="."]
 position = Vector2(452, 0)
 
 [node name="CardBase" parent="right_spawn" instance=ExtResource("2_x31gc")]
-debuff_dmg_from_team = null
-debuff_dmg_target_team = null
 
 [node name="back_ground" type="Sprite2D" parent="."]
 z_index = -1
@@ -189,18 +184,39 @@ label_settings = SubResource("LabelSettings_7ut21")
 
 [node name="left_thrown_power" parent="." instance=ExtResource("6_3fd7y")]
 position = Vector2(-96, -91)
+stat = "power"
 
-[node name="left_thrown_stamina" parent="." instance=ExtResource("6_3fd7y")]
+[node name="left_thrown_shield" parent="." instance=ExtResource("6_3fd7y")]
 position = Vector2(-64, -91)
+stat = "stamina"
 
 [node name="left_thrown_hp" parent="." instance=ExtResource("6_3fd7y")]
 position = Vector2(-32, -91)
+stat = "hp"
 
 [node name="right_thrown_power" parent="." instance=ExtResource("6_3fd7y")]
 position = Vector2(32, -91)
+stat = "power"
 
-[node name="right_thrown_stamina" parent="." instance=ExtResource("6_3fd7y")]
+[node name="right_thrown_shield" parent="." instance=ExtResource("6_3fd7y")]
 position = Vector2(64, -91)
+stat = "stamina"
 
 [node name="right_thrown_hp" parent="." instance=ExtResource("6_3fd7y")]
 position = Vector2(96, -91)
+stat = "hp"
+
+[node name="catch_notification" type="Node2D" parent="."]
+script = ExtResource("7_oxbwb")
+
+[node name="glyph" type="Sprite2D" parent="catch_notification"]
+position = Vector2(-104, 81)
+texture = ExtResource("7_p53bs")
+
+[node name="to_catch" type="Label" parent="catch_notification"]
+offset_left = -89.0
+offset_top = 72.0
+offset_right = -15.0
+offset_bottom = 95.0
+text = "TO CATCH!"
+label_settings = SubResource("LabelSettings_oxbwb")

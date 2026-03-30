@@ -8,18 +8,27 @@ extends Node2D
 @export var creates_stat_particle_debuff : bool = true
 @export var creates_stat_particle_buff : bool = true
 @export var reverse_glow : bool = false
+@export var fades_out_at_zero : bool = false
 
 var stat_particle = preload("res://baseball/stat_particle.tscn")
 var blood_particle = preload("res://baseball/blood_particle.tscn")
 
 var stat
+var faded_out = false
 
 func _ready() -> void:
-	return#animatedSprite.anim
+	return
 
 func set_stat(num : int):
 	stat = num
 	label.text = str(num)
+	if(fades_out_at_zero && stat == 0):
+		animatedSprite.play("faded_out")
+		faded_out = true
+	elif(fades_out_at_zero && stat != 0 &&
+	faded_out == true):
+		animatedSprite.play("default")
+		faded_out = false
 
 func get_stat():
 	return stat
@@ -55,5 +64,7 @@ func modify_stat(buff_num : int):
 	set_stat(stat + buff_num)
 
 func _physics_process(delta: float) -> void:
-	if(animatedSprite.frame == 7):
+	if(fades_out_at_zero && faded_out == true):
+		animatedSprite.play("faded_out")
+	elif(animatedSprite.frame == 7):
 		animatedSprite.play("default")

@@ -219,14 +219,35 @@ func get_inputmap_as_control_actions_mapping() -> control_actions_mapping:
 	
 	return inputmap_mapping
 
+#TODO: implement
+#func get_glyph_path_for_action(action : String) -> String:
+	#var action_event = current_mapping
+
+func get_glyph_path_from_inputevent(inputEvent : InputEvent):
+	var event_string : String = ""
+	if(inputEvent is InputEventKey):
+		var inputEventKey : InputEventKey = inputEvent
+		event_string = get_glyph_path_from_keycode(inputEventKey.keycode)
+	if(inputEvent is InputEventJoypadButton):
+		var inputEventJoyButton : InputEventJoypadButton = inputEvent
+		event_string = get_glyph_path_from_joybutton(inputEventJoyButton.button_index)
+	if(inputEvent is InputEventJoypadMotion):
+		var inputEventJoypadMotion : InputEventJoypadMotion = inputEvent
+		var axis = inputEventJoypadMotion.axis
+		var value = inputEventJoypadMotion.value
+		event_string = get_glyph_path_from_joyaxis(axis,value)
+	return event_string
+
 func get_glyph_path_from_keycode(key : Key) -> String:
 	var index = mappable_keys.find(key)
 	return key_glyph_path[index]
 
-func get_glyph_path_from_joybutton(button : JoyButton):
+func get_glyph_path_from_joybutton(button : JoyButton) -> String:
 	var index = mappable_joypad.find(button)
 	if(current_controller == controller_type.XBOX):
 		return joybutton_glyph_path_xbox[index]
+	else:
+		return ""
 
 func get_glyph_path_from_joyaxis(axis : JoyAxis, value: float):
 	var index = mappable_joy_axis.find(axis)

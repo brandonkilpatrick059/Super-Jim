@@ -12,12 +12,24 @@ extends Node2D
 @onready var bat_arms_right = $bat_arms_right
 @onready var sound_player = $AudioStreamPlayer2D
 @onready var sound_player2 = $AudioStreamPlayer2D2
-@onready var sound_player3 = $AudioStreamPlayer2D2
+@onready var sound_player3 = $AudioStreamPlayer2D3
+@onready var sound_player4 = $AudioStreamPlayer2D4
+@onready var sound_player5 = $AudioStreamPlayer2D5
 @onready var back_ground = $back_ground
 @onready var home_win = $home_win
 @onready var away_win = $away_win
 @onready var get_ready = $get_ready
 @onready var fight = $fight
+@onready var catch_notification = $catch_notification
+
+@onready var left_thrown_power = $left_thrown_power
+@onready var left_thrown_shield = $left_thrown_shield
+@onready var left_thrown_hp = $left_thrown_hp
+@onready var right_thrown_power = $right_thrown_power
+@onready var right_thrown_shield = $right_thrown_shield
+@onready var right_thrown_hp = $right_thrown_hp
+var left_catching : bool = false
+var right_catching : bool = false
 
 var sound_players : Array[AudioStreamPlayer2D] = []
 
@@ -74,20 +86,12 @@ var shaking_step = 0.1
 var shake_x_step = 1
 
 var queued_hp_buff_left = 0
-var queued_stamina_buff_left = 0
+var queued_shield_buff_left = 0
 var queued_damage_buff_left = 0
 
-var thrown_hp_buff_left = 0
-var thrown_stamina_buff_left = 0
-var thrown_damage_buff_left = 0
-
 var queued_hp_buff_right = 0
-var queued_stamina_buff_right = 0
+var queued_shield_buff_right = 0
 var queued_damage_buff_right = 0
-
-var thrown_hp_buff_right = 0
-var thrown_stamina_buff_right = 0
-var thrown_damage_buff_right = 0
 
 var starting = false
 var start_pausing = false
@@ -172,7 +176,8 @@ func play_buff_sound(magnitude : int):
 
 func play_sound(path : String):
 	if(sound_players.size() == 0):
-		sound_players = [sound_player, sound_player2, sound_player3]
+		sound_players = [sound_player, sound_player2, sound_player3, 
+						sound_player4, sound_player5]
 	for sound_player in sound_players:
 		if(!sound_player.playing):
 			var stream = load(path)
@@ -180,64 +185,68 @@ func play_sound(path : String):
 			sound_player.play()
 			return
 
-func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
-	if(effects_phase):
+func show_attack_sprite():
+	if(right_is_going):
+		bat_arms_left.visible = false
+		bat_arms_right.visible = true
+		bat_arms_right.stop()
+		bat_arms_right.play("default",2)
+		right_is_going = false
+	else:
+		bat_arms_left.visible = true
+		bat_arms_right.visible = false
+		bat_arms_left.stop()
+		bat_arms_left.play("default",2)
+		right_is_going = true
 
-		var buff = false
-		var final_stat = 0
-		if(right_is_going):
-			if(queued_hp_buff_right > 0):
-				card_right().set_hp(card_right().get_hp() + queued_hp_buff_right)
-				final_stat = card_right().get_hp()
-				queued_hp_buff_right = 0
-				buff = true
-			if(queued_stamina_buff_right > 0):
-				card_right().set_stamina(card_right().get_stamina() + queued_stamina_buff_right)
-				final_stat = card_right().get_stamina()
-				queued_stamina_buff_right = 0
-				buff = true
-			if(queued_damage_buff_right > 0):
-				card_right().set_power(card_right().get_power() + queued_damage_buff_right)
-				final_stat = card_right().get_power()
-				queued_damage_buff_right = 0
-				buff = true
-		else:
-			if(queued_hp_buff_left > 0):
-				card_left().set_hp(card_left().get_hp() + queued_hp_buff_left)
-				final_stat = card_left().get_hp()
-				queued_hp_buff_left = 0
-				buff = true
-			if(queued_stamina_buff_left > 0):
-				card_left().set_stamina(card_left().get_stamina() + queued_stamina_buff_left)
-				final_stat = card_left().get_stamina()
-				queued_stamina_buff_left = 0
-				buff = true
-			if(queued_damage_buff_left > 0):
-				card_left().set_power(card_left().get_power() + queued_damage_buff_left)
-				final_stat = card_left().get_power()
-				queued_damage_buff_left = 0
-				buff = true
-		if(buff):
-			play_buff_sound(final_stat)
-			buff = false
-		effects_phase = false
-	else: #attack phase
-		var card_killed = false
-		#step 1: APPLY DAMAGE
-		if(right_is_going):
-			bat_arms_left.visible = false
-			bat_arms_right.visible = true
-			bat_arms_right.stop()
-			bat_arms_right.play("default",2)
-			right_is_going = false
-		else:
-			bat_arms_left.visible = true
-			bat_arms_right.visible = false
-			bat_arms_left.stop()
-			bat_arms_left.play("default",2)
-			right_is_going = true
-					
-		var damage_done = attacking_card.get_power()
+func run_effects_phase(run_for_right : bool):
+	var buff = false
+	var final_stat = 0
+	if(run_for_right):
+		if(queued_hp_buff_right > 0):
+			card_right().set_hp(card_right().get_hp() + queued_hp_buff_right)
+			final_stat = card_right().get_hp()
+			queued_hp_buff_right = 0
+			buff = true
+		if(queued_shield_buff_right > 0):
+			card_right().set_shield(card_right().get_shield() + queued_shield_buff_right)
+			final_stat = card_right().get_shield()
+			queued_shield_buff_right = 0
+			buff = true
+		if(queued_damage_buff_right > 0):
+			card_right().set_power(card_right().get_power() + queued_damage_buff_right)
+			final_stat = card_right().get_power()
+			queued_damage_buff_right = 0
+			buff = true
+	else:
+		if(queued_hp_buff_left > 0):
+			card_left().set_hp(card_left().get_hp() + queued_hp_buff_left)
+			final_stat = card_left().get_hp()
+			queued_hp_buff_left = 0
+			buff = true
+		if(queued_shield_buff_left > 0):
+			card_left().set_shield(card_left().get_shield() + queued_shield_buff_left)
+			final_stat = card_left().get_shield()
+			queued_shield_buff_left = 0
+			buff = true
+		if(queued_damage_buff_left > 0):
+			card_left().set_power(card_left().get_power() + queued_damage_buff_left)
+			final_stat = card_left().get_power()
+			queued_damage_buff_left = 0
+			buff = true
+	if(buff):
+		play_buff_sound(final_stat)
+		buff = false
+	effects_phase = false
+	game_timer.start(turn_secs)
+
+func run_attack_phase(attacking_card : Baseball_Card, defending_card : Baseball_Card):
+	var card_killed = false
+	#step 1: APPLY DAMAGE
+	show_attack_sprite()
+	
+	var damage_done = attacking_card.get_power()
+	if(defending_card.get_shield() == 0):
 		if(attacking_card.get_buff_dmg_against_team() > 0 && 
 		defending_card.get_card_team() == attacking_card.get_buff_dmg_target_team()):
 			damage_done = damage_done + attacking_card.get_buff_dmg_against_team()
@@ -251,56 +260,69 @@ func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 				damage_done = 1
 			else:
 				damage_done = 0
-		var defending_hp = defending_card.get_hp()
-		var defending_hp_after_damage = defending_hp - damage_done
-		if(defending_hp_after_damage <= 0):
-			defending_hp_after_damage = 0
-			card_killed = true
-			play_sound("res://audio/soundFX/baseball/drum.wav")
-			
-			var final_buff_amt : int = 0
-			if(attacking_card.get_buff_damage_on_kill() > 0):
-				var buff_amt = attacking_card.get_buff_damage_on_kill()
-				attacking_card.set_power(attacking_card.get_power() + buff_amt)
-				final_buff_amt = attacking_card.get_power()
-			if(attacking_card.get_buff_stamina_on_kill() > 0):
-				var buff_amt = attacking_card.get_buff_stamina_on_kill()
-				attacking_card.set_stamina(attacking_card.get_stamina() + buff_amt)
-				if(attacking_card.get_stamina() > final_buff_amt):
-					final_buff_amt = attacking_card.get_stamina()
-			if(attacking_card.get_buff_hp_on_kill() > 0):
-				var buff_amt = attacking_card.get_buff_hp_on_kill()
-				attacking_card.set_hp(attacking_card.get_hp() + buff_amt)
-				if(attacking_card.get_hp() > final_buff_amt):
-					final_buff_amt = attacking_card.get_hp()
-			play_buff_sound(final_buff_amt)
-		if(damage_done == 0):
-			play_sound("res://audio/soundFX/maracca.ogg")
-		if(damage_done <= 3):
-			play_sound("res://audio/soundFX/baseball/hit2.wav")
-		elif(damage_done > 3 && damage_done <= 6):
-			play_sound("res://audio/soundFX/baseball/hit3.wav")
-		elif(damage_done > 6):
-			var added_shake = damage_done - 6
-			shake_screen(4 + added_shake)
-			handle_shake()
-			play_sound("res://audio/soundFX/baseball/hit3.wav")
-		if(!right_is_going): #TODO: why is this reversed from what it should be? 
-			card_left().rotation = card_left().rotation - (float(damage_done) / 15)
-		else:
-			card_right().rotation = card_right().rotation + (float(damage_done) / 15)
-		defending_card.set_hp(defending_hp_after_damage)
-		attacking_card.power_glow()
-		#step 2: REDUCE STAMINA + POWER
-		var attacking_stamina = attacking_card.get_stamina()
-		if(attacking_stamina > 0):
-			attacking_card.set_stamina(attacking_stamina - 1)
-		elif(attacking_stamina == 0):
-			var attacking_power = attacking_card.get_power()
-			if(attacking_power > 1):
-				attacking_card.set_power(attacking_power/2)
-		game_timer.start(turn_secs)
-		effects_phase = true
+	else: #blocked by shield
+		damage_done = 0
+		var defending_current_shield = defending_card.get_shield()
+		defending_card.set_shield(defending_current_shield - 1)
+		var particle = load("res://baseball/stat_particle.tscn").instantiate()
+		attacking_card.add_child(particle)
+		particle.global_position = Vector2(attacking_card.global_position.x,attacking_card.global_position.y)
+		particle.set_and_fire_str("BLOCKED")
+	var defending_hp = defending_card.get_hp()
+	var defending_hp_after_damage = defending_hp - damage_done
+	if(defending_hp_after_damage <= 0):
+		defending_hp_after_damage = 0
+		card_killed = true
+		play_sound("res://audio/soundFX/baseball/drum.wav")
+		
+		var final_buff_amt : int = 0
+		if(attacking_card.get_buff_damage_on_kill() > 0):
+			var buff_amt = attacking_card.get_buff_damage_on_kill()
+			attacking_card.set_power(attacking_card.get_power() + buff_amt)
+			final_buff_amt = attacking_card.get_power()
+		if(attacking_card.get_buff_shield_on_kill() > 0):
+			var buff_amt = attacking_card.get_buff_shield_on_kill()
+			attacking_card.set_shield(attacking_card.get_shield() + buff_amt)
+			if(attacking_card.get_shield() > final_buff_amt):
+				final_buff_amt = attacking_card.get_shield()
+		if(attacking_card.get_buff_hp_on_kill() > 0):
+			var buff_amt = attacking_card.get_buff_hp_on_kill()
+			attacking_card.set_hp(attacking_card.get_hp() + buff_amt)
+			if(attacking_card.get_hp() > final_buff_amt):
+				final_buff_amt = attacking_card.get_hp()
+		play_buff_sound(final_buff_amt)
+	if(damage_done == 0):
+		play_sound("res://audio/soundFX/maracca.ogg")
+	if(damage_done <= 3):
+		play_sound("res://audio/soundFX/baseball/hit2.wav")
+	elif(damage_done > 3 && damage_done <= 6):
+		play_sound("res://audio/soundFX/baseball/hit3.wav")
+	elif(damage_done > 6):
+		var added_shake = damage_done - 6
+		shake_screen(4 + added_shake)
+		handle_shake()
+		play_sound("res://audio/soundFX/baseball/hit3.wav")
+	if(!right_is_going): #TODO: why is this reversed from what it should be? 
+		card_left().rotation = card_left().rotation - (float(damage_done) / 15)
+	else:
+		card_right().rotation = card_right().rotation + (float(damage_done) / 15)
+	defending_card.set_hp(defending_hp_after_damage)
+	attacking_card.power_glow()
+	#step 2: REDUCE POWER
+	var attacking_power = attacking_card.get_power()
+	if(attacking_power > 1):
+		attacking_card.set_power(attacking_power - 1)
+	game_timer.start(turn_secs)
+	effects_phase = true
+
+func run_turn(attacking_card : Baseball_Card, defending_card : Baseball_Card):
+	if(effects_phase):
+		var run_for_right = true
+		var run_for_left = false
+		run_effects_phase(run_for_right)
+		run_effects_phase(run_for_left)
+	else: #attack phase
+		run_attack_phase(attacking_card,defending_card)
 
 func card_right(num : int = 1):
 	if(num == 1):
@@ -358,37 +380,134 @@ func enact_effects():
 	#flat buffs next card
 	if(card_right.get_hp() == 0):
 		var flat_buff_hp = card_right.get_flat_buff_hp()
-		var flat_buff_stamina = card_right.get_flat_buff_stamina()
+		var flat_buff_shield = card_right.get_flat_buff_shield()
 		var flat_buff_damage = card_right.get_flat_buff_damage()
 		if(flat_buff_hp > 0):
 			queued_hp_buff_right = flat_buff_hp
-		if(flat_buff_stamina > 0):
-			queued_stamina_buff_right = flat_buff_stamina
+		if(flat_buff_shield > 0):
+			queued_shield_buff_right = flat_buff_shield
 		if(flat_buff_damage > 0):
 			queued_damage_buff_right = flat_buff_damage
 	if(card_left.get_hp() == 0):
 		var flat_buff_hp = card_left.get_flat_buff_hp()
-		var flat_buff_stamina = card_left.get_flat_buff_stamina()
+		var flat_buff_shield = card_left.get_flat_buff_shield()
 		var flat_buff_damage = card_left.get_flat_buff_damage()
 		if(flat_buff_hp > 0):
 			queued_hp_buff_left = flat_buff_hp
-		if(flat_buff_stamina > 0):
-			queued_stamina_buff_left = flat_buff_stamina
+		if(flat_buff_shield > 0):
+			queued_shield_buff_left = flat_buff_shield
 		if(flat_buff_damage  > 0):
 			queued_damage_buff_left = flat_buff_damage 
 			
 	##stat carries to next card
 	if(card_right.get_hp() == 0):
-		if(card_right.adds_stamina_next):
-			queued_stamina_buff_right = card_right.get_stamina()
+		if(card_right.adds_shield_next):
+			queued_shield_buff_right = card_right.get_shield()
 		if(card_right.adds_dmg_next):
 			queued_damage_buff_right = card_right.get_power()
 	if(card_left.get_hp() == 0):
-		if(card_left.adds_stamina_next):
-			queued_stamina_buff_left = card_left.get_stamina()
+		if(card_left.adds_shield_next):
+			queued_shield_buff_left = card_left.get_shield()
 		if(card_left.adds_dmg_next):
 			queued_damage_buff_left = card_left.get_power()
 
+	##throwing stats
+	var stat_thrown = false
+	if(card_right.get_hp() == 0):
+		if(card_right.get_throws_hp() > 0):
+			right_thrown_hp.throw_stat(card_right.get_throws_hp())
+			stat_thrown = true
+		if(card_right.get_throws_power() > 0):
+			right_thrown_power.throw_stat(card_right.get_throws_power())
+			stat_thrown = true
+		if(card_right.get_throws_shield() > 0):
+			right_thrown_shield.throw_stat(card_right.get_throws_shield())
+			stat_thrown = true
+	if(card_left.get_hp() == 0):
+		if(card_left.get_throws_hp() > 0):
+			left_thrown_hp.throw_stat(card_left.get_throws_hp())
+			stat_thrown = true
+		if(card_left.get_throws_power() > 0):
+			left_thrown_power.throw_stat(card_left.get_throws_power())
+			stat_thrown = true
+		if(card_left.get_throws_shield() > 0):
+			left_thrown_shield.throw_stat(card_left.get_throws_shield())
+			stat_thrown = true
+	if(stat_thrown):
+		play_sound("res://audio/soundFX/dash_regen.wav")
+	
+	#CATCHING STATS
+	var catch_wait_pause = 0.1
+	if(left_catching):
+		var catch_wait = 0.0
+		var highest_stat = 0
+		if left_thrown_hp.is_ready_to_catch():
+			var buff = left_thrown_hp.catch(catch_wait)
+			card_left().set_hp(card_left().get_hp() + buff)
+			catch_wait = catch_wait + catch_wait_pause
+			highest_stat = card_left.get_hp()
+		
+		if left_thrown_power.is_ready_to_catch():
+			var buff = left_thrown_power.catch(catch_wait)
+			card_left().set_power(card_left().get_power() + buff)
+			catch_wait = catch_wait + catch_wait_pause
+			if(card_left.get_power() > highest_stat):
+				highest_stat = card_left.get_power()
+		
+		if left_thrown_shield.is_ready_to_catch():
+			var buff = left_thrown_shield.catch(catch_wait)
+			card_left().set_shield(card_left().get_shield() + buff)
+			catch_wait = catch_wait + catch_wait_pause
+			if(card_left.get_shield() > highest_stat):
+				highest_stat = card_left.get_shield()
+		play_buff_sound(highest_stat)
+		
+		left_catching = false
+	if(right_catching):
+		var catch_wait = 0.0
+		var highest_stat = 0
+		if right_thrown_hp.is_ready_to_catch():
+			var buff = right_thrown_hp.catch(catch_wait)
+			card_right().set_hp(card_right().get_hp() + buff)
+			catch_wait = catch_wait + catch_wait_pause
+			highest_stat = card_right.get_hp()
+		
+		if right_thrown_power.is_ready_to_catch():
+			var buff = right_thrown_power.catch(catch_wait)
+			card_right().set_power(card_right().get_power() + buff)
+			catch_wait = catch_wait + catch_wait_pause
+			if(card_right.get_power() > highest_stat):
+				highest_stat = card_right.get_power()
+		
+		if right_thrown_shield.is_ready_to_catch():
+			var buff = right_thrown_shield.catch(catch_wait)
+			card_right().set_shield(card_right().get_shield() + buff)
+			catch_wait = catch_wait + catch_wait_pause
+			if(card_right.get_power() > highest_stat):
+				highest_stat = card_right.get_power()
+			play_buff_sound(highest_stat)
+			
+		right_catching = false
+
+func handle_input():
+	if(!killing_card &&
+	!cycling_cards &&
+	!left_catching &&
+	left_had_ready_catch()):
+		if(Input.is_action_pressed("interact")):
+			left_catching = true
+			play_sound("res://audio/soundFX/dash.wav")
+		catch_notification.make_active()
+	else:
+		catch_notification.make_inactive()
+		
+
+func left_had_ready_catch():
+	var ready = false
+	ready = ready || left_thrown_hp.is_ready_to_catch()
+	ready = ready || left_thrown_shield.is_ready_to_catch()
+	ready = ready || left_thrown_power.is_ready_to_catch()
+	return ready
 
 func begin():
 	starting = true
@@ -677,6 +796,7 @@ func _physics_process(delta: float):
 			back_ground.position.y = back_ground.position.y + back_ground_move_step
 			begin_end_timer.start(back_ground_move_step_time)
 	if(game_started):
+		handle_input()
 		check_game_over()
 		if(show_get_ready  && flashing_timer.is_stopped()):
 			get_ready.visible = !get_ready.visible

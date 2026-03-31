@@ -8,6 +8,7 @@
 script = ExtResource("1_c1v5f")
 deck_left_array = Array[int]([12, 12, 10, 18, 8])
 deck_right_array = Array[int]([10, 8, 10, 8, 2])
+deck_right_catch_chances = Array[float]([0.0, 0.25, 0.25, 0.5, 1.0])
 
 [node name="BaseballCardGame" parent="." instance=ExtResource("1_7g13d")]
 position = Vector2(314, 152)

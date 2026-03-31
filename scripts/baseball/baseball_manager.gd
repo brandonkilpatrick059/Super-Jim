@@ -35,6 +35,9 @@ var sound_players : Array[AudioStreamPlayer2D] = []
 
 var deck_left : Node2D
 var deck_right : Node2D
+var catch_chances : Array[float] = []
+var current_right_index : int = 0
+var current_catch_index : int = 0
 
 var left_index = 0
 var right_index = 0
@@ -240,10 +243,25 @@ func run_effects_phase(run_for_right : bool):
 	effects_phase = false
 	game_timer.start(turn_secs)
 
+func handle_right_catch():
+	if(current_catch_index != current_right_index):
+		if(!killing_card &&
+		!cycling_cards &&
+		!left_catching &&
+		right_has_ready_catch()):
+			var roll_success : bool = false
+			var roll : float = randf_range(0.0,1.0)
+			var catch_chance : float = catch_chances[current_right_index]
+			roll_success = roll <= catch_chance
+			right_catching = roll_success
+			current_catch_index = current_right_index
+
 func run_attack_phase(attacking_card : Baseball_Card, defending_card : Baseball_Card):
 	var card_killed = false
 	#step 1: APPLY DAMAGE
 	show_attack_sprite()
+	
+	handle_right_catch()
 	
 	var damage_done = attacking_card.get_power()
 	if(defending_card.get_shield() == 0):
@@ -370,6 +388,7 @@ func update_active_cards():
 	enact_effects()
 	if(card_right().get_hp() == 0):
 		kill_card(true)
+		current_right_index = current_right_index + 1
 	if(card_left().get_hp() == 0):
 		kill_card(false)
 
@@ -493,7 +512,7 @@ func handle_input():
 	if(!killing_card &&
 	!cycling_cards &&
 	!left_catching &&
-	left_had_ready_catch()):
+	left_has_ready_catch()):
 		if(Input.is_action_pressed("interact")):
 			left_catching = true
 			play_sound("res://audio/soundFX/dash.wav")
@@ -502,11 +521,18 @@ func handle_input():
 		catch_notification.make_inactive()
 		
 
-func left_had_ready_catch():
+func left_has_ready_catch():
 	var ready = false
 	ready = ready || left_thrown_hp.is_ready_to_catch()
 	ready = ready || left_thrown_shield.is_ready_to_catch()
 	ready = ready || left_thrown_power.is_ready_to_catch()
+	return ready
+
+func right_has_ready_catch():
+	var ready = false
+	ready = ready || right_thrown_hp.is_ready_to_catch()
+	ready = ready || right_thrown_shield.is_ready_to_catch()
+	ready = ready || right_thrown_power.is_ready_to_catch()
 	return ready
 
 func begin():
@@ -745,7 +771,7 @@ func killing_card_process():
 						new_card_left.global_position = card_left_spawn.global_position
 		killing_card = false
 
-func initiate_card_game(deck_left : Array[int], deck_right : Array[int]):
+func initiate_card_game(deck_left : Array[int], deck_right : Array[int], new_catch_chances : Array[float] = []):
 	var node_deck_left : Node2D = Node2D.new()
 	var node_deck_right: Node2D = Node2D.new()
 	var card_roster = get_tree().get_first_node_in_group("card_roster")
@@ -756,6 +782,8 @@ func initiate_card_game(deck_left : Array[int], deck_right : Array[int]):
 		var card = card_roster.get_card(num).duplicate()
 		node_deck_right.add_child(card)
 	set_decks_and_begin(node_deck_left, node_deck_right)
+	if(new_catch_chances != []):
+		catch_chances = new_catch_chances
 
 func set_decks_and_begin(deck_left : Node, deck_right : Node):
 	set_deck_left(deck_left)

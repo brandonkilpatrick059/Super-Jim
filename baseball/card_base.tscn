@@ -87,7 +87,6 @@ material = SubResource("CanvasItemMaterial_ubpcq")
 position = Vector2(-32, 23)
 creates_stat_particle_debuff = false
 reverse_glow = true
-fades_out_at_zero = false
 
 [node name="StamReadout" parent="." instance=ExtResource("8_5d8u1")]
 z_index = 3

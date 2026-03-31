@@ -249,7 +249,7 @@ func get_glyph_path_from_inputevent(inputEvent : InputEvent):
 	var event_string : String = ""
 	if(inputEvent is InputEventKey):
 		var inputEventKey : InputEventKey = inputEvent
-		event_string = get_glyph_path_from_keycode(inputEventKey.keycode)
+		event_string = get_glyph_path_from_keycode(inputEventKey.physical_keycode)
 	if(inputEvent is InputEventJoypadButton):
 		var inputEventJoyButton : InputEventJoypadButton = inputEvent
 		event_string = get_glyph_path_from_joybutton(inputEventJoyButton.button_index)

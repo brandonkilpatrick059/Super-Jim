@@ -9,7 +9,7 @@ extends Node2D
 
 var stat_particle = preload("res://baseball/stat_particle.tscn")
 
-var alpha_fade_step : float = 0.1
+var alpha_fade_step : float = 0.08
 var step_secs = 0.006
 
 var fade_timer : Timer = Timer.new()

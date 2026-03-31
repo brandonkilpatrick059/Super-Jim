@@ -14,21 +14,25 @@ speech_options = Array[String](["", "", ""])
 option_branches = [NodePath("../nevermind"), NodePath("../sale"), NodePath("../not enough money")]
 voice = "sine_voice"
 shows_wares = true
+catch_chances = null
 
 [node name="nevermind" parent="." instance=ExtResource("2_cqum2")]
 position = Vector2(-176, 268)
 speaker_text = Array[String](["You know where to find me."])
 speaker_portrait = null
 voice = "sine_voice"
+catch_chances = null
 
 [node name="sale" parent="." instance=ExtResource("2_cqum2")]
 position = Vector2(80, 291)
 speaker_text = Array[String](["Remember: no refunds!"])
 speaker_portrait = null
 voice = "sine_voice"
+catch_chances = null
 
 [node name="not enough money" parent="." instance=ExtResource("2_cqum2")]
 position = Vector2(337, 268)
 speaker_text = Array[String](["Looks like you're short the cash."])
 speaker_portrait = null
 voice = "sine_voice"
+catch_chances = null

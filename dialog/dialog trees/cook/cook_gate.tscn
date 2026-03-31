@@ -16,6 +16,7 @@ speaker_text = Array[String](["Another day, another dollar, eh?"])
 speaker_portrait = ExtResource("3_ueq1q")
 option_branches = [NodePath("../trunk2")]
 voice = "low_sine_voice"
+catch_chances = null
 
 [node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(51, -347)
@@ -23,6 +24,7 @@ speaker_text = Array[String](["We got some deliveries coming in from the West Si
 speaker_portrait = ExtResource("3_ueq1q")
 option_branches = [NodePath("../trunk3")]
 voice = "low_sine_voice"
+catch_chances = null
 
 [node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(43, -150)
@@ -30,6 +32,7 @@ speaker_text = Array[String](["I think you're ready to handle those."])
 speaker_portrait = ExtResource("3_ueq1q")
 option_branches = [NodePath("../gate key7")]
 voice = "low_sine_voice"
+catch_chances = null
 
 [node name="gangs" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-442, 998)
@@ -38,6 +41,7 @@ speaker_portrait = ExtResource("3_ueq1q")
 option_branches = [NodePath("../gangs2")]
 voice = "low_sine_voice"
 speaker_name = "cook"
+catch_chances = null
 
 [node name="gangs2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-596, 1254)
@@ -45,6 +49,7 @@ speaker_text = Array[String](["Because of the gangs?"])
 option_branches = [NodePath("../gangs3")]
 voice = "sine_voice"
 speaker_name = "speedy"
+catch_chances = null
 
 [node name="gangs3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-650, 1473)
@@ -53,6 +58,7 @@ speaker_portrait = ExtResource("3_ueq1q")
 option_branches = [NodePath("../gangs4")]
 voice = "low_sine_voice"
 speaker_name = "cook"
+catch_chances = null
 
 [node name="gangs4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-685, 1712)
@@ -60,12 +66,14 @@ speaker_text = Array[String](["Haven't you noticed all the dudes in cowboy hats 
 option_branches = [NodePath("../gangs7")]
 voice = "sine_voice"
 speaker_name = "speedy"
+catch_chances = null
 
 [node name="gangs7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-714, 2222)
 speaker_text = Array[String](["They've been fighting for as long as anyone remembers."])
 option_branches = [NodePath("../gangs8")]
 voice = "sine_voice"
+catch_chances = null
 
 [node name="gangs8" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-730, 2698)
@@ -74,6 +82,7 @@ speaker_portrait = ExtResource("3_ueq1q")
 option_branches = [NodePath("../gangs9")]
 voice = "low_sine_voice"
 speaker_name = "cook"
+catch_chances = null
 
 [node name="gangs9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-739, 2960)
@@ -81,24 +90,28 @@ speaker_text = Array[String](["They get into gunfights in the streets. "])
 option_branches = [NodePath("../gangs10")]
 voice = "sine_voice"
 speaker_name = "speedy"
+catch_chances = null
 
 [node name="gangs10" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-739, 3165)
 speaker_text = Array[String](["It's a mess out there."])
 option_branches = [NodePath("../gangs11")]
 voice = "sine_voice"
+catch_chances = null
 
 [node name="gangs11" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-749, 3417)
 speaker_text = Array[String](["And worse..."])
 option_branches = [NodePath("../gangs12")]
 voice = "sine_voice"
+catch_chances = null
 
 [node name="gangs12" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-749, 3648)
 speaker_text = Array[String](["All those goons LOVE pizza."])
 option_branches = [NodePath("../gangs13")]
 voice = "sine_voice"
+catch_chances = null
 
 [node name="gangs13" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-739, 3861)
@@ -107,6 +120,7 @@ speaker_portrait = ExtResource("3_ueq1q")
 option_branches = [NodePath("../gangs14")]
 voice = "low_sine_voice"
 speaker_name = "cook"
+catch_chances = null
 
 [node name="gangs14" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-739, 4095)
@@ -114,18 +128,21 @@ speaker_text = Array[String](["They'll kill YOU for pizza."])
 option_branches = [NodePath("../gangs15")]
 voice = "sine_voice"
 speaker_name = "speedy"
+catch_chances = null
 
 [node name="gangs15" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-749, 4306)
 speaker_text = Array[String](["So you gotta watch out."])
 option_branches = [NodePath("../gangs16")]
 voice = "sine_voice"
+catch_chances = null
 
 [node name="gangs16" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-749, 4511)
 speaker_text = Array[String](["Stay vigilant at all times."])
 option_branches = [NodePath("../gangs17")]
 voice = "sine_voice"
+catch_chances = null
 
 [node name="gangs17" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-739, 4761)
@@ -134,6 +151,7 @@ speaker_portrait = ExtResource("3_ueq1q")
 option_branches = [NodePath("../gangs18")]
 voice = "low_sine_voice"
 speaker_name = "cook"
+catch_chances = null
 
 [node name="gangs18" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-749, 5010)
@@ -142,6 +160,7 @@ speech_options = Array[String](["Yes", "I don't know..."])
 option_branches = [NodePath("../if youre worried"), NodePath("../if youre worried")]
 voice = "sine_voice"
 speaker_name = "speedy"
+catch_chances = null
 
 [node name="if youre worried" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_w4fpj")]
 position = Vector2(-357, 5171)
@@ -150,6 +169,7 @@ option_branches = [NodePath("../tricks")]
 voice = "sine_voice"
 speaker_name = "speedy"
 dialog_script = NodePath("move_to_shop_tutorial")
+catch_chances = null
 
 [node name="move_to_shop_tutorial" type="Node" parent="if youre worried"]
 script = ExtResource("5_72elk")
@@ -162,6 +182,7 @@ speaker_text = Array[String](["I can show you some tricks for how to handle them
 option_branches = [NodePath("../done")]
 voice = "sine_voice"
 speaker_name = "speedy"
+catch_chances = null
 
 [node name="gate key7" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_w4fpj")]
 position = Vector2(0, 87)
@@ -170,6 +191,7 @@ option_branches = [NodePath("../gate key9")]
 voice = "sine_voice"
 speaker_name = "speedy"
 dialog_script = NodePath("unlock_passage_gate")
+catch_chances = null
 
 [node name="unlock_passage_gate" type="Node" parent="gate key7"]
 script = ExtResource("4_q3rkg")
@@ -181,6 +203,7 @@ speaker_text = Array[String](["But we have a way around that."])
 option_branches = [NodePath("../gate key8")]
 voice = "sine_voice"
 dialog_script = NodePath("unlock_kitchen_door")
+catch_chances = null
 
 [node name="unlock_kitchen_door" type="Node" parent="gate key9"]
 script = ExtResource("4_q3rkg")
@@ -191,18 +214,21 @@ position = Vector2(308, 192)
 speaker_text = Array[String](["There are some locked gates tucked away under the rail line."])
 option_branches = [NodePath("../gate key10")]
 voice = "sine_voice"
+catch_chances = null
 
 [node name="gate key10" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(415, 422)
 speaker_text = Array[String](["If you head out and follow the train tracks to the left you'll find one."])
 option_branches = [NodePath("../gate key5")]
 voice = "sine_voice"
+catch_chances = null
 
 [node name="gate key5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-111, 831)
 speaker_text = Array[String](["Here's a key."])
 option_branches = [NodePath("../gate key6")]
 voice = "sine_voice"
+catch_chances = null
 play_sound_path = "res://audio/soundFX/pickup.wav"
 
 [node name="gate key6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
@@ -212,6 +238,7 @@ speech_options = Array[String](["Okay", "Why are there police barricades?"])
 option_branches = [NodePath("../if youre worried"), NodePath("../gangs")]
 voice = "sine_voice"
 speaker_name = "speedy"
+catch_chances = null
 
 [node name="done" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_w4fpj")]
 position = Vector2(-174, 5875)
@@ -220,6 +247,7 @@ speaker_portrait = ExtResource("3_ueq1q")
 voice = "low_sine_voice"
 speaker_name = "cook"
 dialog_script = NodePath("start_main_loop")
+catch_chances = null
 
 [node name="start_main_loop" type="Node" parent="done"]
 script = ExtResource("5_72elk")

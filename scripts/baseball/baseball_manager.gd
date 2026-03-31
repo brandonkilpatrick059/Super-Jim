@@ -251,7 +251,14 @@ func handle_right_catch():
 		right_has_ready_catch()):
 			var roll_success : bool = false
 			var roll : float = randf_range(0.0,1.0)
-			var catch_chance : float = catch_chances[current_right_index]
+			var catch_chance : float = 0.0
+			if(catch_chances.size() == deck_right.get_children().size()):
+				catch_chances[current_right_index]
+			else:
+				if(current_right_index != deck_right.get_children().size()-1):
+					catch_chance = 0.25
+				else:
+					catch_chance = 1.0
 			roll_success = roll <= catch_chance
 			right_catching = roll_success
 			current_catch_index = current_right_index

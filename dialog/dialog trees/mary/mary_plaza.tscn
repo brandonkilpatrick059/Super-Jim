@@ -12,6 +12,7 @@ speaker_text = Array[String](["Oh?"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
 voice = "sine_voice"
+catch_chances = null
 
 [node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_681wl")]
 position = Vector2(2, 218)
@@ -19,9 +20,11 @@ speaker_text = Array[String](["Don't mind me."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk3")]
 voice = "sine_voice"
+catch_chances = null
 
 [node name="trunk3" parent="." instance=ExtResource("2_681wl")]
 position = Vector2(2, 568)
 speaker_text = Array[String](["I'm just window shopping."])
 speaker_portrait = null
 voice = "sine_voice"
+catch_chances = null

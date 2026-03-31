@@ -12,6 +12,7 @@ speaker_text = Array[String](["I love coffee."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
 voice = "sine_voice"
+catch_chances = null
 
 [node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_o5wta")]
 position = Vector2(2, 218)
@@ -20,18 +21,21 @@ speaker_portrait = null
 speech_options = Array[String](["Black coffee", "Cream and sugar", "Latte", "Cappuccino", "Espresso", "Americano", "Bingo", "I don't like coffee.", "I prefer tea.", "The coffee industry is bad for the environment."])
 option_branches = [NodePath("../black coffee"), NodePath("../cream and sugar"), NodePath("../latte"), NodePath("../cappuccino"), NodePath("../espresso"), NodePath("../americano"), NodePath("../bingo"), NodePath("../dont like it"), NodePath("../prefer tea"), NodePath("../coffee bad")]
 voice = "sine_voice"
+catch_chances = null
 
 [node name="black coffee" parent="." instance=ExtResource("2_o5wta")]
 position = Vector2(-1238, 558)
 speaker_text = Array[String](["That's respectable."])
 speaker_portrait = null
 voice = "sine_voice"
+catch_chances = null
 
 [node name="cream and sugar" parent="." instance=ExtResource("2_o5wta")]
 position = Vector2(-859, 558)
 speaker_text = Array[String](["I liked that too when I was a kid."])
 speaker_portrait = null
 voice = "sine_voice"
+catch_chances = null
 
 [node name="espresso" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_o5wta")]
 position = Vector2(-529, 558)
@@ -39,6 +43,7 @@ speaker_text = Array[String](["Me too. That's what I'm drinking right now."])
 speaker_portrait = null
 option_branches = [NodePath("../espresso2")]
 voice = "sine_voice"
+catch_chances = null
 
 [node name="espresso2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_o5wta")]
 position = Vector2(-529, 896)
@@ -46,30 +51,35 @@ speaker_text = Array[String](["I used to hate it."])
 speaker_portrait = null
 option_branches = [NodePath("../espresso3")]
 voice = "sine_voice"
+catch_chances = null
 
 [node name="espresso3" parent="." instance=ExtResource("2_o5wta")]
 position = Vector2(-529, 1232)
 speaker_text = Array[String](["But then I got over myself."])
 speaker_portrait = null
 voice = "sine_voice"
+catch_chances = null
 
 [node name="latte" parent="." instance=ExtResource("2_o5wta")]
 position = Vector2(-155, 558)
 speaker_text = Array[String](["Ew, why put milk in a perfectly good espresso?"])
 speaker_portrait = null
 voice = "sine_voice"
+catch_chances = null
 
 [node name="cappuccino" parent="." instance=ExtResource("2_o5wta")]
 position = Vector2(184, 558)
 speaker_text = Array[String](["Ew, why put foam in a perfectly good latte?"])
 speaker_portrait = null
 voice = "sine_voice"
+catch_chances = null
 
 [node name="americano" parent="." instance=ExtResource("2_o5wta")]
 position = Vector2(184, 558)
 speaker_text = Array[String](["Ew, watered-down espresso."])
 speaker_portrait = null
 voice = "sine_voice"
+catch_chances = null
 
 [node name="bingo" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_o5wta")]
 position = Vector2(475, 558)
@@ -77,24 +87,28 @@ speaker_text = Array[String](["What? I don't understand."])
 speaker_portrait = null
 option_branches = [NodePath("../bingo2")]
 voice = "sine_voice"
+catch_chances = null
 
 [node name="bingo2" parent="." instance=ExtResource("2_o5wta")]
 position = Vector2(475, 896)
 speaker_text = Array[String](["Are you trying to be funny?"])
 speaker_portrait = null
 voice = "sine_voice"
+catch_chances = null
 
 [node name="dont like it" parent="." instance=ExtResource("2_o5wta")]
 position = Vector2(802, 558)
 speaker_text = Array[String](["That's too bad."])
 speaker_portrait = null
 voice = "sine_voice"
+catch_chances = null
 
 [node name="prefer tea" parent="." instance=ExtResource("2_o5wta")]
 position = Vector2(1129, 558)
 speaker_text = Array[String](["That's...Fair."])
 speaker_portrait = null
 voice = "sine_voice"
+catch_chances = null
 
 [node name="coffee bad" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_o5wta")]
 position = Vector2(1471, 558)
@@ -103,15 +117,18 @@ speaker_portrait = null
 speech_options = Array[String](["I don't know. I think so?", "Yeah, and it involves many unfair labor practices."])
 option_branches = [NodePath("../coffee not bad"), NodePath("../coffee bad2")]
 voice = "sine_voice"
+catch_chances = null
 
 [node name="coffee bad2" parent="." instance=ExtResource("2_o5wta")]
 position = Vector2(1471, 874)
 speaker_text = Array[String](["I had no idea..."])
 speaker_portrait = null
 voice = "sine_voice"
+catch_chances = null
 
 [node name="coffee not bad" parent="." instance=ExtResource("2_o5wta")]
 position = Vector2(1789, 874)
 speaker_text = Array[String](["Don't say stuff like that if you can't back it up..."])
 speaker_portrait = null
 voice = "sine_voice"
+catch_chances = null

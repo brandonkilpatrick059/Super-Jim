@@ -66,6 +66,9 @@ func get_plays_cards() -> bool:
 func get_deck() -> Array[int]:
 	return current_branch.get_deck()
 
+func get_catch_chances() -> Array[float]:
+	return current_branch.get_catch_chances()
+
 func set_speech_options(options : Array[String]):
 	current_branch.set_speech_options(options)
 

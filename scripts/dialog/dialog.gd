@@ -104,11 +104,12 @@ func play_cards():
 		_ResponseBubble.visible = false
 		var player_deck = player_ref.get_deck()
 		var opponent_deck = tree.get_deck()
+		var catch_chances = tree.get_catch_chances()
 		var game = baseball_game.instantiate()
 		player_ref.get_parent().add_child(game)
 		game.global_position = player_ref.get_camera_ref().get_screen_center_position()
 		game.set_callback_node(self)
-		game.initiate_card_game(player_deck,opponent_deck)
+		game.initiate_card_game(player_deck,opponent_deck,catch_chances)
 	else:
 		game_end(0)
 

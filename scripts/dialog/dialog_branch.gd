@@ -23,6 +23,7 @@ extends Node2D
 
 @export var plays_cards : bool = false
 @export var card_deck : Array[int]
+@export var catch_chances : Array[float] = []
 @export var play_sound_path : String = ""
 
 @export var conditional_option_script : Node 
@@ -82,6 +83,9 @@ func get_plays_cards():
 
 func get_deck():
 	return card_deck
+
+func get_catch_chances():
+	return catch_chances
 
 func get_shows_wares() -> bool:
 	return shows_wares

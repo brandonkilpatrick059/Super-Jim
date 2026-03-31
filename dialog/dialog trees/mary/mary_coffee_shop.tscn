@@ -12,9 +12,11 @@ speaker_text = Array[String](["Coffee is okay-"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
 voice = "sine_voice"
+catch_chances = null
 
 [node name="trunk2" parent="." instance=ExtResource("2_38ws5")]
 position = Vector2(2, 218)
 speaker_text = Array[String](["But I mostly come here to people-watch."])
 speaker_portrait = null
 voice = "sine_voice"
+catch_chances = null

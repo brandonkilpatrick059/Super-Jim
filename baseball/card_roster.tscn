@@ -11,11 +11,11 @@ visible = false
 team = "green"
 card_name = "Squidge McTervish"
 portrait_path = "res://sprites/baseball/portraits/test_1.png"
-description = "+2 [color=red]damage[/color] against [img]res://sprites/baseball/y_sym.png[/img] throw 2 hp"
+description = "+2 [color=red]damage[/color] against [img]res://sprites/baseball/y_sym.png[/img]"
 strength_rating = 9
-hp = 2
+hp = 3
+shield = 0
 power = 2
-throws_hp = 2
 buff_dmg_against_team = 2
 buff_dmg_target_team = "yellow"
 
@@ -27,6 +27,7 @@ portrait_path = "res://sprites/baseball/portraits/test_2.png"
 description = "2 [img]res://sprites/baseball/sh_sym.png[/img] against [img]res://sprites/baseball/y_sym.png[/img]"
 strength_rating = 9
 hp = 3
+shield = 0
 power = 3
 debuff_dmg_from_team = 2
 debuff_dmg_target_team = "yellow"
@@ -36,33 +37,33 @@ visible = false
 team = "green"
 card_name = "Sammy Salsalito"
 portrait_path = "res://sprites/baseball/portraits/test_8.png"
-description = "+ remaining [img]res://sprites/baseball/s_sym.png[/img]
-to next card"
+description = "+3 [img]res://sprites/baseball/s_sym.png[/img] to next card."
 strength_rating = 9
-hp = 2
+hp = 3
+shield = 0
 power = 3
+flat_buff_shield_next = 3
 
 [node name="green_4" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "green"
 portrait_path = "res://sprites/baseball/portraits/test_4.png"
-description = "+2 [color=red]damage[/color] against [img]res://sprites/baseball/y_sym.png[/img]"
+description = "[color=purple]Throws[/color] +2 [img]res://sprites/baseball/s_sym.png[/img]"
 strength_rating = 9
 hp = 4
-buff_dmg_against_team = 2
-buff_dmg_target_team = "yellow"
+throws_shield = 2
 
 [node name="green_5" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "green"
 card_name = "Beary Long"
 portrait_path = "res://sprites/baseball/portraits/test_5.png"
-description = "+ remaining [img]res://sprites/baseball/p_sym.png[/img] 
-to next card."
+description = "[color=purple]Throws[/color] +2 [img]res://sprites/baseball/p_sym.png[/img]"
 strength_rating = 9
 hp = 3
+shield = 0
 power = 3
-adds_dmg_next = true
+throws_power = 2
 
 [node name="green_6" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -93,11 +94,11 @@ visible = false
 team = "green"
 card_name = "Hudson Scudd"
 portrait_path = "res://sprites/baseball/portraits/test_9.png"
-description = "+2 [img]res://sprites/baseball/h_sym.png[/img] to next card."
+description = "[color=purple]Throws[/color] +2 [img]res://sprites/baseball/h_sym.png[/img]"
 strength_rating = 12
 hp = 5
 power = 4
-flat_buff_hp_next = 2
+throws_hp = 2
 
 [node name="green_9" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -118,31 +119,28 @@ description = "+2 [img]res://sprites/baseball/s_sym.png[/img] to next card"
 strength_rating = 9
 hp = 3
 power = 2
+flat_buff_shield_next = 2
 
 [node name="yellow_11" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "yellow"
 card_name = "Rich “Dicky” Dodge"
 portrait_path = "res://sprites/baseball/portraits/test_2_2.png"
-description = "+ remaining [img]res://sprites/baseball/p_sym.png[/img] 
-to next card"
+description = "[color=purple]Throws[/color] +3 [img]res://sprites/baseball/p_sym.png[/img]"
 strength_rating = 9
 hp = 3
-power = 2
-adds_dmg_next = true
+shield = 0
+power = 3
+throws_power = 3
 
 [node name="yellow_12" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "yellow"
 card_name = "Jimothy Stole"
 portrait_path = "res://sprites/baseball/portraits/test_8_2.png"
-description = "+2 [color=red]damage[/color] against [img]res://sprites/baseball/g_sym.png[/img]
-throws 2 hp, 1 shield, 1 power"
+description = "+2 [color=red]damage[/color] against [img]res://sprites/baseball/g_sym.png[/img]"
 strength_rating = 9
 hp = 2
-throws_hp = 2
-throws_shield = 1
-throws_power = 1
 buff_dmg_against_team = 2
 buff_dmg_target_team = "green"
 
@@ -175,13 +173,12 @@ visible = false
 team = "yellow"
 card_name = "PJ Bottoms"
 portrait_path = "res://sprites/baseball/portraits/test_6_2.png"
-description = "+2 [color=red]damage[/color] against [img]res://sprites/baseball/g_sym.png[/img] 
+description = "[color=purple]Throws[/color] +2 [img]res://sprites/baseball/s_sym.png[/img]
 4 [img]res://sprites/baseball/sh_sym.png[/img] against [img]res://sprites/baseball/g_sym.png[/img]"
 strength_rating = 12
 hp = 2
 power = 2
-buff_dmg_against_team = 2
-buff_dmg_target_team = "green"
+throws_shield = 2
 debuff_dmg_from_team = 4
 debuff_dmg_target_team = "green"
 
@@ -191,32 +188,37 @@ team = "yellow"
 card_name = "Frack MacBack"
 portrait_path = "res://sprites/baseball/portraits/test_7_2.png"
 description = "+2 [img]res://sprites/baseball/s_sym.png[/img] to next card 
-+1 [img]res://sprites/baseball/p_sym.png[/img] to next card"
++2 [img]res://sprites/baseball/p_sym.png[/img] to next card"
 strength_rating = 12
 hp = 5
-flat_buff_damage_next = 1
+shield = 0
+power = 2
+flat_buff_shield_next = 2
+flat_buff_damage_next = 2
 
 [node name="yellow_17" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "yellow"
 card_name = "Gordy Feet"
 portrait_path = "res://sprites/baseball/portraits/test_9_2.png"
-description = "+2 [img]res://sprites/baseball/h_sym.png[/img] and + remaining [img]res://sprites/baseball/s_sym.png[/img] 
-to next card"
+description = "+3 [img]res://sprites/baseball/s_sym.png[/img] each kill"
 strength_rating = 12
-hp = 2
-flat_buff_hp_next = 2
+hp = 3
+shield = 3
+power = 3
+buff_shield_on_kill = 3
 
 [node name="yellow_18" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "yellow"
 card_name = "“Court-Order” Joe"
 portrait_path = "res://sprites/baseball/portraits/test_11_2.png"
-description = "+2 [img]res://sprites/baseball/p_sym.png[/img] each kill"
+description = "+3 [img]res://sprites/baseball/p_sym.png[/img] each kill"
 strength_rating = 12
 hp = 4
+shield = 0
 power = 3
-buff_dmg_on_kill = 2
+buff_dmg_on_kill = 3
 
 [node name="gray_19" parent="." instance=ExtResource("2_yiqgv")]
 visible = false

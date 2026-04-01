@@ -209,7 +209,7 @@ func check_player_dead():
 		game_over = true
 		timer.start(3)
 	if(player_bandit_hp_last_checked < player_bandit.get_hit_points()):
-		center_label.text = "FULL HEAL"
+		center_label.text = "DELICIOUS"
 		center_label.visible = true
 		timer.start(1)
 	player_bandit_hp_last_checked = player_bandit.get_hit_points()

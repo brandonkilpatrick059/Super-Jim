@@ -17,6 +17,7 @@ var prune_node = preload("res://entities/util/prune_node.tscn")
 @export var secs_for_control_back : int = 0
 @export var fade_color : Color = Color(0,0,0)
 @export var no_ui_interact = false
+@export var opening_ui_interact = false
 @export var inactive : bool = false
 @export var no_light_interact = false
 @export var turn_off_light = false
@@ -236,7 +237,9 @@ func exit():
 		else:
 			#detach_fader()
 			player_ref.set_control_frozen(false)
-			if(!no_ui_interact):
+			if(opening_ui_interact):
+				player_ref.opening_ui_visible()
+			elif(!no_ui_interact):
 				player_ref.main_ui_visible()
 			detach_fader()
 			linked_teleporter.detach_fader()
@@ -267,7 +270,9 @@ func teleport_player():
 	player_ref.stop()
 	player_ref.set_control_frozen(true)
 	#player_ref.disable_collision()
-	if(!no_ui_interact):
+	if(opening_ui_interact):
+		player_ref.opening_ui_invisible()
+	elif(!no_ui_interact):
 		player_ref.main_ui_invisible()
 	update_fade_alpha()
 	timer_fade.start(fade_step_secs)

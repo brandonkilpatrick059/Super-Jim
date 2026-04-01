@@ -636,6 +636,17 @@ func add_to_max_dash_secs(num : int):
 	update_dash_meter()
 	play_sound(crystal_sound)
 
+func hide_tip():
+	_ui.hide_tip()
+
+func show_tip(text : String, 
+arrow_left : bool = false, 
+arrow_right : bool = false,
+glyph_acts_1 : Array[String] = [],
+glyph_acts_2 : Array[String] = [],
+glyph_acts_3 : Array[String] = []):
+	_ui.show_tip(text,arrow_left,arrow_right,glyph_acts_1,glyph_acts_2,glyph_acts_3)
+
 func show_dash():
 	update_dash_meter()
 	_ui.show_dash()
@@ -663,6 +674,13 @@ func show_money():
 func hide_money():
 	_ui.hide_money()
 
+func opening_ui_invisible():
+	_ui.hide_interact_text()
+	_ui.hide_tip()
+
+func opening_ui_visible():
+	_ui.show_interact_text()
+
 func main_ui_invisible():
 	hide_hearts()
 	hide_money()
@@ -670,6 +688,7 @@ func main_ui_invisible():
 	_ui.hide_interact_text()
 	_ui.hide_item_square()
 	main_ui_hidden = true
+	
 
 func main_ui_visible():
 	show_hearts()

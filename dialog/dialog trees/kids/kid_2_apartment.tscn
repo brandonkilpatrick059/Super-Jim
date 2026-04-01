@@ -12,11 +12,11 @@ speaker_text = Array[String](["Do you like this show?"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
 voice = "sine_voice"
-catch_chances = null
+catch_chances = Array[float]([])
 
 [node name="trunk2" parent="." instance=ExtResource("2_rrbmi")]
 position = Vector2(2, 218)
 speaker_text = Array[String](["I think it's okay."])
 speaker_portrait = null
 voice = "sine_voice"
-catch_chances = null
+catch_chances = Array[float]([])

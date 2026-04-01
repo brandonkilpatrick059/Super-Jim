@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://mcdceuvq1y5j"]
+[gd_scene load_steps=17 format=3 uid="uid://mcdceuvq1y5j"]
 
 [ext_resource type="Script" uid="uid://dxrxkn8672j2t" path="res://scripts/character/player/player_ui.gd" id="1_3ah41"]
 [ext_resource type="PackedScene" uid="uid://br7lsjp6dti22" path="res://interface/location_header.tscn" id="2_6r8u7"]
@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://uw3cf5pm1u2u" path="res://sprites/interface/item_box/item_box.png" id="6_rvxvm"]
 [ext_resource type="PackedScene" uid="uid://juqm7h82fyhq" path="res://interface/interact_circle.tscn" id="7_6r8u7"]
 [ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="7_bmrsi"]
+[ext_resource type="Texture2D" uid="uid://b11dfnj3pktu4" path="res://sprites/interface/tutorial_tip.png" id="9_dwtnx"]
+[ext_resource type="Script" uid="uid://dvdle0wfh5uec" path="res://scripts/interface/tutorial_tip.gd" id="9_hnq67"]
+[ext_resource type="Texture2D" uid="uid://dydktppdcupp8" path="res://sprites/interface/tutorial_tip_arrow.png" id="10_apdnc"]
+[ext_resource type="FontFile" uid="uid://cdf6elivdwcta" path="res://fonts/CourierPrime-Regular.ttf" id="11_rvxvm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0y31s"]
 font_size = 12
@@ -35,11 +39,13 @@ grow_vertical = 2
 script = ExtResource("1_3ah41")
 
 [node name="fps_counter" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 632.0
 offset_bottom = 320.0
 
 [node name="fps" type="Label" parent="fps_counter"]
+visible = false
 layout_mode = 0
 offset_left = 608.0
 offset_top = 303.0
@@ -49,6 +55,7 @@ text = "100"
 label_settings = SubResource("LabelSettings_0y31s")
 
 [node name="location_header" parent="." instance=ExtResource("2_6r8u7")]
+visible = false
 
 [node name="money_tracker" type="Control" parent="."]
 anchors_preset = 0
@@ -109,6 +116,7 @@ sprite_frames = ExtResource("4_dwtnx")
 animation = &"active"
 
 [node name="pizza_lost" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 632.0
 offset_bottom = 320.0
@@ -164,3 +172,37 @@ layout_mode = 1
 layout_mode = 1
 offset_left = -34.0
 offset_right = -34.0
+
+[node name="tutorial_tip" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_hnq67")
+
+[node name="tip_box" type="Sprite2D" parent="tutorial_tip"]
+texture = ExtResource("9_dwtnx")
+
+[node name="tip_box_arrow_left" type="Sprite2D" parent="tutorial_tip"]
+texture = ExtResource("10_apdnc")
+
+[node name="tip_box_arrow_right" type="Sprite2D" parent="tutorial_tip"]
+scale = Vector2(-1, 1)
+texture = ExtResource("10_apdnc")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="tutorial_tip"]
+layout_mode = 0
+offset_left = -118.0
+offset_top = 73.0
+offset_right = 118.0
+offset_bottom = 119.0
+theme_override_fonts/normal_font = ExtResource("11_rvxvm")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 1

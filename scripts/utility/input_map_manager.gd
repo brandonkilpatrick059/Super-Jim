@@ -256,7 +256,7 @@ func get_glyph_path_from_inputevent(inputEvent : InputEvent):
 	if(inputEvent is InputEventJoypadMotion):
 		var inputEventJoypadMotion : InputEventJoypadMotion = inputEvent
 		var axis = inputEventJoypadMotion.axis
-		var value = inputEventJoypadMotion.value
+		var value = inputEventJoypadMotion.axis_value
 		event_string = get_glyph_path_from_joyaxis(axis,value)
 	return event_string
 

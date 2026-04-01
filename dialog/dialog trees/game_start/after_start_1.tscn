@@ -16,7 +16,7 @@ speaker_portrait = ExtResource("3_g13i0")
 speech_options = Array[String](["I got the job.", "She gave me a job.", "I guess I'm delivering pizzas now..."])
 option_branches = [NodePath("../trunk2"), NodePath("../trunk2"), NodePath("../trunk2")]
 voice = "low_sine_voice"
-catch_chances = null
+catch_chances = Array[float]([])
 
 [node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_g13i0")]
 position = Vector2(54, 180)
@@ -24,7 +24,7 @@ speaker_text = Array[String](["Uh, nice."])
 speaker_portrait = ExtResource("3_g13i0")
 option_branches = [NodePath("../trunk3")]
 voice = "low_sine_voice"
-catch_chances = null
+catch_chances = Array[float]([])
 
 [node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_g13i0")]
 position = Vector2(54, 392)
@@ -32,7 +32,7 @@ speaker_text = Array[String](["Yeah."])
 option_branches = [NodePath("../trunk4")]
 voice = "sine_voice"
 speaker_name = "speedy"
-catch_chances = null
+catch_chances = Array[float]([])
 
 [node name="trunk4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_g13i0")]
 position = Vector2(64, 598)
@@ -40,7 +40,7 @@ speaker_text = Array[String](["Congrats."])
 option_branches = [NodePath("../trunk6")]
 voice = "sine_voice"
 speaker_name = "speedy"
-catch_chances = null
+catch_chances = Array[float]([])
 
 [node name="trunk6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_g13i0")]
 position = Vector2(54, 1025)
@@ -48,7 +48,7 @@ speaker_text = Array[String](["I'm guessing she set you up in the old guy's apar
 option_branches = [NodePath("../trunk7")]
 voice = "sine_voice"
 speaker_name = "speedy"
-catch_chances = null
+catch_chances = Array[float]([])
 
 [node name="trunk7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_g13i0")]
 position = Vector2(54, 1217)
@@ -56,7 +56,7 @@ speaker_text = Array[String](["The place right behind the restaurant?"])
 option_branches = [NodePath("../trunk8")]
 voice = "sine_voice"
 speaker_name = "speedy"
-catch_chances = null
+catch_chances = Array[float]([])
 
 [node name="trunk8" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_g13i0")]
 position = Vector2(54, 1421)
@@ -65,7 +65,7 @@ speaker_portrait = ExtResource("3_g13i0")
 option_branches = [NodePath("../trunk9")]
 voice = "low_sine_voice"
 speaker_name = "cook"
-catch_chances = null
+catch_chances = Array[float]([])
 
 [node name="trunk9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_g13i0")]
 position = Vector2(54, 1614)
@@ -73,7 +73,7 @@ speaker_text = Array[String](["We're open 9 AM to 8 PM every day."])
 speaker_portrait = ExtResource("3_g13i0")
 option_branches = [NodePath("../trunk10")]
 voice = "low_sine_voice"
-catch_chances = null
+catch_chances = Array[float]([])
 
 [node name="trunk10" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_g13i0")]
 position = Vector2(64, 1834)
@@ -81,7 +81,7 @@ speaker_text = Array[String](["We'll explain everything then."])
 speaker_portrait = ExtResource("3_g13i0")
 voice = "low_sine_voice"
 dialog_script = NodePath("move_to_after_start_2")
-catch_chances = null
+catch_chances = Array[float]([])
 
 [node name="move_to_after_start_2" type="Node" parent="trunk10"]
 script = ExtResource("4_ggh0u")

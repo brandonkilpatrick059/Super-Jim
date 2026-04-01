@@ -14,25 +14,25 @@ speech_options = Array[String](["", "", ""])
 option_branches = [NodePath("../no purchase"), NodePath("../purchase"), NodePath("../insufficient money")]
 voice = "sine_voice"
 shows_wares = true
-catch_chances = null
+catch_chances = Array[float]([])
 
 [node name="insufficient money" parent="." instance=ExtResource("2_i8gs0")]
 position = Vector2(251, 157)
 speaker_text = Array[String](["It seems you can't afford that..."])
 speaker_portrait = null
 voice = "sine_voice"
-catch_chances = null
+catch_chances = Array[float]([])
 
 [node name="no purchase" parent="." instance=ExtResource("2_i8gs0")]
 position = Vector2(-205, 164)
 speaker_text = Array[String](["Maybe next time"])
 speaker_portrait = null
 voice = "sine_voice"
-catch_chances = null
+catch_chances = Array[float]([])
 
 [node name="purchase" parent="." instance=ExtResource("2_i8gs0")]
 position = Vector2(5, 178)
 speaker_text = Array[String](["I appreciate your business!"])
 speaker_portrait = null
 voice = "sine_voice"
-catch_chances = null
+catch_chances = Array[float]([])

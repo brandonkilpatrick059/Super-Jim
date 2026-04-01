@@ -47,3 +47,4 @@ material = SubResource("CanvasItemMaterial_tdrjd")
 texture = ExtResource("2_30co8")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Effects"

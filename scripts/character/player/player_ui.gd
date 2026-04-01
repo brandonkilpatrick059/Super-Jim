@@ -15,6 +15,7 @@ extends Control
 @onready var item_square = $item_square
 @onready var item_square_texture :TextureRect = $item_square/Sprite2D
 @onready var quantity_label : Label = $item_square/Sprite2D/quantity_label
+@onready var tutorial_tip = $tutorial_tip
 
 @onready var interact_1 = $interact_pos_1
 @onready var interact_2 = $interact_pos_2
@@ -160,6 +161,17 @@ func toggle_fps_counter():
 		fps_counter_visible = false
 	else:
 		fps_counter_visible = true
+
+func hide_tip():
+	tutorial_tip.hide_tip()
+
+func show_tip(text : String, 
+arrow_left : bool = false, 
+arrow_right : bool = false,
+glyph_acts_1 : Array[String] = [],
+glyph_acts_2 : Array[String] = [],
+glyph_acts_3 : Array[String] = []):
+	tutorial_tip.show_tip(text,arrow_left,arrow_right,glyph_acts_1,glyph_acts_2,glyph_acts_3)
 
 func activate_header(label : String):
 	location_header.activate_header(label)

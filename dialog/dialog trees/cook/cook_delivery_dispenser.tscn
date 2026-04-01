@@ -17,7 +17,7 @@ speaker_portrait = ExtResource("3_8mdru")
 speech_options = Array[String](["Give me some pizzas.", "I'm not ready yet."])
 option_branches = [NodePath("../yes"), NodePath("../no")]
 voice = "low_sine_voice"
-catch_chances = null
+catch_chances = Array[float]([])
 
 [node name="yes" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_0c4ik")]
 position = Vector2(-118, 148)
@@ -26,7 +26,7 @@ speaker_portrait = ExtResource("3_8mdru")
 option_branches = [NodePath("../order up")]
 voice = "low_sine_voice"
 dialog_script = NodePath("move_courier_to_shop")
-catch_chances = null
+catch_chances = Array[float]([])
 
 [node name="move_courier_to_shop" type="Node" parent="yes"]
 script = ExtResource("4_8mdru")
@@ -40,7 +40,7 @@ speaker_portrait = ExtResource("3_8mdru")
 option_branches = [NodePath("../stay safe")]
 voice = "low_sine_voice"
 dialog_script = NodePath("spawn_pizza")
-catch_chances = null
+catch_chances = Array[float]([])
 play_sound_path = "res://audio/soundFX/dash_regen.wav"
 
 [node name="spawn_pizza" type="Node" parent="order up"]
@@ -52,18 +52,18 @@ speaker_text = Array[String](["Stay safe out there."])
 speaker_portrait = ExtResource("3_8mdru")
 option_branches = [NodePath("../stay safe 2")]
 voice = "low_sine_voice"
-catch_chances = null
+catch_chances = Array[float]([])
 
 [node name="stay safe 2" parent="." instance=ExtResource("2_0c4ik")]
 position = Vector2(-118, 737)
 speaker_text = Array[String](["These pies are like my children.", "Remember: you're carrying a work of art.", "Those pies are made with love.", "These pies are my life's work.", "People are counting on you.", "I'm counting on you.", "A lot of work went into those pies."])
 speaker_portrait = ExtResource("3_8mdru")
 voice = "low_sine_voice"
-catch_chances = null
+catch_chances = Array[float]([])
 
 [node name="no" parent="." instance=ExtResource("2_0c4ik")]
 position = Vector2(208, 163)
 speaker_text = Array[String](["Well, let me know when you're ready."])
 speaker_portrait = ExtResource("3_8mdru")
 voice = "low_sine_voice"
-catch_chances = null
+catch_chances = Array[float]([])

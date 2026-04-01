@@ -110,6 +110,8 @@ func start_game():
 	camera_ref.connect_anchor(player_bandit)
 	generate_leveled_mob_wave()
 	player_bandit_hp_last_checked = player_bandit.get_hit_points()
+	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+	time_keeper.lock_time()
 
 func generate_leveled_mob_wave():
 	center_label.text = str("WAVE ",wave_level+1)
@@ -221,6 +223,9 @@ func clean_up():
 	player_bandit.queue_free()
 	if(courier != null):
 		courier.queue_free()
+	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+	time_keeper.advance_clock()
+	time_keeper.unlock_time()
 	queue_free()
 
 func _physics_process(delta: float) -> void:

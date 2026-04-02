@@ -28,6 +28,9 @@ var tip_box_active : bool = false
 var tip_arrow_left_active : bool = false
 var tip_arrow_right_active : bool = false 
 
+var wait_timer_value : float = 0.0
+var timer_started = false
+
 var auto_dismiss = false
 
 func _ready() -> void:
@@ -64,7 +67,7 @@ timer : float = 0.0):
 	visible = true
 	if(timer > 0.0):
 		auto_dismiss = true
-		dismiss_timer.start(timer)
+		wait_timer_value = timer
 
 func set_label_text(text : String):
 	tip_text = text
@@ -116,6 +119,10 @@ func handle_fading():
 				var new_alpha = tip_box.modulate.a + alpha_step
 				tip_box.modulate = Color(1.0,1.0,1.0,new_alpha)
 				label.modulate = Color(1.0,1.0,1.0,new_alpha)
+			else:
+				if(auto_dismiss && not timer_started):
+					timer_started = true
+					dismiss_timer.start(wait_timer_value)
 		else:
 			if(tip_box.modulate.a > 0.0):
 				var new_alpha = tip_box.modulate.a - alpha_step
@@ -149,5 +156,6 @@ func _physics_process(delta: float) -> void:
 		advance_indexes()
 		timer_index.start(1.0)
 		refresh_label_text()
-	if(auto_dismiss && dismiss_timer.is_stopped()):
+	if(auto_dismiss && dismiss_timer.is_stopped() && timer_started):
 		hide_tip()
+		timer_started = false

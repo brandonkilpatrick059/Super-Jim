@@ -152,6 +152,7 @@ var owned_bottoms : Array[String] = ["", "res://sprites/spritesheets/spriteframe
 
 var items : Array[String] = []
 var item_index : int = 0
+var shown_items_tip : bool = false
 
 var default_linear_damp : float = 6.0
 var skating_linear_damp : float = 0.1
@@ -469,7 +470,8 @@ func get_save_dictionary() -> Dictionary:
 		"tops_index" : tops_index,
 		"bottoms_index" : bottoms_index,
 		"num_fire_crackers" : num_fire_crackers,
-		"days_since_rent_paid" : days_since_rent_paid
+		"days_since_rent_paid" : days_since_rent_paid,
+		"shown_items_tip" : shown_items_tip
 	}
 	return save_dictionary
 
@@ -497,6 +499,7 @@ func load_from_dictionary(load_dictionary : Dictionary):
 	money = int(load_dictionary.get("money"))
 	_ui.set_money(money,true)
 	banked_money = load_dictionary.get("banked_money")
+	shown_items_tip = bool(load_dictionary.get("shown_items_tip"))
 	base_spriteframes = load(load_dictionary.get("base_spriteframes"))
 	var load_owned_cards = load_dictionary.get("owned_cards")
 	var index = 0
@@ -699,7 +702,7 @@ func main_ui_invisible():
 	_ui.hide_interact_text()
 	_ui.hide_item_square()
 	main_ui_hidden = true
-	ui.hide_tip()
+	_ui.hide_tip()
 	
 
 func main_ui_visible():
@@ -1046,6 +1049,14 @@ func append_to_items(item : String):
 	if(items.find(item) < 0):
 		items.append(item)
 		item_index = items.find(item)
+	if(items.size() > 1 && !shown_items_tip):
+		show_tip("[action_1] and [action_2] to switch items. \n [action_3] to use item.",
+		false,true,
+		["switch_item_left"],
+		["switch_item_right"],
+		["use_item"], 
+		6.0)
+		shown_items_tip = true
 
 func use_item():
 	if(items.size() > 0 ):

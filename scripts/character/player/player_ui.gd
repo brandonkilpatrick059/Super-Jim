@@ -170,8 +170,9 @@ arrow_left : bool = false,
 arrow_right : bool = false,
 glyph_acts_1 : Array[String] = [],
 glyph_acts_2 : Array[String] = [],
-glyph_acts_3 : Array[String] = []):
-	tutorial_tip.show_tip(text,arrow_left,arrow_right,glyph_acts_1,glyph_acts_2,glyph_acts_3)
+glyph_acts_3 : Array[String] = [],
+dismiss_timer : float = 0.0):
+	tutorial_tip.show_tip(text,arrow_left,arrow_right,glyph_acts_1,glyph_acts_2,glyph_acts_3,dismiss_timer)
 
 func activate_header(label : String):
 	location_header.activate_header(label)

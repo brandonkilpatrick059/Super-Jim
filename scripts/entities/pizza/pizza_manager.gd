@@ -89,6 +89,7 @@ func add_pizzas_delivered(num : int, door : Node):
 func reset_pizzas_delivered_today():
 	pizzas_delivered_today = 0
 	has_delivered_max_pizzas = false
+	doors_delivered_today.clear()
 
 func has_hit_max_daily_deliveries():
 	return has_delivered_max_pizzas
@@ -118,7 +119,6 @@ func restock_pizzas_at_end_of_day():
 		elif(key == "no_pizzas"):
 			cook_ref.set_schedules_key("delivery_dispenser")
 	reset_pizzas_delivered_today()
-	doors_delivered_today.clear()
 
 #func leave_tutorial():
 	#var time_keeper = get_tree().get_first_node_in_group("time_keeper")
@@ -135,8 +135,9 @@ func get_delivery_tutorial_doors() -> Array[Node]:
 	var pizzas_selected = 0
 	while(pizzas_selected < num_pizzas &&
 		index < tutorial_doors.size()):
-		if(!doors_delivered_today.has(tutorial_doors[index])):
-			selected_delivery_doors.append(tutorial_doors[index])
+		var tutorial_door = tutorial_doors[index]
+		if(!doors_delivered_today.has(tutorial_door)):
+			selected_delivery_doors.append(tutorial_door)
 			pizzas_selected = pizzas_selected + 1
 		index = index + 1
 

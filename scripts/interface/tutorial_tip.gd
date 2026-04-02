@@ -20,6 +20,7 @@ var tip_text : String = ""
 
 var timer : Timer = Timer.new()
 var timer_index : Timer = Timer.new()
+var dismiss_timer : Timer = Timer.new()
 var alpha_step : float = 0.08
 var fade_Step : float = 0.006
 
@@ -27,11 +28,15 @@ var tip_box_active : bool = false
 var tip_arrow_left_active : bool = false
 var tip_arrow_right_active : bool = false 
 
+var auto_dismiss = false
+
 func _ready() -> void:
 	timer.one_shot = true
 	add_child(timer)
 	timer_index.one_shot = true
 	add_child(timer_index)
+	dismiss_timer.one_shot = true
+	add_child(dismiss_timer)
 	tip_box.modulate = Color(1.0,1.0,1.0,0.0)
 	tip_arrow_left.modulate = Color(1.0,1.0,1.0,0.0)
 	tip_arrow_right.modulate = Color(1.0,1.0,1.0,0.0)
@@ -47,7 +52,8 @@ arrow_left : bool = false,
 arrow_right : bool = false,
 glyph_acts_1 : Array[String] = [],
 glyph_acts_2 : Array[String] = [],
-glyph_acts_3 : Array[String] = []):
+glyph_acts_3 : Array[String] = [],
+timer : float = 0.0):
 	glyph_actions_1 = glyph_acts_1
 	glyph_actions_2 = glyph_acts_2
 	glyph_actions_3 = glyph_acts_3
@@ -56,6 +62,9 @@ glyph_acts_3 : Array[String] = []):
 	tip_arrow_left_active = arrow_left
 	tip_arrow_right_active = arrow_right
 	visible = true
+	if(timer > 0.0):
+		auto_dismiss = true
+		dismiss_timer.start(timer)
 
 func set_label_text(text : String):
 	tip_text = text
@@ -140,3 +149,5 @@ func _physics_process(delta: float) -> void:
 		advance_indexes()
 		timer_index.start(1.0)
 		refresh_label_text()
+	if(auto_dismiss && dismiss_timer.is_stopped()):
+		hide_tip()

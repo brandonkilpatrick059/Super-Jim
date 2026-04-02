@@ -74,8 +74,9 @@ const dash_speed = 100000
 var acceleration_quotient = normal_speed
 const top_speed = 180
 
+var start_max_dash_secs : float = 20.0
 var current_dash_secs : float = 0.0
-var max_dash_secs : float = 20.0
+var max_dash_secs : float = start_max_dash_secs
 var full_dash_secs : float = 60.0
 
 var can_dash = true
@@ -635,11 +636,15 @@ func update_dash_meter():
 	_ui.set_dash_fraction(current_dash_secs / max_dash_secs)
 
 func add_to_max_dash_secs(num : int):
+	if(max_dash_secs == start_max_dash_secs):
+		show_tip("[color=cyan]Crystals[/color] expand the [color=cyan]energy meter.[/color]",true,false,[],[],[],6.0)
 	var new_max_dash_secs = max_dash_secs + num
 	if new_max_dash_secs < full_dash_secs:
 		max_dash_secs = new_max_dash_secs
 	update_dash_meter()
 	play_sound(crystal_sound)
+	
+	
 
 func hide_tip():
 	_ui.hide_tip()
@@ -649,8 +654,9 @@ arrow_left : bool = false,
 arrow_right : bool = false,
 glyph_acts_1 : Array[String] = [],
 glyph_acts_2 : Array[String] = [],
-glyph_acts_3 : Array[String] = []):
-	_ui.show_tip(text,arrow_left,arrow_right,glyph_acts_1,glyph_acts_2,glyph_acts_3)
+glyph_acts_3 : Array[String] = [],
+dismiss_timer : float = 0.0):
+	_ui.show_tip(text,arrow_left,arrow_right,glyph_acts_1,glyph_acts_2,glyph_acts_3,dismiss_timer)
 
 func show_dash():
 	update_dash_meter()
@@ -693,6 +699,7 @@ func main_ui_invisible():
 	_ui.hide_interact_text()
 	_ui.hide_item_square()
 	main_ui_hidden = true
+	ui.hide_tip()
 	
 
 func main_ui_visible():

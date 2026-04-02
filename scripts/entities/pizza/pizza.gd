@@ -244,7 +244,7 @@ func deliver_pizza(door : Node2D):
 	dialog_manager.set_tree_and_start_dialog(delivery_dialog_tree)	
 	pizzas -= 1
 	var pizza_manager = get_tree().get_first_node_in_group("pizza_manager")
-	pizza_manager.add_pizzas_delivered(1,destination_door)
+	pizza_manager.add_pizzas_delivered(1,door)
 	wrong_door_checked = false
 	if(pizzas > 0):
 		player_ref.return_pizza()

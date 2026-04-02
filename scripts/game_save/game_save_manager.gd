@@ -32,6 +32,8 @@ func load_game():
 				load_crystal(dictionary)
 			"cash":
 				load_cash(dictionary)
+			"tip_trigger":
+				load_trigger(dictionary)
 	save_file.close()
 	handle_queue_free_on_load()
 
@@ -151,6 +153,19 @@ func load_door(dictionary : Dictionary):
 		var door_tag = door.get_save_tag()
 		if(door_tag == dictionary.get("save_tag")):
 			door.load_from_dictionary(dictionary)
+
+func save_tip_triggers():
+	var triggers = get_tree().get_nodes_in_group("tip_trigger_persistent")
+	for trigger in triggers:
+		var trigger_dictionary : Dictionary = trigger.get_save_dictionary()
+		save_file.store_line(JSON.stringify(trigger_dictionary))
+
+func load_trigger(dictionary : Dictionary):
+	var triggers = get_tree().get_nodes_in_group("tip_trigger_persistent")
+	for trigger in triggers:
+		var trigger_tag = trigger.get_save_tag()
+		if(trigger_tag == dictionary.get("save_tag")):
+			trigger.load_from_dictionary(dictionary)
 
 func save_comments():
 	var comments = get_tree().get_nodes_in_group("comment_persistent")

@@ -33,7 +33,7 @@ var is_leaving_tutorial : bool = false
 
 var has_delivered_max_pizzas : bool = false
 
-var doors_ordered_to_today : Array[Node]
+var doors_delivered_today : Array[Node]
 
 func _ready() -> void:
 	set_up_tutorial_doors()
@@ -42,6 +42,12 @@ func _ready() -> void:
 func set_up_tutorial_doors():
 	var delivery_doors = get_tree().get_nodes_in_group("delivery_door")
 	var iterator = 0
+	for door in delivery_doors:
+		if(door.get_tier() == -2):
+			tutorial_doors.append(door)
+	for door in delivery_doors:
+		if(door.get_tier() == -1):
+			tutorial_doors.append(door)
 	for door in delivery_doors:
 		if(door.get_tier() == 0):
 			tutorial_doors.append(door)
@@ -72,12 +78,13 @@ func get_total_pizzas_delivered() -> int:
 func set_total_pizzas_delivered(num : int):
 	total_pizzas_delivered = num
 
-func add_pizzas_delivered(num : int):
+func add_pizzas_delivered(num : int, door : Node):
 	total_pizzas_delivered = total_pizzas_delivered + num
 	pizzas_delivered_today = pizzas_delivered_today + num
 	if(max_pizzas[level] <= pizzas_delivered_today):
 		has_delivered_max_pizzas = true
 	update_level()
+	doors_delivered_today.append(door)
 
 func reset_pizzas_delivered_today():
 	pizzas_delivered_today = 0
@@ -111,7 +118,7 @@ func restock_pizzas_at_end_of_day():
 		elif(key == "no_pizzas"):
 			cook_ref.set_schedules_key("delivery_dispenser")
 	reset_pizzas_delivered_today()
-	doors_ordered_to_today.clear()
+	doors_delivered_today.clear()
 
 #func leave_tutorial():
 	#var time_keeper = get_tree().get_first_node_in_group("time_keeper")
@@ -125,12 +132,16 @@ func get_delivery_tutorial_doors() -> Array[Node]:
 	var selected_delivery_doors : Array[Node] = []
 	var num_pizzas = 3
 	var index = 0
-	while(index < num_pizzas):
-		selected_delivery_doors.append(tutorial_doors[index])
+	var pizzas_selected = 0
+	while(pizzas_selected < num_pizzas &&
+		index < tutorial_doors.size()):
+		if(!doors_delivered_today.has(tutorial_doors[index])):
+			selected_delivery_doors.append(tutorial_doors[index])
+			pizzas_selected = pizzas_selected + 1
 		index = index + 1
 
-	for door in selected_delivery_doors:
-		tutorial_doors.erase(door)
+	#for door in selected_delivery_doors:
+		#tutorial_doors.erase(door)
 
 	return selected_delivery_doors
 
@@ -143,14 +154,14 @@ func get_delivery_doors_by_tier(tier: int, num_pizzas : int = 3) -> Array[Node]:
 	for door in delivery_doors:
 		if(door.get_tier() <= tier &&
 		door.get_tier() != 0 &&
-		!doors_ordered_to_today.has(door)):
+		!doors_delivered_today.has(door)):
 			doors_in_tier.append(door)
 	while(iterator < num_pizzas):
 		var random_index = randi_range(0,doors_in_tier.size()-1)
 		var delivery_door = doors_in_tier[random_index]
 		doors_in_tier.remove_at(random_index)
 		selected_delivery_doors.append(delivery_door)
-		doors_ordered_to_today.append(delivery_door)
+		#doors_delivered_today.append(delivery_door)
 		iterator += 1
 	return selected_delivery_doors
 	

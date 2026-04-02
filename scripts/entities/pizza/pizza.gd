@@ -31,7 +31,7 @@ var random = RandomNumberGenerator.new()
 var lost = false
 var hits = 0
 
-var pizzas = 3
+var pizzas = 0
 var current_door = 0
 var selected_delivery_doors: Array[Node]
 
@@ -84,11 +84,13 @@ func _ready():
 	_compass.visible = false
 	_pointer.visible = false
 	get_delivery_doors()
+	update_pizza_stack()
 
 func get_delivery_doors():
 	var pizza_manager = get_tree().get_first_node_in_group("pizza_manager")
 	delivery_doors = get_tree().get_nodes_in_group("delivery_door")
 	selected_delivery_doors = pizza_manager.get_delivery_doors()
+	pizzas = selected_delivery_doors.size()
 	destination_door = selected_delivery_doors[0]
 	current_door = 0
 
@@ -242,7 +244,7 @@ func deliver_pizza(door : Node2D):
 	dialog_manager.set_tree_and_start_dialog(delivery_dialog_tree)	
 	pizzas -= 1
 	var pizza_manager = get_tree().get_first_node_in_group("pizza_manager")
-	pizza_manager.add_pizzas_delivered(1)
+	pizza_manager.add_pizzas_delivered(1,destination_door)
 	wrong_door_checked = false
 	if(pizzas > 0):
 		player_ref.return_pizza()

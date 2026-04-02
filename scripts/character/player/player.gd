@@ -129,6 +129,17 @@ var dev_occlusion_enabled = true
 var item_text_timer : Timer = Timer.new()
 var use_item_timer : Timer = Timer.new()
 
+#for tracking tutorial tips
+var first_used_dash : bool = false
+var first_used_item : bool = false
+var first_switched_item : bool = false
+var first_used_journal : bool = false
+
+func has_first_used_dash() -> bool: return first_used_dash
+func has_first_used_item() -> bool: return first_used_item
+func has_first_switched_item() -> bool: return first_switched_item
+func has_first_used_journal() -> bool: return first_used_journal
+
 #TODO: character gen when the game starts to randomly choose some defaults? Let the player choose defaults?
 #empty string "" -> default, empty slot. Note bottoms default is pants_0
 var hats_index = 0
@@ -234,12 +245,6 @@ func play_sound(stream : AudioStream):
 			player.stream = stream
 			player.play()
 			return
-
-#func get_sleep_start_time():
-	#return sleep_start_time
-#
-#func get_sleep_end_time():
-	#return sleep_end_time
 
 func begin_dreaming():
 	if(holding_object):

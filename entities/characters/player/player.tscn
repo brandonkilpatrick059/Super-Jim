@@ -12,6 +12,7 @@
 [ext_resource type="SpriteFrames" uid="uid://ejgt0higrbol" path="res://sprites/spritesheets/spriteframes/item/skateboard.tres" id="10_sybl7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3o5m8"]
+bounce = 0.2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mx21o"]
 radius = 6.5

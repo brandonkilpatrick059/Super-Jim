@@ -134,7 +134,6 @@ func advance_indexes():
 	actions_2_index = actions_2_index + 1
 	actions_3_index = actions_3_index + 1
 
-
 func _physics_process(delta: float) -> void:
 	handle_fading()
 	if(timer_index.is_stopped()):

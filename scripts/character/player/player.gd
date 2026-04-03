@@ -833,7 +833,7 @@ func handle_dev():
 				_camera.zoom_to(0.2)
 				dev_zoom_level = 1
 			elif(dev_zoom_level == 1):
-				_camera.zoom_to(0.05)
+				_camera.zoom_to(0.06)
 				dev_zoom_level = 2
 			else:
 				dev_zoom_level = 0

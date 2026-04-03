@@ -13,7 +13,6 @@ speaker_text = Array[String](["Welcome to Maude's Clothing Exchange."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
 voice = "low_sine_voice"
-catch_chances = Array[float]([])
 
 [node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_1x2uh")]
 position = Vector2(2, 218)
@@ -21,7 +20,6 @@ speaker_text = Array[String](["I am Maude."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk3")]
 voice = "low_sine_voice"
-catch_chances = Array[float]([])
 
 [node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_1x2uh")]
 position = Vector2(35, 504)
@@ -29,7 +27,6 @@ speaker_text = Array[String](["I exchange clothing..."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk4")]
 voice = "low_sine_voice"
-catch_chances = Array[float]([])
 
 [node name="trunk4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_1x2uh")]
 position = Vector2(66, 798)
@@ -37,7 +34,6 @@ speaker_text = Array[String](["...For money."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk5")]
 voice = "low_sine_voice"
-catch_chances = Array[float]([])
 
 [node name="trunk5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_1x2uh")]
 position = Vector2(92, 1095)
@@ -45,7 +41,6 @@ speaker_text = Array[String](["I hope you will find something which expresses yo
 speaker_portrait = null
 option_branches = [NodePath("../trunk7")]
 voice = "low_sine_voice"
-catch_chances = Array[float]([])
 
 [node name="trunk7" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_1x2uh")]
 position = Vector2(82, 1379)
@@ -54,14 +49,12 @@ speaker_portrait = null
 option_branches = [NodePath("../trunk6")]
 voice = "low_sine_voice"
 dialog_script = NodePath("../trunk6/move_to_active")
-catch_chances = Array[float]([])
 
 [node name="trunk6" parent="." instance=ExtResource("2_1x2uh")]
 position = Vector2(99, 1676)
 speaker_text = Array[String](["No, I do not have any cowboy hats or leather vests available."])
 speaker_portrait = null
 voice = "low_sine_voice"
-catch_chances = Array[float]([])
 
 [node name="move_to_active" type="Node" parent="trunk6"]
 script = ExtResource("3_bul06")
@@ -73,4 +66,3 @@ position = Vector2(99, 1676)
 speaker_text = Array[String](["I simply cannot keep up with demand."])
 speaker_portrait = null
 voice = "low_sine_voice"
-catch_chances = Array[float]([])

@@ -26,14 +26,6 @@ polygon = PackedVector2Array(-500, -500, 500, -500, 500, 500, -500, 500)
 
 [node name="points" type="Node2D" parent="."]
 
-[node name="cp_1" type="AnimatedSprite2D" parent="points"]
-z_index = 2
-material = SubResource("CanvasItemMaterial_ebeoe")
-position = Vector2(-74, -100)
-sprite_frames = ExtResource("3_ebeoe")
-script = ExtResource("4_ebeoe")
-connected_spawner = "cp_u_north_side_1"
-
 [node name="cp_2" type="AnimatedSprite2D" parent="points"]
 z_index = 2
 material = SubResource("CanvasItemMaterial_ebeoe")

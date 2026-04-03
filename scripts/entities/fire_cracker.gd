@@ -3,7 +3,7 @@ extends Node
 @onready var spark = preload("res://effects/fire_cracker_spark.tscn")
 
 var timer := Timer.new()
-var fuse_secs = 3.0
+var fuse_secs = 1.5
 
 func _ready() -> void:
 	timer.one_shot = true

@@ -14,7 +14,6 @@ speaker_portrait = null
 speech_options = Array[String](["Where are we?", "What's down here?", "What...Are you?", "How did you get here?", "Baseball Cards", "See you later"])
 option_branches = [NodePath("../where are we"), NodePath("../whats down here"), NodePath("../trunk3(a worm)"), NodePath("../how did you get here"), NodePath("../baseball cards"), NodePath("../bye")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="emerge" type="Node" parent="trunk"]
 script = ExtResource("3_s035q")
@@ -28,7 +27,6 @@ speaker_portrait = null
 speech_options = Array[String](["Where are we?", "What's down here?", "How did you get here?", "Baseball Cards", "See you later"])
 option_branches = [NodePath("../where are we"), NodePath("../whats down here"), NodePath("../how did you get here"), NodePath("../baseball cards"), NodePath("../bye")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(1474, 1427)
@@ -37,14 +35,12 @@ speaker_portrait = null
 speech_options = Array[String](["Where are we?", "What's down here?", "What...Are you?", "How did you get here?", "Baseball Cards", "See you later"])
 option_branches = [NodePath("../where are we"), NodePath("../whats down here"), NodePath("../trunk3(a worm)"), NodePath("../how did you get here"), NodePath("../baseball cards"), NodePath("../bye")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="bye" parent="." instance=ExtResource("2_t3q51")]
 position = Vector2(-364, 204)
 speaker_text = Array[String](["Bye!"])
 speaker_portrait = null
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="where are we" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(2, 218)
@@ -52,7 +48,6 @@ speaker_text = Array[String](["Well, like I said before, this is my house."])
 speaker_portrait = null
 option_branches = [NodePath("../where are we2")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="where are we2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(0, 463)
@@ -60,7 +55,6 @@ speaker_text = Array[String](["Up those stairs you'll find the Utility Tunnels, 
 speaker_portrait = null
 option_branches = [NodePath("../where are we3")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="where are we3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(1, 727)
@@ -68,7 +62,6 @@ speaker_text = Array[String](["At least, that's what I've been told."])
 speaker_portrait = null
 option_branches = [NodePath("../where are we4")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="where are we4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(2, 1002)
@@ -76,7 +69,6 @@ speaker_text = Array[String](["And out that gate over there is the Sewers."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="whats down here" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(433, 225)
@@ -84,7 +76,6 @@ speaker_text = Array[String](["Other than you and me?"])
 speaker_portrait = null
 option_branches = [NodePath("../whats down here2")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="whats down here2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(436, 513)
@@ -92,7 +83,6 @@ speaker_text = Array[String](["Well, there's the Opossum Brothers-"])
 speaker_portrait = null
 option_branches = [NodePath("../whats down here3")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="whats down here3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(457, 803)
@@ -100,7 +90,6 @@ speaker_text = Array[String](["They come to visit me sometimes."])
 speaker_portrait = null
 option_branches = [NodePath("../whats down here4")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="whats down here4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(441, 1084)
@@ -108,7 +97,6 @@ speaker_text = Array[String](["Nice folks. They make a good soup."])
 speaker_portrait = null
 option_branches = [NodePath("../whats down here5")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="whats down here5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(447, 1321)
@@ -116,7 +104,6 @@ speaker_text = Array[String](["My brother's also around here somewhere."])
 speaker_portrait = null
 option_branches = [NodePath("../whats down here6")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="whats down here6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(453, 1556)
@@ -124,7 +111,6 @@ speaker_text = Array[String](["Other than that, lots of alligators."])
 speaker_portrait = null
 option_branches = [NodePath("../whats down here7")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="whats down here7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(463, 1799)
@@ -132,7 +118,6 @@ speaker_text = Array[String](["You oughta leave them alone. They're not friendly
 speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="how did you get here" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(205, 335)
@@ -140,7 +125,6 @@ speaker_text = Array[String](["I was here even before Stonesthrow."])
 speaker_portrait = null
 option_branches = [NodePath("../how did you get here2")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="how did you get here2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(210, 603)
@@ -148,7 +132,6 @@ speaker_text = Array[String](["Used to just dig around and munch up all the tast
 speaker_portrait = null
 option_branches = [NodePath("../how did you get here3")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="how did you get here3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(230, 898)
@@ -156,7 +139,6 @@ speaker_text = Array[String](["Once folks moved in topside they asked if us worm
 speaker_portrait = null
 option_branches = [NodePath("../how did you get here4")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="how did you get here4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(244, 1144)
@@ -164,7 +146,6 @@ speaker_text = Array[String](["Obviously me and my brother agreed-"])
 speaker_portrait = null
 option_branches = [NodePath("../how did you get here5")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="how did you get here5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(262, 1448)
@@ -172,7 +153,6 @@ speaker_text = Array[String](["Yep, we dug all these tunnels ourselves."])
 speaker_portrait = null
 option_branches = [NodePath("../how did you get here6")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="how did you get here6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(294, 1683)
@@ -180,7 +160,6 @@ speaker_text = Array[String](["Those were the days..."])
 speaker_portrait = null
 option_branches = [NodePath("../how did you get here7")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="how did you get here7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(288, 1924)
@@ -188,7 +167,6 @@ speaker_text = Array[String](["But unfortunately there was an engineering error-
 speaker_portrait = null
 option_branches = [NodePath("../how did you get here8")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="how did you get here8" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(303, 2161)
@@ -196,7 +174,6 @@ speaker_text = Array[String](["And they didn't build us a way to get out of the 
 speaker_portrait = null
 option_branches = [NodePath("../how did you get here9")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="how did you get here9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(296, 2411)
@@ -204,7 +181,6 @@ speaker_text = Array[String](["They said they were really, REALLY sorry..."])
 speaker_portrait = null
 option_branches = [NodePath("../how did you get here10")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="how did you get here10" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(301, 2654)
@@ -212,7 +188,6 @@ speaker_text = Array[String](["Anyways, it's not so bad."])
 speaker_portrait = null
 option_branches = [NodePath("../how did you get here11")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="how did you get here11" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(300, 2893)
@@ -220,7 +195,6 @@ speaker_text = Array[String](["Got me a TV, a nice hole to sleep in."])
 speaker_portrait = null
 option_branches = [NodePath("../how did you get here12")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="how did you get here12" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(305, 3151)
@@ -228,7 +202,6 @@ speaker_text = Array[String](["What more could you want?"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="baseball cards" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(1166, -96)
@@ -236,7 +209,6 @@ speaker_text = Array[String](["Oh, you play?"])
 speaker_portrait = null
 option_branches = [NodePath("../play cards")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="play cards" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(896, 316)
@@ -245,7 +217,6 @@ option_branches = [NodePath("../no cards"), NodePath("../cards win"), NodePath("
 voice = "low_alien_voice"
 plays_cards = true
 card_deck = Array[int]([9, 14, 9, 11, 14])
-catch_chances = Array[float]([])
 
 [node name="no cards" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(756, 507)
@@ -253,7 +224,6 @@ speaker_text = Array[String](["Hold on, you don't have any cards? Sorry, I mishe
 speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="cards win" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(954, 498)
@@ -261,7 +231,6 @@ speaker_text = Array[String](["Wow! Nice one."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])
 
 [node name="cards lose" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(1141, 504)
@@ -269,4 +238,3 @@ speaker_text = Array[String](["Good game."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
 voice = "low_alien_voice"
-catch_chances = Array[float]([])

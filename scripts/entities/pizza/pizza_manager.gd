@@ -14,9 +14,9 @@ var pizzas_delivered_today : int = 0
 var pizza_checkpoints : Array[int] = [
 	0, #0
 	6, #1
-	15, #2
-	30, #3
-	50, #4
+	12, #2
+	24, #3
+	48, #4
 ]
 
 var max_pizzas : Array[int] = [
@@ -154,7 +154,7 @@ func get_delivery_doors_by_tier(tier: int, num_pizzas : int = 3) -> Array[Node]:
 	selected_delivery_doors = []
 	for door in delivery_doors:
 		if(door.get_tier() <= tier &&
-		door.get_tier() != 0 &&
+		door.get_tier() > 0 &&
 		!doors_delivered_today.has(door)):
 			doors_in_tier.append(door)
 	while(iterator < num_pizzas):

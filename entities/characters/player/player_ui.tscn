@@ -39,13 +39,11 @@ grow_vertical = 2
 script = ExtResource("1_3ah41")
 
 [node name="fps_counter" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_right = 632.0
 offset_bottom = 320.0
 
 [node name="fps" type="Label" parent="fps_counter"]
-visible = false
 layout_mode = 0
 offset_left = 608.0
 offset_top = 303.0
@@ -55,7 +53,6 @@ text = "100"
 label_settings = SubResource("LabelSettings_0y31s")
 
 [node name="location_header" parent="." instance=ExtResource("2_6r8u7")]
-visible = false
 
 [node name="money_tracker" type="Control" parent="."]
 anchors_preset = 0

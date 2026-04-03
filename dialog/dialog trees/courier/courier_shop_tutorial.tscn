@@ -14,13 +14,11 @@ speaker_text = Array[String](["What's up?"])
 speech_options = Array[String](["Can you remind me how to get to the West Side?", "Can I get some advice on handling mobsters?", "Nevermind"])
 option_branches = [NodePath("../leaving central"), NodePath("../ready_1"), NodePath("../nevermind")]
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="nevermind" parent="." instance=ExtResource("2_np1u4")]
 position = Vector2(-359, 116)
 speaker_text = Array[String](["Whatever."])
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="ready_1" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(416, 437)
@@ -28,48 +26,41 @@ speaker_text = Array[String](["Sure. We can even do a practice session, if you w
 speech_options = Array[String](["Let's practice.", "What should I know about mobsters?", "Nevermind."])
 option_branches = [NodePath("../ready_2"), NodePath("../what should I know"), NodePath("../nevermind")]
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="leaving central" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(732, 34)
 speaker_text = Array[String](["It's real easy."])
 option_branches = [NodePath("../leaving central2")]
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="leaving central2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(922, 314)
 speaker_text = Array[String](["Walk out the door and follow the street North, towards your apartment."])
 option_branches = [NodePath("../leaving central3")]
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="leaving central3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(986, 617)
 speaker_text = Array[String](["When you see the rail overpass, follow it to the left."])
 option_branches = [NodePath("../leaving central4")]
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="leaving central4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(1073, 955)
 speaker_text = Array[String](["If you keep going left under the rail line, you'll see a metal gate."])
 option_branches = [NodePath("../leaving central5")]
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="leaving central5" parent="." instance=ExtResource("2_np1u4")]
 position = Vector2(1066, 1272)
 speaker_text = Array[String](["That will take you to the West Side."])
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="ready_2" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_np1u4")]
 position = Vector2(705, 814)
 speaker_text = Array[String](["Alright. Follow me."])
 voice = "sine_voice"
 dialog_script = NodePath("move_to_basement")
-catch_chances = Array[float]([])
 
 [node name="move_to_basement" type="Node" parent="ready_2"]
 script = ExtResource("3_np1u4")
@@ -81,101 +72,86 @@ position = Vector2(32, 445)
 speaker_text = Array[String](["Mobsters will only pick a fight with you in two circumstances:"])
 option_branches = [NodePath("../what should I know2")]
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="what should I know2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(0, 668)
 speaker_text = Array[String](["You either go up to them and pick a fight with them first-"])
 option_branches = [NodePath("../what should I know3")]
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="what should I know3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(7, 927)
 speaker_text = Array[String](["-or they see you holding a pizza."])
 option_branches = [NodePath("../what should I know4")]
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="what should I know4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(64, 1152)
 speaker_text = Array[String](["In which case they will open fire and chase you down for it."])
 option_branches = [NodePath("../what should I know6")]
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="what should I know6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(0, 1629)
 speaker_text = Array[String](["If you drop the pizza, they will try to pick it up."])
 option_branches = [NodePath("../what should I know7")]
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="what should I know7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(7, 1842)
 speaker_text = Array[String](["Then they'll try to take it to the nearest watering hole and eat it."])
 option_branches = [NodePath("../what should I know8")]
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="what should I know8" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(0, 2081)
 speaker_text = Array[String](["Other than that, you gotta remember: mobsters are all bluster."])
 option_branches = [NodePath("../what should I know9")]
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="what should I know9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(7, 2312)
 speaker_text = Array[String](["If you whack 'em over the head with a bottle or something-"])
 option_branches = [NodePath("../what should I know10")]
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="what should I know10" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(0, 2542)
 speaker_text = Array[String](["-they'll go down for a few seconds."])
 option_branches = [NodePath("../what should I know11")]
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="what should I know11" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(0, 2765)
 speaker_text = Array[String](["Don't tell Cook I told you this..."])
 option_branches = [NodePath("../what should I know12")]
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="what should I know12" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(0, 3017)
 speaker_text = Array[String](["...But in a pinch you can even whack 'em with the pizza box."])
 option_branches = [NodePath("../what should I know13")]
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="what should I know13" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(7, 3288)
 speaker_text = Array[String](["You might have noticed the boxes are made out of plywood."])
 option_branches = [NodePath("../what should I know14")]
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="what should I know14" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(0, 3508)
 speaker_text = Array[String](["There's a good reason for that. They can take a few hits."])
 option_branches = [NodePath("../what should I know15")]
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="what should I know15" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(7, 3773)
 speaker_text = Array[String](["But if they take more than a few, customers will probably want a refund."])
 option_branches = [NodePath("../what should I know16")]
 voice = "sine_voice"
-catch_chances = Array[float]([])
 
 [node name="what should I know16" parent="." instance=ExtResource("2_np1u4")]
 position = Vector2(7, 3995)
 speaker_text = Array[String](["Anyways, the rest will be easier to explain in practice."])
 voice = "sine_voice"
-catch_chances = Array[float]([])

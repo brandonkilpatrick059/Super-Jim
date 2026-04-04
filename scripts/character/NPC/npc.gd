@@ -471,6 +471,7 @@ func set_immobilized(input : bool):
 func load_from_dictionary(load_dictionary : Dictionary):
 	#global_position = Vector2(load_dictionary.get("pos_x"), load_dictionary.get("pos_y"))
 	schedules_index = int(load_dictionary.get("schedules_index"))
+	teleport_and_update()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

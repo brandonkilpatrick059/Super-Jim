@@ -53,6 +53,7 @@ func save_game():
 	save_npcs()
 	save_doors()
 	save_comments()
+	save_tip_triggers()
 	save_crystals()
 	save_cash()
 	save_file.close()

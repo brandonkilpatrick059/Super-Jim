@@ -165,7 +165,7 @@ func update():
 func update_branching_dialog():
 	if(schedules.size() > 0):
 		if(perceptions.current_stage_mark.get_branching_dialog() != null):
-			if(global_position.distance_to(perceptions.current_stage_mark.global_position) <= 8):
+			if(global_position.distance_to(perceptions.current_stage_mark.global_position) <= nav_target_reached_distance*2):
 				branching_dialog = perceptions.current_stage_mark.get_branching_dialog()
 		else:
 			branching_dialog = null
@@ -179,7 +179,7 @@ func get_is_animatronic():
 	return is_animatronic
 
 func interact(stop_bypass : bool = false):
-	if(branching_dialog != null && (current_v.length() < 1 || stop_bypass)):
+	if(branching_dialog != null && (linear_velocity.length() < 1 || stop_bypass)):
 		if(!is_animatronic && !no_face_player):
 			face_player()
 		dialog_manager = dialog.instantiate()
@@ -409,7 +409,8 @@ func _on_reach_stage_mark():
 	update_branching_dialog()
 
 func _on_leave_stage_mark():
-	branching_dialog = null
+	pass
+	#branching_dialog = null
 
 func face_player():
 	var vector_to_player = global_position.direction_to(player_ref.global_position)

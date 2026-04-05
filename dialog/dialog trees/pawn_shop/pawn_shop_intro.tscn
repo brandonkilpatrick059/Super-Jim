@@ -44,7 +44,7 @@ voice = "sine_voice"
 
 [node name="trunk7" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_1evsm")]
 position = Vector2(82, 1379)
-speaker_text = Array[String](["Let me know if you see something you like."])
+speaker_text = Array[String](["All purchases are FINAL, by the way."])
 speaker_portrait = null
 voice = "sine_voice"
 dialog_script = NodePath("move_to_active")

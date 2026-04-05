@@ -85,6 +85,5 @@ visible = false
 z_index = -2
 position = Vector2(0, 2)
 sprite_frames = ExtResource("10_sybl7")
-animation = &"down"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

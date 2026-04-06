@@ -6,8 +6,10 @@ extends Node2D
 @onready var _wardrobe_slot = $wardrobe_slot
 @onready var _tv_slot = $tv_slot
 @onready var _lamp_slot = $lamp_slot
+@onready var _cd_player_slot = $cd_player_slot
 
 var has_tv : bool = false
+var has_cd_player : bool = false
 
 func set_bed_slot(bed : Node):
 	if(_bed_slot.get_child_count() > 0):
@@ -25,6 +27,8 @@ func add_tv():
 func set_desk_slot(desk : Node):
 	if(_desk_slot.get_child_count() > 0):
 		_desk_slot.get_children()[0].queue_free()
+	if(_cd_player_slot.get_child_count() > 0):
+		_cd_player_slot.get_children()[0].position = Vector2(0,14)
 	_desk_slot.add_child(desk)
 	desk.position = Vector2(0,0)
 
@@ -35,6 +39,17 @@ func set_night_stand_slot(night_stand : Node):
 		_lamp_slot.get_children()[0].position = Vector2(0,14)
 	_night_stand_slot.add_child(night_stand)
 	night_stand.position = Vector2(0,-16)
+
+func add_cd_player():
+	has_cd_player = true
+	var cd_player = load("res://entities/props/static props/apartment/cd_player.tscn")
+	var new_cd_player = cd_player.instantiate()
+	_cd_player_slot.add_child(new_cd_player)
+	new_cd_player.position = Vector2(0,0)
+	if(_desk_slot.get_child_count() > 0):
+		new_cd_player.position = Vector2(0,14)
+	else:
+		new_cd_player.position = Vector2(0,20)
 
 func set_lamp_slot(lamp : Node):
 	if(_lamp_slot.get_child_count() > 0):
@@ -79,6 +94,7 @@ func get_save_dictionary() -> Dictionary:
 		"night_stand_slot" = night_stand_slot,
 		"wardrobe_slot" = wardrobe_slot,
 		"has_tv" = has_tv,
+		"has_cd_player" = has_cd_player,
 		"lamp_slot" = lamp_slot
 	}
 	
@@ -103,15 +119,9 @@ func load_from_dictionary(load_dictionary : Dictionary):
 		set_wardrobe_slot(wardrobe)
 	if(load_dictionary.get("has_tv")):
 		add_tv()
+	if(load_dictionary.get("has_cd_player")):
+		add_cd_player()
 	if(load_dictionary.get("lamp_slot") != ""):
 		var load_str = String(load_dictionary.get("lamp_slot"))
 		var lamp : Node = load(load_str).instantiate()
 		set_lamp_slot(lamp)
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

@@ -254,6 +254,10 @@ func _physics_process(delta: float):
 			closing = false
 			_animated_sprite.play(("closed"))
 			_collision_shape.set_deferred("disabled", false)
-			if(close_sound != null):
+			var player_ref = get_tree().get_first_node_in_group("player")
+			if(close_sound != null &&
+			#we need this or this sound plays once for each door at either end
+			#of a teleporter (IE- it plays twice instead of once)
+				!player_ref.control_is_frozen()):
 				_sound_player.stream = close_sound
 				_sound_player.play()

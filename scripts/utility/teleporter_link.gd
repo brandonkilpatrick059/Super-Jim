@@ -209,6 +209,8 @@ func enter():
 			player_ref.set_current_v(Vector2(0,linked_teleporter.exit_y_push))
 		linked_teleporter.begin_loading()
 		entering = false
+		var main_fx_player = get_tree().get_first_node_in_group("main_fx_player")
+		main_fx_player.fade_in_effects_bus()
 
 func begin_loading():
 	loading = true
@@ -269,6 +271,8 @@ func teleport_player():
 	#player_ref.get_camera_ref().fade_out(0.1)
 	player_ref.stop()
 	player_ref.set_control_frozen(true)
+	var main_fx_player = get_tree().get_first_node_in_group("main_fx_player")
+	main_fx_player.fade_out_effects_bus()
 	#player_ref.disable_collision()
 	if(opening_ui_interact):
 		player_ref.opening_ui_invisible()

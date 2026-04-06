@@ -47,6 +47,8 @@ func set_up_ui():
 
 func interact():
 	if(on && timer.is_stopped()):
+		var main_fx_player = get_tree().get_first_node_in_group("main_fx_player")
+		main_fx_player.fade_out_diagetic_music_bus()
 		player_ref = get_tree().get_first_node_in_group("player")
 		ui_ref = ui.instantiate()
 		player_ref.set_control_frozen(true)
@@ -72,6 +74,8 @@ func exit_ui():
 	var camera_ref = player_ref.get_camera_ref()
 	audio_player_2d.play()
 	camera_ref.fade_in()
+	var main_fx_player = get_tree().get_first_node_in_group("main_fx_player")
+	main_fx_player.fade_in_diagetic_music_bus()
 
 func _physics_process(delta: float) -> void:
 	if(on):

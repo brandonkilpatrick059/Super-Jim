@@ -29,7 +29,6 @@ var stream_map : Array[String] = [
 ]
 
 func _ready() -> void:
-	audio_player_2d.bus = "Music"
 	timer.one_shot = true
 	add_child(timer)
 	if(!can_interact):

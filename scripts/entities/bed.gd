@@ -192,6 +192,8 @@ func handle_sleep_process():
 				player_ref.set_control_frozen(false)
 				player_ref.set_movement_frozen(false)
 				player_ref.set_ui_visible()
+				var main_fx_player = get_tree().get_first_node_in_group("main_fx_player")
+				main_fx_player.fade_in_diagetic_music_bus()
 	update_fade_alpha()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -204,6 +206,8 @@ func _process(delta):
 		handle_sleep_process()
 
 func begin_sleeping():
+	var main_fx_player = get_tree().get_first_node_in_group("main_fx_player")
+	main_fx_player.fade_out_diagetic_music_bus()
 	player_ref.set_control_frozen(true)
 	player_ref.complete_stop()
 	player_ref.set_movement_frozen(true)

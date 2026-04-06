@@ -17,6 +17,7 @@ offset = Vector2(0, -4)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 max_distance = 400.0
+bus = &"Diagetic_Music"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." node_paths=PackedStringArray("interact_node") groups=["interactable"]]
 position = Vector2(0, 2)

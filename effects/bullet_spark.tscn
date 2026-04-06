@@ -19,5 +19,6 @@ shape = SubResource("CircleShape2D_uok2e")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 max_distance = 350.0
+bus = &"Effects"
 script = ExtResource("3_cuj5j")
 stream_paths = Array[String](["res://audio/soundFX/ricochet_1.ogg", "res://audio/soundFX/ricochet_2.ogg", "res://audio/soundFX/ricochet_3.ogg", "res://audio/soundFX/ricochet_4.ogg", "res://audio/soundFX/ricochet_5.ogg"])

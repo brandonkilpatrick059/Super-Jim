@@ -60,7 +60,7 @@ func handle_selection():
 		pass
 	elif(select_index == 1): #music volume
 		pass
-	elif(select_index == 2): #effects volume
+	elif(select_index == 2): #effects master volume
 		pass
 	elif(select_index == 3): #back
 		back_selected()

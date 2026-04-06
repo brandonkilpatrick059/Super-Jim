@@ -154,6 +154,8 @@ var items : Array[String] = []
 var item_index : int = 0
 var shown_items_tip : bool = false
 
+var owned_music : Array[String] = ["chill_out","bandit"]
+
 var default_linear_damp : float = 6.0
 var skating_linear_damp : float = 0.1
 var skating : bool = false
@@ -426,6 +428,9 @@ func get_owned_tops() -> Array[String]:
 
 func get_owned_bottoms() -> Array[String]:
 	return owned_bottoms
+
+func get_owned_music() -> Array[String]:
+	return owned_music
 
 #called when the player starts a new game
 func new_game():

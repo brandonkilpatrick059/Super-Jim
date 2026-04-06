@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://besco5fhesc4m"]
+
+[ext_resource type="Texture2D" uid="uid://cllecfrbs2upa" path="res://sprites/spritesheets/props/cd_player.png" id="1_xptob"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0se4i"]
+atlas = ExtResource("1_xptob")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elxfy"]
+atlas = ExtResource("1_xptob")
+region = Rect2(0, 0, 24, 24)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0se4i")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_elxfy")
+}],
+"loop": true,
+"name": &"inactive",
+"speed": 5.0
+}]

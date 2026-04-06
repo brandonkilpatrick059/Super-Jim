@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://b4xj5erghus3y"]
+
+[ext_resource type="Script" uid="uid://cq8me0j1vxyxw" path="res://scripts/interface/cd_player_interface.gd" id="1_2egy8"]
+[ext_resource type="Texture2D" uid="uid://dg4jq8sr8kk1d" path="res://sprites/interface/cd_player_interface.png" id="2_i8ahu"]
+[ext_resource type="Texture2D" uid="uid://tky7m7ktiahc" path="res://sprites/interface/compass_arrow.png" id="3_h2t3j"]
+[ext_resource type="Texture2D" uid="uid://cmspinlcctw6c" path="res://sprites/interface/cd_player_covers/chill_out_cover.png" id="4_h2t3j"]
+[ext_resource type="Texture2D" uid="uid://dxyk8ybtms8im" path="res://sprites/interface/cd_player_covers/bandit_cover.png" id="5_2egy8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rtgq2"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yp8yy"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2egy8"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q3gtc"]
+light_mode = 1
+
+[node name="cd_player_interface" type="Node2D"]
+z_index = 20
+script = ExtResource("1_2egy8")
+
+[node name="background" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_rtgq2")
+texture = ExtResource("2_i8ahu")
+
+[node name="arrows" type="Node2D" parent="."]
+
+[node name="left" type="Sprite2D" parent="arrows"]
+material = SubResource("CanvasItemMaterial_yp8yy")
+position = Vector2(-59, 0)
+scale = Vector2(-1, 1)
+texture = ExtResource("3_h2t3j")
+
+[node name="right" type="Sprite2D" parent="arrows"]
+material = SubResource("CanvasItemMaterial_yp8yy")
+position = Vector2(59, 0)
+texture = ExtResource("3_h2t3j")
+
+[node name="covers" type="Node2D" parent="."]
+
+[node name="chill_out" type="Sprite2D" parent="covers"]
+visible = false
+material = SubResource("CanvasItemMaterial_2egy8")
+texture = ExtResource("4_h2t3j")
+
+[node name="bandit" type="Sprite2D" parent="covers"]
+visible = false
+material = SubResource("CanvasItemMaterial_q3gtc")
+texture = ExtResource("5_2egy8")

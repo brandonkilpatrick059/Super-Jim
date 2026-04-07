@@ -53,7 +53,8 @@ func pause():
 
 func unpause():
 	if(paused):
-		if(current_stream != ""):
+		if(current_stream != "" &&
+		current_playback_position != 0.0):
 			play(current_playback_position)
 		paused = false
 

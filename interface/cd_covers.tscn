@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://hk4ikllxggau"]
+
+[ext_resource type="Texture2D" uid="uid://cmspinlcctw6c" path="res://sprites/interface/cd_player_covers/chill_out_cover.png" id="1_cvqx0"]
+[ext_resource type="Script" uid="uid://d3oc8utpkdsku" path="res://scripts/interface/cd_covers.gd" id="1_hol4d"]
+[ext_resource type="Texture2D" uid="uid://dxyk8ybtms8im" path="res://sprites/interface/cd_player_covers/bandit_cover.png" id="2_hol4d"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2egy8"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q3gtc"]
+light_mode = 1
+
+[node name="covers" type="Node2D"]
+script = ExtResource("1_hol4d")
+
+[node name="chill_out" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_2egy8")
+texture = ExtResource("1_cvqx0")
+
+[node name="bandit" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_q3gtc")
+texture = ExtResource("2_hol4d")

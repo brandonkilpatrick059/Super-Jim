@@ -13,8 +13,4 @@ func _ready() -> void:
 		arrows.visible = false
 
 func set_cover(key : String):
-	var children = covers.get_children()
-	for child in children:
-		child.visible = false
-		if(child.name == key):
-			child.visible = true
+	covers.set_cover(key)

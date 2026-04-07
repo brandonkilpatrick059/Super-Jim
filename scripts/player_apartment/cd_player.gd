@@ -87,8 +87,9 @@ func interact():
 func update_ui():
 	var player_ref = get_tree().get_first_node_in_group("player")
 	var owned_music = player_ref.get_owned_music()
-	var current_key = owned_music[music_index]
-	ui_ref.set_cover(current_key)
+	if(owned_music.size() > 0):
+		var current_key = owned_music[music_index]
+		ui_ref.set_cover(current_key)
 
 func handle_input():
 	if(ui_active && timer.is_stopped()):

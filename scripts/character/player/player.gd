@@ -36,6 +36,8 @@ var no_clip = false
 var dev_zoom_level = 0
 const no_clip_speed = 3200000
 
+var get_cd_interface = preload("res://interface/get_cd_interface.tscn")
+
 var player_die = preload("res://entities/characters/player/player_die.tscn") 
 var card_binder = preload("res://baseball/card_binder.tscn")
 var die_material = preload("res://entities/characters/player/die_material.tres")
@@ -154,7 +156,7 @@ var items : Array[String] = []
 var item_index : int = 0
 var shown_items_tip : bool = false
 
-var owned_music : Array[String] = ["chill_out","bandit"]
+var owned_music : Array[String] = []
 
 var default_linear_damp : float = 6.0
 var skating_linear_damp : float = 0.1
@@ -300,6 +302,14 @@ func wake_up():
 		get_camera_ref().fade_out()
 		timer_load_in.start(1)
 		waking = true
+
+func add_owned_cd(key : String):
+	var get_cd = get_cd_interface.instantiate()
+	get_cd.global_position = get_camera_ref().get_screen_center_position()
+	get_parent().add_child(get_cd)
+	get_cd.play(key)
+	if(!owned_music.has(key)):
+		owned_music.append(key)
 
 #check_light
 func light_is_on_screen():
@@ -473,6 +483,7 @@ func get_save_dictionary() -> Dictionary:
 		"owned_hats" : owned_hats,
 		"owned_tops" : owned_tops,
 		"owned_bottoms" : owned_bottoms,
+		"owned_music" : owned_music,
 		"hats_index" : hats_index,
 		"tops_index" : tops_index,
 		"bottoms_index" : bottoms_index,
@@ -548,7 +559,15 @@ func load_from_dictionary(load_dictionary : Dictionary):
 	while(index < load_bottoms.size()):
 		append_owned_bottom(String(load_bottoms[index]))
 		index = index + 1
-	
+		
+	var load_music = load_dictionary.get("owned_music")
+	index = 0
+	while(index < load_music.size()):
+		var loaded_key_str = String(load_music[index])
+		if(!owned_music.has(loaded_key_str)):
+			owned_music.append(loaded_key_str)
+		index = index + 1
+		
 	var hat = load_dictionary.get("hat_spriteframes")
 	var top = load_dictionary.get("top_spriteframes")
 	var bottom = load_dictionary.get("bottom_spriteframes")
@@ -848,7 +867,7 @@ func handle_dev():
 	#Occluders have been gone for awhile basically use this as a
 	#generic "dev button" to test code I guess
 	if Input.is_action_just_pressed("dev_toggle_occluders"):
-		_camera.shake(8)
+		add_owned_cd("chill_out")
 	if Input.is_action_just_pressed("dev_toggle_fps"):
 		_ui.toggle_fps_counter()
 	if Input.is_action_just_pressed("dev_advance_time"):

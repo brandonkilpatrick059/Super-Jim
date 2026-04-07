@@ -37,6 +37,7 @@ func _ready() -> void:
 	add_child(rise_up_timer)
 	add_child(spread_out_timer)
 	add_child(sound_player)
+	sound_player.bus = "Effects"
 	if(test_mode):
 		open(0,18,"green")
 
@@ -123,5 +124,6 @@ func _physics_process(delta: float) -> void:
 			spread_out_timer.start(step_secs)
 		else:
 			spreading = false
-	if(Input.is_action_just_pressed("interact")):
+			done = true
+	if(done && Input.is_action_just_pressed("interact")):
 		close()

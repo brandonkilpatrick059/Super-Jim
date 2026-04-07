@@ -14,7 +14,7 @@ extends Node
 
 @export var save_tag : String = ""
 
-var has_played = false
+var has_played : bool = false
 
 func body_entered_trigger(body : Node2D):
 	if(play_once && has_played):
@@ -47,9 +47,9 @@ func get_save_dictionary() -> Dictionary:
 	var save_dictionary = {
 		"type" : "tip_trigger",
 		"save_tag" : get_save_tag(),
-		"has_has_played" : has_played 
+		"has_played" : has_played 
 	}
 	return save_dictionary
 
 func load_from_dictionary(load_dictionary : Dictionary):
-	has_played = load_dictionary.get("has_played")
+	has_played = bool(load_dictionary.get("has_played"))

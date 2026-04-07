@@ -362,8 +362,10 @@ func load_in():
 		var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 		#time_keeper.set_clock(9)
 		time_keeper.unlock_time()
-		var stream = load("res://audio/music/sleep theme.wav")
-		play_sound(stream)
+		var main_music_player = get_tree().get_first_node_in_group("main_music_player")
+		main_music_player.change_stream("res://audio/music/sleep theme.wav")
+		#var stream = load("res://audio/music/sleep theme.wav")
+		#play_sound(stream)
 
 func set_and_update_cloths(hat : int, top : int, bottom : int):
 	hats_index = hat

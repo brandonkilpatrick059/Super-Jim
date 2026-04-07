@@ -6,7 +6,7 @@ var fading_out_effects = false
 
 var timer := Timer.new()
 
-var fade_step = 1.0
+var fade_step = 0.5
 var time_step = 0.006
 
 var diagetic_music_bus_index = 4

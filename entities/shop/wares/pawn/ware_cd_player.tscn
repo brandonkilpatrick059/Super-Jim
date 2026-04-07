@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://wsqacxvxqosj"]
+
+[ext_resource type="Script" uid="uid://c2eauyl5k8il2" path="res://scripts/shop/ware.gd" id="1_hbgrf"]
+[ext_resource type="Script" uid="uid://5iuk87gtk5uo" path="res://scripts/shop/ware_cd_player.gd" id="2_hbgrf"]
+[ext_resource type="Texture2D" uid="uid://cnytepfxk2gm0" path="res://sprites/props/cd_player_static.png" id="3_hbgrf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nose7"]
+size = Vector2(24, 14)
+
+[node name="WareCdPlayer" type="Node2D"]
+script = ExtResource("1_hbgrf")
+cost = 20
+ware_name = "CD Player"
+
+[node name="script_node" type="Node" parent="."]
+script = ExtResource("2_hbgrf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -28)
+texture = ExtResource("3_hbgrf")
+offset = Vector2(0, 24)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_nose7")

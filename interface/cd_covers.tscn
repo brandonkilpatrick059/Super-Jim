@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://hk4ikllxggau"]
+[gd_scene load_steps=7 format=3 uid="uid://hk4ikllxggau"]
 
 [ext_resource type="Texture2D" uid="uid://cmspinlcctw6c" path="res://sprites/interface/cd_player_covers/chill_out_cover.png" id="1_cvqx0"]
 [ext_resource type="Script" uid="uid://d3oc8utpkdsku" path="res://scripts/interface/cd_covers.gd" id="1_hol4d"]
 [ext_resource type="Texture2D" uid="uid://dxyk8ybtms8im" path="res://sprites/interface/cd_player_covers/bandit_cover.png" id="2_hol4d"]
+[ext_resource type="Texture2D" uid="uid://dxomgg7ruw6cy" path="res://sprites/interface/cd_player_covers/the_good_stuff.png" id="4_vilbl"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2egy8"]
 light_mode = 1
@@ -22,3 +23,7 @@ texture = ExtResource("1_cvqx0")
 visible = false
 material = SubResource("CanvasItemMaterial_q3gtc")
 texture = ExtResource("2_hol4d")
+
+[node name="the_good_stuff" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_q3gtc")
+texture = ExtResource("4_vilbl")

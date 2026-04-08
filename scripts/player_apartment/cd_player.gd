@@ -20,11 +20,13 @@ var giving_control_back : bool = false
 
 var music_keys : Array[String] = [
 	"chill_out",
-	"bandit"
+	"bandit",
+	"the_good_stuff"
 ]
 
 var stream_map : Array[String] = [
 	"res://audio/music/chill_out_theme.wav",
+	"res://audio/music/bandit_game_song.wav",
 	"res://audio/music/bandit_game_song.wav"
 ]
 

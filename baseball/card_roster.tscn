@@ -187,26 +187,24 @@ visible = false
 team = "yellow"
 card_name = "Frack MacBack"
 portrait_path = "res://sprites/baseball/portraits/test_7_2.png"
-description = "+2 [img]res://sprites/baseball/s_sym.png[/img] to next card 
-+2 [img]res://sprites/baseball/p_sym.png[/img] to next card"
+description = "+2 [img]res://sprites/baseball/s_sym.png[/img] to next card"
 strength_rating = 12
 hp = 5
 shield = 0
-power = 2
+power = 5
 flat_buff_shield_next = 2
-flat_buff_damage_next = 2
 
 [node name="yellow_17" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "yellow"
 card_name = "Gordy Feet"
 portrait_path = "res://sprites/baseball/portraits/test_9_2.png"
-description = "+3 [img]res://sprites/baseball/s_sym.png[/img] each kill"
+description = "+1 [img]res://sprites/baseball/s_sym.png[/img] each kill"
 strength_rating = 12
 hp = 3
 shield = 3
 power = 3
-buff_shield_on_kill = 3
+buff_shield_on_kill = 1
 
 [node name="yellow_18" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -217,7 +215,6 @@ description = "+3 [img]res://sprites/baseball/p_sym.png[/img] each kill"
 strength_rating = 12
 hp = 4
 shield = 0
-power = 3
 buff_dmg_on_kill = 3
 
 [node name="gray_19" parent="." instance=ExtResource("2_yiqgv")]

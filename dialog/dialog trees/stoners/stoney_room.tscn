@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk85o3bfgtdai"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_oktv5"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_3tkja"]
+[ext_resource type="Script" uid="uid://cttd23b57tk53" path="res://scripts/utility/run_scripts/give_cd.gd" id="3_es7wg"]
+
+[node name="stoney_dialog" type="Node2D"]
+script = ExtResource("1_oktv5")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_3tkja")]
+speaker_text = Array[String](["Salutations, friend."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_3tkja")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["Welcome to my riff oasis."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "sine_voice"
+
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_3tkja")]
+position = Vector2(14, 506)
+speaker_text = Array[String](["Immerse yourself in these face melting fuzz tones..."])
+speaker_portrait = null
+speech_options = Array[String](["Far out.", "What a bunch of losers...", "May I partake in The Good Stuff?"])
+option_branches = [NodePath("../far_out"), NodePath("../losers"), NodePath("../good_stuff")]
+voice = "sine_voice"
+
+[node name="far_out" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_3tkja")]
+position = Vector2(-284, 865)
+speaker_text = Array[String](["It gets even farther out."])
+speaker_portrait = null
+option_branches = [NodePath("../far_out2")]
+voice = "sine_voice"
+
+[node name="far_out2" parent="." instance=ExtResource("2_3tkja")]
+position = Vector2(-276, 1190)
+speaker_text = Array[String](["Just listen..."])
+speaker_portrait = null
+voice = "sine_voice"
+
+[node name="losers" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_3tkja")]
+position = Vector2(27, 865)
+speaker_text = Array[String](["Huh? What's your problem?"])
+speaker_portrait = null
+option_branches = [NodePath("../losers2")]
+voice = "sine_voice"
+
+[node name="losers2" parent="." instance=ExtResource("2_3tkja")]
+position = Vector2(27, 1199)
+speaker_text = Array[String](["If you're not into it, leave."])
+speaker_portrait = null
+voice = "sine_voice"
+
+[node name="good_stuff" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_3tkja")]
+position = Vector2(344, 865)
+speaker_text = Array[String](["Oh, I see-"])
+speaker_portrait = null
+option_branches = [NodePath("../good_stuff2")]
+voice = "sine_voice"
+
+[node name="good_stuff2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_3tkja")]
+position = Vector2(408, 1225)
+speaker_text = Array[String](["You want to show the way to new acolytes."])
+speaker_portrait = null
+option_branches = [NodePath("../good_stuff3")]
+voice = "sine_voice"
+
+[node name="good_stuff3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_3tkja")]
+position = Vector2(424, 1554)
+speaker_text = Array[String](["You can have my friend's CD."])
+speaker_portrait = null
+option_branches = [NodePath("../good_stuff4")]
+voice = "sine_voice"
+
+[node name="good_stuff4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_3tkja")]
+position = Vector2(424, 1845)
+speaker_text = Array[String](["He's totally zonked out haha."])
+speaker_portrait = null
+option_branches = [NodePath("../good_stuff5")]
+voice = "sine_voice"
+
+[node name="good_stuff5" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_3tkja")]
+position = Vector2(417, 2187)
+speaker_text = Array[String](["Godspeed, brave wanderer."])
+speaker_portrait = null
+voice = "sine_voice"
+dialog_script = NodePath("add_the_good_stuff")
+
+[node name="add_the_good_stuff" type="Node" parent="good_stuff5"]
+script = ExtResource("3_es7wg")
+cd_key = "the_good_stuff"

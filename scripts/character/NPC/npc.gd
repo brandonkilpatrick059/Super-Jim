@@ -21,6 +21,8 @@ const alert_passive = "alert_passive"
 @export var no_face_player : bool = false
 @export var alt_dlg_bubble_path : String = ""
 
+@export var extended_states : Array[PackedScene] = []
+
 #assign this with a node that has a script you wanna
 #on the event of a collision
 @export var body_enter_script_node : Node = null 
@@ -106,6 +108,11 @@ func _ready():
 		player_ref = get_tree().get_nodes_in_group("player")[0]
 	else:
 		queue_redraw()
+	
+	for scene in extended_states:
+		var state = scene.instantiate()
+		_ai_state_machine.add_child(state)
+		state.ai_state_machine = _ai_state_machine
 
 func set_up_character_base():
 	if(!is_animatronic):

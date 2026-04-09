@@ -1,0 +1,172 @@
+[gd_scene load_steps=5 format=3 uid="uid://52ufe6ahduuk"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_nj2e4"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_cbo40"]
+[ext_resource type="Script" uid="uid://cqwe5qbypt3gw" path="res://scripts/utility/run_conditionals/has_cd.gd" id="3_e1cf2"]
+[ext_resource type="Script" uid="uid://ddpgpidwo6qye" path="res://scripts/utility/run_scripts/give_item.gd" id="4_syl0d"]
+
+[node name="lia_skateboard" type="Node2D"]
+script = ExtResource("1_nj2e4")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+speaker_text = Array[String](["I wish I knew how to ride this longboard..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["I spent all my money on it."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "sine_voice"
+
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+position = Vector2(15, 541)
+speaker_text = Array[String](["I thought if I worked really hard at it I could go pro."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk4")]
+voice = "sine_voice"
+
+[node name="trunk4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+position = Vector2(0, 844)
+speaker_text = Array[String](["But now I'm broke, and I can't even figure out how to ride it."])
+speaker_portrait = null
+option_branches = [NodePath("../guy_at_the_store")]
+voice = "sine_voice"
+
+[node name="guy_at_the_store" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+position = Vector2(395, 528)
+speaker_text = Array[String](["The guy at the store said:"])
+speaker_portrait = null
+option_branches = [NodePath("../guy_at_the_store2")]
+voice = "sine_voice"
+
+[node name="guy_at_the_store2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+position = Vector2(385, 908)
+speaker_text = Array[String](["You have to DASH, and then jump on."])
+speaker_portrait = null
+option_branches = [NodePath("../guy_at_the_store3")]
+voice = "sine_voice"
+
+[node name="guy_at_the_store3" parent="." node_paths=PackedStringArray("option_branches", "conditional_option_script") instance=ExtResource("2_cbo40")]
+position = Vector2(34, 1042)
+speaker_text = Array[String](["But I don't really know what that means..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk5_no_cd"), NodePath("../trunk6_has_cd2")]
+voice = "sine_voice"
+conditional_option_script = NodePath("check_has_cd")
+
+[node name="check_has_cd" type="Node" parent="guy_at_the_store3"]
+script = ExtResource("3_e1cf2")
+cd_key = "the_good_stuff"
+
+[node name="trunk5_no_cd" parent="." instance=ExtResource("2_cbo40")]
+position = Vector2(-174, 1173)
+speaker_text = Array[String](["I'd gladly trade it for a little bit of The Good Stuff..."])
+speaker_portrait = null
+voice = "sine_voice"
+
+[node name="trunk6_has_cd2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+position = Vector2(292, 1211)
+speaker_text = Array[String](["I'd gladly trade it for a little bit of The Good Stuff..."])
+speaker_portrait = null
+speech_options = Array[String](["Bummer.", "Here, have this CD."])
+option_branches = [NodePath("../bummer"), NodePath("../give_cd")]
+voice = "sine_voice"
+
+[node name="bummer" parent="." instance=ExtResource("2_cbo40")]
+position = Vector2(200, 1580)
+speaker_text = Array[String](["Yeah.."])
+speaker_portrait = null
+voice = "sine_voice"
+
+[node name="give_cd" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+position = Vector2(534, 1580)
+speaker_text = Array[String](["What's that?"])
+speaker_portrait = null
+option_branches = [NodePath("../give_cd2")]
+voice = "sine_voice"
+
+[node name="give_cd2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+position = Vector2(552, 1892)
+speaker_text = Array[String](["..."])
+speaker_portrait = null
+option_branches = [NodePath("../give_cd3")]
+voice = "sine_voice"
+
+[node name="give_cd3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+position = Vector2(566, 2270)
+speaker_text = Array[String](["Yeah..."])
+speaker_portrait = null
+option_branches = [NodePath("../give_cd4")]
+voice = "sine_voice"
+
+[node name="give_cd4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+position = Vector2(566, 2571)
+speaker_text = Array[String](["Hell yeah..."])
+speaker_portrait = null
+option_branches = [NodePath("../give_cd5")]
+voice = "sine_voice"
+
+[node name="give_cd5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+position = Vector2(566, 2855)
+speaker_text = Array[String](["These guitars..."])
+speaker_portrait = null
+option_branches = [NodePath("../give_cd6")]
+voice = "sine_voice"
+
+[node name="give_cd6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+position = Vector2(566, 3137)
+speaker_text = Array[String](["That bass line..."])
+speaker_portrait = null
+option_branches = [NodePath("../give_cd7")]
+voice = "sine_voice"
+
+[node name="give_cd7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+position = Vector2(566, 3439)
+speaker_text = Array[String](["This is HEAVY!"])
+speaker_portrait = null
+option_branches = [NodePath("../give_cd8")]
+voice = "sine_voice"
+
+[node name="give_cd8" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+position = Vector2(566, 3777)
+speaker_text = Array[String](["Now THAT is The Good Stuff."])
+speaker_portrait = null
+option_branches = [NodePath("../give_cd9")]
+voice = "sine_voice"
+
+[node name="give_cd9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+position = Vector2(552, 4139)
+speaker_text = Array[String](["Thank you, friend."])
+speaker_portrait = null
+option_branches = [NodePath("../give_cd10")]
+voice = "sine_voice"
+
+[node name="give_cd10" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+position = Vector2(552, 4458)
+speaker_text = Array[String](["These riffs have given me a new outlook on life."])
+speaker_portrait = null
+option_branches = [NodePath("../give_cd11")]
+voice = "sine_voice"
+
+[node name="give_cd11" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_cbo40")]
+position = Vector2(552, 4766)
+speaker_text = Array[String](["Here, take my board."])
+speaker_portrait = null
+option_branches = [NodePath("../give_cd12")]
+voice = "sine_voice"
+dialog_script = NodePath("give_skateboard")
+play_sound_path = "res://audio/soundFX/crystal_get.wav"
+
+[node name="give_skateboard" type="Node" parent="give_cd11"]
+script = ExtResource("4_syl0d")
+item_key = "skateboard"
+
+[node name="give_cd12" parent="." instance=ExtResource("2_cbo40")]
+position = Vector2(542, 5067)
+speaker_text = Array[String](["I won't be needing it anymore."])
+speaker_portrait = null
+voice = "sine_voice"

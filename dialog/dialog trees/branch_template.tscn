@@ -11,7 +11,7 @@ speaker_portrait = ExtResource("2_wcrd0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_wcrd0")
-frame_progress = 0.354397
+frame_progress = 0.456366
 
 [node name="test_bubble" type="Sprite2D" parent="."]
 position = Vector2(-48, -117)

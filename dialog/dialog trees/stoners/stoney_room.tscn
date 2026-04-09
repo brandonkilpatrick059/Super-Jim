@@ -9,7 +9,7 @@ script = ExtResource("1_oktv5")
 trunk = NodePath("trunk")
 
 [node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_3tkja")]
-speaker_text = Array[String](["Salutations, friend."])
+speaker_text = Array[String](["Salutations, friend. "])
 speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
 voice = "sine_voice"

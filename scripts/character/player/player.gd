@@ -311,6 +311,10 @@ func add_owned_cd(key : String):
 	if(!owned_music.has(key)):
 		owned_music.append(key)
 
+func has_owned_cd(key : String) -> bool:
+	var has_key : bool = owned_music.has(key)
+	return has_key
+
 #check_light
 func light_is_on_screen():
 	if(no_clip):

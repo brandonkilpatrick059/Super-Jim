@@ -25,5 +25,6 @@ material = SubResource("CanvasItemMaterial_q3gtc")
 texture = ExtResource("2_hol4d")
 
 [node name="the_good_stuff" type="Sprite2D" parent="."]
+visible = false
 material = SubResource("CanvasItemMaterial_q3gtc")
 texture = ExtResource("4_vilbl")

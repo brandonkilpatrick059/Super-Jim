@@ -26,13 +26,16 @@ func set_process_tier(tier : int):
 
 func _ready():
 	# The state machine assigns itself to the State objects' state_machine property.
-	for child in get_children():
-		child.ai_state_machine = self
+	set_up_states()
 	if(state != null):
 		state.enter()
 		
 	process_timer.one_shot = true
 	add_child(process_timer)
+
+func set_up_states():
+	for child in get_children():
+		child.ai_state_machine = self
 
 func get_state () -> State:
 	return state

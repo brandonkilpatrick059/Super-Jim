@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://52ufe6ahduuk"]
+[gd_scene load_steps=6 format=3 uid="uid://52ufe6ahduuk"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_nj2e4"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_cbo40"]
 [ext_resource type="Script" uid="uid://cqwe5qbypt3gw" path="res://scripts/utility/run_conditionals/has_cd.gd" id="3_e1cf2"]
 [ext_resource type="Script" uid="uid://ddpgpidwo6qye" path="res://scripts/utility/run_scripts/give_item.gd" id="4_syl0d"]
+[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="5_i3xvu"]
 
 [node name="lia_skateboard" type="Node2D"]
 script = ExtResource("1_nj2e4")
@@ -145,12 +146,18 @@ speaker_portrait = null
 option_branches = [NodePath("../give_cd10")]
 voice = "sine_voice"
 
-[node name="give_cd10" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+[node name="give_cd10" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_cbo40")]
 position = Vector2(552, 4458)
 speaker_text = Array[String](["These riffs have given me a new outlook on life."])
 speaker_portrait = null
 option_branches = [NodePath("../give_cd11")]
 voice = "sine_voice"
+dialog_script = NodePath("move_to_no_skateboard")
+
+[node name="move_to_no_skateboard" type="Node" parent="give_cd10"]
+script = ExtResource("5_i3xvu")
+node_group = "npc_lia"
+new_key = "no_skateboard"
 
 [node name="give_cd11" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_cbo40")]
 position = Vector2(552, 4766)

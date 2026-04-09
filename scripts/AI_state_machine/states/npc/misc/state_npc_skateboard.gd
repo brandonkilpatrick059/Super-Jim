@@ -11,6 +11,8 @@ func _ready():
 
 func physics_process(_delta: float) -> void:
 	if(is_instance_valid(ai_state_machine.get_perceptions().current_stage_mark)):
+		if  ai_state_machine.get_perceptions().current_stage_mark.get_state() == "alert_passive":
+			ai_state_machine.transition_to(npc_states.alert_passive)
 		if(ai_state_machine.get_perceptions().global_position == ai_state_machine.get_perceptions().current_stage_mark.global_position):
 				pass
 		else:

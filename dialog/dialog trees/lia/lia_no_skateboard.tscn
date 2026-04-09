@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://hvok0645xojm"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_ssapi"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_g6jud"]
+
+[node name="lia_no_skateboard" type="Node2D"]
+script = ExtResource("1_ssapi")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_g6jud")]
+speaker_text = Array[String](["Oh, hey!"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_g6jud")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["Sorry, I can't hear you."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "sine_voice"
+
+[node name="trunk3" parent="." instance=ExtResource("2_g6jud")]
+position = Vector2(98, 512)
+speaker_text = Array[String](["I'm listening to The Good Stuff."])
+speaker_portrait = null
+voice = "sine_voice"

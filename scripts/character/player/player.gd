@@ -311,6 +311,10 @@ func add_owned_cd(key : String):
 	if(!owned_music.has(key)):
 		owned_music.append(key)
 
+func remove_owned_cd(key : String):
+	if(owned_music.has(key)):
+		owned_music.erase(key)
+
 func has_owned_cd(key : String) -> bool:
 	var has_key : bool = owned_music.has(key)
 	return has_key
@@ -900,9 +904,11 @@ func increment_hp():
 func shake_camera(magnitude : int):
 	_camera.shake(magnitude)
 
-func reduce_hp(amount : int = 1):
+func reduce_hp(amount : int = 1, nonlethal : bool = false):
 	stop_skateboarding()
 	current_hp = current_hp - amount
+	if(nonlethal && current_hp == 0):
+		current_hp = 1
 	_ui.update_hearts(current_hp)
 	play_sound(damage_sound)
 	_camera.shake(8 + (max_hp - current_hp)*2)

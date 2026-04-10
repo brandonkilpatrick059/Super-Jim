@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://duco8g6r10km3"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_66edt"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_ji8l0"]
+
+[node name="stoney_meditate" type="Node2D"]
+script = ExtResource("1_66edt")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ji8l0")]
+speaker_text = Array[String](["..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ji8l0")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["Huh? Oh."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "sine_voice"
+
+[node name="trunk3" parent="." instance=ExtResource("2_ji8l0")]
+position = Vector2(2, 508)
+speaker_text = Array[String](["Excuse me. I am meditating."])
+speaker_portrait = null
+voice = "sine_voice"

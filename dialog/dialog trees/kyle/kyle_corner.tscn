@@ -13,8 +13,9 @@ speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
 voice = "sine_voice"
 
-[node name="trunk2" parent="." instance=ExtResource("2_0o0tq")]
+[node name="trunk2" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_0o0tq")]
 position = Vector2(2, 218)
 speaker_text = Array[String](["I bet you wish you had a cool Cowboy hat like me."])
 speaker_portrait = null
 voice = "sine_voice"
+dialog_script = NodePath("")

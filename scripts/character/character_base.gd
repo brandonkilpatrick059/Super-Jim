@@ -62,14 +62,15 @@ func get_base_animation_framecount(animation_name: String = ""):
 	return base_animation_framecount
 
 func play_animation(animation: String):
-	if(_base_sprite.sprite_frames != null):
-		_base_sprite.play(animation)
-	if(_hat.sprite_frames != null):
-		_hat.play(animation)
-	if(_top.sprite_frames != null):
-		_top.play(animation)
-	if(_bottom.sprite_frames != null):
-		_bottom.play(animation)
+	if(_base_sprite.animation != animation):
+		if(_base_sprite.sprite_frames != null):
+			_base_sprite.play(animation)
+		if(_hat.sprite_frames != null):
+			_hat.play(animation)
+		if(_top.sprite_frames != null):
+			_top.play(animation)
+		if(_bottom.sprite_frames != null):
+			_bottom.play(animation)
 
 func set_frames(frame: int):
 	if(_base_sprite.sprite_frames != null):

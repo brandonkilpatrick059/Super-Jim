@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bk85o3bfgtdai"]
+[gd_scene load_steps=6 format=3 uid="uid://bk85o3bfgtdai"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_oktv5"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_3tkja"]
+[ext_resource type="Script" uid="uid://b7ijuk8jyxn0r" path="res://scripts/utility/run_scripts/add_scripts_to_end_of_day.gd" id="3_d0qm0"]
 [ext_resource type="Script" uid="uid://cttd23b57tk53" path="res://scripts/utility/run_scripts/give_cd.gd" id="3_es7wg"]
+[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="3_xbuua"]
 
 [node name="stoney_dialog" type="Node2D"]
 script = ExtResource("1_oktv5")
@@ -69,19 +71,35 @@ speaker_portrait = null
 option_branches = [NodePath("../good_stuff3")]
 voice = "sine_voice"
 
-[node name="good_stuff3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_3tkja")]
+[node name="good_stuff3" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_3tkja")]
 position = Vector2(424, 1554)
 speaker_text = Array[String](["You can have my friend's CD."])
 speaker_portrait = null
 option_branches = [NodePath("../good_stuff4")]
 voice = "sine_voice"
+dialog_script = NodePath("end_of_day_scripts")
 
-[node name="good_stuff4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_3tkja")]
+[node name="end_of_day_scripts" type="Node" parent="good_stuff3" node_paths=PackedStringArray("script_nodes")]
+script = ExtResource("3_d0qm0")
+script_nodes = [NodePath("move_stoney2_to_search")]
+
+[node name="move_stoney2_to_search" type="Node" parent="good_stuff3/end_of_day_scripts"]
+script = ExtResource("3_xbuua")
+node_group = "npc_stoney2"
+new_key = "search"
+
+[node name="good_stuff4" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_3tkja")]
 position = Vector2(424, 1845)
 speaker_text = Array[String](["He's totally zonked out haha."])
 speaker_portrait = null
 option_branches = [NodePath("../good_stuff5")]
 voice = "sine_voice"
+dialog_script = NodePath("move_to_meditate")
+
+[node name="move_to_meditate" type="Node" parent="good_stuff4"]
+script = ExtResource("3_xbuua")
+node_group = "npc_stoney"
+new_key = "meditate"
 
 [node name="good_stuff5" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_3tkja")]
 position = Vector2(417, 2187)

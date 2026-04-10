@@ -225,19 +225,22 @@ func advance_day():
 		day_of_the_week = 0
 	else:
 		day_of_the_week = day_of_the_week + 1
-		
+	run_end_of_day_scripts()
+	days_passed = days_passed + 1
+	advance_moon_cycle()
+	daily_update_objects()
+
+func run_end_of_day_scripts():
 	for node in end_of_day_script_queue:
 		node.run_script()
 		node.queue_free()
 	end_of_day_script_queue = []
-	days_passed = days_passed + 1
-	
+
+func advance_moon_cycle():
 	if(day_of_moon_cycle + 1 == moon_phase.size()):
 		day_of_moon_cycle = 0
 	else:
 		day_of_moon_cycle = day_of_moon_cycle + 1
-	
-	daily_update_objects()
 
 func advance_clock():
 	if(clock != 23):

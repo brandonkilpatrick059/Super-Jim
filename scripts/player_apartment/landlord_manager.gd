@@ -6,7 +6,6 @@ var player_ref = null
 var landlord_ref = null
 
 #dialog trees
-@export var end_of_day_script : Node
 @export var collect : Node
 @export var collect_unlocked : Node
 @export var locked : Node

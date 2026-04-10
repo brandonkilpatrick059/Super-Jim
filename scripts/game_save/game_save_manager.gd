@@ -187,7 +187,9 @@ func save_time_keeper():
 		"day_of_the_week" = time_keeper.get_day_of_week(),
 		"days_passed" = time_keeper.get_days_passed(),
 		"hour" = time_keeper.get_hour(),
-		"day_of_moon_cycle" = time_keeper.get_day_of_moon_cycle()
+		"day_of_moon_cycle" = time_keeper.get_day_of_moon_cycle(),
+		"end_of_day_schedule_groups" = time_keeper.get_end_of_day_schedule_groups(),
+		"end_of_day_schedule_keys" = time_keeper.get_end_of_day_schedule_keys(),
 	}
 	save_file.store_line(JSON.stringify(time_keeper_dictionary))
 	
@@ -199,6 +201,14 @@ func load_time_keeper():
 	time_keeper.set_days_passed(int(time_keeper_dictionary.get("days_passed")))
 	time_keeper.set_clock(int(time_keeper_dictionary.get("hour")))
 	time_keeper.set_day_of_moon_cycle(int(time_keeper_dictionary.get("day_of_moon_cycle")))
+	var load_groups = time_keeper_dictionary.get("end_of_day_schedule_groups")
+	var load_keys = time_keeper_dictionary.get("end_of_day_schedule_keys")
+	var index = 0
+	while(index < load_groups.size()):
+		var loaded_group_str = String(load_groups[index])
+		var loaded_key_str = String(load_keys[index])
+		time_keeper.add_end_of_day_schedule_change(loaded_group_str,loaded_key_str)
+		index = index + 1
 
 func save_pizza_manager():
 	var pizza_manager = get_tree().get_first_node_in_group("pizza_manager")

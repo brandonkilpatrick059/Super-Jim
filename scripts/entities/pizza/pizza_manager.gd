@@ -120,14 +120,6 @@ func restock_pizzas_at_end_of_day():
 			cook_ref.set_schedules_key("delivery_dispenser")
 	reset_pizzas_delivered_today()
 
-#func leave_tutorial():
-	#var time_keeper = get_tree().get_first_node_in_group("time_keeper")
-	#var script_node = Node.new()
-	#script_node.set_script(load("res://scripts/utility/adjust_schedules_index.gd"))
-	#script_node.set_node_group("cook")
-	#script_node.set_new_index(10)
-	#time_keeper.add_end_of_day_script_node(script_node)
-
 func get_delivery_tutorial_doors() -> Array[Node]:
 	var selected_delivery_doors : Array[Node] = []
 	var num_pizzas = 3
@@ -140,9 +132,6 @@ func get_delivery_tutorial_doors() -> Array[Node]:
 			selected_delivery_doors.append(tutorial_door)
 			pizzas_selected = pizzas_selected + 1
 		index = index + 1
-
-	#for door in selected_delivery_doors:
-		#tutorial_doors.erase(door)
 
 	return selected_delivery_doors
 

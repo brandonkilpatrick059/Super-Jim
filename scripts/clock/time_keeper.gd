@@ -15,7 +15,12 @@ var timer_restart := Timer.new()
 var ambient_dark = null
 var days_passed : int = 0
 
+#currently not saved (would be a headache to save) and therefore NOT USED
+#kept here in the event we want to complete/expand this functionality
 var end_of_day_script_queue : Array[Node] = []
+
+var end_of_day_schedule_groups : Array[String] = []
+var end_of_day_schedule_keys : Array[String] = []
 
 var time_locked = true
 
@@ -100,6 +105,29 @@ func refresh_npc_locations():
 	var npcs = get_tree().get_nodes_in_group("npc")
 	for npc in npcs:
 		npc.teleport_and_update()
+
+func get_end_of_day_schedule_groups() -> Array[String]:
+	return end_of_day_schedule_groups
+
+func get_end_of_day_schedule_keys() -> Array[String]:
+	return end_of_day_schedule_keys
+
+func add_end_of_day_schedule_change(group : String, key: String):
+	end_of_day_schedule_groups.append(group)
+	end_of_day_schedule_keys.append(key)
+	
+func adjust_end_of_day_schedules():
+	var index : int = 0
+	while(index < end_of_day_schedule_groups.size()):
+		var group = end_of_day_schedule_groups[index]
+		var schedule_key = end_of_day_schedule_keys[index]
+		var npc = get_tree().get_first_node_in_group(group)
+		npc.set_schedules_key(schedule_key)
+		index = index + 1
+	end_of_day_schedule_groups.clear()
+	end_of_day_schedule_keys.clear()
+	
+		
 
 #Called when the node enters the scene tree for the first time.
 func _ready():
@@ -226,6 +254,7 @@ func advance_day():
 	else:
 		day_of_the_week = day_of_the_week + 1
 	run_end_of_day_scripts()
+	adjust_end_of_day_schedules()
 	days_passed = days_passed + 1
 	advance_moon_cycle()
 	daily_update_objects()

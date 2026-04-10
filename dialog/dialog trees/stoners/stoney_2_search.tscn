@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_x4m5w"]
 [ext_resource type="Script" uid="uid://cqwe5qbypt3gw" path="res://scripts/utility/run_conditionals/has_cd.gd" id="3_x4m5w"]
 [ext_resource type="Script" uid="uid://d1d6vt2mumlp6" path="res://scripts/utility/run_scripts/damage_player.gd" id="4_okeck"]
+[ext_resource type="Script" uid="uid://dnwegf57a5lvg" path="res://scripts/utility/run_scripts/add_end_of_day_schedule_changes.gd" id="4_oqxyy"]
 [ext_resource type="Script" uid="uid://cfocvoq5jc3jc" path="res://scripts/utility/run_scripts/remove_cd.gd" id="5_7oigj"]
 [ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="6_4t0k3"]
-[ext_resource type="Script" uid="uid://b7ijuk8jyxn0r" path="res://scripts/utility/run_scripts/add_scripts_to_end_of_day.gd" id="7_pp54k"]
 
 [node name="stoney2_search" type="Node2D"]
 script = ExtResource("1_066m3")
@@ -76,17 +76,13 @@ speaker_text = Array[String](["I'll punch your lights out!"])
 speaker_portrait = null
 option_branches = [NodePath("../take that")]
 voice = "sine_voice"
-dialog_script = NodePath("end_of_day_script")
+dialog_script = NodePath("end_of_day_stoney2_to_search")
 conditional_option_script = NodePath(".")
 
-[node name="end_of_day_script" type="Node" parent="want my CD2" node_paths=PackedStringArray("script_nodes")]
-script = ExtResource("7_pp54k")
-script_nodes = [NodePath("move_to_search")]
-
-[node name="move_to_search" type="Node" parent="want my CD2/end_of_day_script"]
-script = ExtResource("6_4t0k3")
-node_group = "npc_stoney2"
-new_key = "search"
+[node name="end_of_day_stoney2_to_search" type="Node" parent="want my CD2"]
+script = ExtResource("4_oqxyy")
+groups = Array[String](["npc_stoney2"])
+keys = Array[String](["search"])
 
 [node name="take that" parent="." node_paths=PackedStringArray("option_branches", "dialog_script", "conditional_option_script") instance=ExtResource("2_x4m5w")]
 position = Vector2(33, 2221)
@@ -148,16 +144,12 @@ speaker_text = Array[String](["Thanks..."])
 speaker_portrait = null
 option_branches = [NodePath("../finally4")]
 voice = "sine_voice"
-dialog_script = NodePath("end_of_day_script")
+dialog_script = NodePath("end_of_day_stoney_to_room")
 
-[node name="end_of_day_script" type="Node" parent="finally3" node_paths=PackedStringArray("script_nodes")]
-script = ExtResource("7_pp54k")
-script_nodes = [NodePath("move_to_room")]
-
-[node name="move_to_room" type="Node" parent="finally3/end_of_day_script"]
-script = ExtResource("6_4t0k3")
-node_group = "npc_stoney"
-new_key = "room"
+[node name="end_of_day_stoney_to_room" type="Node" parent="finally3"]
+script = ExtResource("4_oqxyy")
+groups = Array[String](["npc_stoney"])
+keys = Array[String](["room"])
 
 [node name="finally4" parent="." node_paths=PackedStringArray("option_branches", "conditional_option_script") instance=ExtResource("2_x4m5w")]
 position = Vector2(817, 2629)

@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhx6pryx7muqo"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_0u1hw"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_yhi2f"]
+
+[node name="stoney_3_unemployed" type="Node2D"]
+script = ExtResource("1_0u1hw")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_yhi2f")]
+speaker_text = Array[String](["Being unemployed rocks."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_yhi2f")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["I've just been chilling at my friend's place all day-"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "sine_voice"
+
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_yhi2f")]
+position = Vector2(2, 508)
+speaker_text = Array[String](["Imbibing The Good Stuff..."])
+speaker_portrait = null
+speech_options = Array[String](["Yeah, cool.", "Get a job, loser.", "May I also partake in The Good Stuff?"])
+option_branches = [NodePath("../cool"), NodePath("../loser"), NodePath("../partake")]
+voice = "sine_voice"
+
+[node name="cool" parent="." instance=ExtResource("2_yhi2f")]
+position = Vector2(-402, 713)
+speaker_text = Array[String](["Totally, totally."])
+speaker_portrait = null
+voice = "sine_voice"
+
+[node name="loser" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_yhi2f")]
+position = Vector2(0, 850)
+speaker_text = Array[String](["Whoa, why the hostility?"])
+speaker_portrait = null
+option_branches = [NodePath("../loser2")]
+voice = "sine_voice"
+
+[node name="loser2" parent="." instance=ExtResource("2_yhi2f")]
+position = Vector2(2, 1177)
+speaker_text = Array[String](["You're harshing my vibe..."])
+speaker_portrait = null
+voice = "sine_voice"
+
+[node name="partake" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_yhi2f")]
+position = Vector2(395, 713)
+speaker_text = Array[String](["Totally!"])
+speaker_portrait = null
+option_branches = [NodePath("../partake2")]
+voice = "sine_voice"
+
+[node name="partake2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_yhi2f")]
+position = Vector2(452, 1077)
+speaker_text = Array[String](["Head to my friend's place: #3 North-Central Tenements."])
+speaker_portrait = null
+option_branches = [NodePath("../partake3")]
+voice = "sine_voice"
+
+[node name="partake3" parent="." instance=ExtResource("2_yhi2f")]
+position = Vector2(452, 1393)
+speaker_text = Array[String](["You can get to it from the back alley under the rail line."])
+speaker_portrait = null
+voice = "sine_voice"

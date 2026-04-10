@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://52ufe6ahduuk"]
+[gd_scene load_steps=8 format=3 uid="uid://52ufe6ahduuk"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_nj2e4"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_cbo40"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://ddpgpidwo6qye" path="res://scripts/utility/run_scripts/give_item.gd" id="4_syl0d"]
 [ext_resource type="Script" uid="uid://cfocvoq5jc3jc" path="res://scripts/utility/run_scripts/remove_cd.gd" id="4_xwiop"]
 [ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="5_i3xvu"]
+[ext_resource type="Script" uid="uid://ly6plq8em6eq" path="res://scripts/utility/run_scripts/show_headphones.gd" id="5_ncbkk"]
 
 [node name="lia_skateboard" type="Node2D"]
 script = ExtResource("1_nj2e4")
@@ -96,12 +97,18 @@ dialog_script = NodePath("remove_cd")
 script = ExtResource("4_xwiop")
 cd_key = "the_good_stuff"
 
-[node name="give_cd2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+[node name="give_cd2" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_cbo40")]
 position = Vector2(552, 1892)
 speaker_text = Array[String](["..."])
 speaker_portrait = null
 option_branches = [NodePath("../give_cd3")]
 voice = "sine_voice"
+dialog_script = NodePath("show_headphones")
+
+[node name="show_headphones" type="Node" parent="give_cd2"]
+script = ExtResource("5_ncbkk")
+node_group = "npc_lia"
+show_headphones = true
 
 [node name="give_cd3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
 position = Vector2(566, 2270)

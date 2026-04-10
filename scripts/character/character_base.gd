@@ -2,6 +2,8 @@
 extends Node2D
 @onready var _base_sprite :AnimatedSprite2D = $base_sprite
 @onready var _hat = $hat
+@onready var _headphones = $headphones
+@onready var _accessory = $accessory
 @onready var _top = $top
 @onready var _bottom = $bottom
 @export var base_spriteframes : SpriteFrames = null
@@ -49,6 +51,8 @@ func get_offset() -> Vector2:
 
 func adjust_offset(new_offset: Vector2):
 	_base_sprite.offset = new_offset
+	_headphones.offset = new_offset
+	_accessory.offset = new_offset
 	_hat.offset = new_offset
 	_top.offset = new_offset
 	_bottom.offset = new_offset
@@ -65,6 +69,10 @@ func play_animation(animation: String):
 	if(_base_sprite.animation != animation):
 		if(_base_sprite.sprite_frames != null):
 			_base_sprite.play(animation)
+		if(_headphones.sprite_frames != null):
+			_headphones.play(animation)
+		if(_accessory.sprite_frames != null):
+			_accessory.play(animation)
 		if(_hat.sprite_frames != null):
 			_hat.play(animation)
 		if(_top.sprite_frames != null):
@@ -75,6 +83,10 @@ func play_animation(animation: String):
 func set_frames(frame: int):
 	if(_base_sprite.sprite_frames != null):
 		_base_sprite.frame = frame
+	if(_headphones.sprite_frames != null):
+		_headphones.frame = frame
+	if(_accessory.sprite_frames != null):
+		_accessory.frame = frame
 	if(_hat.sprite_frames != null):
 		_hat.frame = frame
 	if(_top.sprite_frames != null):
@@ -85,6 +97,10 @@ func set_frames(frame: int):
 func set_speed_scales(scale):
 	if(_base_sprite.sprite_frames != null):
 		_base_sprite.set_speed_scale(scale)
+	if(_headphones.sprite_frames != null):
+		_headphones.set_speed_scale(scale)
+	if(_accessory.sprite_frames != null):
+		_accessory.set_speed_scale(scale)
 	if(_hat.sprite_frames != null):
 		_hat.set_speed_scale(scale)
 	if(_top.sprite_frames != null):
@@ -107,6 +123,8 @@ func stand_dir(direction):
 
 func synch_animations():
 	_base_sprite.frame = 0
+	_headphones.frame = 0
+	_accessory.frame = 0
 	_hat.frame = 0
 	_top.frame = 0
 	_bottom.frame = 0
@@ -130,6 +148,10 @@ func walk_dir_frame(direction, frame : int):
 func set_all_materials(material):
 	if(_base_sprite.sprite_frames != null):
 		_base_sprite.set_material(material)
+	if(_headphones.sprite_frames != null):
+		_headphones.set_material(material)
+	if(_accessory.sprite_frames != null):
+		_accessory.set_material(material)
 	if(_hat.sprite_frames != null):
 		_hat.set_material(material)
 	if(_top.sprite_frames != null):
@@ -245,9 +267,11 @@ func restore_non_base_sprites():
 	_top.visible = true
 	_bottom.visible = true
 
-func set_spriteframes(base, hat, top, bottom):
+func set_spriteframes(base, hat, top, bottom, accessory = null):
 	if(_base_sprite != null):
 		_base_sprite.sprite_frames = base
+	if(_accessory != null):
+		_accessory.sprite_frames = accessory
 	if(_hat != null):
 		_hat.sprite_frames = hat
 	if(_top != null):
@@ -256,6 +280,12 @@ func set_spriteframes(base, hat, top, bottom):
 		_bottom.sprite_frames = bottom
 	if(Engine.is_editor_hint()):
 		queue_redraw()
+
+func show_headphones():
+	_headphones.visible = true
+
+func hide_headphones():
+	_headphones.visible = false
 
 func set_base_spriteframes(base : SpriteFrames):
 	if(_base_sprite != null):
@@ -279,6 +309,7 @@ func set_bottom_spriteframes(bottom):
 
 func set_visibility(value : bool):
 	_base_sprite.visible = value
+	_accessory.visible = value
 	_hat.visible = value
 	_top.visible = value
 	_bottom.visible = value

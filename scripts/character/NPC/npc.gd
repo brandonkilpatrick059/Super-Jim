@@ -21,6 +21,8 @@ const alert_passive = "alert_passive"
 @export var no_face_player : bool = false
 @export var alt_dlg_bubble_path : String = ""
 
+@export var shows_headphones : bool = false
+
 @export var extended_states : Array[PackedScene] = []
 
 #assign this with a node that has a script you wanna
@@ -235,6 +237,14 @@ func set_schedules_index(index : int):
 
 func get_schedules_index() -> int:
 	return schedules_index
+
+func show_headphones():
+	shows_headphones = true
+	_character_base.show_headphones()
+
+func hide_headphones():
+	shows_headphones = false
+	_character_base.hide_headphones()
 
 func set_schedules_key(key : String):
 	var index = schedule_keys.find(key)
@@ -451,7 +461,8 @@ func get_save_dictionary() -> Dictionary:
 		"save_tag" : get_save_tag(),
 		#"pos_x" : global_position.x,
 		#"pos_y" : global_position.y,
-		"schedules_index" : int(schedules_index)
+		"schedules_index" : int(schedules_index),
+		"shows_headphones" : bool(shows_headphones)
 	}
 	return save_dictionary
 
@@ -480,6 +491,9 @@ func load_from_dictionary(load_dictionary : Dictionary):
 	#global_position = Vector2(load_dictionary.get("pos_x"), load_dictionary.get("pos_y"))
 	schedules_index = int(load_dictionary.get("schedules_index"))
 	teleport_and_update()
+	if(load_dictionary.get("shows_headphones") != null &&
+	bool(load_dictionary.get("shows_headphones"))):
+		show_headphones()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -1148,7 +1148,7 @@ func start_skateboarding():
 	skateboard_player.play()
 	_skateboard.visible = true
 	if(is_dashing):
-		linear_velocity = linear_velocity * 1.25
+		linear_velocity = linear_velocity * 1.4
 	physics_material_override.bounce = 1.0
 	linear_damp = skating_linear_damp
 	skating_top_speed = speed()
@@ -1188,10 +1188,12 @@ func set_current_v(vect : Vector2):
 
 func stop():
 	current_v = Vector2(0,0)
+	stop_dash()
 
 func complete_stop():
 	current_v = Vector2(0,0)
 	linear_velocity = Vector2(0,0)
+	stop_dash()
 
 func set_holding_object(is_holding):
 	holding_object = is_holding
@@ -1225,13 +1227,13 @@ func put_down(play_sound = true):
 	grabbed_object = null
 	set_holding_object(false)
 	_ui.deactivate_interact()
-	
+
 func put_down_and_return():
 	if(grabbed_object != null):
 		var temp = grabbed_object
 		put_down(false)
 		temp.return_to_home()
-	
+
 func handle_pick_up():
 	if(will_grab_object != null && !holding_object):
 		play_sound(pickup_sound)

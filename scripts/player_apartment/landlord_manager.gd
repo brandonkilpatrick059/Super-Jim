@@ -82,16 +82,18 @@ func unlock_player_apartment():
 	apartment_locked = false
 
 func catch_finish():
-	if(was_playing):
-		var main_music_player = get_tree().get_first_node_in_group("main_music_player")
-		main_music_player.change_stream(stream_temp)
+	var main_music_player = get_tree().get_first_node_in_group("main_music_player")
+	var secondary_music_player = get_tree().get_first_node_in_group("secondary_music_player")
+	secondary_music_player.change_stream("")
+	main_music_player.unpause()
 	landlord_inactive()
 
 func catch_player():
 	var main_music_player = get_tree().get_first_node_in_group("main_music_player")
-	stream_temp = main_music_player.get_stream_name()
-	was_playing = main_music_player.is_playing()
-	main_music_player.change_stream("res://audio/music/landlords_theme.wav")
+	var secondary_music_player = get_tree().get_first_node_in_group("secondary_music_player")
+	main_music_player.pause()
+	secondary_music_player.stream = load("res://audio/music/landlords_theme.wav")
+	secondary_music_player.play()
 	if(start_mode):
 		landlord_ref._on_set_branching_dialog(start)
 		landlord_ref._on_stop_motion()

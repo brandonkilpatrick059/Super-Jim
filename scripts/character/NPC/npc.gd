@@ -189,6 +189,7 @@ func get_is_animatronic():
 
 func interact(stop_bypass : bool = false):
 	if(branching_dialog != null && (linear_velocity.length() < 1 || stop_bypass)):
+		stop()
 		if(!is_animatronic && !no_face_player):
 			face_player()
 		dialog_manager = dialog.instantiate()
@@ -400,6 +401,7 @@ func _on_turn_left():
 #and animate accordingly
 func _on_advance_navigation(speed : int):
 	if (!perceptions.nav_target_reached &&
+	!perceptions.in_dialog &&
 	global_position.distance_to(_navigation_agent.target_position) > nav_target_reached_distance):
 		var current_agent_position: Vector2 = global_position
 		var next_path_position: Vector2 = _navigation_agent.get_next_path_position()

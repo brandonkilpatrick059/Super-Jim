@@ -380,8 +380,9 @@ func load_in():
 		var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 		#time_keeper.set_clock(9)
 		time_keeper.unlock_time()
-		var main_music_player = get_tree().get_first_node_in_group("main_music_player")
-		main_music_player.change_stream("res://audio/music/sleep theme.wav")
+		var secondary_music_player = get_tree().get_first_node_in_group("secondary_music_player")
+		secondary_music_player.stream = load("res://audio/music/sleep theme.wav")
+		secondary_music_player.play()
 		#var stream = load("res://audio/music/sleep theme.wav")
 		#play_sound(stream)
 

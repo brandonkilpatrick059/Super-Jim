@@ -27,8 +27,8 @@ voice = "sine_voice"
 position = Vector2(14, 506)
 speaker_text = Array[String](["Immerse yourself in these face melting fuzz tones..."])
 speaker_portrait = null
-speech_options = Array[String](["Far out.", "What a bunch of losers...", "May I partake in The Good Stuff?"])
-option_branches = [NodePath("../far_out"), NodePath("../losers"), NodePath("../good_stuff")]
+speech_options = Array[String](["Far out.", "What a bunch of losers...", "May I partake in The Good Stuff?", "Whoa, what's that guy's deal? Is he okay?"])
+option_branches = [NodePath("../far_out"), NodePath("../losers"), NodePath("../good_stuff"), NodePath("../that_guy")]
 voice = "sine_voice"
 
 [node name="far_out" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_3tkja")]
@@ -62,6 +62,19 @@ position = Vector2(344, 865)
 speaker_text = Array[String](["Oh, I see-"])
 speaker_portrait = null
 option_branches = [NodePath("../good_stuff2")]
+voice = "sine_voice"
+
+[node name="that_guy" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_3tkja")]
+position = Vector2(697, 865)
+speaker_text = Array[String](["Oh, yeah, he's fine."])
+speaker_portrait = null
+option_branches = [NodePath("../that_guy2")]
+voice = "sine_voice"
+
+[node name="that_guy2" parent="." instance=ExtResource("2_3tkja")]
+position = Vector2(812, 1411)
+speaker_text = Array[String](["Don't worry about him."])
+speaker_portrait = null
 voice = "sine_voice"
 
 [node name="good_stuff2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_3tkja")]

@@ -1,0 +1,76 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://cfyspcvvtkr4"]
+
+[ext_resource type="Texture2D" uid="uid://bqrppxgrfk7tx" path="res://sprites/spritesheets/characters/zonked.png" id="1_35m7g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkxg1"]
+atlas = ExtResource("1_35m7g")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vvpe"]
+atlas = ExtResource("1_35m7g")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mctnp"]
+atlas = ExtResource("1_35m7g")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mybk1"]
+atlas = ExtResource("1_35m7g")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2kyd"]
+atlas = ExtResource("1_35m7g")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrvi6"]
+atlas = ExtResource("1_35m7g")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44ol4"]
+atlas = ExtResource("1_35m7g")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dt2sm"]
+atlas = ExtResource("1_35m7g")
+region = Rect2(0, 0, 48, 48)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkxg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vvpe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mctnp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mybk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mybk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mybk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2kyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrvi6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44ol4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dt2sm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dt2sm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]

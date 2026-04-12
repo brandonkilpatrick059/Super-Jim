@@ -74,7 +74,6 @@ offset = Vector2(0, -16)
 sprite_frames = ExtResource("2_rcf8h")
 
 [node name="accessory" type="AnimatedSprite2D" parent="character_base"]
-sprite_frames = ExtResource("2_rcf8h")
 
 [node name="top" type="AnimatedSprite2D" parent="character_base"]
 material = SubResource("CanvasItemMaterial_ty4g0")

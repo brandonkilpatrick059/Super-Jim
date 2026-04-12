@@ -671,7 +671,10 @@ func update_max_dash_meter():
 
 func update_dash_meter():
 	update_max_dash_meter()
-	_ui.set_dash_fraction(current_dash_secs / max_dash_secs)
+	if(current_dash_secs < 1.0):
+		_ui.set_dash_fraction(0.0)
+	else:
+		_ui.set_dash_fraction(current_dash_secs / max_dash_secs)
 
 func add_to_max_dash_secs(num : int):
 	if(max_dash_secs == start_max_dash_secs):

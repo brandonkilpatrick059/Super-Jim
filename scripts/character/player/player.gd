@@ -599,7 +599,7 @@ func get_deck() -> Array[int]:
 
 func add_owned_card(card : int):
 	if(!items.has(cardbinder)):
-		items.append(cardbinder)
+		append_to_items(cardbinder)
 	if(owned_cards[card-1] < 5):
 		owned_cards[card-1] = owned_cards[card-1] + 1
 

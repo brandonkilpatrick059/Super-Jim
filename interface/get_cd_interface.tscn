@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dr1gpuojfevs2"]
+[gd_scene load_steps=6 format=3 uid="uid://dr1gpuojfevs2"]
 
 [ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="1_3kpjb"]
 [ext_resource type="Script" uid="uid://b7yswtm2c7d2x" path="res://scripts/interface/get_cd_interface.gd" id="1_5c8ww"]
 [ext_resource type="PackedScene" uid="uid://hk4ikllxggau" path="res://interface/cd_covers.tscn" id="2_5c8ww"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5c8ww"]
+light_mode = 1
 
 [sub_resource type="LabelSettings" id="LabelSettings_p5btc"]
 font = ExtResource("1_3kpjb")
@@ -14,6 +17,7 @@ script = ExtResource("1_5c8ww")
 
 [node name="Label" type="Label" parent="."]
 z_index = 1
+material = SubResource("CanvasItemMaterial_5c8ww")
 offset_left = -29.0
 offset_top = -9.0
 offset_right = 31.0

@@ -185,6 +185,9 @@ var checking_light_distance : bool = false
 var light_distance_check_timer := Timer.new()
 var should_wake_up = false
 
+var quest_state_keys : Array[String] = []
+var quest_state_values : Array[String] = []
+
 func _ready():
 	_collision.disabled = no_clip
 	timer_dash.one_shot = true
@@ -251,6 +254,21 @@ func play_sound(stream : AudioStream):
 			player.stream = stream
 			player.play()
 			return
+
+func set_quest_state(key : String, value : String):
+	var key_index : int = quest_state_keys.find(key)
+	if(key_index >= 0):
+		quest_state_values[key_index] = value
+	else:
+		quest_state_keys.append(key)
+		quest_state_values.append(value)
+
+func get_quest_state(key : String) -> String:
+	var ret_state = ""
+	var key_index : int = quest_state_keys.find(key)
+	if(key_index >= 0):
+		ret_state = quest_state_values[key_index]
+	return ret_state
 
 func begin_dreaming():
 	if(holding_object):
@@ -498,6 +516,8 @@ func get_save_dictionary() -> Dictionary:
 		"bottoms_index" : bottoms_index,
 		"num_fire_crackers" : num_fire_crackers,
 		"days_since_rent_paid" : days_since_rent_paid,
+		"quest_state_keys" : quest_state_keys,
+		"quest_state_values" : quest_state_values,
 		"shown_items_tip" : shown_items_tip
 	}
 	return save_dictionary
@@ -590,6 +610,15 @@ func load_from_dictionary(load_dictionary : Dictionary):
 		hat_spriteframes,
 		top_spriteframes,
 		bottom_spriteframes)
+	
+	var load_quest_keys = load_dictionary.get("quest_state_keys")
+	var load_quest_values = load_dictionary.get("quest_state_values")
+	index = 0
+	while(index < load_quest_keys.size()):
+		var key = String(load_quest_keys[index])
+		var value = String(load_quest_values[index])
+		set_quest_state(key,value)
+		index = index + 1
 
 func set_deck(deck : Array[int]):
 	card_deck = deck

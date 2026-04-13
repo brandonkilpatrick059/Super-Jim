@@ -35,7 +35,7 @@ func _ready() -> void:
 func get_layer_index():
 	return layer_index
 
-var cost : int = 5
+var cost : int = 1
 var fading = false
 
 func set_up_ui():

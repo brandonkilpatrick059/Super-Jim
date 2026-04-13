@@ -1,0 +1,131 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjrgbj5qslmkq"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_i52j2"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_8p31w"]
+[ext_resource type="Script" uid="uid://chf3faul7bcwu" path="res://scripts/utility/run_conditionals/get_quest_state.gd" id="3_8p31w"]
+[ext_resource type="Script" uid="uid://d2188s4xoqfs1" path="res://scripts/shop/ware_card_pack.gd" id="4_3k4sa"]
+[ext_resource type="Script" uid="uid://bii6v26s1saqa" path="res://scripts/utility/run_scripts/set_quest_state.gd" id="4_1860p"]
+
+[node name="dave_game_shop" type="Node2D"]
+script = ExtResource("1_i52j2")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches", "conditional_option_script") instance=ExtResource("2_8p31w")]
+speaker_text = Array[String](["How's it going?"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk_start"), NodePath("../trunk_start"), NodePath("../trunk_start"), NodePath("../trunk_start"), NodePath("../trunk_start"), NodePath("../trunk_start"), NodePath("../trunk_beat_wave_reward"), NodePath("../trunk_beat_wave")]
+voice = "low_sine_voice"
+conditional_option_script = NodePath("check_bandit_wave")
+
+[node name="check_bandit_wave" type="Node" parent="trunk"]
+script = ExtResource("3_8p31w")
+key = "bandit_game"
+values = Array[String](["", "STARTED", "1", "2", "3", "4", "DEFAULT", "DONE"])
+
+[node name="trunk_start" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_8p31w")]
+position = Vector2(-310, 359)
+speaker_text = Array[String](["\"Bandit\" is my favorite machine in here."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk_start2")]
+voice = "low_sine_voice"
+
+[node name="trunk_start2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_8p31w")]
+position = Vector2(-310, 662)
+speaker_text = Array[String](["I'm pretty sure I'm the only one who's gotten past wave four."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk_start3")]
+voice = "low_sine_voice"
+
+[node name="trunk_start3" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_8p31w")]
+position = Vector2(-299, 990)
+speaker_text = Array[String](["I bet a pack of Baseball Cards that you can't beat it..."])
+speaker_portrait = null
+voice = "low_sine_voice"
+dialog_script = NodePath("start_bandit_game_bet")
+
+[node name="start_bandit_game_bet" type="Node" parent="trunk_start3"]
+script = ExtResource("4_1860p")
+key = "bandit_game"
+value = "STARTED"
+
+[node name="trunk_beat_wave_reward" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_8p31w")]
+position = Vector2(23, 371)
+speaker_text = Array[String](["I saw you beat wave four on the \"Bandit\" machine."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk_beat_wave_reward2")]
+voice = "low_sine_voice"
+
+[node name="trunk_beat_wave_reward2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_8p31w")]
+position = Vector2(6, 693)
+speaker_text = Array[String](["Finally, someone who enjoys shooting dudes as much as me."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk_beat_wave_reward3")]
+voice = "low_sine_voice"
+
+[node name="trunk_beat_wave_reward3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_8p31w")]
+position = Vector2(14, 1007)
+speaker_text = Array[String](["I owe you a pack of B-Ball Cards."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk_beat_wave_reward4")]
+voice = "low_sine_voice"
+
+[node name="trunk_beat_wave_reward4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_8p31w")]
+position = Vector2(-4, 1277)
+speaker_text = Array[String](["You want a Yellow, or Green pack?"])
+speaker_portrait = null
+speech_options = Array[String](["Yellow.", "Green."])
+option_branches = [NodePath("../trunk_beat_wave_reward5_yellow"), NodePath("../trunk_beat_wave_reward6_green")]
+voice = "low_sine_voice"
+
+[node name="trunk_beat_wave_reward5_yellow" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_8p31w")]
+position = Vector2(-127, 1594)
+speaker_text = Array[String](["There you go."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk_beat_wave_reward7")]
+voice = "low_sine_voice"
+dialog_script = NodePath("give_card_pack_yellow")
+
+[node name="give_card_pack_yellow" type="Node" parent="trunk_beat_wave_reward5_yellow"]
+script = ExtResource("4_3k4sa")
+roster_min = 10
+roster_max = 18
+roster_team = "yellow"
+
+[node name="trunk_beat_wave_reward6_green" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_8p31w")]
+position = Vector2(156, 1594)
+speaker_text = Array[String](["There you go."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk_beat_wave_reward7")]
+voice = "low_sine_voice"
+dialog_script = NodePath("give_card_pack_green")
+
+[node name="give_card_pack_green" type="Node" parent="trunk_beat_wave_reward6_green"]
+script = ExtResource("4_3k4sa")
+roster_min = 1
+roster_max = 9
+roster_team = "green"
+
+[node name="trunk_beat_wave_reward7" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_8p31w")]
+position = Vector2(23, 1967)
+speaker_text = Array[String](["See you around."])
+speaker_portrait = null
+voice = "low_sine_voice"
+dialog_script = NodePath("set_quest_to_done")
+
+[node name="set_quest_to_done" type="Node" parent="trunk_beat_wave_reward7"]
+script = ExtResource("4_1860p")
+key = "bandit_game"
+value = "DONE"
+
+[node name="trunk_beat_wave" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_8p31w")]
+position = Vector2(322, 371)
+speaker_text = Array[String](["I've never made it past wave nine."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk_beat_wave2")]
+voice = "low_sine_voice"
+
+[node name="trunk_beat_wave2" parent="." instance=ExtResource("2_8p31w")]
+position = Vector2(343, 681)
+speaker_text = Array[String](["I'm pretty sure it's impossible..."])
+speaker_portrait = null
+voice = "low_sine_voice"

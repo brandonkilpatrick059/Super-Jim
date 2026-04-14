@@ -84,6 +84,9 @@ func _ready():
 	#are locked/unlocked while offscreen, which would not
 	#be possible if they were pruned (removed from tree). So this code
 	#enforces an exception for doors which are saved/loaded from memory
+	#TODO: probably could make this even more efficient by making a function
+	#specifically for re-adding then removing saved doors to the tree when they are 
+	#locked/unlocked
 	if(!is_in_group("prunable") && 
 	save_tag == "" &&
 	!is_in_group("delivery_door")):

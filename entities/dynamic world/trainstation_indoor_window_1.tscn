@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm3bgxrjebhif"]
+
+[ext_resource type="SpriteFrames" uid="uid://0p2ohl1hbmdp" path="res://sprites/spritesheets/spriteframes/game_world/train_station_window_2_lit.tres" id="1_c8q1t"]
+[ext_resource type="Script" uid="uid://cxi3plipn5gyw" path="res://scripts/clock/clock_anim.gd" id="2_wo1vm"]
+
+[node name="trainstation_indoor_window_1" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_c8q1t")
+script = ExtResource("2_wo1vm")

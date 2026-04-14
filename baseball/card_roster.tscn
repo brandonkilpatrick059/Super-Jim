@@ -200,15 +200,14 @@ power = 5
 flat_buff_shield_next = 1
 
 [node name="yellow_17" parent="." instance=ExtResource("2_yiqgv")]
-visible = false
 team = "yellow"
 card_name = "Gordy Feet"
 portrait_path = "res://sprites/baseball/portraits/test_9_2.png"
 description = "+2 [img]res://sprites/baseball/s_sym.png[/img] each kill"
 strength_rating = 12
-hp = 4
+hp = 3
 shield = 0
-power = 4
+power = 3
 buff_shield_on_kill = 2
 
 [node name="yellow_18" parent="." instance=ExtResource("2_yiqgv")]

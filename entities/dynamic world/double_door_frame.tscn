@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://btydv63whkqyd"]
+
+[ext_resource type="Texture2D" uid="uid://d4m8k1tkxfs82" path="res://sprites/game_world/double_door_frame.png" id="1_ouvmf"]
+
+[node name="door_frame" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 5)
+texture = ExtResource("1_ouvmf")

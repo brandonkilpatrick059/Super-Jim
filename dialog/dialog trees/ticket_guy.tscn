@@ -16,8 +16,7 @@ voice = "troll_voice"
 
 [node name="trunk2" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_47u6g")]
 position = Vector2(34, 300)
-speaker_text = Array[String](["...
-"])
+speaker_text = Array[String](["..."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk3")]
 voice = "troll_voice"
@@ -54,6 +53,13 @@ voice = "troll_voice"
 [node name="train_ticket3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
 position = Vector2(-331, 1559)
 speaker_text = Array[String](["\"NO TICKETS AVAILABLE.\""])
+speaker_portrait = null
+option_branches = [NodePath("../train_ticket4")]
+voice = "troll_voice"
+
+[node name="train_ticket4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(-403, 1755)
+speaker_text = Array[String](["Sorry..."])
 speaker_portrait = null
 speech_options = Array[String](["Okay, bye.", "Why aren't there any tickets?"])
 option_branches = [NodePath("../bye"), NodePath("../why_no_tickets")]
@@ -198,7 +204,7 @@ voice = "troll_voice"
 [node name="bye" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_47u6g")]
 position = Vector2(421, 937)
 speaker_text = Array[String](["Whatever...
-"])
+", "Yeah, bye.", "So long."])
 speaker_portrait = null
 voice = "troll_voice"
 dialog_script = NodePath("disappear")

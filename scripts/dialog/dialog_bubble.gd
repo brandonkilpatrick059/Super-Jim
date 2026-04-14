@@ -48,13 +48,14 @@ func play_text(text, newVoice):
 func is_text_done_playing():
 	return full_text_displayed
 
-func isVowel(subStr):
-	if(subStr == "a" ||
-	   subStr == "e" ||
-	   subStr == "i" ||
-	   subStr == "o" ||
-	   subStr == "u" ||
-	   subStr == "y"):
+func isVowel(subStr : String):
+	var temp_str = subStr.to_lower()
+	if(temp_str == "a" ||
+	   temp_str == "e" ||
+	   temp_str == "i" ||
+	   temp_str == "o" ||
+	   temp_str == "u" ||
+	   temp_str == "y"):
 		return true
 	else: false
 

@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdsq56hjelrgk"]
+
+[ext_resource type="Script" uid="uid://ckj5xwhetys06" path="res://scripts/character/NPC/npc.gd" id="1_sup7f"]
+[ext_resource type="Script" uid="uid://dohfsf4f1rv0a" path="res://scripts/character/character_base_animatronic.gd" id="3_takl0"]
+[ext_resource type="SpriteFrames" uid="uid://cam8lfcl2g6s6" path="res://sprites/spritesheets/spriteframes/characters/base/ticket_guy_base.tres" id="4_on2at"]
+[ext_resource type="PackedScene" uid="uid://biwoi1biy4ynx" path="res://entities/characters/NPC/AI state machine/ai_state_machine.tscn" id="4_rybmi"]
+[ext_resource type="PackedScene" uid="uid://bstl2betvigap" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_alert_passive.tscn" id="5_0vosy"]
+[ext_resource type="Script" uid="uid://debyywgf0en1h" path="res://scripts/utility/state_animatronic_anim_state.gd" id="6_ph6df"]
+
+[node name="NpcTicketGuy" type="RigidBody2D" groups=["interactable", "npc", "npc_ticket_guy"]]
+collision_layer = 20
+collision_mask = 0
+script = ExtResource("1_sup7f")
+voice = "troll_voice"
+base_spriteframes = ExtResource("4_on2at")
+is_animatronic = true
+save_tag = "NPC_ALIEN"
+
+[node name="character_base" type="Node2D" parent="."]
+script = ExtResource("3_takl0")
+
+[node name="base_sprite" type="AnimatedSprite2D" parent="character_base"]
+position = Vector2(0, 16)
+sprite_frames = ExtResource("4_on2at")
+
+[node name="ai_state_machine" parent="." instance=ExtResource("4_rybmi")]
+initial_state = NodePath("alert_passive")
+
+[node name="alert_passive" parent="ai_state_machine" instance=ExtResource("5_0vosy")]
+
+[node name="idle_animation" parent="ai_state_machine" instance=ExtResource("5_0vosy")]
+script = ExtResource("6_ph6df")
+find_group = "npc_ticket_guy"
+play_animation = "idle"

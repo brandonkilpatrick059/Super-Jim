@@ -1,0 +1,210 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5bi8ddvx3joy"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_6y5m8"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_47u6g"]
+[ext_resource type="Script" uid="uid://6ti2gqjsh5s4" path="res://scripts/utility/run_scripts/animatronic_animation.gd" id="3_47u6g"]
+
+[node name="troll" type="Node2D"]
+script = ExtResource("1_6y5m8")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+speaker_text = Array[String](["Hold on...", "Just one second...", "Yeah, yeah, I'm coming..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "troll_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_47u6g")]
+position = Vector2(34, 300)
+speaker_text = Array[String](["...
+"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "troll_voice"
+dialog_script = NodePath("appear")
+play_sound_path = "res://audio/soundFX/ghost_warble.wav"
+
+[node name="appear" type="Node" parent="trunk2"]
+script = ExtResource("3_47u6g")
+animatronic_tag = "npc_ticket_guy"
+animation_queue = Array[String](["appear", "idle"])
+
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(70, 614)
+speaker_text = Array[String](["What do you want?"])
+speaker_portrait = null
+speech_options = Array[String](["I would like to buy a train ticket.", "Where does the train go?", "Nothing."])
+option_branches = [NodePath("../train_ticket"), NodePath("../where_does"), NodePath("../bye")]
+voice = "troll_voice"
+
+[node name="train_ticket" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(-259, 937)
+speaker_text = Array[String](["You and everyone else."])
+speaker_portrait = null
+option_branches = [NodePath("../train_ticket2")]
+voice = "troll_voice"
+
+[node name="train_ticket2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(-300, 1231)
+speaker_text = Array[String](["They should put up a sign-"])
+speaker_portrait = null
+option_branches = [NodePath("../train_ticket3")]
+voice = "troll_voice"
+
+[node name="train_ticket3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(-331, 1559)
+speaker_text = Array[String](["\"NO TICKETS AVAILABLE.\""])
+speaker_portrait = null
+speech_options = Array[String](["Okay, bye.", "Why aren't there any tickets?"])
+option_branches = [NodePath("../bye"), NodePath("../why_no_tickets")]
+voice = "troll_voice"
+
+[node name="why_no_tickets" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(-538, 1952)
+speaker_text = Array[String](["I think the printer is broken."])
+speaker_portrait = null
+option_branches = [NodePath("../why_no_tickets2")]
+voice = "troll_voice"
+
+[node name="why_no_tickets2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(-538, 2216)
+speaker_text = Array[String](["I don't know..."])
+speaker_portrait = null
+option_branches = [NodePath("../why_no_tickets3")]
+voice = "troll_voice"
+
+[node name="why_no_tickets3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(-523, 2515)
+speaker_text = Array[String](["That sort of information is above my pay grade."])
+speaker_portrait = null
+option_branches = [NodePath("../can_i_help_you")]
+voice = "troll_voice"
+
+[node name="can_i_help_you" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(-538, 3030)
+speaker_text = Array[String](["Can I help you with anything else?"])
+speaker_portrait = null
+option_branches = [NodePath("../can_i_help_you2")]
+voice = "troll_voice"
+
+[node name="can_i_help_you2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(-331, 3405)
+speaker_text = Array[String](["Or are we done here?"])
+speaker_portrait = null
+speech_options = Array[String](["I would like to buy a ticket.", "Where does the train go?", "I'm good, bye."])
+option_branches = [NodePath("../train_ticket"), NodePath("../where_does"), NodePath("../bye")]
+voice = "troll_voice"
+
+[node name="where_does" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(80, 930)
+speaker_text = Array[String](["What, were you born yesterday?"])
+speaker_portrait = null
+option_branches = [NodePath("../where_does3")]
+voice = "troll_voice"
+
+[node name="where_does3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(167, 1351)
+speaker_text = Array[String](["The train goes east and west."])
+speaker_portrait = null
+option_branches = [NodePath("../where_does9")]
+voice = "troll_voice"
+
+[node name="where_does9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(465, 1362)
+speaker_text = Array[String](["Duh."])
+speaker_portrait = null
+speech_options = Array[String](["Okay...", "What's to the east and west of here?"])
+option_branches = [NodePath("../can_i_help_you"), NodePath("../where_does4")]
+voice = "troll_voice"
+
+[node name="where_does4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(465, 1710)
+speaker_text = Array[String](["Just so you know, I'm not a tour guide."])
+speaker_portrait = null
+option_branches = [NodePath("../where_does5")]
+voice = "troll_voice"
+
+[node name="where_does5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(590, 2047)
+speaker_text = Array[String](["Telling you where the train goes is NOT in my job description."])
+speaker_portrait = null
+option_branches = [NodePath("../where_does6")]
+voice = "troll_voice"
+
+[node name="where_does6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(724, 2361)
+speaker_text = Array[String](["But I will go above and beyond this time..."])
+speaker_portrait = null
+option_branches = [NodePath("../where_does7")]
+voice = "troll_voice"
+
+[node name="where_does7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(781, 2717)
+speaker_text = Array[String](["East takes you into the mountains, to Lonesome Village."])
+speaker_portrait = null
+option_branches = [NodePath("../where_does8")]
+voice = "troll_voice"
+
+[node name="where_does8" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(804, 3057)
+speaker_text = Array[String](["West takes you to the coast, to New Sea-Land."])
+speaker_portrait = null
+speech_options = Array[String](["What's in Lonesome Village?", "Port? On what ocean? Where are we?", "Did you say \"New Zealand?!\""])
+option_branches = [NodePath("../not_a_tour_guide"), NodePath("../not_a_tour_guide"), NodePath("../new_zealand")]
+voice = "troll_voice"
+
+[node name="not_a_tour_guide" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(576, 3287)
+speaker_text = Array[String](["Again-"])
+speaker_portrait = null
+option_branches = [NodePath("../not_a_tour_guide2")]
+voice = "troll_voice"
+
+[node name="not_a_tour_guide2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(548, 3595)
+speaker_text = Array[String](["I AM NOT A TOUR GUIDE."])
+speaker_portrait = null
+option_branches = [NodePath("../can_i_help_you")]
+voice = "troll_voice"
+
+[node name="new_zealand" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(1098, 3300)
+speaker_text = Array[String](["What?"])
+speaker_portrait = null
+option_branches = [NodePath("../new_zealand2")]
+voice = "troll_voice"
+
+[node name="new_zealand2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(1127, 3640)
+speaker_text = Array[String](["I don't even know what that IS."])
+speaker_portrait = null
+option_branches = [NodePath("../new_zealand3")]
+voice = "troll_voice"
+
+[node name="new_zealand3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(1207, 4012)
+speaker_text = Array[String](["New SEA-Land!"])
+speaker_portrait = null
+option_branches = [NodePath("../new_zealand4")]
+voice = "troll_voice"
+
+[node name="new_zealand4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
+position = Vector2(1222, 4308)
+speaker_text = Array[String](["They don't pay me enough..."])
+speaker_portrait = null
+option_branches = [NodePath("../can_i_help_you")]
+voice = "troll_voice"
+
+[node name="bye" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_47u6g")]
+position = Vector2(421, 937)
+speaker_text = Array[String](["Whatever...
+"])
+speaker_portrait = null
+voice = "troll_voice"
+dialog_script = NodePath("disappear")
+play_sound_path = "res://audio/soundFX/ghost_warble.wav"
+
+[node name="disappear" type="Node" parent="bye"]
+script = ExtResource("3_47u6g")
+animatronic_tag = "npc_ticket_guy"
+animation_queue = Array[String](["disappear", "default"])

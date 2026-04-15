@@ -80,7 +80,7 @@ var showing_bubble = false
 var ray_collision_mask = 0b00000000_00000000_00000000_00010001
 
 const top_speed = 125000
-const nav_target_reached_distance = 8.0 #distance at which nav target is considered reached
+const nav_target_reached_distance = 16.0 #distance at which nav target is considered reached
 const nav_path_resolution = 4
 
 var sound_player := AudioStreamPlayer2D.new()
@@ -106,6 +106,7 @@ func _ready():
 		set_up_nav_agent()
 	update_perceptions()
 	send_perceptions()
+	update_branching_dialog()
 	if(!Engine.is_editor_hint()):
 		player_ref = get_tree().get_nodes_in_group("player")[0]
 	else:
@@ -173,11 +174,23 @@ func update():
 
 func update_branching_dialog():
 	if(schedules.size() > 0):
-		if(perceptions.current_stage_mark.get_branching_dialog() != null):
-			if(global_position.distance_to(perceptions.current_stage_mark.global_position) <= nav_target_reached_distance*2):
-				branching_dialog = perceptions.current_stage_mark.get_branching_dialog()
-		else:
-			branching_dialog = null
+		var current_schedule = schedules[schedules_index]
+		var time_keeper_ref = get_tree().get_first_node_in_group("time_keeper")
+		var current_day_index = time_keeper_ref.get_day_of_week()
+		var stage_marks = current_schedule.get_stage_marks(current_day_index)
+		var closest_mark : Node2D = stage_marks[0]
+		for mark in stage_marks:
+			if(global_position.distance_to(mark.global_position) < 
+			global_position.distance_to(closest_mark.global_position)):
+				closest_mark = mark
+		branching_dialog = closest_mark.get_branching_dialog()
+			
+		#if(perceptions.current_stage_mark.get_branching_dialog() != null):
+			##if(global_position.distance_to(perceptions.current_stage_mark.global_position) <= nav_target_reached_distance):
+			##branching_dialog = perceptions.current_stage_mark.get_branching_dialog()
+			#for 
+	#else:
+		#branching_dialog = null
 
 func _on_stop_motion():
 	_character_base.set_animation_scale_ratio(1)
@@ -314,15 +327,19 @@ func update_vision():
 
 func update_stage_mark():
 	if(schedules.size() > 0):
-		var time_keeper_ref = get_tree().get_first_node_in_group("time_keeper")
-		if(time_keeper_ref != null):
-			var current_schedule = schedules[schedules_index]
-			var current_day_index = time_keeper_ref.get_day_of_week()
-			var current_hour_index = time_keeper_ref.get_hour()
-			var current_stage_mark = current_schedule.get_stage_mark(current_day_index,current_hour_index)
-			perceptions.current_stage_mark = current_stage_mark
-			update_branching_dialog()
-		
+		perceptions.current_stage_mark = get_stage_mark_from_schedule()
+		#update_branching_dialog()
+
+func get_stage_mark_from_schedule() -> Node:
+	var time_keeper_ref = get_tree().get_first_node_in_group("time_keeper")
+	if(time_keeper_ref != null):
+		var current_schedule = schedules[schedules_index]
+		var current_day_index = time_keeper_ref.get_day_of_week()
+		var current_hour_index = time_keeper_ref.get_hour()
+		var current_stage_mark = current_schedule.get_stage_mark(current_day_index,current_hour_index)
+		return current_stage_mark
+	return null
+
 func get_branching_dialog():
 	return branching_dialog
 
@@ -478,6 +495,7 @@ func teleport_and_update():
 	if(schedules.size() > 0 && !exempt_from_npc_refresh):
 		update_stage_mark()
 		global_position = perceptions.current_stage_mark.global_position
+		update_branching_dialog()
 		if(!is_animatronic):
 			_on_set_nav_target(perceptions.current_stage_mark.global_position)
 			current_v = current_v * 0

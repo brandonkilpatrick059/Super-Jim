@@ -12,7 +12,7 @@ func _ready():
 
 func physics_process(_delta: float) -> void:
 	if(is_instance_valid(ai_state_machine.get_perceptions().current_stage_mark)):
-		if(ai_state_machine.get_perceptions().global_position.distance_to(ai_state_machine.get_perceptions().current_stage_mark.global_position) < 10):
+		if(ai_state_machine.get_perceptions().global_position.distance_to(ai_state_machine.get_perceptions().current_stage_mark.global_position) <= 16):
 				get_parent().get_parent().play_animation(animation_name)
 		else:
 			if(not waiting_to_transit):

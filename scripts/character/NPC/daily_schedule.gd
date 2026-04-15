@@ -11,3 +11,9 @@ func get_stage_mark(hour : int) -> Node:
 		return full_day_schedule
 	else:
 		return hourly_schedule[hour]
+
+func get_stage_marks() -> Array[Node]:
+	if(full_day_schedule != null):
+		return [full_day_schedule]
+	else:
+		return hourly_schedule

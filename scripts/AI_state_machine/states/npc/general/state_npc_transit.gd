@@ -34,7 +34,7 @@ func physics_process(_delta: float) -> void:
 			var stage_mark_state : String = current_stage_mark.get_state()
 			#current_stage_mark = null
 			reach_stage_mark.emit()
-			if(ai_state_machine.get_state().name != current_stage_mark.get_state()):
+			if(ai_state_machine.get_state().name != stage_mark_state):
 				ai_state_machine.transition_to(stage_mark_state)
 
 func enter(_msg := {}) -> void:

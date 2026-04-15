@@ -67,21 +67,21 @@ voice = "troll_voice"
 
 [node name="why_no_tickets" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
 position = Vector2(-538, 1952)
-speaker_text = Array[String](["I think the printer is broken."])
+speaker_text = Array[String](["I don't know."])
 speaker_portrait = null
 option_branches = [NodePath("../why_no_tickets2")]
 voice = "troll_voice"
 
 [node name="why_no_tickets2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
 position = Vector2(-538, 2216)
-speaker_text = Array[String](["I don't know..."])
+speaker_text = Array[String](["That sort of question is above my pay grade."])
 speaker_portrait = null
 option_branches = [NodePath("../why_no_tickets3")]
 voice = "troll_voice"
 
 [node name="why_no_tickets3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_47u6g")]
 position = Vector2(-523, 2515)
-speaker_text = Array[String](["That sort of information is above my pay grade."])
+speaker_text = Array[String](["I think the printer is broken..."])
 speaker_portrait = null
 option_branches = [NodePath("../can_i_help_you")]
 voice = "troll_voice"

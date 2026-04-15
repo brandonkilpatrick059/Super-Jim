@@ -10,3 +10,7 @@ func _ready() -> void:
 
 func get_stage_mark(day : int, hour : int):
 	return daily_schedules[day].get_stage_mark(hour)
+
+func get_stage_marks(day : int) -> Array[Node]:
+	return daily_schedules[day].get_stage_marks()
+	

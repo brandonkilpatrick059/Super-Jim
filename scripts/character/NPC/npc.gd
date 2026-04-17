@@ -180,9 +180,14 @@ func update_branching_dialog():
 		var stage_marks = current_schedule.get_stage_marks(current_day_index)
 		var closest_mark : Node2D = stage_marks[0]
 		for mark in stage_marks:
-			if(global_position.distance_to(mark.global_position) < 
+			if(global_position.distance_to(mark.global_position) < 16):
+				if(mark == perceptions.current_stage_mark):
+					closest_mark = mark
+					break
+			elif(global_position.distance_to(mark.global_position) < 
 			global_position.distance_to(closest_mark.global_position)):
 				closest_mark = mark
+			
 		branching_dialog = closest_mark.get_branching_dialog()
 			
 		#if(perceptions.current_stage_mark.get_branching_dialog() != null):
@@ -248,6 +253,7 @@ func out_of_dialog():
 func set_schedules_index(index : int):
 	schedules_index = index
 	update_stage_mark()
+	update_branching_dialog()
 
 func get_schedules_index() -> int:
 	return schedules_index

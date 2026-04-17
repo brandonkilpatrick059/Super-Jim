@@ -38,7 +38,7 @@ var timer_fall := Timer.new()
 var timer_fall_step = 0.05
 var falling = false
 var current_scale = 1
-var scale_step = 0.05
+var scale_step = 0.1
 
 var prop_home : Vector2 = Vector2(0,0)
 var return_home_distance = 600
@@ -167,6 +167,8 @@ func _physics_process(delta):
 		_collision_shape.disabled = true
 		falling = true                                                                                                                                                                    
 		timer_fall.start(timer_fall_step)
+		sound_player.stream = load("res://audio/soundFX/fall_sound.wav")
+		sound_player.play()
 		linear_velocity = Vector2(0,0)
 	if(picked_up):
 		global_position = (pickup_actor_ref.global_position + Vector2(0, -base_offset+y_sort_offset))
@@ -175,7 +177,7 @@ func _physics_process(delta):
 		if(current_scale - scale_step > 0):
 			current_scale = current_scale - scale_step
 			sprite.scale = Vector2(current_scale, current_scale)
-			#linear_velocity = linear_velocity + Vector2(0,50)
+			linear_velocity = linear_velocity + Vector2(0,10)
 		else:
 			if(is_in_group("pizza")):
 				destroy_self.emit()

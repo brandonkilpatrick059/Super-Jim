@@ -177,13 +177,17 @@ func _physics_process(delta):
 		if(current_scale - scale_step > 0):
 			current_scale = current_scale - scale_step
 			sprite.scale = Vector2(current_scale, current_scale)
-			linear_velocity = linear_velocity + Vector2(0,10)
+			if(!fall_handler.check_ledge()):
+				linear_velocity = linear_velocity + Vector2(0,20)
+			else:
+				linear_velocity = Vector2(0,0)
 		else:
 			if(is_in_group("pizza")):
 				destroy_self.emit()
 			else:
 				if(has_home):
 					return_to_home()
+					fall_handler.reset_ledge_checker()
 				else:
 					queue_free()
 	elif(global_position != prop_home && 

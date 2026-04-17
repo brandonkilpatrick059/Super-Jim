@@ -8,20 +8,55 @@ script = ExtResource("1_40e1j")
 trunk = NodePath("trunk")
 
 [node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_lwwcu")]
-speaker_text = Array[String](["...But he was just a-sleepin."])
+speaker_text = Array[String](["Can't sleep?"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
 voice = "low_alien_voice"
 
 [node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_lwwcu")]
 position = Vector2(2, 218)
-speaker_text = Array[String](["When the blues jumped a rabbit-"])
+speaker_text = Array[String](["Me either."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk3")]
 voice = "low_alien_voice"
 
-[node name="trunk3" parent="." instance=ExtResource("2_lwwcu")]
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_lwwcu")]
 position = Vector2(-2, 444)
-speaker_text = Array[String](["And that rabbit ran a mile..."])
+speaker_text = Array[String](["Do you feel it too?"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk4")]
+voice = "low_alien_voice"
+
+[node name="trunk4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_lwwcu")]
+position = Vector2(2, 745)
+speaker_text = Array[String](["The signal?"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk5")]
+voice = "low_alien_voice"
+
+[node name="trunk5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_lwwcu")]
+position = Vector2(2, 1037)
+speaker_text = Array[String](["Every night I receive the transmission."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk6")]
+voice = "low_alien_voice"
+
+[node name="trunk6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_lwwcu")]
+position = Vector2(2, 1360)
+speaker_text = Array[String](["It flows through me."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk7")]
+voice = "low_alien_voice"
+
+[node name="trunk7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_lwwcu")]
+position = Vector2(120, 1636)
+speaker_text = Array[String](["Always strongest after midnight-"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk8")]
+voice = "low_alien_voice"
+
+[node name="trunk8" parent="." instance=ExtResource("2_lwwcu")]
+position = Vector2(184, 1961)
+speaker_text = Array[String](["During the witching hours..."])
 speaker_portrait = null
 voice = "low_alien_voice"

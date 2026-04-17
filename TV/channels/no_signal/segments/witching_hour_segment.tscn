@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://du3kci8ommvro"]
+
+[ext_resource type="Script" uid="uid://ditb6m8xvy3gr" path="res://scripts/TV/segments/no_signal/witching_hour_segment.gd" id="1_wbult"]
+[ext_resource type="SpriteFrames" uid="uid://bqet4bly2fgb4" path="res://sprites/spritesheets/spriteframes/TV/channels/no_signal/alien_eye.tres" id="2_8x7ed"]
+[ext_resource type="SpriteFrames" uid="uid://b7e0a5o5x4dtw" path="res://sprites/spritesheets/spriteframes/TV/tv_noise.tres" id="2_ba2c2"]
+[ext_resource type="Script" uid="uid://b3xtkv5igree1" path="res://scripts/utility/play_default_animation.gd" id="3_8x7ed"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tmr16"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ba2c2"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8x7ed"]
+light_mode = 1
+
+[node name="tv_noise_segment" type="Node2D"]
+script = ExtResource("1_wbult")
+
+[node name="map_back_ground" type="Polygon2D" parent="."]
+visible = false
+z_index = -1
+material = SubResource("CanvasItemMaterial_tmr16")
+color = Color(0.135012, 0.135012, 0.135012, 1)
+polygon = PackedVector2Array(-500, -500, 500, -500, 500, 500, -500, 500)
+
+[node name="alien_eye" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_ba2c2")
+sprite_frames = ExtResource("2_8x7ed")
+animation = &"opened"
+frame_progress = 0.87509
+
+[node name="noise" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_8x7ed")
+sprite_frames = ExtResource("2_ba2c2")
+frame_progress = 0.90969
+script = ExtResource("3_8x7ed")

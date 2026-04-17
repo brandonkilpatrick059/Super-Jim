@@ -1181,7 +1181,7 @@ func start_skateboarding():
 	skateboard_player.play()
 	_skateboard.visible = true
 	if(is_dashing):
-		linear_velocity = linear_velocity * 1.4
+		linear_velocity = linear_velocity * 1.35
 	physics_material_override.bounce = 1.0
 	linear_damp = skating_linear_damp
 	skating_top_speed = speed()

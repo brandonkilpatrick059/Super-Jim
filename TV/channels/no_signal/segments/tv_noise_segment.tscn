@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8ygpousbvb1f"]
+
+[ext_resource type="Script" uid="uid://gaer3qgb52jq" path="res://scripts/TV/segments/no_signal/tv_noise_segment.gd" id="1_rb0ur"]
+[ext_resource type="SpriteFrames" uid="uid://b7e0a5o5x4dtw" path="res://sprites/spritesheets/spriteframes/TV/tv_noise.tres" id="2_rb0ur"]
+[ext_resource type="Script" uid="uid://b3xtkv5igree1" path="res://scripts/utility/play_default_animation.gd" id="3_6ma2l"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tmr16"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6ma2l"]
+light_mode = 1
+
+[node name="tv_noise_segment" type="Node2D"]
+script = ExtResource("1_rb0ur")
+
+[node name="map_back_ground" type="Polygon2D" parent="."]
+z_index = -1
+material = SubResource("CanvasItemMaterial_tmr16")
+color = Color(0.135012, 0.135012, 0.135012, 1)
+polygon = PackedVector2Array(-500, -500, 500, -500, 500, 500, -500, 500)
+
+[node name="noise" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_6ma2l")
+sprite_frames = ExtResource("2_rb0ur")
+frame_progress = 0.159138
+script = ExtResource("3_6ma2l")

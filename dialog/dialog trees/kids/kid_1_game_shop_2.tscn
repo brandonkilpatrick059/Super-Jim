@@ -79,7 +79,7 @@ voice = "sine_voice"
 speaker_name = "kid_1"
 
 [node name="card mechanics" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igejg")]
-position = Vector2(-270, 1962)
+position = Vector2(-664, 2124)
 speaker_text = Array[String](["It's pretty simple."])
 speaker_portrait = null
 option_branches = [NodePath("../card mechanics2")]
@@ -253,12 +253,10 @@ option_branches = [NodePath("../card mechanics16")]
 voice = "sine_voice"
 speaker_name = "kid_1"
 
-[node name="ask about game6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igejg")]
+[node name="ask about game6" parent="." instance=ExtResource("2_igejg")]
 position = Vector2(-278, 1745)
 speaker_text = Array[String](["We both got a pack for our birthdays."])
 speaker_portrait = null
-speech_options = Array[String](["See you later", "What do you do with the cards?"])
-option_branches = [NodePath("../bye"), NodePath("../card mechanics")]
 voice = "sine_voice"
 speaker_name = "kid_2"
 
@@ -376,17 +374,16 @@ speaker_name = "kid_2"
 
 [node name="play our friend5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igejg")]
 position = Vector2(1035, 4944)
-speaker_text = Array[String](["She wears blue overalls."])
+speaker_text = Array[String](["She comes in here sometimes too."])
 speaker_portrait = null
 option_branches = [NodePath("../play our friend6")]
 voice = "sine_voice"
 speaker_name = "kid_2"
 
-[node name="play our friend6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igejg")]
+[node name="play our friend6" parent="." instance=ExtResource("2_igejg")]
 position = Vector2(724, 5161)
 speaker_text = Array[String](["She's really cool."])
 speaker_portrait = null
-option_branches = [NodePath("../play our friend7")]
 voice = "sine_voice"
 speaker_name = "kid_1"
 
@@ -423,7 +420,7 @@ speaker_name = "kid_2"
 
 [node name="play our friend4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igejg")]
 position = Vector2(752, 4744)
-speaker_text = Array[String](["She hangs out in the park every day around noon."])
+speaker_text = Array[String](["She wears overalls and likes to hang out in the park."])
 speaker_portrait = null
 option_branches = [NodePath("../play our friend5")]
 voice = "sine_voice"

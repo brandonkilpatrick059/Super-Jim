@@ -41,9 +41,7 @@ func set_active(set_active : bool):
 		audio_player.play()
 		timer.start(step_secs)
 	elif(set_active == false && active):
-		active = false
-		visible = false
-		audio_player.stop()
+		disable()
 
 func update_fade_alpha():
 	if(fading_in_sprite.modulate.a < 1.0):

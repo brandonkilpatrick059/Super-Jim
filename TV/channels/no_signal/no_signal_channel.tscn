@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnmdem3ucdiam"]
+
+[ext_resource type="Script" uid="uid://dt1mevb5a3hy0" path="res://scripts/TV/channel.gd" id="1_wln83"]
+[ext_resource type="PackedScene" uid="uid://c8ygpousbvb1f" path="res://TV/channels/no_signal/segments/tv_noise_segment.tscn" id="2_81tmx"]
+[ext_resource type="PackedScene" uid="uid://du3kci8ommvro" path="res://TV/channels/no_signal/segments/witching_hour_segment.tscn" id="3_c2cgf"]
+
+[node name="NoSignalChannel" type="Node2D" node_paths=PackedStringArray("segments")]
+script = ExtResource("1_wln83")
+segments = [NodePath("tv_noise_segment"), NodePath("witching_hour_segment"), NodePath("witching_hour_segment"), NodePath("witching_hour_segment"), NodePath("tv_noise_segment"), NodePath("tv_noise_segment"), NodePath("tv_noise_segment"), NodePath("tv_noise_segment"), NodePath("tv_noise_segment"), NodePath("tv_noise_segment"), NodePath("tv_noise_segment"), NodePath("tv_noise_segment"), NodePath("tv_noise_segment"), NodePath("tv_noise_segment"), NodePath("tv_noise_segment"), NodePath("tv_noise_segment"), NodePath("tv_noise_segment"), NodePath("tv_noise_segment"), NodePath("tv_noise_segment"), NodePath("tv_noise_segment"), NodePath("tv_noise_segment"), NodePath("tv_noise_segment"), NodePath("tv_noise_segment"), NodePath("tv_noise_segment")]
+channel_text = "CHANNEL 03 - NO SIGNAL"
+
+[node name="witching_hour_segment" parent="." instance=ExtResource("3_c2cgf")]
+
+[node name="tv_noise_segment" parent="." instance=ExtResource("2_81tmx")]

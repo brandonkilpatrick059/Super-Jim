@@ -7,6 +7,7 @@
 [node name="TvTestScene" type="Node2D"]
 
 [node name="TvMachine" parent="." instance=ExtResource("1_7yqp7")]
+channel_index = 2
 
 [node name="Node" type="Node" parent="." groups=["time_keeper"]]
 script = ExtResource("2_stoq4")

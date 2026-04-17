@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://b7e0a5o5x4dtw"]
+
+[ext_resource type="Texture2D" uid="uid://bsbjswnrb6irx" path="res://sprites/spritesheets/TV/tv_noise.png" id="1_cmmfn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qnje"]
+atlas = ExtResource("1_cmmfn")
+region = Rect2(0, 0, 288, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxaxk"]
+atlas = ExtResource("1_cmmfn")
+region = Rect2(288, 0, 288, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgfjs"]
+atlas = ExtResource("1_cmmfn")
+region = Rect2(576, 0, 288, 288)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qnje")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxaxk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgfjs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]

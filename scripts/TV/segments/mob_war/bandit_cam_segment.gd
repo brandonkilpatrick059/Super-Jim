@@ -55,9 +55,7 @@ func set_active(set_active : bool):
 		find_bandit()
 		active = true
 	elif(set_active == false && active):
-		active = false
-		audio_player.stop()
-		reset_camera()
+		disable()
 
 func process():
 	if(active):

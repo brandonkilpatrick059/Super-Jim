@@ -29,7 +29,7 @@ var base_offset = 24
 var y_sort_offset = 15
 var original_offset : Vector2
 
-@export var spark_time_secs :float = 0.5 #time after being thrown in which a spark is created on collide
+var spark_time_secs :float = 1.5 #this actually mainly determines falling now
 var timer_spark := Timer.new()
 var can_spark = false
 
@@ -48,7 +48,11 @@ signal signal_picked_up()
 signal destroy_self()
 signal on_use_item()
 
+var in_falling_zone : bool = false
+
 var original_parent = null
+
+var fall_handler = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -62,10 +66,12 @@ func _ready():
 	add_child(sound_player)
 	prop_home = global_position
 	original_parent = get_parent()
+	fall_handler = load("res://entities/props/dynamic props/props_dynamic_pickupable/fall_handler.tscn").instantiate()
+	add_child(fall_handler)
 
-func set_physics_pos(vector2):
-	should_reset = true
-	new_position = vector2
+#func set_physics_pos(vector2):
+	#should_reset = true
+	#new_position = vector2
 
 func is_picked_up():
 	return picked_up
@@ -77,25 +83,25 @@ func throw(dir, offset : Vector2 = Vector2(0,0)):
 		picked_up = false
 		reparent(pickup_actor_ref.get_parent())
 		_collision_shape.disabled = false
-		timer_spark.start(spark_time_secs)
+		timer_spark.start(0.5)
 		can_spark = true
 		match(dir):
 			direction.left:
 				throw_force = Vector2(-force_factor,0)
 				global_position = pickup_actor_ref.global_position + Vector2(-base_offset, 0) + offset
-				set_physics_pos(pickup_actor_ref.global_position + Vector2(-base_offset, 0) + offset)
+				#set_physics_pos(pickup_actor_ref.global_position + Vector2(-base_offset, 0) + offset)
 			direction.right:
 				throw_force = Vector2(force_factor,0)
 				global_position = pickup_actor_ref.global_position + Vector2(base_offset, 0) + offset
-				set_physics_pos(pickup_actor_ref.global_position + Vector2(base_offset, 0) + offset)
+				#set_physics_pos(pickup_actor_ref.global_position + Vector2(base_offset, 0) + offset)
 			direction.up:
 				throw_force = Vector2(0,-force_factor)
 				global_position = pickup_actor_ref.global_position + Vector2(0, -base_offset) + offset
-				set_physics_pos(pickup_actor_ref.global_position + Vector2(0, -base_offset) + offset)
+				#set_physics_pos(pickup_actor_ref.global_position + Vector2(0, -base_offset) + offset)
 			direction.down:
 				throw_force = Vector2(0,force_factor)
 				global_position = pickup_actor_ref.global_position + Vector2(0, base_offset) + offset
-				set_physics_pos(pickup_actor_ref.global_position + Vector2(0, base_offset) + offset)
+				#set_physics_pos(pickup_actor_ref.global_position + Vector2(0, base_offset) + offset)
 
 func throw_bypass_pickup(dir, actor_ref):
 	picked_up = true
@@ -124,48 +130,27 @@ func put_down(dir, offset : Vector2 = Vector2(0,0)):
 			direction.left:
 				throw_force = Vector2(-force_factor,0)
 				global_position = pickup_actor_ref.global_position + Vector2(-base_offset, 0) + offset
-				set_physics_pos(pickup_actor_ref.global_position + Vector2(-base_offset, 0) + offset)
+				#set_physics_pos(pickup_actor_ref.global_position + Vector2(-base_offset, 0) + offset)
 			direction.right:
 				throw_force = Vector2(force_factor,0)
 				global_position = pickup_actor_ref.global_position + Vector2(base_offset, 0) + offset
-				set_physics_pos(pickup_actor_ref.global_position + Vector2(base_offset, 0) + offset)
+				#set_physics_pos(pickup_actor_ref.global_position + Vector2(base_offset, 0) + offset)
 			direction.up:
 				throw_force = Vector2(0,-force_factor)
 				global_position = pickup_actor_ref.global_position + Vector2(0, -base_offset) + offset
-				set_physics_pos(pickup_actor_ref.global_position + Vector2(0, -base_offset) + offset)
+				#set_physics_pos(pickup_actor_ref.global_position + Vector2(0, -base_offset) + offset)
 			direction.down:
 				throw_force = Vector2(0,force_factor)
 				global_position = pickup_actor_ref.global_position + Vector2(0, base_offset) + offset
-				set_physics_pos(pickup_actor_ref.global_position + Vector2(0, base_offset) + offset)
+				#set_physics_pos(pickup_actor_ref.global_position + Vector2(0, base_offset) + offset)
 
 
 func set_will_pickup_false():
 	will_pickup = false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	#TODO: pickup arrow broke and i don't care enough to fix it.
-	#maybe get rid of it in favor of a shader-based highlight or something?
-#	#update pickup arrow's presence
-	#if(!picked_up && will_pickup && !showing_arrow):
-		#arrow_instance = pickup_arrow.instantiate()
-		#add_child(arrow_instance)
-		#showing_arrow = true
-	#else: if (!will_pickup && showing_arrow ||
-				#picked_up && showing_arrow):
-		#arrow_instance.queue_free()
-		#var arrow_instances = get_tree().get_nodes_in_group("pickuparrow")
-		#for arrow in arrow_instances:
-			#arrow.queue_free()
-		#showing_arrow = false
-		#
-	#if(showing_arrow):
-		#arrow_instance.position = position
-		
-
 func return_to_home():
 	global_position = prop_home
-	set_physics_pos(prop_home)
+	#set_physics_pos(prop_home)
 	_collision_shape.disabled = false
 	reparent(original_parent)
 	linear_velocity = Vector2(0,0)
@@ -177,6 +162,12 @@ func use_item():
 	on_use_item.emit()
 
 func _physics_process(delta):
+	fall_handler.global_position = global_position
+	if(!falling && timer_spark.is_stopped() && in_falling_zone):
+		_collision_shape.disabled = true
+		falling = true                                                                                                                                                                    
+		timer_fall.start(timer_fall_step)
+		linear_velocity = Vector2(0,0)
 	if(picked_up):
 		global_position = (pickup_actor_ref.global_position + Vector2(0, -base_offset+y_sort_offset))
 	elif(falling && timer_fall.is_stopped()):
@@ -184,7 +175,7 @@ func _physics_process(delta):
 		if(current_scale - scale_step > 0):
 			current_scale = current_scale - scale_step
 			sprite.scale = Vector2(current_scale, current_scale)
-			linear_velocity = linear_velocity + Vector2(0,50)
+			#linear_velocity = linear_velocity + Vector2(0,50)
 		else:
 			if(is_in_group("pizza")):
 				destroy_self.emit()
@@ -207,11 +198,13 @@ func _physics_process(delta):
 			current_scale  = 1
 		sprite.scale = Vector2(current_scale, current_scale)
 
-func fall():
-	if(!falling):
-		_collision_shape.disabled = true
-		falling = true
-		timer_fall.start(timer_fall_step)
+func enter_fall_zone():
+	if(!is_picked_up()):
+		in_falling_zone = true
+
+func exit_fall_zone():
+	if(!is_picked_up()):
+		in_falling_zone = false
 
 func _integrate_forces(state):
 	if(state.get_contact_count() >= 1):  #this check is needed or it will throw errors 
@@ -226,9 +219,9 @@ func _integrate_forces(state):
 			sound_player.play()
 			spark_collide.emit()
 			
-	if should_reset:
-		should_reset = false
-		state.transform.origin = new_position
+	#if should_reset:
+		#should_reset = false
+		#state.transform.origin = new_position
 	if thrown:
 		state.apply_central_impulse(throw_force)
 		thrown = false

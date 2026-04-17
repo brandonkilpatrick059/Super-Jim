@@ -234,6 +234,7 @@ menu_back={
 2d_physics/layer_14="actor wall"
 2d_physics/layer_15="bottomless pit"
 2d_physics/layer_16="player_wall"
+2d_physics/layer_17="fall_handler"
 2d_render/snap/snap_2d_transforms_to_pixel=false
 2d_render/snap/snap_2d_vertices_to_pixel=false
 

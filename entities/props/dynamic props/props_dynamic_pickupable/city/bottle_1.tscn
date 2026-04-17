@@ -22,7 +22,6 @@ max_contacts_reported = 1
 linear_damp = 4.0
 script = ExtResource("1_nwtck")
 force_factor = 700
-spark_time_secs = 0.25
 
 [node name="sprite" type="Sprite2D" parent="." groups=["dynamic", "pickupable", "prop"]]
 y_sort_enabled = true

@@ -29,8 +29,11 @@ func set_active(set_active : bool):
 	elif(!set_active && active):
 		active = false
 		visible = false
-		for segment in segments:
-			segment.disable()
+		disable_segments()
+
+func disable_segments():
+	for segment in segments:
+		segment.disable()
 
 func update_active_segment():
 	if(time_keeper_ref == null):

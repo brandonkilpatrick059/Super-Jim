@@ -27,7 +27,7 @@ visible = false
 material = SubResource("CanvasItemMaterial_ba2c2")
 sprite_frames = ExtResource("2_8x7ed")
 animation = &"open"
-frame_progress = 0.324305
+frame_progress = 0.0742839
 
 [node name="dream_door" type="Node2D" parent="."]
 visible = false
@@ -35,7 +35,7 @@ visible = false
 [node name="door" type="AnimatedSprite2D" parent="dream_door"]
 sprite_frames = ExtResource("5_8x7ed")
 animation = &"opened"
-frame_progress = 0.245109
+frame_progress = 0.745065
 script = ExtResource("6_iuq6v")
 animation_name = "open"
 
@@ -46,7 +46,7 @@ texture = ExtResource("6_iqf7r")
 [node name="sleep_z" type="AnimatedSprite2D" parent="dream_door"]
 position = Vector2(0, -34)
 sprite_frames = ExtResource("8_i2l4s")
-frame_progress = 0.723967
+frame_progress = 0.773932
 script = ExtResource("3_8x7ed")
 
 [node name="glyph" type="Sprite2D" parent="dream_door"]
@@ -65,5 +65,5 @@ polygon = PackedVector2Array(-500, -500, 500, -500, 500, 500, -500, 500)
 [node name="noise" type="AnimatedSprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_8x7ed")
 sprite_frames = ExtResource("2_ba2c2")
-frame_progress = 0.0188415
+frame_progress = 0.518798
 script = ExtResource("3_8x7ed")

@@ -82,6 +82,8 @@ func _ready():
 	switch_timer.one_shot = true
 	add_child(timer)
 	add_child(switch_timer)
+	var music_index = AudioServer.get_bus_index("Music")
+	music_bus_vol_level = AudioServer.get_bus_volume_db(music_index)
 
 func set_noise_point(str : float, variance : float):
 	noise_set_point = str
@@ -151,6 +153,8 @@ func disable():
 	visible = false
 	noise_player.stop()
 	music_player.stop()
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),music_bus_vol_level)
+	clean_up_all_skyboxes()
 	reset_camera()
 
 func handle_noise_strength():
@@ -167,7 +171,6 @@ func set_active(set_active : bool):
 		sequence_index = 0
 		active = true
 		visible = true
-		music_bus_vol_level = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))
 		noise_player.volume_db = -24.0
 		noise_player.stream = load("res://audio/soundFX/pink_noise.wav")
 		noise_player.play()
@@ -175,8 +178,6 @@ func set_active(set_active : bool):
 		music_player.play()
 	elif(set_active == false && active):
 		disable()
-		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),music_bus_vol_level)
-		clean_up_all_skyboxes()
 
 func all_noise_process():
 	if(entering):

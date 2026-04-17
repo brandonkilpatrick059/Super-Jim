@@ -66,6 +66,10 @@ func reset_camera():
 	var player_ref = get_tree().get_first_node_in_group("player")
 	camera_ref.connect_anchor(player_ref)
 
+func clean_up():
+	for channel in channels:
+		channel.disable_segments()
+
 func handle_input():
 	if(can_change_channel):
 		if(Input.is_action_just_pressed("up")):

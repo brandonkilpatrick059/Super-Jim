@@ -68,6 +68,7 @@ func handle_input():
 
 func exit_ui():
 	ui_active = false
+	ui_ref.clean_up()
 	ui_ref.queue_free()
 	player_ref.set_control_frozen(false)
 	player_ref.main_ui_visible()

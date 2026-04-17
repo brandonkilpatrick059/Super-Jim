@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://bqet4bly2fgb4"]
+[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://bqet4bly2fgb4"]
 
 [ext_resource type="Texture2D" uid="uid://80y63vsiywm0" path="res://sprites/spritesheets/TV/no_signal_channel/eye.png" id="1_katbo"]
 
@@ -46,25 +46,9 @@ region = Rect2(288, 0, 288, 288)
 atlas = ExtResource("1_katbo")
 region = Rect2(0, 0, 288, 288)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cq1d1"]
-atlas = ExtResource("1_katbo")
-region = Rect2(3456, 0, 288, 288)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f6oyy"]
-atlas = ExtResource("1_katbo")
-region = Rect2(0, 0, 288, 288)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lmtv2"]
-atlas = ExtResource("1_katbo")
-region = Rect2(3456, 0, 288, 288)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_katbo"]
 atlas = ExtResource("1_katbo")
 region = Rect2(0, 0, 288, 288)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lynua"]
-atlas = ExtResource("1_katbo")
-region = Rect2(3744, 0, 288, 288)
 
 [resource]
 animations = [{
@@ -77,54 +61,6 @@ animations = [{
 "speed": 10.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxm8r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxm8r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxm8r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxm8r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxm8r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxm8r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxm8r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxm8r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxm8r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxm8r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxm8r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxm8r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxm8r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxm8r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxm8r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxm8r")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jxm8r")
 }, {
@@ -210,45 +146,57 @@ animations = [{
 "texture": SubResource("AtlasTexture_ws0ip")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cq1d1")
+"texture": SubResource("AtlasTexture_ws0ip")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_f6oyy")
+"texture": SubResource("AtlasTexture_ws0ip")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lmtv2")
+"texture": SubResource("AtlasTexture_ws0ip")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lmtv2")
+"texture": SubResource("AtlasTexture_ws0ip")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_f6oyy")
+"texture": SubResource("AtlasTexture_ws0ip")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lmtv2")
+"texture": SubResource("AtlasTexture_ws0ip")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lmtv2")
+"texture": SubResource("AtlasTexture_ws0ip")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_f6oyy")
+"texture": SubResource("AtlasTexture_ws0ip")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lmtv2")
+"texture": SubResource("AtlasTexture_ws0ip")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lmtv2")
+"texture": SubResource("AtlasTexture_ws0ip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws0ip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws0ip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws0ip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws0ip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws0ip")
 }],
 "loop": true,
 "name": &"open",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_katbo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lynua")
 }],
 "loop": true,
 "name": &"opened",

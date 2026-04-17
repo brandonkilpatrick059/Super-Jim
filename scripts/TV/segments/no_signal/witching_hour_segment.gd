@@ -2,12 +2,15 @@ extends Node2D
 
 @onready var noise = $noise
 @onready var alien_eye = $alien_eye
+@onready var input_glyph = $dream_door/glyph
+@onready var dream_door_tip = $dream_door
 
 var active = false
 
 var noise_player := AudioStreamPlayer.new()
 var music_player := AudioStreamPlayer.new()
 
+var music_bus_vol_level : float = 0.0
 var noise_max_vol : float = -24.0
 var zero_volume : float = -60.0
 
@@ -53,6 +56,10 @@ var sequence : Array[String] = [
 	all_noise,
 	space_ship,
 	all_noise,
+	dream_door,
+	all_noise,
+	end_door,
+	all_noise,
 	eye_open,
 	all_noise]
 
@@ -88,9 +95,11 @@ func get_noise_variance_point() -> float:
 func set_noise_strength(str : float):
 	var vol_diff = abs(zero_volume ) - abs(noise_max_vol)
 	var music_vol_ratio = str * vol_diff
+	
 	var noise_vol_ratio = (1.0 - str) * vol_diff
 	noise_player.volume_db = noise_max_vol - noise_vol_ratio
 	music_player.volume_db = -music_vol_ratio
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),-18-music_vol_ratio)
 	noise.modulate = Color(1.0,1.0,1.0, str)
 	noise_strength = str
 
@@ -158,6 +167,7 @@ func set_active(set_active : bool):
 		sequence_index = 0
 		active = true
 		visible = true
+		music_bus_vol_level = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))
 		noise_player.volume_db = -24.0
 		noise_player.stream = load("res://audio/soundFX/pink_noise.wav")
 		noise_player.play()
@@ -165,6 +175,7 @@ func set_active(set_active : bool):
 		music_player.play()
 	elif(set_active == false && active):
 		disable()
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),music_bus_vol_level)
 		clean_up_all_skyboxes()
 
 func all_noise_process():
@@ -173,13 +184,15 @@ func all_noise_process():
 		set_noise_point(1.0,0.0)
 		switch_timer.start(2.0)
 	if(exiting):
+		reset_camera()
+		dream_door_tip.visible = false
 		enter_next_sequence()
 
 func green_glow_process():
 	if(entering):
 		entering = false
 		set_noise_point(0.1,0.05)
-		switch_timer.start(4.0)
+		switch_timer.start(6.0)
 		alien_eye.visible = true
 		alien_eye.play("default")
 	if(exiting):
@@ -203,10 +216,30 @@ func space_ship_process():
 		entering = false
 		alien_eye.visible = false
 		set_noise_point(0.1,0.05)
-		switch_timer.start(5.0)
+		switch_timer.start(7.0)
 		camera_to_spaceship()
 	if(exiting):
+		enter_next_sequence()
+
+func end_door_process():
+	if(entering):
+		entering = false
+		alien_eye.visible = false
+		set_noise_point(0.08,0.02)
+		switch_timer.start(7.0)
 		clean_up_spaceship_skybox()
+		camera_to_end_door()
+	if(exiting):
+		enter_next_sequence()
+
+func dream_door_process():
+	if(entering):
+		entering = false
+		set_noise_point(0.05,0.0)
+		switch_timer.start(8.0)
+		input_glyph.get_glyph()
+		dream_door_tip.visible = true
+	if(exiting):
 		enter_next_sequence()
 
 func enter_next_sequence():
@@ -228,6 +261,10 @@ func process():
 					space_ship_process()
 				eye_open:
 					eye_open_process()
+				end_door:
+					end_door_process()
+				dream_door:
+					dream_door_process()
 			handle_noise_strength()
 			timer.start(timer_step)
 		if(!entering && !exiting && switch_timer.is_stopped()):

@@ -1,37 +1,69 @@
-[gd_scene load_steps=8 format=3 uid="uid://du3kci8ommvro"]
+[gd_scene load_steps=13 format=3 uid="uid://du3kci8ommvro"]
 
 [ext_resource type="Script" uid="uid://ditb6m8xvy3gr" path="res://scripts/TV/segments/no_signal/witching_hour_segment.gd" id="1_wbult"]
 [ext_resource type="SpriteFrames" uid="uid://bqet4bly2fgb4" path="res://sprites/spritesheets/spriteframes/TV/channels/no_signal/alien_eye.tres" id="2_8x7ed"]
 [ext_resource type="SpriteFrames" uid="uid://b7e0a5o5x4dtw" path="res://sprites/spritesheets/spriteframes/TV/tv_noise.tres" id="2_ba2c2"]
 [ext_resource type="Script" uid="uid://b3xtkv5igree1" path="res://scripts/utility/play_default_animation.gd" id="3_8x7ed"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tmr16"]
-light_mode = 1
+[ext_resource type="SpriteFrames" uid="uid://m6t412rcckj5" path="res://sprites/spritesheets/spriteframes/game_world/door1.tres" id="5_8x7ed"]
+[ext_resource type="Texture2D" uid="uid://smjfei55010t" path="res://sprites/game_world/door_frame.png" id="6_iqf7r"]
+[ext_resource type="Script" uid="uid://t4jc5e3jf7cs" path="res://scripts/utility/play_animation.gd" id="6_iuq6v"]
+[ext_resource type="SpriteFrames" uid="uid://cr3j5oy1d1ovx" path="res://sprites/spritesheets/spriteframes/interface/zzz.tres" id="8_i2l4s"]
+[ext_resource type="Script" uid="uid://w3qahpimeo3c" path="res://scripts/interface/glyph_sprite.gd" id="9_fdr3j"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ba2c2"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tmr16"]
 light_mode = 1
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8x7ed"]
 light_mode = 1
 
-[node name="tv_noise_segment" type="Node2D"]
+[node name="witching_hour_segment" type="Node2D"]
 script = ExtResource("1_wbult")
 
-[node name="map_back_ground" type="Polygon2D" parent="."]
+[node name="alien_eye" type="AnimatedSprite2D" parent="."]
 visible = false
+material = SubResource("CanvasItemMaterial_ba2c2")
+sprite_frames = ExtResource("2_8x7ed")
+animation = &"open"
+frame_progress = 0.324305
+
+[node name="dream_door" type="Node2D" parent="."]
+visible = false
+
+[node name="door" type="AnimatedSprite2D" parent="dream_door"]
+sprite_frames = ExtResource("5_8x7ed")
+animation = &"opened"
+frame_progress = 0.245109
+script = ExtResource("6_iuq6v")
+animation_name = "open"
+
+[node name="frame" type="Sprite2D" parent="dream_door"]
+position = Vector2(0, 8)
+texture = ExtResource("6_iqf7r")
+
+[node name="sleep_z" type="AnimatedSprite2D" parent="dream_door"]
+position = Vector2(0, -34)
+sprite_frames = ExtResource("8_i2l4s")
+frame_progress = 0.723967
+script = ExtResource("3_8x7ed")
+
+[node name="glyph" type="Sprite2D" parent="dream_door"]
+position = Vector2(0, 46)
+script = ExtResource("9_fdr3j")
+action = "up"
+blinking = true
+blink_interval_secs = 0.5
+
+[node name="map_back_ground" type="Polygon2D" parent="dream_door"]
 z_index = -1
 material = SubResource("CanvasItemMaterial_tmr16")
 color = Color(0.135012, 0.135012, 0.135012, 1)
 polygon = PackedVector2Array(-500, -500, 500, -500, 500, 500, -500, 500)
 
-[node name="alien_eye" type="AnimatedSprite2D" parent="."]
-material = SubResource("CanvasItemMaterial_ba2c2")
-sprite_frames = ExtResource("2_8x7ed")
-animation = &"opened"
-frame_progress = 0.87509
-
 [node name="noise" type="AnimatedSprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_8x7ed")
 sprite_frames = ExtResource("2_ba2c2")
-frame_progress = 0.90969
+frame_progress = 0.0188415
 script = ExtResource("3_8x7ed")

@@ -38,7 +38,7 @@ max_contacts_reported = 1
 linear_damp = 5.0
 script = ExtResource("2_a2jud")
 force_factor = 2000
-spark_time_secs = 0.2
+fall_handler_offset = Vector2(0, 16)
 
 [node name="sprite" type="AnimatedSprite2D" parent="pizza" groups=["dynamic", "pickupable", "prop"]]
 y_sort_enabled = true

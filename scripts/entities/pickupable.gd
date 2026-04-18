@@ -53,6 +53,7 @@ var in_falling_zone : bool = false
 var original_parent = null
 
 var fall_handler = null
+@export var fall_handler_offset : Vector2 = Vector2(0,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -162,7 +163,7 @@ func use_item():
 	on_use_item.emit()
 
 func _physics_process(delta):
-	fall_handler.global_position = global_position
+	fall_handler.global_position = global_position + fall_handler_offset
 	if(!falling && timer_spark.is_stopped() && in_falling_zone):
 		_collision_shape.disabled = true
 		falling = true                                                                                                                                                                    

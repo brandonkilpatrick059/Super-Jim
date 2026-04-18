@@ -26,4 +26,3 @@ func check_ledge() -> bool:
 	if(areas.size() > 0):
 		ledge_found = false
 	return ledge_found
-		

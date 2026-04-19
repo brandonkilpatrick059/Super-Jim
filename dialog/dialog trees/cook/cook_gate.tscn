@@ -138,7 +138,7 @@ speaker_name = "cook"
 [node name="gangs18" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-749, 5010)
 speaker_text = Array[String](["You sure you're prepared to do this job?"])
-speech_options = Array[String](["Yes", "I don't know..."])
+speech_options = Array[String](["Yes.", "I don't know..."])
 option_branches = [NodePath("../if youre worried"), NodePath("../if youre worried")]
 voice = "sine_voice"
 speaker_name = "speedy"
@@ -208,7 +208,7 @@ play_sound_path = "res://audio/soundFX/pickup.wav"
 [node name="gate key6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_w4fpj")]
 position = Vector2(-192, 1134)
 speaker_text = Array[String](["From there you can get to the rest of the city."])
-speech_options = Array[String](["Okay", "Why are there police barricades?"])
+speech_options = Array[String](["Okay.", "Why are there police barricades?"])
 option_branches = [NodePath("../if youre worried"), NodePath("../gangs")]
 voice = "sine_voice"
 speaker_name = "speedy"

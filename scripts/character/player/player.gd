@@ -38,6 +38,7 @@ const no_clip_speed = 3200000
 
 var get_cd_interface = preload("res://interface/get_cd_interface.tscn")
 
+var journal = preload("res://interface/journal_interface.tscn")
 var player_die = preload("res://entities/characters/player/player_die.tscn") 
 var card_binder = preload("res://baseball/card_binder.tscn")
 var die_material = preload("res://entities/characters/player/die_material.tres")
@@ -881,8 +882,19 @@ func get_input():
 		handle_throw()
 		handle_dash()
 		handle_use_item()
+		handle_journal()
 		handle_dev()
 		move()
+
+func handle_journal():
+	if(Input.is_action_just_pressed("journal")):
+		var journal_ref = journal.instantiate()
+		journal_ref.global_position = get_camera_ref().get_screen_center_position()
+		get_parent().add_child(journal_ref)
+		journal_ref.open()
+		var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+		var music_continues = true
+		time_keeper.pause_parent_tree(music_continues)
 
 func handle_dev():
 	if Input.is_action_just_pressed("dev_no_clip"):

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4dmrd4rnbcw4"]
+
+[ext_resource type="SpriteFrames" uid="uid://ujjatb8o1hx" path="res://sprites/spritesheets/spriteframes/interface/journal_frame.tres" id="1_7lu5n"]
+[ext_resource type="Script" uid="uid://b8jcwtku2bj4e" path="res://scripts/interface/journal_interface.gd" id="1_skpbi"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_skpbi"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_g1qji"]
+light_mode = 1
+
+[node name="JournalInterface" type="Node2D"]
+process_mode = 3
+z_index = 40
+material = SubResource("CanvasItemMaterial_skpbi")
+script = ExtResource("1_skpbi")
+
+[node name="frame" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_g1qji")
+position = Vector2(0, 512)
+sprite_frames = ExtResource("1_7lu5n")
+animation = &"close"

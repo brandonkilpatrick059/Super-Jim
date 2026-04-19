@@ -10,7 +10,7 @@ trunk = NodePath("trunk")
 [node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_k4nhy")]
 speaker_text = Array[String](["How can I help you?"])
 speaker_portrait = null
-speech_options = Array[String](["See you later", "I would like some coffee"])
+speech_options = Array[String](["See you later.", "I would like some coffee."])
 option_branches = [NodePath("../bye"), NodePath("../coffee")]
 voice = "sine_voice"
 

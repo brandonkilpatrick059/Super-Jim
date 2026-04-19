@@ -11,7 +11,7 @@ trunk = NodePath("trunk")
 [node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 speaker_text = Array[String](["What's up?"])
 speaker_portrait = null
-speech_options = Array[String](["Where are we?", "What's down here?", "What...Are you?", "How did you get here?", "Baseball Cards", "See you later"])
+speech_options = Array[String](["Where are we?", "What's down here?", "What...Are you?", "How did you get here?", "Baseball Cards", "See you later."])
 option_branches = [NodePath("../where are we"), NodePath("../whats down here"), NodePath("../trunk3(a worm)"), NodePath("../how did you get here"), NodePath("../baseball cards"), NodePath("../bye")]
 voice = "low_alien_voice"
 
@@ -24,7 +24,7 @@ animation_queue = Array[String](["extend", "default"])
 position = Vector2(-676, 1065)
 speaker_text = Array[String](["I'm a worm!"])
 speaker_portrait = null
-speech_options = Array[String](["Where are we?", "What's down here?", "How did you get here?", "Baseball Cards", "See you later"])
+speech_options = Array[String](["Where are we?", "What's down here?", "How did you get here?", "Baseball Cards", "See you later."])
 option_branches = [NodePath("../where are we"), NodePath("../whats down here"), NodePath("../how did you get here"), NodePath("../baseball cards"), NodePath("../bye")]
 voice = "low_alien_voice"
 
@@ -32,7 +32,7 @@ voice = "low_alien_voice"
 position = Vector2(1474, 1427)
 speaker_text = Array[String](["What else is on your mind?"])
 speaker_portrait = null
-speech_options = Array[String](["Where are we?", "What's down here?", "What...Are you?", "How did you get here?", "Baseball Cards", "See you later"])
+speech_options = Array[String](["Where are we?", "What's down here?", "What...Are you?", "How did you get here?", "Baseball Cards", "See you later."])
 option_branches = [NodePath("../where are we"), NodePath("../whats down here"), NodePath("../trunk3(a worm)"), NodePath("../how did you get here"), NodePath("../baseball cards"), NodePath("../bye")]
 voice = "low_alien_voice"
 

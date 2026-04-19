@@ -11,7 +11,7 @@ trunk = NodePath("trunk")
 [node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_iwa66")]
 speaker_text = Array[String](["..."])
 speaker_portrait = null
-speech_options = Array[String](["Hi", "...", "Shouldn't you be in school?", "Nice out today, isn't it?", "Baseball Cards"])
+speech_options = Array[String](["Hi.", "...", "Shouldn't you be in school?", "Nice out today, isn't it?", "Baseball Cards"])
 option_branches = [NodePath("../Go away"), NodePath("../trunk2"), NodePath("../Go away"), NodePath("../Go away"), NodePath("../baseball cards")]
 voice = "sine_voice"
 
@@ -19,7 +19,7 @@ voice = "sine_voice"
 position = Vector2(365, 220)
 speaker_text = Array[String](["..."])
 speaker_portrait = null
-speech_options = Array[String](["Hi", "...", "Shouldn't you be in school?", "Nice out today, isn't it?", "Baseball Cards"])
+speech_options = Array[String](["Hi.", "...", "Shouldn't you be in school?", "Nice out today, isn't it?", "Baseball Cards"])
 option_branches = [NodePath("../Go away"), NodePath("../trunk3"), NodePath("../Go away"), NodePath("../Go away"), NodePath("../baseball cards")]
 voice = "sine_voice"
 
@@ -27,7 +27,7 @@ voice = "sine_voice"
 position = Vector2(585, 543)
 speaker_text = Array[String](["..."])
 speaker_portrait = null
-speech_options = Array[String](["Hi", "...", "Shouldn't you be in school?", "Nice out today, isn't it?", "Baseball Cards"])
+speech_options = Array[String](["Hi.", "...", "Shouldn't you be in school?", "Nice out today, isn't it?", "Baseball Cards"])
 option_branches = [NodePath("../Go away"), NodePath("../trunk4"), NodePath("../Go away"), NodePath("../Go away"), NodePath("../baseball cards")]
 voice = "sine_voice"
 
@@ -35,7 +35,7 @@ voice = "sine_voice"
 position = Vector2(686, 905)
 speaker_text = Array[String](["...Uh, can I help you?"])
 speaker_portrait = null
-speech_options = Array[String](["Hi", "Shouldn't you be in school?", "Nice out today, isn't it?", "Baseball Cards"])
+speech_options = Array[String](["Hi.", "Shouldn't you be in school?", "Nice out today, isn't it?", "Baseball Cards"])
 option_branches = [NodePath("../Go away"), NodePath("../Go away"), NodePath("../Go away"), NodePath("../baseball cards")]
 voice = "sine_voice"
 

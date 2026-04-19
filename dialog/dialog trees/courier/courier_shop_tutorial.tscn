@@ -11,7 +11,7 @@ trunk = NodePath("trunk")
 [node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_np1u4")]
 position = Vector2(7, -19)
 speaker_text = Array[String](["What's up?"])
-speech_options = Array[String](["Can you remind me how to get to the West Side?", "Can I get some advice on handling mobsters?", "Nevermind"])
+speech_options = Array[String](["Can you remind me how to get to the West Side?", "Can I get some advice on handling mobsters?", "Nevermind."])
 option_branches = [NodePath("../leaving central"), NodePath("../ready_1"), NodePath("../nevermind")]
 voice = "sine_voice"
 

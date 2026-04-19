@@ -200,6 +200,7 @@ power = 5
 flat_buff_shield_next = 1
 
 [node name="yellow_17" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
 team = "yellow"
 card_name = "Gordy Feet"
 portrait_path = "res://sprites/baseball/portraits/test_9_2.png"

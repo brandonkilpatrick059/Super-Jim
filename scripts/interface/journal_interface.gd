@@ -23,6 +23,10 @@ var tab_index : int = 0
 var child_ui_ref : Node2D = null
 
 var binder_ui = preload("res://baseball/card_binder.tscn")
+var quest_journal_ui = preload("res://interface/quest_journal_interface.tscn")
+
+var tab_switching = false
+var switching_right = false
 
 
 func _ready() -> void:
@@ -41,26 +45,50 @@ func open(set_tabs : Array[String]):
 	audio_player.play()
 
 func close():
-	frame.play("close")
-	audio_player.stream = load("res://audio/soundFX/page_turn.wav")
-	audio_player.play()
-	opening = false
-	rising = false
-	closing = true
-	is_open = false
-	close_ui()
+	if(!tab_switching):
+		frame.play("close")
+		audio_player.stream = load("res://audio/soundFX/page_turn.wav")
+		audio_player.play()
+		opening = false
+		rising = false
+		closing = true
+		is_open = false
+		close_ui()
+
+func switch(switch_right : bool):
+	if(!closing && !tab_switching):
+		tab_switching = true
+		close_ui()
+		frame.play("close")
+		closing = true
+		if(switching_right):
+			tab_index = tab_index + 1
+			if(tab_index >= tabs.size()):
+				tab_index = 0
+		else:
+			tab_index = tab_index - 1
+			if(tab_index < 0):
+				tab_index = tabs.size() - 1
+		audio_player.stream = load("res://audio/soundFX/page_turn.wav")
+		audio_player.play()
 
 func initialize_ui():
 	var key = tabs[tab_index]
 	match key:
 		"card_binder":
 			initialize_card_binder()
+		"quest_journal":
+			initialize_quest_journal()
 
 func close_ui():
 	child_ui_ref.close()
 
 func initialize_card_binder():
 	child_ui_ref = binder_ui.instantiate()
+	add_child(child_ui_ref)
+
+func initialize_quest_journal():
+	child_ui_ref = quest_journal_ui.instantiate()
 	add_child(child_ui_ref)
 
 func handle_opening():
@@ -102,14 +130,38 @@ func handle_closing():
 			is_open = false
 			lowering = true
 
+func handle_tab_switching():
+	if(closing):
+		if(frame.frame == 2):
+			frame.play("open")
+			closing = false
+			opening = true
+	if(opening):
+		if(frame.frame == 2):
+			opening = false
+			frame.play("opened")
+			initialize_ui()
+			tab_switching = false
+
 func _physics_process(delta: float) -> void:
 	#global_position = player.get_camera_ref().get_screen_center_position()
 	if(timer.is_stopped()):
 		if(Input.is_action_just_pressed("journal")):
 			if(is_open):
 				close()
-		if(opening):
-			handle_opening()
-		if(closing):
-			handle_closing()
+		if(Input.is_action_just_pressed("menu_journal_left")):
+			if(is_open):
+				var left = false
+				switch(left)
+		if(Input.is_action_just_pressed("menu_journal_right")):
+			if(is_open):
+				var right = true
+				switch(right)
+		if(!tab_switching):
+			if(opening):
+				handle_opening()
+			if(closing):
+				handle_closing()
+		if(tab_switching):
+			handle_tab_switching()
 		timer.start(timer_step)

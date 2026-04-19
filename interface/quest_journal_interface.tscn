@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://dqm1acdekgin7"]
+
+[ext_resource type="Texture2D" uid="uid://pvaav11tguud" path="res://sprites/interface/quest_ui_background.png" id="1_1pkiw"]
+[ext_resource type="Script" uid="uid://b2bakhujntcs2" path="res://scripts/interface/quest_journal_interface.gd" id="1_joh03"]
+[ext_resource type="FontFile" uid="uid://cdf6elivdwcta" path="res://fonts/CourierPrime-Regular.ttf" id="2_glx4p"]
+[ext_resource type="SpriteFrames" uid="uid://ujjatb8o1hx" path="res://sprites/spritesheets/spriteframes/interface/journal_frame.tres" id="3_joh03"]
+[ext_resource type="Texture2D" uid="uid://dtso22kl0dwbr" path="res://sprites/interface/log_pics/mine_door.png" id="3_pba4g"]
+[ext_resource type="Script" uid="uid://bqjiguvskb3yy" path="res://scripts/interface/quest_log.gd" id="5_qwhe4"]
+[ext_resource type="Script" uid="uid://ciici7c3ug5gu" path="res://scripts/interface/log_state.gd" id="6_6s05b"]
+[ext_resource type="Texture2D" uid="uid://tky7m7ktiahc" path="res://sprites/interface/compass_arrow.png" id="6_65fdo"]
+
+[node name="QuestJournalInterface" type="Node2D"]
+script = ExtResource("1_joh03")
+test_key = "start_door"
+test_state = 1
+
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("1_1pkiw")
+
+[node name="photo" type="Sprite2D" parent="."]
+position = Vector2(-161, -57)
+texture = ExtResource("3_pba4g")
+
+[node name="topic_name" type="RichTextLabel" parent="."]
+offset_left = -234.0
+offset_top = 15.0
+offset_right = -89.0
+offset_bottom = 38.0
+size_flags_horizontal = 4
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_glx4p")
+theme_override_font_sizes/normal_font_size = 11
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quest_status" type="RichTextLabel" parent="."]
+offset_left = 28.0
+offset_top = -129.0
+offset_right = 249.0
+offset_bottom = 138.0
+size_flags_horizontal = 4
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_glx4p")
+theme_override_font_sizes/normal_font_size = 11
+bbcode_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
+sprite_frames = ExtResource("3_joh03")
+animation = &"opened"
+
+[node name="right_arrow" type="Sprite2D" parent="."]
+position = Vector2(234, 0)
+texture = ExtResource("6_65fdo")
+
+[node name="left_arrow" type="Sprite2D" parent="."]
+position = Vector2(-235, 0)
+scale = Vector2(-1, 1)
+texture = ExtResource("6_65fdo")
+
+[node name="quest_logs" type="Node" parent="."]
+
+[node name="start" type="Node" parent="quest_logs"]
+script = ExtResource("5_qwhe4")
+picture_path = "res://sprites/interface/log_pics/start.png"
+log_name = "my adventure begins!"
+
+[node name="0" type="Node" parent="quest_logs/start"]
+script = ExtResource("6_6s05b")
+text = "-I finally hopped a train out of town! I don't know where I'm going, but anywhere has to be better than here!
+-The train stopped in the middle of nowhere. Might as well look around."
+
+[node name="start_door" type="Node" parent="quest_logs"]
+script = ExtResource("5_qwhe4")
+picture_path = "res://sprites/interface/log_pics/mine_door.png"
+log_name = "glowing door"
+
+[node name="0" type="Node" parent="quest_logs/start_door"]
+script = ExtResource("6_6s05b")
+text = "-I found a mysterious glowing door deep in an abandoned mineshaft.
+-The door seems to have transported me to a strange city called Stonesthrow, which I have never heard of before. 
+-There's something very off about this place..."
+
+[node name="1" type="Node" parent="quest_logs/start_door"]
+script = ExtResource("6_6s05b")
+text = "-I found a mysterious glowing door deep in an abandoned mineshaft.
+-The door seems to have transported me to a strange city called Stonesthrow, which I have never heard of before. 
+-There's something  off about this place...
+-I am stuck here for now. I have taken a job delivering pizzas in exchange for a place to sleep."

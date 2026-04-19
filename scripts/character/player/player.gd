@@ -189,7 +189,10 @@ var should_wake_up = false
 var quest_state_keys : Array[String] = []
 var quest_state_values : Array[String] = []
 
-var journal_tabs : Array[String] = ["card_binder"]
+var quest_log_keys : Array[String] = ["start", "start_door"]
+var quest_log_values : Array[int] = [0,1]
+
+var journal_tabs : Array[String] = ["quest_journal"]
 
 func _ready():
 	_collision.disabled = no_clip
@@ -236,6 +239,12 @@ func _ready():
 	
 	if(Engine.is_editor_hint()):
 		queue_redraw()
+
+func get_quest_log_keys() -> Array[String]:
+	return quest_log_keys
+
+func get_quest_log_values()-> Array[int]:
+	return quest_log_values
 
 func get_days_since_paid_rent():
 	return days_since_rent_paid

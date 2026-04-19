@@ -19,12 +19,12 @@ var used_cards = 0
 
 var sound_player := AudioStreamPlayer.new()
 
-func close_binder():
+func close():
 	player_ref.set_deck(deck_lineup)
-	player_ref.set_control_frozen(false)
-	player_ref.main_ui_visible()
-	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
-	time_keeper.unlock_time()
+	#player_ref.set_control_frozen(false)
+	#player_ref.main_ui_visible()
+	#var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+	#time_keeper.unlock_time()
 	queue_free()
 
 func _ready() -> void:
@@ -40,8 +40,8 @@ func _ready() -> void:
 	lineup.set_lineup(deck_lineup)
 	update_viewed_card()
 	timer.start(1)
-	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
-	time_keeper.lock_time()
+	#var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+	#time_keeper.lock_time()
 
 func update_viewed_card():
 	if(view_card.get_child_count() > 0):
@@ -61,19 +61,19 @@ func update_viewed_card():
 
 func handle_input():
 	if(timer.is_stopped()):
-		if Input.is_action_pressed(direction.up):
+		if Input.is_action_pressed("menu_up"):
 			scroll_list.decrement_selected()
 			update_viewed_card()
 			timer.start(input_wait_secs)
 			sound_player.stream = load("res://audio/soundFX/click_2.ogg")
 			sound_player.play()
-		else: if Input.is_action_pressed(direction.down):
+		else: if Input.is_action_pressed("menu_down"):
 			scroll_list.increment_selected()
 			update_viewed_card()
 			timer.start(input_wait_secs)
 			sound_player.stream = load("res://audio/soundFX/click_2.ogg")
 			sound_player.play()
-		else: if Input.is_action_pressed("interact"):
+		else: if Input.is_action_pressed("menu_select"):
 			if(scroll_list.get_num_selected_card() > 0):
 				var indx = scroll_list.get_selected_index()
 				var num_selected_card = scroll_list.get_num_selected_card()
@@ -91,7 +91,7 @@ func handle_input():
 				sound_player.stream = load("res://audio/soundFX/bigCollide.wav")
 				sound_player.play()
 			timer.start(input_wait_secs)
-		else: if Input.is_action_just_released("use_item"):
+		else: if Input.is_action_just_pressed("menu_back"):
 			exiting = false
 			if(deck_lineup.size() != 0):
 				sound_player.stream = load("res://audio/soundFX/putdown.wav")
@@ -103,14 +103,10 @@ func handle_input():
 				sound_player.stream = load("res://audio/soundFX/bigCollide.wav")
 				sound_player.play()
 			timer.start(input_wait_secs)
-		else: if Input.is_action_just_pressed("use_item"):
-			if(!exiting):
-				exit_timer.start(exit_wait_time_secs)
-				exiting = true
 
 func _process(delta: float) -> void:
 	handle_input()
-	player_ref.stop()
-	global_position = player_ref.get_camera_ref().get_screen_center_position()
-	if(exiting && exit_timer.is_stopped()):
-		close_binder()
+	#player_ref.stop()
+	#global_position = player_ref.get_camera_ref().get_screen_center_position()
+	#if(exiting && exit_timer.is_stopped()):
+		#close_binder()

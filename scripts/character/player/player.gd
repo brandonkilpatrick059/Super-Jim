@@ -189,6 +189,8 @@ var should_wake_up = false
 var quest_state_keys : Array[String] = []
 var quest_state_values : Array[String] = []
 
+var journal_tabs : Array[String] = ["card_binder"]
+
 func _ready():
 	_collision.disabled = no_clip
 	timer_dash.one_shot = true
@@ -519,7 +521,8 @@ func get_save_dictionary() -> Dictionary:
 		"days_since_rent_paid" : days_since_rent_paid,
 		"quest_state_keys" : quest_state_keys,
 		"quest_state_values" : quest_state_values,
-		"shown_items_tip" : shown_items_tip
+		"shown_items_tip" : shown_items_tip,
+		"journal_tabs" : journal_tabs
 	}
 	return save_dictionary
 
@@ -597,6 +600,14 @@ func load_from_dictionary(load_dictionary : Dictionary):
 		if(!owned_music.has(loaded_key_str)):
 			owned_music.append(loaded_key_str)
 		index = index + 1
+	
+	var load_journal = load_dictionary.get("journal_tabs")
+	index = 0
+	while(index < load_journal.size()):
+		var loaded_journal_str = String(load_journal[index])
+		if(!journal_tabs.has(loaded_journal_str)):
+			journal_tabs.append(loaded_journal_str)
+		index = index + 1
 		
 	var hat = load_dictionary.get("hat_spriteframes")
 	var top = load_dictionary.get("top_spriteframes")
@@ -628,8 +639,8 @@ func get_deck() -> Array[int]:
 	return card_deck
 
 func add_owned_card(card : int):
-	if(!items.has(cardbinder)):
-		append_to_items(cardbinder)
+	if(!journal_tabs.has(cardbinder)):
+		journal_tabs.append(cardbinder)
 	if(owned_cards[card-1] < 5):
 		owned_cards[card-1] = owned_cards[card-1] + 1
 
@@ -891,9 +902,11 @@ func handle_journal():
 		var journal_ref = journal.instantiate()
 		journal_ref.global_position = get_camera_ref().get_screen_center_position()
 		get_parent().add_child(journal_ref)
-		journal_ref.open()
+		journal_ref.open(journal_tabs)
 		var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 		var music_continues = true
+		main_ui_invisible()
+		set_control_frozen(true)
 		time_keeper.pause_parent_tree(music_continues)
 
 func handle_dev():

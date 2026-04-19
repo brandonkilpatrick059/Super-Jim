@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://n8dfy4d7h82j"]
 
 [ext_resource type="Script" uid="uid://bqk71nh4cjmij" path="res://scripts/baseball/card_binder.gd" id="1_jwmym"]
-[ext_resource type="Texture2D" uid="uid://dqei57x371nxa" path="res://sprites/baseball/binder_ui_background.png" id="1_lctft"]
+[ext_resource type="Texture2D" uid="uid://t8f2t8ftqsil" path="res://sprites/baseball/binder_ui_background_v2.png" id="2_jwmym"]
 [ext_resource type="PackedScene" uid="uid://q2mxl80rpim1" path="res://baseball/binder_tab.tscn" id="2_lctft"]
 [ext_resource type="Texture2D" uid="uid://cfduq0o17ddv1" path="res://sprites/baseball/binder_dial.png" id="3_0udkm"]
 [ext_resource type="Script" uid="uid://drsvrrljsgk4q" path="res://scripts/baseball/scroll_list.gd" id="3_w3cg3"]
@@ -21,21 +21,22 @@ light_mode = 1
 light_mode = 1
 
 [node name="CardBinder" type="Node2D"]
-z_index = 10
+process_mode = 3
+z_index = 50
 material = SubResource("CanvasItemMaterial_jwmym")
 script = ExtResource("1_jwmym")
 
 [node name="background" type="Sprite2D" parent="."]
 z_index = -1
 material = SubResource("CanvasItemMaterial_w3cg3")
-texture = ExtResource("1_lctft")
+texture = ExtResource("2_jwmym")
 
 [node name="view_card" type="Node2D" parent="."]
 z_index = 1
-position = Vector2(1, 69)
+position = Vector2(98, 70)
 
 [node name="scroll_list" type="Node2D" parent="."]
-position = Vector2(-316, -160)
+position = Vector2(-295, -160)
 script = ExtResource("3_w3cg3")
 
 [node name="tab_0" parent="scroll_list" instance=ExtResource("2_lctft")]
@@ -68,25 +69,25 @@ position = Vector2(-316, -160)
 script = ExtResource("6_706po")
 
 [node name="lineup_5" type="Node2D" parent="lineup"]
-position = Vector2(93, 98)
+position = Vector2(114, 98)
 
 [node name="lineup_4" type="Node2D" parent="lineup"]
-position = Vector2(206, 97)
+position = Vector2(214, 98)
 
 [node name="lineup_3" type="Node2D" parent="lineup"]
-position = Vector2(317, 98)
+position = Vector2(314, 98)
 
 [node name="lineup_2" type="Node2D" parent="lineup"]
-position = Vector2(429, 98)
+position = Vector2(414, 98)
 
 [node name="lineup_1" type="Node2D" parent="lineup"]
-position = Vector2(541, 98)
+position = Vector2(514, 98)
 
 [node name="num_card" type="Label" parent="."]
 material = SubResource("CanvasItemMaterial_diofx")
-offset_left = 53.0
+offset_left = 148.0
 offset_top = 5.0
-offset_right = 93.0
+offset_right = 188.0
 offset_bottom = 23.0
 text = "x0"
 label_settings = ExtResource("4_j3mmq")

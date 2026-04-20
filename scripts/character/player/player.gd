@@ -128,7 +128,7 @@ var banked_money : int = 0
 
 var light_on = false
 
-var dev_occlusion_enabled = true
+var dev_occlusion_level = 0
 
 var item_text_timer : Timer = Timer.new()
 var use_item_timer : Timer = Timer.new()
@@ -939,10 +939,21 @@ func handle_dev():
 			else:
 				dev_zoom_level = 0
 				_camera.zoom_to(1.0)
-	#Occluders have been gone for awhile basically use this as a
-	#generic "dev button" to test code I guess
 	if Input.is_action_just_pressed("dev_toggle_occluders"):
-		add_owned_cd("chill_out")
+		var prune_manager = get_tree().get_first_node_in_group("tree_prune_manager")
+		dev_occlusion_level = dev_occlusion_level + 1
+		if(dev_occlusion_level == 1):
+			prune_manager.toggle_bypass(true)
+		if(dev_occlusion_level == 2):
+			var npcs = get_tree().get_nodes_in_group("npc")
+			for npc in npcs:
+				npc.visible = false
+		if(dev_occlusion_level == 3):
+			dev_occlusion_level = 0
+			var npcs = get_tree().get_nodes_in_group("npc")
+			for npc in npcs:
+				npc.visible = true
+			prune_manager.toggle_bypass(false)
 	if Input.is_action_just_pressed("dev_toggle_fps"):
 		_ui.toggle_fps_counter()
 	if Input.is_action_just_pressed("dev_advance_time"):

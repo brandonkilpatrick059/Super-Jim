@@ -945,14 +945,22 @@ func handle_dev():
 		if(dev_occlusion_level == 1):
 			prune_manager.toggle_bypass(true)
 		if(dev_occlusion_level == 2):
+			visible = false
 			var npcs = get_tree().get_nodes_in_group("npc")
 			for npc in npcs:
 				npc.visible = false
+			var mobs = get_tree().get_nodes_in_group("mobster")
+			for mob in mobs:
+				mob.visible = false
 		if(dev_occlusion_level == 3):
 			dev_occlusion_level = 0
 			var npcs = get_tree().get_nodes_in_group("npc")
+			visible = true
 			for npc in npcs:
 				npc.visible = true
+			var mobs = get_tree().get_nodes_in_group("mobster")
+			for mob in mobs:
+				mob.visible = true
 			prune_manager.toggle_bypass(false)
 	if Input.is_action_just_pressed("dev_toggle_fps"):
 		_ui.toggle_fps_counter()

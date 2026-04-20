@@ -21,6 +21,7 @@ script = ExtResource("3_3cbuv")
 
 [node name="base_sprite" type="AnimatedSprite2D" parent="character_base"]
 sprite_frames = ExtResource("4_2wjg3")
+frame_progress = 0.256133
 
 [node name="ai_state_machine" parent="." instance=ExtResource("4_tci7v")]
 initial_state = NodePath("idle_animation")

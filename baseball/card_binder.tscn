@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://t8f2t8ftqsil" path="res://sprites/baseball/binder_ui_background_v2.png" id="2_jwmym"]
 [ext_resource type="PackedScene" uid="uid://q2mxl80rpim1" path="res://baseball/binder_tab.tscn" id="2_lctft"]
 [ext_resource type="Texture2D" uid="uid://cfduq0o17ddv1" path="res://sprites/baseball/binder_dial.png" id="3_0udkm"]
-[ext_resource type="Script" uid="uid://drsvrrljsgk4q" path="res://scripts/baseball/scroll_list.gd" id="3_w3cg3"]
+[ext_resource type="Script" uid="uid://drsvrrljsgk4q" path="res://scripts/baseball/binder_scroll_list.gd" id="3_w3cg3"]
 [ext_resource type="LabelSettings" uid="uid://tdffmlt2tqo6" path="res://fonts/card_readout_text.tres" id="4_j3mmq"]
 [ext_resource type="Script" uid="uid://s338kti7bbt0" path="res://scripts/baseball/lineup.gd" id="6_706po"]
 

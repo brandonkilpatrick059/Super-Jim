@@ -13,14 +13,14 @@ trunk = NodePath("trunk")
 speaker_text = Array[String](["Gary? Is that you, buddy?"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
-voice = "low_alien_voice"
+voice = "worm_voice"
 
 [node name="trunk2" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_a8kjn")]
 position = Vector2(2, 218)
 speaker_text = Array[String](["Oh!"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk3")]
-voice = "low_alien_voice"
+voice = "worm_voice"
 dialog_script = NodePath("emerge")
 
 [node name="emerge" type="Node" parent="trunk2"]
@@ -33,34 +33,34 @@ position = Vector2(-2, 444)
 speaker_text = Array[String](["Well hello!"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk4")]
-voice = "low_alien_voice"
+voice = "worm_voice"
 
 [node name="trunk4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_a8kjn")]
 position = Vector2(8, 718)
 speaker_text = Array[String](["It isn't often that I see a new face around here."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk5")]
-voice = "low_alien_voice"
+voice = "worm_voice"
 
 [node name="trunk5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_a8kjn")]
 position = Vector2(16, 958)
 speaker_text = Array[String](["My name is Jeff."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk6")]
-voice = "low_alien_voice"
+voice = "worm_voice"
 
 [node name="trunk6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_a8kjn")]
 position = Vector2(2, 1190)
 speaker_text = Array[String](["Welcome to my house."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk7")]
-voice = "low_alien_voice"
+voice = "worm_voice"
 
 [node name="trunk7" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_a8kjn")]
 position = Vector2(2, 1414)
 speaker_text = Array[String](["Make yourself at home!"])
 speaker_portrait = null
-voice = "low_alien_voice"
+voice = "worm_voice"
 dialog_script = NodePath("jeff to schedule 1")
 
 [node name="jeff to schedule 1" type="Node" parent="trunk7"]

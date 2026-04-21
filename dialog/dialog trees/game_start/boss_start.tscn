@@ -154,7 +154,7 @@ new_index = 1
 
 [node name="whatever7" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_csox7")]
 position = Vector2(-439, 3415)
-speaker_text = Array[String](["Go talk to the jokers out front."])
+speaker_text = Array[String](["Go talk to the jokers downstairs."])
 speaker_portrait = null
 option_branches = [NodePath("../whatever8")]
 voice = "low_sine_voice"

@@ -1,0 +1,67 @@
+[gd_scene load_steps=12 format=3 uid="uid://sjoxarkul0lg"]
+
+[ext_resource type="Material" uid="uid://b5vwbti30llx4" path="res://interface/unshaded_material.tres" id="1_kma7x"]
+[ext_resource type="SpriteFrames" uid="uid://bfka6xv7lyxt3" path="res://sprites/spritesheets/spriteframes/interface/map_door_tab.tres" id="1_vvush"]
+[ext_resource type="Script" uid="uid://c1wugkors3xot" path="res://scripts/interface/map_door_tab.gd" id="2_3nebd"]
+[ext_resource type="Texture2D" uid="uid://tky7m7ktiahc" path="res://sprites/interface/compass_arrow.png" id="4_3nebd"]
+[ext_resource type="Script" uid="uid://w3qahpimeo3c" path="res://scripts/interface/glyph_sprite.gd" id="5_vvush"]
+[ext_resource type="Texture2D" uid="uid://qmbdv0olep04" path="res://sprites/interface/glyphs/controller/xbox/a_button_xb.png" id="5_wj8y1"]
+[ext_resource type="SpriteFrames" uid="uid://vflickt0x2ul" path="res://sprites/spritesheets/spriteframes/interface/map_door_lock.tres" id="6_vvush"]
+[ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="7_wj8y1"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o0xc3"]
+light_mode = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_3nebd"]
+font_size = 12
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kma7x"]
+font = ExtResource("7_wj8y1")
+font_size = 8
+font_color = Color(0, 0, 0, 1)
+
+[node name="tab_0" type="AnimatedSprite2D"]
+material = ExtResource("1_kma7x")
+sprite_frames = ExtResource("1_vvush")
+animation = &"unsued"
+script = ExtResource("2_3nebd")
+
+[node name="name_label" type="Label" parent="."]
+material = SubResource("CanvasItemMaterial_o0xc3")
+offset_left = -93.0
+offset_top = -9.0
+offset_right = 45.0
+offset_bottom = 14.0
+label_settings = SubResource("LabelSettings_3nebd")
+text_overrun_behavior = 3
+
+[node name="arrow" type="Sprite2D" parent="."]
+material = ExtResource("1_kma7x")
+position = Vector2(71, 0)
+texture = ExtResource("4_3nebd")
+
+[node name="map_label" type="Label" parent="arrow"]
+offset_left = -2.0
+offset_top = -4.0
+offset_right = 38.0
+offset_bottom = 19.0
+text = "MAP"
+label_settings = SubResource("LabelSettings_kma7x")
+
+[node name="lock" type="AnimatedSprite2D" parent="."]
+material = ExtResource("1_kma7x")
+position = Vector2(58, -2)
+sprite_frames = ExtResource("6_vvush")
+animation = &"locked"
+
+[node name="glyph" type="Node2D" parent="."]
+visible = false
+
+[node name="glyph_blink" type="Sprite2D" parent="glyph"]
+z_index = 1
+material = ExtResource("1_kma7x")
+position = Vector2(76, 0)
+texture = ExtResource("5_wj8y1")
+script = ExtResource("5_vvush")
+action = "menu_select"

@@ -159,6 +159,8 @@ var shown_items_tip : bool = false
 
 var owned_music : Array[String] = []
 
+var owned_maps : Array[String] = ["Central Stonesthrow"]
+
 var default_linear_damp : float = 6.0
 var skating_linear_damp : float = 0.1
 var skating : bool = false
@@ -482,6 +484,9 @@ func get_owned_bottoms() -> Array[String]:
 
 func get_owned_music() -> Array[String]:
 	return owned_music
+
+func get_owned_maps() -> Array[String]:
+	return owned_maps
 
 #called when the player starts a new game
 func new_game():

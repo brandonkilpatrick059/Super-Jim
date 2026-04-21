@@ -24,6 +24,7 @@ var child_ui_ref : Node2D = null
 
 var binder_ui = preload("res://baseball/card_binder.tscn")
 var quest_journal_ui = preload("res://interface/quest_journal_interface.tscn")
+var map_ui = preload("res://interface/map_interface.tscn")
 
 var tab_switching = false
 var switching_right = false
@@ -79,6 +80,12 @@ func initialize_ui():
 			initialize_card_binder()
 		"quest_journal":
 			initialize_quest_journal()
+		"map":
+			initialize_map()
+
+func initialize_map():
+	child_ui_ref = map_ui.instantiate()
+	add_child(child_ui_ref)
 
 func close_ui():
 	child_ui_ref.close()

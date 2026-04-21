@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://vflickt0x2ul"]
+
+[ext_resource type="Texture2D" uid="uid://bwt2q66qk7xf5" path="res://sprites/interface/map_door_lock.png" id="1_vdi1d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdi1d"]
+atlas = ExtResource("1_vdi1d")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cep5w"]
+atlas = ExtResource("1_vdi1d")
+region = Rect2(24, 0, 24, 24)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdi1d")
+}],
+"loop": true,
+"name": &"locked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cep5w")
+}],
+"loop": true,
+"name": &"unlocked",
+"speed": 5.0
+}]

@@ -1,0 +1,43 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bfka6xv7lyxt3"]
+
+[ext_resource type="Texture2D" uid="uid://dim8cyo6hkl3f" path="res://sprites/interface/map_door_tab.png" id="1_pjciy"]
+[ext_resource type="Texture2D" uid="uid://bmktlja5ft6ln" path="res://sprites/interface/binder_tab.png" id="2_trs0e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_is7so"]
+atlas = ExtResource("2_trs0e")
+region = Rect2(0, 24, 192, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkcl5"]
+atlas = ExtResource("1_pjciy")
+region = Rect2(0, 48, 192, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88pmb"]
+atlas = ExtResource("1_pjciy")
+region = Rect2(0, 0, 192, 24)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_is7so")
+}],
+"loop": true,
+"name": &"selected",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkcl5")
+}],
+"loop": true,
+"name": &"unsued",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88pmb")
+}],
+"loop": true,
+"name": &"used",
+"speed": 5.0
+}]

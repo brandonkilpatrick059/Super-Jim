@@ -1,0 +1,253 @@
+[gd_scene load_steps=12 format=3 uid="uid://b4xq7nnvlutul"]
+
+[ext_resource type="Texture2D" uid="uid://deqbpc45nppbe" path="res://sprites/interface/map_ui_background.png" id="1_7ush2"]
+[ext_resource type="Script" uid="uid://c3qms12p3qjax" path="res://scripts/interface/map_interface.gd" id="1_i8fx5"]
+[ext_resource type="Texture2D" uid="uid://weuhdropa5lx" path="res://sprites/interface/maps/central_stonesthrow_map.png" id="2_28iea"]
+[ext_resource type="FontFile" uid="uid://cdf6elivdwcta" path="res://fonts/CourierPrime-Regular.ttf" id="3_28iea"]
+[ext_resource type="Script" uid="uid://ckun0kbdyg8tp" path="res://scripts/interface/map_door_scroll_list.gd" id="3_sn7b7"]
+[ext_resource type="Material" uid="uid://b5vwbti30llx4" path="res://interface/unshaded_material.tres" id="4_7qnfr"]
+[ext_resource type="PackedScene" uid="uid://sjoxarkul0lg" path="res://interface/map_door_tab.tscn" id="4_th2ra"]
+[ext_resource type="Texture2D" uid="uid://cnxt2mkrfjwa3" path="res://sprites/interface/map_markers/circle_16.png" id="6_04t1u"]
+[ext_resource type="Script" uid="uid://dmm2udtgn6cwk" path="res://scripts/interface/map_marker.gd" id="6_sq4gs"]
+[ext_resource type="Texture2D" uid="uid://e351vu7h2c5x" path="res://sprites/interface/map_markers/arrow_32.png" id="8_djc6v"]
+[ext_resource type="Texture2D" uid="uid://d3ocfo461y5yu" path="res://sprites/interface/maps/west_side.png" id="10_c2m0w"]
+
+[node name="MapInterface" type="Node2D"]
+material = ExtResource("4_7qnfr")
+script = ExtResource("1_i8fx5")
+
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("1_7ush2")
+
+[node name="map_image" type="Sprite2D" parent="."]
+position = Vector2(-121, 3)
+
+[node name="map_name" type="RichTextLabel" parent="."]
+offset_left = 44.0
+offset_top = -122.0
+offset_right = 248.0
+offset_bottom = -97.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_28iea")
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="scroll_list" type="Node2D" parent="." node_paths=PackedStringArray("tabs")]
+script = ExtResource("3_sn7b7")
+tabs = [NodePath("tab_0"), NodePath("tab_1"), NodePath("tab_2"), NodePath("tab_3"), NodePath("tab_4"), NodePath("tab_5"), NodePath("tab_6"), NodePath("tab_7"), NodePath("tab_8")]
+
+[node name="tab_0" parent="scroll_list" instance=ExtResource("4_th2ra")]
+position = Vector2(140, -75)
+
+[node name="tab_1" parent="scroll_list" instance=ExtResource("4_th2ra")]
+position = Vector2(140, -51)
+
+[node name="tab_2" parent="scroll_list" instance=ExtResource("4_th2ra")]
+position = Vector2(140, -27)
+
+[node name="tab_3" parent="scroll_list" instance=ExtResource("4_th2ra")]
+position = Vector2(140, -3)
+
+[node name="tab_4" parent="scroll_list" instance=ExtResource("4_th2ra")]
+position = Vector2(140, 21)
+
+[node name="tab_5" parent="scroll_list" instance=ExtResource("4_th2ra")]
+position = Vector2(140, 45)
+
+[node name="tab_6" parent="scroll_list" instance=ExtResource("4_th2ra")]
+position = Vector2(140, 69)
+
+[node name="tab_7" parent="scroll_list" instance=ExtResource("4_th2ra")]
+position = Vector2(140, 93)
+
+[node name="tab_8" parent="scroll_list" instance=ExtResource("4_th2ra")]
+position = Vector2(140, 117)
+
+[node name="maps" type="Node2D" parent="."]
+
+[node name="Central Stonesthrow" type="Sprite2D" parent="maps"]
+visible = false
+material = ExtResource("4_7qnfr")
+position = Vector2(-121, 3)
+texture = ExtResource("2_28iea")
+
+[node name="Railway Lofts" type="Sprite2D" parent="maps/Central Stonesthrow"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-85, -88)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Railway Lofts"
+
+[node name="Eternal Rest Apartments" type="Sprite2D" parent="maps/Central Stonesthrow"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-24, -42)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Eternal Rest Apartments"
+
+[node name="Train Station" type="Sprite2D" parent="maps/Central Stonesthrow"]
+material = ExtResource("4_7qnfr")
+position = Vector2(43, -65)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Train Station"
+
+[node name="North-Central Tenements" type="Sprite2D" parent="maps/Central Stonesthrow"]
+material = ExtResource("4_7qnfr")
+position = Vector2(118, -111)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "North-Central Tenements"
+
+[node name="Central Apartments" type="Sprite2D" parent="maps/Central Stonesthrow"]
+material = ExtResource("4_7qnfr")
+position = Vector2(106, -9)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Central Apartments"
+
+[node name="Central Apartments2" type="Sprite2D" parent="maps/Central Stonesthrow/Central Apartments"]
+position = Vector2(11, -54)
+rotation = 1.5708
+texture = ExtResource("8_djc6v")
+
+[node name="West Side" type="Sprite2D" parent="maps/Central Stonesthrow"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-108, -77)
+scale = Vector2(-1, 1)
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "West Side"
+linked_map = "West Side"
+
+[node name="Canal Town" type="Sprite2D" parent="maps/Central Stonesthrow"]
+material = ExtResource("4_7qnfr")
+position = Vector2(110, -77)
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "Canal Town"
+linked_map = "Canal Town"
+
+[node name="Dave\'s Stand-Up Bar" type="Sprite2D" parent="maps/Central Stonesthrow"]
+material = ExtResource("4_7qnfr")
+position = Vector2(64, 15)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Dave's Stand-Up Bar"
+
+[node name="Clothing Exchange" type="Sprite2D" parent="maps/Central Stonesthrow"]
+material = ExtResource("4_7qnfr")
+position = Vector2(8, -4)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Clothing Exchange"
+
+[node name="Coffee House" type="Sprite2D" parent="maps/Central Stonesthrow"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-6, -4)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Coffee House"
+
+[node name="Coffee House2" type="Sprite2D" parent="maps/Central Stonesthrow"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-39, -3)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Pie-In-The-Sky Pizza"
+
+[node name="Game Korner" type="Sprite2D" parent="maps/Central Stonesthrow"]
+material = ExtResource("4_7qnfr")
+position = Vector2(8, 85)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "The Game Korner"
+
+[node name="Parkside Apartments" type="Sprite2D" parent="maps/Central Stonesthrow"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-39, 57)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Parkside Apartments"
+
+[node name="Dawn\'s Pawn" type="Sprite2D" parent="maps/Central Stonesthrow"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-85, 66)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Dawn's Pawn"
+
+[node name="Dr Recliner\'s Furniture Emporium" type="Sprite2D" parent="maps/Central Stonesthrow"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-113, 66)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Dr. Recliner's Furniture Emporium"
+
+[node name="West Side" type="Sprite2D" parent="maps"]
+visible = false
+material = ExtResource("4_7qnfr")
+position = Vector2(-121, 3)
+texture = ExtResource("10_c2m0w")
+
+[node name="Cliffside" type="Sprite2D" parent="maps/West Side"]
+visible = false
+material = ExtResource("4_7qnfr")
+position = Vector2(-90, 111)
+rotation = 4.71239
+scale = Vector2(-1, 1)
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "Cliffside"
+linked_map = "Cliffside"
+
+[node name="Cliffside2" type="Sprite2D" parent="maps/West Side/Cliffside"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-2, 107)
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "West Side"
+linked_map = "West Side"
+
+[node name="Cliffside3" type="Sprite2D" parent="maps/West Side/Cliffside"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-2, 195)
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "West Side"
+linked_map = "West Side"
+
+[node name="Northwest Side" type="Sprite2D" parent="maps/West Side"]
+material = ExtResource("4_7qnfr")
+position = Vector2(20, -109)
+rotation = 1.5708
+scale = Vector2(-1, 1)
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "Northwest Side"
+linked_map = "Northwest Side"
+
+[node name="Northwest Side" type="Sprite2D" parent="maps/West Side/Northwest Side"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-2, 111)
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "West Side"
+linked_map = "West Side"
+
+[node name="Central Stonesthrow" type="Sprite2D" parent="maps/West Side"]
+material = ExtResource("4_7qnfr")
+position = Vector2(110, -77)
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "Central Stonesthrow"
+linked_map = "Central Stonesthrow"
+lock_group = "passage_gate"
+
+[node name="West Side Lofts" type="Sprite2D" parent="maps/West Side"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-34, 58)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "West Side Lofts"

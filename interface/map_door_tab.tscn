@@ -65,3 +65,5 @@ position = Vector2(76, 0)
 texture = ExtResource("5_wj8y1")
 script = ExtResource("5_vvush")
 action = "menu_select"
+blinking = true
+blink_interval_secs = 0.5

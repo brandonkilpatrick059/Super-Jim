@@ -56,6 +56,7 @@ func get_num_selected_card():
 	var owned_cards = player_ref.get_owned_cards()
 	return owned_cards[selected_index-1]
 
+
 #func increment_selected_card():
 	#player_ref.increment_owned_card(selected_index-1)
 	#update_list()

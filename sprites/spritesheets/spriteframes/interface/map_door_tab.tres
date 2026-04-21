@@ -30,7 +30,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_dkcl5")
 }],
 "loop": true,
-"name": &"unsued",
+"name": &"unused",
 "speed": 5.0
 }, {
 "frames": [{

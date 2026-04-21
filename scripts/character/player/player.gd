@@ -159,7 +159,7 @@ var shown_items_tip : bool = false
 
 var owned_music : Array[String] = []
 
-var owned_maps : Array[String] = ["Central Stonesthrow"]
+var owned_maps : Array[String] = ["Central Stonesthrow", "West Side"]
 
 var default_linear_damp : float = 6.0
 var skating_linear_damp : float = 0.1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b4xq7nnvlutul"]
+[gd_scene load_steps=13 format=3 uid="uid://b4xq7nnvlutul"]
 
 [ext_resource type="Texture2D" uid="uid://deqbpc45nppbe" path="res://sprites/interface/map_ui_background.png" id="1_7ush2"]
 [ext_resource type="Script" uid="uid://c3qms12p3qjax" path="res://scripts/interface/map_interface.gd" id="1_i8fx5"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dmm2udtgn6cwk" path="res://scripts/interface/map_marker.gd" id="6_sq4gs"]
 [ext_resource type="Texture2D" uid="uid://e351vu7h2c5x" path="res://sprites/interface/map_markers/arrow_32.png" id="8_djc6v"]
 [ext_resource type="Texture2D" uid="uid://d3ocfo461y5yu" path="res://sprites/interface/maps/west_side.png" id="10_c2m0w"]
+[ext_resource type="Texture2D" uid="uid://tky7m7ktiahc" path="res://sprites/interface/compass_arrow.png" id="12_uuwt7"]
 
 [node name="MapInterface" type="Node2D"]
 material = ExtResource("4_7qnfr")
@@ -39,30 +40,39 @@ tabs = [NodePath("tab_0"), NodePath("tab_1"), NodePath("tab_2"), NodePath("tab_3
 
 [node name="tab_0" parent="scroll_list" instance=ExtResource("4_th2ra")]
 position = Vector2(140, -75)
+animation = &"unused"
 
 [node name="tab_1" parent="scroll_list" instance=ExtResource("4_th2ra")]
 position = Vector2(140, -51)
+animation = &"unused"
 
 [node name="tab_2" parent="scroll_list" instance=ExtResource("4_th2ra")]
 position = Vector2(140, -27)
+animation = &"unused"
 
 [node name="tab_3" parent="scroll_list" instance=ExtResource("4_th2ra")]
 position = Vector2(140, -3)
+animation = &"unused"
 
 [node name="tab_4" parent="scroll_list" instance=ExtResource("4_th2ra")]
 position = Vector2(140, 21)
+animation = &"unused"
 
 [node name="tab_5" parent="scroll_list" instance=ExtResource("4_th2ra")]
 position = Vector2(140, 45)
+animation = &"unused"
 
 [node name="tab_6" parent="scroll_list" instance=ExtResource("4_th2ra")]
 position = Vector2(140, 69)
+animation = &"unused"
 
 [node name="tab_7" parent="scroll_list" instance=ExtResource("4_th2ra")]
 position = Vector2(140, 93)
+animation = &"unused"
 
 [node name="tab_8" parent="scroll_list" instance=ExtResource("4_th2ra")]
 position = Vector2(140, 117)
+animation = &"unused"
 
 [node name="maps" type="Node2D" parent="."]
 
@@ -112,7 +122,7 @@ position = Vector2(11, -54)
 rotation = 1.5708
 texture = ExtResource("8_djc6v")
 
-[node name="West Side" type="Sprite2D" parent="maps/Central Stonesthrow"]
+[node name="West_Side" type="Sprite2D" parent="maps/Central Stonesthrow"]
 material = ExtResource("4_7qnfr")
 position = Vector2(-108, -77)
 scale = Vector2(-1, 1)
@@ -120,14 +130,16 @@ texture = ExtResource("8_djc6v")
 script = ExtResource("6_sq4gs")
 tab_name = "West Side"
 linked_map = "West Side"
+lock_group = "passage_gate"
 
-[node name="Canal Town" type="Sprite2D" parent="maps/Central Stonesthrow"]
+[node name="Canal_Town" type="Sprite2D" parent="maps/Central Stonesthrow"]
 material = ExtResource("4_7qnfr")
 position = Vector2(110, -77)
 texture = ExtResource("8_djc6v")
 script = ExtResource("6_sq4gs")
 tab_name = "Canal Town"
 linked_map = "Canal Town"
+lock_group = "passage_gate"
 
 [node name="Dave\'s Stand-Up Bar" type="Sprite2D" parent="maps/Central Stonesthrow"]
 material = ExtResource("4_7qnfr")
@@ -192,7 +204,6 @@ position = Vector2(-121, 3)
 texture = ExtResource("10_c2m0w")
 
 [node name="Cliffside" type="Sprite2D" parent="maps/West Side"]
-visible = false
 material = ExtResource("4_7qnfr")
 position = Vector2(-90, 111)
 rotation = 4.71239
@@ -251,3 +262,14 @@ position = Vector2(-34, 58)
 texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "West Side Lofts"
+
+[node name="arrow_right" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(238, -109)
+texture = ExtResource("12_uuwt7")
+
+[node name="arrow_left" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(54, -109)
+rotation = 3.14159
+texture = ExtResource("12_uuwt7")

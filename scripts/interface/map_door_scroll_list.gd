@@ -2,8 +2,8 @@ extends Node2D
 
 
 @export var tabs : Array[Node2D] = []
-var bottom_index = 1
-var selected_index = 1
+var bottom_index = 0
+var selected_index = 0
 
 var player_ref = null
 
@@ -20,15 +20,20 @@ func _ready() -> void:
 	player_ref = get_tree().get_first_node_in_group("player")
 	update_list()
 
-func set_map(map : Node):
+func set_map(map : Node, select_name : String = ""):
 	map_node = map
 	door_nodes = map_node.get_children()
+	if(select_name == ""):
+		selected_index = 0
+		bottom_index = 0
 	update_list()
 
 func update_list():
 	var index = bottom_index
 	var tab = 0
-	while(index < index + (tabs.size() - 1) && tab < tabs.size()):
+	for node in door_nodes:
+		node.set_active(false)
+	while(index < index + tabs.size() && tab < tabs.size()):
 		if(index < door_nodes.size()):
 			var door_node = door_nodes[index]
 			var tab_name = door_node.get_tab_name()
@@ -39,10 +44,11 @@ func update_list():
 				door_node.set_active(true)
 			else:
 				tab_state = "used"
-				door_node.set_active(false)
 			var has_link = false
 			if(door_node.get_linked_map() != ""):
-				has_link = true
+				var player_ref = get_tree().get_first_node_in_group("player")
+				if(player_ref.get_owned_maps().has(door_node.get_linked_map())):
+					has_link = true
 			var lock_state = ""
 			var lock_group = door_node.get_lock_group()
 			if(lock_group != ""):
@@ -60,19 +66,19 @@ func get_selected_index():
 	return selected_index
 
 func increment_selected():
-	if(selected_index + 1 <= door_nodes.size()):
+	if(selected_index + 1 < door_nodes.size()):
 		selected_index = selected_index + 1
 		if(selected_index > bottom_index + (tabs.size()-1) &&
-		bottom_index + tabs.size() <= door_nodes.size()):
+		bottom_index + (tabs.size()-1) <= door_nodes.size()):
 			bottom_index = bottom_index + 1
 			#dial.position = dial.position + Vector2(0,dial_step)
 	update_list()
 
 func decrement_selected():
-	if(selected_index - 1 > 0):
+	if(selected_index > 0):
 		selected_index = selected_index - 1
 		if(selected_index < bottom_index &&
-		bottom_index - 1 > 0):
+		bottom_index > 0):
 			bottom_index = bottom_index - 1
 			#dial.position = dial.position - Vector2(0,dial_step)
 	update_list()

@@ -35,6 +35,11 @@ func set_map(map : Node, has_maps : Array[String], select_name : String = ""):
 	if(select_name != ""):
 		while(door_nodes[selected_index].get_linked_map() != select_name):
 			increment_selected()
+			if(door_nodes[selected_index].get_linked_map() != select_name &&
+			selected_index == door_nodes.size() - 1):
+				selected_index = 0
+				bottom_index = 0
+				break
 	update_list()
 
 func update_list():

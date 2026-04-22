@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b4xq7nnvlutul"]
+[gd_scene load_steps=21 format=3 uid="uid://b4xq7nnvlutul"]
 
 [ext_resource type="Texture2D" uid="uid://deqbpc45nppbe" path="res://sprites/interface/map_ui_background.png" id="1_7ush2"]
 [ext_resource type="Script" uid="uid://c3qms12p3qjax" path="res://scripts/interface/map_interface.gd" id="1_i8fx5"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://dts456t7ar5rf" path="res://sprites/interface/maps/rocktown.png" id="16_etaaa"]
 [ext_resource type="Texture2D" uid="uid://wcp2br3ws5gi" path="res://sprites/interface/maps/cliffside_east.png" id="17_kcea0"]
 [ext_resource type="Texture2D" uid="uid://tl8e4o43c7wn" path="res://sprites/interface/maps/cliffside_west.png" id="18_vk7dx"]
+[ext_resource type="Texture2D" uid="uid://cbukb2lvwhnvm" path="res://sprites/interface/maps/utility_tunnels.png" id="19_geryt"]
 
 [node name="MapInterface" type="Node2D"]
 material = ExtResource("4_7qnfr")
@@ -580,6 +581,85 @@ position = Vector2(-12, 64)
 texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "823 Cliffside"
+
+[node name="Utility Tunnels" type="Sprite2D" parent="maps"]
+visible = false
+material = ExtResource("4_7qnfr")
+position = Vector2(-121, 3)
+texture = ExtResource("19_geryt")
+
+[node name="North Side Apartments (link)" type="Sprite2D" parent="maps/Utility Tunnels"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-90, -8)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "North Side Apartments"
+linked_map = "North Side West"
+
+[node name="Abandoned Building (link)" type="Sprite2D" parent="maps/Utility Tunnels"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-5, -99)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Abandoned Building"
+linked_map = "North Side East"
+
+[node name="Abandoned Building 2 (link)" type="Sprite2D" parent="maps/Utility Tunnels"]
+material = ExtResource("4_7qnfr")
+position = Vector2(70, -74)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Abandoned Building"
+linked_map = "Fallsboro"
+
+[node name="Rocktown Road Apartments (link)" type="Sprite2D" parent="maps/Utility Tunnels"]
+material = ExtResource("4_7qnfr")
+position = Vector2(82, -6)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Rocktown Road Apartments"
+linked_map = "Canal Town North"
+
+[node name="Abandoned Building 3 (link)" type="Sprite2D" parent="maps/Utility Tunnels"]
+material = ExtResource("4_7qnfr")
+position = Vector2(99, 23)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Abandoned Building"
+linked_map = "Canal Town South"
+
+[node name="700 Seaside (link)" type="Sprite2D" parent="maps/Utility Tunnels"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-3, 76)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "700 Seaside"
+linked_map = "Cliffside East"
+
+[node name="Eternal Rest Apartments (link)2" type="Sprite2D" parent="maps/Utility Tunnels"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-51, 26)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Eternal Rest Apartments"
+linked_map = "Central Stonesthrow"
+lock_group = "basement_gate"
+
+[node name="sewers (link)" type="Sprite2D" parent="maps/Utility Tunnels"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-58, 56)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Sewers"
+linked_map = "Sewers"
+
+[node name="sewers (link)2" type="Sprite2D" parent="maps/Utility Tunnels"]
+material = ExtResource("4_7qnfr")
+position = Vector2(90, 55)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Sewers"
+linked_map = "Sewers"
 
 [node name="arrow_right" type="Sprite2D" parent="."]
 visible = false

@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var dev_has_all_maps : bool = false
+
 @onready var scroll_list = $scroll_list
 @onready var maps = $maps
 @onready var map_name = $map_name
@@ -35,7 +37,7 @@ func _ready():
 	#player can get maps in any order, but we want to have control
 	#over the order so it is organized
 	for map in all_maps:
-		if(owned_maps.has(map)):
+		if(owned_maps.has(map) || dev_has_all_maps):
 			ordered_maps.append(map)
 	var map_name : String = ordered_maps[map_index]
 	set_map(map_name)
@@ -50,7 +52,7 @@ func set_map(name : String, from_map : String = ""):
 	if(map_node != null):
 		map_node.visible = false
 	map_node = maps.find_child(name)
-	scroll_list.set_map(map_node, from_map)
+	scroll_list.set_map(map_node, ordered_maps, from_map)
 	map_node.visible = true
 	map_name.parse_bbcode(name)
 	update_arrows()
@@ -73,7 +75,7 @@ func next_map():
 
 func switch_to_linked_map():
 	var new_map_name = scroll_list.get_linked_map()
-	if(new_map_name != ""):
+	if(new_map_name != "" && ordered_maps.has(new_map_name)):
 		audio_player.stream = load("res://audio/soundFX/page_turn.wav")
 		audio_player.play()
 		set_map(new_map_name, map_node.name)

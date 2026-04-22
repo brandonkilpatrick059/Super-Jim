@@ -18,17 +18,20 @@ var selected_door_node : Node
 
 var audio_player := AudioStreamPlayer.new()
 
+var owned_maps : Array[String] = []
+
 func _ready() -> void:
 	player_ref = get_tree().get_first_node_in_group("player")
 	update_list()
 	audio_player.bus = "Effects"
 	add_child(audio_player)
 
-func set_map(map : Node, select_name : String = ""):
+func set_map(map : Node, has_maps : Array[String], select_name : String = ""):
 	map_node = map
 	door_nodes = map_node.get_children()
 	selected_index = 0
 	bottom_index = 0
+	owned_maps = has_maps
 	if(select_name != ""):
 		while(door_nodes[selected_index].get_linked_map() != select_name):
 			increment_selected()
@@ -52,8 +55,7 @@ func update_list():
 				tab_state = "used"
 			var has_link = false
 			if(door_node.get_linked_map() != ""):
-				var player_ref = get_tree().get_first_node_in_group("player")
-				if(player_ref.get_owned_maps().has(door_node.get_linked_map())):
+				if(owned_maps.has(door_node.get_linked_map())):
 					has_link = true
 			var lock_state = ""
 			var lock_group = door_node.get_lock_group()

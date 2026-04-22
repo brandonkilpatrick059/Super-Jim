@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b4xq7nnvlutul"]
+[gd_scene load_steps=20 format=3 uid="uid://b4xq7nnvlutul"]
 
 [ext_resource type="Texture2D" uid="uid://deqbpc45nppbe" path="res://sprites/interface/map_ui_background.png" id="1_7ush2"]
 [ext_resource type="Script" uid="uid://c3qms12p3qjax" path="res://scripts/interface/map_interface.gd" id="1_i8fx5"]
@@ -11,11 +11,19 @@
 [ext_resource type="Script" uid="uid://dmm2udtgn6cwk" path="res://scripts/interface/map_marker.gd" id="6_sq4gs"]
 [ext_resource type="Texture2D" uid="uid://e351vu7h2c5x" path="res://sprites/interface/map_markers/arrow_32.png" id="8_djc6v"]
 [ext_resource type="Texture2D" uid="uid://d3ocfo461y5yu" path="res://sprites/interface/maps/west_side.png" id="10_c2m0w"]
+[ext_resource type="Texture2D" uid="uid://bmyyljvghql3c" path="res://sprites/interface/maps/north_west_side.png" id="12_1qgj0"]
 [ext_resource type="Texture2D" uid="uid://tky7m7ktiahc" path="res://sprites/interface/compass_arrow.png" id="12_uuwt7"]
+[ext_resource type="Texture2D" uid="uid://blby8tufs4kn3" path="res://sprites/interface/maps/north_east_side.png" id="13_swsf7"]
+[ext_resource type="Texture2D" uid="uid://cjhvnmnpnxkxu" path="res://sprites/interface/maps/canal_town_north.png" id="14_sjavt"]
+[ext_resource type="Texture2D" uid="uid://ccfm6dfexafvq" path="res://sprites/interface/maps/canal_town_south.png" id="15_6sxkv"]
+[ext_resource type="Texture2D" uid="uid://dts456t7ar5rf" path="res://sprites/interface/maps/rocktown.png" id="16_etaaa"]
+[ext_resource type="Texture2D" uid="uid://wcp2br3ws5gi" path="res://sprites/interface/maps/cliffside_east.png" id="17_kcea0"]
+[ext_resource type="Texture2D" uid="uid://tl8e4o43c7wn" path="res://sprites/interface/maps/cliffside_west.png" id="18_vk7dx"]
 
 [node name="MapInterface" type="Node2D"]
 material = ExtResource("4_7qnfr")
 script = ExtResource("1_i8fx5")
+dev_has_all_maps = true
 
 [node name="background" type="Sprite2D" parent="."]
 texture = ExtResource("1_7ush2")
@@ -82,19 +90,40 @@ material = ExtResource("4_7qnfr")
 position = Vector2(-121, 3)
 texture = ExtResource("2_28iea")
 
+[node name="West Side (link)" type="Sprite2D" parent="maps/Central Stonesthrow"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-108, -77)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "West Side"
+linked_map = "West Side"
+lock_group = "passage_gate"
+
+[node name="Canal Town South (link)" type="Sprite2D" parent="maps/Central Stonesthrow"]
+material = ExtResource("4_7qnfr")
+position = Vector2(110, -77)
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "Canal Town South"
+linked_map = "Canal Town South"
+lock_group = "passage_gate"
+
+[node name="Eternal Rest Apartments (link)" type="Sprite2D" parent="maps/Central Stonesthrow"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-24, -42)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Eternal Rest Apartments"
+linked_map = "Utility Tunnels"
+
 [node name="Railway Lofts" type="Sprite2D" parent="maps/Central Stonesthrow"]
 material = ExtResource("4_7qnfr")
 position = Vector2(-85, -88)
 texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "Railway Lofts"
-
-[node name="Eternal Rest Apartments" type="Sprite2D" parent="maps/Central Stonesthrow"]
-material = ExtResource("4_7qnfr")
-position = Vector2(-24, -42)
-texture = ExtResource("6_04t1u")
-script = ExtResource("6_sq4gs")
-tab_name = "Eternal Rest Apartments"
 
 [node name="Train Station" type="Sprite2D" parent="maps/Central Stonesthrow"]
 material = ExtResource("4_7qnfr")
@@ -121,25 +150,6 @@ tab_name = "Central Apartments"
 position = Vector2(11, -54)
 rotation = 1.5708
 texture = ExtResource("8_djc6v")
-
-[node name="West_Side" type="Sprite2D" parent="maps/Central Stonesthrow"]
-material = ExtResource("4_7qnfr")
-position = Vector2(-108, -77)
-scale = Vector2(-1, 1)
-texture = ExtResource("8_djc6v")
-script = ExtResource("6_sq4gs")
-tab_name = "West Side"
-linked_map = "West Side"
-lock_group = "passage_gate"
-
-[node name="Canal_Town" type="Sprite2D" parent="maps/Central Stonesthrow"]
-material = ExtResource("4_7qnfr")
-position = Vector2(110, -77)
-texture = ExtResource("8_djc6v")
-script = ExtResource("6_sq4gs")
-tab_name = "Canal Town"
-linked_map = "Canal Town"
-lock_group = "passage_gate"
 
 [node name="Dave\'s Stand-Up Bar" type="Sprite2D" parent="maps/Central Stonesthrow"]
 material = ExtResource("4_7qnfr")
@@ -203,51 +213,27 @@ material = ExtResource("4_7qnfr")
 position = Vector2(-121, 3)
 texture = ExtResource("10_c2m0w")
 
-[node name="Cliffside" type="Sprite2D" parent="maps/West Side"]
+[node name="Cliffside West (link)" type="Sprite2D" parent="maps/West Side"]
 material = ExtResource("4_7qnfr")
-position = Vector2(-90, 111)
+position = Vector2(18, 110)
 rotation = 4.71239
 scale = Vector2(-1, 1)
 texture = ExtResource("8_djc6v")
 script = ExtResource("6_sq4gs")
-tab_name = "Cliffside"
-linked_map = "Cliffside"
+tab_name = "Cliffside West"
+linked_map = "Cliffside West"
 
-[node name="Cliffside2" type="Sprite2D" parent="maps/West Side/Cliffside"]
-material = ExtResource("4_7qnfr")
-position = Vector2(-2, 107)
-texture = ExtResource("8_djc6v")
-script = ExtResource("6_sq4gs")
-tab_name = "West Side"
-linked_map = "West Side"
-
-[node name="Cliffside3" type="Sprite2D" parent="maps/West Side/Cliffside"]
-material = ExtResource("4_7qnfr")
-position = Vector2(-2, 195)
-texture = ExtResource("8_djc6v")
-script = ExtResource("6_sq4gs")
-tab_name = "West Side"
-linked_map = "West Side"
-
-[node name="Northwest Side" type="Sprite2D" parent="maps/West Side"]
+[node name="Northwest Side (link)" type="Sprite2D" parent="maps/West Side"]
 material = ExtResource("4_7qnfr")
 position = Vector2(20, -109)
 rotation = 1.5708
 scale = Vector2(-1, 1)
 texture = ExtResource("8_djc6v")
 script = ExtResource("6_sq4gs")
-tab_name = "Northwest Side"
-linked_map = "Northwest Side"
+tab_name = "North Side West"
+linked_map = "North Side West"
 
-[node name="Northwest Side" type="Sprite2D" parent="maps/West Side/Northwest Side"]
-material = ExtResource("4_7qnfr")
-position = Vector2(-2, 111)
-texture = ExtResource("8_djc6v")
-script = ExtResource("6_sq4gs")
-tab_name = "West Side"
-linked_map = "West Side"
-
-[node name="Central Stonesthrow" type="Sprite2D" parent="maps/West Side"]
+[node name="Central Stonesthrow (link)" type="Sprite2D" parent="maps/West Side"]
 material = ExtResource("4_7qnfr")
 position = Vector2(110, -77)
 texture = ExtResource("8_djc6v")
@@ -262,6 +248,338 @@ position = Vector2(-34, 58)
 texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "West Side Lofts"
+
+[node name="101 West Side" type="Sprite2D" parent="maps/West Side"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-97, 103)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "101 West Side"
+
+[node name="300 West Side" type="Sprite2D" parent="maps/West Side"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-66, -88)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "300 West Side"
+
+[node name="North Side West" type="Sprite2D" parent="maps"]
+visible = false
+material = ExtResource("4_7qnfr")
+position = Vector2(-121, 3)
+texture = ExtResource("12_1qgj0")
+
+[node name="West Side (link)" type="Sprite2D" parent="maps/North Side West"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-16, 107)
+rotation = 4.71239
+scale = Vector2(-1, 1)
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "West Side"
+linked_map = "West Side"
+
+[node name="Northeast Side (link)" type="Sprite2D" parent="maps/North Side West"]
+material = ExtResource("4_7qnfr")
+position = Vector2(111, -25)
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "North Side East"
+linked_map = "North Side East"
+
+[node name="Onyx Caves (link)" type="Sprite2D" parent="maps/North Side West"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-104, -67)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Onyx Caves"
+linked_map = "Onyx Caves"
+lock_group = "cave_gate"
+
+[node name="North Side Apartments (link)" type="Sprite2D" parent="maps/North Side West"]
+material = ExtResource("4_7qnfr")
+position = Vector2(72, 70)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "North Side Apartments"
+linked_map = "Utility Tunnels"
+
+[node name="Palisades Place" type="Sprite2D" parent="maps/North Side West"]
+material = ExtResource("4_7qnfr")
+position = Vector2(92, -112)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Palisades Place"
+
+[node name="West Side Apartment" type="Sprite2D" parent="maps/North Side West"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-95, 102)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "West Side Apartments"
+
+[node name="Onyx Lofts" type="Sprite2D" parent="maps/North Side West"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-77, -76)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Onyx Lofts"
+
+[node name="North Side East" type="Sprite2D" parent="maps"]
+visible = false
+material = ExtResource("4_7qnfr")
+position = Vector2(-121, 3)
+texture = ExtResource("13_swsf7")
+
+[node name="Canal Town (link)" type="Sprite2D" parent="maps/North Side East"]
+material = ExtResource("4_7qnfr")
+position = Vector2(110, 28)
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "Canal Town North"
+linked_map = "Canal Town North"
+
+[node name="Northwest Side (link)" type="Sprite2D" parent="maps/North Side East"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-110, 25)
+scale = Vector2(-1, 1)
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "North Side West"
+linked_map = "North Side West"
+
+[node name="Abandoned Building (link)" type="Sprite2D" parent="maps/North Side East"]
+material = ExtResource("4_7qnfr")
+position = Vector2(92, -92)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Abandoned Building"
+linked_map = "Utility Tunnels"
+
+[node name="Longview Apartments" type="Sprite2D" parent="maps/North Side East"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-8, 76)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Longview Apartments"
+
+[node name="Canal Town North" type="Sprite2D" parent="maps"]
+visible = false
+material = ExtResource("4_7qnfr")
+position = Vector2(-121, 3)
+texture = ExtResource("14_sjavt")
+
+[node name="Canal Town South (link)" type="Sprite2D" parent="maps/Canal Town North"]
+material = ExtResource("4_7qnfr")
+position = Vector2(62, 104)
+rotation = 1.5708
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "Canal Town South"
+linked_map = "Canal Town South"
+
+[node name="Fallsboro (link)" type="Sprite2D" parent="maps/Canal Town North"]
+material = ExtResource("4_7qnfr")
+position = Vector2(63, -75)
+rotation = 4.71239
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "Fallsboro"
+linked_map = "Fallsboro"
+
+[node name="Northeast Side (link)" type="Sprite2D" parent="maps/Canal Town North"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-108, -50)
+scale = Vector2(-1, 1)
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "North Side East"
+linked_map = "North Side East"
+
+[node name="Rocktown Road Apartments (link)" type="Sprite2D" parent="maps/Canal Town North"]
+material = ExtResource("4_7qnfr")
+position = Vector2(83, 50)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Rocktown Roads Apartment"
+linked_map = "Utility Tunnels"
+
+[node name="Canal Town South" type="Sprite2D" parent="maps"]
+visible = false
+material = ExtResource("4_7qnfr")
+position = Vector2(-121, 3)
+texture = ExtResource("15_6sxkv")
+
+[node name="Rocktown (link)" type="Sprite2D" parent="maps/Canal Town South"]
+material = ExtResource("4_7qnfr")
+position = Vector2(64, 107)
+rotation = 1.5708
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "Rocktown"
+linked_map = "Rocktown"
+
+[node name="Canal Town North (link)" type="Sprite2D" parent="maps/Canal Town South"]
+material = ExtResource("4_7qnfr")
+position = Vector2(62, -101)
+rotation = 4.71239
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "Canal Town North"
+linked_map = "Canal Town North"
+
+[node name="Central Stonesthrow (link)" type="Sprite2D" parent="maps/Canal Town South"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-103, -97)
+scale = Vector2(-1, 1)
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "Central Stonesthrow"
+linked_map = "Central Stonesthrow"
+lock_group = "passage_gate"
+
+[node name="Riverview Arch (link)" type="Sprite2D" parent="maps/Canal Town South"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-36, -74)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Riverview Arch"
+linked_map = "Utility Tunnels"
+
+[node name="112 Canal Town" type="Sprite2D" parent="maps/Canal Town South"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-58, -37)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "112 Canal Town"
+
+[node name="Abandoned Building (link)" type="Sprite2D" parent="maps/Canal Town South"]
+material = ExtResource("4_7qnfr")
+position = Vector2(40, -95)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Abandoned Building"
+linked_map = "Utility Tunnels"
+
+[node name="Rocktown" type="Sprite2D" parent="maps"]
+visible = false
+material = ExtResource("4_7qnfr")
+position = Vector2(-121, 3)
+texture = ExtResource("16_etaaa")
+
+[node name="Canal Town South (link)" type="Sprite2D" parent="maps/Rocktown"]
+material = ExtResource("4_7qnfr")
+position = Vector2(45, -108)
+rotation = 4.71239
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "Canal Town South"
+linked_map = "Canal Town South"
+
+[node name="Cliffside East (link)" type="Sprite2D" parent="maps/Rocktown"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-103, 61)
+scale = Vector2(-1, 1)
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "Cliffside East"
+linked_map = "Cliffside East"
+
+[node name="699 Rocktown Road" type="Sprite2D" parent="maps/Rocktown"]
+material = ExtResource("4_7qnfr")
+position = Vector2(27, -101)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "699 Rocktown Road"
+
+[node name="Cliffside East" type="Sprite2D" parent="maps"]
+visible = false
+material = ExtResource("4_7qnfr")
+position = Vector2(-121, 3)
+texture = ExtResource("17_kcea0")
+
+[node name="Cliffside West (link)" type="Sprite2D" parent="maps/Cliffside East"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-109, -45)
+scale = Vector2(-1, 1)
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "Cliffside West"
+linked_map = "Cliffside West"
+
+[node name="Rocktown (link)" type="Sprite2D" parent="maps/Cliffside East"]
+material = ExtResource("4_7qnfr")
+position = Vector2(108, -47)
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "Rocktown"
+linked_map = "Rocktown"
+
+[node name="231 Canal View" type="Sprite2D" parent="maps/Cliffside East"]
+material = ExtResource("4_7qnfr")
+position = Vector2(13, -14)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "231 Canal View"
+
+[node name="Oceanview Apartments" type="Sprite2D" parent="maps/Cliffside East"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-69, 68)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Oceanview Apartments"
+
+[node name="700 Seaside" type="Sprite2D" parent="maps/Cliffside East"]
+material = ExtResource("4_7qnfr")
+position = Vector2(102, 28)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "700 Seaside"
+linked_map = "Utility Tunnels"
+
+[node name="Cliffside West" type="Sprite2D" parent="maps"]
+visible = false
+material = ExtResource("4_7qnfr")
+position = Vector2(-121, 3)
+texture = ExtResource("18_vk7dx")
+
+[node name="West Side (link)" type="Sprite2D" parent="maps/Cliffside West"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-77, -106)
+rotation = 4.71239
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "West Side"
+linked_map = "West Side"
+
+[node name="Cliffside East  (link)" type="Sprite2D" parent="maps/Cliffside West"]
+material = ExtResource("4_7qnfr")
+position = Vector2(108, -47)
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "Cliffside East"
+linked_map = "Cliffside East"
+
+[node name="723 Cliffside" type="Sprite2D" parent="maps/Cliffside West"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-50, -23)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "723 Cliffside"
+
+[node name="940 Cliffside" type="Sprite2D" parent="maps/Cliffside West"]
+material = ExtResource("4_7qnfr")
+position = Vector2(80, -62)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "940 Cliffside"
+
+[node name="823 Cliffside" type="Sprite2D" parent="maps/Cliffside West"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-12, 64)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "823 Cliffside"
 
 [node name="arrow_right" type="Sprite2D" parent="."]
 visible = false

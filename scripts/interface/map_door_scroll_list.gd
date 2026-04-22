@@ -23,9 +23,11 @@ func _ready() -> void:
 func set_map(map : Node, select_name : String = ""):
 	map_node = map
 	door_nodes = map_node.get_children()
-	if(select_name == ""):
-		selected_index = 0
-		bottom_index = 0
+	selected_index = 0
+	bottom_index = 0
+	if(select_name != ""):
+		while(door_nodes[selected_index].get_linked_map() != select_name):
+			increment_selected()
 	update_list()
 
 func update_list():
@@ -65,20 +67,27 @@ func update_list():
 func get_selected_index():
 	return selected_index
 
-func increment_selected():
+func get_linked_map() -> String:
+	var door_node = door_nodes[selected_index]
+	var linked_map = door_node.get_linked_map()
+	return linked_map
+
+func increment_selected(update : bool = true):
 	if(selected_index + 1 < door_nodes.size()):
 		selected_index = selected_index + 1
 		if(selected_index > bottom_index + (tabs.size()-1) &&
 		bottom_index + (tabs.size()-1) <= door_nodes.size()):
 			bottom_index = bottom_index + 1
 			#dial.position = dial.position + Vector2(0,dial_step)
-	update_list()
+	if(update):
+		update_list()
 
-func decrement_selected():
+func decrement_selected(update : bool = true):
 	if(selected_index > 0):
 		selected_index = selected_index - 1
 		if(selected_index < bottom_index &&
 		bottom_index > 0):
 			bottom_index = bottom_index - 1
 			#dial.position = dial.position - Vector2(0,dial_step)
-	update_list()
+	if(update):
+		update_list()

@@ -17,8 +17,6 @@ var map_index : int = 0
 var player_ref : Node
 var owned_maps : Array[String]
 
-
-
 func close():
 	queue_free()
 
@@ -32,21 +30,14 @@ func _ready():
 	audio_player.bus = "Effects"
 	add_child(audio_player)
 
-func set_map(name : String):
+func set_map(name : String, from_map : String = ""):
 	if(map_node != null):
 		map_node.visible = false
 	map_node = maps.find_child(name)
-	scroll_list.set_map(map_node)
+	scroll_list.set_map(map_node, from_map)
 	map_node.visible = true
 	map_name.parse_bbcode(name)
-	if(map_index > 0):
-		arrow_left.visible = true
-	else:
-		arrow_left.visible = false
-	if(map_index + 1 < owned_maps.size()):
-		arrow_right.visible = true
-	else:
-		arrow_right.visible = false
+	update_arrows()
 
 func prev_map():
 	if(map_index > 0):
@@ -59,6 +50,24 @@ func next_map():
 		map_index = map_index + 1
 		var map_name : String = owned_maps[map_index]
 		set_map(map_name)
+
+func switch_to_linked_map():
+	var new_map_name = scroll_list.get_linked_map()
+	if(new_map_name != ""):
+		set_map(new_map_name, map_node.name)
+		map_index = owned_maps.find(new_map_name)
+		update_arrows()
+
+
+func update_arrows():
+	if(map_index > 0):
+		arrow_left.visible = true
+	else:
+		arrow_left.visible = false
+	if(map_index + 1 < owned_maps.size()):
+		arrow_right.visible = true
+	else:
+		arrow_right.visible = false
 
 func _physics_process(delta: float) -> void:
 	if(timer.is_stopped()):
@@ -74,4 +83,7 @@ func _physics_process(delta: float) -> void:
 			timer.start(step)
 		if(Input.is_action_pressed("menu_right")):
 			next_map()
+			timer.start(step)
+		if(Input.is_action_pressed("menu_select")):
+			switch_to_linked_map()
 			timer.start(step)

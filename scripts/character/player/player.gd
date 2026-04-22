@@ -159,7 +159,7 @@ var shown_items_tip : bool = false
 
 var owned_music : Array[String] = []
 
-var owned_maps : Array[String] = ["Central Stonesthrow", "West Side"]
+var owned_maps : Array[String] = ["West Side", "Central Stonesthrow"]
 
 var default_linear_damp : float = 6.0
 var skating_linear_damp : float = 0.1
@@ -536,7 +536,8 @@ func get_save_dictionary() -> Dictionary:
 		"quest_state_keys" : quest_state_keys,
 		"quest_state_values" : quest_state_values,
 		"shown_items_tip" : shown_items_tip,
-		"journal_tabs" : journal_tabs
+		"journal_tabs" : journal_tabs,
+		"owned_maps" : owned_maps
 	}
 	return save_dictionary
 
@@ -613,6 +614,14 @@ func load_from_dictionary(load_dictionary : Dictionary):
 		var loaded_key_str = String(load_music[index])
 		if(!owned_music.has(loaded_key_str)):
 			owned_music.append(loaded_key_str)
+		index = index + 1
+	
+	var load_maps = load_dictionary.get("owned_maps")
+	index = 0
+	while(index < load_maps.size()):
+		var loaded_map_str = String(load_maps[index])
+		if(!owned_maps.has(loaded_map_str)):
+			owned_maps.append(loaded_map_str)
 		index = index + 1
 	
 	var load_journal = load_dictionary.get("journal_tabs")

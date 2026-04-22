@@ -16,9 +16,13 @@ var door_nodes : Array[Node] = []
 
 var selected_door_node : Node 
 
+var audio_player := AudioStreamPlayer.new()
+
 func _ready() -> void:
 	player_ref = get_tree().get_first_node_in_group("player")
 	update_list()
+	audio_player.bus = "Effects"
+	add_child(audio_player)
 
 func set_map(map : Node, select_name : String = ""):
 	map_node = map
@@ -78,6 +82,11 @@ func increment_selected(update : bool = true):
 		if(selected_index > bottom_index + (tabs.size()-1) &&
 		bottom_index + (tabs.size()-1) <= door_nodes.size()):
 			bottom_index = bottom_index + 1
+		audio_player.stream = load("res://audio/soundFX/maracca.ogg")
+		audio_player.play()
+	else:
+		audio_player.stream = load("res://audio/soundFX/bigCollide.wav")
+		audio_player.play()
 			#dial.position = dial.position + Vector2(0,dial_step)
 	if(update):
 		update_list()
@@ -88,6 +97,11 @@ func decrement_selected(update : bool = true):
 		if(selected_index < bottom_index &&
 		bottom_index > 0):
 			bottom_index = bottom_index - 1
+		audio_player.stream = load("res://audio/soundFX/maracca.ogg")
+		audio_player.play()
 			#dial.position = dial.position - Vector2(0,dial_step)
+	else:
+		audio_player.stream = load("res://audio/soundFX/bigCollide.wav")
+		audio_player.play()
 	if(update):
 		update_list()

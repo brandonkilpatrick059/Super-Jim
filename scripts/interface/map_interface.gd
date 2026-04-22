@@ -17,6 +17,10 @@ var map_index : int = 0
 var player_ref : Node
 var owned_maps : Array[String]
 
+var all_maps : Array[String] = []
+
+var ordered_maps : Array[String] = []
+
 func close():
 	queue_free()
 
@@ -25,10 +29,22 @@ func _ready():
 	add_child(timer)
 	player_ref = get_tree().get_first_node_in_group("player")
 	owned_maps = player_ref.get_owned_maps()
-	var map_name : String = owned_maps[map_index]
+	
+	ordered_maps = []
+	get_all_maps()
+	#player can get maps in any order, but we want to have control
+	#over the order so it is organized
+	for map in all_maps:
+		if(owned_maps.has(map)):
+			ordered_maps.append(map)
+	var map_name : String = ordered_maps[map_index]
 	set_map(map_name)
 	audio_player.bus = "Effects"
 	add_child(audio_player)
+
+func get_all_maps():
+	for map in maps.get_children():
+		all_maps.append(map.name)
 
 func set_map(name : String, from_map : String = ""):
 	if(map_node != null):
@@ -41,21 +57,27 @@ func set_map(name : String, from_map : String = ""):
 
 func prev_map():
 	if(map_index > 0):
+		audio_player.stream = load("res://audio/soundFX/page_turn.wav")
+		audio_player.play()
 		map_index = map_index - 1
-		var map_name : String = owned_maps[map_index]
+		var map_name : String = ordered_maps[map_index]
 		set_map(map_name)
 
 func next_map():
-	if(map_index + 1 < owned_maps.size()):
+	if(map_index + 1 < ordered_maps.size()):
+		audio_player.stream = load("res://audio/soundFX/page_turn.wav")
+		audio_player.play()
 		map_index = map_index + 1
-		var map_name : String = owned_maps[map_index]
+		var map_name : String = ordered_maps[map_index]
 		set_map(map_name)
 
 func switch_to_linked_map():
 	var new_map_name = scroll_list.get_linked_map()
 	if(new_map_name != ""):
+		audio_player.stream = load("res://audio/soundFX/page_turn.wav")
+		audio_player.play()
 		set_map(new_map_name, map_node.name)
-		map_index = owned_maps.find(new_map_name)
+		map_index = ordered_maps.find(new_map_name)
 		update_arrows()
 
 
@@ -64,7 +86,7 @@ func update_arrows():
 		arrow_left.visible = true
 	else:
 		arrow_left.visible = false
-	if(map_index + 1 < owned_maps.size()):
+	if(map_index + 1 < ordered_maps.size()):
 		arrow_right.visible = true
 	else:
 		arrow_right.visible = false

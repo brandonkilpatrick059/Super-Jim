@@ -754,6 +754,9 @@ func add_to_max_dash_secs(num : int):
 func hide_tip():
 	_ui.hide_tip()
 
+func instant_hide_tip():
+	_ui.instant_hide_tip()
+
 func show_tip(text : String, 
 arrow_left : bool = false, 
 arrow_right : bool = false,
@@ -929,6 +932,8 @@ func handle_journal():
 		var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 		var music_continues = true
 		main_ui_invisible()
+		_ui.hide_header()
+		instant_hide_tip()
 		set_control_frozen(true)
 		time_keeper.pause_parent_tree(music_continues)
 

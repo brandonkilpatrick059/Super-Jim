@@ -165,6 +165,9 @@ func toggle_fps_counter():
 func hide_tip():
 	tutorial_tip.hide_tip()
 
+func instant_hide_tip():
+	tutorial_tip.instant_hide_tip()
+
 func show_tip(text : String, 
 arrow_left : bool = false, 
 arrow_right : bool = false,
@@ -176,6 +179,9 @@ dismiss_timer : float = 0.0):
 
 func activate_header(label : String):
 	location_header.activate_header(label)
+
+func hide_header():
+	location_header.hide_header()
 
 func update_quantity_label_text(str : String):
 	quantity_label.text = str

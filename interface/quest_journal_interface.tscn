@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dqm1acdekgin7"]
+[gd_scene load_steps=14 format=3 uid="uid://dqm1acdekgin7"]
 
 [ext_resource type="Texture2D" uid="uid://pvaav11tguud" path="res://sprites/interface/quest_ui_background.png" id="1_1pkiw"]
 [ext_resource type="Script" uid="uid://b2bakhujntcs2" path="res://scripts/interface/quest_journal_interface.gd" id="1_joh03"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bqjiguvskb3yy" path="res://scripts/interface/quest_log.gd" id="5_qwhe4"]
 [ext_resource type="Script" uid="uid://ciici7c3ug5gu" path="res://scripts/interface/log_state.gd" id="6_6s05b"]
 [ext_resource type="Texture2D" uid="uid://tky7m7ktiahc" path="res://sprites/interface/compass_arrow.png" id="6_65fdo"]
+[ext_resource type="Material" uid="uid://b5vwbti30llx4" path="res://interface/unshaded_material.tres" id="6_xk3ua"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_65fdo"]
 light_mode = 1
@@ -69,11 +70,13 @@ animation = &"opened"
 
 [node name="right_arrow" type="Sprite2D" parent="."]
 visible = false
+material = ExtResource("6_xk3ua")
 position = Vector2(234, 0)
 texture = ExtResource("6_65fdo")
 
 [node name="left_arrow" type="Sprite2D" parent="."]
 visible = false
+material = ExtResource("6_xk3ua")
 position = Vector2(-235, 0)
 scale = Vector2(-1, 1)
 texture = ExtResource("6_65fdo")

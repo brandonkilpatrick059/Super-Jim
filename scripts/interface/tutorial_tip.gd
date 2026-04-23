@@ -49,6 +49,16 @@ func hide_tip():
 	tip_box_active = false
 	tip_arrow_left_active = false
 	tip_arrow_right_active = false
+	
+
+func instant_hide_tip():
+	tip_box_active = false
+	tip_arrow_left_active = false
+	tip_arrow_right_active = false
+	tip_box.modulate = Color(1.0,1.0,1.0,0.0)
+	tip_arrow_left.modulate = Color(1.0,1.0,1.0,0.0)
+	tip_arrow_right.modulate = Color(1.0,1.0,1.0,0.0)
+	label.modulate = Color(1.0,1.0,1.0,0.0)
 
 func show_tip(text : String, 
 arrow_left : bool = false, 

@@ -48,16 +48,29 @@ func play_text(text, newVoice):
 func is_text_done_playing():
 	return full_text_displayed
 
-func isVowel(subStr : String):
+func isVowel(subStr : String) -> int:
 	var temp_str = subStr.to_lower()
-	if(temp_str == "a" ||
-	   temp_str == "e" ||
-	   temp_str == "i" ||
-	   temp_str == "o" ||
-	   temp_str == "u" ||
-	   temp_str == "y"):
-		return true
-	else: false
+	#should get rid of this code
+	#but it was one of the first bits
+	#I wrote for this game
+	#so I have a sentimental
+	#attachment to it :(
+	#if(temp_str == "a" ||
+	   #temp_str == "e" ||
+	   #temp_str == "i" ||
+	   #temp_str == "o" ||
+	   #temp_str == "u" ||
+	   #temp_str == "y"):
+		#return true
+	#else: false
+	match(temp_str):
+		"a": return 1
+		"e": return 2
+		"i": return 3
+		"o": return 4
+		"u": return 5
+		"y": return 5
+		_: return 0
 
 func _ready():
 	characters_displayed = 0
@@ -80,8 +93,9 @@ func _physics_process(delta):
 	if(full_text_displayed == false):
 		if(wait_time >= time_between_chars):
 			wait_time = 0
-			if(voice != "none" && isVowel(full_text.substr(characters_displayed,1))):
-				var voice_num = randi_range(1,5)
+			var vowel_index = isVowel(full_text.substr(characters_displayed,1))
+			if(voice != "none" && vowel_index != 0):
+				var voice_num = vowel_index
 				sound_player.stream = load(str("res://audio/soundFX/voice/",voice,"/",voice_num,".wav"))
 				sound_player.play()
 			characters_displayed = characters_displayed + 1

@@ -27,7 +27,6 @@
 [node name="MapInterface" type="Node2D"]
 material = ExtResource("4_7qnfr")
 script = ExtResource("1_i8fx5")
-dev_has_all_maps = true
 
 [node name="background" type="Sprite2D" parent="."]
 texture = ExtResource("1_7ush2")
@@ -513,6 +512,45 @@ texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "Longview Apartments"
 
+[node name="Fallsboro" type="Sprite2D" parent="maps"]
+visible = false
+material = ExtResource("4_7qnfr")
+position = Vector2(-121, 3)
+texture = ExtResource("17_gg6p4")
+
+[node name="Canal Town North (link)" type="Sprite2D" parent="maps/Fallsboro"]
+material = ExtResource("4_7qnfr")
+position = Vector2(81, 82)
+rotation = 1.5708
+texture = ExtResource("8_djc6v")
+script = ExtResource("6_sq4gs")
+tab_name = "Canal Town North"
+linked_map = "Canal Town North"
+
+[node name="Abandoned Tower  (link)" type="Sprite2D" parent="maps/Fallsboro"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-98, 8)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Abandoned Tower"
+linked_map = "Utility Tunnels"
+
+[node name="Onyx Cave  (link)" type="Sprite2D" parent="maps/Fallsboro"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-80, -53)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Onyx Cave"
+linked_map = "Onyx Cave"
+lock_group = "cave_gate"
+
+[node name="Fallsboro Flats" type="Sprite2D" parent="maps/Fallsboro"]
+material = ExtResource("4_7qnfr")
+position = Vector2(2, -2)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Fallsboro Flats"
+
 [node name="Canal Town North" type="Sprite2D" parent="maps"]
 visible = false
 material = ExtResource("4_7qnfr")
@@ -573,36 +611,6 @@ texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "Rocktown Roads Apartment"
 linked_map = "Utility Tunnels"
-
-[node name="Fallsboro" type="Sprite2D" parent="maps"]
-visible = false
-material = ExtResource("4_7qnfr")
-position = Vector2(-121, 3)
-texture = ExtResource("17_gg6p4")
-
-[node name="Canal Town North (link)" type="Sprite2D" parent="maps/Fallsboro"]
-material = ExtResource("4_7qnfr")
-position = Vector2(81, 82)
-rotation = 1.5708
-texture = ExtResource("8_djc6v")
-script = ExtResource("6_sq4gs")
-tab_name = "Canal Town North"
-linked_map = "Canal Town North"
-
-[node name="Abandoned Tower  (link)" type="Sprite2D" parent="maps/Fallsboro"]
-material = ExtResource("4_7qnfr")
-position = Vector2(-98, 8)
-texture = ExtResource("6_04t1u")
-script = ExtResource("6_sq4gs")
-tab_name = "Abandoned Tower"
-linked_map = "Utility Tunnels"
-
-[node name="Fallsboro Flats" type="Sprite2D" parent="maps/Fallsboro"]
-material = ExtResource("4_7qnfr")
-position = Vector2(2, -2)
-texture = ExtResource("6_04t1u")
-script = ExtResource("6_sq4gs")
-tab_name = "Fallsboro Flats"
 
 [node name="Canal Town South" type="Sprite2D" parent="maps"]
 visible = false
@@ -764,9 +772,6 @@ linked_map = "Rocktown"
 material = ExtResource("4_7qnfr")
 position = Vector2(1, 89)
 texture = ExtResource("8_djc6v")
-script = ExtResource("6_sq4gs")
-tab_name = "Rocktown"
-linked_map = "Rocktown"
 
 [node name="231 Canal View" type="Sprite2D" parent="maps/Cliffside East"]
 material = ExtResource("4_7qnfr")

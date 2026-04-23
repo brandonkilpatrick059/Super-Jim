@@ -68,10 +68,12 @@ sprite_frames = ExtResource("3_joh03")
 animation = &"opened"
 
 [node name="right_arrow" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(234, 0)
 texture = ExtResource("6_65fdo")
 
 [node name="left_arrow" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-235, 0)
 scale = Vector2(-1, 1)
 texture = ExtResource("6_65fdo")

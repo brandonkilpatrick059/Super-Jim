@@ -29,6 +29,7 @@ material = ExtResource("4_7qnfr")
 script = ExtResource("1_i8fx5")
 
 [node name="background" type="Sprite2D" parent="."]
+material = ExtResource("4_7qnfr")
 texture = ExtResource("1_7ush2")
 
 [node name="map_image" type="Sprite2D" parent="."]
@@ -940,11 +941,13 @@ linked_map = "Sewers"
 
 [node name="arrow_right" type="Sprite2D" parent="."]
 visible = false
+material = ExtResource("4_7qnfr")
 position = Vector2(238, -109)
 texture = ExtResource("12_uuwt7")
 
 [node name="arrow_left" type="Sprite2D" parent="."]
 visible = false
+material = ExtResource("4_7qnfr")
 position = Vector2(54, -109)
 rotation = 3.14159
 texture = ExtResource("12_uuwt7")

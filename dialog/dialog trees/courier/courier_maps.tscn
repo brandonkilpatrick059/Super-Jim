@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo5vwn7jp1hta"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_4q3dv"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_djkev"]
+[ext_resource type="Script" uid="uid://cmtxwegbck31k" path="res://scripts/utility/run_scripts/give_map.gd" id="3_4q3dv"]
+[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="3_aq8ym"]
+
+[node name="courier_maps" type="Node2D"]
+script = ExtResource("1_4q3dv")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_djkev")]
+position = Vector2(7, -19)
+speaker_text = Array[String](["hey, wait up."])
+option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
+dialog_script = NodePath("adjust_schedule")
+
+[node name="adjust_schedule" type="Node" parent="trunk"]
+script = ExtResource("3_aq8ym")
+node_group = "speedy"
+new_key = "shop"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_djkev")]
+position = Vector2(17, 307)
+speaker_text = Array[String](["This city can feel like a maze sometimes-"])
+option_branches = [NodePath("../trunk3")]
+voice = "sine_voice"
+dialog_script = NodePath("add_map")
+
+[node name="add_map" type="Node" parent="trunk2"]
+script = ExtResource("3_4q3dv")
+map = "Stonesthrow"
+
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_djkev")]
+position = Vector2(33, 590)
+speaker_text = Array[String](["You ought to take a few maps with you."])
+option_branches = [NodePath("../trunk5")]
+voice = "sine_voice"
+dialog_script = NodePath("add_map2")
+
+[node name="add_map2" type="Node" parent="trunk3"]
+script = ExtResource("3_4q3dv")
+map = "Central Stonesthrow"
+
+[node name="trunk5" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_djkev")]
+position = Vector2(81, 1199)
+speaker_text = Array[String](["Here, you can have a few of mine."])
+voice = "sine_voice"
+dialog_script = NodePath("add_map3")
+play_sound_path = "res://audio/soundFX/pickup.wav"
+
+[node name="add_map3" type="Node" parent="trunk5"]
+script = ExtResource("3_4q3dv")
+map = "West Side"

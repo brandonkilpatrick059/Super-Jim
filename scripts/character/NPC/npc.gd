@@ -258,6 +258,9 @@ func set_schedules_index(index : int):
 func get_schedules_index() -> int:
 	return schedules_index
 
+func get_schedules_key() -> String:
+	return schedule_keys[schedules_index]
+
 func show_headphones():
 	shows_headphones = true
 	_character_base.show_headphones()
@@ -269,9 +272,6 @@ func hide_headphones():
 func set_schedules_key(key : String):
 	var index = schedule_keys.find(key)
 	set_schedules_index(index)
-
-func get_schedules_key() -> String:
-	return schedule_keys[schedules_index]
 
 func update_line_of_sight_to_target():
 	if(perceptions.target_obj != null):
@@ -317,7 +317,6 @@ func update_perceptions():
 		update_vision()
 		check_vision()
 		update_line_of_sight_to_target()
-	
 	update_stage_mark()
 
 func update_vision():

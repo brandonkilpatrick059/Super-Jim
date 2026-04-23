@@ -159,7 +159,7 @@ var shown_items_tip : bool = false
 
 var owned_music : Array[String] = []
 
-var owned_maps : Array[String] = ["Stonesthrow","Central Stonesthrow"]
+var owned_maps : Array[String] = []
 
 var default_linear_damp : float = 6.0
 var skating_linear_damp : float = 0.1
@@ -399,8 +399,6 @@ func handle_waking():
 			waking_control_back = false
 			set_ui_visible()
 			set_control_frozen(false)
-			#var baby_spawner = get_tree().get_first_node_in_group("dream_baby_spawn")
-			#baby_spawner.reset_has_played()
 
 #called when the player loads in from a save
 func load_in():
@@ -415,8 +413,6 @@ func load_in():
 		var secondary_music_player = get_tree().get_first_node_in_group("secondary_music_player")
 		secondary_music_player.stream = load("res://audio/music/sleep theme.wav")
 		secondary_music_player.play()
-		#var stream = load("res://audio/music/sleep theme.wav")
-		#play_sound(stream)
 
 func set_and_update_cloths(hat : int, top : int, bottom : int):
 	hats_index = hat
@@ -487,6 +483,24 @@ func get_owned_music() -> Array[String]:
 
 func get_owned_maps() -> Array[String]:
 	return owned_maps
+
+func add_owned_map(map : String):
+	if(owned_maps.size() == 0):
+		add_journal_tab("map")
+	if(!owned_maps.has(map)):
+		owned_maps.append(map)
+
+func add_journal_tab(tab : String):
+	if(!journal_tabs.has(tab)):
+		journal_tabs.append(tab)
+
+func set_quest_log(key : String, value : int):
+	var quest_log_key_index = quest_log_keys.find(key)
+	if(quest_log_key_index >= 0):
+		quest_log_values[quest_log_key_index] = value
+	else:
+		quest_log_keys.append(key)
+		quest_log_values.append(value)
 
 #called when the player starts a new game
 func new_game():

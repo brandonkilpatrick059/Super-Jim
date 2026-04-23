@@ -61,11 +61,6 @@ func set_is_leaving_tutorial(value : bool):
 func set_has_delivered_max_pizzas(value : bool):
 	has_delivered_max_pizzas = value
 
-
-
-#func get_mob_limit() -> int:
-	#return mob_limits[level]
-
 func get_level() -> int:
 	return level
 

@@ -1,13 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4dmrd4rnbcw4"]
+[gd_scene load_steps=11 format=3 uid="uid://c4dmrd4rnbcw4"]
 
 [ext_resource type="SpriteFrames" uid="uid://ujjatb8o1hx" path="res://sprites/spritesheets/spriteframes/interface/journal_frame.tres" id="1_7lu5n"]
 [ext_resource type="Script" uid="uid://b8jcwtku2bj4e" path="res://scripts/interface/journal_interface.gd" id="1_skpbi"]
+[ext_resource type="Script" uid="uid://w3qahpimeo3c" path="res://scripts/interface/glyph_sprite.gd" id="3_g1qji"]
+[ext_resource type="Material" uid="uid://b5vwbti30llx4" path="res://interface/unshaded_material.tres" id="3_k52xs"]
+[ext_resource type="FontFile" uid="uid://cdf6elivdwcta" path="res://fonts/CourierPrime-Regular.ttf" id="5_t8b3d"]
+[ext_resource type="Texture2D" uid="uid://badweuqf78vhf" path="res://sprites/interface/journal_tab_blue.png" id="7_10df2"]
+[ext_resource type="Texture2D" uid="uid://b3rhorhe8jysu" path="res://sprites/interface/journal_tab_purple.png" id="8_nkeby"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_skpbi"]
 light_mode = 1
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_g1qji"]
 light_mode = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_nkeby"]
+font = ExtResource("5_t8b3d")
+font_size = 10
+font_color = Color(0, 0, 0, 1)
 
 [node name="JournalInterface" type="Node2D"]
 process_mode = 3
@@ -20,3 +30,47 @@ material = SubResource("CanvasItemMaterial_g1qji")
 position = Vector2(0, 512)
 sprite_frames = ExtResource("1_7lu5n")
 animation = &"close"
+
+[node name="left_glyph" type="Sprite2D" parent="frame"]
+z_index = 5
+material = ExtResource("3_k52xs")
+position = Vector2(-244, -150)
+script = ExtResource("3_g1qji")
+action = "menu_journal_left"
+
+[node name="left_label" type="Label" parent="frame"]
+z_index = 5
+material = ExtResource("3_k52xs")
+offset_left = -236.0
+offset_top = -153.0
+offset_right = -194.0
+offset_bottom = -130.0
+text = "Cards"
+label_settings = SubResource("LabelSettings_nkeby")
+horizontal_alignment = 1
+
+[node name="right_glyph" type="Sprite2D" parent="frame"]
+z_index = 5
+material = ExtResource("3_k52xs")
+position = Vector2(233, -150)
+script = ExtResource("3_g1qji")
+action = "menu_journal_right"
+
+[node name="right_label" type="Label" parent="frame"]
+z_index = 5
+material = ExtResource("3_k52xs")
+offset_left = 183.0
+offset_top = -153.0
+offset_right = 225.0
+offset_bottom = -130.0
+text = "Log"
+label_settings = SubResource("LabelSettings_nkeby")
+horizontal_alignment = 1
+
+[node name="journal_tab_left" type="Sprite2D" parent="frame"]
+position = Vector2(-224, -148)
+texture = ExtResource("7_10df2")
+
+[node name="journal_tab_right" type="Sprite2D" parent="frame"]
+position = Vector2(215, -148)
+texture = ExtResource("8_nkeby")

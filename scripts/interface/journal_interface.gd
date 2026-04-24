@@ -2,6 +2,13 @@ extends Node2D
 
 @onready var frame = $frame
 
+@onready var left_glyph = $frame/left_glyph
+@onready var left_label = $frame/left_label
+@onready var right_glyph = $frame/right_glyph
+@onready var right_label = $frame/right_label
+@onready var left_tab = $frame/journal_tab_left
+@onready var right_tab = $frame/journal_tab_right
+
 var timer := Timer.new()
 var timer_step : float = 0.006
 
@@ -36,8 +43,10 @@ func _ready() -> void:
 	add_child(audio_player)
 	audio_player.bus = "Effects"
 	player = get_tree().get_first_node_in_group("player")
+	hide_glyph_tabs()
 
 func open(set_tabs : Array[String]):
+	hide_glyph_tabs()
 	tabs = set_tabs
 	frame.play("closed")
 	opening = true
@@ -47,6 +56,7 @@ func open(set_tabs : Array[String]):
 
 func close():
 	if(!tab_switching):
+		hide_glyph_tabs()
 		frame.play("close")
 		audio_player.stream = load("res://audio/soundFX/page_turn.wav")
 		audio_player.play()
@@ -62,7 +72,7 @@ func switch(switch_right : bool):
 		close_ui()
 		frame.play("close")
 		closing = true
-		if(switching_right):
+		if(switch_right):
 			tab_index = tab_index + 1
 			if(tab_index >= tabs.size()):
 				tab_index = 0
@@ -138,6 +148,7 @@ func handle_closing():
 			lowering = true
 
 func handle_tab_switching():
+	hide_glyph_tabs()
 	if(closing):
 		if(frame.frame == 2):
 			frame.play("open")
@@ -149,6 +160,57 @@ func handle_tab_switching():
 			frame.play("opened")
 			initialize_ui()
 			tab_switching = false
+
+func handle_glyphs():
+	if(tabs.size() > 1):
+		left_glyph.visible = true
+		right_glyph.visible = true
+		left_tab.visible = true
+		right_tab.visible = true
+		left_glyph.get_glyph()
+		right_glyph.get_glyph()
+		var left_index = tab_index - 1
+		var right_index = tab_index + 1
+		if(left_index < 0):
+			left_index = tabs.size() - 1
+		if(right_index >= tabs.size()):
+			right_index = 0
+		var left_key = tabs[left_index]
+		var right_key = tabs[right_index]
+		left_label.text = get_tab_key_string(left_key)
+		right_label.text = get_tab_key_string(right_key)
+		left_tab.texture = load(get_tab_sprite_path(left_key))
+		right_tab.texture = load(get_tab_sprite_path(right_key))
+	else:
+		hide_glyph_tabs()
+
+func hide_glyph_tabs():
+	left_glyph.visible = false
+	right_glyph.visible = false
+	left_label.text = ""
+	right_label.text = ""
+	left_tab.visible = false
+	right_tab.visible = false
+
+func get_tab_key_string(key : String) -> String:
+	match key:
+		"card_binder":
+			return "Cards"
+		"quest_journal":
+			return "Log"
+		"map":
+			return "Map"
+		_: return ""
+
+func get_tab_sprite_path(key : String) -> String:
+	match key:
+		"card_binder":
+			return "res://sprites/interface/journal_tab_purple.png"
+		"quest_journal":
+			return "res://sprites/interface/journal_tab_blue.png"
+		"map":
+			return "res://sprites/interface/journal_tab_brown.png"
+		_: return ""
 
 func _physics_process(delta: float) -> void:
 	#global_position = player.get_camera_ref().get_screen_center_position()
@@ -169,6 +231,8 @@ func _physics_process(delta: float) -> void:
 				handle_opening()
 			if(closing):
 				handle_closing()
+			elif(is_open):
+				handle_glyphs()
 		if(tab_switching):
 			handle_tab_switching()
 		timer.start(timer_step)

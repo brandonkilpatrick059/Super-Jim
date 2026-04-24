@@ -695,14 +695,6 @@ func add_owned_card(card : int):
 func get_owned_cards() -> Array[int]:
 	return owned_cards
 
-#func increment_owned_card(index : int):
-	#if(owned_cards[index] + 1 <= 5):
-		#owned_cards[index] = owned_cards[index] + 1
-#
-#func decrement_owned_card(index : int):
-	#if(owned_cards[index] - 1 >= 0):
-		#owned_cards[index] = owned_cards[index] - 1
-
 func get_num_card(index : int):
 	return owned_cards[index]
 
@@ -833,14 +825,14 @@ func main_ui_invisible():
 	_ui.hide_item_square()
 	main_ui_hidden = true
 	_ui.hide_tip()
-	
 
 func main_ui_visible():
 	show_hearts()
 	show_money()
 	show_dash()
 	_ui.show_interact_text()
-	_ui.show_item_square()
+	if(items.size() > 0):
+		_ui.show_item_square()
 	main_ui_hidden = false
 
 func connect_camera():
@@ -956,9 +948,10 @@ func handle_journal():
 		journal_ref.open(journal_tabs)
 		var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 		var music_continues = true
-		main_ui_invisible()
-		_ui.hide_header()
-		instant_hide_tip()
+		set_ui_invisible()
+		#main_ui_invisible()
+		#_ui.hide_header()
+		#instant_hide_tip()
 		set_control_frozen(true)
 		time_keeper.pause_parent_tree(music_continues)
 

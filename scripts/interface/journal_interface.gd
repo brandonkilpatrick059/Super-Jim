@@ -118,7 +118,7 @@ func handle_opening():
 func return_control():
 	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 	time_keeper.unpause_parent_tree()
-	player.main_ui_visible()
+	player.set_ui_visible()
 	player.set_control_frozen(false)
 
 func handle_closing():

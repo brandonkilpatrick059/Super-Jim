@@ -13,7 +13,7 @@ trunk = NodePath("trunk")
 position = Vector2(0, -16)
 speaker_text = Array[String](["Ready to get this show on the road?"])
 speaker_portrait = ExtResource("3_eyi0d")
-speech_options = Array[String](["Yes", "Not yet"])
+speech_options = Array[String](["Yes.", "Not yet."])
 option_branches = [NodePath("../ready"), NodePath("../not_yet")]
 voice = "low_sine_voice"
 
@@ -41,7 +41,7 @@ speaker_name = "speedy"
 [node name="ready4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_ouw6x")]
 position = Vector2(153, 782)
 speaker_text = Array[String](["Are you familiar with the concept of \"delivery?\""])
-speech_options = Array[String](["Yes, but let me know what to expect", "Yes, I think I got it", "No"])
+speech_options = Array[String](["Yes, but let me know what to expect.", "Yes, I think I got it.", "No."])
 option_branches = [NodePath("../delivery"), NodePath("../no tutorial"), NodePath("../delivery")]
 voice = "sine_voice"
 

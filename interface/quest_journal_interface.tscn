@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b2bakhujntcs2" path="res://scripts/interface/quest_journal_interface.gd" id="1_joh03"]
 [ext_resource type="FontFile" uid="uid://cdf6elivdwcta" path="res://fonts/CourierPrime-Regular.ttf" id="2_glx4p"]
 [ext_resource type="SpriteFrames" uid="uid://ujjatb8o1hx" path="res://sprites/spritesheets/spriteframes/interface/journal_frame.tres" id="3_joh03"]
-[ext_resource type="Texture2D" uid="uid://dtso22kl0dwbr" path="res://sprites/interface/log_pics/mine_door.png" id="3_pba4g"]
+[ext_resource type="Texture2D" uid="uid://c07ji1prfhdp0" path="res://sprites/interface/log_pics/arcade.png" id="3_xk3ua"]
 [ext_resource type="Script" uid="uid://bqjiguvskb3yy" path="res://scripts/interface/quest_log.gd" id="5_qwhe4"]
 [ext_resource type="Script" uid="uid://ciici7c3ug5gu" path="res://scripts/interface/log_state.gd" id="6_6s05b"]
 [ext_resource type="Texture2D" uid="uid://tky7m7ktiahc" path="res://sprites/interface/compass_arrow.png" id="6_65fdo"]
@@ -24,8 +24,7 @@ light_mode = 1
 
 [node name="QuestJournalInterface" type="Node2D"]
 script = ExtResource("1_joh03")
-test_key = "start_door"
-test_state = 1
+test_key = "arcade"
 
 [node name="background" type="Sprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_65fdo")
@@ -34,7 +33,7 @@ texture = ExtResource("1_1pkiw")
 [node name="photo" type="Sprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_xk3ua")
 position = Vector2(-161, -57)
-texture = ExtResource("3_pba4g")
+texture = ExtResource("3_xk3ua")
 
 [node name="topic_name" type="RichTextLabel" parent="."]
 material = SubResource("CanvasItemMaterial_45hbw")
@@ -101,12 +100,50 @@ log_name = "glowing door"
 [node name="0" type="Node" parent="quest_logs/start_door"]
 script = ExtResource("6_6s05b")
 text = "-I found a mysterious glowing door deep in an abandoned mineshaft.
--The door seems to have transported me to a strange city called Stonesthrow, which I have never heard of before. 
--There's something very off about this place..."
+-The door has transported me to a strange city I have never heard of.
+-I seem to be stuck here."
 
-[node name="1" type="Node" parent="quest_logs/start_door"]
+[node name="pizza_shop" type="Node" parent="quest_logs"]
+script = ExtResource("5_qwhe4")
+picture_path = "res://sprites/interface/log_pics/pizza_shop.png"
+log_name = "Pie In the Sky"
+
+[node name="0" type="Node" parent="quest_logs/pizza_shop"]
 script = ExtResource("6_6s05b")
-text = "-I found a mysterious glowing door deep in an abandoned mineshaft.
--The door seems to have transported me to a strange city called Stonesthrow, which I have never heard of before. 
--There's something  off about this place...
--I am stuck here for now. I have taken a job delivering pizzas in exchange for a place to sleep."
+text = "-I took a job at Pie In the Sky Pizza in exchange for a place to sleep."
+
+[node name="skateboard" type="Node" parent="quest_logs"]
+script = ExtResource("5_qwhe4")
+picture_path = "res://sprites/interface/log_pics/skateboarder.png"
+log_name = "Skateboarder"
+
+[node name="0" type="Node" parent="quest_logs/skateboard"]
+script = ExtResource("6_6s05b")
+text = "-I met a skateboarder who doesn't know how to skate.
+-She said she would exchange her skateboard for \"a little bit of The Good Stuff.\""
+
+[node name="1" type="Node" parent="quest_logs/skateboard"]
+script = ExtResource("6_6s05b")
+text = "-I met a skateboarder who doesn't know how to skate.
+-She said she would exchange her skateboard for \"a little bit of The Good Stuff.\"
+-I gave the skateboarder my \"The Good Stuff\" CD in exchange for her skateboard"
+
+[node name="arcade" type="Node" parent="quest_logs"]
+script = ExtResource("5_qwhe4")
+picture_path = "res://sprites/interface/log_pics/arcade.png"
+log_name = "Arcade"
+
+[node name="0" type="Node" parent="quest_logs/arcade"]
+script = ExtResource("6_6s05b")
+text = "-Dave at the arcade bet a pack of baseball cards I couldn't beat Wave 4 of Bandit."
+
+[node name="1" type="Node" parent="quest_logs/arcade"]
+script = ExtResource("6_6s05b")
+text = "-Dave at the arcade bet a pack of baseball cards I couldn't beat Wave 4 of Bandit.
+-I proved Dave wrong. I should talk to him next time I see him by the Bandit machines."
+
+[node name="2" type="Node" parent="quest_logs/arcade"]
+script = ExtResource("6_6s05b")
+text = "-Dave at the arcade bet a pack of baseball cards I couldn't beat Wave 4 of Bandit.
+-I proved Dave wrong. I should talk to him next time I see him by the Bandit machines.
+-Dave bought me a pack of baseball cards like he promised."

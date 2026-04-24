@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://52ufe6ahduuk"]
+[gd_scene load_steps=9 format=3 uid="uid://52ufe6ahduuk"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_nj2e4"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_cbo40"]
+[ext_resource type="Script" uid="uid://dm0h4bkthoaqy" path="res://scripts/utility/run_scripts/set_quest_log.gd" id="3_7i8ok"]
 [ext_resource type="Script" uid="uid://cqwe5qbypt3gw" path="res://scripts/utility/run_conditionals/has_cd.gd" id="3_e1cf2"]
 [ext_resource type="Script" uid="uid://ddpgpidwo6qye" path="res://scripts/utility/run_scripts/give_item.gd" id="4_syl0d"]
 [ext_resource type="Script" uid="uid://cfocvoq5jc3jc" path="res://scripts/utility/run_scripts/remove_cd.gd" id="4_xwiop"]
@@ -32,12 +33,17 @@ speaker_portrait = null
 option_branches = [NodePath("../trunk4")]
 voice = "sine_voice"
 
-[node name="trunk4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+[node name="trunk4" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_cbo40")]
 position = Vector2(0, 844)
 speaker_text = Array[String](["But now I'm broke, and I can't even figure out how to ride it."])
 speaker_portrait = null
 option_branches = [NodePath("../guy_at_the_store")]
 voice = "sine_voice"
+dialog_script = NodePath("set_quest_log")
+
+[node name="set_quest_log" type="Node" parent="trunk4"]
+script = ExtResource("3_7i8ok")
+key = "skateboard"
 
 [node name="guy_at_the_store" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
 position = Vector2(395, 528)
@@ -152,12 +158,18 @@ speaker_portrait = null
 option_branches = [NodePath("../give_cd9")]
 voice = "sine_voice"
 
-[node name="give_cd9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_cbo40")]
+[node name="give_cd9" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_cbo40")]
 position = Vector2(552, 4139)
 speaker_text = Array[String](["Thank you, friend."])
 speaker_portrait = null
 option_branches = [NodePath("../give_cd10")]
 voice = "sine_voice"
+dialog_script = NodePath("set_quest_log")
+
+[node name="set_quest_log" type="Node" parent="give_cd9"]
+script = ExtResource("3_7i8ok")
+key = "skateboard"
+value = 1
 
 [node name="give_cd10" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_cbo40")]
 position = Vector2(552, 4458)

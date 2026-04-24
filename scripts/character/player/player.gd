@@ -191,8 +191,8 @@ var should_wake_up = false
 var quest_state_keys : Array[String] = []
 var quest_state_values : Array[String] = []
 
-var quest_log_keys : Array[String] = ["start", "start_door"]
-var quest_log_values : Array[int] = [0,1]
+var quest_log_keys : Array[String] = ["start",]
+var quest_log_values : Array[int] = [0,]
 
 var journal_tabs : Array[String] = ["quest_journal"]
 
@@ -551,7 +551,9 @@ func get_save_dictionary() -> Dictionary:
 		"quest_state_values" : quest_state_values,
 		"shown_items_tip" : shown_items_tip,
 		"journal_tabs" : journal_tabs,
-		"owned_maps" : owned_maps
+		"owned_maps" : owned_maps,
+		"quest_log_keys" : quest_log_keys,
+		"quest_log_values" : quest_log_values
 	}
 	return save_dictionary
 
@@ -667,6 +669,15 @@ func load_from_dictionary(load_dictionary : Dictionary):
 		var key = String(load_quest_keys[index])
 		var value = String(load_quest_values[index])
 		set_quest_state(key,value)
+		index = index + 1
+	
+	var load_quest_log_keys = load_dictionary.get("quest_log_keys")
+	var load_quest_log_values = load_dictionary.get("quest_log_values")
+	index = 0
+	while(index < load_quest_log_keys.size()):
+		var key = String(load_quest_log_keys[index])
+		var value = load_quest_log_values[index]
+		set_quest_log(key,value)
 		index = index + 1
 
 func set_deck(deck : Array[int]):

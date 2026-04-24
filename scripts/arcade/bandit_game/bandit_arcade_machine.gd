@@ -147,6 +147,7 @@ func generate_leveled_mob_wave():
 	var player_ref = get_tree().get_first_node_in_group("player")
 	if(player_ref.get_quest_state("bandit_game") != "" && player_ref.get_quest_state("bandit_game") != "DONE"):
 		player_ref.set_quest_state("bandit_game",str(wave_level+1))
+		player_ref.set_quest_log("arcade",1)
 
 func generate_mob_wave(num_bandits : int = 0):
 	spawned_courier = false

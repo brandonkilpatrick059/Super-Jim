@@ -45,23 +45,24 @@ func get_log(name : String, state: int):
 	photo.texture = load(log_picture_path)
 
 func _process(delta: float) -> void:
-	if(index < quest_log_keys.size() - 1):
-		right_arrow.visible = true
-	else:
-		right_arrow.visible = false
-	
-	if(index > 0):
-		left_arrow.visible = true
-	else:
-		left_arrow.visible = false
-		
-	if(Input.is_action_just_pressed("menu_right")):
+	if(!Engine.is_editor_hint()):
 		if(index < quest_log_keys.size() - 1):
-			index = index + 1
-			get_log(quest_log_keys[index],quest_log_values[index])
-			audio_player.play()
-	if(Input.is_action_just_pressed("menu_left")):
-		if(index != 0):
-			index = index - 1
-			get_log(quest_log_keys[index],quest_log_values[index])
-			audio_player.play()
+			right_arrow.visible = true
+		else:
+			right_arrow.visible = false
+		
+		if(index > 0):
+			left_arrow.visible = true
+		else:
+			left_arrow.visible = false
+			
+		if(Input.is_action_just_pressed("menu_right")):
+			if(index < quest_log_keys.size() - 1):
+				index = index + 1
+				get_log(quest_log_keys[index],quest_log_values[index])
+				audio_player.play()
+		if(Input.is_action_just_pressed("menu_left")):
+			if(index != 0):
+				index = index - 1
+				get_log(quest_log_keys[index],quest_log_values[index])
+				audio_player.play()

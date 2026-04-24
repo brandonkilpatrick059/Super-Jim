@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjrgbj5qslmkq"]
+[gd_scene load_steps=8 format=3 uid="uid://bjrgbj5qslmkq"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_i52j2"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_8p31w"]
 [ext_resource type="Script" uid="uid://chf3faul7bcwu" path="res://scripts/utility/run_conditionals/get_quest_state.gd" id="3_8p31w"]
 [ext_resource type="Script" uid="uid://d2188s4xoqfs1" path="res://scripts/shop/ware_card_pack.gd" id="4_3k4sa"]
 [ext_resource type="Script" uid="uid://bii6v26s1saqa" path="res://scripts/utility/run_scripts/set_quest_state.gd" id="4_1860p"]
+[ext_resource type="Script" uid="uid://cw48q6xuo2nnn" path="res://scripts/utility/run_scripts/advanced_run_scripts.gd" id="4_t33fn"]
+[ext_resource type="Script" uid="uid://dm0h4bkthoaqy" path="res://scripts/utility/run_scripts/set_quest_log.gd" id="6_8a0q0"]
 
 [node name="dave_game_shop" type="Node2D"]
 script = ExtResource("1_i52j2")
@@ -41,12 +43,20 @@ position = Vector2(-299, 990)
 speaker_text = Array[String](["I bet a pack of Baseball Cards that you can't beat it..."])
 speaker_portrait = null
 voice = "low_sine_voice"
-dialog_script = NodePath("start_bandit_game_bet")
+dialog_script = NodePath("advanced_script_runner")
 
-[node name="start_bandit_game_bet" type="Node" parent="trunk_start3"]
+[node name="advanced_script_runner" type="Node" parent="trunk_start3" node_paths=PackedStringArray("script_nodes")]
+script = ExtResource("4_t33fn")
+script_nodes = [NodePath("start_bandit_game_bet"), NodePath("set_log_key")]
+
+[node name="start_bandit_game_bet" type="Node" parent="trunk_start3/advanced_script_runner"]
 script = ExtResource("4_1860p")
 key = "bandit_game"
 value = "STARTED"
+
+[node name="set_log_key" type="Node" parent="trunk_start3/advanced_script_runner"]
+script = ExtResource("6_8a0q0")
+key = "arcade"
 
 [node name="trunk_beat_wave_reward" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_8p31w")]
 position = Vector2(23, 371)
@@ -76,6 +86,11 @@ speaker_portrait = null
 speech_options = Array[String](["Yellow.", "Green."])
 option_branches = [NodePath("../trunk_beat_wave_reward5_yellow"), NodePath("../trunk_beat_wave_reward6_green")]
 voice = "low_sine_voice"
+
+[node name="set_log_key" type="Node" parent="trunk_beat_wave_reward4"]
+script = ExtResource("6_8a0q0")
+key = "arcade"
+value = 2
 
 [node name="trunk_beat_wave_reward5_yellow" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_8p31w")]
 position = Vector2(-127, 1594)

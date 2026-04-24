@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dw4arigo54uju"]
+[gd_scene load_steps=9 format=3 uid="uid://dw4arigo54uju"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_reagj"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_csox7"]
 [ext_resource type="Script" uid="uid://c84vbymfa1e6f" path="res://scripts/player_apartment/start_landlord.gd" id="3_8k887"]
 [ext_resource type="Script" uid="uid://d1l1nehfidrc2" path="res://scripts/utility/run_scripts/add_script_to_end_of_day.gd" id="3_745ah"]
 [ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="3_csox7"]
+[ext_resource type="Script" uid="uid://dey4uh5lc2jr7" path="res://scripts/utility/run_scripts/add_quest_log.gd" id="3_kgpok"]
 [ext_resource type="Script" uid="uid://c2q4w0ekhh3v4" path="res://scripts/utility/run_scripts/lock_unlock_door.gd" id="3_p6wgb"]
 [ext_resource type="Script" uid="uid://b77xty6k23wod" path="res://scripts/utility/run_scripts/first_time_sleeping.gd" id="4_kgpok"]
 
@@ -30,7 +31,7 @@ voice = "low_sine_voice"
 position = Vector2(156, 133)
 speaker_text = Array[String](["You mean you want to deliver pizzas for us?"])
 speaker_portrait = null
-speech_options = Array[String](["Yes", "No"])
+speech_options = Array[String](["Yes.", "No."])
 option_branches = [NodePath("../a position"), NodePath("../get out of here")]
 voice = "low_sine_voice"
 
@@ -43,7 +44,7 @@ voice = "low_sine_voice"
 
 [node name="a position2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_csox7")]
 position = Vector2(64, 512)
-speaker_text = Array[String](["You just need to sign these forms."])
+speaker_text = Array[String](["You will need to sign these forms."])
 speaker_portrait = null
 speech_options = Array[String](["(sign forms accepting liability for injury or death while delivering pizzas)", "(don't sign forms accepting liability for injury or death while delivering pizzas)", "(ask about forms accepting liability for injury or death while delivering pizzas)"])
 option_branches = [NodePath("../signed forms"), NodePath("../get out of here"), NodePath("../ask")]
@@ -90,16 +91,21 @@ voice = "low_sine_voice"
 position = Vector2(-455, 1905)
 speaker_text = Array[String](["Have you been living outside?"])
 speaker_portrait = null
-speech_options = Array[String](["I'm broke right now", "I've been wandering the country", "I've been running from something", "I've been trying to find something", "The economy is in the toilet", "I'm a hobo", "Yes, I have been living outside", "No, I just don't shower and like to roll around in dirt"])
+speech_options = Array[String](["I'm broke right now.", "I've been wandering the country.", "I've been running from something.", "I've been trying to find something.", "The economy is in the toilet.", "I'm a hobo.", "Yes, I have been living outside.", "No, I just don't shower and like to roll around in dirt."])
 option_branches = [NodePath("../whatever"), NodePath("../whatever"), NodePath("../whatever"), NodePath("../whatever"), NodePath("../whatever"), NodePath("../whatever"), NodePath("../whatever"), NodePath("../whatever")]
 voice = "low_sine_voice"
 
-[node name="whatever" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_csox7")]
+[node name="whatever" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_csox7")]
 position = Vector2(-455, 2152)
 speaker_text = Array[String](["Whatever..."])
 speaker_portrait = null
 option_branches = [NodePath("../whatever2")]
 voice = "low_sine_voice"
+dialog_script = NodePath("add_quest_log")
+
+[node name="add_quest_log" type="Node" parent="whatever"]
+script = ExtResource("3_kgpok")
+quest_log_key = "pizza_shop"
 
 [node name="whatever2" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_csox7")]
 position = Vector2(-455, 2412)

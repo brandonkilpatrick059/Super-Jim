@@ -11,7 +11,7 @@ trunk = NodePath("trunk")
 
 [node name="trunk" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_djkev")]
 position = Vector2(7, -19)
-speaker_text = Array[String](["hey, wait up."])
+speaker_text = Array[String](["Hey, wait up."])
 option_branches = [NodePath("../trunk2")]
 voice = "sine_voice"
 dialog_script = NodePath("adjust_schedule")

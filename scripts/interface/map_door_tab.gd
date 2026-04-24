@@ -14,7 +14,7 @@ func _ready() -> void:
 func set_tab(tab_name : String, tab_state : String, has_link : bool, lock_state : String = ""):
 	_name_label.text = tab_name
 	play(tab_state)
-	#_glyph.get_child(0).get_glyph() #TODO: fix this ugh
+	_glyph.get_child(0).get_glyph() #TODO: fix this ugh
 	
 	if(lock_state !=  ""):
 		_lock.visible = true

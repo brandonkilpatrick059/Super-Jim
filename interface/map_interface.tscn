@@ -27,6 +27,7 @@
 [node name="MapInterface" type="Node2D"]
 material = ExtResource("4_7qnfr")
 script = ExtResource("1_i8fx5")
+dev_has_all_maps = true
 
 [node name="background" type="Sprite2D" parent="."]
 material = ExtResource("4_7qnfr")

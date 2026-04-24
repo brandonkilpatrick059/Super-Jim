@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://sjoxarkul0lg"]
+[gd_scene load_steps=11 format=3 uid="uid://sjoxarkul0lg"]
 
 [ext_resource type="Material" uid="uid://b5vwbti30llx4" path="res://interface/unshaded_material.tres" id="1_kma7x"]
 [ext_resource type="SpriteFrames" uid="uid://bfka6xv7lyxt3" path="res://sprites/spritesheets/spriteframes/interface/map_door_tab.tres" id="1_vvush"]
 [ext_resource type="Script" uid="uid://c1wugkors3xot" path="res://scripts/interface/map_door_tab.gd" id="2_3nebd"]
 [ext_resource type="Texture2D" uid="uid://tky7m7ktiahc" path="res://sprites/interface/compass_arrow.png" id="4_3nebd"]
 [ext_resource type="Script" uid="uid://w3qahpimeo3c" path="res://scripts/interface/glyph_sprite.gd" id="5_vvush"]
-[ext_resource type="Texture2D" uid="uid://qmbdv0olep04" path="res://sprites/interface/glyphs/controller/xbox/a_button_xb.png" id="5_wj8y1"]
 [ext_resource type="SpriteFrames" uid="uid://vflickt0x2ul" path="res://sprites/spritesheets/spriteframes/interface/map_door_lock.tres" id="6_vvush"]
 [ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="7_wj8y1"]
 
@@ -62,7 +61,6 @@ visible = false
 z_index = 1
 material = ExtResource("1_kma7x")
 position = Vector2(76, 0)
-texture = ExtResource("5_wj8y1")
 script = ExtResource("5_vvush")
 action = "menu_select"
 blinking = true

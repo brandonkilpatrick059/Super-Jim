@@ -235,14 +235,33 @@ func get_inputmap_as_control_actions_mapping() -> control_actions_mapping:
 #in the current input mode (controller or keyboard)
 func get_glyph_path_for_action(action : StringName) -> String:
 	var glyph_path : String = ""
-	if(input_mode == mode_controller):
-		var controller_mapping = current_mapping.get_controller_mapping()
-		var event : InputEvent = controller_mapping.get_action_event(action)
-		glyph_path = get_glyph_path_from_inputevent(event)
-	elif(input_mode == mode_keyboard):
-		var keyboard_mapping = current_mapping.get_keyboard_mapping()
-		var event : InputEvent = keyboard_mapping.get_action_event(action)
-		glyph_path = get_glyph_path_from_inputevent(event)
+	#menu actions are always the same and not re-mappable and therefore
+	#not tracked by the controller mapping
+	if(action.contains("menu")):
+		glyph_path = get_menu_glyph_path(action)
+	else:
+		if(input_mode == mode_controller):
+			var controller_mapping = current_mapping.get_controller_mapping()
+			var event : InputEvent = controller_mapping.get_action_event(action)
+			glyph_path = get_glyph_path_from_inputevent(event)
+		elif(input_mode == mode_keyboard):
+			var keyboard_mapping = current_mapping.get_keyboard_mapping()
+			var event : InputEvent = keyboard_mapping.get_action_event(action)
+			glyph_path = get_glyph_path_from_inputevent(event)
+	return glyph_path
+
+#menu actions are always the same and not re-mappable and therefore
+#not tracked by the controller mapping
+func get_menu_glyph_path(action) -> String:
+	var events = InputMap.action_get_events(action)
+	var glyph_path : String = ""
+	for event in events:
+		if(input_mode == mode_keyboard):
+			if(event is InputEventKey):
+				glyph_path = get_glyph_path_from_inputevent(event)
+		elif(input_mode == mode_controller):
+			if(event is not InputEventKey):
+				glyph_path = get_glyph_path_from_inputevent(event)
 	return glyph_path
 
 func get_glyph_path_from_inputevent(inputEvent : InputEvent):

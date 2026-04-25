@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0a4srplao03h"
-path="res://.godot/imported/placeholder.png-5ab6dd08be320138f71ca203af4defbb.ctex"
+uid="uid://dqo86pox5vseh"
+path="res://.godot/imported/mechanical_portrait.png-6fdc914ed98b980f52064e8c7c1eb7e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/baseball/portraits/placeholder.png"
-dest_files=["res://.godot/imported/placeholder.png-5ab6dd08be320138f71ca203af4defbb.ctex"]
+source_file="res://sprites/baseball/portraits/mechanical_portrait.png"
+dest_files=["res://.godot/imported/mechanical_portrait.png-6fdc914ed98b980f52064e8c7c1eb7e6.ctex"]
 
 [params]
 

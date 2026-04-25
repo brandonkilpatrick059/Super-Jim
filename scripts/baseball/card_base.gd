@@ -44,13 +44,7 @@ extends Node2D
 @export var throws_remaining_shield : int = 0
 @export var throws_remaining_power: int = 0
 
-@export var catches_hp : bool = false
-@export var catches_shield : bool = false
-@export var catches_power : bool = false
-
-@export var catches_opponent_hp : bool = false
-@export var catches_opponent_shield : bool = false
-@export var catches_opponentTh_power : bool = false
+@export var catches_opponent_stats : bool = false
 
 #buffs damage against team
 @export var buff_dmg_against_team : int = 0
@@ -129,7 +123,7 @@ func _ready() -> void:
 	elif(team == "yellow"):
 		_base_border.modulate = Color(1.0,1.0,0.7)
 	elif(team == "gray"):
-		_base_border.modulate = Color(0.4,0.4,0.4)
+		_base_border.modulate = Color(0.65,0.65,0.65)
 
 func get_card_team():
 	return team

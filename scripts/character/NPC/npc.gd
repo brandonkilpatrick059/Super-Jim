@@ -251,6 +251,8 @@ func out_of_dialog():
 	perceptions.in_dialog = false
 
 func set_schedules_index(index : int):
+	if(is_in_group("speedy")):
+		var whatever = 0 
 	schedules_index = index
 	update_stage_mark()
 	update_branching_dialog()

@@ -37,7 +37,6 @@ light_mode = 1
 material = SubResource("CanvasItemMaterial_y3q1y")
 script = ExtResource("1_y3q1y")
 team = null
-catches_opponent_stats = null
 
 [node name="base_border" type="Sprite2D" parent="."]
 z_index = 1

@@ -68,9 +68,11 @@ label_settings = SubResource("LabelSettings_nkeby")
 horizontal_alignment = 1
 
 [node name="journal_tab_left" type="Sprite2D" parent="frame"]
+material = ExtResource("3_k52xs")
 position = Vector2(-224, -148)
 texture = ExtResource("7_10df2")
 
 [node name="journal_tab_right" type="Sprite2D" parent="frame"]
+material = ExtResource("3_k52xs")
 position = Vector2(215, -148)
 texture = ExtResource("8_nkeby")

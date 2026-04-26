@@ -338,6 +338,7 @@ power = 9
 catches_opponent_stats = false
 
 [node name="gray_27" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
 team = "gray"
 card_name = "People Eater"
 portrait_path = "res://sprites/baseball/portraits/people_eater_portrait.png"

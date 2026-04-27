@@ -129,10 +129,6 @@ func timer_control_back_is_stopped():
 func set_fade_to_black_location(loc : Vector2):
 	_fade_to_black.global_position = loc
 
-#func _draw():
-	#if(linked_teleporter != null && Engine.is_editor_hint()):
-		#draw_line(Vector2(), get_transform().affine_inverse() * linked_teleporter.global_position, Color(0,0,1,1), -1)
-
 func load_wait():
 	if(timer_load_in.is_stopped()):
 		linked_teleporter.timer_fade.start(teleport_step_secs)
@@ -307,7 +303,8 @@ func _on_area_2d_body_entered(body):
 		if(body.is_in_group("player")):
 			if(!entering && !loading && !exiting && !exit_only):
 				teleport_player()
-		elif(body.is_in_group("npc") && 
+		elif(body.is_in_group("npc") &&
+		!body.is_in_group("no_teleport") && 
 		npcs_using_teleporter.find(body) < 0 &&
 		linked_teleporter.npcs_using_teleporter.find(body) < 0):
 			npcs_using_teleporter.append(body)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cym0ki5ydwkag"]
+[gd_scene load_steps=14 format=3 uid="uid://cym0ki5ydwkag"]
 
 [ext_resource type="Script" uid="uid://ckj5xwhetys06" path="res://scripts/character/NPC/npc.gd" id="1_75g7y"]
 [ext_resource type="Texture2D" uid="uid://0d3n5esom4o4" path="res://sprites/lights/small_shadow.png" id="3_bn1l5"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bpkh5va4fd55f" path="res://scripts/AI_state_machine/states/npc/general/state_npc_idle.gd" id="7_u6rmh"]
 [ext_resource type="Script" uid="uid://cr3ljjf53xe0l" path="res://scripts/AI_state_machine/states/npc/cat/state_npc_cat_transit.gd" id="8_usoy8"]
 [ext_resource type="Script" uid="uid://b1dbjy8nrn1kd" path="res://scripts/AI_state_machine/states/npc/cat/state_npc_cat_sit.gd" id="9_75g7y"]
+[ext_resource type="Script" uid="uid://blrqh2m7ilewl" path="res://scripts/AI_state_machine/states/npc/cat/state_npc_cat_transit_flee.gd" id="9_c1xd6"]
 [ext_resource type="Script" uid="uid://cbcqeo7mq6v0s" path="res://scripts/AI_state_machine/states/npc/cat/state_npc_cat_enticed.gd" id="10_c1xd6"]
 [ext_resource type="Script" uid="uid://dhviuq4t2terd" path="res://scripts/AI_state_machine/states/npc/cat/state_npc_cat_picked_up.gd" id="11_bn1l5"]
 
@@ -16,7 +17,7 @@
 radius = 4.64062
 height = 9.28124
 
-[node name="npc_cat" type="RigidBody2D" groups=["interactable", "npc"]]
+[node name="npc_cat" type="RigidBody2D" groups=["interactable", "no_teleport", "npc"]]
 y_sort_enabled = true
 collision_layer = 4
 collision_mask = 0
@@ -29,10 +30,12 @@ talk_radius = 200
 base_spriteframes = ExtResource("5_usoy8")
 no_face_player = true
 exempt_from_npc_refresh = null
+has_hearing = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 4.0
 target_desired_distance = 32.0
+debug_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
@@ -58,8 +61,7 @@ script = ExtResource("7_u6rmh")
 script = ExtResource("8_usoy8")
 
 [node name="transit_flee" type="Node" parent="ai_state_machine"]
-script = ExtResource("8_usoy8")
-speed = 350000.0
+script = ExtResource("9_c1xd6")
 
 [node name="sit" type="Node" parent="ai_state_machine"]
 script = ExtResource("9_75g7y")
@@ -69,3 +71,8 @@ script = ExtResource("10_c1xd6")
 
 [node name="picked_up" type="Node" parent="ai_state_machine"]
 script = ExtResource("11_bn1l5")
+
+[connection signal="advance_navigation" from="ai_state_machine/transit" to="." method="_on_advance_navigation"]
+[connection signal="set_nav_target" from="ai_state_machine/transit" to="." method="_on_set_nav_target"]
+[connection signal="advance_navigation" from="ai_state_machine/transit_flee" to="." method="_on_advance_navigation"]
+[connection signal="set_nav_target" from="ai_state_machine/transit_flee" to="." method="_on_set_nav_target"]

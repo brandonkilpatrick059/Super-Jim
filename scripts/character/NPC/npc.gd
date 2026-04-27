@@ -297,6 +297,19 @@ func active_has_line_of_sight_to_object(obj):
 		perceptions.nodes_in_vision.erase(obj)
 		return false
 
+func active_has_line_of_sight_to_point(point : Vector2) -> bool:
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(global_position,point,ray_collision_mask,[self])
+	var result = null
+	if(space_state != null):
+		result = space_state.intersect_ray(query)
+	
+	#_active_raycast.set_target_position(obj.global_position - _active_raycast.global_position)
+	if(result):
+		return false
+	else:
+		return true
+
 func _on_set_ai_target(entity : Node):
 	if(entity != null):
 		perceptions.target_obj = entity

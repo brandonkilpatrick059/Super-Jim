@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cym0ki5ydwkag"]
+[gd_scene load_steps=19 format=3 uid="uid://cym0ki5ydwkag"]
 
 [ext_resource type="Script" uid="uid://ckj5xwhetys06" path="res://scripts/character/NPC/npc.gd" id="1_75g7y"]
 [ext_resource type="Texture2D" uid="uid://0d3n5esom4o4" path="res://sprites/lights/small_shadow.png" id="3_bn1l5"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://b1dbjy8nrn1kd" path="res://scripts/AI_state_machine/states/npc/cat/state_npc_cat_sit.gd" id="9_75g7y"]
 [ext_resource type="Script" uid="uid://blrqh2m7ilewl" path="res://scripts/AI_state_machine/states/npc/cat/state_npc_cat_transit_flee.gd" id="9_c1xd6"]
 [ext_resource type="Script" uid="uid://cbcqeo7mq6v0s" path="res://scripts/AI_state_machine/states/npc/cat/state_npc_cat_enticed.gd" id="10_c1xd6"]
-[ext_resource type="Script" uid="uid://dhviuq4t2terd" path="res://scripts/AI_state_machine/states/npc/cat/state_npc_cat_picked_up.gd" id="11_bn1l5"]
 [ext_resource type="Script" uid="uid://c5dg12vvkjugq" path="res://scripts/character/NPC/fauna/npc_cat_interact.gd" id="13_bn1l5"]
 [ext_resource type="Script" uid="uid://b8mkbrhfmkuus" path="res://scripts/utility/random_sound_player.gd" id="14_0ybo4"]
 [ext_resource type="AudioStream" uid="uid://djsm7etkg7m6b" path="res://audio/soundFX/voice/cat_voice/1.wav" id="15_sn486"]
@@ -70,9 +69,6 @@ script = ExtResource("9_75g7y")
 
 [node name="enticed" type="Node" parent="ai_state_machine"]
 script = ExtResource("10_c1xd6")
-
-[node name="picked_up" type="Node" parent="ai_state_machine"]
-script = ExtResource("11_bn1l5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true

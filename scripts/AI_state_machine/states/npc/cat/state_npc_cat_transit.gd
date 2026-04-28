@@ -66,7 +66,7 @@ func get_random_point(vectors : Array[Vector2]) -> Vector2:
 
 func enter(_msg := {}) -> void:
 	var radius : float = 200
-	var stepped_pts = get_stepped_points_from_pos(get_host_position(),4,32)
+	var stepped_pts = get_stepped_points_from_pos(get_host_position(),1,128)
 	var nav_target = get_random_point(stepped_pts)
 	set_nav_target.emit(nav_target)
 

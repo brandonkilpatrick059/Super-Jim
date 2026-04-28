@@ -44,6 +44,8 @@ const alert_passive = "alert_passive"
 @export var has_vision : bool = false
 @export var has_hearing : bool = false
 
+@export var interact_override_node : Node = null
+
 #array of all schedules this NPC will use
 @export var schedule_keys : Array[String] = []
 @export var schedules : Array[schedule] = []
@@ -206,25 +208,28 @@ func get_is_animatronic():
 	return is_animatronic
 
 func interact(stop_bypass : bool = false):
-	if(branching_dialog != null && (linear_velocity.length() < 1 || stop_bypass)):
-		stop()
-		if(!is_animatronic && !no_face_player):
-			face_player()
-		dialog_manager = dialog.instantiate()
-		if(dialog_offset != null):
-			dialog_manager.set_nudge_vector(dialog_offset)
-		if(alt_dlg_bubble_path != ""):
-			dialog_manager.set_alternate_bubble(alt_dlg_bubble_path)
-		dialog_manager.set_speaker_node(self)
-		add_child(dialog_manager)
-		#if(dialog_offset != null):
-			#dialog_manager.position = dialog_manager.position + dialog_offset
-		if(shop != null):
-			dialog_manager.set_shop(shop)
-		var player_ref = get_tree().get_nodes_in_group("player")[0]
-		player_ref.enter_dialog()
-		dialog_manager.set_tree_and_start_dialog(branching_dialog)
-		perceptions.in_dialog = true
+	if(interact_override_node):
+		interact_override_node.interact()
+	else:
+		if(branching_dialog != null && (linear_velocity.length() < 1 || stop_bypass)):
+			stop()
+			if(!is_animatronic && !no_face_player):
+				face_player()
+			dialog_manager = dialog.instantiate()
+			if(dialog_offset != null):
+				dialog_manager.set_nudge_vector(dialog_offset)
+			if(alt_dlg_bubble_path != ""):
+				dialog_manager.set_alternate_bubble(alt_dlg_bubble_path)
+			dialog_manager.set_speaker_node(self)
+			add_child(dialog_manager)
+			#if(dialog_offset != null):
+				#dialog_manager.position = dialog_manager.position + dialog_offset
+			if(shop != null):
+				dialog_manager.set_shop(shop)
+			var player_ref = get_tree().get_nodes_in_group("player")[0]
+			player_ref.enter_dialog()
+			dialog_manager.set_tree_and_start_dialog(branching_dialog)
+			perceptions.in_dialog = true
 
 func check_vision():
 	if (_vision.is_colliding()):
@@ -371,6 +376,9 @@ func speed():
 
 func stop():
 	current_v = perceptions.current_v * 0
+
+func total_stop():
+	linear_velocity = Vector2(0,0)
 
 func handle_passive_text():
 	var passive_text = perceptions.current_stage_mark.get_passive_text()

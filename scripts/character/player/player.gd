@@ -1113,6 +1113,8 @@ func handle_interact_text():
 						grabObj = _grabber.get_collider(index)
 						break
 					index = index + 1
+				else:
+					index = index + 1
 			if(_grabber.get_collider(index) != null):
 				if(_grabber.get_collider(index).is_in_group("pizza")):
 					_ui.set_interact_text("pick up")
@@ -1321,6 +1323,12 @@ func complete_stop():
 func set_holding_object(is_holding):
 	holding_object = is_holding
 	_character_base.set_arms_raised(is_holding)
+
+func get_holding_object():
+	return holding_object
+
+func set_grabbed_object(node : Node2D):
+	grabbed_object = node
 
 func throw():
 	if(holding_object && !_grabber.is_colliding() ):

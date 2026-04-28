@@ -14,6 +14,7 @@ var distance_for_pickup = 100
 var spark = preload("res://effects/spark.tscn")
 var arrow_instance = null 
 @export var script_node_on_pickup : Node = null
+@export var script_node_on_putdown : Node = null
 
 var sound_player := AudioStreamPlayer2D.new()
 
@@ -103,6 +104,8 @@ func throw(dir, offset : Vector2 = Vector2(0,0)):
 				throw_force = Vector2(0,force_factor)
 				global_position = pickup_actor_ref.global_position + Vector2(0, base_offset) + offset
 				#set_physics_pos(pickup_actor_ref.global_position + Vector2(0, base_offset) + offset)
+		if(script_node_on_putdown != null):
+			script_node_on_putdown.run_script()
 
 func throw_bypass_pickup(dir, actor_ref):
 	picked_up = true
@@ -144,6 +147,8 @@ func put_down(dir, offset : Vector2 = Vector2(0,0)):
 				throw_force = Vector2(0,force_factor)
 				global_position = pickup_actor_ref.global_position + Vector2(0, base_offset) + offset
 				#set_physics_pos(pickup_actor_ref.global_position + Vector2(0, base_offset) + offset)
+		if(script_node_on_putdown != null):
+			script_node_on_putdown.run_script()
 
 
 func set_will_pickup_false():

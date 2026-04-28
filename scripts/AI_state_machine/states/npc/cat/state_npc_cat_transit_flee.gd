@@ -3,6 +3,7 @@ extends State
 
 signal set_nav_target(pos : Vector2)
 signal advance_navigation(speed : int)
+signal stop()
 
 var speed : float = 1000000
 
@@ -15,6 +16,8 @@ func get_host_position():
 func get_host_nav_target_reached():
 	return ai_state_machine.get_perceptions().nav_target_reached
 
+func is_on_mesh():
+	return get_host_position() == get_nearest_point_on_mesh(get_host_position())
 
 func physics_process(_delta: float) -> void:
 		nav_target_reached = get_host_nav_target_reached()
@@ -59,9 +62,10 @@ func find_furthest_point_from_player(points : Array[Vector2]) -> Vector2:
 	for point in points:
 		var mesh_point = get_nearest_point_on_mesh(point)
 		var distance : float = player_ref.global_position.distance_to(mesh_point)
-		if(distance > furthest_distance && has_line_of_sight(mesh_point)):
-			furthest_point = mesh_point
-			furthest_distance = distance
+		if(distance > furthest_distance):
+			if(has_line_of_sight(mesh_point)): 
+				furthest_point = mesh_point
+				furthest_distance = distance
 	return furthest_point
 
 func get_nearest_point_on_mesh(point : Vector2):

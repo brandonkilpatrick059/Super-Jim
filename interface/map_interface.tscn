@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b4xq7nnvlutul"]
+[gd_scene load_steps=25 format=3 uid="uid://b4xq7nnvlutul"]
 
 [ext_resource type="Texture2D" uid="uid://deqbpc45nppbe" path="res://sprites/interface/map_ui_background.png" id="1_7ush2"]
 [ext_resource type="Script" uid="uid://c3qms12p3qjax" path="res://scripts/interface/map_interface.gd" id="1_i8fx5"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://d3ocfo461y5yu" path="res://sprites/interface/maps/west_side.png" id="10_c2m0w"]
 [ext_resource type="Texture2D" uid="uid://bmyyljvghql3c" path="res://sprites/interface/maps/north_west_side.png" id="12_1qgj0"]
 [ext_resource type="Texture2D" uid="uid://tky7m7ktiahc" path="res://sprites/interface/compass_arrow.png" id="12_uuwt7"]
+[ext_resource type="Texture2D" uid="uid://bsw6i031py1mf" path="res://sprites/interface/map_markers/home.png" id="13_oejg4"]
 [ext_resource type="Texture2D" uid="uid://blby8tufs4kn3" path="res://sprites/interface/maps/north_east_side.png" id="13_swsf7"]
 [ext_resource type="Texture2D" uid="uid://cjhvnmnpnxkxu" path="res://sprites/interface/maps/canal_town_north.png" id="14_sjavt"]
 [ext_resource type="Texture2D" uid="uid://ccfm6dfexafvq" path="res://sprites/interface/maps/canal_town_south.png" id="15_6sxkv"]
@@ -195,7 +196,6 @@ tab_name = "Cliffside West"
 linked_map = "Cliffside West"
 
 [node name="Central Stonesthrow" type="Sprite2D" parent="maps"]
-visible = false
 material = ExtResource("4_7qnfr")
 position = Vector2(-121, 3)
 texture = ExtResource("2_28iea")
@@ -227,6 +227,11 @@ texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "Eternal Rest Apartments"
 linked_map = "Utility Tunnels"
+
+[node name="home_label" type="Sprite2D" parent="maps/Central Stonesthrow/Eternal Rest Apartments (link)"]
+material = ExtResource("4_7qnfr")
+position = Vector2(0, -23)
+texture = ExtResource("13_oejg4")
 
 [node name="Railway Lofts" type="Sprite2D" parent="maps/Central Stonesthrow"]
 material = ExtResource("4_7qnfr")

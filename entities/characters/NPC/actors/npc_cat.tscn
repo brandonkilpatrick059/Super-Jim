@@ -72,7 +72,7 @@ script = ExtResource("10_c1xd6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, 6)
+position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_5rody")
 
 [node name="interact_override" type="Node" parent="."]
@@ -91,3 +91,4 @@ interval_max_secs = 30.0
 [connection signal="set_nav_target" from="ai_state_machine/transit" to="." method="_on_set_nav_target"]
 [connection signal="advance_navigation" from="ai_state_machine/transit_flee" to="." method="_on_advance_navigation"]
 [connection signal="set_nav_target" from="ai_state_machine/transit_flee" to="." method="_on_set_nav_target"]
+[connection signal="play_animation" from="ai_state_machine/sit" to="." method="play_animation"]

@@ -39,7 +39,10 @@ func physics_process(_delta: float) -> void:
 	if(!nav_target_reached):
 		advance_navigation.emit(speed)
 	else:
-		ai_state_machine.transition_to("transit")
+		if(randf_range(0.0,1.0) < 0.25):
+			ai_state_machine.transition_to("sit")
+		else:
+			ai_state_machine.transition_to("transit")
 
 func has_line_of_sight(point : Vector2) -> bool:
 	var npc = ai_state_machine.get_parent()

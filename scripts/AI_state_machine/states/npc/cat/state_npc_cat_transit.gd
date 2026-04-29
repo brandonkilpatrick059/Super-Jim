@@ -60,9 +60,16 @@ func get_stepped_points_from_pos(pos: Vector2, num_steps, step_distance) -> Arra
 			seen_points.append(point)
 	return seen_points
 
+func get_nearest_point_on_mesh(point : Vector2):
+	var npc = ai_state_machine.get_parent()
+	var new_point : Vector2 = npc.get_nearest_point_on_mesh(point)
+	return new_point
+
 func get_random_point(vectors : Array[Vector2]) -> Vector2:
-	var idx : int = randi_range(0,vectors.size()-1)
-	return vectors[idx]
+	if vectors.size() > 0:
+		var idx : int = randi_range(0,vectors.size()-1)
+		return get_nearest_point_on_mesh(vectors[idx])
+	return get_nearest_point_on_mesh(get_host_position())
 
 func enter(_msg := {}) -> void:
 	var radius : float = 200

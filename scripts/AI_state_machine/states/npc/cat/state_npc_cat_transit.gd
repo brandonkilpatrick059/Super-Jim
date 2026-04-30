@@ -15,26 +15,30 @@ func get_host_position():
 func get_host_nav_target_reached():
 	return ai_state_machine.get_perceptions().nav_target_reached
 
+func is_outdoors() -> bool:
+	return ai_state_machine.get_parent().get_parent().is_in_group("daylight_affected_ysort")
 
 func physics_process(_delta: float) -> void:
 	var player_ref = get_tree().get_first_node_in_group("player")
 	if (player_ref.global_position.distance_to(get_host_position()) < 64 &&
 	player_ref.speed() > 4):
-		var msg_dict : Dictionary = {"flee_from": player_ref.global_position}
-		ai_state_machine.transition_to("transit_flee",msg_dict)
-	for commotion in ai_state_machine.get_perceptions().nodes_in_hearing:
-		if(commotion != null):
-			if(get_host_position().distance_to(commotion.global_position) < 128):
-				var msg_dict : Dictionary = {"flee_from": commotion.global_position}
-				ai_state_machine.transition_to("transit_flee",msg_dict)
-				break
-	var bullet_sparks = get_tree().get_nodes_in_group("bullet_spark")
-	for spark in bullet_sparks:
-		if(spark != null):
-			if(get_host_position().distance_to(spark.global_position) < 128):
-				var msg_dict : Dictionary = {"flee_from": spark.global_position}
-				ai_state_machine.transition_to("transit_flee",msg_dict)
-				break
+		if(is_outdoors()):
+			var msg_dict : Dictionary = {"flee_from": player_ref.global_position}
+			ai_state_machine.transition_to("transit_flee",msg_dict)
+	if(is_outdoors()):
+		for commotion in ai_state_machine.get_perceptions().nodes_in_hearing:
+			if(commotion != null):
+				if(get_host_position().distance_to(commotion.global_position) < 128):
+					var msg_dict : Dictionary = {"flee_from": commotion.global_position}
+					ai_state_machine.transition_to("transit_flee",msg_dict)
+					break
+		var bullet_sparks = get_tree().get_nodes_in_group("bullet_spark")
+		for spark in bullet_sparks:
+			if(spark != null):
+				if(get_host_position().distance_to(spark.global_position) < 128):
+					var msg_dict : Dictionary = {"flee_from": spark.global_position}
+					ai_state_machine.transition_to("transit_flee",msg_dict)
+					break
 	nav_target_reached = get_host_nav_target_reached()
 	if(!nav_target_reached):
 		advance_navigation.emit(speed)
@@ -73,8 +77,9 @@ func get_stepped_points_from_pos(pos: Vector2, num_steps, step_distance) -> Arra
 		iterator = iterator + 1
 	var seen_points : Array[Vector2] = []
 	for point in points:
-		if(has_line_of_sight(point)):
-			seen_points.append(point)
+		var seen_point = get_nearest_point_on_mesh(point)
+		if(has_line_of_sight(seen_point)):
+			seen_points.append(seen_point)
 	return seen_points
 
 func get_nearest_point_on_mesh(point : Vector2):

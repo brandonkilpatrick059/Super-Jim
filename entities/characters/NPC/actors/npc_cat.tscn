@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cym0ki5ydwkag"]
+[gd_scene load_steps=20 format=3 uid="uid://cym0ki5ydwkag"]
 
 [ext_resource type="Script" uid="uid://ckj5xwhetys06" path="res://scripts/character/NPC/npc.gd" id="1_75g7y"]
 [ext_resource type="Texture2D" uid="uid://0d3n5esom4o4" path="res://sprites/lights/small_shadow.png" id="3_bn1l5"]
@@ -18,15 +18,19 @@
 [ext_resource type="AudioStream" uid="uid://roxty3oq8gg4" path="res://audio/soundFX/voice/cat_voice/3.wav" id="17_82lq8"]
 [ext_resource type="AudioStream" uid="uid://dwwmisp2kjhek" path="res://audio/soundFX/voice/cat_voice/4.wav" id="18_nn8h2"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u6rmh"]
+bounce = 1.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5rody"]
 radius = 4.64062
 height = 9.28124
 
-[node name="npc_cat" type="RigidBody2D" node_paths=PackedStringArray("interact_override_node") groups=["cat", "interactable", "no_teleport", "npc", "reads_pickupable"]]
+[node name="npc_cat" type="RigidBody2D" node_paths=PackedStringArray("interact_override_node") groups=["cat", "interactable", "no_teleport", "reads_pickupable"]]
 y_sort_enabled = true
 collision_layer = 4
 collision_mask = 0
 mass = 1000.0
+physics_material_override = SubResource("PhysicsMaterial_u6rmh")
 gravity_scale = 0.0
 lock_rotation = true
 linear_damp = 5.0

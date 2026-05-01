@@ -45,7 +45,7 @@ script = ExtResource("3_58bbd")
 position = Vector2(0, -7)
 sprite_frames = ExtResource("2_6fcjj")
 animation = &"walk_right"
-frame_progress = 0.015849
+frame_progress = 0.0208099
 script = ExtResource("3_2rjek")
 animation_name = "walk_right"
 

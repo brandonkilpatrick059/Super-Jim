@@ -1,0 +1,67 @@
+[gd_scene load_steps=15 format=3 uid="uid://tim20tpiwk0u"]
+
+[ext_resource type="Script" uid="uid://bkt2mviy7eonh" path="res://scripts/entities/pickupable.gd" id="1_k3sm0"]
+[ext_resource type="Script" uid="uid://b4yio707fbsyr" path="res://scripts/utility/visual_occluder.gd" id="2_7dqxf"]
+[ext_resource type="SpriteFrames" uid="uid://dflpiitiwped7" path="res://sprites/spritesheets/spriteframes/characters/base/cat_base_3.tres" id="3_k3sm0"]
+[ext_resource type="Script" uid="uid://t4jc5e3jf7cs" path="res://scripts/utility/play_animation.gd" id="4_1xru1"]
+[ext_resource type="Script" uid="uid://c5tbhxudyn6i7" path="res://scripts/character/NPC/fauna/pickupable_cat_pickup.gd" id="5_rqyxh"]
+[ext_resource type="Script" uid="uid://d2dwmi4vynm7r" path="res://scripts/character/NPC/fauna/pickupable_cat_putdown.gd" id="6_uj46a"]
+[ext_resource type="Script" uid="uid://b8mkbrhfmkuus" path="res://scripts/utility/random_sound_player.gd" id="7_3hwig"]
+[ext_resource type="AudioStream" uid="uid://djsm7etkg7m6b" path="res://audio/soundFX/voice/cat_voice/1.wav" id="8_6qhwf"]
+[ext_resource type="AudioStream" uid="uid://cr481egue1uwk" path="res://audio/soundFX/voice/cat_voice/2.wav" id="9_fjhca"]
+[ext_resource type="AudioStream" uid="uid://roxty3oq8gg4" path="res://audio/soundFX/voice/cat_voice/3.wav" id="10_t1qm2"]
+[ext_resource type="AudioStream" uid="uid://dwwmisp2kjhek" path="res://audio/soundFX/voice/cat_voice/4.wav" id="11_yujej"]
+[ext_resource type="Script" uid="uid://c7obwexvclakv" path="res://scripts/utility/cat_escape_protocol.gd" id="12_lbr8n"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1gs3y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6fcjj"]
+radius = 6.0
+
+[node name="pickupable_cat" type="RigidBody2D" node_paths=PackedStringArray("script_node_on_pickup", "script_node_on_putdown") groups=["dynamic", "pickupable", "pickupable_cat", "prop", "prunable"]]
+y_sort_enabled = true
+collision_layer = 8
+collision_mask = 4187
+mass = 2.0
+physics_material_override = SubResource("PhysicsMaterial_1gs3y")
+gravity_scale = 0.0
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 1
+linear_damp = 2.0
+script = ExtResource("1_k3sm0")
+force_factor = 1000
+script_node_on_pickup = NodePath("pickup_script")
+script_node_on_putdown = NodePath("putdown_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["dynamic", "pickupable", "prop"]]
+y_sort_enabled = true
+shape = SubResource("CircleShape2D_6fcjj")
+
+[node name="occluder" type="Node2D" parent="."]
+script = ExtResource("2_7dqxf")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -7)
+sprite_frames = ExtResource("3_k3sm0")
+animation = &"walk_right"
+script = ExtResource("4_1xru1")
+animation_name = "walk_right"
+
+[node name="pickup_script" type="Node" parent="."]
+script = ExtResource("5_rqyxh")
+
+[node name="putdown_script" type="Node" parent="."]
+script = ExtResource("6_uj46a")
+npc_cat_path = "res://entities/characters/NPC/actors/npc_cat_3.tscn"
+
+[node name="sound_player" type="AudioStreamPlayer2D" parent="."]
+max_distance = 400.0
+bus = &"Effects"
+script = ExtResource("7_3hwig")
+sounds = Array[AudioStream]([ExtResource("8_6qhwf"), ExtResource("9_fjhca"), ExtResource("10_t1qm2"), ExtResource("11_yujej")])
+interval_min_secs = 1.0
+interval_max_secs = 3.0
+
+[node name="cat_escape_protocol" type="Node" parent="."]
+script = ExtResource("12_lbr8n")

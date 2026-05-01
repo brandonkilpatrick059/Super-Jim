@@ -86,6 +86,7 @@ shape = SubResource("CapsuleShape2D_5rody")
 [node name="interact_override" type="Node" parent="."]
 script = ExtResource("13_bn1l5")
 pickupable_cat_path = "res://entities/props/dynamic props/props_dynamic_pickupable/city/pickupable_cat.tscn"
+pickupable_cat_path_docile = "res://entities/props/dynamic props/props_dynamic_pickupable/city/pickupable_cat_docile.tscn"
 
 [node name="sound_player" type="AudioStreamPlayer2D" parent="."]
 max_distance = 400.0

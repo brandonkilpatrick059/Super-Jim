@@ -1,0 +1,107 @@
+[gd_scene load_steps=22 format=3 uid="uid://dytivrse48paw"]
+
+[ext_resource type="Script" uid="uid://ckj5xwhetys06" path="res://scripts/character/NPC/npc.gd" id="1_d1dyu"]
+[ext_resource type="SpriteFrames" uid="uid://dflpiitiwped7" path="res://sprites/spritesheets/spriteframes/characters/base/cat_base_3.tres" id="2_d1dyu"]
+[ext_resource type="Texture2D" uid="uid://0d3n5esom4o4" path="res://sprites/lights/small_shadow.png" id="3_j0f5v"]
+[ext_resource type="PackedScene" uid="uid://dnpeta8s5h5t6" path="res://entities/characters/character_base.tscn" id="4_id2bg"]
+[ext_resource type="SpriteFrames" uid="uid://b3x6rermaqoak" path="res://sprites/spritesheets/spriteframes/characters/base/cat_base.tres" id="5_fktbx"]
+[ext_resource type="PackedScene" uid="uid://biwoi1biy4ynx" path="res://entities/characters/NPC/AI state machine/ai_state_machine.tscn" id="6_ke886"]
+[ext_resource type="PackedScene" uid="uid://dqwh40q1ob2i2" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_idle.tscn" id="7_rue53"]
+[ext_resource type="Script" uid="uid://bpkh5va4fd55f" path="res://scripts/AI_state_machine/states/npc/general/state_npc_idle.gd" id="8_mw0es"]
+[ext_resource type="Script" uid="uid://cr3ljjf53xe0l" path="res://scripts/AI_state_machine/states/npc/cat/state_npc_cat_transit.gd" id="9_8ja1n"]
+[ext_resource type="Script" uid="uid://blrqh2m7ilewl" path="res://scripts/AI_state_machine/states/npc/cat/state_npc_cat_transit_flee.gd" id="10_25s1v"]
+[ext_resource type="Script" uid="uid://b1dbjy8nrn1kd" path="res://scripts/AI_state_machine/states/npc/cat/state_npc_cat_sit.gd" id="11_hvb5r"]
+[ext_resource type="Script" uid="uid://cbcqeo7mq6v0s" path="res://scripts/AI_state_machine/states/npc/cat/state_npc_cat_enticed.gd" id="12_xbvqp"]
+[ext_resource type="Script" uid="uid://b5ot5608fwxea" path="res://scripts/AI_state_machine/states/npc/cat/state_npc_cat_eating.gd" id="13_es4kh"]
+[ext_resource type="Script" uid="uid://c5dg12vvkjugq" path="res://scripts/character/NPC/fauna/npc_cat_interact.gd" id="14_uhdx1"]
+[ext_resource type="Script" uid="uid://b8mkbrhfmkuus" path="res://scripts/utility/random_sound_player.gd" id="15_ldntv"]
+[ext_resource type="AudioStream" uid="uid://djsm7etkg7m6b" path="res://audio/soundFX/voice/cat_voice/1.wav" id="16_yfxsb"]
+[ext_resource type="AudioStream" uid="uid://cr481egue1uwk" path="res://audio/soundFX/voice/cat_voice/2.wav" id="17_iur0b"]
+[ext_resource type="AudioStream" uid="uid://roxty3oq8gg4" path="res://audio/soundFX/voice/cat_voice/3.wav" id="18_6g1hj"]
+[ext_resource type="AudioStream" uid="uid://dwwmisp2kjhek" path="res://audio/soundFX/voice/cat_voice/4.wav" id="19_pwgk4"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u6rmh"]
+bounce = 1.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5rody"]
+radius = 4.64062
+height = 9.28124
+
+[node name="npc_cat" type="RigidBody2D" node_paths=PackedStringArray("interact_override_node") groups=["cat", "interactable", "no_teleport", "reads_pickupable"]]
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 0
+mass = 1000.0
+physics_material_override = SubResource("PhysicsMaterial_u6rmh")
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 5.0
+script = ExtResource("1_d1dyu")
+talk_radius = 200
+base_spriteframes = ExtResource("2_d1dyu")
+no_face_player = true
+exempt_from_npc_refresh = null
+has_hearing = true
+interact_override_node = NodePath("interact_override")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 4.0
+target_desired_distance = 32.0
+debug_enabled = true
+
+[node name="shadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 1)
+texture = ExtResource("3_j0f5v")
+
+[node name="character_base" parent="." instance=ExtResource("4_id2bg")]
+position = Vector2(0, -2)
+base_spriteframes = ExtResource("5_fktbx")
+
+[node name="ai_state_machine" parent="." instance=ExtResource("6_ke886")]
+initial_state = NodePath("idle")
+
+[node name="idle" parent="ai_state_machine" instance=ExtResource("7_rue53")]
+script = ExtResource("8_mw0es")
+
+[node name="transit" type="Node" parent="ai_state_machine"]
+script = ExtResource("9_8ja1n")
+
+[node name="transit_flee" type="Node" parent="ai_state_machine"]
+script = ExtResource("10_25s1v")
+
+[node name="sit" type="Node" parent="ai_state_machine"]
+script = ExtResource("11_hvb5r")
+
+[node name="enticed" type="Node" parent="ai_state_machine"]
+script = ExtResource("12_xbvqp")
+
+[node name="eating" type="Node" parent="ai_state_machine"]
+script = ExtResource("13_es4kh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 5)
+shape = SubResource("CapsuleShape2D_5rody")
+
+[node name="interact_override" type="Node" parent="."]
+script = ExtResource("14_uhdx1")
+pickupable_cat_path = "res://entities/props/dynamic props/props_dynamic_pickupable/city/pickupable_cat_3.tscn"
+pickupable_cat_path_docile = "res://entities/props/dynamic props/props_dynamic_pickupable/city/pickupable_cat_docile_3.tscn"
+
+[node name="sound_player" type="AudioStreamPlayer2D" parent="."]
+max_distance = 400.0
+bus = &"Effects"
+script = ExtResource("15_ldntv")
+sounds = Array[AudioStream]([ExtResource("16_yfxsb"), ExtResource("17_iur0b"), ExtResource("18_6g1hj"), ExtResource("19_pwgk4")])
+interval_min_secs = 2.0
+interval_max_secs = 30.0
+
+[connection signal="advance_navigation" from="ai_state_machine/transit" to="." method="_on_advance_navigation"]
+[connection signal="set_nav_target" from="ai_state_machine/transit" to="." method="_on_set_nav_target"]
+[connection signal="advance_navigation" from="ai_state_machine/transit_flee" to="." method="_on_advance_navigation"]
+[connection signal="set_nav_target" from="ai_state_machine/transit_flee" to="." method="_on_set_nav_target"]
+[connection signal="play_animation" from="ai_state_machine/sit" to="." method="play_animation"]
+[connection signal="advance_navigation" from="ai_state_machine/enticed" to="." method="_on_advance_navigation"]
+[connection signal="set_nav_target" from="ai_state_machine/enticed" to="." method="_on_set_nav_target"]
+[connection signal="play_animation" from="ai_state_machine/eating" to="." method="play_animation"]

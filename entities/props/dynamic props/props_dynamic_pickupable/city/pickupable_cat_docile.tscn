@@ -43,10 +43,9 @@ script = ExtResource("2_fa43s")
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
 sprite_frames = ExtResource("3_n8qth")
-animation = &"walk_right"
-frame_progress = 0.578569
+animation = &"stand_right"
 script = ExtResource("4_8ki1p")
-animation_name = "walk_right"
+animation_name = "stand_right"
 
 [node name="pickup_script" type="Node" parent="."]
 script = ExtResource("5_51jn7")

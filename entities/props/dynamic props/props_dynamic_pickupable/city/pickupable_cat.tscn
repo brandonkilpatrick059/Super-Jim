@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dvo1capgrmt3f"]
+[gd_scene load_steps=15 format=3 uid="uid://dvo1capgrmt3f"]
 
 [ext_resource type="Script" uid="uid://bkt2mviy7eonh" path="res://scripts/entities/pickupable.gd" id="1_n2u7v"]
 [ext_resource type="SpriteFrames" uid="uid://b3x6rermaqoak" path="res://sprites/spritesheets/spriteframes/characters/base/cat_base.tres" id="2_6fcjj"]
@@ -11,13 +11,14 @@
 [ext_resource type="AudioStream" uid="uid://cr481egue1uwk" path="res://audio/soundFX/voice/cat_voice/2.wav" id="9_48x27"]
 [ext_resource type="AudioStream" uid="uid://roxty3oq8gg4" path="res://audio/soundFX/voice/cat_voice/3.wav" id="10_ow2aa"]
 [ext_resource type="AudioStream" uid="uid://dwwmisp2kjhek" path="res://audio/soundFX/voice/cat_voice/4.wav" id="11_q24dl"]
+[ext_resource type="Script" uid="uid://c7obwexvclakv" path="res://scripts/utility/cat_escape_protocol.gd" id="12_rxh5m"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1gs3y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6fcjj"]
 radius = 6.0
 
-[node name="pickupable_cat" type="RigidBody2D" node_paths=PackedStringArray("script_node_on_pickup", "script_node_on_putdown") groups=["dynamic", "pickupable", "prop", "prunable"]]
+[node name="pickupable_cat" type="RigidBody2D" node_paths=PackedStringArray("script_node_on_pickup", "script_node_on_putdown") groups=["dynamic", "pickupable", "pickupable_cat", "prop", "prunable"]]
 y_sort_enabled = true
 collision_layer = 8
 collision_mask = 4187
@@ -44,7 +45,7 @@ script = ExtResource("3_58bbd")
 position = Vector2(0, -7)
 sprite_frames = ExtResource("2_6fcjj")
 animation = &"walk_right"
-frame_progress = 0.896466
+frame_progress = 0.015849
 script = ExtResource("3_2rjek")
 animation_name = "walk_right"
 
@@ -62,3 +63,6 @@ script = ExtResource("7_5f5fu")
 sounds = Array[AudioStream]([ExtResource("8_rxh5m"), ExtResource("9_48x27"), ExtResource("10_ow2aa"), ExtResource("11_q24dl")])
 interval_min_secs = 1.0
 interval_max_secs = 3.0
+
+[node name="cat_escape_protocol" type="Node" parent="."]
+script = ExtResource("12_rxh5m")

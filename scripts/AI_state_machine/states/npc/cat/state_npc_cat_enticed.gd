@@ -3,16 +3,10 @@ extends State
 
 signal set_nav_target(pos : Vector2)
 signal advance_navigation(speed : int)
-signal reach_stage_mark()
-signal leave_stage_mark()
 
 @export var speed : float = 125000
 
-var nav_target_reached = false
-var host_position
-var current_stage_mark : Node = null
-
-const distance_to_break_current_point = 128
+var food_node : Node = null
 
 func get_host_position():
 	return ai_state_machine.get_perceptions().position
@@ -26,21 +20,29 @@ func get_host_nav_target_reached():
 		#set_nav_target.emit(current_stage_mark.position)
 
 func physics_process(_delta: float) -> void:
-	if(current_stage_mark != null):
-		nav_target_reached = get_host_nav_target_reached()
-		if(!nav_target_reached):
-			advance_navigation.emit(speed)
-		else:
-			var stage_mark_state : String = current_stage_mark.get_state()
-			#current_stage_mark = null
-			ai_state_machine.transition_to(stage_mark_state)
-			reach_stage_mark.emit()
+	var nav_target_reached = get_host_nav_target_reached()
+	if(!nav_target_reached):
+		advance_navigation.emit(speed)
+	else:
+		var cat_foods = get_tree().get_nodes_in_group("cat_food")
+		var food_found = false
+		for food in cat_foods:
+			if(!food.is_picked_up() &&
+			get_host_position().distance_to(food.global_position) <= 16):
+				var face_right : bool = true
+				if(food.global_position.x < get_host_position().x):
+					face_right = false
+				var msg_dict : Dictionary = {
+				"face_right": face_right, 
+				"food_node": food_node}
+				ai_state_machine.transition_to("eating",msg_dict)
+				food_found = true
+		if(!food_found):
+			ai_state_machine.transition_to("transit")
 
 func enter(_msg := {}) -> void:
-	current_stage_mark = ai_state_machine.get_perceptions().current_stage_mark
-	if(current_stage_mark != null):
-		set_nav_target.emit(current_stage_mark.global_position)
-		leave_stage_mark.emit()
+	food_node = _msg.get("food_node")
+	set_nav_target.emit(food_node.global_position)
 
 func exit() -> void:
 	pass

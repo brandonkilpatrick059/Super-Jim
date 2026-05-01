@@ -1,7 +1,7 @@
 extends Node2D
 
 var mobster = preload("res://entities/characters/NPC/mobsters/mobster.tscn")
-var hp_pizza = preload("res://entities/props/dynamic props/props_dynamic_pickupable/pizza/arcade_pizza.tscn")
+var hp_pizza = preload("res://entities/props/dynamic props/props_dynamic_pickupable/special/pizza/arcade_pizza.tscn")
 
 @onready var center_label : Label = $center_label
 @onready var remain_label : Label = $remain_label

@@ -1,6 +1,6 @@
 extends Node
 
-var pizza = preload("res://entities/props/dynamic props/props_dynamic_pickupable/pizza/pizza.tscn")
+var pizza = preload("res://entities/props/dynamic props/props_dynamic_pickupable/special/pizza/pizza.tscn")
 
 
 func run_script():

@@ -43,12 +43,25 @@ func physics_process(_delta: float) -> void:
 					var msg_dict : Dictionary = {"flee_from": spark.global_position}
 					ai_state_machine.transition_to("transit_flee",msg_dict)
 					break
+	var cat_foods = get_tree().get_nodes_in_group("cat_food")
+	for food in cat_foods:
+		if(get_host_position().distance_to(food.global_position) < 128 &&
+		get_nearest_point_on_mesh(food.global_position) == food.global_position &&
+		!sleeping):
+			var msg_dict : Dictionary = {"food_node": food}
+			ai_state_machine.transition_to("enticed",msg_dict)
+			break
 	if(timer.is_stopped()):
 		if(randf_range(0.0,1.0) > 0.50):
 			increase_coziness()
 		else:
 			decrease_coziness()
 		timer.start(randf_range(10.0,30.0))
+
+func get_nearest_point_on_mesh(point : Vector2):
+	var npc = ai_state_machine.get_parent()
+	var new_point : Vector2 = npc.get_nearest_point_on_mesh(point)
+	return new_point
 
 func increase_coziness():
 	if(sitting):

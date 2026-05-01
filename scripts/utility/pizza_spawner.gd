@@ -1,6 +1,6 @@
 extends Node2D
 
-var pizza = preload("res://entities/props/dynamic props/props_dynamic_pickupable/pizza/pizza.tscn")
+var pizza = preload("res://entities/props/dynamic props/props_dynamic_pickupable/special/pizza/pizza.tscn")
 
 func spawn_pizza():
 	if(get_tree().get_nodes_in_group("pizza").size() != 0):

@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://cvw0h3o72k4yp" path="res://entities/props/static props/city/lightPole_left.tscn" id="14_eirh3"]
 [ext_resource type="Script" uid="uid://dsh6bpivra7qr" path="res://scripts/clock/outdoor_light.gd" id="15_tdgnx"]
 [ext_resource type="Script" uid="uid://bhwr4mvnbcx4q" path="res://scripts/clock/time_keeper.gd" id="16_0hrht"]
-[ext_resource type="PackedScene" uid="uid://1htqc5w43g1e" path="res://entities/props/dynamic props/props_dynamic_pickupable/pizza/pizza.tscn" id="16_1flym"]
+[ext_resource type="PackedScene" uid="uid://1htqc5w43g1e" path="res://entities/props/dynamic props/props_dynamic_pickupable/special/pizza/pizza.tscn" id="16_1flym"]
 [ext_resource type="PackedScene" uid="uid://yh1sdoo12jth" path="res://entities/characters/NPC/mobsters/util/patrol_point.tscn" id="16_kbovc"]
 [ext_resource type="PackedScene" uid="uid://d3q58k74gxjnl" path="res://entities/dynamic world/matte_painting_test.tscn" id="17_mgj8o"]
 [ext_resource type="PackedScene" uid="uid://g8q516mt8mta" path="res://entities/dynamic world/door1.tscn" id="18_m106v"]

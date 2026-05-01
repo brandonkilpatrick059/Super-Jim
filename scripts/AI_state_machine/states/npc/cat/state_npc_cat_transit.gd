@@ -39,6 +39,13 @@ func physics_process(_delta: float) -> void:
 					var msg_dict : Dictionary = {"flee_from": spark.global_position}
 					ai_state_machine.transition_to("transit_flee",msg_dict)
 					break
+	var cat_foods = get_tree().get_nodes_in_group("cat_food")
+	for food in cat_foods:
+		if(get_host_position().distance_to(food.global_position) < 128 &&
+		get_nearest_point_on_mesh(food.global_position) == food.global_position):
+			var msg_dict : Dictionary = {"food_node": food}
+			ai_state_machine.transition_to("enticed",msg_dict)
+			break
 	nav_target_reached = get_host_nav_target_reached()
 	if(!nav_target_reached):
 		advance_navigation.emit(speed)

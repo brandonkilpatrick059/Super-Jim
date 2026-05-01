@@ -214,7 +214,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"eat_left",
-"speed": 2.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -231,7 +231,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"eat_right",
-"speed": 2.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -248,7 +248,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"loaf_left",
-"speed": 1.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -265,7 +265,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"loaf_right",
-"speed": 1.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -282,7 +282,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"sit_left",
-"speed": 1.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -299,7 +299,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"sit_right",
-"speed": 1.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,

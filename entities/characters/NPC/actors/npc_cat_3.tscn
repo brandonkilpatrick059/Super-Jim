@@ -27,7 +27,7 @@ bounce = 1.0
 radius = 4.64062
 height = 9.28124
 
-[node name="npc_cat" type="RigidBody2D" node_paths=PackedStringArray("interact_override_node") groups=["cat", "interactable", "no_teleport", "reads_pickupable"]]
+[node name="npc_cat" type="RigidBody2D" node_paths=PackedStringArray("interact_override_node") groups=["cat", "interactable", "no_teleport", "npc_alternative", "reads_pickupable"]]
 y_sort_enabled = true
 collision_layer = 4
 collision_mask = 0
@@ -40,7 +40,9 @@ script = ExtResource("1_d1dyu")
 talk_radius = 200
 base_spriteframes = ExtResource("2_d1dyu")
 no_face_player = true
+load_position = null
 exempt_from_npc_refresh = null
+save_tag = "NPC_CAT_3"
 has_hearing = true
 interact_override_node = NodePath("interact_override")
 

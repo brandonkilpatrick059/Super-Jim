@@ -103,6 +103,8 @@ func load_spawn(dictionary : Dictionary):
 
 func save_npcs():
 	var npcs = get_tree().get_nodes_in_group("npc")
+	var npcs_alternative = get_tree().get_nodes_in_group("npc_alternative")
+	npcs.append_array(npcs_alternative)
 	for npc in npcs:
 		if (npc.get_save_tag() != ""):
 			var npc_dictionary : Dictionary = npc.get_save_dictionary()
@@ -110,6 +112,8 @@ func save_npcs():
 
 func load_npc(dictionary : Dictionary):
 	var npcs = get_tree().get_nodes_in_group("npc")
+	var npcs_alternative = get_tree().get_nodes_in_group("npc_alternative")
+	npcs.append_array(npcs_alternative)
 	for npc in npcs:
 		if(npc.get_save_tag() != ""):
 			var npc_tag = npc.get_save_tag()

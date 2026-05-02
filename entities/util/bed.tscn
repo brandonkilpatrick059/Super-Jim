@@ -20,7 +20,8 @@ script = ExtResource("1_wk3jg")
 
 [node name="fade_to_black" type="Polygon2D" parent="."]
 z_index = 5
-scale = Vector2(0.21859, 0.155457)
+position = Vector2(-0.999893, -4.49994)
+scale = Vector2(0.7725, 0.593125)
 color = Color(0, 0, 0, 0)
 polygon = PackedVector2Array(-800, 800, -800, -800, 800, -800, 800, 800)
 
@@ -31,7 +32,7 @@ z_index = 10
 material = SubResource("CanvasItemMaterial_7jf85")
 position = Vector2(0, -32)
 sprite_frames = ExtResource("2_0gpwx")
-frame_progress = 0.345933
+frame_progress = 0.740539
 script = ExtResource("3_43kmp")
 not_prunable = true
 

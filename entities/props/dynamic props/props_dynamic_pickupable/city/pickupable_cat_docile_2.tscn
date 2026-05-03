@@ -33,7 +33,7 @@ force_factor = 1000
 script_node_on_pickup = NodePath("pickup_script")
 script_node_on_putdown = NodePath("putdown_script")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["dynamic", "pickupable", "pickupable_cat", "prop"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["dynamic", "lost_cat", "pickupable", "pickupable_cat", "prop"]]
 y_sort_enabled = true
 position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_6fcjj")
@@ -45,7 +45,7 @@ script = ExtResource("2_esbwt")
 position = Vector2(0, -3)
 sprite_frames = ExtResource("3_j1rwn")
 animation = &"stand_right"
-frame_progress = 0.104923
+frame_progress = 0.750138
 script = ExtResource("4_l1t77")
 animation_name = "loaf_right"
 

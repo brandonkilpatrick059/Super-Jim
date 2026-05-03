@@ -3,9 +3,10 @@ extends Node2D
 
 @export var state : String
 
-#TODO: this is setting up a situation where we're gonna need waaay too many stage_marks + schedules
-#to support the more complex/varying characters. consider how to do more subtle iteration within the stage_mark?
 @export var branching_dialog : dialog_tree
+
+@export var branching_dialogs : Array[dialog_tree] = []
+@export var dialog_conditional : Node = null
 
 @export var passive_text : Array[String] = []
 
@@ -41,7 +42,11 @@ func get_state():
 	return state
 
 func get_branching_dialog():
-	return branching_dialog
+	if(dialog_conditional == null):
+		return branching_dialog
+	else:
+		var index = dialog_conditional.run_conditional()
+		return branching_dialogs[index]
 
 func virtual_passive_text():
 	return passive_text

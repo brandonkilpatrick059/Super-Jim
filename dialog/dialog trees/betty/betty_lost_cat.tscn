@@ -1,0 +1,83 @@
+[gd_scene load_steps=4 format=3 uid="uid://dermivgbijgma"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_b2fl6"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_vgxy1"]
+[ext_resource type="Script" uid="uid://dey4uh5lc2jr7" path="res://scripts/utility/run_scripts/add_quest_log.gd" id="3_r1631"]
+
+[node name="betty_lost_cat" type="Node2D"]
+script = ExtResource("1_b2fl6")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_vgxy1")]
+speaker_text = Array[String](["Have you seen a black cat wandering around?"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_vgxy1")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["My beloved son, Buster, has escaped..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "sine_voice"
+
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_vgxy1")]
+position = Vector2(0, 510)
+speaker_text = Array[String](["I worry he's wandering around outside Central Stonesthrow."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk4")]
+voice = "sine_voice"
+
+[node name="trunk4" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_vgxy1")]
+position = Vector2(270, 623)
+speaker_text = Array[String](["Here's a picture of him."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk5")]
+voice = "sine_voice"
+dialog_script = NodePath("add_log")
+play_sound_path = "res://audio/soundFX/pickup.wav"
+
+[node name="add_log" type="Node" parent="trunk4"]
+script = ExtResource("3_r1631")
+quest_log_key = "lost_cat"
+
+[node name="trunk5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_vgxy1")]
+position = Vector2(185, 864)
+speaker_text = Array[String](["Isn't he precious?"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk6")]
+voice = "sine_voice"
+
+[node name="trunk6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_vgxy1")]
+position = Vector2(2, 1106)
+speaker_text = Array[String](["Please, if you see him, could you bring him to me?"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk7")]
+voice = "sine_voice"
+
+[node name="trunk7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_vgxy1")]
+position = Vector2(3, 1405)
+speaker_text = Array[String](["I don't have much to offer in return..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk8")]
+voice = "sine_voice"
+
+[node name="trunk8" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_vgxy1")]
+position = Vector2(1, 1681)
+speaker_text = Array[String](["I work for the city, so I don't have money to spare."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk9")]
+voice = "sine_voice"
+
+[node name="trunk9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_vgxy1")]
+position = Vector2(1, 1922)
+speaker_text = Array[String](["I could give you some old maps to the Utility Tunnels I guess..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk10")]
+voice = "sine_voice"
+
+[node name="trunk10" parent="." instance=ExtResource("2_vgxy1")]
+position = Vector2(10, 2218)
+speaker_text = Array[String](["If you see Buster, tell him to come home."])
+speaker_portrait = null
+voice = "sine_voice"

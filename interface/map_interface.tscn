@@ -266,12 +266,12 @@ position = Vector2(11, -54)
 rotation = 1.5708
 texture = ExtResource("8_djc6v")
 
-[node name="Dave\'s Stand-Up Bar" type="Sprite2D" parent="maps/Central Stonesthrow"]
+[node name="Marty\'s Stand-Up Bar" type="Sprite2D" parent="maps/Central Stonesthrow"]
 material = ExtResource("4_7qnfr")
 position = Vector2(64, 15)
 texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
-tab_name = "Dave's Stand-Up Bar"
+tab_name = "Marty's Stand-Up Bar"
 
 [node name="Clothing Exchange" type="Sprite2D" parent="maps/Central Stonesthrow"]
 material = ExtResource("4_7qnfr")

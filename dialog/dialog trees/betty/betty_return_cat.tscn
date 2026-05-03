@@ -1,0 +1,97 @@
+[gd_scene load_steps=7 format=3 uid="uid://duvwygmqht0kt"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_3k6hd"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_5al67"]
+[ext_resource type="Script" uid="uid://dey4uh5lc2jr7" path="res://scripts/utility/run_scripts/add_quest_log.gd" id="3_a7fqw"]
+[ext_resource type="Script" uid="uid://cmtxwegbck31k" path="res://scripts/utility/run_scripts/give_map.gd" id="4_5al67"]
+[ext_resource type="Script" uid="uid://bii6v26s1saqa" path="res://scripts/utility/run_scripts/set_quest_state.gd" id="5_a7fqw"]
+[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="6_pwemr"]
+
+[node name="betty_return_cat" type="Node2D"]
+script = ExtResource("1_3k6hd")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_5al67")]
+speaker_text = Array[String](["BUSTER!"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_5al67")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["I thought I would never see you again!"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "sine_voice"
+
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_5al67")]
+position = Vector2(0, 510)
+speaker_text = Array[String](["Thank you so much!"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk4")]
+voice = "sine_voice"
+
+[node name="trunk4" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_5al67")]
+position = Vector2(270, 623)
+speaker_text = Array[String](["Like I said, I don't have much to offer for a reward."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk5")]
+voice = "sine_voice"
+dialog_script = NodePath("add_log")
+
+[node name="add_log" type="Node" parent="trunk4"]
+script = ExtResource("3_a7fqw")
+quest_log_key = "lost_cat"
+value = 1
+
+[node name="trunk5" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_5al67")]
+position = Vector2(185, 864)
+speaker_text = Array[String](["The best I can do is give you this old map of the Utility Tunnels."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk6")]
+voice = "sine_voice"
+dialog_script = NodePath("give_map")
+play_sound_path = "res://audio/soundFX/crystal_get.wav"
+
+[node name="give_map" type="Node" parent="trunk5"]
+script = ExtResource("4_5al67")
+map = "Utility Tunnels"
+
+[node name="trunk6" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_5al67")]
+position = Vector2(2, 1106)
+speaker_text = Array[String](["It's definitely helped me get around."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk7")]
+voice = "sine_voice"
+dialog_script = NodePath("set_quest_state")
+
+[node name="set_quest_state" type="Node" parent="trunk6"]
+script = ExtResource("5_a7fqw")
+key = "lost_cat"
+value = "FOUND"
+
+[node name="trunk7" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_5al67")]
+position = Vector2(3, 1405)
+speaker_text = Array[String](["The only thing I've never figured out about it-"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk8")]
+voice = "sine_voice"
+dialog_script = NodePath("set_schedule_index")
+
+[node name="set_schedule_index" type="Node" parent="trunk7"]
+script = ExtResource("6_pwemr")
+node_group = "betty"
+new_key = "cat_found"
+
+[node name="trunk8" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_5al67")]
+position = Vector2(1, 1681)
+speaker_text = Array[String](["Is that weird crescent moon symbol."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk9")]
+voice = "sine_voice"
+
+[node name="trunk9" parent="." instance=ExtResource("2_5al67")]
+position = Vector2(1, 1922)
+speaker_text = Array[String](["What do you think it means?"])
+speaker_portrait = null
+voice = "sine_voice"

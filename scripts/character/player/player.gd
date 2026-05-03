@@ -360,9 +360,10 @@ func remove_forbidden_interact(group : String):
 
 func is_forbidden(node : Node) -> bool:
 	var is_forbidden : bool = false
-	for group in node.get_groups():
-		if(forbidden_interact.has(group)):
-			is_forbidden = true
+	if(node != null):
+		for group in node.get_groups():
+			if(forbidden_interact.has(group)):
+				is_forbidden = true
 	return is_forbidden
 
 #check_light

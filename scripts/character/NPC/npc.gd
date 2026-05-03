@@ -211,6 +211,7 @@ func interact(stop_bypass : bool = false):
 	if(interact_override_node):
 		interact_override_node.interact()
 	else:
+		update_branching_dialog()
 		if(branching_dialog != null && (linear_velocity.length() < 1 || stop_bypass)):
 			stop()
 			if(!is_animatronic && !no_face_player):

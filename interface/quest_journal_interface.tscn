@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b2bakhujntcs2" path="res://scripts/interface/quest_journal_interface.gd" id="1_joh03"]
 [ext_resource type="FontFile" uid="uid://cdf6elivdwcta" path="res://fonts/CourierPrime-Regular.ttf" id="2_glx4p"]
 [ext_resource type="SpriteFrames" uid="uid://ujjatb8o1hx" path="res://sprites/spritesheets/spriteframes/interface/journal_frame.tres" id="3_joh03"]
-[ext_resource type="Texture2D" uid="uid://c07ji1prfhdp0" path="res://sprites/interface/log_pics/arcade.png" id="3_xk3ua"]
+[ext_resource type="Texture2D" uid="uid://gtjhwx152v2a" path="res://sprites/interface/log_pics/lost_cat.png" id="3_xk3ua"]
 [ext_resource type="Script" uid="uid://bqjiguvskb3yy" path="res://scripts/interface/quest_log.gd" id="5_qwhe4"]
 [ext_resource type="Script" uid="uid://ciici7c3ug5gu" path="res://scripts/interface/log_state.gd" id="6_6s05b"]
 [ext_resource type="Texture2D" uid="uid://tky7m7ktiahc" path="res://sprites/interface/compass_arrow.png" id="6_65fdo"]
@@ -24,7 +24,7 @@ light_mode = 1
 
 [node name="QuestJournalInterface" type="Node2D"]
 script = ExtResource("1_joh03")
-test_key = "arcade"
+test_key = "lost_cat"
 
 [node name="background" type="Sprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_65fdo")
@@ -147,3 +147,19 @@ script = ExtResource("6_6s05b")
 text = "-Dave at the arcade bet a pack of baseball cards I couldn't beat Wave 4 of Bandit.
 -I proved Dave wrong. I should talk to him next time I see him by the Bandit machines.
 -Dave bought me a pack of baseball cards like he promised."
+
+[node name="lost_cat" type="Node" parent="quest_logs"]
+script = ExtResource("5_qwhe4")
+picture_path = "res://sprites/interface/log_pics/lost_cat.png"
+log_name = "Lost Cat"
+
+[node name="0" type="Node" parent="quest_logs/lost_cat"]
+script = ExtResource("6_6s05b")
+text = "-Betty's cat, Buster, has escaped.
+-She promised to reward me with a map of the Utility Tunnels if I could return Buster to her."
+
+[node name="1" type="Node" parent="quest_logs/lost_cat"]
+script = ExtResource("6_6s05b")
+text = "-Betty's cat, Buster, has escaped.
+-She promised to reward me with a map of the Utility Tunnels if I could return Buster to her.
+-I returned Buster to Betty and received a map of the Utility Tunnels."

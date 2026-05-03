@@ -10,11 +10,25 @@ trunk = NodePath("trunk")
 [node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_eu8va")]
 speaker_text = Array[String](["Thanks again for finding Buster."])
 speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "sine_voice"
+
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_eu8va")]
+position = Vector2(0, 258)
+speaker_text = Array[String](["He's been running around Central Stonesthrow, not a care in the world."])
+speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
 voice = "sine_voice"
 
-[node name="trunk2" parent="." instance=ExtResource("2_eu8va")]
-position = Vector2(2, 218)
-speaker_text = Array[String](["He's such a troublemaker."])
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_eu8va")]
+position = Vector2(17, 560)
+speaker_text = Array[String](["I think he's happy to be back."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk4")]
+voice = "sine_voice"
+
+[node name="trunk4" parent="." instance=ExtResource("2_eu8va")]
+position = Vector2(17, 896)
+speaker_text = Array[String](["Maybe he's learned his lesson, ha!"])
 speaker_portrait = null
 voice = "sine_voice"

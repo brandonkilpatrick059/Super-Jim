@@ -3,3 +3,4 @@ extends Perceptions
 
 var current_stage_mark :stage_mark = null
 var in_dialog = false
+var is_indoors = false

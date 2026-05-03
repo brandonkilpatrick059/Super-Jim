@@ -380,6 +380,15 @@ func stop():
 func total_stop():
 	linear_velocity = Vector2(0,0)
 
+func set_is_indoors(value : bool):
+	perceptions.is_indoors = value
+
+func is_indoors() -> bool:
+	var is_indoors : bool = false
+	is_indoors = (perceptions.is_indoors ||
+	get_parent().is_in_group("dark_indoor_ysort"))
+	return is_indoors
+
 func handle_passive_text():
 	var passive_text = perceptions.current_stage_mark.get_passive_text()
 	if(passive_text != "" &&
@@ -502,10 +511,16 @@ func _on_body_entered(body : Node):
 		body_enter_script_node.run_script(body)
 
 func get_save_dictionary() -> Dictionary:
+	var parent_node : String = ""
+	if(get_parent().is_in_group("daylight_affected_ysort")):
+		parent_node = "daylight"
+	elif(get_parent().is_in_group("dark_indoor_ysort")):
+		parent_node = "dark"
 	var save_tag : String = get_save_tag()
 	var save_dictionary = {
 		"type" : "npc",
 		"save_tag" : get_save_tag(),
+		"parent" : parent_node,
 		"pos_x" : global_position.x,
 		"pos_y" : global_position.y,
 		"schedules_index" : int(schedules_index),
@@ -538,6 +553,10 @@ func set_immobilized(input : bool):
 func load_from_dictionary(load_dictionary : Dictionary):
 	if(load_position):
 		global_position = Vector2(load_dictionary.get("pos_x"), load_dictionary.get("pos_y"))
+		if(str(load_dictionary.get("parent")) == "daylight"):
+			reparent(get_tree().get_first_node_in_group("daylight_affected_ysort"))
+		elif(str(load_dictionary.get("parent")) == "dark"):
+			reparent(get_tree().get_first_node_in_group("dark_indoor_ysort"))
 	schedules_index = int(load_dictionary.get("schedules_index"))
 	teleport_and_update()
 	if(load_dictionary.get("shows_headphones") != null &&

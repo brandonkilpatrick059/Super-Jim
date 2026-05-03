@@ -43,9 +43,10 @@ script = ExtResource("2_fa43s")
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
 sprite_frames = ExtResource("3_n8qth")
-animation = &"stand_right"
+animation = &"loaf_right"
+frame_progress = 0.676414
 script = ExtResource("4_8ki1p")
-animation_name = "stand_right"
+animation_name = "loaf_right"
 
 [node name="pickup_script" type="Node" parent="."]
 script = ExtResource("5_51jn7")
@@ -59,5 +60,5 @@ max_distance = 400.0
 bus = &"Effects"
 script = ExtResource("7_rcsp8")
 sounds = Array[AudioStream]([ExtResource("8_5w7tx"), ExtResource("9_lwfpj"), ExtResource("10_vewce"), ExtResource("11_r3mna")])
-interval_min_secs = 1.0
-interval_max_secs = 3.0
+interval_min_secs = 3.0
+interval_max_secs = 10.0

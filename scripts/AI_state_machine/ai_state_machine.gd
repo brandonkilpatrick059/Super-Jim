@@ -21,6 +21,7 @@ func set_mob_ref(ref : Node):
 func get_mob_ref():
 	return mob_ref
 
+#currently unused as far as i know
 func set_process_tier(tier : int):
 	process_tier = tier
 

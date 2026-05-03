@@ -19,7 +19,7 @@ func get_host_position():
 	return ai_state_machine.get_perceptions().position
 
 func is_outdoors() -> bool:
-	return ai_state_machine.get_parent().get_parent().is_in_group("daylight_affected_ysort")
+	return !ai_state_machine.get_parent().is_indoors()
 
 func physics_process(_delta: float) -> void:
 	var player_ref = get_tree().get_first_node_in_group("player")

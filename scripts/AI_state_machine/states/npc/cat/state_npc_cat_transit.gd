@@ -9,6 +9,14 @@ signal advance_navigation(speed : int)
 var nav_target_reached = false
 var host_position
 
+var timer := Timer.new()
+var loaded_in = false
+
+func _ready() -> void:
+	timer.one_shot = true
+	add_child(timer)
+	timer.start(5)
+	
 func get_host_position():
 	return ai_state_machine.get_perceptions().position
 
@@ -16,44 +24,48 @@ func get_host_nav_target_reached():
 	return ai_state_machine.get_perceptions().nav_target_reached
 
 func is_outdoors() -> bool:
-	return ai_state_machine.get_parent().get_parent().is_in_group("daylight_affected_ysort")
+	return !ai_state_machine.get_parent().is_indoors()
 
 func physics_process(_delta: float) -> void:
-	var player_ref = get_tree().get_first_node_in_group("player")
-	if (player_ref.global_position.distance_to(get_host_position()) < 64 &&
-	player_ref.speed() > 4):
+	if(loaded_in):
+		var player_ref = get_tree().get_first_node_in_group("player")
+		if (player_ref.global_position.distance_to(get_host_position()) < 64 &&
+		player_ref.speed() > 4):
+			if(is_outdoors()):
+				var msg_dict : Dictionary = {"flee_from": player_ref.global_position}
+				ai_state_machine.transition_to("transit_flee",msg_dict)
 		if(is_outdoors()):
-			var msg_dict : Dictionary = {"flee_from": player_ref.global_position}
-			ai_state_machine.transition_to("transit_flee",msg_dict)
-	if(is_outdoors()):
-		for commotion in ai_state_machine.get_perceptions().nodes_in_hearing:
-			if(commotion != null):
-				if(get_host_position().distance_to(commotion.global_position) < 128):
-					var msg_dict : Dictionary = {"flee_from": commotion.global_position}
-					ai_state_machine.transition_to("transit_flee",msg_dict)
-					break
-		var bullet_sparks = get_tree().get_nodes_in_group("bullet_spark")
-		for spark in bullet_sparks:
-			if(spark != null):
-				if(get_host_position().distance_to(spark.global_position) < 128):
-					var msg_dict : Dictionary = {"flee_from": spark.global_position}
-					ai_state_machine.transition_to("transit_flee",msg_dict)
-					break
-	var cat_foods = get_tree().get_nodes_in_group("cat_food")
-	for food in cat_foods:
-		if(get_host_position().distance_to(food.global_position) < 128 &&
-		get_nearest_point_on_mesh(food.global_position) == food.global_position):
-			var msg_dict : Dictionary = {"food_node": food}
-			ai_state_machine.transition_to("enticed",msg_dict)
-			break
-	nav_target_reached = get_host_nav_target_reached()
-	if(!nav_target_reached):
-		advance_navigation.emit(speed)
-	else:
-		if(randf_range(0.0,1.0) < 0.25):
-			ai_state_machine.transition_to("sit")
+			for commotion in ai_state_machine.get_perceptions().nodes_in_hearing:
+				if(commotion != null):
+					if(get_host_position().distance_to(commotion.global_position) < 128):
+						var msg_dict : Dictionary = {"flee_from": commotion.global_position}
+						ai_state_machine.transition_to("transit_flee",msg_dict)
+						break
+			var bullet_sparks = get_tree().get_nodes_in_group("bullet_spark")
+			for spark in bullet_sparks:
+				if(spark != null):
+					if(get_host_position().distance_to(spark.global_position) < 128):
+						var msg_dict : Dictionary = {"flee_from": spark.global_position}
+						ai_state_machine.transition_to("transit_flee",msg_dict)
+						break
+		var cat_foods = get_tree().get_nodes_in_group("cat_food")
+		for food in cat_foods:
+			if(get_host_position().distance_to(food.global_position) < 128 &&
+			get_nearest_point_on_mesh(food.global_position) == food.global_position):
+				var msg_dict : Dictionary = {"food_node": food}
+				ai_state_machine.transition_to("enticed",msg_dict)
+				break
+		nav_target_reached = get_host_nav_target_reached()
+		if(!nav_target_reached):
+			advance_navigation.emit(speed)
 		else:
-			ai_state_machine.transition_to("transit")
+			if(randf_range(0.0,1.0) < 0.25):
+				ai_state_machine.transition_to("sit")
+			else:
+				ai_state_machine.transition_to("transit")
+	elif(timer.is_stopped() && !loaded_in):
+		loaded_in = true
+		ai_state_machine.transition_to("transit")
 
 func has_line_of_sight(point : Vector2) -> bool:
 	var npc = ai_state_machine.get_parent()

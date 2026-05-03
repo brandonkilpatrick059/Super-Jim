@@ -40,7 +40,6 @@ script = ExtResource("1_jm6ew")
 talk_radius = 200
 base_spriteframes = ExtResource("2_030a3")
 no_face_player = true
-load_position = null
 exempt_from_npc_refresh = null
 save_tag = "NPC_CAT_2"
 has_hearing = true

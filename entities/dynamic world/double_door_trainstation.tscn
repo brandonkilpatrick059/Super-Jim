@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://diorhgk45qmx8"]
+[gd_scene load_steps=8 format=3 uid="uid://diorhgk45qmx8"]
 
 [ext_resource type="Script" uid="uid://b2xaniea3y6nq" path="res://scripts/entities/door.gd" id="1_yr0i8"]
 [ext_resource type="SpriteFrames" uid="uid://br1d34qajyiwf" path="res://sprites/spritesheets/spriteframes/game_world/double_door.tres" id="2_8uaoo"]
@@ -12,6 +12,9 @@ size = Vector2(26, 63)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hdbs2"]
 radius = 15.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yr0i8"]
+size = Vector2(62, 30)
 
 [node name="door1" type="Node2D" groups=["door"]]
 script = ExtResource("1_yr0i8")
@@ -57,3 +60,12 @@ position = Vector2(-31, 9)
 shape = SubResource("CircleShape2D_hdbs2")
 
 [node name="Node2D" type="Node2D" parent="."]
+
+[node name="sightline_blocker" type="StaticBody2D" parent="."]
+position = Vector2(-3, 14)
+collision_layer = 131072
+collision_mask = 131072
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sightline_blocker"]
+position = Vector2(3, -5)
+shape = SubResource("RectangleShape2D_yr0i8")

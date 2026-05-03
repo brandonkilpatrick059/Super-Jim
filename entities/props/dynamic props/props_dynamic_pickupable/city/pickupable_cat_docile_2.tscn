@@ -33,18 +33,19 @@ force_factor = 1000
 script_node_on_pickup = NodePath("pickup_script")
 script_node_on_putdown = NodePath("putdown_script")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["dynamic", "pickupable", "prop"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["dynamic", "pickupable", "pickupable_cat", "prop"]]
 y_sort_enabled = true
+position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_6fcjj")
 
 [node name="occluder" type="Node2D" parent="."]
 script = ExtResource("2_esbwt")
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -7)
+position = Vector2(0, -3)
 sprite_frames = ExtResource("3_j1rwn")
 animation = &"stand_right"
-frame_progress = 0.55484
+frame_progress = 0.104923
 script = ExtResource("4_l1t77")
 animation_name = "loaf_right"
 

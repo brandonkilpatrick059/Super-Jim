@@ -30,6 +30,15 @@ collision_mask = 0
 position = Vector2(3, -5)
 shape = SubResource("RectangleShape2D_j02e0")
 
+[node name="sightline_blocker" type="StaticBody2D" parent="."]
+position = Vector2(-3, 14)
+collision_layer = 131072
+collision_mask = 131072
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sightline_blocker"]
+position = Vector2(3, -5)
+shape = SubResource("RectangleShape2D_j02e0")
+
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 71
 collision_mask = 71

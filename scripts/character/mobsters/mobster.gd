@@ -62,10 +62,10 @@ var opposing_team
 @onready var _vision = $vision
 @onready var _shadow = $shadow
 
-var red_ray_collision_mask = 0b00000000_00000000_00000100_00010001
-var blu_ray_collision_mask = 0b00000000_00000000_00000010_00010001
+var red_ray_collision_mask = 0b00000000_00000010_00000100_00010001
+var blu_ray_collision_mask = 0b00000000_00000010_00000010_00010001
 var ray_collision_mask = 0
-var ray_reactive_collision_mask = 0b00000000_00000000_00001000_00010000
+var ray_reactive_collision_mask = 0b00000000_00000010_00001000_00010000
 
 @export var is_tutorial = false
 @export var is_player_controlled = false

@@ -81,7 +81,7 @@ var talking = false
 var has_talked = false
 var showing_bubble = false
 
-var ray_collision_mask = 0b00000000_00000000_00000000_00010001
+var ray_collision_mask = 0b00000000_00000010_00000000_00010001
 
 const top_speed = 125000
 const nav_target_reached_distance = 16.0 #distance at which nav target is considered reached

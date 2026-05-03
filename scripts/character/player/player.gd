@@ -95,6 +95,7 @@ var dialog_panning = false #checked by main camera
 
 var days_since_rent_paid = 0
 
+var forbidden_interact : Array[String] = []
 var holding_object = false
 var will_grab_object = null
 var grabbed_object = null
@@ -173,8 +174,6 @@ var ui_scene_ref = null
 #item cosnt
 const flashlight : String = "flashlight"
 const pizza : String = "pizza"
-const cardbinder : String = "card_binder"
-const citymap : String = "city_map"
 const firecracker: String = "fire_cracker"
 const skateboard : String = "skateboard"
 
@@ -350,6 +349,21 @@ func remove_owned_cd(key : String):
 func has_owned_cd(key : String) -> bool:
 	var has_key : bool = owned_music.has(key)
 	return has_key
+
+func add_forbidden_interact(group : String):
+	if(!forbidden_interact.has(group)):
+		forbidden_interact.append(group)
+
+func remove_forbidden_interact(group : String):
+	if(forbidden_interact.has(group)):
+		forbidden_interact.erase(group)
+
+func is_forbidden(node : Node) -> bool:
+	var is_forbidden : bool = false
+	for group in node.get_groups():
+		if(forbidden_interact.has(group)):
+			is_forbidden = true
+	return is_forbidden
 
 #check_light
 func light_is_on_screen():
@@ -687,10 +701,12 @@ func get_deck() -> Array[int]:
 	return card_deck
 
 func add_owned_card(card : int):
-	if(!journal_tabs.has(cardbinder)):
-		journal_tabs.append(cardbinder)
-	if(owned_cards[card-1] < 5):
+	if(!journal_tabs.has("card_binder")):
+		journal_tabs.append("card_binder")
+	if(owned_cards[card-1] < max_each_card):
 		owned_cards[card-1] = owned_cards[card-1] + 1
+	if(card_deck.size() < 5):
+		card_deck.append(card)
 
 func get_owned_cards() -> Array[int]:
 	return owned_cards
@@ -1115,7 +1131,8 @@ func handle_interact_text():
 					index = index + 1
 				else:
 					index = index + 1
-			if(_grabber.get_collider(index) != null):
+			if(_grabber.get_collider(index) != null &&
+				!is_forbidden(_grabber.get_collider(index))):
 				if(_grabber.get_collider(index).is_in_group("pizza")):
 					_ui.set_interact_text("pick up")
 				elif(_grabber.get_collider(index).is_in_group("talkable")):
@@ -1152,10 +1169,11 @@ func handle_interact():
 				grabObj = _grabber.get_collider(index)
 				break
 			index = index + 1
-		if(_grabber.is_colliding() && grabObj.is_in_group("interactable")):
-			grabObj.interact()
-		else:
-			handle_pick_up()
+		if(!is_forbidden(grabObj)):
+			if(_grabber.is_colliding() && grabObj.is_in_group("interactable")):
+				grabObj.interact()
+			else:
+				handle_pick_up()
 
 func handle_dash():
 	if(!dreaming):
@@ -1229,26 +1247,6 @@ func use_item():
 				if(camera_connected):
 					play_sound(flashlight_sound)
 					_camera.toggle_flashlight()
-			cardbinder:
-				stop_dash()
-				var binder = card_binder.instantiate()
-				get_parent().add_child(binder)
-				main_ui_invisible()
-				set_control_frozen(true)
-			citymap:
-				if(ui_scene_ref == null):
-					stop()
-					set_movement_frozen(true)
-					set_items_frozen(true)
-					play_sound(maracca_sound)
-					var map = load("res://interface/city_map.tscn")
-					ui_scene_ref = map.instantiate()
-					add_scene_to_ui_tree(ui_scene_ref)
-				else:
-					play_sound(maracca_sound)
-					set_movement_frozen(false)
-					set_items_frozen(false)
-					ui_scene_ref.queue_free()
 			firecracker:
 				if(num_fire_crackers > 0):
 					var scene_fire_cracker = load("res://entities/props/dynamic props/fire_cracker.tscn")
@@ -1329,6 +1327,9 @@ func get_holding_object():
 
 func set_grabbed_object(node : Node2D):
 	grabbed_object = node
+
+func get_grabbed_object():
+	return grabbed_object
 
 func throw():
 	if(holding_object && !_grabber.is_colliding() ):

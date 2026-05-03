@@ -35,16 +35,17 @@ script_node_on_putdown = NodePath("putdown_script")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["dynamic", "pickupable", "prop"]]
 y_sort_enabled = true
+position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_6fcjj")
 
 [node name="occluder" type="Node2D" parent="."]
 script = ExtResource("2_636nd")
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -7)
+position = Vector2(0, -3)
 sprite_frames = ExtResource("3_jkrx2")
 animation = &"stand_right"
-frame_progress = 0.887837
+frame_progress = 0.533253
 script = ExtResource("4_685bt")
 animation_name = "loaf_right"
 

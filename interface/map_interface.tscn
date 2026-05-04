@@ -196,6 +196,7 @@ tab_name = "Cliffside West"
 linked_map = "Cliffside West"
 
 [node name="Central Stonesthrow" type="Sprite2D" parent="maps"]
+visible = false
 material = ExtResource("4_7qnfr")
 position = Vector2(-121, 3)
 texture = ExtResource("2_28iea")

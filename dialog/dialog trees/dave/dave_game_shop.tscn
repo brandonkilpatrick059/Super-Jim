@@ -79,13 +79,14 @@ speaker_portrait = null
 option_branches = [NodePath("../trunk_beat_wave_reward4")]
 voice = "low_sine_voice"
 
-[node name="trunk_beat_wave_reward4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_8p31w")]
+[node name="trunk_beat_wave_reward4" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_8p31w")]
 position = Vector2(-4, 1277)
 speaker_text = Array[String](["You want a Yellow, or Green pack?"])
 speaker_portrait = null
 speech_options = Array[String](["Yellow.", "Green."])
 option_branches = [NodePath("../trunk_beat_wave_reward5_yellow"), NodePath("../trunk_beat_wave_reward6_green")]
 voice = "low_sine_voice"
+dialog_script = NodePath("set_log_key")
 
 [node name="set_log_key" type="Node" parent="trunk_beat_wave_reward4"]
 script = ExtResource("6_8a0q0")

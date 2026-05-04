@@ -274,7 +274,6 @@ func open_pizza_bubble():
 	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 	var music_continues = true
 	time_keeper.pause_parent_tree(music_continues)
-	z_index = z_index + 1 #otherwise it draws behind the player idk...
 
 func close_pizza_bubble():
 	var player_ref = get_tree().get_nodes_in_group("player")[0]
@@ -285,7 +284,6 @@ func close_pizza_bubble():
 	selecting_pizza = false
 	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 	time_keeper.unpause_parent_tree()
-	z_index = z_index - 1
 
 func handle_select_pizza():
 	var player_ref = get_tree().get_nodes_in_group("player")[0]

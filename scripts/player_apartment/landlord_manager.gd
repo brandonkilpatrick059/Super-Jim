@@ -97,7 +97,9 @@ func catch_player():
 	if(start_mode):
 		landlord_ref._on_set_branching_dialog(start)
 		landlord_ref._on_stop_motion()
-		landlord_ref.interact()
+		var no_stop_bypass = false
+		var update_dialog_bypass = true
+		landlord_ref.interact(no_stop_bypass,update_dialog_bypass)
 	elif(active_mode):
 		var player_money = player_ref.get_money()
 		if(player_money > 0):
@@ -106,7 +108,9 @@ func catch_player():
 			else:
 				landlord_ref._on_set_branching_dialog(collect)
 			landlord_ref._on_stop_motion()
-			landlord_ref.interact()
+			var no_stop_bypass = false
+			var update_dialog_bypass = true
+			landlord_ref.interact(no_stop_bypass,update_dialog_bypass)
 			player_ref.set_days_since_paid_rent(0)
 			warned = false
 			unlock_player_apartment()
@@ -118,6 +122,8 @@ func catch_player():
 				landlord_ref._on_set_branching_dialog(locked)
 				lock_player_apartment()
 			landlord_ref._on_stop_motion()
-			landlord_ref.interact()
+			var no_stop_bypass = false
+			var update_dialog_bypass = true
+			landlord_ref.interact(no_stop_bypass,update_dialog_bypass)
 			
 			

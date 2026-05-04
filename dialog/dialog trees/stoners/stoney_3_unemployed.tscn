@@ -24,9 +24,86 @@ voice = "sine_voice"
 position = Vector2(2, 508)
 speaker_text = Array[String](["Imbibing The Good Stuff..."])
 speaker_portrait = null
-speech_options = Array[String](["Yeah, cool.", "Get a job, loser.", "May I also partake in The Good Stuff?"])
-option_branches = [NodePath("../cool"), NodePath("../loser"), NodePath("../partake")]
+speech_options = Array[String](["Yeah, cool.", "Get a job, loser.", "May I also partake in The Good Stuff?", "Baseball Cards"])
+option_branches = [NodePath("../cool"), NodePath("../loser"), NodePath("../partake"), NodePath("../baseball")]
 voice = "sine_voice"
+
+[node name="baseball" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_yhi2f")]
+position = Vector2(1094, 426)
+speaker_text = Array[String](["Right off the bat, huh?"])
+speaker_portrait = null
+option_branches = [NodePath("../baseball2")]
+voice = "sine_voice"
+
+[node name="baseball2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_yhi2f")]
+position = Vector2(1158, 681)
+speaker_text = Array[String]([""])
+speaker_portrait = null
+option_branches = [NodePath("../baseball_no_cards"), NodePath("../baseball5_win"), NodePath("../baseball_lose")]
+voice = "sine_voice"
+plays_cards = true
+card_deck = Array[int]([3, 5, 5, 3, 2])
+
+[node name="baseball_no_cards" parent="." instance=ExtResource("2_yhi2f")]
+position = Vector2(890, 958)
+speaker_text = Array[String](["Wait, you don't have any cards?"])
+speaker_portrait = null
+voice = "sine_voice"
+card_deck = Array[int]([3, 5, 5, 3, 2])
+
+[node name="baseball_lose" parent="." instance=ExtResource("2_yhi2f")]
+position = Vector2(1171, 958)
+speaker_text = Array[String](["Woo! I won!"])
+speaker_portrait = null
+voice = "sine_voice"
+card_deck = Array[int]([3, 5, 5, 3, 2])
+
+[node name="baseball5_win" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_yhi2f")]
+position = Vector2(1445, 978)
+speaker_text = Array[String](["Dang, nice."])
+speaker_portrait = null
+option_branches = [NodePath("../baseball5_win2")]
+voice = "sine_voice"
+card_deck = Array[int]([3, 5, 5, 3, 2])
+
+[node name="baseball5_win2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_yhi2f")]
+position = Vector2(1474, 1282)
+speaker_text = Array[String](["Some good vibes here."])
+speaker_portrait = null
+option_branches = [NodePath("../baseball5_win3")]
+voice = "sine_voice"
+card_deck = Array[int]([3, 5, 5, 3, 2])
+
+[node name="baseball5_win3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_yhi2f")]
+position = Vector2(1502, 1620)
+speaker_text = Array[String](["Do you ever watch the Chill Out Channel on the TV?"])
+speaker_portrait = null
+option_branches = [NodePath("../baseball5_win4")]
+voice = "sine_voice"
+card_deck = Array[int]([3, 5, 5, 3, 2])
+
+[node name="baseball5_win4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_yhi2f")]
+position = Vector2(1509, 1919)
+speaker_text = Array[String](["It gets me so relaxed, so chill..."])
+speaker_portrait = null
+option_branches = [NodePath("../baseball5_win5")]
+voice = "sine_voice"
+card_deck = Array[int]([3, 5, 5, 3, 2])
+
+[node name="baseball5_win5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_yhi2f")]
+position = Vector2(1509, 2265)
+speaker_text = Array[String](["Really replenishes all my meters, you know?"])
+speaker_portrait = null
+option_branches = [NodePath("../baseball5_win6")]
+voice = "sine_voice"
+card_deck = Array[int]([3, 5, 5, 3, 2])
+
+[node name="baseball5_win6" parent="." instance=ExtResource("2_yhi2f")]
+position = Vector2(1509, 2601)
+speaker_text = Array[String](["Like, I feel like I could run a mile afterwards."])
+speaker_portrait = null
+voice = "sine_voice"
+card_deck = Array[int]([3, 5, 5, 3, 2])
 
 [node name="cool" parent="." instance=ExtResource("2_yhi2f")]
 position = Vector2(-402, 713)

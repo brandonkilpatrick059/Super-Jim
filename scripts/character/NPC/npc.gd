@@ -207,11 +207,12 @@ func _on_stop_motion():
 func get_is_animatronic():
 	return is_animatronic
 
-func interact(stop_bypass : bool = false):
+func interact(stop_bypass : bool = false, update_bypass : bool = false):
 	if(interact_override_node):
 		interact_override_node.interact()
 	else:
-		update_branching_dialog()
+		if(!update_bypass):
+			update_branching_dialog()
 		if(branching_dialog != null && (linear_velocity.length() < 1 || stop_bypass)):
 			stop()
 			if(!is_animatronic && !no_face_player):

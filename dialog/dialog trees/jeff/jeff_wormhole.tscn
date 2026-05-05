@@ -1,0 +1,162 @@
+[gd_scene load_steps=5 format=3 uid="uid://f4nc3me7bs7j"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_ekviy"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_bj1t4"]
+[ext_resource type="Script" uid="uid://3rum14lm7ww7" path="res://scripts/utility/run_scripts/add_journal_tab.gd" id="3_l5id7"]
+[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="4_ngjwx"]
+
+[node name="jeff_appears" type="Node2D"]
+script = ExtResource("1_ekviy")
+trunk = NodePath("wormhole")
+
+[node name="wormhole" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
+position = Vector2(-1322, 496)
+speaker_text = Array[String](["Oh, wait-"])
+speaker_portrait = null
+option_branches = [NodePath("../wormhole2")]
+voice = "worm_voice"
+
+[node name="wormhole2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
+position = Vector2(-1378, 847)
+speaker_text = Array[String](["Before you go..."])
+speaker_portrait = null
+option_branches = [NodePath("../wormhole3")]
+voice = "worm_voice"
+
+[node name="wormhole3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
+position = Vector2(-1406, 1143)
+speaker_text = Array[String](["I want to ask a favor of you."])
+speaker_portrait = null
+option_branches = [NodePath("../wormhole4")]
+voice = "worm_voice"
+
+[node name="wormhole4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
+position = Vector2(-1479, 1489)
+speaker_text = Array[String](["I haven't heard from my brother, Sebastian, since these sewers were built."])
+speaker_portrait = null
+option_branches = [NodePath("../wormhole5")]
+voice = "worm_voice"
+
+[node name="wormhole5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
+position = Vector2(-1497, 1891)
+speaker_text = Array[String](["He's down here somewhere, but I don't know where."])
+speaker_portrait = null
+option_branches = [NodePath("../wormhole6")]
+voice = "worm_voice"
+
+[node name="wormhole6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
+position = Vector2(-1507, 2255)
+speaker_text = Array[String](["Do you think you could find him and check in on him?"])
+speaker_portrait = null
+option_branches = [NodePath("../wormhole7")]
+voice = "worm_voice"
+
+[node name="wormhole7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
+position = Vector2(-1552, 2662)
+speaker_text = Array[String](["I've asked Gary, but he's scared to go poking around down here..."])
+speaker_portrait = null
+speech_options = Array[String](["Sure.", "I'm actually sort of busy..."])
+option_branches = [NodePath("../accept"), NodePath("../sort of busy")]
+voice = "worm_voice"
+
+[node name="accept" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
+position = Vector2(-1778, 2967)
+speaker_text = Array[String](["Great!"])
+speaker_portrait = null
+option_branches = [NodePath("../wormhole8")]
+voice = "worm_voice"
+
+[node name="sort of busy" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
+position = Vector2(-1241, 2944)
+speaker_text = Array[String](["Well, if you change your mind-"])
+speaker_portrait = null
+option_branches = [NodePath("../wormhole8")]
+voice = "worm_voice"
+
+[node name="wormhole8" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
+position = Vector2(-1542, 3339)
+speaker_text = Array[String](["I have something that may help you out."])
+speaker_portrait = null
+option_branches = [NodePath("../wormhole9")]
+voice = "worm_voice"
+
+[node name="wormhole9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
+position = Vector2(-1560, 3746)
+speaker_text = Array[String](["Since I got stuck in these sewers, I've been studying..."])
+speaker_portrait = null
+option_branches = [NodePath("../wormhole10")]
+voice = "worm_voice"
+
+[node name="wormhole10" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
+position = Vector2(-1516, 4105)
+speaker_text = Array[String](["And I can show you how to make a Wormhole."])
+speaker_portrait = null
+option_branches = [NodePath("../wormhole11")]
+voice = "worm_voice"
+
+[node name="wormhole11" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
+position = Vector2(-1516, 4516)
+speaker_text = Array[String](["That way, if you get lost while you're looking for Sebastian-"])
+speaker_portrait = null
+option_branches = [NodePath("../wormhole12")]
+voice = "worm_voice"
+
+[node name="wormhole12" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
+position = Vector2(-1524, 4923)
+speaker_text = Array[String](["You can teleport to a safe, familiar place."])
+speaker_portrait = null
+option_branches = [NodePath("../wormhole13")]
+voice = "worm_voice"
+
+[node name="wormhole13" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
+position = Vector2(-1495, 5255)
+speaker_text = Array[String](["Ahem..."])
+speaker_portrait = null
+option_branches = [NodePath("../wormhole14")]
+voice = "worm_voice"
+
+[node name="wormhole14" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
+position = Vector2(-1558, 5633)
+speaker_text = Array[String](["So far, I've only figured out how to teleport things here, to my house..."])
+speaker_portrait = null
+option_branches = [NodePath("../wormhole15")]
+voice = "worm_voice"
+
+[node name="wormhole15" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
+position = Vector2(-1504, 5986)
+speaker_text = Array[String](["Not super useful for ME, but it could be useful for YOU!"])
+speaker_portrait = null
+option_branches = [NodePath("../wormhole16")]
+voice = "worm_voice"
+
+[node name="wormhole16" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_bj1t4")]
+position = Vector2(-1525, 6329)
+speaker_text = Array[String](["Here, I'll write down the instructions in that journal book of yours."])
+speaker_portrait = null
+option_branches = [NodePath("../wormhole17")]
+voice = "worm_voice"
+dialog_script = NodePath("add_journal_tab")
+play_sound_path = "res://audio/soundFX/crystal_get.wav"
+
+[node name="add_journal_tab" type="Node" parent="wormhole16"]
+script = ExtResource("3_l5id7")
+tab = "teleport"
+
+[node name="wormhole17" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
+position = Vector2(-1535, 6651)
+speaker_text = Array[String](["Just remember: you can't hold anything when you teleport."])
+speaker_portrait = null
+option_branches = [NodePath("../wormhole18")]
+voice = "worm_voice"
+
+[node name="wormhole18" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_bj1t4")]
+position = Vector2(-1514, 6991)
+speaker_text = Array[String](["If you find Sebastian, please come tell me how he's doing."])
+speaker_portrait = null
+voice = "worm_voice"
+dialog_script = NodePath("jeff_hangs_out")
+
+[node name="jeff_hangs_out" type="Node" parent="wormhole18"]
+script = ExtResource("4_ngjwx")
+node_group = "jeff"
+new_key = "hangs_out"

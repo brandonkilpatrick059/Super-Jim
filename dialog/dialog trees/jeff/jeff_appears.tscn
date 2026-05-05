@@ -61,9 +61,9 @@ position = Vector2(2, 1414)
 speaker_text = Array[String](["Make yourself at home!"])
 speaker_portrait = null
 voice = "worm_voice"
-dialog_script = NodePath("jeff to schedule 1")
+dialog_script = NodePath("jeff to hangs out")
 
-[node name="jeff to schedule 1" type="Node" parent="trunk7"]
+[node name="jeff to hangs out" type="Node" parent="trunk7"]
 script = ExtResource("4_fhlqn")
 node_group = "jeff"
-new_index = 1
+new_key = "hangs_out"

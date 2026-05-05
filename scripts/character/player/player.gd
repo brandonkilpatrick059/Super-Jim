@@ -296,6 +296,7 @@ func get_quest_state(key : String) -> String:
 
 func handle_teleport():
 	if(teleport_node != null):
+		set_control_frozen(true)
 		if(teleport_timer.is_stopped()):
 			if(!teleport_loading && !teleport_arriving):
 					turn_right()
@@ -594,6 +595,9 @@ func add_owned_map(map : String):
 func add_journal_tab(tab : String):
 	if(!journal_tabs.has(tab)):
 		journal_tabs.append(tab)
+
+func has_journal_tab(tab : String):
+	return journal_tabs.has(tab)
 
 func set_quest_log(key : String, value : int):
 	var quest_log_key_index = quest_log_keys.find(key)

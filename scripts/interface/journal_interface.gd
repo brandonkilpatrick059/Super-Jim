@@ -32,6 +32,7 @@ var child_ui_ref : Node2D = null
 var binder_ui = preload("res://baseball/card_binder.tscn")
 var quest_journal_ui = preload("res://interface/quest_journal_interface.tscn")
 var map_ui = preload("res://interface/map_interface.tscn")
+var teleport_ui = preload("res://interface/teleport_journal_interface.tscn")
 
 var tab_switching = false
 var switching_right = false
@@ -92,6 +93,8 @@ func initialize_ui():
 			initialize_quest_journal()
 		"map":
 			initialize_map()
+		"teleport":
+			initialize_teleport_journal()
 
 func initialize_map():
 	child_ui_ref = map_ui.instantiate()
@@ -106,6 +109,10 @@ func initialize_card_binder():
 
 func initialize_quest_journal():
 	child_ui_ref = quest_journal_ui.instantiate()
+	add_child(child_ui_ref)
+
+func initialize_teleport_journal():
+	child_ui_ref = teleport_ui.instantiate()
 	add_child(child_ui_ref)
 
 func handle_opening():
@@ -200,6 +207,8 @@ func get_tab_key_string(key : String) -> String:
 			return "Log"
 		"map":
 			return "Map"
+		"teleport":
+			return "Portal"
 		_: return ""
 
 func get_tab_sprite_path(key : String) -> String:
@@ -210,6 +219,8 @@ func get_tab_sprite_path(key : String) -> String:
 			return "res://sprites/interface/journal_tab_blue.png"
 		"map":
 			return "res://sprites/interface/journal_tab_brown.png"
+		"teleport":
+			return "res://sprites/interface/journal_tab_green.png"
 		_: return ""
 
 func _physics_process(delta: float) -> void:

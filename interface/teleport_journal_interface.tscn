@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://c2jq3thx5q66a"]
+
+[ext_resource type="Script" uid="uid://6uyvtaeefjys" path="res://scripts/interface/teleport_interface.gd" id="1_5s23o"]
+[ext_resource type="FontFile" uid="uid://cdf6elivdwcta" path="res://fonts/CourierPrime-Regular.ttf" id="4_26p00"]
+[ext_resource type="Texture2D" uid="uid://bp7qtxndlrd0g" path="res://sprites/interface/jeff_teleport_instructions.png" id="5_5s23o"]
+[ext_resource type="SpriteFrames" uid="uid://ujjatb8o1hx" path="res://sprites/spritesheets/spriteframes/interface/journal_frame.tres" id="5_o1v7t"]
+[ext_resource type="Material" uid="uid://b5vwbti30llx4" path="res://interface/unshaded_material.tres" id="6_ggt38"]
+[ext_resource type="Script" uid="uid://w3qahpimeo3c" path="res://scripts/interface/glyph_sprite.gd" id="7_7sxjm"]
+[ext_resource type="Texture2D" uid="uid://tky7m7ktiahc" path="res://sprites/interface/compass_arrow.png" id="7_wogs1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_alyom"]
+font = ExtResource("4_26p00")
+font_color = Color(0.174626, 0.174626, 0.174626, 1)
+
+[node name="QuestJournalInterface" type="Node2D"]
+script = ExtResource("1_5s23o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
+sprite_frames = ExtResource("5_o1v7t")
+animation = &"opened"
+
+[node name="right_arrow" type="Sprite2D" parent="."]
+visible = false
+material = ExtResource("6_ggt38")
+position = Vector2(234, 0)
+texture = ExtResource("7_wogs1")
+
+[node name="left_arrow" type="Sprite2D" parent="."]
+visible = false
+material = ExtResource("6_ggt38")
+position = Vector2(-235, 0)
+scale = Vector2(-1, 1)
+texture = ExtResource("7_wogs1")
+
+[node name="wormhole" type="Sprite2D" parent="."]
+position = Vector2(-141, -35)
+texture = ExtResource("5_5s23o")
+
+[node name="left_teleport" type="Label" parent="."]
+offset_left = -216.0
+offset_top = 93.0
+offset_right = -100.0
+offset_bottom = 116.0
+text = "TELEPORT"
+label_settings = SubResource("LabelSettings_alyom")
+horizontal_alignment = 1
+
+[node name="glyph_sprite" type="Sprite2D" parent="left_teleport"]
+position = Vector2(56, 26)
+script = ExtResource("7_7sxjm")
+action = "menu_select"
+blinking = true
+blink_interval_secs = 0.5
+
+[node name="right_teleport" type="Label" parent="."]
+offset_left = 121.0
+offset_top = 88.0
+offset_right = 198.0
+offset_bottom = 111.0
+text = "TELEPORT"
+label_settings = SubResource("LabelSettings_alyom")
+horizontal_alignment = 1
+
+[node name="glyph_sprite" type="Sprite2D" parent="right_teleport"]
+position = Vector2(39, 28)
+script = ExtResource("7_7sxjm")
+action = "menu_select"
+blinking = true
+blink_interval_secs = 0.5

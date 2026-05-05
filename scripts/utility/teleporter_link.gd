@@ -316,3 +316,13 @@ func _on_area_2d_body_entered(body):
 				body.reparent(flat_light_ysort)
 			if(reparent_to_dark_indoor):
 				body.reparent(dark_ysort)
+#
+##uncomment to see links
+#func _draw():
+	#if(linked_teleporter != null):
+		#draw_line(Vector2(), get_transform().affine_inverse() * linked_teleporter.position, Color(0,0,1,1), -1)
+#
+## Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+	#if(Engine.is_editor_hint()):
+		#queue_redraw()

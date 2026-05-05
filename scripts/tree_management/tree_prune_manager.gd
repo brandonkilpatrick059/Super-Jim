@@ -67,16 +67,29 @@ func prune_tree():
 					if(loadTouple.load_parent != null && loadTouple.load_node != null):
 						if(loadTouple.load_node.get_parent() != loadTouple.load_parent):
 							loadTouple.load_parent.add_child(loadTouple.load_node)
-					#else:
-						#deadIndexes.append(index)
-		#else:
-			#deadIndexes.append(index)
 		rel_index = rel_index + 1
 		if(index + 1 >= loadTouples.size()):
 			index = 0
-			#remove_dead_indexes()
 		else:
 			index = index + 1
+
+#does a full prune pass of all prunable nodes without waiting for process timer
+#use this to force quick loading after teleport
+func full_pass():
+	for loadTouple in loadTouples:
+		if(loadTouple.load_parent != null && loadTouple.load_node != null):
+			var node_pos : Vector2 = loadTouple.load_node.global_position
+			#prune distant objects
+			if(!bypass && node_pos.distance_to(player_ref.global_position) > load_distance &&
+			node_pos.distance_to(camera_ref.global_position) > load_distance):
+				if(loadTouple.load_node.get_parent() == loadTouple.load_parent):
+					loadTouple.load_parent.remove_child(loadTouple.load_node)
+			#re-add near objects
+			elif(bypass || node_pos.distance_to(player_ref.global_position) <= load_distance ||
+			node_pos.distance_to(camera_ref.global_position) <= load_distance):
+					if(loadTouple.load_parent != null && loadTouple.load_node != null):
+						if(loadTouple.load_node.get_parent() != loadTouple.load_parent):
+							loadTouple.load_parent.add_child(loadTouple.load_node)
 
 func _process(delta: float) -> void:
 	if(!setup_ready):

@@ -291,7 +291,7 @@ position = Vector2(-135, 1664)
 speaker_text = Array[String](["Which movie?"])
 speaker_portrait = null
 speech_options = Array[String](["I forget.", "\"Yojimbo\"", "\"The Godfather\"", "\"Fistful of Dollars\"", "\"Labyrinth\"", "\"The Warriors\"", "\"Escape From New York\"", "\"Alice in Wonderland\""])
-option_branches = [NodePath("../get outta here"), NodePath("../ask that question often5_movie3"), NodePath("../ask that question often5_movie3"), NodePath("../ask that question often5_movie3"), NodePath("../ask that question often5_movie3"), NodePath("../ask that question often5_movie3"), NodePath("../ask that question often5_movie3")]
+option_branches = [NodePath("../get outta here"), NodePath("../ask that question often5_movie3"), NodePath("../ask that question often5_movie3"), NodePath("../ask that question often5_movie3"), NodePath("../ask that question often5_movie3"), NodePath("../ask that question often5_movie3"), NodePath("../ask that question often5_movie3"), NodePath("../ask that question often5_movie3"), NodePath("../ask that question often5_movie3")]
 voice = "low_sine_voice"
 
 [node name="ask that question often5_movie3" parent="." instance=ExtResource("2_ct525")]

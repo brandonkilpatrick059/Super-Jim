@@ -9,6 +9,7 @@ extends RigidBody2D
 @onready var _ui = $ui_canvas/player_ui
 @onready var _light = $player_light
 @onready var _skateboard = $skateboard
+@onready var _shadow = $shadow
 @export var card_deck : Array[int] = []
 @export var owned_cards : Array[int] = [0,0,0,0,0,0,0,0,0, #green
 										0,0,0,0,0,0,0,0,0, #yellow
@@ -94,6 +95,15 @@ var in_dialog = false
 var dialog_panning = false #checked by main camera
 
 var days_since_rent_paid = 0
+
+var teleport_loading : bool = false
+var teleport_arriving : bool = false
+var teleport_node : Node = null
+var teleport_spin_speed_start : float = 0.5
+var teleport_spin_speed : float = teleport_spin_speed_start
+var teleport_scale : float = 1.0
+var teleport_timer := Timer.new()
+var teleport_arrive_start : bool = false
 
 var forbidden_interact : Array[String] = []
 var holding_object = false
@@ -205,7 +215,7 @@ func _ready():
 	push_timer.one_shot = true
 	item_text_timer.one_shot = true
 	light_distance_check_timer.one_shot = true
-	
+	teleport_timer.one_shot = true
 	comment_timer.one_shot = true
 	set_up_sound_players()
 	footfall_player.bus = "Effects"
@@ -224,6 +234,7 @@ func _ready():
 	add_child(push_timer)
 	add_child(item_text_timer)
 	add_child(light_distance_check_timer)
+	add_child(teleport_timer)
 	
 	#set up character base
 	_character_base.set_facing_dir(facing_dir)
@@ -282,6 +293,81 @@ func get_quest_state(key : String) -> String:
 	if(key_index >= 0):
 		ret_state = quest_state_values[key_index]
 	return ret_state
+
+func handle_teleport():
+	if(teleport_node != null):
+		if(teleport_timer.is_stopped()):
+			if(!teleport_loading && !teleport_arriving):
+					turn_right()
+					if(teleport_spin_speed > 0.10):
+						teleport_spin_speed = teleport_spin_speed - 0.05
+					elif(teleport_scale > 0.1):
+						teleport_scale = teleport_scale - 0.01
+						_character_base.scale = Vector2(teleport_scale, teleport_scale)
+						_shadow.scale = Vector2(teleport_scale, teleport_scale)
+					else:
+						teleport_scale = 0.0
+						teleport_loading = true
+					if(teleport_scale < 0.4):
+						_camera.fade_out()
+					teleport_timer.start(teleport_spin_speed)
+			elif(teleport_loading):
+				get_tree().get_first_node_in_group("daylight_layer").visible = false
+				get_tree().get_first_node_in_group("dark_layer").visible = false
+				get_tree().get_first_node_in_group("flat_light_layer").visible = false
+				var reparent = teleport_node.get_reparent()
+				var reparent_node = get_tree().get_first_node_in_group(reparent)
+				reparent(reparent_node)
+				global_position = teleport_node.global_position
+				var tree_prune_manager = get_tree().get_first_node_in_group("tree_prune_manager")
+				tree_prune_manager.full_pass()
+				teleport_timer.start(2.0)
+				teleport_loading = false
+				teleport_arrive_start = true
+				teleport_arriving = true
+			elif(teleport_arriving):
+				turn_right()
+				if(teleport_arrive_start):
+					var reparent = teleport_node.get_reparent()
+					if(reparent == "dark_indoor_ysort"):
+						get_tree().get_first_node_in_group("dark_layer").visible = true
+					elif(reparent == "daylight_affected_ysort"):
+						get_tree().get_first_node_in_group("daylight_layer").visible = true
+					teleport_loading = false
+					teleport_arrive_start = false
+					_camera.fade_in()
+					play_sound(load("res://audio/soundFX/teleport_reversed.wav"))
+				if(teleport_scale < 1.0):
+					teleport_scale = teleport_scale + 0.05
+					_character_base.scale = Vector2(teleport_scale, teleport_scale)
+					_shadow.scale = Vector2(teleport_scale, teleport_scale)
+				elif(teleport_scale >= 1.0 && teleport_spin_speed < teleport_spin_speed_start):
+					teleport_spin_speed = teleport_spin_speed + 0.02
+				if(teleport_spin_speed >= teleport_spin_speed_start):
+					teleport_spin_speed = teleport_spin_speed_start
+					teleport_scale = 1.0
+					_character_base.scale = Vector2(teleport_scale, teleport_scale)
+					_shadow.scale = Vector2(teleport_scale, teleport_scale)
+					set_control_frozen(false)
+					teleport_loading = false
+					teleport_arriving = false
+					teleport_node = null
+					_collision.disabled = false
+					main_ui_visible()
+				teleport_timer.start(teleport_spin_speed)
+
+func teleport(location : String):
+	if(teleport_node == null):
+		match location:
+			"JEFF":
+				teleport_node = get_tree().get_first_node_in_group("teleport_jeff")
+		var do_not_play_sound : bool = false
+		put_down(do_not_play_sound)
+		set_control_frozen(true)
+		play_sound(load("res://audio/soundFX/teleport.wav"))
+		_collision.disabled = true
+		main_ui_invisible()
+		
 
 func begin_dreaming():
 	if(holding_object):
@@ -930,6 +1016,10 @@ func face_dir(dir : String):
 	else: if (dir == direction.down):
 		_character_base.face_down()
 
+func turn_right():
+	_character_base.turn_right()
+	facing_dir = _character_base.get_facing_dir()
+
 func _activate_location_header(name : String):
 	_ui.activate_header(name)
 
@@ -955,6 +1045,7 @@ func get_input():
 		handle_use_item()
 		handle_journal()
 		handle_dev()
+		
 		move()
 
 func handle_journal():
@@ -1022,6 +1113,9 @@ func handle_dev():
 		var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 		time_keeper.advance_clock()
 		time_keeper.refresh_npc_locations()
+	if Input.is_action_just_pressed("dev_input"):
+		#THIS IS A GENERAL PURPOSE INPUT FOR DEBUGGING
+		teleport("JEFF")
 
 func get_current_hp():
 	return current_hp
@@ -1486,6 +1580,7 @@ func update_item_square():
 func _physics_process(delta):
 	if(!Engine.is_editor_hint()):
 		handle_waking()
+		handle_teleport()
 		
 		if(timer_load_in.is_stopped() && loading_in):
 			finish_load_in()

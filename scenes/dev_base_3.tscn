@@ -180,14 +180,12 @@ top_spriteframes = ExtResource("8_38bov")
 [node name="blank_npc" parent="daylight_affected_section/daylight_affected_ysort" instance=ExtResource("8_1uumc")]
 position = Vector2(-57, -197)
 talk_radius = 50
-has_passive_text = true
 voice = "low_sine_voice"
 hat_spriteframes = ExtResource("7_xgh3y")
 
 [node name="blank_npc3" parent="daylight_affected_section/daylight_affected_ysort" instance=ExtResource("8_1uumc")]
 position = Vector2(237, 1832)
 talk_radius = 50
-has_passive_text = true
 voice = "sine_voice"
 hat_spriteframes = ExtResource("7_xgh3y")
 
@@ -390,13 +388,11 @@ position = Vector2(2119, -153)
 [node name="blank_npc2" parent="daylight_affected_section/daylight_affected_ysort" instance=ExtResource("8_1uumc")]
 position = Vector2(198, -576)
 talk_radius = 50
-has_passive_text = true
 voice = "sine_voice"
 
 [node name="blank_npc4" parent="daylight_affected_section/daylight_affected_ysort" instance=ExtResource("8_1uumc")]
 position = Vector2(2191, -235)
 talk_radius = 50
-has_passive_text = true
 voice = "low_sine_voice"
 
 [node name="big_black_square" type="Polygon2D" parent="daylight_affected_section/daylight_affected_ysort"]
@@ -512,7 +508,6 @@ position = Vector2(376, -311)
 linked_teleporter = NodePath("../teleporter_link2")
 enter_y_push = -50000
 exit_y_push = 25000
-exit_dir = ""
 
 [node name="teleporter_link2" parent="dev_layer" node_paths=PackedStringArray("linked_teleporter") instance=ExtResource("4_313fk")]
 position = Vector2(2200, 72.8197)
@@ -520,7 +515,6 @@ linked_teleporter = NodePath("../teleporter_link")
 enter_y_push = 50000
 exit_y_push = -25000
 exit_only = false
-exit_dir = ""
 
 [node name="invisible_Wall_1" type="StaticBody2D" parent="dev_layer"]
 collision_layer = 16
@@ -771,55 +765,42 @@ has_prev_point = null
 
 [node name="patrol_point2" parent="dev_layer" instance=ExtResource("16_kbovc")]
 position = Vector2(-977, 814)
-prev_point = NodePath("")
 
 [node name="patrol_point5" parent="dev_layer" instance=ExtResource("16_kbovc")]
 position = Vector2(-1226, 777)
-prev_point = NodePath("")
 
 [node name="patrol_point13" parent="dev_layer" instance=ExtResource("16_kbovc")]
 position = Vector2(-1230, 1100)
-prev_point = NodePath("")
 
 [node name="patrol_point14" parent="dev_layer" instance=ExtResource("16_kbovc")]
 position = Vector2(-1466, 1069)
-prev_point = NodePath("")
 
 [node name="patrol_point15" parent="dev_layer" instance=ExtResource("16_kbovc")]
 position = Vector2(-1458, 779)
-prev_point = NodePath("")
 
 [node name="patrol_point16" parent="dev_layer" instance=ExtResource("16_kbovc")]
 position = Vector2(-1464, 494)
-prev_point = NodePath("")
 
 [node name="patrol_point17" parent="dev_layer" instance=ExtResource("16_kbovc")]
 position = Vector2(-1487, 761)
-prev_point = NodePath("")
 
 [node name="patrol_point18" parent="dev_layer" instance=ExtResource("16_kbovc")]
 position = Vector2(-1214, 742)
-prev_point = NodePath("")
 
 [node name="patrol_point19" parent="dev_layer" instance=ExtResource("16_kbovc")]
 position = Vector2(-1228, 505)
-prev_point = NodePath("")
 
 [node name="patrol_point20" parent="dev_layer" instance=ExtResource("16_kbovc")]
 position = Vector2(-1041, 578)
-prev_point = NodePath("")
 
 [node name="patrol_point21" parent="dev_layer" instance=ExtResource("16_kbovc")]
 position = Vector2(-1054, 697)
-prev_point = NodePath("")
 
 [node name="patrol_point22" parent="dev_layer" instance=ExtResource("16_kbovc")]
 position = Vector2(-1033, 1103)
-prev_point = NodePath("")
 
 [node name="patrol_point23" parent="dev_layer" instance=ExtResource("16_kbovc")]
 position = Vector2(-1005, 916)
-prev_point = NodePath("")
 
 [node name="patrol_point3" parent="dev_layer" instance=ExtResource("16_kbovc")]
 position = Vector2(-662, 815)

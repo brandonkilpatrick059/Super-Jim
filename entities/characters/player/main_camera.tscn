@@ -19,7 +19,7 @@ editor_draw_drag_margin = true
 script = ExtResource("1_apwxg")
 
 [node name="fade_to_black" type="Polygon2D" parent="."]
-z_index = 601
+z_index = 700
 position = Vector2(-430.521, -236.399)
 scale = Vector2(0.312496, 0.192901)
 color = Color(0, 0, 0, 0)

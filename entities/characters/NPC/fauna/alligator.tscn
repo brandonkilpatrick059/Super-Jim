@@ -8,8 +8,7 @@
 size = Vector2(43, 24)
 
 [node name="alligator" type="RigidBody2D" groups=["prunable"]]
-collision_layer = 0
-collision_mask = 8464
+collision_mask = 16
 lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 1

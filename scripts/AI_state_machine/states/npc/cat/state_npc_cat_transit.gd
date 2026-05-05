@@ -15,7 +15,7 @@ var loaded_in = false
 func _ready() -> void:
 	timer.one_shot = true
 	add_child(timer)
-	timer.start(5)
+	timer.start(0.25)
 	
 func get_host_position():
 	return ai_state_machine.get_perceptions().position
@@ -25,6 +25,9 @@ func get_host_nav_target_reached():
 
 func is_outdoors() -> bool:
 	return !ai_state_machine.get_parent().is_indoors()
+
+func skip_timer():
+	timer.stop()
 
 func physics_process(_delta: float) -> void:
 	if(loaded_in):

@@ -5,7 +5,7 @@ extends StaticBody2D
 
 var active = true
 
-func ready():
+func _ready() -> void:
 	active =  true
 	if(active):
 		point_light.enabled = true

@@ -18,6 +18,7 @@ boot_splash/image="res://sprites/start_screen/dire_logo_2.png"
 config/icon="uid://brtmqlp0es60q"
 config/macos_native_icon="res://sprites/door_icon_ios.icns"
 config/windows_native_icon="res://sprites/door_icon_windows.ico"
+config/layer_18="sightline_blocker"
 
 [autoload]
 

@@ -331,6 +331,7 @@ func handle_teleport():
 				if(teleport_arrive_start):
 					var reparent = teleport_node.get_reparent()
 					if(reparent == "dark_indoor_ysort"):
+						turn_light_on()
 						get_tree().get_first_node_in_group("dark_layer").visible = true
 					elif(reparent == "daylight_affected_ysort"):
 						get_tree().get_first_node_in_group("daylight_layer").visible = true

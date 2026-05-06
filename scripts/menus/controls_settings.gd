@@ -110,7 +110,7 @@ func update_glyphs():
 	var rebind_text = "("
 	var events : Array[InputEvent] =  InputMap.action_get_events("menu_select")
 	var glyph_string = get_glyph_string(events[0])
-	glyph_string = str(glyph_string,str(" / ",get_glyph_string(events[3])))
+	glyph_string = str(glyph_string,str(" / ",get_glyph_string(events[1])))
 	rebind_text = str(str(rebind_text,glyph_string), " TO SELECT)")
 	rebind_note.parse_bbcode(rebind_text)
 	update_glyphs_column(action_column_1, action_map_1, 1)

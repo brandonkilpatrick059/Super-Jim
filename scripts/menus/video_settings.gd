@@ -55,12 +55,7 @@ func handle_selection():
 			get_viewport().mode = 4 #fullscreen
 		else:
 			get_viewport().mode = 2 #maximized 
-	elif(select_index == 2): #resolution
-		if(SettingsVariables.lighting_index < SettingsVariables.lighting_settings.size() -1):
-			SettingsVariables.lighting_index += 1
-		else:
-			SettingsVariables.lighting_index = 0
-	elif(select_index == 3): #back
+	elif(select_index == 2): #back
 		back_selected()
 
 func back_selected():
@@ -88,7 +83,7 @@ func _ready():
 	visible = false
 	sound_player.bus = "Effects"
 	add_child(sound_player)
-	labels = [resolution_label, full_screen_label, light_quality_label, back_label]
+	labels = [resolution_label, full_screen_label, back_label]
 	set_labels_alpha(menu_alpha)
 	
 
@@ -100,7 +95,7 @@ func _physics_process(delta):
 	if(!SettingsVariables.full_screen):
 		full_screen_str = "OFF"
 	full_screen_label.text = str("FULL SCREEN:\n",full_screen_str)
-	light_quality_label.text = str("LIGHTING QUALITY:\n",SettingsVariables.lighting_settings[SettingsVariables.lighting_index])
+	#light_quality_label.text = str("LIGHTING QUALITY:\n",SettingsVariables.lighting_settings[SettingsVariables.lighting_index])
 	menu_alpha = 1
 	visible = true
 	set_labels_alpha(menu_alpha)

@@ -47,7 +47,6 @@ voice = "low_sine_voice"
 position = Vector2(-315, 378)
 speaker_text = Array[String](["Adios."])
 speaker_portrait = null
-speech_options = Array[String](["See you later", "Can I buy a beer?", "Can I get some advice?"])
 voice = "low_sine_voice"
 
 [node name="advice" parent="." node_paths=PackedStringArray("option_branches", "conditional_option_script") instance=ExtResource("2_ct525")]

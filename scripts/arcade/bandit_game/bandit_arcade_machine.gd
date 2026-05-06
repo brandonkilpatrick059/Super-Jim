@@ -97,6 +97,7 @@ func reset_camera():
 func start_game():
 	var dark_layer = get_tree().get_first_node_in_group("dark_layer")
 	dark_layer.visible = false
+	get_tree().get_first_node_in_group("flat_light_layer").visible = true
 	player_bandit = mobster.instantiate()
 	player_bandit.set_team(home_team)
 	var ysort_node = get_tree().get_first_node_in_group("no_daylight_ysort")

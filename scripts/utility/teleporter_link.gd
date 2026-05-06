@@ -200,9 +200,14 @@ func enter():
 			day_light_layer.visible = false
 			dark_layer.visible = true
 			#flat_light_layer.visible = false	
-		player_ref.stop()
+		player_ref.complete_stop()
 		if(linked_teleporter.exit_y_push != 0):
-			player_ref.set_current_v(Vector2(0,linked_teleporter.exit_y_push))
+			var push_vector = Vector2(0,0)
+			if(exit_y_push > 0):
+				push_vector = push_vector + Vector2(0,-20000)
+			else:
+				push_vector = push_vector + Vector2(0,20000)
+			player_ref.set_current_v(push_vector)
 		linked_teleporter.begin_loading()
 		entering = false
 		var main_fx_player = get_tree().get_first_node_in_group("main_fx_player")
@@ -266,7 +271,7 @@ func teleport_player():
 	linked_teleporter.run_exit_scripts = true
 	#attach_fader()
 	#player_ref.get_camera_ref().fade_out(0.1)
-	player_ref.stop()
+	player_ref.complete_stop()
 	player_ref.set_control_frozen(true)
 	var main_fx_player = get_tree().get_first_node_in_group("main_fx_player")
 	main_fx_player.fade_out_effects_bus()

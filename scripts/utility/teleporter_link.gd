@@ -52,7 +52,7 @@ var teleport_step_secs = 0.5
 var timer_fade := Timer.new()
 var timer_load_in := Timer.new()
 
-var teleport_load_in_secs = 2.0
+var teleport_load_in_secs = 0.5
 
 #for locking player control during teleport
 var timer_control_back := Timer.new() 
@@ -210,6 +210,8 @@ func enter():
 
 func begin_loading():
 	loading = true
+	var tree_prune_manager = get_tree().get_first_node_in_group("tree_prune_manager")
+	tree_prune_manager.full_pass()
 	timer_load_in.start(teleport_load_in_secs)
 
 func exit():
@@ -241,7 +243,6 @@ func exit():
 				player_ref.main_ui_visible()
 			detach_fader()
 			linked_teleporter.detach_fader()
-
 
 func attach_fader():
 	fader = teleport_fader.instantiate()

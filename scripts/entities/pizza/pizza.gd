@@ -272,6 +272,7 @@ func open_pizza_bubble():
 	update_select_bubble()
 	use_item_timer.start(0.2)
 	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+	timer.paused = true
 	var music_continues = true
 	time_keeper.pause_parent_tree(music_continues)
 
@@ -283,6 +284,7 @@ func close_pizza_bubble():
 	select_pizza_bubble.queue_free()
 	selecting_pizza = false
 	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+	timer.paused = false
 	time_keeper.unpause_parent_tree()
 
 func handle_select_pizza():

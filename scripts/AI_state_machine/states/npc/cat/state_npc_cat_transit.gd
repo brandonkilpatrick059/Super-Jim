@@ -15,7 +15,6 @@ var loaded_in = false
 func _ready() -> void:
 	timer.one_shot = true
 	add_child(timer)
-	timer.start(0.25)
 	
 func get_host_position():
 	return ai_state_machine.get_perceptions().position
@@ -67,7 +66,8 @@ func physics_process(_delta: float) -> void:
 			else:
 				ai_state_machine.transition_to("transit")
 	elif(timer.is_stopped() && !loaded_in):
-		loaded_in = true
+		#we gotta do this crap or else the pathing is bad when you
+		#quit and load a save idk
 		ai_state_machine.transition_to("transit")
 
 func has_line_of_sight(point : Vector2) -> bool:
@@ -116,10 +116,15 @@ func get_random_point(vectors : Array[Vector2]) -> Vector2:
 	return get_nearest_point_on_mesh(get_host_position())
 
 func enter(_msg := {}) -> void:
-	var radius : float = 200
-	var stepped_pts = get_stepped_points_from_pos(get_host_position(),1,128)
+	var radius : float = 128
+	var stepped_pts = get_stepped_points_from_pos(get_host_position(),1,radius)
 	var nav_target = get_random_point(stepped_pts)
-	set_nav_target.emit(nav_target)
+	if(nav_target.distance_to(get_host_position()) <= radius):
+		loaded_in = true
+		set_nav_target.emit(nav_target)
+	else:
+		timer.start(0.25)
+	
 
 func exit() -> void:
 	pass

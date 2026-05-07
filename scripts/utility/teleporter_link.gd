@@ -52,7 +52,7 @@ var teleport_step_secs = 0.5
 var timer_fade := Timer.new()
 var timer_load_in := Timer.new()
 
-var teleport_load_in_secs = 0.5
+var teleport_load_in_secs = 0.0
 
 #for locking player control during teleport
 var timer_control_back := Timer.new() 
@@ -204,9 +204,9 @@ func enter():
 		if(linked_teleporter.exit_y_push != 0):
 			var push_vector = Vector2(0,0)
 			if(exit_y_push > 0):
-				push_vector = push_vector + Vector2(0,-20000)
+				push_vector = push_vector + Vector2(0,-15000)
 			else:
-				push_vector = push_vector + Vector2(0,20000)
+				push_vector = push_vector + Vector2(0,15000)
 			player_ref.set_current_v(push_vector)
 		linked_teleporter.begin_loading()
 		entering = false
@@ -286,9 +286,9 @@ func teleport_player():
 	var horizontal_push_force = 5000
 	if(enter_y_push != 0):
 		if(enter_y_push > 0):
-			push_vector = push_vector + Vector2(0,40000)
+			push_vector = push_vector + Vector2(0,20000)
 		else:
-			push_vector = push_vector + Vector2(0,-40000)
+			push_vector = push_vector + Vector2(0,-20000)
 	if(player_ref.global_position.x < global_position.x):
 		var force_quot = ((global_position.x - player_ref.global_position.x)/16)
 		var force = horizontal_push_force * force_quot

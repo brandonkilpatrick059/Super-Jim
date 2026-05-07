@@ -30,6 +30,15 @@ func _ready():
 func get_stream_name() -> String:
 	return current_stream
 
+func get_stream_length() -> float:
+	if(stream != null):
+		return stream.get_length()
+	else:
+		return -1.0
+
+func get_stream_position() -> float:
+	return get_playback_position()
+
 func change_stream(new_stream: String, skip_fade_in : bool = true):
 	#if(current_stream != ""):
 	current_volume = volume_db

@@ -28,15 +28,32 @@ func reset_camera():
 	tv_machine.start_reset_camera()
 
 func find_bandit():
-	var bandits = get_tree().get_nodes_in_group("bandit")
+	var bandits : Array[Node] = []
 	if(bandit_ref != null):
 		#do not want to include the current bandit in list for finding a new bandit
-		bandits.erase(bandit_ref) 
-	if(bandits.size() > 0):
+		bandits.erase(bandit_ref)
+	
+	#prioritize mobs in combat
+	bandits = get_tree().get_nodes_in_group("bandit")
+	var bandits_in_combat : Array[Node] = []
+	for bandit in bandits:
+		if bandit.is_in_combat():
+			bandits_in_combat.append(bandit)
+	var mobs = get_tree().get_nodes_in_group("mobster")
+	var mobs_in_combat : Array[Node] = []
+	for mob in mobs:
+		if mob.is_in_combat():
+			mobs_in_combat.append(mob)
+	
+	if(bandits_in_combat.size() > 0):
+		bandit_ref = bandits_in_combat[randi_range(0,bandits_in_combat.size() - 1)]
+	if(mobs_in_combat.size() > 0):
+		bandit_ref = mobs_in_combat[randi_range(0,mobs_in_combat.size() - 1)]
+	elif(bandits.size() > 0):
 		bandit_ref = bandits[randi_range(0,bandits.size() - 1)]
 	else:
-		var mobs = get_tree().get_nodes_in_group("mobster")
 		bandit_ref = mobs[randi_range(0,mobs.size() - 1)]
+
 	if(camera_ref == null):
 		camera_ref = get_tree().get_first_node_in_group("camera")
 	camera_ref.connect_anchor(bandit_ref)

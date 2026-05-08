@@ -40,6 +40,8 @@ func find_bandit():
 	if(camera_ref == null):
 		camera_ref = get_tree().get_first_node_in_group("camera")
 	camera_ref.connect_anchor(bandit_ref)
+	var tree_prune_manager = get_tree().get_first_node_in_group("tree_prune_manager")
+	tree_prune_manager.full_pass()
 	var tv_machine = get_tree().get_first_node_in_group("tv_machine")
 	tv_machine.show_back_ground(false)
 	tv_machine.global_position = camera_ref.get_screen_center_position()

@@ -17,10 +17,12 @@ func set_song_deck(new_deck : Array[String], fade_in : bool):
 	skips_fade_in = fade_in
 
 func _physics_process(delta: float) -> void:
+	if(!get_parent().player_is_colliding()):
+		queue_free()
 	var stream_pos = main_music_player.get_stream_position()
 	var stream_length = main_music_player.get_stream_length()
 	if(stream_length > 0.0):
-		if((stream_length - stream_pos) < 1.0 &&
+		if((stream_length - stream_pos) < 0.25 &&
 		song_deck[time_keeper.clock] ):
 			var new_stream = song_deck[time_keeper.clock]
 			if(current_stream_path != new_stream):

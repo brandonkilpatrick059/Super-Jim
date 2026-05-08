@@ -1,4 +1,4 @@
-extends Node
+extends Area2D
 @export var song_deck : Array[String]
 @export var skips_fade_in = true
 
@@ -7,12 +7,16 @@ var main_music_player = null
 var internal_clock = 0
 
 @onready var updater = preload("res://entities/util/music_zone_updater.tscn")
-var zone_updater : Node2D = null
+var zone_updater : Node2D
+var zone_updater_added : bool = false 
 
 var active = false
 
 func get_song_deck():
 	return song_deck
+
+func get_zone_updater() -> Node2D:
+	return zone_updater
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,12 +29,18 @@ func turn_on():
 		var zone_updater = updater.instantiate()
 		add_child(zone_updater)
 		zone_updater.set_song_deck(song_deck,skips_fade_in)
+		zone_updater_added = true
 
 func turn_off():
 	main_music_player.change_stream("")
 	active = false
-	if(zone_updater):
-		zone_updater.queue_free()
+
+func player_is_colliding() -> bool:
+	for body in get_overlapping_bodies():
+		if body.is_in_group("player"):
+			return true
+	return false
+	
 
 func _on_body_entered(body : Node):
 	if(body.is_in_group("player") && !active):

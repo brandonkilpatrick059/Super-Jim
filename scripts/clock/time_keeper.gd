@@ -24,6 +24,9 @@ var end_of_day_schedule_keys : Array[String] = []
 
 var time_locked = true
 
+var back_to_start_timer := Timer.new()
+var back_to_start : bool = false
+
 signal new_day()
 
 var day_of_the_week = 0
@@ -137,6 +140,8 @@ func _ready():
 	timer_world.process_mode = Node.PROCESS_MODE_PAUSABLE
 	timer_song.one_shot = true
 	timer_restart.one_shot = true
+	back_to_start_timer.one_shot = true
+	add_child(back_to_start_timer)
 	add_child(timer_world)
 	add_child(timer_song)
 	add_child(timer_restart)
@@ -226,8 +231,9 @@ func set_day_of_moon_cycle(day : int):
 func go_to_start_menu():
 	var ref = get_tree().get_first_node_in_group("player_die")
 	if(ref.animation_finished()):
-		unpause_parent_tree()
-		get_tree().change_scene_to_file("res://scenes/start_menu.tscn")	
+		back_to_start_timer.start(4.0)
+		ref.fade_to_black()
+		back_to_start = true
 
 func get_input():
 	if Input.is_action_just_pressed("start"):
@@ -309,6 +315,8 @@ func update_pizzas():
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	get_input()
+	if(back_to_start && back_to_start_timer.is_stopped()):
+		get_tree().change_scene_to_file("res://scenes/start_menu.tscn")	
 	if(!is_menu_paused):
 		#calculate clock
 		if(timer_world.is_stopped() && not time_locked):

@@ -317,6 +317,11 @@ func send_perceptions():
 func is_in_combat() -> bool:
 	return perceptions.in_combat
 
+func is_not_dead() -> bool:
+	var not_dead : bool = (_ai_state_machine.get_state().name != mobster_states.dead && 
+	_ai_state_machine.get_state().name != mobster_states.falling)
+	return not_dead
+
 func has_line_of_sight_to_target() -> bool:
 	return perceptions.has_line_of_sight_to_target
 

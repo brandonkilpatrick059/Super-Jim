@@ -301,6 +301,7 @@ func handle_teleport():
 	if(teleport_node != null):
 		set_control_frozen(true)
 		if(teleport_timer.is_stopped()):
+			Input.start_joy_vibration(0,0.0,1.0 - teleport_scale,0.0)
 			if(!teleport_loading && !teleport_arriving):
 					turn_right()
 					if(teleport_spin_speed > 0.10):
@@ -347,7 +348,7 @@ func handle_teleport():
 					_character_base.scale = Vector2(teleport_scale, teleport_scale)
 					_shadow.scale = Vector2(teleport_scale, teleport_scale)
 				elif(teleport_scale >= 1.0 && teleport_spin_speed < teleport_spin_speed_start):
-					teleport_spin_speed = teleport_spin_speed + 0.02
+					teleport_spin_speed = teleport_spin_speed + 0.06
 				if(teleport_spin_speed >= teleport_spin_speed_start):
 					teleport_spin_speed = teleport_spin_speed_start
 					teleport_scale = 1.0
@@ -359,6 +360,7 @@ func handle_teleport():
 					teleport_node = null
 					_collision.disabled = false
 					main_ui_visible()
+					Input.stop_joy_vibration(0)
 				teleport_timer.start(teleport_spin_speed)
 
 func teleport(location : String):
@@ -1154,6 +1156,7 @@ func reduce_hp(amount : int = 1, nonlethal : bool = false):
 	_ui.update_hearts(current_hp)
 	play_sound(damage_sound)
 	_camera.shake(8 + (max_hp - current_hp)*2)
+	Input.start_joy_vibration(0,0.0,1.0,1.0)
 	if(current_hp == 0):
 		_character_base.stop_flashing()
 		die()
@@ -1381,6 +1384,7 @@ func start_skateboarding():
 	physics_material_override.bounce = 1.0
 	linear_damp = skating_linear_damp
 	skating_top_speed = speed()
+	
 
 func stop_skateboarding():
 	skateboard_player.stop()
@@ -1390,7 +1394,7 @@ func stop_skateboarding():
 	linear_damp = default_linear_damp
 	physics_material_override.bounce = 0.0
 	skating_top_speed = 0.0
-
+	Input.stop_joy_vibration(0)
 func set_movement_frozen(input: bool):
 	movement_frozen = input
 
@@ -1628,7 +1632,10 @@ func _physics_process(delta):
 				var vol : float = (-80.0 + (50.0 * (speed()/top_speed)))
 				if (vol > -20.0): #defending the player's ear drums
 					vol = -20.0
+				var rumble_level = (speed()/(top_speed)) / 24
+				Input.start_joy_vibration(0,rumble_level,0.0,0.0)
 				skateboard_player.volume_db = vol
+				
 			update_grabber()
 			will_grab_object = null
 			#check grabber for pick-upable objects

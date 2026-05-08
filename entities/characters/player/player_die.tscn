@@ -16,3 +16,10 @@ z_index = 600
 material = SubResource("CanvasItemMaterial_aerk1")
 position = Vector2(8, -29)
 texture = ExtResource("2_ev6xr")
+
+[node name="fade_to_black" type="Polygon2D" parent="."]
+z_index = 700
+position = Vector2(-430.521, -236.399)
+scale = Vector2(0.312496, 0.192901)
+color = Color(0, 0, 0, 0)
+polygon = PackedVector2Array(-1495.95, -2392.94, 4248.12, -2263.34, 4222.52, 4506.98, -1521.55, 4553.63)

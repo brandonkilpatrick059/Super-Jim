@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var _character_base = $character_base
 @onready var _tough_luck = $tough_luck
+@onready var _fade_to_black = $fade_to_black
 var sound_player := AudioStreamPlayer2D.new()
 
 var facing_direction = "right"
@@ -10,6 +11,8 @@ var frame_count = 0
 
 var finished = false
 var wait_timer := Timer.new()
+
+var fading_to_black : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,6 +42,10 @@ func start_dyin(dir):
 		_character_base.play_animation(animation_name)
 		_character_base.set_speed_scales(1)
 
+func fade_to_black():
+	fading_to_black = true
+	wait_timer.start(0.006)
+
 func _process(delta):
 	if(running_animation):
 		if(_character_base.get_base_current_frame() == frame_count-1):
@@ -47,3 +54,6 @@ func _process(delta):
 			_tough_luck.visible = true
 			finished = true
 			wait_timer.start(1)
+	if(finished && fading_to_black && wait_timer.is_stopped()):
+		_fade_to_black.color.a = _fade_to_black.color.a+0.05
+		wait_timer.start(0.006)

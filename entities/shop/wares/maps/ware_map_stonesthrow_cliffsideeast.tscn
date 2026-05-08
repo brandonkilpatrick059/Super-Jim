@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1va8q55g5pg6"]
+
+[ext_resource type="Script" uid="uid://c2eauyl5k8il2" path="res://scripts/shop/ware.gd" id="1_nx126"]
+[ext_resource type="Script" uid="uid://bf28w7cyx023r" path="res://scripts/shop/ware_map.gd" id="2_3jxld"]
+
+[node name="WareMap" type="Node2D"]
+z_index = 1
+script = ExtResource("1_nx126")
+cost = 5
+ware_name = "Map of Cliffside East"
+
+[node name="script_node" type="Node" parent="."]
+script = ExtResource("2_3jxld")
+map_string = "Cliffside East"

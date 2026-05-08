@@ -1,0 +1,283 @@
+[gd_scene load_steps=3 format=3 uid="uid://wh2euuaoieui"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_xbnpc"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_pugb3"]
+
+[node name="visitor_reception" type="Node2D"]
+script = ExtResource("1_xbnpc")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+speaker_text = Array[String](["Welcome to the Stonesthrow Visitor Center!"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["How can I help you?"])
+speaker_portrait = null
+speech_options = Array[String](["Can I get a map?", "Tell me about this city.", "Nevermind."])
+option_branches = [NodePath("../map"), NodePath("../city"), NodePath("../bye")]
+voice = "sine_voice"
+
+[node name="city" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(303, 516)
+speaker_text = Array[String](["Tell you about-?"])
+speaker_portrait = null
+option_branches = [NodePath("../city2")]
+voice = "sine_voice"
+
+[node name="city2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(694, 411)
+speaker_text = Array[String](["Oh!"])
+speaker_portrait = null
+option_branches = [NodePath("../city3")]
+voice = "sine_voice"
+
+[node name="city3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(924, 172)
+speaker_text = Array[String](["Uh, right!"])
+speaker_portrait = null
+option_branches = [NodePath("../city4")]
+voice = "sine_voice"
+
+[node name="city4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(1125, -64)
+speaker_text = Array[String](["Well-"])
+speaker_portrait = null
+option_branches = [NodePath("../city7")]
+voice = "sine_voice"
+
+[node name="city6_abort" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(868, -471)
+speaker_text = Array[String](["Oh okay."])
+speaker_portrait = null
+option_branches = [NodePath("../anyways")]
+voice = "sine_voice"
+
+[node name="city7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(1317, -326)
+speaker_text = Array[String](["How about I just read you this brochure?"])
+speaker_portrait = null
+speech_options = Array[String](["Okay.", "On second thought, forget it."])
+option_branches = [NodePath("../city8"), NodePath("../city6_abort")]
+voice = "sine_voice"
+
+[node name="city8" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(1487, -553)
+speaker_text = Array[String](["Ahem..."])
+speaker_portrait = null
+option_branches = [NodePath("../city9")]
+voice = "sine_voice"
+
+[node name="city9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(1567, -894)
+speaker_text = Array[String](["Stonesthrow is a BEAUTIFUL city nestled in the Rocky Mountains."])
+speaker_portrait = null
+option_branches = [NodePath("../city10")]
+voice = "sine_voice"
+
+[node name="city10" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(1562, -1197)
+speaker_text = Array[String](["Dubbed by Liminal Places Magazine as \"The biggest little city you've never heard of!\""])
+speaker_portrait = null
+option_branches = [NodePath("../city11")]
+voice = "sine_voice"
+
+[node name="city11" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(1487, -1487)
+speaker_text = Array[String](["Founded in the late 19th century as a railroad town-"])
+speaker_portrait = null
+option_branches = [NodePath("../city12")]
+voice = "sine_voice"
+
+[node name="city12" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(1311, -1773)
+speaker_text = Array[String](["Stonesthrow grew rapidly after becoming a hub for guano mining."])
+speaker_portrait = null
+option_branches = [NodePath("../city13")]
+voice = "sine_voice"
+
+[node name="city13" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(1198, -2080)
+speaker_text = Array[String](["Growth peaked in the years following The War."])
+speaker_portrait = null
+option_branches = [NodePath("../city14")]
+voice = "sine_voice"
+
+[node name="city14" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(968, -2330)
+speaker_text = Array[String](["But the national guano industry contracted in the mid-70's..."])
+speaker_portrait = null
+option_branches = [NodePath("../city15")]
+voice = "sine_voice"
+
+[node name="city15" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(792, -2595)
+speaker_text = Array[String](["And the local economy never fully recovered."])
+speaker_portrait = null
+option_branches = [NodePath("../city16")]
+voice = "sine_voice"
+
+[node name="city16" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(547, -2816)
+speaker_text = Array[String](["But Stonesthrow remains a BEAUTIFUL, cozy mountain town overlooking the Specific Ocean."])
+speaker_portrait = null
+option_branches = [NodePath("../city17")]
+voice = "sine_voice"
+
+[node name="city17" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(313, -3075)
+speaker_text = Array[String](["And we think it will come to occupy a Specific place..."])
+speaker_portrait = null
+option_branches = [NodePath("../city18")]
+voice = "sine_voice"
+
+[node name="city18" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(7, -3253)
+speaker_text = Array[String](["In your heart."])
+speaker_portrait = null
+option_branches = [NodePath("../city19")]
+voice = "sine_voice"
+
+[node name="city19" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(-283, -3317)
+speaker_text = Array[String](["Wow."])
+speaker_portrait = null
+option_branches = [NodePath("../city20")]
+voice = "sine_voice"
+
+[node name="city20" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(-626, -3317)
+speaker_text = Array[String](["What a nice brochure."])
+speaker_portrait = null
+speech_options = Array[String](["Yeah.", "What's guano?", "I think you mean \"Pacific Ocean.\"", "What's the fastest way out of here?"])
+option_branches = [NodePath("../anyways"), NodePath("../guano"), NodePath("../ocean"), NodePath("../fastest way out")]
+voice = "sine_voice"
+
+[node name="guano" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(-872, -3189)
+speaker_text = Array[String](["I don't know."])
+speaker_portrait = null
+option_branches = [NodePath("../guano2")]
+voice = "sine_voice"
+
+[node name="guano2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(-872, -2910)
+speaker_text = Array[String](["That's just what the brochure says..."])
+speaker_portrait = null
+option_branches = [NodePath("../anyways")]
+voice = "sine_voice"
+
+[node name="ocean" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(-546, -2992)
+speaker_text = Array[String](["Pretty sure that's what I said."])
+speaker_portrait = null
+option_branches = [NodePath("../anyways")]
+voice = "sine_voice"
+
+[node name="fastest way out" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(-1372, -3207)
+speaker_text = Array[String](["Oh, uhh..."])
+speaker_portrait = null
+option_branches = [NodePath("../fastest way out2")]
+voice = "sine_voice"
+
+[node name="fastest way out2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(-1436, -2947)
+speaker_text = Array[String](["I don't know."])
+speaker_portrait = null
+option_branches = [NodePath("../fastest way out3")]
+voice = "sine_voice"
+
+[node name="fastest way out3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(-1517, -2677)
+speaker_text = Array[String](["Probably the train?"])
+speaker_portrait = null
+option_branches = [NodePath("../anyways")]
+voice = "sine_voice"
+
+[node name="anyways" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(-1831, 266)
+speaker_text = Array[String](["Anyways, do you need anything else?"])
+speaker_portrait = null
+speech_options = Array[String](["Yes.", "No."])
+option_branches = [NodePath("../trunk2"), NodePath("../bye")]
+voice = "sine_voice"
+
+[node name="bye" parent="." instance=ExtResource("2_pugb3")]
+position = Vector2(-1676, 596)
+speaker_text = Array[String](["Come again!"])
+speaker_portrait = null
+voice = "sine_voice"
+
+[node name="map" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(-303, 516)
+speaker_text = Array[String](["Sure, we have many maps for sale!"])
+speaker_portrait = null
+speech_options = Array[String](["What have you got?", "Oh, visitor centers usually give out free maps..."])
+option_branches = [NodePath("../map2"), NodePath("../free_maps")]
+voice = "sine_voice"
+
+[node name="map2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(-562, 793)
+speaker_text = Array[String](["Take a look!"])
+speaker_portrait = null
+speech_options = Array[String](["", "", ""])
+option_branches = [NodePath("../no_purchase"), NodePath("../purchase"), NodePath("../insufficient_money")]
+voice = "sine_voice"
+shows_wares = true
+
+[node name="no_purchase" parent="." instance=ExtResource("2_pugb3")]
+position = Vector2(-1048, 1053)
+speaker_text = Array[String](["Maybe next time."])
+speaker_portrait = null
+voice = "sine_voice"
+
+[node name="purchase" parent="." instance=ExtResource("2_pugb3")]
+position = Vector2(-783, 1053)
+speaker_text = Array[String](["Wow! Thanks!"])
+speaker_portrait = null
+voice = "sine_voice"
+
+[node name="insufficient_money" parent="." instance=ExtResource("2_pugb3")]
+position = Vector2(-521, 1053)
+speaker_text = Array[String](["Sorry, these maps aren't free."])
+speaker_portrait = null
+voice = "sine_voice"
+
+[node name="free_maps" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(-130, 793)
+speaker_text = Array[String](["Free maps?!"])
+speaker_portrait = null
+option_branches = [NodePath("../free_maps2")]
+voice = "sine_voice"
+
+[node name="free_maps2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(-107, 1090)
+speaker_text = Array[String](["Imagine..."])
+speaker_portrait = null
+option_branches = [NodePath("../free_maps3")]
+voice = "sine_voice"
+
+[node name="free_maps3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(-73, 1398)
+speaker_text = Array[String](["Unfortunately, our budget is pretty tight."])
+speaker_portrait = null
+option_branches = [NodePath("../free_maps4")]
+voice = "sine_voice"
+
+[node name="free_maps4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(-9, 1748)
+speaker_text = Array[String](["Maps are what keep the lights on around here."])
+speaker_portrait = null
+option_branches = [NodePath("../free_maps5")]
+voice = "sine_voice"
+
+[node name="free_maps5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_pugb3")]
+position = Vector2(-194, 2026)
+speaker_text = Array[String](["Sorry."])
+speaker_portrait = null
+option_branches = [NodePath("../anyways")]
+voice = "sine_voice"

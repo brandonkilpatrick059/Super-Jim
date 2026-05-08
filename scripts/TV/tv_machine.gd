@@ -72,14 +72,14 @@ func clean_up():
 
 func handle_input():
 	if(can_change_channel):
-		if(Input.is_action_just_pressed("up")):
+		if(Input.is_action_just_pressed("menu_up")):
 			if(channel_index + 1 < channels.size()):
 				channel_index = channel_index + 1
 			else:
 				channel_index = 0
 			audio_player.stream = load("res://audio/soundFX/bigCollide.wav")
 			audio_player.play()
-		if(Input.is_action_just_pressed("down")):
+		if(Input.is_action_just_pressed("menu_down")):
 			if(channel_index - 1 >= 0):
 				channel_index = channel_index - 1
 			else:

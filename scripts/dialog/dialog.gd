@@ -142,7 +142,7 @@ func handle_input():
 		if(tree.get_shows_wares() && shop != null): #display available wares
 			shopping = true
 			if(dialog_choice_index == 0):
-				_ResponseBubble.set_label("Nevermind")
+				_ResponseBubble.set_label("Nevermind.")
 			else:
 				var ware_name = shop.get_staged_wares()[dialog_choice_index-1].get_ware_name()
 				var ware_price : int = shop.get_staged_wares()[dialog_choice_index-1].get_cost()
@@ -151,7 +151,7 @@ func handle_input():
 		else:
 			_ResponseBubble.set_label(tree.get_speech_option(dialog_choice_index))
 			
-		if(Input.is_action_just_pressed("left")):
+		if(Input.is_action_just_pressed("menu_left")):
 			_AudioStreamPlayer.stream = load("res://audio/soundFX/maracca.ogg")
 			_AudioStreamPlayer.play()
 			if(dialog_choice_index == 0):
@@ -162,7 +162,7 @@ func handle_input():
 			else:
 				dialog_choice_index = dialog_choice_index - 1
 		
-		if(Input.is_action_just_pressed("right")):
+		if(Input.is_action_just_pressed("menu_right")):
 			_AudioStreamPlayer.stream = load("res://audio/soundFX/maracca.ogg")
 			_AudioStreamPlayer.play()
 			if(!shopping):
@@ -176,7 +176,7 @@ func handle_input():
 				else:
 					dialog_choice_index = dialog_choice_index + 1
 		
-	if(Input.is_action_just_pressed("interact")):
+	if(Input.is_action_just_pressed("menu_select")):
 		#no options or next nodes = dialog is over
 		if(queued_script != null):
 			queued_script.run_script()

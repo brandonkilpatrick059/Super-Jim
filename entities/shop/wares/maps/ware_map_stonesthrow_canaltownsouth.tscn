@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cobcbesu7guj4"]
+
+[ext_resource type="Script" uid="uid://c2eauyl5k8il2" path="res://scripts/shop/ware.gd" id="1_toips"]
+[ext_resource type="Script" uid="uid://bf28w7cyx023r" path="res://scripts/shop/ware_map.gd" id="2_bmmc4"]
+
+[node name="WareMap" type="Node2D"]
+z_index = 1
+script = ExtResource("1_toips")
+cost = 5
+ware_name = "Map of Canal Town South"
+
+[node name="script_node" type="Node" parent="."]
+script = ExtResource("2_bmmc4")
+map_string = "Canal Town South"

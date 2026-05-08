@@ -90,10 +90,11 @@ func _physics_process(delta: float) -> void:
 	if(ui_active):
 		audio_player_2d.stop()
 		ui_ref.global_position = player_ref.get_camera_ref().get_screen_center_position()
-		if Input.is_action_just_pressed("interact"):
+		if Input.is_action_just_pressed("menu_back"):
 			timer.start(1)
 			ui_ref.reset_camera()
 			exit_ui()
+			player_ref.start_control_lockout_timer(0.25)
 			if(can_turn_off):
 				on = false
 				remove_from_group("lookable")

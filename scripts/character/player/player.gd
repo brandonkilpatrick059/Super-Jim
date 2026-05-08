@@ -143,6 +143,7 @@ var dev_occlusion_level = 0
 
 var item_text_timer : Timer = Timer.new()
 var use_item_timer : Timer = Timer.new()
+var control_lockout_timer : Timer = Timer.new()
 
 #for tracking tutorial tips
 var first_used_dash : bool = false
@@ -217,6 +218,7 @@ func _ready():
 	light_distance_check_timer.one_shot = true
 	teleport_timer.one_shot = true
 	comment_timer.one_shot = true
+	control_lockout_timer.one_shot = true
 	set_up_sound_players()
 	footfall_player.bus = "Effects"
 	footfall_player.volume_db = -26
@@ -235,6 +237,7 @@ func _ready():
 	add_child(item_text_timer)
 	add_child(light_distance_check_timer)
 	add_child(teleport_timer)
+	add_child(control_lockout_timer)
 	
 	#set up character base
 	_character_base.set_facing_dir(facing_dir)
@@ -1029,7 +1032,7 @@ func _activate_location_header(name : String):
 	_ui.activate_header(name)
 
 func get_input():
-	if(!control_frozen):
+	if(!control_frozen && control_lockout_timer.is_stopped()):
 		#orient and player according to input
 		if(!skating):
 			if Input.is_action_pressed(direction.right):
@@ -1256,6 +1259,9 @@ func handle_interact_text():
 			else:
 				_ui.deactivate_interact()
 		item_text_timer.start(0.25)
+
+func start_control_lockout_timer(time : float):
+	control_lockout_timer.start(time)
 
 func handle_interact():
 	handle_interact_text()

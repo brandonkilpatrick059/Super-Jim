@@ -155,7 +155,7 @@ voice = "troll_voice"
 position = Vector2(804, 3057)
 speaker_text = Array[String](["West takes you to the coast, to New Sea-Land."])
 speaker_portrait = null
-speech_options = Array[String](["What's in Lonesome Village?", "Port? On what ocean? Where are we?", "Did you say \"New Zealand?!\""])
+speech_options = Array[String](["What's in Lonesome Village?", "Coast? On what ocean? Where are we?", "Did you say \"New Zealand?!\""])
 option_branches = [NodePath("../not_a_tour_guide"), NodePath("../not_a_tour_guide"), NodePath("../new_zealand")]
 voice = "troll_voice"
 

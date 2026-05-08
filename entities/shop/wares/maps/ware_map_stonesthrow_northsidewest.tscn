@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlvtp03r8ybdg"]
+
+[ext_resource type="Script" uid="uid://c2eauyl5k8il2" path="res://scripts/shop/ware.gd" id="1_u4ihe"]
+[ext_resource type="Script" uid="uid://bf28w7cyx023r" path="res://scripts/shop/ware_map.gd" id="2_8qh5s"]
+
+[node name="WareMap" type="Node2D"]
+z_index = 1
+script = ExtResource("1_u4ihe")
+cost = 5
+ware_name = "Map of North Side West"
+
+[node name="script_node" type="Node" parent="."]
+script = ExtResource("2_8qh5s")
+map_string = "North Side West"

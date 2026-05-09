@@ -107,7 +107,7 @@ func handle_select_time_process():
 		player_ref.stop()
 		update_select_bubble()
 		var max_time = 24
-		if(Input.is_action_just_pressed(direction.right)):
+		if(Input.is_action_just_pressed("menu_right")):
 			var fx_player = get_tree().get_first_node_in_group("main_fx_player")
 			fx_player.stream = load("res://audio/soundFX/shaker.ogg")
 			fx_player.play()
@@ -115,7 +115,7 @@ func handle_select_time_process():
 				current_select_time = current_select_time + 1
 			else:
 				current_select_time = 8
-		elif(Input.is_action_just_pressed(direction.left)):
+		elif(Input.is_action_just_pressed("menu_left")):
 			var fx_player = get_tree().get_first_node_in_group("main_fx_player")
 			fx_player.stream = load("res://audio/soundFX/shaker.ogg")
 			fx_player.play()

@@ -272,6 +272,8 @@ func teleport_player():
 	#attach_fader()
 	#player_ref.get_camera_ref().fade_out(0.1)
 	player_ref.complete_stop()
+	var bypass_sound = true
+	player_ref.stop_skateboarding(bypass_sound)
 	player_ref.set_control_frozen(true)
 	var main_fx_player = get_tree().get_first_node_in_group("main_fx_player")
 	main_fx_player.fade_out_effects_bus()

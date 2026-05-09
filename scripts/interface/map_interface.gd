@@ -95,7 +95,7 @@ func update_arrows():
 
 func _physics_process(delta: float) -> void:
 	if(timer.is_stopped()):
-		var step : float = 0.15
+		var step : float = 0.20
 		if(Input.is_action_pressed("menu_up")):
 			scroll_list.decrement_selected()
 			timer.start(step)

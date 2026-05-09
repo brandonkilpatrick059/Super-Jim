@@ -10,8 +10,9 @@ var time_keeper_ref = null
 var active_segment : Node 
 
 var current_hour = 0
+#
+#var should_disable : bool = true
 
-var should_disable : bool = true
 
 func _ready():
 	active = false
@@ -21,6 +22,9 @@ func _ready():
 
 func get_channel_text() -> String:
 	return channel_text
+
+#func set_should_disable(value : bool):
+	#should_disable = value
 
 func set_active(set_active : bool):
 	if(set_active && !active):
@@ -40,10 +44,9 @@ func update_active_segment():
 		time_keeper_ref = get_tree().get_first_node_in_group("time_keeper")
 	current_hour = time_keeper_ref.get_hour()
 	var iter = 0 
-	if(should_disable):
-		for segment in segments:
-			segment.disable()
-		should_disable = false
+	#if(should_disable):
+		#disable_segments()
+		#should_disable = false
 	if(active):
 		for segment in segments:
 			if(iter == current_hour):

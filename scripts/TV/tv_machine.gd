@@ -22,6 +22,7 @@ var camera_should_reset : bool = false
 
 func _ready():
 	#channel_text.visible = false
+	clean_up() #disable all segments
 	update_active_channel()
 	audio_player.bus = "Effects"
 	add_child(audio_player)

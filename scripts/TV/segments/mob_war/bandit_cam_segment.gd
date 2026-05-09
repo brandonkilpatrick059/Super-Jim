@@ -74,9 +74,11 @@ func set_active(set_active : bool):
 		find_bandit()
 		active = true
 	elif(set_active == false && active):
+
 		disable()
 
 func process():
 	if(active):
+		var tv_machine = get_tree().get_first_node_in_group("tv_machine")
 		if(bandit_ref.get_state_name() == mobster_states.dead):
 			find_bandit()

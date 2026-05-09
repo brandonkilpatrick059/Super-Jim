@@ -224,7 +224,6 @@ func get_informal_time_string() -> String:
 	informal_string = str(informal_string, ", ", days_in_week[day_of_the_week])
 	return informal_string
 
-
 func set_day_of_moon_cycle(day : int):
 	day_of_moon_cycle = day
 

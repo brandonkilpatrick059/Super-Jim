@@ -1059,19 +1059,20 @@ func get_input():
 		move()
 
 func handle_journal():
-	if(Input.is_action_just_pressed("journal")):
-		var journal_ref = journal.instantiate()
-		journal_ref.global_position = get_camera_ref().get_screen_center_position()
-		get_parent().add_child(journal_ref)
-		journal_ref.open(journal_tabs)
-		var time_keeper = get_tree().get_first_node_in_group("time_keeper")
-		var music_continues = true
-		set_ui_invisible()
-		#main_ui_invisible()
-		#_ui.hide_header()
-		#instant_hide_tip()
-		set_control_frozen(true)
-		time_keeper.pause_parent_tree(music_continues)
+	if(!dreaming):
+		if(Input.is_action_just_pressed("journal")):
+			var journal_ref = journal.instantiate()
+			journal_ref.global_position = get_camera_ref().get_screen_center_position()
+			get_parent().add_child(journal_ref)
+			journal_ref.open(journal_tabs)
+			var time_keeper = get_tree().get_first_node_in_group("time_keeper")
+			var music_continues = true
+			set_ui_invisible()
+			#main_ui_invisible()
+			#_ui.hide_header()
+			#instant_hide_tip()
+			set_control_frozen(true)
+			time_keeper.pause_parent_tree(music_continues)
 
 func handle_dev():
 	if Input.is_action_just_pressed("dev_no_clip"):
@@ -1386,10 +1387,11 @@ func start_skateboarding():
 	skating_top_speed = speed()
 	
 
-func stop_skateboarding():
+func stop_skateboarding(bypass_sound = false):
 	skateboard_player.stop()
 	_skateboard.visible = false
-	play_sound(maracca_sound)
+	if(!bypass_sound):
+		play_sound(maracca_sound)
 	skating = false
 	linear_damp = default_linear_damp
 	physics_material_override.bounce = 0.0

@@ -298,7 +298,7 @@ func handle_select_pizza():
 	else:
 		player_ref.stop()
 		update_select_bubble()
-		if(Input.is_action_just_pressed(direction.right)):
+		if(Input.is_action_just_pressed("menu_right")):
 			var fx_player = get_tree().get_first_node_in_group("main_fx_player")
 			fx_player.stream = load("res://audio/soundFX/shaker.ogg")
 			fx_player.play()
@@ -306,7 +306,7 @@ func handle_select_pizza():
 				current_door = current_door + 1
 			else:
 				current_door = 0
-		elif(Input.is_action_just_pressed(direction.left)):
+		elif(Input.is_action_just_pressed("menu_left")):
 			var fx_player = get_tree().get_first_node_in_group("main_fx_player")
 			fx_player.stream = load("res://audio/soundFX/shaker.ogg")
 			fx_player.play()

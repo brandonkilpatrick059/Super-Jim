@@ -4,7 +4,7 @@ var song_deck : Array[String]
 var skips_fade_in : bool = false
 
 var time_keeper = null
-var main_music_player = null
+var main_music_player : AudioStreamPlayer = null
 
 var current_stream_path : String = ""
 
@@ -21,8 +21,8 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 	var stream_pos = main_music_player.get_stream_position()
 	var stream_length = main_music_player.get_stream_length()
-	var new_stream = song_deck[time_keeper.clock]
-	if(abs(stream_length - stream_pos) < 0.25):
+	if(abs(stream_length - stream_pos) < 0.25 || !main_music_player.playing):
+		var new_stream = song_deck[time_keeper.clock]
 		if(current_stream_path != new_stream || new_stream == ""):
 			main_music_player.change_stream(new_stream,skips_fade_in)
 			current_stream_path = new_stream

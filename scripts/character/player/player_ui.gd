@@ -201,15 +201,15 @@ func set_item_square(id : String):
 			item_square_texture.texture = load("res://sprites/interface/item_box/item_pizza.png")
 		"flashlight" :
 			item_square_texture.texture = load("res://sprites/interface/item_box/item_flashlight.png")
-		"card_binder" :
-			item_square_texture.texture = load("res://sprites/interface/item_box/item_card_binder.png")
-		"city_map" :
-			item_square_texture.texture = load("res://sprites/interface/item_box/item_map.png")
 		"fire_cracker":
 			show_quantity_label()
 			item_square_texture.texture = load("res://sprites/interface/item_box/item_fire_cracker.png")
 		"skateboard" :
 			item_square_texture.texture = load("res://sprites/interface/item_box/item_skateboard.png")
+		"smoke_bomb":
+			show_quantity_label()
+			item_square_texture.texture = load("res://sprites/interface/item_box/item_smoke_bomb.png")
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(interact_text_visible):

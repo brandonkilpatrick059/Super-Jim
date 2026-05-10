@@ -107,6 +107,8 @@ func _process(delta):
 			if(current_stream != ""):
 				stream = load(current_stream)
 				play()
+			else:
+				stop()
 				
 			
 			

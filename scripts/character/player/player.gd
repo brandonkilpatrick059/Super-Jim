@@ -187,9 +187,12 @@ const flashlight : String = "flashlight"
 const pizza : String = "pizza"
 const firecracker: String = "fire_cracker"
 const skateboard : String = "skateboard"
+const smokebomb: String = "smoke_bomb"
 
 var num_fire_crackers : int = 0
 var max_fire_crackers : int = 9
+var num_smoke_bombs : int = 0
+var max_smoke_bombs : int = 9
 
 var waking = false
 var waking_control_back = false
@@ -846,7 +849,16 @@ func add_fire_crackers(num : int):
 		num_fire_crackers = max_fire_crackers
 	else:
 		num_fire_crackers = num_fire_crackers + num
-	_ui.update_quantity_label_text(str(num_fire_crackers))
+	#_ui.update_quantity_label_text(str(num_fire_crackers))
+
+func add_smoke_bombs(num : int):
+	if(num_smoke_bombs == 0):
+		append_to_items(smokebomb)
+	if(num_smoke_bombs + num > max_smoke_bombs):
+		num_smoke_bombs = max_smoke_bombs
+	else:
+		num_smoke_bombs = num_smoke_bombs + num
+	#_ui.update_quantity_label_text(str(num))
 
 func enter_dialog():
 	stop()
@@ -1346,6 +1358,15 @@ func append_to_items(item : String):
 		["use_item"], 
 		6.0)
 		shown_items_tip = true
+
+
+func update_item_quantities():
+	if(items.size() > 0 ):
+		match items[item_index]:
+			firecracker:
+				_ui.update_quantity_label_text(str(num_fire_crackers))
+			smokebomb:
+				_ui.update_quantity_label_text(str(num_smoke_bombs))
 
 func use_item():
 	if(items.size() > 0 ):

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7bi0q2njqgmg"]
+
+[ext_resource type="Script" uid="uid://c2eauyl5k8il2" path="res://scripts/shop/ware.gd" id="1_obgpy"]
+[ext_resource type="Script" uid="uid://baaqymhegfe7a" path="res://scripts/shop/ware_smoke_bomb.gd" id="2_obgpy"]
+
+[node name="WareSmokeBomb" type="Node2D"]
+z_index = 1
+script = ExtResource("1_obgpy")
+cost = 4
+ware_name = "Smoke Bomb"
+
+[node name="script_node" type="Node" parent="."]
+script = ExtResource("2_obgpy")

@@ -24,13 +24,12 @@ visible = false
 team = "green"
 card_name = "Kyle \"Corky\" Batts"
 portrait_path = "res://sprites/baseball/portraits/test_2.png"
-description = "3 [img]res://sprites/baseball/sh_sym.png[/img] against [img]res://sprites/baseball/y_sym.png[/img]"
+description = "[color=purple]Throws[/color] +1 [img]res://sprites/baseball/s_sym.png[/img]"
 strength_rating = 9
 hp = 3
 shield = 0
-power = 3
-debuff_dmg_from_team = 3
-debuff_dmg_target_team = "yellow"
+power = 4
+throws_shield = 1
 
 [node name="green_3" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -83,13 +82,11 @@ visible = false
 team = "green"
 card_name = "Grimo Johnsonson"
 portrait_path = "res://sprites/baseball/portraits/test_7.png"
-description = "4 [img]res://sprites/baseball/sh_sym.png[/img] against [img]res://sprites/baseball/y_sym.png[/img]"
+description = "\"The one and only.\""
 strength_rating = 12
-hp = 4
+hp = 6
 shield = 0
-power = 4
-debuff_dmg_from_team = 4
-debuff_dmg_target_team = "yellow"
+power = 6
 
 [node name="green_8" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -153,13 +150,12 @@ visible = false
 team = "yellow"
 card_name = "Laniel Willy-Song"
 portrait_path = "res://sprites/baseball/portraits/test_4.png"
-description = "2 [img]res://sprites/baseball/sh_sym.png[/img] against [img]res://sprites/baseball/g_sym.png[/img]"
+description = "[color=purple]Throws[/color] +2 [img]res://sprites/baseball/h_sym.png[/img]"
 strength_rating = 9
-hp = 3
+hp = 4
 shield = 0
-power = 4
-debuff_dmg_from_team = 2
-debuff_dmg_target_team = "green"
+power = 3
+throws_hp = 2
 
 [node name="yellow_14" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -178,14 +174,12 @@ visible = false
 team = "yellow"
 card_name = "PJ Bottoms"
 portrait_path = "res://sprites/baseball/portraits/test_6_2.png"
-description = "[color=purple]Throws[/color] +2 [img]res://sprites/baseball/s_sym.png[/img]
-4 [img]res://sprites/baseball/sh_sym.png[/img] against [img]res://sprites/baseball/g_sym.png[/img]"
+description = "[color=purple]Throws[/color] +2 [img]res://sprites/baseball/s_sym.png[/img]"
 strength_rating = 12
 hp = 2
+shield = 2
 power = 2
 throws_shield = 2
-debuff_dmg_from_team = 4
-debuff_dmg_target_team = "green"
 
 [node name="yellow_16" parent="." instance=ExtResource("2_yiqgv")]
 visible = false

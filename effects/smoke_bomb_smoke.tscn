@@ -1,24 +1,52 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct1a7s23r1cns"]
+[gd_scene load_steps=6 format=3 uid="uid://ct1a7s23r1cns"]
 
-[ext_resource type="Texture2D" uid="uid://dqwkyriqydm2h" path="res://sprites/effects/smoke.png" id="1_2b7te"]
 [ext_resource type="Script" uid="uid://d3q8p5uiublid" path="res://scripts/entities/smoke_bomb_smoke.gd" id="1_852rs"]
+[ext_resource type="SpriteFrames" uid="uid://l33y5u4c7j4s" path="res://sprites/spritesheets/spriteframes/effects/smoke_bomb_smoke.tres" id="2_852rs"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_852rs"]
+bounce = 1.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2b7te"]
 radius = 13.0
 height = 46.0
 
-[node name="Smoke" type="RigidBody2D"]
-collision_layer = 131072
+[sub_resource type="CircleShape2D" id="CircleShape2D_852rs"]
+radius = 14.0
+
+[node name="wall_collider" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 16
+physics_material_override = SubResource("PhysicsMaterial_852rs")
+lock_rotation = true
+
+[node name="Smoke" type="Area2D" parent="."]
+collision_layer = 0
 collision_mask = 66
-contact_monitor = true
-max_contacts_reported = 20
 script = ExtResource("1_852rs")
 
-[node name="smoke_sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_2b7te")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Smoke"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2b7te")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="sightline_blocker" type="RigidBody2D" parent="Smoke"]
+collision_layer = 131072
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Smoke/sightline_blocker"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2b7te")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Smoke"]
+sprite_frames = ExtResource("2_852rs")
+animation = &"retract"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Smoke"]
+volume_db = -20.0
+max_distance = 1200.0
+attenuation = 10.9283
+bus = &"Effects"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_852rs")
+
+[connection signal="body_entered" from="Smoke" to="Smoke" method="_on_body_entered"]

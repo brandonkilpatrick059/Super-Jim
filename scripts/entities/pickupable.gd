@@ -15,6 +15,7 @@ var spark = preload("res://effects/spark.tscn")
 var arrow_instance = null 
 @export var script_node_on_pickup : Node = null
 @export var script_node_on_putdown : Node = null
+@export var does_not_spark : bool = false
 
 var sound_player := AudioStreamPlayer2D.new()
 
@@ -222,7 +223,8 @@ func _integrate_forces(state):
 	if(state.get_contact_count() >= 1):  #this check is needed or it will throw errors 
 		local_collision_pos = state.get_contact_local_position(0)
 		if(!timer_spark.is_stopped() && can_spark && 
-		!state.get_contact_collider_object(0).is_in_group("player")):
+		!state.get_contact_collider_object(0).is_in_group("player") &&
+		!does_not_spark):
 			can_spark = false
 			var nSpark = spark.instantiate()
 			get_parent().add_child(nSpark)

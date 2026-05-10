@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://dvsvvhna0efwo"]
+
+[ext_resource type="Texture2D" uid="uid://bbw0eiqtynfp2" path="res://sprites/spritesheets/props/smoke_bomb.png" id="1_pr3gw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhhya"]
+atlas = ExtResource("1_pr3gw")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vevgc"]
+atlas = ExtResource("1_pr3gw")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0whq"]
+atlas = ExtResource("1_pr3gw")
+region = Rect2(32, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhhya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vevgc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0whq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]

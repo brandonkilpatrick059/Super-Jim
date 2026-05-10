@@ -45,6 +45,7 @@ var card_binder = preload("res://baseball/card_binder.tscn")
 var die_material = preload("res://entities/characters/player/die_material.tres")
 var speech_bubble = preload("res://dialog/speech_bubble.tscn")
 var player_material = preload("res://entities/characters/player/player_material.tres")
+var smoke_bomb_smoke = preload("res://effects/smoke_bomb_smoke.tscn")
 
 var bump_sound = preload("res://audio/soundFX/bigCollide.wav")
 var woosh_sound = preload("res://audio/soundFX/woosh.wav")
@@ -1323,6 +1324,7 @@ func give_dash_fraction(fraction: float):
 func handle_use_item():
 	if(!dreaming):
 		if(items.size() > 0):
+			update_item_quantities()
 			if(use_item_timer.is_stopped() && Input.is_action_just_pressed("use_item")):
 				use_item()
 				use_item_timer.start(0.25)
@@ -1390,6 +1392,18 @@ func use_item():
 				if(num_fire_crackers <= 0):
 					num_fire_crackers = 0
 					remove_from_items(firecracker)
+			smokebomb:
+				if(num_smoke_bombs > 0):
+					var scene_smoke = load("res://entities/props/dynamic props/smoke_bomb.tscn")
+					var smoke_bomb = scene_smoke.instantiate()
+					smoke_bomb.global_position = global_position
+					add_child(smoke_bomb)
+					smoke_bomb.throw_bypass_pickup(_character_base.get_facing_dir(), self)
+					num_smoke_bombs = num_smoke_bombs - 1
+					_ui.update_quantity_label_text(str(num_smoke_bombs))
+				if(num_smoke_bombs <= 0):
+					num_smoke_bombs = 0
+					remove_from_items(smokebomb)
 			skateboard:
 				if(!skating):
 					start_skateboarding()

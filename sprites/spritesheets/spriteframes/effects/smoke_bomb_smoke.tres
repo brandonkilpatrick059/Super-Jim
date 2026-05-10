@@ -1,0 +1,89 @@
+[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://l33y5u4c7j4s"]
+
+[ext_resource type="Texture2D" uid="uid://dc87js7ronbks" path="res://sprites/spritesheets/effects/smoke_bomb_smoke.png" id="1_fpvxf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ag06"]
+atlas = ExtResource("1_fpvxf")
+region = Rect2(0, 128, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xry4n"]
+atlas = ExtResource("1_fpvxf")
+region = Rect2(0, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7kos"]
+atlas = ExtResource("1_fpvxf")
+region = Rect2(0, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6x5n"]
+atlas = ExtResource("1_fpvxf")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0b2gv"]
+atlas = ExtResource("1_fpvxf")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ly4jy"]
+atlas = ExtResource("1_fpvxf")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrt4w"]
+atlas = ExtResource("1_fpvxf")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylwql"]
+atlas = ExtResource("1_fpvxf")
+region = Rect2(0, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qytpp"]
+atlas = ExtResource("1_fpvxf")
+region = Rect2(0, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbnk5"]
+atlas = ExtResource("1_fpvxf")
+region = Rect2(0, 128, 64, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ag06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xry4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7kos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6x5n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0b2gv")
+}],
+"loop": true,
+"name": &"expand",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_ly4jy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrt4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylwql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qytpp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbnk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbnk5")
+}],
+"loop": true,
+"name": &"retract",
+"speed": 1.0
+}]

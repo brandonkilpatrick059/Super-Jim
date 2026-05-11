@@ -3,6 +3,8 @@ class_name shop_manager
 
 @export var wares : Array[PackedScene] = []
 @export var stage_locations : Array[Node] = []
+@export var ware_stock : Array[int] = []
+@export_multiline var ware_comment : Array[String] = []
 
 var staged_wares : Array[Node] = []
 
@@ -20,7 +22,12 @@ func dispose_of_staged_wares():
 	for ware in staged_wares:
 		ware.queue_free()
 	staged_wares = []
-	
+
+func get_ware_stock(index : int) -> int:
+	return ware_stock[index]
+
+func get_ware_comment(index : int) -> String:
+	return ware_comment[index]
 
 func shuffle_staged_items():
 	dispose_of_staged_wares()

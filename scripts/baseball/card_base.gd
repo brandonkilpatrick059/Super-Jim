@@ -62,6 +62,28 @@ extends Node2D
 
 var stat_max = 9
 
+var meters_stowed : bool = false
+
+var ready_stow = true
+
+func unstow():
+	ready_stow = false
+	add_meters()
+
+func stow_meters():
+	if(not meters_stowed):
+		remove_child(_hp_meter)
+		remove_child(_stam_meter)
+		remove_child(_pow_meter)
+		meters_stowed = true
+
+func add_meters():
+	if(meters_stowed):
+		add_child(_hp_meter)
+		add_child(_stam_meter)
+		add_child(_pow_meter)
+		meters_stowed = false
+
 func get_debuff_dmg_from_team() -> int :
 	return debuff_dmg_from_team
 
@@ -124,6 +146,8 @@ func _ready() -> void:
 		_base_border.modulate = Color(1.0,1.0,0.7)
 	elif(team == "gray"):
 		_base_border.modulate = Color(0.65,0.65,0.65)
+	if(not ready_stow):
+		stow_meters()
 
 func get_card_team():
 	return team
@@ -147,6 +171,8 @@ func get_team():
 	return team
 
 func set_hp(new_hp : int):
+	if(meters_stowed):
+		add_meters()
 	if(new_hp > stat_max):
 		new_hp = stat_max
 	var diff = new_hp - hp
@@ -154,6 +180,8 @@ func set_hp(new_hp : int):
 	_hp_meter.modify_stat(diff)
 
 func set_shield(new_shield : int):
+	if(meters_stowed):
+		add_meters()
 	if(new_shield > stat_max):
 		new_shield = stat_max
 	var diff = new_shield - shield
@@ -161,6 +189,8 @@ func set_shield(new_shield : int):
 	_stam_meter.modify_stat(diff)
 
 func set_power(new_power : int):
+	if(meters_stowed):
+		add_meters()
 	if(new_power > stat_max):
 		new_power = stat_max
 	var diff = new_power - power

@@ -22,4 +22,6 @@ func get_random_card(min : int, max : int, str_min : int = 0, str_max : int = 40
 
 func get_card(card_number : int):
 	if(card_number - 1 < cards.size()):
-		return cards[card_number - 1]
+		var ret_card = cards[card_number - 1]
+		ret_card.unstow()
+		return ret_card

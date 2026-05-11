@@ -241,13 +241,12 @@ func deliver_pizza(door : Node2D):
 	
 	delivery_dialog_tree.visible = false
 	dialog_manager.add_child(delivery_dialog_tree)
-	dialog_manager.set_tree_and_start_dialog(delivery_dialog_tree)	
+	dialog_manager.set_tree_and_start_dialog(delivery_dialog_tree)
 	pizzas -= 1
 	var pizza_manager = get_tree().get_first_node_in_group("pizza_manager")
 	pizza_manager.add_pizzas_delivered(1,door)
 	wrong_door_checked = false
 	if(pizzas > 0):
-		player_ref.return_pizza()
 		selected_delivery_doors.erase(door)
 		destination_door = selected_delivery_doors[0]
 		current_door = 0
@@ -255,6 +254,8 @@ func deliver_pizza(door : Node2D):
 		var cook_ref = get_tree().get_first_node_in_group("cook")
 		if(hits < 3):
 			cook_ref.set_schedules_key("bonus")
+		player_ref.set_no_longer_holding_object()
+		player_ref.set_no_longer_holding_pizza()
 		destroy_self()
 
 func open_pizza_bubble():
@@ -316,11 +317,28 @@ func handle_select_pizza():
 				current_door = selected_delivery_doors.size() - 1
 		destination_door = selected_delivery_doors[current_door]
 
+func check_delivery() -> bool:
+	_compass.visible = false
+	_pointer.visible = false
+	var delivered = false
+	for door in selected_delivery_doors:
+		if(_prop.global_position.distance_to(door.global_position) < 32):
+			deliver_pizza(door)
+			delivered = true
+			return true
+	if(!delivered):
+		for door in delivery_doors:
+			var address : String = door.get_address()
+			if(_prop.global_position.distance_to(door.global_position) < 32):
+				wrong_door(door)
+				return true
+	return false
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
 	if(_prop != null):
-		var pizza_kitchen_door = get_tree().get_first_node_in_group("kitchen_door")
-		pizza_kitchen_door.lock()
+		#var pizza_kitchen_door = get_tree().get_first_node_in_group("kitchen_door")
+		#pizza_kitchen_door.lock()
 		update_pizza_stack()
 		if(_prop.is_picked_up() && 
 		_prop.get_parent().is_in_group("player") && 
@@ -333,22 +351,23 @@ func _physics_process(delta: float):
 				var outer_door = destination_door.get_parent_door()
 				current_guide_point = outer_door.global_position
 			update_compass_pointer()
-		else:
-			_compass.visible = false
-			_pointer.visible = false
-			if(!_prop.is_picked_up()):
-				var delivered = false
-				for door in selected_delivery_doors:
-					if(_prop.global_position.distance_to(door.global_position) < 32):
-						deliver_pizza(door)
-						delivered = true
-						break
-				if(!delivered):
-					for door in delivery_doors:
-						if(_prop.global_position.distance_to(door.global_position) < 32):
-							wrong_door(door)
-							break
-					wrong_door_checked = true
+		#else:
+			#_compass.visible = false
+			#_pointer.visible = false
+			#if(!_prop.is_picked_up()):
+				#var delivered = false
+				#for door in selected_delivery_doors:
+					#if(_prop.global_position.distance_to(door.global_position) < 32):
+						#deliver_pizza(door)
+						#delivered = true
+						#break
+				#if(!delivered):
+					#for door in delivery_doors:
+						#var address : String = door.get_address()
+						#if(_prop.global_position.distance_to(door.global_position) < 32):
+							#wrong_door(door)
+							#break
+					#wrong_door_checked = true
 					
 	else:
 		destroy_self()

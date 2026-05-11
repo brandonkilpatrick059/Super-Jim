@@ -1483,8 +1483,7 @@ func throw():
 		play_sound(woosh_sound)
 		if(grabbed_object != null):
 			if(grabbed_object.is_in_group("pizza")):
-				self.remove_from_group("courier")
-				remove_from_items("pizza")
+				set_no_longer_holding_pizza()
 				grabbed_object.throw(_character_base.get_facing_dir(),Vector2(0,-16))
 			else:
 				grabbed_object.throw(_character_base.get_facing_dir())
@@ -1494,15 +1493,28 @@ func throw():
 		item_text_timer.start(0.25)
 
 func put_down(play_sound = true):
+	var object_put_down = true
 	if(play_sound):
 		play_sound(putdown_sound)
 	if(grabbed_object != null):
 		if(grabbed_object.is_in_group("pizza")):
-			grabbed_object.put_down(_character_base.get_facing_dir(),Vector2(0,-16))
-			self.remove_from_group("courier")
-			remove_from_items("pizza")
+			var pizza = get_tree().get_first_node_in_group("pizza_parent")
+			var near_door = pizza.check_delivery()
+			if(!near_door):
+				grabbed_object.put_down(_character_base.get_facing_dir(),Vector2(0,-16))
+				set_no_longer_holding_pizza()
+			else:
+				object_put_down = false
 		else:
 			grabbed_object.put_down(_character_base.get_facing_dir())
+	if(object_put_down):
+		set_no_longer_holding_object()
+
+func set_no_longer_holding_pizza():
+	self.remove_from_group("courier")
+	remove_from_items("pizza")
+
+func set_no_longer_holding_object():
 	grabbed_object = null
 	set_holding_object(false)
 	_ui.deactivate_interact()

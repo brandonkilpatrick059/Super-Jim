@@ -3,15 +3,15 @@
 [ext_resource type="Script" uid="uid://c2eauyl5k8il2" path="res://scripts/shop/ware.gd" id="1_x1frt"]
 [ext_resource type="Script" uid="uid://brs35wel42e0d" path="res://scripts/shop/ware_furniture.gd" id="2_np3x4"]
 [ext_resource type="PackedScene" uid="uid://b20egxvemuaa6" path="res://entities/props/static props/apartment/furniture/bed/bed_1.tscn" id="3_1x3lh"]
-[ext_resource type="Texture2D" uid="uid://c26fq4gtsui1c" path="res://sprites/props/furniture/bed_1.png" id="4_mjpe2"]
+[ext_resource type="Texture2D" uid="uid://ctqisf1eft3bf" path="res://sprites/props/furniture/bed_green_made.png" id="4_e6av1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r8ccd"]
 size = Vector2(30, 47)
 
 [node name="WareBed1" type="Node2D"]
 script = ExtResource("1_x1frt")
-cost = 30
-ware_name = "Used Green Bed"
+cost = 50
+ware_name = "Wooden Green Bed"
 
 [node name="script_node" type="Node" parent="."]
 script = ExtResource("2_np3x4")
@@ -19,10 +19,12 @@ furniture_entity = ExtResource("3_1x3lh")
 is_bed = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("4_mjpe2")
+position = Vector2(0, -28)
+texture = ExtResource("4_e6av1")
 offset = Vector2(0, 24)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -28)
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]

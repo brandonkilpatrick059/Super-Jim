@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlvnqorkk0ok3"]
+
+[ext_resource type="Script" uid="uid://c2eauyl5k8il2" path="res://scripts/shop/ware.gd" id="1_mwcna"]
+[ext_resource type="Script" uid="uid://brs35wel42e0d" path="res://scripts/shop/ware_furniture.gd" id="2_n3hm7"]
+[ext_resource type="PackedScene" uid="uid://d3jh3y6anufhp" path="res://entities/props/static props/apartment/furniture/bed/bed_red.tscn" id="3_mwcna"]
+[ext_resource type="Texture2D" uid="uid://qo6n6tm68qxf" path="res://sprites/props/furniture/bed_red_made.png" id="4_mwcna"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8ccd"]
+size = Vector2(30, 47)
+
+[node name="WareBedRed" type="Node2D"]
+script = ExtResource("1_mwcna")
+cost = 50
+ware_name = "Wooden Red Bed"
+
+[node name="script_node" type="Node" parent="."]
+script = ExtResource("2_n3hm7")
+furniture_entity = ExtResource("3_mwcna")
+is_bed = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -28)
+texture = ExtResource("4_mwcna")
+offset = Vector2(0, 24)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -28)
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 28)
+shape = SubResource("RectangleShape2D_r8ccd")

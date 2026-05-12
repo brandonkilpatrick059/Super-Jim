@@ -4,6 +4,12 @@ extends StaticBody2D
 @onready var _saving_game = $saving_game
 @onready var _game_saved_label = $saving_game/saving_game_label
 @onready var _door = $saving_game/door
+@onready var _sleep_anchor = $sleep_anchor
+@onready var _collision = $CollisionShape2D
+
+@export var bed_sprite : Sprite2D 
+@export var made_bed_sprite : Sprite2D 
+@export var sheet_sprite : Sprite2D
 
 var time_select_bubble = preload("res://dialog/select_bubble.tscn")
 var select_time_bubble : Node
@@ -85,24 +91,56 @@ func slept_through_night():
 	var game_save_manager = get_tree().get_first_node_in_group("game_save_manager")
 	game_save_manager.save_game()
 
+func make_bed():
+	bed_sprite.visible = false
+	made_bed_sprite.visible = true
+
+func unmake_bed():
+	bed_sprite.visible = true
+	made_bed_sprite.visible = false
+
+func player_start_sleep_anim():
+	if(made_bed_sprite != null):
+		unmake_bed()
+	_collision.disabled = true
+	if(sheet_sprite != null):
+		sheet_sprite.visible = true
+	var new_x = _sleep_anchor.global_position.x + 32
+	var new_y = _sleep_anchor.global_position.y
+	player_ref.global_position = Vector2(new_x, new_y)
+	var push_vect : Vector2 = Vector2(-12250,0)
+	player_ref.push(push_vect,1.0)
+
+func player_end_sleep_anim():
+	var push_vect : Vector2 = Vector2(12250,0)
+	player_ref.push(push_vect,1.0)
+
+func reset_sleep_anim():
+	_collision.disabled = false
+	if(sheet_sprite != null):
+		sheet_sprite.visible = false
+
 func handle_select_time_process():
 	var player_ref = get_tree().get_nodes_in_group("player")[0]
 	if(ui_select_timer.is_stopped()  && 
-	Input.is_action_just_pressed("use_item")):
+	Input.is_action_just_pressed("menu_back")):
 		var fx_player = get_tree().get_first_node_in_group("main_fx_player")
 		fx_player.stream = load("res://audio/soundFX/maracca.ogg")
 		fx_player.play()
 		end_select_mode()
 	elif(ui_select_timer.is_stopped()  && 
-	Input.is_action_just_pressed("interact")):
-		sleep_start_hour = time_keeper.get_hour()
-		sleep_end_hour = sleep_start_hour + current_select_time
-		var hours_in_day = 24
-		if(sleep_end_hour >= hours_in_day):
-			sleep_end_hour = sleep_end_hour - hours_in_day
-			advances_day = true
+	Input.is_action_just_pressed("menu_select")):
 		end_select_mode()
-		begin_sleeping()
+		if(current_select_time == 0):
+			make_bed()
+		else:
+			sleep_start_hour = time_keeper.get_hour()
+			sleep_end_hour = sleep_start_hour + current_select_time
+			var hours_in_day = 24
+			if(sleep_end_hour >= hours_in_day):
+				sleep_end_hour = sleep_end_hour - hours_in_day
+				advances_day = true
+			begin_sleeping()
 	else:
 		player_ref.stop()
 		update_select_bubble()
@@ -114,7 +152,10 @@ func handle_select_time_process():
 			if(current_select_time < max_time):
 				current_select_time = current_select_time + 1
 			else:
-				current_select_time = 8
+				if(made_bed_sprite != null):
+					current_select_time = 0
+				else:
+					current_select_time = 1
 		elif(Input.is_action_just_pressed("menu_left")):
 			var fx_player = get_tree().get_first_node_in_group("main_fx_player")
 			fx_player.stream = load("res://audio/soundFX/shaker.ogg")
@@ -165,6 +206,7 @@ func handle_sleep_process():
 			_door.play("closed")
 			player_ref.set_control_frozen(false)
 			player_ref.set_movement_frozen(false)
+			reset_sleep_anim()
 	if((fading_out || fading_in) &&
 	timer_fade.is_stopped()):
 		if(fading_out):
@@ -182,6 +224,7 @@ func handle_sleep_process():
 			if(!no_dream_sleep):
 				no_dream_sleep = true
 				slept_through_night()
+				player_end_sleep_anim()
 			if(fade_alpha > 0 && !holding_forward):
 				_saving_game.visible = false
 				fade_alpha -= fade_step
@@ -191,6 +234,7 @@ func handle_sleep_process():
 				fading_in = false
 				player_ref.set_control_frozen(false)
 				player_ref.set_movement_frozen(false)
+				reset_sleep_anim()
 				player_ref.set_ui_visible()
 				var main_fx_player = get_tree().get_first_node_in_group("main_fx_player")
 				main_fx_player.fade_in_diagetic_music_bus()
@@ -210,8 +254,10 @@ func begin_sleeping():
 	main_fx_player.fade_out_diagetic_music_bus()
 	player_ref.set_control_frozen(true)
 	player_ref.complete_stop()
-	player_ref.set_movement_frozen(true)
+	#player_ref.set_movement_frozen(true)
+	player_ref.linear_velocity = Vector2(0,0)
 	player_ref.set_ui_invisible()
+	player_start_sleep_anim()
 	var camera = player_ref.get_camera_ref()
 	#have to add camera pan because select bubble pans the camera, and hasn't
 	#yet returned to its initial pos by the time we hit this line of code
@@ -239,7 +285,10 @@ func start_select_mode():
 	add_child(select_time_bubble)
 	select_time_bubble.global_position = player_ref.global_position
 	update_select_bubble()
-	current_select_time = 1
+	if(made_bed_sprite != null):
+		current_select_time = 0
+	else:
+		current_select_time = 1
 	ui_select_timer.start(0.2)
 	
 
@@ -255,7 +304,9 @@ func update_select_bubble():
 	if(select_time_bubble != null):
 		var player_ref = get_tree().get_nodes_in_group("player")[0]
 		select_time_bubble.global_position = player_ref.global_position
-		if(current_select_time == 1):
+		if(current_select_time == 0):
+			select_time_bubble.set_label("Make Bed")
+		elif(current_select_time == 1):
 			select_time_bubble.set_label("Sleep for 1 hour")
 		else:
 			select_time_bubble.set_label(str("Sleep for ",str(current_select_time, " hours")))
@@ -264,9 +315,6 @@ func interact():
 	var player_ref = get_tree().get_first_node_in_group("player")
 	if(!time_select_mode):
 		start_select_mode()
-		#begin_sleeping()
-	else:
-		player_ref._on_make_comment("Can't sleep the day away.")
 
 func update_fade_alpha():
 	_fade_to_black.color = Color(0,0,0,fade_alpha)

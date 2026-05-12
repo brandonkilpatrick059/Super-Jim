@@ -19,10 +19,12 @@ furniture_entity = ExtResource("3_2a8b0")
 is_bed = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -28)
 texture = ExtResource("4_qj3m2")
 offset = Vector2(0, 24)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -28)
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]

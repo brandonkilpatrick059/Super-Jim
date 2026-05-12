@@ -679,7 +679,8 @@ func push(push_vect : Vector2, time_secs : float):
 	push_timer.start(time_secs)
 	stop()
 	push_vector = push_vect
-	stop_skateboarding()
+	var bypass_sound = true
+	stop_skateboarding(bypass_sound)
 
 func load_from_dictionary(load_dictionary : Dictionary):
 	var parent_group = String(load_dictionary.get("parent_group"))
@@ -1595,7 +1596,7 @@ func update_grabber():
 			_grabber.set_rotation_degrees(0)
 
 func play_animation(name : String):
-	_character_base.play
+	_character_base.play_animation(name)
 
 func move():
 	var input_direction = Input.get_vector(direction.left, direction.right, direction.up, direction.down)
@@ -1664,6 +1665,8 @@ func _physics_process(delta):
 				apply_force(current_v)
 			else:
 				apply_force(push_vector)
+				_character_base.face_to_vector(push_vector)
+				_character_base.animate_sprite_by_vector(push_vector, (speed() >= top_speed))
 			if(invincibility_timer.is_stopped() &&
 			is_invincible == true):
 				go_vincible()
@@ -1674,7 +1677,7 @@ func _physics_process(delta):
 			
 			update_item_square()
 			
-			if(!skating):
+			if(!skating && push_timer.is_stopped()):
 				_character_base.animate_sprite_by_vector(current_v, (speed() >= top_speed))
 			elif(skating):
 				_character_base.animate_sprite_by_vector(linear_velocity, (speed() >= top_speed))

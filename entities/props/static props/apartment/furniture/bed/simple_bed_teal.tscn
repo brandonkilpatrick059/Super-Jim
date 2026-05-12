@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://dog6yhjn1xh0p"]
+
+[ext_resource type="Script" uid="uid://y5ippqr715to" path="res://scripts/player_apartment/furniture.gd" id="1_tio2b"]
+[ext_resource type="PackedScene" uid="uid://dt6metcfd7qcq" path="res://entities/util/bed.tscn" id="2_w3tjx"]
+[ext_resource type="Texture2D" uid="uid://dvvcwg4vntpoc" path="res://sprites/props/furniture/bed_simple_frame_teal_made.png" id="3_tio2b"]
+[ext_resource type="Texture2D" uid="uid://b5e5ottgbskkc" path="res://sprites/props/furniture/bed_simple_frame_teal.png" id="3_w3tjx"]
+[ext_resource type="Texture2D" uid="uid://pp5fyiy87tyj" path="res://sprites/props/furniture/teal_sheet.png" id="5_mamu0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hvnd"]
+size = Vector2(30, 46)
+
+[node name="simple_bed_teal" type="Node2D"]
+script = ExtResource("1_tio2b")
+path_to_self = "res://entities/props/static props/apartment/furniture/bed/simple_bed_teal.tscn"
+
+[node name="bed" parent="." node_paths=PackedStringArray("bed_sprite", "made_bed_sprite", "sheet_sprite") instance=ExtResource("2_w3tjx")]
+collision_layer = 20
+collision_mask = 0
+bed_sprite = NodePath("bed_sprite")
+made_bed_sprite = NodePath("bed_sprite_made")
+sheet_sprite = NodePath("bed_sheet")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bed"]
+position = Vector2(0, 28)
+shape = SubResource("RectangleShape2D_5hvnd")
+debug_color = Color(0.278431, 0.627451, 0.223529, 0.419608)
+
+[node name="bed_sprite" type="Sprite2D" parent="bed"]
+texture = ExtResource("3_w3tjx")
+offset = Vector2(0, 24)
+
+[node name="bed_sprite_made" type="Sprite2D" parent="bed"]
+visible = false
+texture = ExtResource("3_tio2b")
+offset = Vector2(0, 24)
+
+[node name="bed_sheet" type="Sprite2D" parent="bed"]
+visible = false
+z_index = 3
+texture = ExtResource("5_mamu0")
+offset = Vector2(0, 24)
+
+[node name="sleep_anchor" type="Node2D" parent="bed"]
+position = Vector2(0, 13)

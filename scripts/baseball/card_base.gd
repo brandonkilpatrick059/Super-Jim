@@ -147,6 +147,8 @@ func _ready() -> void:
 	elif(team == "gray"):
 		_base_border.modulate = Color(0.65,0.65,0.65)
 	if(not ready_stow):
+		#remove meters from the tree in the card_roster where we don't need
+		#them running _physics_process every frame 
 		stow_meters()
 
 func get_card_team():

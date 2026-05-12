@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var noise = $noise
+@onready var noise : AnimatedSprite2D = $tv_noise
 @onready var alien_eye = $alien_eye
 @onready var input_glyph = $dream_door/glyph
 @onready var dream_door_tip = $dream_door
@@ -97,12 +97,12 @@ func get_noise_variance_point() -> float:
 func set_noise_strength(str : float):
 	var vol_diff = abs(zero_volume ) - abs(noise_max_vol)
 	var music_vol_ratio = str * vol_diff
-	
 	var noise_vol_ratio = (1.0 - str) * vol_diff
 	noise_player.volume_db = noise_max_vol - noise_vol_ratio
 	music_player.volume_db = -music_vol_ratio
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),-18-music_vol_ratio)
-	noise.modulate = Color(1.0,1.0,1.0, str)
+	#var noise : AnimatedSprite2D = get_node("tv_noise")
+	noise.modulate = Color(1.0,1.0,1.0,str)
 	noise_strength = str
 
 func camera_to_spaceship():

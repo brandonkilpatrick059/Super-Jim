@@ -26,13 +26,14 @@ color = Color(0, 0, 0, 0)
 polygon = PackedVector2Array(-800, 800, -800, -800, 800, -800, 800, 800)
 
 [node name="saving_game" type="Node2D" parent="."]
+visible = false
 z_index = 10
 
 [node name="zzz" type="AnimatedSprite2D" parent="saving_game"]
 material = SubResource("CanvasItemMaterial_7jf85")
 position = Vector2(0, -32)
 sprite_frames = ExtResource("2_0gpwx")
-frame_progress = 0.740539
+frame_progress = 0.968662
 script = ExtResource("3_43kmp")
 not_prunable = true
 

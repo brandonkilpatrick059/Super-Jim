@@ -661,6 +661,7 @@ func get_save_dictionary() -> Dictionary:
 		"tops_index" : tops_index,
 		"bottoms_index" : bottoms_index,
 		"num_fire_crackers" : num_fire_crackers,
+		"num_smoke_bombs" : num_smoke_bombs,
 		"days_since_rent_paid" : days_since_rent_paid,
 		"quest_state_keys" : quest_state_keys,
 		"quest_state_values" : quest_state_values,
@@ -714,6 +715,9 @@ func load_from_dictionary(load_dictionary : Dictionary):
 	
 	var load_num_fire_crackers = int(load_dictionary.get("num_fire_crackers"))
 	num_fire_crackers = load_num_fire_crackers
+	
+	var load_num_smoke_bombs = int(load_dictionary.get("num_smoke_bombs"))
+	num_smoke_bombs = load_num_smoke_bombs
 	
 	var load_days_since_rent_paid = int(load_dictionary.get("days_since_rent_paid"))
 	days_since_rent_paid = load_days_since_rent_paid

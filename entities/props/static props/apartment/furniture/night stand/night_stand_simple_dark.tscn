@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2vwywftt12ro"]
+
+[ext_resource type="Script" uid="uid://y5ippqr715to" path="res://scripts/player_apartment/furniture.gd" id="1_acjul"]
+[ext_resource type="Texture2D" uid="uid://dxwwvx3ka4osx" path="res://sprites/props/furniture/simple_night_stand.png" id="2_acjul"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydt6r"]
+size = Vector2(18, 23)
+
+[node name="NightStandSimpleDark" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_acjul")
+path_to_self = "res://entities/props/static props/apartment/furniture/night stand/night_stand_simple_dark.tscn"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_acjul")
+offset = Vector2(0, 10)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+z_index = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_ydt6r")

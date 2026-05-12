@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dv7xx5146qcet"]
+
+[ext_resource type="Script" uid="uid://c2eauyl5k8il2" path="res://scripts/shop/ware.gd" id="1_360uw"]
+[ext_resource type="Script" uid="uid://brs35wel42e0d" path="res://scripts/shop/ware_furniture.gd" id="2_l7slq"]
+[ext_resource type="PackedScene" uid="uid://b2vwywftt12ro" path="res://entities/props/static props/apartment/furniture/night stand/night_stand_simple_dark.tscn" id="3_360uw"]
+[ext_resource type="Texture2D" uid="uid://dxwwvx3ka4osx" path="res://sprites/props/furniture/simple_night_stand.png" id="4_360uw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8ccd"]
+size = Vector2(18, 23)
+
+[node name="WareNightStand0" type="Node2D"]
+script = ExtResource("1_360uw")
+cost = 5
+ware_name = "Simple Dark Night Stand"
+
+[node name="script_node" type="Node" parent="."]
+script = ExtResource("2_l7slq")
+furniture_entity = ExtResource("3_360uw")
+is_night_stand = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_360uw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_r8ccd")

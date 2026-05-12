@@ -224,7 +224,7 @@ func get_tab_sprite_path(key : String) -> String:
 		_: return ""
 
 func _physics_process(delta: float) -> void:
-	#global_position = player.get_camera_ref().get_screen_center_position()
+	global_position = player.get_camera_ref().get_screen_center_position()
 	if(timer.is_stopped()):
 		if(Input.is_action_just_pressed("journal")):
 			if(is_open):

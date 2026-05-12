@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu6lv85cothm4"]
+
+[ext_resource type="Script" uid="uid://y5ippqr715to" path="res://scripts/player_apartment/furniture.gd" id="1_62cbe"]
+[ext_resource type="Texture2D" uid="uid://bajek1h8wq34" path="res://sprites/props/furniture/simple_desk.png" id="2_62cbe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrlbe"]
+size = Vector2(51.5, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8xcgr"]
+size = Vector2(9.75, 22.5)
+
+[node name="DeskSimpleDark" type="Node2D"]
+script = ExtResource("1_62cbe")
+path_to_self = "res://entities/props/static props/apartment/furniture/desk/desk_simple_dark.tscn"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(0.25, 15.25)
+shape = SubResource("RectangleShape2D_mrlbe")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(-21, 9)
+shape = SubResource("RectangleShape2D_8xcgr")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(21.125, 9.25)
+shape = SubResource("RectangleShape2D_8xcgr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_62cbe")
+offset = Vector2(0, 10)

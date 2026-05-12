@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://ci0cefnp2l16w"]
+
+[ext_resource type="Script" uid="uid://c2eauyl5k8il2" path="res://scripts/shop/ware.gd" id="1_deq6r"]
+[ext_resource type="Script" uid="uid://brs35wel42e0d" path="res://scripts/shop/ware_furniture.gd" id="2_nw57j"]
+[ext_resource type="PackedScene" uid="uid://bu6lv85cothm4" path="res://entities/props/static props/apartment/furniture/desk/desk_simple_dark.tscn" id="3_deq6r"]
+[ext_resource type="Texture2D" uid="uid://bajek1h8wq34" path="res://sprites/props/furniture/simple_desk.png" id="4_deq6r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8ccd"]
+size = Vector2(52, 23)
+
+[node name="WareDeskSimpleDark" type="Node2D"]
+script = ExtResource("1_deq6r")
+cost = 20
+ware_name = "Used Oak Desk"
+
+[node name="script_node" type="Node" parent="."]
+script = ExtResource("2_nw57j")
+furniture_entity = ExtResource("3_deq6r")
+is_desk = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_deq6r")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_r8ccd")

@@ -11,7 +11,7 @@ size = Vector2(52, 23)
 [node name="WareDesk0" type="Node2D"]
 script = ExtResource("1_xp712")
 cost = 20
-ware_name = "Used Oak Desk"
+ware_name = "Wooden Desk"
 
 [node name="script_node" type="Node" parent="."]
 script = ExtResource("2_swowo")

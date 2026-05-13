@@ -1142,9 +1142,9 @@ func handle_dev():
 		var time_keeper = get_tree().get_first_node_in_group("time_keeper")
 		time_keeper.advance_clock()
 		time_keeper.refresh_npc_locations()
-	if Input.is_action_just_pressed("dev_input"):
+	if Input.is_action_pressed("dev_input"):
 		#THIS IS A GENERAL PURPOSE INPUT FOR DEBUGGING
-		teleport("JEFF")
+		shake_camera(2.0)
 
 func get_current_hp():
 	return current_hp
@@ -1164,7 +1164,7 @@ func increment_hp():
 		current_hp = current_hp + 1
 		_ui.update_hearts(current_hp)
 
-func shake_camera(magnitude : int):
+func shake_camera(magnitude : float):
 	_camera.shake(magnitude)
 
 func reduce_hp(amount : int = 1, nonlethal : bool = false):

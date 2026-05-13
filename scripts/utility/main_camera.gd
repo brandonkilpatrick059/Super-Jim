@@ -30,7 +30,7 @@ var zoom_step_secs = 0.001
 
 var player_connected = false
 
-var shake_amount : int = 0
+var shake_amount : float = 0
 var shaking : bool = false
 var shake_left : bool = false
 var shake_timer := Timer.new()
@@ -65,7 +65,7 @@ func get_pan_y_max() -> float:
 func get_pan_x_max() -> float:
 	return pan_x_max
 
-func shake(magnitude : int):
+func shake(magnitude : float):
 	shaking = true
 	shake_amount = magnitude
 
@@ -149,14 +149,12 @@ func handle_zoom():
 func handle_shake():
 	if(shaking):
 		if(shake_timer.is_stopped()):
-			var drag_margin = 32
-			var amount = drag_margin + shake_amount
 			if(shake_left):
-				position = Vector2(-amount,0)
+				position = Vector2(0,-shake_amount)
 			else:
-				position = Vector2(amount,0)
+				position = Vector2(0,shake_amount)
 			shake_left = !shake_left
-			shake_amount = shake_amount - 1
+			shake_amount = shake_amount - 1.0
 			if(shake_amount <= 0):
 				shaking = false
 				position = Vector2(0,0)

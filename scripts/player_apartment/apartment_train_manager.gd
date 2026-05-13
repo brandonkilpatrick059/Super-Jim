@@ -149,7 +149,8 @@ func _physics_process(delta: float) -> void:
 	update_train_sound()
 	#update_camera_shake()
 	if(!timer.is_stopped()):
-		player_ref.shake_camera(2)
+		player_ref.shake_camera(2.0)
+		Input.start_joy_vibration(0,0.1,0.0,0.25)
 	update_flash_daytime_lights()
 	update_flash_nighttime_lights()
 	

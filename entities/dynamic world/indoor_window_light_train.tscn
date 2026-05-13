@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfb3rqeywnpu3"]
+
+[ext_resource type="Texture2D" uid="uid://dkmviee8xxpm7" path="res://sprites/lights/indoor_window__light.png" id="1_ae1jp"]
+
+[node name="IndoorWindowLightTrain" type="Node2D" groups=["prunable"]]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 1, 0.6, 1)
+energy = 0.8
+texture = ExtResource("1_ae1jp")

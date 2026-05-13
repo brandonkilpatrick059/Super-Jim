@@ -160,6 +160,7 @@ func handle_shake():
 			if(shake_amount <= 0):
 				shaking = false
 				position = Vector2(0,0)
+				shake_amount = 0
 			shake_timer.start(0.05)
 
 func handle_camera_pan():

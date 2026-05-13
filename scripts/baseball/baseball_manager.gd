@@ -318,12 +318,15 @@ func run_attack_phase(attacking_card : Baseball_Card, defending_card : Baseball_
 		play_buff_sound(final_buff_amt)
 	if(damage_done == 0):
 		play_sound("res://audio/soundFX/maracca.ogg")
-	if(damage_done <= 3):
+	elif(damage_done <= 3):
 		play_sound("res://audio/soundFX/baseball/hit2.wav")
+		Input.start_joy_vibration(0,0.25,0.0,0.25)
 	elif(damage_done > 3 && damage_done <= 6):
 		play_sound("res://audio/soundFX/baseball/hit3.wav")
+		Input.start_joy_vibration(0,0.5,0.5,0.25)
 	elif(damage_done > 6):
 		var added_shake = damage_done - 6
+		Input.start_joy_vibration(0,0.0,1.0,0.5)
 		shake_screen(4 + added_shake)
 		handle_shake()
 		play_sound("res://audio/soundFX/baseball/hit3.wav")
@@ -607,7 +610,9 @@ func handle_shake():
 
 func shake_screen(magnitude : int):
 	shaking = true
-	shake_magnitude = magnitude	
+	shake_magnitude = magnitude
+	#var amt : float = float(magnitude) / 9.0
+	#Input.start_joy_vibration(0,0.0,amt,1.0)
 
 func kill_card(kill_right_card : bool):
 	bat_arms_left.visible = false

@@ -25,6 +25,9 @@ var initial_x
 
 var shake_camera : bool = true
 
+func sound_player_is_playing():
+	return sound_player.playing
+
 func _ready() -> void:
 	move_step_timer.one_shot = true
 	add_child(move_step_timer)

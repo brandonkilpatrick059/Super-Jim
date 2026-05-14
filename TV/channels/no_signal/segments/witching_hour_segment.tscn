@@ -33,7 +33,7 @@ visible = false
 [node name="door" type="AnimatedSprite2D" parent="dream_door"]
 sprite_frames = ExtResource("5_8x7ed")
 animation = &"open"
-frame_progress = 0.214307
+frame_progress = 0.827291
 script = ExtResource("6_iuq6v")
 animation_name = "open"
 
@@ -44,7 +44,7 @@ texture = ExtResource("6_iqf7r")
 [node name="sleep_z" type="AnimatedSprite2D" parent="dream_door"]
 position = Vector2(0, -34)
 sprite_frames = ExtResource("8_i2l4s")
-frame_progress = 0.135604
+frame_progress = 0.518059
 script = ExtResource("3_8x7ed")
 
 [node name="glyph" type="Sprite2D" parent="dream_door"]
@@ -63,5 +63,4 @@ polygon = PackedVector2Array(-500, -500, 500, -500, 500, 500, -500, 500)
 [node name="tv_noise" type="AnimatedSprite2D" parent="."]
 material = ExtResource("9_epetk")
 sprite_frames = ExtResource("2_ba2c2")
-frame_progress = 0.28343
 script = ExtResource("3_8x7ed")

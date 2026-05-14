@@ -15,11 +15,13 @@ func disable():
 	active = false
 	visible = false
 	audio_player.stop()
+	noise.visible = false
 
 func set_active(set_active : bool):
 	if(set_active == true && !active):
 		active = true
 		visible = true
+		noise.visible = true
 		audio_player.stream = load("res://audio/soundFX/pink_noise.wav")
 		audio_player.play()
 	elif(set_active == false && active):

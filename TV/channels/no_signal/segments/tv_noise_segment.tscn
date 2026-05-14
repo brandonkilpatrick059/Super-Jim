@@ -22,5 +22,5 @@ polygon = PackedVector2Array(-500, -500, 500, -500, 500, 500, -500, 500)
 [node name="noise" type="AnimatedSprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_6ma2l")
 sprite_frames = ExtResource("2_rb0ur")
-frame_progress = 0.159138
+frame_progress = 0.579973
 script = ExtResource("3_6ma2l")

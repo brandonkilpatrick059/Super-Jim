@@ -37,6 +37,8 @@ const dream_door : String = "dream_door"
 var exiting : bool = false
 var entering : bool = true
 
+@onready var tv_noise : AnimatedSprite2D = $tv_noise
+
 #var sequence : Array[String] = [
 	#all_noise,
 	#green_glow,
@@ -102,8 +104,18 @@ func set_noise_strength(str : float):
 	music_player.volume_db = -music_vol_ratio
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),-18-music_vol_ratio)
 	#var noise : AnimatedSprite2D = get_node("tv_noise")
-	noise.modulate = Color(1.0,1.0,1.0,str)
+	tv_noise.modulate = Color(1.0,1.0,1.0,str)
+	#set_static_level(str)
 	noise_strength = str
+
+#tried to just set the alpha of the modulate
+#but it kept breaking for no reason
+#something about it is bugged
+#have to do this heinous work around
+#God forgive me
+func set_static_level(level : float):
+	var idx = int(level * 10)
+	tv_noise.play(str(idx))
 
 func camera_to_spaceship():
 	var daylight_layer = get_tree().get_first_node_in_group("daylight_layer")
@@ -127,6 +139,7 @@ func clean_up_spaceship_skybox():
 
 func camera_to_end_door():
 	var flat_light_layer = get_tree().get_first_node_in_group("flat_light_layer")
+	flat_light_layer.visible = true
 	var tv_machine = get_tree().get_first_node_in_group("tv_machine")
 	tv_machine.reparent(flat_light_layer)
 	var dark_layer = get_tree().get_first_node_in_group("dark_layer")

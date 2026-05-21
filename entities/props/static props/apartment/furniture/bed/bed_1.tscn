@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://y5ippqr715to" path="res://scripts/player_apartment/furniture.gd" id="1_5hvnd"]
 [ext_resource type="PackedScene" uid="uid://dt6metcfd7qcq" path="res://entities/util/bed.tscn" id="2_t7621"]
-[ext_resource type="Texture2D" uid="uid://c26fq4gtsui1c" path="res://sprites/props/furniture/bed_1.png" id="2_vcio1"]
 [ext_resource type="Texture2D" uid="uid://ikyi7i6s5i67" path="res://sprites/props/furniture/green_sheet.png" id="3_sxu0x"]
+[ext_resource type="Texture2D" uid="uid://bijamg5adtw2h" path="res://sprites/props/furniture/bed_green.png" id="3_w7tsk"]
 [ext_resource type="Texture2D" uid="uid://ctqisf1eft3bf" path="res://sprites/props/furniture/bed_green_made.png" id="4_w7tsk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5hvnd"]
@@ -26,7 +26,7 @@ shape = SubResource("RectangleShape2D_5hvnd")
 debug_color = Color(0.278431, 0.627451, 0.223529, 0.419608)
 
 [node name="bed_sprite" type="Sprite2D" parent="bed"]
-texture = ExtResource("2_vcio1")
+texture = ExtResource("3_w7tsk")
 offset = Vector2(0, 24)
 
 [node name="bed_sprite_made" type="Sprite2D" parent="bed"]

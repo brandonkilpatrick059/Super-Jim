@@ -20,7 +20,7 @@ func _physics_process(delta):
 		if(teleporter.is_entering()):
 			teleporter.enter()
 		elif(teleporter.is_loading()):
-			teleporter.load_wait() # wait for pruned objects to load in
+			teleporter.load_wait() #pause to cover prune_manager full pass
 		elif(teleporter.is_exiting()):
 			teleporter.exit()
 		elif(teleporter.is_control_timer_active() 

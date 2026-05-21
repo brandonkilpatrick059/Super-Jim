@@ -5,12 +5,16 @@ class_name shop_manager
 @export var stage_locations : Array[Node] = []
 @export var ware_stock : Array[int] = []
 @export_multiline var ware_comment : Array[String] = []
+@export var save_tag : String = ""
 
 var staged_wares : Array[Node] = []
 
 var random = RandomNumberGenerator.new()
 
 var wares_staged = false
+
+func get_save_tag():
+	return save_tag
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,6 +46,22 @@ func shuffle_staged_items():
 			ware.global_position = stage_locations[iterator].global_position
 			staged_wares.append(ware)
 			iterator += 1
+
+func get_save_dictionary() -> Dictionary:
+	var save_tag : String = get_save_tag()
+	var save_dictionary = {
+		"type" : "shop",
+		"ware_stock": ware_stock
+	}
+	return save_dictionary
+
+func load_from_dictionary(load_dictionary : Dictionary):
+	ware_stock = []
+	var load_ware_stock = load_dictionary.get("ware_stock")
+	var index = 0
+	while(index < load_ware_stock.size()):
+		ware_stock.append(int(load_ware_stock[index]))
+		index = index + 1
 
 func get_staged_wares():
 	return staged_wares

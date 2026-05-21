@@ -134,7 +134,6 @@ func load_wait():
 		linked_teleporter.timer_fade.start(teleport_step_secs)
 		loading = false
 		exiting = true
-		#player_ref.get_camera_ref().fade_in(0.1)
 
 func make_active():
 	inactive = false
@@ -203,7 +202,7 @@ func enter():
 		player_ref.complete_stop()
 		if(linked_teleporter.exit_y_push != 0):
 			var push_vector = Vector2(0,0)
-			if(exit_y_push > 0):
+			if(linked_teleporter.exit_y_push < 0):
 				push_vector = push_vector + Vector2(0,-15000)
 			else:
 				push_vector = push_vector + Vector2(0,15000)
@@ -235,12 +234,10 @@ func exit():
 	else: if(fade_alpha <= 0):
 		fade_alpha = 0
 		exiting = false
-		#player_ref.stop()
 		if(!control_timer_active && secs_for_control_back > 0):
 			control_timer_active = true
 			timer_control_back.start(secs_for_control_back)
 		else:
-			#detach_fader()
 			player_ref.set_control_frozen(false)
 			if(opening_ui_interact):
 				player_ref.opening_ui_visible()
@@ -269,15 +266,11 @@ func teleport_player():
 	entering = true
 	run_enter_scripts = true
 	linked_teleporter.run_exit_scripts = true
-	#attach_fader()
-	#player_ref.get_camera_ref().fade_out(0.1)
-	player_ref.complete_stop()
 	var bypass_sound = true
 	player_ref.stop_skateboarding(bypass_sound)
 	player_ref.set_control_frozen(true)
 	var main_fx_player = get_tree().get_first_node_in_group("main_fx_player")
 	main_fx_player.fade_out_effects_bus()
-	#player_ref.disable_collision()
 	if(opening_ui_interact):
 		player_ref.opening_ui_invisible()
 	elif(!no_ui_interact):
@@ -286,6 +279,7 @@ func teleport_player():
 	timer_fade.start(fade_step_secs)
 	var push_vector = Vector2(0,0)
 	var horizontal_push_force = 5000
+	player_ref.complete_stop()
 	if(enter_y_push != 0):
 		if(enter_y_push > 0):
 			push_vector = push_vector + Vector2(0,20000)

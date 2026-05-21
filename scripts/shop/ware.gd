@@ -5,6 +5,7 @@ extends Node
 @export var cost : int
 @export var ware_name : String = ""
 @export var wait_until_dialog_ends : bool = false
+@export_multiline var player_comment : String = ""
 
 func buy_item():
 	var player_ref = get_tree().get_first_node_in_group("player")

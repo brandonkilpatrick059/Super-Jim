@@ -530,6 +530,19 @@ func get_save_dictionary() -> Dictionary:
 	}
 	return save_dictionary
 
+func load_from_dictionary(load_dictionary : Dictionary):
+	if(load_position):
+		global_position = Vector2(load_dictionary.get("pos_x"), load_dictionary.get("pos_y"))
+		if(str(load_dictionary.get("parent")) == "daylight"):
+			reparent(get_tree().get_first_node_in_group("daylight_affected_ysort"))
+		elif(str(load_dictionary.get("parent")) == "dark"):
+			reparent(get_tree().get_first_node_in_group("dark_indoor_ysort"))
+	schedules_index = int(load_dictionary.get("schedules_index"))
+	teleport_and_update()
+	if(load_dictionary.get("shows_headphones") != null &&
+	bool(load_dictionary.get("shows_headphones"))):
+		show_headphones()
+
 func get_ai_state():
 	return _ai_state_machine.state.name
 
@@ -551,19 +564,6 @@ func teleport_and_update():
 
 func set_immobilized(input : bool):
 	immobilized = input
-
-func load_from_dictionary(load_dictionary : Dictionary):
-	if(load_position):
-		global_position = Vector2(load_dictionary.get("pos_x"), load_dictionary.get("pos_y"))
-		if(str(load_dictionary.get("parent")) == "daylight"):
-			reparent(get_tree().get_first_node_in_group("daylight_affected_ysort"))
-		elif(str(load_dictionary.get("parent")) == "dark"):
-			reparent(get_tree().get_first_node_in_group("dark_indoor_ysort"))
-	schedules_index = int(load_dictionary.get("schedules_index"))
-	teleport_and_update()
-	if(load_dictionary.get("shows_headphones") != null &&
-	bool(load_dictionary.get("shows_headphones"))):
-		show_headphones()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

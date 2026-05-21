@@ -34,10 +34,10 @@ func load_game():
 				load_cash(dictionary)
 			"tip_trigger":
 				load_trigger(dictionary)
+			"shop_manager":
+				load_shop_manager(dictionary)
 	save_file.close()
 	handle_queue_free_on_load()
-
-
 
 func handle_queue_free_on_load():
 	var nodes = get_tree().get_nodes_in_group("queue_free_on_load")
@@ -56,6 +56,7 @@ func save_game():
 	save_tip_triggers()
 	save_crystals()
 	save_cash()
+	save_shop_managers()
 	save_file.close()
 
 func save_player():
@@ -119,6 +120,20 @@ func load_npc(dictionary : Dictionary):
 			var npc_tag = npc.get_save_tag()
 			if(npc_tag == dictionary.get("save_tag")):
 				npc.load_from_dictionary(dictionary)
+
+func save_shop_managers():
+	var shops = get_tree().get_nodes_in_group("shop_manager")
+	for shop in shops:
+		if (shop.get_save_tag() != ""):
+			var shop_dictionary : Dictionary = shop.get_save_dictionary()
+			save_file.store_line(JSON.stringify(shop_dictionary))
+
+func load_shop_manager(dictionary : Dictionary):
+	var shops = get_tree().get_nodes_in_group("shop_manager")
+	for shop in shops:
+		var shop_tag = shop.get_save_tag()
+		if(shop_tag == dictionary.get("save_tag")):
+			shop.load_from_dictionary(dictionary)
 
 func save_crystals():
 	var crystals = get_tree().get_nodes_in_group("dash_crystal")

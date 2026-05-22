@@ -115,6 +115,9 @@ var left_team_won = false
 var show_fight = true
 var show_get_ready = false
 
+var card_left_has_thrown = false
+var card_right_has_thrown = false
+
 func _ready():
 	bat_arms_left.visible = false
 	bat_arms_right.visible = false
@@ -442,7 +445,7 @@ func enact_effects():
 
 	##throwing stats
 	var stat_thrown = false
-	if(card_right.get_hp() == 0):
+	if(!card_right_has_thrown):
 		if(card_right.get_throws_hp() > 0):
 			right_thrown_hp.throw_stat(card_right.get_throws_hp())
 			stat_thrown = true
@@ -452,7 +455,8 @@ func enact_effects():
 		if(card_right.get_throws_shield() > 0):
 			right_thrown_shield.throw_stat(card_right.get_throws_shield())
 			stat_thrown = true
-	if(card_left.get_hp() == 0):
+		card_right_has_thrown = true
+	if(!card_left_has_thrown):
 		if(card_left.get_throws_hp() > 0):
 			left_thrown_hp.throw_stat(card_left.get_throws_hp())
 			stat_thrown = true
@@ -462,6 +466,7 @@ func enact_effects():
 		if(card_left.get_throws_shield() > 0):
 			left_thrown_shield.throw_stat(card_left.get_throws_shield())
 			stat_thrown = true
+		card_left_has_thrown = true
 	if(stat_thrown):
 		play_sound("res://audio/soundFX/dash_regen.wav")
 	
@@ -623,9 +628,11 @@ func kill_card(kill_right_card : bool):
 	if(kill_right_card):
 		left_cards_killed = left_cards_killed + 1
 		right_cards_killed = 0
+		card_right_has_thrown = false
 	else:
 		right_cards_killed = right_cards_killed + 1
 		left_cards_killed = 0
+		card_left_has_thrown = false
 	
 	if(right_cards_killed > 1):
 		var particle = load("res://baseball/stat_particle.tscn").instantiate()

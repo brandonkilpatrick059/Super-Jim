@@ -11,7 +11,7 @@ script = ExtResource("1_cw4x1")
 trunk = NodePath("trunk")
 
 [node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wp3s2")]
-speaker_text = Array[String](["I can't believe it..."])
+speaker_text = Array[String](["Hey!"])
 speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
 voice = "sine_voice"

@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://c64ikfwvmt3fp"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_cw4x1"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_wp3s2"]
+[ext_resource type="Script" uid="uid://cw48q6xuo2nnn" path="res://scripts/utility/run_scripts/advanced_run_scripts.gd" id="3_hge3l"]
+[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="4_ce6fq"]
+[ext_resource type="Script" uid="uid://c8far48a5h46c" path="res://scripts/utility/interact_after_seconds.gd" id="5_mvmrf"]
+
+[node name="intro_1" type="Node2D"]
+script = ExtResource("1_cw4x1")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wp3s2")]
+speaker_text = Array[String](["I can't believe it..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
+speaker_name = "intro_player"
+bypass_distance_check = true
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_wp3s2")]
+position = Vector2(-1, 258)
+speaker_text = Array[String](["The door's open!"])
+speaker_portrait = null
+voice = "sine_voice"
+speaker_name = "intro_player"
+dialog_script = NodePath("script_runner")
+script_runs_after_dialog = true
+bypass_distance_check = true
+
+[node name="script_runner" type="Node" parent="trunk2" node_paths=PackedStringArray("script_nodes")]
+script = ExtResource("3_hge3l")
+script_nodes = [NodePath("move_to_train"), NodePath("sibling_move_to_mark"), NodePath("interact_after_seconds")]
+
+[node name="move_to_train" type="Node" parent="trunk2/script_runner"]
+script = ExtResource("4_ce6fq")
+node_group = "intro_player"
+new_key = "train"
+
+[node name="sibling_move_to_mark" type="Node" parent="trunk2/script_runner"]
+script = ExtResource("4_ce6fq")
+node_group = "intro_sibling"
+new_key = "mark"
+
+[node name="interact_after_seconds" type="Node" parent="trunk2/script_runner"]
+script = ExtResource("5_mvmrf")
+interact_group = "intro_sibling"
+seconds = 10.0
+auto_start = false

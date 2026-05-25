@@ -77,7 +77,7 @@ texture = ExtResource("6_o3xy8")
 
 [node name="player_light" type="PointLight2D" parent="."]
 z_index = -1
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.35, 0.35)
 texture = ExtResource("8_0d5hj")
 
 [node name="skateboard" type="AnimatedSprite2D" parent="."]

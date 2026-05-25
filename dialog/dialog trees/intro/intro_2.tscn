@@ -1,0 +1,198 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfralw82f051m"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_fsaw3"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_x2px3"]
+[ext_resource type="Script" uid="uid://cw48q6xuo2nnn" path="res://scripts/utility/run_scripts/advanced_run_scripts.gd" id="3_x2px3"]
+[ext_resource type="Script" uid="uid://cqysxc0jrjdh6" path="res://scripts/utility/trigger_intro_camera_anchor.gd" id="4_4hrp0"]
+
+[node name="intro_2" type="Node2D"]
+script = ExtResource("1_fsaw3")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_x2px3")]
+speaker_text = Array[String](["You're really gonna do it..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
+speaker_name = "intro_sibling"
+bypass_distance_check = true
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_x2px3")]
+position = Vector2(210, 264)
+speaker_text = Array[String](["Yeah."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "sine_voice"
+speaker_name = "intro_player"
+bypass_distance_check = true
+
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_x2px3")]
+position = Vector2(210, 577)
+speaker_text = Array[String](["Tonight's the night."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk4")]
+voice = "sine_voice"
+speaker_name = "intro_player"
+bypass_distance_check = true
+
+[node name="trunk4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_x2px3")]
+position = Vector2(210, 911)
+speaker_text = Array[String](["I'm finally getting out of here."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk5")]
+voice = "sine_voice"
+speaker_name = "intro_player"
+bypass_distance_check = true
+
+[node name="trunk5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_x2px3")]
+position = Vector2(0, 1185)
+speaker_text = Array[String](["Where will you go?"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk6")]
+voice = "sine_voice"
+speaker_name = "intro_sibling"
+bypass_distance_check = true
+
+[node name="trunk6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_x2px3")]
+position = Vector2(243, 1578)
+speaker_text = Array[String](["I don't know."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk7")]
+voice = "sine_voice"
+speaker_name = "intro_player"
+bypass_distance_check = true
+
+[node name="trunk7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_x2px3")]
+position = Vector2(243, 1931)
+speaker_text = Array[String](["The train's heading west."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk8")]
+voice = "sine_voice"
+speaker_name = "intro_player"
+bypass_distance_check = true
+
+[node name="trunk8" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_x2px3")]
+position = Vector2(0, 2224)
+speaker_text = Array[String](["What's out there?"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk9")]
+voice = "sine_voice"
+speaker_name = "intro_sibling"
+bypass_distance_check = true
+
+[node name="trunk9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_x2px3")]
+position = Vector2(267, 2532)
+speaker_text = Array[String](["I don't know."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk10")]
+voice = "sine_voice"
+speaker_name = "intro_player"
+bypass_distance_check = true
+
+[node name="trunk10" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_x2px3")]
+position = Vector2(307, 2882)
+speaker_text = Array[String](["But anywhere has to be better than here."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk11")]
+voice = "sine_voice"
+speaker_name = "intro_player"
+bypass_distance_check = true
+
+[node name="trunk11" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_x2px3")]
+position = Vector2(34, 3227)
+speaker_text = Array[String](["What should I tell mom and dad?"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk12_1")]
+voice = "sine_voice"
+speaker_name = "intro_sibling"
+bypass_distance_check = true
+
+[node name="trunk12_1" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_x2px3")]
+position = Vector2(347, 3318)
+speaker_text = Array[String](["..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk12")]
+voice = "sine_voice"
+speaker_name = "intro_player"
+bypass_distance_check = true
+
+[node name="trunk12" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_x2px3")]
+position = Vector2(347, 3592)
+speaker_text = Array[String](["I don't care."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk13")]
+voice = "sine_voice"
+speaker_name = "intro_player"
+bypass_distance_check = true
+
+[node name="trunk13" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_x2px3")]
+position = Vector2(34, 3898)
+speaker_text = Array[String](["..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk14")]
+voice = "sine_voice"
+speaker_name = "intro_sibling"
+bypass_distance_check = true
+
+[node name="trunk14" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_x2px3")]
+position = Vector2(34, 4337)
+speaker_text = Array[String](["I'll miss you."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk15")]
+voice = "sine_voice"
+speaker_name = "intro_sibling"
+bypass_distance_check = true
+
+[node name="trunk15" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_x2px3")]
+position = Vector2(371, 4647)
+speaker_text = Array[String](["I'll miss you too."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk16_train_whistle")]
+voice = "sine_voice"
+speaker_name = "intro_player"
+bypass_distance_check = true
+
+[node name="trunk16_train_whistle" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_x2px3")]
+position = Vector2(411, 5041)
+speaker_text = Array[String](["..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk17")]
+voice = "sine_voice"
+speaker_name = "intro_player"
+play_sound_path = "res://audio/soundFX/train_horn.wav"
+bypass_distance_check = true
+
+[node name="trunk17" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_x2px3")]
+position = Vector2(428, 5515)
+speaker_text = Array[String](["I gotta go now."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk18")]
+voice = "sine_voice"
+speaker_name = "intro_player"
+bypass_distance_check = true
+
+[node name="trunk18" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_x2px3")]
+position = Vector2(34, 5824)
+speaker_text = Array[String](["Bye."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk19")]
+voice = "sine_voice"
+speaker_name = "intro_sibling"
+bypass_distance_check = true
+
+[node name="trunk19" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_x2px3")]
+position = Vector2(475, 6178)
+speaker_text = Array[String](["Bye."])
+speaker_portrait = null
+voice = "sine_voice"
+speaker_name = "intro_player"
+dialog_script = NodePath("script_runner")
+script_runs_after_dialog = true
+bypass_distance_check = true
+
+[node name="script_runner" type="Node" parent="trunk19" node_paths=PackedStringArray("script_nodes")]
+script = ExtResource("3_x2px3")
+script_nodes = [NodePath("trigger_intro_camera_anchor")]
+
+[node name="trigger_intro_camera_anchor" type="Node" parent="trunk19/script_runner"]
+script = ExtResource("4_4hrp0")

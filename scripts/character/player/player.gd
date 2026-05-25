@@ -620,7 +620,8 @@ func set_quest_log(key : String, value : int):
 #called when the player starts a new game
 func new_game():
 	var time_keeper = get_tree().get_first_node_in_group("time_keeper")
-	time_keeper.set_clock(17)
+	time_keeper.set_clock(19)
+	_collision.disabled = true
 
 func turn_on_ui_noises():
 	_ui.turn_on_ui_noises() 

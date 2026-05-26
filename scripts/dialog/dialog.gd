@@ -19,6 +19,7 @@ var ware_commenting = false
 var shop_deciding = false
 var shop_buy_decision = true
 var shop_pick_index : int = 0
+var sold_out = false
 
 var dialog_started = false
 var shop : shop_manager = null
@@ -162,15 +163,20 @@ func handle_input():
 			else:
 				_ResponseBubble.set_label("No.")
 				shop_buy_decision = false
-		elif(tree.get_shows_wares() && shop != null): #display available wares
-			shopping = true
-			if(dialog_choice_index == 0):
-				_ResponseBubble.set_label("Nevermind.")
-			else:
-				var ware_name = shop.get_staged_wares()[dialog_choice_index-1].get_ware_name()
-				var ware_price : int = shop.get_staged_wares()[dialog_choice_index-1].get_cost()
-				var price_string : String = str(" for $",ware_price)
-				_ResponseBubble.set_label(str(ware_name,price_string))
+		elif(!sold_out && tree.get_shows_wares() && shop != null): #display available wares
+			if(shop.get_staged_wares().size() > 0):
+				shopping = true
+				if(dialog_choice_index == 0):
+					_ResponseBubble.set_label("Nevermind.")
+				else:
+					var ware_name = shop.get_staged_wares()[dialog_choice_index-1].get_ware_name()
+					var ware_price : int = shop.get_staged_wares()[dialog_choice_index-1].get_cost()
+					var price_string : String = str(" for $",ware_price)
+					_ResponseBubble.set_label(str(ware_name,price_string))
+			elif(!sold_out):
+				var sold_out_comment = shop.get_sold_out_comment()
+				sold_out = true
+				play_text(sold_out_comment,shop.get_comment_voice())
 		else:
 			_ResponseBubble.set_label(tree.get_speech_option(dialog_choice_index))
 			
@@ -212,7 +218,7 @@ func handle_input():
 		if(queued_script != null):
 			queued_script.run_script()
 			queued_script = null
-		if(is_end_of_dialog()):
+		if(is_end_of_dialog() || sold_out):
 			end_dialog()
 		elif(dialog_continues()):
 			tree.take_speech_option(0)
@@ -258,7 +264,7 @@ func handle_input():
 							if(ware.waits_until_dialog_ends()):
 								waited_ware = ware
 							else:
-								ware.buy_item()
+								shop.buy_given_ware(ware)
 							tree.take_speech_option(1)
 							play_current_branch()
 						else:

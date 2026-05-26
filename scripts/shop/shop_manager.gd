@@ -6,6 +6,10 @@ class_name shop_manager
 @export var ware_stock : Array[int] = []
 @export_multiline var ware_comment : Array[String] = []
 @export var save_tag : String = ""
+@export var comment_voice : String = ""
+@export_multiline var are_you_sure_comment : String = ""
+
+var staged_ware_comments : Array[String] = []
 
 var staged_wares : Array[Node] = []
 
@@ -26,12 +30,20 @@ func dispose_of_staged_wares():
 	for ware in staged_wares:
 		ware.queue_free()
 	staged_wares = []
+	staged_ware_comments = []
+
+func get_comment_voice() -> String:
+	return comment_voice
 
 func get_ware_stock(index : int) -> int:
 	return ware_stock[index]
 
-func get_ware_comment(index : int) -> String:
-	return ware_comment[index]
+func get_ware_comment(ware : Node) -> String:
+	var index = staged_wares.find(ware)
+	return staged_ware_comments[index]
+
+func get_are_you_sure_comment() -> String:
+	return are_you_sure_comment
 
 func shuffle_staged_items():
 	dispose_of_staged_wares()
@@ -45,6 +57,9 @@ func shuffle_staged_items():
 			stage_locations[iterator].add_child(ware)
 			ware.global_position = stage_locations[iterator].global_position
 			staged_wares.append(ware)
+			if(ware_comment.size() > 0):
+				var comment = ware_comment[index]
+				staged_ware_comments.append(comment)
 			iterator += 1
 
 func get_save_dictionary() -> Dictionary:

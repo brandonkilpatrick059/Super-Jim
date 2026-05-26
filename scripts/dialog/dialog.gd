@@ -13,7 +13,13 @@ var tree : dialog_tree
 var player_ref
 var dialog_choice_index = 0
 var responding = false
+
 var shopping = false
+var ware_commenting = false
+var shop_deciding = false
+var shop_buy_decision = true
+var shop_pick_index : int = 0
+
 var dialog_started = false
 var shop : shop_manager = null
 var nudge_vector = Vector2(0,0)
@@ -79,6 +85,14 @@ func play_current_branch():
 	else:
 		play_cards()
 
+func play_text(text : String, voice : String):
+	_ResponseBubble.visible = false
+	_DialogBubble.set_label("")
+	_DialogBubble.global_position = speaker_node.global_position + Vector2(-48,-96) + nudge_vector
+	_DialogBubble.set_portrait(null, "") #no portraits :(
+	_DialogBubble.visible = true
+	_DialogBubble.play_text(text, tree.get_voice())
+
 func set_tree_and_start_dialog(in_tree :dialog_tree):
 	tree = in_tree
 	dialog_started = true
@@ -139,7 +153,16 @@ func end_dialog():
 
 func handle_input():
 	if(responding):
-		if(tree.get_shows_wares() && shop != null): #display available wares
+		if(shop_deciding && !ware_commenting):
+			_ResponseBubble.visible = true
+			_DialogBubble.visible = false
+			if(dialog_choice_index == 0):
+				_ResponseBubble.set_label("Yes.")
+				shop_buy_decision = true
+			else:
+				_ResponseBubble.set_label("No.")
+				shop_buy_decision = false
+		elif(tree.get_shows_wares() && shop != null): #display available wares
 			shopping = true
 			if(dialog_choice_index == 0):
 				_ResponseBubble.set_label("Nevermind.")
@@ -151,18 +174,21 @@ func handle_input():
 		else:
 			_ResponseBubble.set_label(tree.get_speech_option(dialog_choice_index))
 			
-		if(Input.is_action_just_pressed("menu_left")):
+		if(Input.is_action_just_pressed("menu_left") && !ware_commenting):
 			_AudioStreamPlayer.stream = load("res://audio/soundFX/maracca.ogg")
 			_AudioStreamPlayer.play()
 			if(dialog_choice_index == 0):
 				if(!shopping):
 					dialog_choice_index = tree.get_num_speech_options() - 1
 				else:
-					dialog_choice_index = shop.get_staged_wares().size()
+					if(shop_deciding):#do you want to buy this?
+						dialog_choice_index = 1
+					else:
+						dialog_choice_index = shop.get_staged_wares().size()
 			else:
 				dialog_choice_index = dialog_choice_index - 1
 		
-		if(Input.is_action_just_pressed("menu_right")):
+		if(Input.is_action_just_pressed("menu_right") && !ware_commenting):
 			_AudioStreamPlayer.stream = load("res://audio/soundFX/maracca.ogg")
 			_AudioStreamPlayer.play()
 			if(!shopping):
@@ -171,7 +197,12 @@ func handle_input():
 				else:
 					dialog_choice_index = dialog_choice_index + 1
 			else:
-				if(dialog_choice_index == shop.get_staged_wares().size()):
+				if(shop_deciding): #do you want to buy this?
+					if(dialog_choice_index == 0):
+						dialog_choice_index = 1
+					else:
+						dialog_choice_index = 0
+				elif(dialog_choice_index == shop.get_staged_wares().size()):
 					dialog_choice_index = 0
 				else:
 					dialog_choice_index = dialog_choice_index + 1
@@ -202,21 +233,50 @@ func handle_input():
 				dialog_choice_index = 0
 				play_current_branch()
 			else:
+				if(!shop_deciding && !ware_commenting):
+					shop_pick_index = dialog_choice_index
 				var player_money = player_ref.get_money()
-				var ware = shop.get_staged_wares()[dialog_choice_index-1]
-				if(dialog_choice_index == 0):
-					tree.take_speech_option(0) #"nevermind" don't buy anything
-					play_current_branch()
+				var ware = shop.get_staged_wares()[shop_pick_index-1]
+				var has_comment 
+				if(!shop_deciding && dialog_choice_index == 0):
+					nevermind()
 				elif(player_money >= ware.get_cost()):
-					if(ware.waits_until_dialog_ends()):
-						waited_ware = ware
-					else:
-						ware.buy_item()
-					tree.take_speech_option(1)
-					play_current_branch()
+					if(!ware_commenting && !shop_deciding):
+						ware_commenting = true
+						var comment = shop.get_ware_comment(ware)
+						var voice = shop.get_comment_voice()
+						play_text(comment, voice)
+					elif(ware_commenting && !shop_deciding):
+						var comment = shop.get_are_you_sure_comment()
+						var voice = shop.get_comment_voice()
+						play_text(comment, voice)
+						shop_deciding = true
+					elif(ware_commenting && shop_deciding):
+						ware_commenting = false
+					elif(shop_deciding && !ware_commenting):
+						if(shop_buy_decision == true):
+							if(ware.waits_until_dialog_ends()):
+								waited_ware = ware
+							else:
+								ware.buy_item()
+							tree.take_speech_option(1)
+							play_current_branch()
+						else:
+							nevermind()
+						ware_commenting = false
+						shop_deciding = false
 				elif(player_money < ware.get_cost()):
 					tree.take_speech_option(2) #"not enough money" don't buy anything
 					play_current_branch()
+					ware_commenting = false
+					shop_deciding = false
+
+
+func nevermind():
+	tree.take_speech_option(0) #"nevermind" don't buy anything
+	play_current_branch()
+	ware_commenting = false
+	shop_deciding = false
 
 func clean_up():
 	var parent_npc = get_parent()

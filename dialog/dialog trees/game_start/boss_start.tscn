@@ -75,21 +75,21 @@ voice = "low_sine_voice"
 
 [node name="signed forms2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_csox7")]
 position = Vector2(-439, 1518)
-speaker_text = Array[String](["Yeesh, I can smell you from here."])
+speaker_text = Array[String](["You won't have set hours, but you will be paid on a per-delivery basis."])
 speaker_portrait = null
 option_branches = [NodePath("../have you been living outside?")]
 voice = "low_sine_voice"
 
 [node name="have you been living outside?" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_csox7")]
 position = Vector2(-455, 1697)
-speaker_text = Array[String](["When was the last time you bathed?"])
+speaker_text = Array[String](["You don't live too far from here, right?"])
 speaker_portrait = null
 option_branches = [NodePath("../have you been living outside?2")]
 voice = "low_sine_voice"
 
 [node name="have you been living outside?2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_csox7")]
 position = Vector2(-455, 1905)
-speaker_text = Array[String](["Have you been living outside?"])
+speaker_text = Array[String](["You haven't been...Living outside? Have you?"])
 speaker_portrait = null
 speech_options = Array[String](["I'm broke right now.", "I've been wandering the country.", "I've been running from something.", "I've been trying to find something.", "The economy is in the toilet.", "I'm a hobo.", "Yes, I have been living outside.", "No, I just don't shower and like to roll around in dirt."])
 option_branches = [NodePath("../whatever"), NodePath("../whatever"), NodePath("../whatever"), NodePath("../whatever"), NodePath("../whatever"), NodePath("../whatever"), NodePath("../whatever"), NodePath("../whatever")]

@@ -152,6 +152,10 @@ func end_dialog():
 		waited_ware = null
 	clean_up()
 
+func is_sold_out() -> bool:
+	sold_out = shop.get_staged_wares().size() == 0
+	return sold_out
+
 func handle_input():
 	if(responding):
 		if(shop_deciding && !ware_commenting):
@@ -231,7 +235,8 @@ func handle_input():
 		elif(has_speech_options() && !responding):
 			_DialogBubble.visible = false
 			_ResponseBubble.set_label("")
-			_ResponseBubble.visible = true
+			if(shop == null || (shop != null) && !is_sold_out()):
+				_ResponseBubble.visible = true
 			responding = true
 		elif(has_speech_options() && responding):
 			if(!shopping):

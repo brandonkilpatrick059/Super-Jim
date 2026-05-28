@@ -27,6 +27,7 @@ script = ExtResource("1_n5pv7")
 talk_radius = 200
 base_spriteframes = ExtResource("5_55rat")
 no_face_player = true
+alt_dlg_bubble_path = "res://dialog/dialog_bubble_dark_2.tscn"
 exempt_from_npc_refresh = null
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

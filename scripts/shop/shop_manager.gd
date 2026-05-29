@@ -107,7 +107,8 @@ func get_save_dictionary() -> Dictionary:
 	var save_tag : String = get_save_tag()
 	var save_dictionary = {
 		"type" : "shop",
-		"ware_stock": ware_stock
+		"ware_stock": ware_stock,
+		"save_tag": save_tag
 	}
 	return save_dictionary
 
@@ -118,6 +119,7 @@ func load_from_dictionary(load_dictionary : Dictionary):
 	while(index < load_ware_stock.size()):
 		ware_stock.append(int(load_ware_stock[index]))
 		index = index + 1
+	shuffle_staged_items()
 
 func get_staged_wares():
 	return staged_wares

@@ -34,7 +34,7 @@ func load_game():
 				load_cash(dictionary)
 			"tip_trigger":
 				load_trigger(dictionary)
-			"shop_manager":
+			"shop":
 				load_shop_manager(dictionary)
 	save_file.close()
 	handle_queue_free_on_load()

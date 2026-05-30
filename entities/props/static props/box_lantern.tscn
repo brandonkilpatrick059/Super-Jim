@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://8gw5ombhw3w8"]
+[gd_scene load_steps=6 format=3 uid="uid://8gw5ombhw3w8"]
 
 [ext_resource type="SpriteFrames" uid="uid://chbnplbr7ilxj" path="res://sprites/spritesheets/spriteframes/props/box_lantern.tres" id="1_v2li2"]
+[ext_resource type="Script" uid="uid://b3xtkv5igree1" path="res://scripts/utility/play_default_animation.gd" id="2_5bqke"]
 [ext_resource type="Texture2D" uid="uid://7xytxntsgyls" path="res://sprites/lights/diffuse_circle.png" id="2_wek2m"]
 [ext_resource type="Script" uid="uid://bmrg8o6vr6upp" path="res://scripts/utility/light_intensity_modulator.gd" id="3_ngums"]
 
@@ -16,22 +17,24 @@ shape = SubResource("CircleShape2D_wek2m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_v2li2")
-frame_progress = 0.565535
+frame_progress = 0.275073
+script = ExtResource("2_5bqke")
+not_prunable = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(1, 0.713726, 0.262745, 1)
-energy = 0.97
+energy = 0.949003
 texture = ExtResource("2_wek2m")
 script = ExtResource("3_ngums")
 energy_min = 0.8
+rate = 0.003
 start_at_max = true
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
 scale = Vector2(0.2, 0.2)
 color = Color(1, 0.713726, 0.262745, 1)
-energy = 0.915
+energy = 0.993
 texture = ExtResource("2_wek2m")
 script = ExtResource("3_ngums")
 energy_min = 0.9
-rate = 0.005
 start_at_max = true

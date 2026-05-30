@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c07r7ub60rpvr"]
+
+[ext_resource type="Script" uid="uid://c2eauyl5k8il2" path="res://scripts/shop/ware.gd" id="1_tcyk5"]
+[ext_resource type="Script" uid="uid://baaqymhegfe7a" path="res://scripts/shop/ware_smoke_bomb.gd" id="2_ad2uw"]
+[ext_resource type="Texture2D" uid="uid://cjf541sl82kfy" path="res://sprites/props/smoke_bomb.png" id="3_ad2uw"]
+
+[node name="WareSmokeBomb" type="Node2D"]
+z_index = 1
+script = ExtResource("1_tcyk5")
+cost = 4
+ware_name = "Smoke Bomb"
+
+[node name="script_node" type="Node" parent="."]
+script = ExtResource("2_ad2uw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_ad2uw")

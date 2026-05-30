@@ -56,6 +56,7 @@ var schedules_index
 #@export var passive_text = ""
 
 @export var shop : shop_manager = null
+@export var shop_manager_group : String = "" #get shop manager by group onready
 @export var branching_dialog : dialog_tree
 var dialog = preload("res://dialog/dialog.tscn")
 var dialog_manager : Node
@@ -115,6 +116,10 @@ func _ready():
 		player_ref = get_tree().get_nodes_in_group("player")[0]
 	else:
 		queue_redraw()
+	
+	if(shop_manager_group != ""):
+		shop = get_tree().get_first_node_in_group(shop_manager_group)
+		shop.global_position = global_position
 	
 	for scene in extended_states:
 		var state = scene.instantiate()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b7topa7dxujxl"]
+[gd_scene load_steps=14 format=3 uid="uid://b7topa7dxujxl"]
 
 [ext_resource type="Script" uid="uid://ckj5xwhetys06" path="res://scripts/character/NPC/npc.gd" id="1_a23kx"]
 [ext_resource type="Script" uid="uid://dohfsf4f1rv0a" path="res://scripts/character/character_base_animatronic.gd" id="3_qk0ua"]
@@ -8,26 +8,22 @@
 [ext_resource type="Script" uid="uid://c5m1mvnperln4" path="res://scripts/character/NPC/daily_schedule.gd" id="5_ihogr"]
 [ext_resource type="AudioStream" uid="uid://dakkie000mecs" path="res://audio/music/whiskers_tune.wav" id="7_a23kx"]
 [ext_resource type="PackedScene" uid="uid://bstl2betvigap" path="res://entities/characters/NPC/AI state machine/npc  states/state_npc_alert_passive.tscn" id="7_ihogr"]
-[ext_resource type="PackedScene" uid="uid://symprutlngye" path="res://entities/shop/wares/items/ware_heart.tscn" id="8_ihogr"]
-[ext_resource type="Script" uid="uid://dn68ee6vrm2tc" path="res://scripts/shop/shop_manager.gd" id="8_ngqfk"]
 [ext_resource type="PackedScene" uid="uid://8gw5ombhw3w8" path="res://entities/props/static props/box_lantern.tscn" id="9_qk0ua"]
-[ext_resource type="PackedScene" uid="uid://beydept81p8i" path="res://entities/shop/wares/items/ware_flashlight_nice.tscn" id="9_x7jqp"]
 [ext_resource type="Script" uid="uid://crqo5i7q7php1" path="res://scripts/character/NPC/stage_mark.gd" id="10_6lvwl"]
 [ext_resource type="PackedScene" uid="uid://bn75l7v1rxpkc" path="res://dialog/dialog trees/whiskers_shop_tree.tscn" id="10_g63jl"]
-[ext_resource type="PackedScene" uid="uid://c7bi0q2njqgmg" path="res://entities/shop/wares/items/ware_smoke_bomb.tscn" id="10_oxp2s"]
 [ext_resource type="Texture2D" uid="uid://d245myf31807p" path="res://sprites/props/furniture/woven_rug.png" id="16_lvqy3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lvqy3"]
 size = Vector2(116, 60)
 
-[node name="NpcWhiskers" type="RigidBody2D" node_paths=PackedStringArray("shop", "branching_dialog") groups=["interactable", "npc"]]
+[node name="NpcWhiskers" type="RigidBody2D" node_paths=PackedStringArray("branching_dialog") groups=["interactable", "npc"]]
 y_sort_enabled = true
 collision_layer = 20
 collision_mask = 0
 script = ExtResource("1_a23kx")
 base_spriteframes = ExtResource("4_ec0ee")
 is_animatronic = true
-shop = NodePath("shop_manager")
+shop_manager_group = "whiskers_shop"
 branching_dialog = NodePath("Shop_Tree")
 
 [node name="character_base" type="Node2D" parent="."]
@@ -35,7 +31,7 @@ script = ExtResource("3_qk0ua")
 
 [node name="base_sprite" type="AnimatedSprite2D" parent="character_base"]
 sprite_frames = ExtResource("4_ec0ee")
-frame_progress = 0.682001
+frame_progress = 0.534613
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 33)
@@ -51,31 +47,6 @@ stream = ExtResource("7_a23kx")
 autoplay = true
 max_distance = 1600.0
 attenuation = 12.5533
-
-[node name="shop_manager" type="Node2D" parent="." node_paths=PackedStringArray("stage_locations")]
-y_sort_enabled = true
-script = ExtResource("8_ngqfk")
-wares = Array[PackedScene]([ExtResource("8_ihogr"), ExtResource("9_x7jqp"), ExtResource("10_oxp2s")])
-stage_locations = [NodePath("stage_1"), NodePath("stage_2"), NodePath("stage_3")]
-ware_stock = Array[int]([1, 1, -1])
-ware_comment = Array[String](["A delicious heart preserved in sweet syrup...", "A superior torch for lighting your way...", "A tool for thwarting dangerous pursuers..."])
-are_you_sure_comment = "Would you like it to be yours?"
-sold_out_comment = "Ah, but there is nothing left to buy..."
-
-[node name="stage_1" type="Node2D" parent="shop_manager"]
-z_index = -2
-y_sort_enabled = true
-position = Vector2(-32, 50)
-
-[node name="stage_2" type="Node2D" parent="shop_manager"]
-z_index = -2
-y_sort_enabled = true
-position = Vector2(0, 50)
-
-[node name="stage_3" type="Node2D" parent="shop_manager"]
-z_index = -2
-y_sort_enabled = true
-position = Vector2(32, 49)
 
 [node name="BoxLantern" parent="." instance=ExtResource("9_qk0ua")]
 position = Vector2(48, 27)

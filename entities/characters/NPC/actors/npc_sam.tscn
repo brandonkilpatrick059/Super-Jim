@@ -29,6 +29,7 @@ base_spriteframes = ExtResource("5_55rat")
 no_face_player = true
 alt_dlg_bubble_path = "res://dialog/dialog_bubble_dark_2.tscn"
 exempt_from_npc_refresh = null
+shop_manager_group = null
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 4.0

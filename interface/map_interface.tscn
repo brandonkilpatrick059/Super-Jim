@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://c80uyvwhwcq7h" path="res://sprites/interface/maps/fallsboro.png" id="17_gg6p4"]
 [ext_resource type="Texture2D" uid="uid://wcp2br3ws5gi" path="res://sprites/interface/maps/cliffside_east.png" id="17_kcea0"]
 [ext_resource type="Texture2D" uid="uid://tl8e4o43c7wn" path="res://sprites/interface/maps/cliffside_west.png" id="18_vk7dx"]
-[ext_resource type="Texture2D" uid="uid://cbukb2lvwhnvm" path="res://sprites/interface/maps/utility_tunnels.png" id="19_geryt"]
+[ext_resource type="Texture2D" uid="uid://cf8t67t3ol2hb" path="res://sprites/interface/maps/utility_tunnels_map.png" id="23_oejg4"]
 
 [node name="MapInterface" type="Node2D"]
 material = ExtResource("4_7qnfr")
@@ -867,10 +867,9 @@ script = ExtResource("6_sq4gs")
 tab_name = "823 Cliffside"
 
 [node name="Utility Tunnels" type="Sprite2D" parent="maps"]
-visible = false
 material = ExtResource("4_7qnfr")
 position = Vector2(-121, 3)
-texture = ExtResource("19_geryt")
+texture = ExtResource("23_oejg4")
 
 [node name="North Side Apartments (link)" type="Sprite2D" parent="maps/Utility Tunnels"]
 material = ExtResource("4_7qnfr")
@@ -928,6 +927,14 @@ script = ExtResource("6_sq4gs")
 tab_name = "Eternal Rest Apartments"
 linked_map = "Central Stonesthrow"
 lock_group = "basement_gate"
+
+[node name="Train Station" type="Sprite2D" parent="maps/Utility Tunnels"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-27, 26)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Train Station"
+linked_map = "Central Stonesthrow"
 
 [node name="sewers (link)" type="Sprite2D" parent="maps/Utility Tunnels"]
 material = ExtResource("4_7qnfr")

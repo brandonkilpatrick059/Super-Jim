@@ -201,6 +201,8 @@ func set_item_square(id : String):
 			item_square_texture.texture = load("res://sprites/interface/item_box/item_pizza.png")
 		"flashlight" :
 			item_square_texture.texture = load("res://sprites/interface/item_box/item_flashlight.png")
+		"flashlight_nice" :
+			item_square_texture.texture = load("res://sprites/interface/item_box/item_flashlight_nice.png")
 		"fire_cracker":
 			show_quantity_label()
 			item_square_texture.texture = load("res://sprites/interface/item_box/item_fire_cracker.png")

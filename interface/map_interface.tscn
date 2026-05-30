@@ -867,6 +867,7 @@ script = ExtResource("6_sq4gs")
 tab_name = "823 Cliffside"
 
 [node name="Utility Tunnels" type="Sprite2D" parent="maps"]
+visible = false
 material = ExtResource("4_7qnfr")
 position = Vector2(-121, 3)
 texture = ExtResource("23_oejg4")

@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn75l7v1rxpkc"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_44blb"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_5c75d"]
+
+[node name="TestTree" type="Node2D"]
+script = ExtResource("1_44blb")
+trunk = NodePath("trunk6")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_5c75d")]
+speaker_text = Array[String](["Available for trade!"])
+speaker_portrait = null
+speech_options = Array[String](["", "", ""])
+option_branches = [NodePath("../no purchase"), NodePath("../purchase"), NodePath("../insufficient money")]
+voice = "sine_voice"
+shows_wares = true
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_5c75d")]
+position = Vector2(-7, -299)
+speaker_text = Array[String](["I bring you far-flung treasures..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk")]
+voice = "sine_voice"
+
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_5c75d")]
+position = Vector2(-13, -576)
+speaker_text = Array[String](["Celebrating this lunar phase-"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "sine_voice"
+
+[node name="trunk4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_5c75d")]
+position = Vector2(-19, -859)
+speaker_text = Array[String](["Whiskers, at your service."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "sine_voice"
+
+[node name="trunk5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_5c75d")]
+position = Vector2(-25, -1145)
+speaker_text = Array[String](["It is I."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk4")]
+voice = "sine_voice"
+
+[node name="trunk6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_5c75d")]
+position = Vector2(-24, -1451)
+speaker_text = Array[String](["Yes."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk5")]
+voice = "sine_voice"
+
+[node name="insufficient money" parent="." instance=ExtResource("2_5c75d")]
+position = Vector2(251, 157)
+speaker_text = Array[String](["The price is fixed and I will go no lower."])
+speaker_portrait = null
+voice = "sine_voice"
+
+[node name="no purchase" parent="." instance=ExtResource("2_5c75d")]
+position = Vector2(-205, 164)
+speaker_text = Array[String](["Farewell."])
+speaker_portrait = null
+voice = "sine_voice"
+
+[node name="purchase" parent="." instance=ExtResource("2_5c75d")]
+position = Vector2(5, 178)
+speaker_text = Array[String](["May the moon smile upon you."])
+speaker_portrait = null
+voice = "sine_voice"

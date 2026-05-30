@@ -69,14 +69,26 @@ func shake(magnitude : float):
 	shaking = true
 	shake_amount = magnitude
 
-func toggle_flashlight():
-	_flashlight.enabled = !_flashlight.enabled
+func toggle_flashlight(level : int):
+	if(level == 1):
+		_flashlight.enabled = !_flashlight.enabled
+	elif(level == 2):
+		_flashlight2.enabled = !_flashlight2.enabled
+	elif(level == 3):
+		_flashlight3.enabled = !_flashlight3.enabled
 
-func turn_on_flashlight():
-	_flashlight.enabled = true
+func turn_on_flashlight(level : int):
+	if(level == 1):
+		_flashlight.enabled = true
+	elif(level == 2):
+		_flashlight2.enabled = true
+	elif(level == 3):
+		_flashlight3.enabled = true
 	
 func turn_off_flashlight():
 	_flashlight.enabled = false
+	_flashlight2.enabled = false
+	_flashlight3.enabled = false
 
 func is_faded_out() -> bool:
 	if(fade_alpha >= 1.0):
@@ -87,6 +99,8 @@ func is_faded_out() -> bool:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	_flashlight.position = camera_offset
+	_flashlight2.position = camera_offset
+	_flashlight3.position = camera_offset
 	update_fade_alpha()
 	if(not locked):
 		handle_camera_pan()

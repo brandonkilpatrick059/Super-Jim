@@ -185,6 +185,7 @@ var ui_scene_ref = null
 
 #item cosnt
 const flashlight : String = "flashlight"
+const flashlight_nice : String = "flashlight_nice"
 const pizza : String = "pizza"
 const firecracker: String = "fire_cracker"
 const skateboard : String = "skateboard"
@@ -1367,7 +1368,6 @@ func append_to_items(item : String):
 		6.0)
 		shown_items_tip = true
 
-
 func update_item_quantities():
 	if(items.size() > 0 ):
 		match items[item_index]:
@@ -1385,7 +1385,11 @@ func use_item():
 			flashlight:
 				if(camera_connected):
 					play_sound(flashlight_sound)
-					_camera.toggle_flashlight()
+					_camera.toggle_flashlight(1)
+			flashlight_nice:
+				if(camera_connected):
+					play_sound(flashlight_sound)
+					_camera.toggle_flashlight(2)
 			firecracker:
 				if(num_fire_crackers > 0):
 					var scene_fire_cracker = load("res://entities/props/dynamic props/fire_cracker.tscn")

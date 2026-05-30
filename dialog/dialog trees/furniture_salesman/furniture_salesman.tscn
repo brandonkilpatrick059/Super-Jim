@@ -23,7 +23,7 @@ voice = "sine_voice"
 
 [node name="no purchase" parent="." instance=ExtResource("2_i8gs0")]
 position = Vector2(-205, 164)
-speaker_text = Array[String](["Maybe next time"])
+speaker_text = Array[String](["Maybe next time."])
 speaker_portrait = null
 voice = "sine_voice"
 

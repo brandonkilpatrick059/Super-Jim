@@ -1,0 +1,41 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://chbnplbr7ilxj"]
+
+[ext_resource type="Texture2D" uid="uid://xorrmge36h3d" path="res://sprites/spritesheets/props/box_lantern.png" id="1_g6x8i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6red"]
+atlas = ExtResource("1_g6x8i")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0yla"]
+atlas = ExtResource("1_g6x8i")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sox7y"]
+atlas = ExtResource("1_g6x8i")
+region = Rect2(32, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6red")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0yla")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sox7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sox7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0yla")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6red")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

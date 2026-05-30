@@ -84,6 +84,7 @@ func _physics_process(delta):
 			prev_scene_freed = true
 			var main_scene = main_scene.instantiate()
 			add_child(main_scene)
+			get_tree().get_first_node_in_group("time_keeper").unpause_parent_tree()
 			var game_save_manager = get_tree().get_first_node_in_group("game_save_manager")
 			if(game_save_manager.save_file_exists()):
 				game_save_manager.load_game()

@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://cgobdahw247ul"]
+
+[ext_resource type="Texture2D" uid="uid://b461etvyyqg7t" path="res://sprites/dialog/portraits/barista_test.png" id="1_a0e5f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0e5f"]
+atlas = ExtResource("1_a0e5f")
+region = Rect2(0, 0, 128, 128)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0e5f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

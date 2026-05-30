@@ -8,6 +8,7 @@ light_mode = 1
 
 [node name="Node2D" type="Node2D" groups=["dead_player"]]
 process_mode = 3
+z_index = 400
 script = ExtResource("1_d6ufp")
 
 [node name="tough_luck" type="Sprite2D" parent="."]

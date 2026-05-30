@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://cb5vmov0ebvsn"]
+
+[ext_resource type="Texture2D" uid="uid://dqysox3any02" path="res://sprites/dialog/portraits/green_girl_test.png" id="1_aw2bf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw2bf"]
+atlas = ExtResource("1_aw2bf")
+region = Rect2(0, 0, 128, 128)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aw2bf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

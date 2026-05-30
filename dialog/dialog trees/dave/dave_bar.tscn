@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4wl28cd3q5fk"]
+[gd_scene load_steps=4 format=3 uid="uid://b4wl28cd3q5fk"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_lw68o"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_bp12x"]
+[ext_resource type="SpriteFrames" uid="uid://ctby84x6ywfe2" path="res://sprites/spritesheets/spriteframes/portrait/dave_test.tres" id="3_y70fp"]
 
 [node name="dave_bar" type="Node2D"]
 script = ExtResource("1_lw68o")
@@ -9,14 +10,14 @@ trunk = NodePath("trunk")
 
 [node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bp12x")]
 speaker_text = Array[String](["Do you ever ask the Alien for advice?"])
-speaker_portrait = null
+speaker_portrait = ExtResource("3_y70fp")
 option_branches = [NodePath("../trunk2")]
 voice = "low_sine_voice"
 
 [node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bp12x")]
 position = Vector2(2, 218)
 speaker_text = Array[String](["It always tells me exactly what I don't want to hear."])
-speaker_portrait = null
+speaker_portrait = ExtResource("3_y70fp")
 speech_options = Array[String](["That sucks.", "That thing creeps me out.", "Baseball Cards"])
 option_branches = [NodePath("../yeah"), NodePath("../creeps"), NodePath("../baseball_cards2")]
 voice = "low_sine_voice"
@@ -24,33 +25,33 @@ voice = "low_sine_voice"
 [node name="yeah" parent="." instance=ExtResource("2_bp12x")]
 position = Vector2(-342, 578)
 speaker_text = Array[String](["Yeah..."])
-speaker_portrait = null
+speaker_portrait = ExtResource("3_y70fp")
 voice = "low_sine_voice"
 
 [node name="creeps" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bp12x")]
 position = Vector2(30, 578)
 speaker_text = Array[String](["It creeps us all out."])
-speaker_portrait = null
+speaker_portrait = ExtResource("3_y70fp")
 option_branches = [NodePath("../creeps2")]
 voice = "low_sine_voice"
 
 [node name="creeps2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bp12x")]
 position = Vector2(30, 918)
 speaker_text = Array[String](["I always feels like it's..."])
-speaker_portrait = null
+speaker_portrait = ExtResource("3_y70fp")
 option_branches = [NodePath("../creeps3")]
 voice = "low_sine_voice"
 
 [node name="creeps3" parent="." instance=ExtResource("2_bp12x")]
 position = Vector2(47, 1302)
 speaker_text = Array[String](["...Watching."])
-speaker_portrait = null
+speaker_portrait = ExtResource("3_y70fp")
 voice = "low_sine_voice"
 
 [node name="baseball_cards" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bp12x")]
 position = Vector2(405, 578)
 speaker_text = Array[String]([""])
-speaker_portrait = null
+speaker_portrait = ExtResource("3_y70fp")
 option_branches = [NodePath("../no_cards"), NodePath("../win"), NodePath("../lose")]
 voice = "low_sine_voice"
 plays_cards = true
@@ -59,66 +60,66 @@ card_deck = Array[int]([12, 16, 12, 11, 14])
 [node name="baseball_cards2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bp12x")]
 position = Vector2(431, 218)
 speaker_text = Array[String](["Yeah I'm up for a game."])
-speaker_portrait = null
+speaker_portrait = ExtResource("3_y70fp")
 option_branches = [NodePath("../baseball_cards")]
 voice = "low_sine_voice"
 
 [node name="no_cards" parent="." instance=ExtResource("2_bp12x")]
 position = Vector2(431, 918)
 speaker_text = Array[String](["You should head down to the Arcade and get some cards..."])
-speaker_portrait = null
+speaker_portrait = ExtResource("3_y70fp")
 voice = "low_sine_voice"
 
 [node name="win" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bp12x")]
 position = Vector2(771, 918)
 speaker_text = Array[String](["Hey! Good Game!"])
-speaker_portrait = null
+speaker_portrait = ExtResource("3_y70fp")
 option_branches = [NodePath("../win2")]
 voice = "low_sine_voice"
 
 [node name="win2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bp12x")]
 position = Vector2(800, 1238)
 speaker_text = Array[String](["I'm curious..."])
-speaker_portrait = null
+speaker_portrait = ExtResource("3_y70fp")
 option_branches = [NodePath("../win3")]
 voice = "low_sine_voice"
 
 [node name="win3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bp12x")]
 position = Vector2(813, 1536)
 speaker_text = Array[String](["Do you ever watch the TV static late at night?"])
-speaker_portrait = null
+speaker_portrait = ExtResource("3_y70fp")
 option_branches = [NodePath("../win4")]
 voice = "low_sine_voice"
 
 [node name="win4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bp12x")]
 position = Vector2(828, 1842)
 speaker_text = Array[String](["I've been channel surfing in the small hours of the morning once or twice-"])
-speaker_portrait = null
+speaker_portrait = ExtResource("3_y70fp")
 option_branches = [NodePath("../win5")]
 voice = "low_sine_voice"
 
 [node name="win5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bp12x")]
 position = Vector2(835, 2139)
 speaker_text = Array[String](["Oh, nevermind."])
-speaker_portrait = null
+speaker_portrait = ExtResource("3_y70fp")
 option_branches = [NodePath("../win6")]
 voice = "low_sine_voice"
 
 [node name="win6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bp12x")]
 position = Vector2(835, 2450)
 speaker_text = Array[String](["I sound crazy."])
-speaker_portrait = null
+speaker_portrait = ExtResource("3_y70fp")
 option_branches = [NodePath("../win7")]
 voice = "low_sine_voice"
 
 [node name="win7" parent="." instance=ExtResource("2_bp12x")]
 position = Vector2(835, 2784)
 speaker_text = Array[String](["I must have just dreamed it..."])
-speaker_portrait = null
+speaker_portrait = ExtResource("3_y70fp")
 voice = "low_sine_voice"
 
 [node name="lose" parent="." instance=ExtResource("2_bp12x")]
 position = Vector2(1125, 918)
 speaker_text = Array[String](["Haha! Another W for the pile."])
-speaker_portrait = null
+speaker_portrait = ExtResource("3_y70fp")
 voice = "low_sine_voice"

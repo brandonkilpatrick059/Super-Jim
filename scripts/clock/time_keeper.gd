@@ -315,7 +315,7 @@ func update_pizzas():
 func _process(delta):
 	get_input()
 	if(back_to_start && back_to_start_timer.is_stopped()):
-		get_tree().change_scene_to_file("res://scenes/start_menu.tscn")	
+		get_tree().change_scene_to_file("res://scenes/start_menu.tscn")
 	if(!is_menu_paused):
 		#calculate clock
 		if(timer_world.is_stopped() && not time_locked):

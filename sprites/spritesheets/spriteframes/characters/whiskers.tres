@@ -1,0 +1,57 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://e44a04d1ny0l"]
+
+[ext_resource type="Texture2D" uid="uid://uq6k1iaj8em0" path="res://sprites/spritesheets/characters/whiskers.png" id="1_4n4so"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5p73n"]
+atlas = ExtResource("1_4n4so")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2aqey"]
+atlas = ExtResource("1_4n4so")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yirav"]
+atlas = ExtResource("1_4n4so")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akidg"]
+atlas = ExtResource("1_4n4so")
+region = Rect2(192, 0, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5p73n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2aqey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yirav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akidg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akidg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akidg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yirav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2aqey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5p73n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5p73n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]

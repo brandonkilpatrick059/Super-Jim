@@ -68,20 +68,20 @@ func get_num_nearby_mobs() -> int:
 			count = count + 1
 	return count
 
-func _draw():
-	if(Engine.is_editor_hint()):
-		if(has_next_point()):
-			for point in next_points:
-				if(point != null):
-					if(point.has_next_point()):
-						if(point.next_points.find(self) >= 0):
-							draw_line(Vector2(), get_transform().affine_inverse() * point.position, Color(0,1,0,1), -1)
-						else:
-							var other_point = get_transform().affine_inverse() * point.position
-							draw_line(Vector2(), other_point, Color(1,0,0,1), -1)
-							draw_line(other_point, Vector2(other_point.x+16, other_point.y+16),Color(1,0,0,1),-1)
-					else:
-						var other_point = get_transform().affine_inverse() * point.position
-						draw_line(Vector2(), other_point, Color(1,0,0,1), -1)
-						draw_line(other_point, Vector2(other_point.x+16, other_point.y+16),Color(1,0,0,1),-1)
+#func _draw():
+	#if(Engine.is_editor_hint()):
+		#if(has_next_point()):
+			#for point in next_points:
+				#if(point != null):
+					#if(point.has_next_point()):
+						#if(point.next_points.find(self) >= 0):
+							#draw_line(Vector2(), get_transform().affine_inverse() * point.position, Color(0,1,0,1), -1)
+						#else:
+							#var other_point = get_transform().affine_inverse() * point.position
+							#draw_line(Vector2(), other_point, Color(1,0,0,1), -1)
+							#draw_line(other_point, Vector2(other_point.x+16, other_point.y+16),Color(1,0,0,1),-1)
+					#else:
+						#var other_point = get_transform().affine_inverse() * point.position
+						#draw_line(Vector2(), other_point, Color(1,0,0,1), -1)
+						#draw_line(other_point, Vector2(other_point.x+16, other_point.y+16),Color(1,0,0,1),-1)
 	

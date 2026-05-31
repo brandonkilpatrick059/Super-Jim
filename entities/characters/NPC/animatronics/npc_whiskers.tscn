@@ -31,7 +31,7 @@ script = ExtResource("3_qk0ua")
 
 [node name="base_sprite" type="AnimatedSprite2D" parent="character_base"]
 sprite_frames = ExtResource("4_ec0ee")
-frame_progress = 0.534613
+frame_progress = 0.635086
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 33)
@@ -45,8 +45,9 @@ initial_state = NodePath("alert_passive")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_a23kx")
 autoplay = true
-max_distance = 1600.0
+max_distance = 900.0
 attenuation = 12.5533
+bus = &"Diagetic_Music"
 
 [node name="BoxLantern" parent="." instance=ExtResource("9_qk0ua")]
 position = Vector2(48, 27)

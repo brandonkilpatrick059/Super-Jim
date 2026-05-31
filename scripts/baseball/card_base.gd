@@ -36,15 +36,16 @@ extends Node2D
 @export var buff_shield_on_kill : int = 0
 @export var buff_dmg_on_kill : int = 0
 
-#TODO:implement
 @export var throws_hp : int = 0
 @export var throws_shield : int = 0
 @export var throws_power: int = 0
 
+@export var throws_hp_on_kill : int = 0
+@export var throws_shield_on_kill : int = 0
+@export var throws_power_on_kill: int = 0
+
 @export var throws_remaining_shield : int = 0
 @export var throws_remaining_power: int = 0
-
-@export var catches_opponent_stats : bool = false
 
 #buffs damage against team
 @export var buff_dmg_against_team : int = 0
@@ -54,11 +55,15 @@ extends Node2D
 @export var debuff_dmg_from_team : int = 0
 @export var debuff_dmg_target_team : String = ""
 
-#TODO: implement
-#stat is  equal to the number of a certain team in deck
-@export var team_number_is_hp : bool = false
-@export var team_number_is_shield : bool = false
-@export var team_number_is_dmg : bool = false
+@export var damage_transfers_to_power : bool = false
+@export var damage_transfers_to_shield : bool = false
+
+@export var catches_opponent_stats : bool = false
+
+#stat is buffed by the number of a certain team in deck
+@export var team_number_buff_hp : bool = false
+@export var team_number_buff_shield : bool = false
+@export var team_number_buff_dmg : bool = false
 
 var stat_max = 9
 
@@ -117,6 +122,24 @@ func get_buff_damage_on_kill() -> int:
 func get_buff_shield_on_kill() -> int:
 	return buff_shield_on_kill
 
+func get_throws_hp_on_kill() -> int:
+	return throws_hp_on_kill
+
+func get_throws_damage_on_kill() -> int:
+	return throws_power_on_kill
+
+func get_throws_shield_on_kill() -> int:
+	return throws_shield_on_kill
+
+func get_team_number_buff_hp() -> int:
+	return team_number_buff_hp
+
+func get_team_number_buff_damage() -> int:
+	return team_number_buff_dmg
+
+func get_team_number_buff_shield() -> int:
+	return team_number_buff_shield
+
 func get_throws_hp() -> int:
 	return throws_hp
 
@@ -125,6 +148,15 @@ func get_throws_power() -> int:
 
 func get_throws_shield() -> int:
 	return throws_shield
+
+func get_catches_opponent_stats() -> bool:
+	return catches_opponent_stats
+
+func get_damage_transfers_to_shield() -> bool:
+	return damage_transfers_to_shield
+
+func get_damage_transfers_to_power() -> bool:
+	return damage_transfers_to_power
 
 func _ready() -> void:
 	_hp_meter.set_stat(hp)

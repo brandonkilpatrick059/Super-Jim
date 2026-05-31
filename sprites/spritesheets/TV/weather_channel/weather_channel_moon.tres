@@ -1,0 +1,114 @@
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://dx7kbogrslgem"]
+
+[ext_resource type="Texture2D" uid="uid://d3c4m7qwinbb5" path="res://sprites/TV/channels/weather/moon_symbol.png" id="1_het7i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_het7i"]
+atlas = ExtResource("1_het7i")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qk8aa"]
+atlas = ExtResource("1_het7i")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lhqk"]
+atlas = ExtResource("1_het7i")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05j5x"]
+atlas = ExtResource("1_het7i")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltn4g"]
+atlas = ExtResource("1_het7i")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxark"]
+atlas = ExtResource("1_het7i")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acgru"]
+atlas = ExtResource("1_het7i")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1u068"]
+atlas = ExtResource("1_het7i")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75vhw"]
+atlas = ExtResource("1_het7i")
+region = Rect2(128, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_het7i")
+}],
+"loop": true,
+"name": &"First Quarter",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qk8aa")
+}],
+"loop": true,
+"name": &"Full Moon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0lhqk")
+}],
+"loop": true,
+"name": &"New Moon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05j5x")
+}],
+"loop": true,
+"name": &"Second Quarter",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltn4g")
+}],
+"loop": true,
+"name": &"Waning Crescent",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxark")
+}],
+"loop": true,
+"name": &"Waning Gibbous",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acgru")
+}],
+"loop": true,
+"name": &"Waxing Crescent",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1u068")
+}],
+"loop": true,
+"name": &"Waxing Gibbous",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75vhw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

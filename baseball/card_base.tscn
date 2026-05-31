@@ -37,14 +37,6 @@ light_mode = 1
 material = SubResource("CanvasItemMaterial_y3q1y")
 script = ExtResource("1_y3q1y")
 team = null
-throws_hp_on_kill = null
-throws_shield_on_kill = null
-throws_power_on_kill = null
-damage_transfers_to_power = null
-damage_transfers_to_shield = null
-team_number_buff_hp = null
-team_number_buff_shield = null
-team_number_buff_dmg = null
 
 [node name="base_border" type="Sprite2D" parent="."]
 z_index = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b88uqt2d5ac5h"]
+[gd_scene load_steps=12 format=3 uid="uid://b88uqt2d5ac5h"]
 
 [ext_resource type="Texture2D" uid="uid://c2wptmtc4k1us" path="res://sprites/TV/screen_overlay.png" id="1_80xm3"]
 [ext_resource type="Script" uid="uid://c7o3mrmj8ml08" path="res://scripts/TV/tv_machine.gd" id="1_q4va0"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cuec0rbvev0g8" path="res://TV/channels/mob_war/mob_war_channel.tscn" id="4_1e47p"]
 [ext_resource type="FontFile" uid="uid://8fl7yecdpp08" path="res://fonts/Tiny5-Regular.ttf" id="4_dhaje"]
 [ext_resource type="PackedScene" uid="uid://dnmdem3ucdiam" path="res://TV/channels/no_signal/no_signal_channel.tscn" id="6_yudkp"]
+[ext_resource type="PackedScene" uid="uid://bo1g7x8tntwtv" path="res://TV/channels/weather/weather_channel.tscn" id="7_4xqix"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1e47p"]
 light_mode = 1
@@ -41,6 +42,9 @@ visible = false
 visible = false
 
 [node name="NoSignalChannel" parent="channels" instance=ExtResource("6_yudkp")]
+visible = false
+
+[node name="WeatherChannel" parent="channels" instance=ExtResource("7_4xqix")]
 visible = false
 
 [node name="channel_text" type="Label" parent="."]

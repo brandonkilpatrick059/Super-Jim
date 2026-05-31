@@ -1,0 +1,117 @@
+[gd_scene load_steps=9 format=3 uid="uid://jkhec0ujhijo"]
+
+[ext_resource type="Script" uid="uid://bhfl718bsklwu" path="res://scripts/TV/segments/weather/weather_today_segment.gd" id="1_alp1v"]
+[ext_resource type="Texture2D" uid="uid://yldgrll8kqpb" path="res://sprites/TV/channels/weather/weather_background.png" id="2_5573q"]
+[ext_resource type="SpriteFrames" uid="uid://dghpgbx3olv6" path="res://sprites/spritesheets/TV/weather_channel/weather_channel_sun.tres" id="3_u2f00"]
+[ext_resource type="SpriteFrames" uid="uid://dx7kbogrslgem" path="res://sprites/spritesheets/TV/weather_channel/weather_channel_moon.tres" id="4_af48j"]
+[ext_resource type="FontFile" uid="uid://cdf6elivdwcta" path="res://fonts/CourierPrime-Regular.ttf" id="5_af48j"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tmr16"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_af48j"]
+light_mode = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_ptvtw"]
+font = ExtResource("5_af48j")
+font_size = 24
+
+[node name="weather_today" type="Node2D"]
+script = ExtResource("1_alp1v")
+
+[node name="map_back_ground" type="Polygon2D" parent="."]
+z_index = -1
+material = SubResource("CanvasItemMaterial_tmr16")
+color = Color(0.135012, 0.135012, 0.135012, 1)
+polygon = PackedVector2Array(-500, -500, 500, -500, 500, 500, -500, 500)
+
+[node name="background" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_af48j")
+texture = ExtResource("2_5573q")
+
+[node name="day_1" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_af48j")
+position = Vector2(-95, -60)
+sprite_frames = ExtResource("3_u2f00")
+
+[node name="day_2" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_af48j")
+position = Vector2(1, -60)
+sprite_frames = ExtResource("3_u2f00")
+
+[node name="day_3" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_af48j")
+position = Vector2(94, -60)
+sprite_frames = ExtResource("3_u2f00")
+
+[node name="night_1" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_af48j")
+position = Vector2(-95, 35)
+sprite_frames = ExtResource("4_af48j")
+animation = &"Waning Gibbous"
+
+[node name="night_2" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_af48j")
+position = Vector2(0, 35)
+sprite_frames = ExtResource("4_af48j")
+animation = &"Waning Gibbous"
+
+[node name="night_3" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_af48j")
+position = Vector2(94, 35)
+sprite_frames = ExtResource("4_af48j")
+animation = &"Waning Gibbous"
+
+[node name="temp_day_1" type="Label" parent="."]
+material = SubResource("CanvasItemMaterial_af48j")
+offset_left = -116.0
+offset_top = -44.0
+offset_right = -76.0
+offset_bottom = -16.0
+label_settings = SubResource("LabelSettings_ptvtw")
+horizontal_alignment = 1
+
+[node name="temp_day_2" type="Label" parent="."]
+material = SubResource("CanvasItemMaterial_af48j")
+offset_left = -19.0
+offset_top = -44.0
+offset_right = 21.0
+offset_bottom = -16.0
+label_settings = SubResource("LabelSettings_ptvtw")
+horizontal_alignment = 1
+
+[node name="temp_day_3" type="Label" parent="."]
+material = SubResource("CanvasItemMaterial_af48j")
+offset_left = 74.0
+offset_top = -44.0
+offset_right = 114.0
+offset_bottom = -16.0
+label_settings = SubResource("LabelSettings_ptvtw")
+horizontal_alignment = 1
+
+[node name="temp_night_1" type="Label" parent="."]
+material = SubResource("CanvasItemMaterial_af48j")
+offset_left = -114.0
+offset_top = 47.0
+offset_right = -74.0
+offset_bottom = 75.0
+label_settings = SubResource("LabelSettings_ptvtw")
+horizontal_alignment = 1
+
+[node name="temp_night_2" type="Label" parent="."]
+material = SubResource("CanvasItemMaterial_af48j")
+offset_left = -19.0
+offset_top = 47.0
+offset_right = 21.0
+offset_bottom = 75.0
+label_settings = SubResource("LabelSettings_ptvtw")
+horizontal_alignment = 1
+
+[node name="temp_night_3" type="Label" parent="."]
+material = SubResource("CanvasItemMaterial_af48j")
+offset_left = 75.0
+offset_top = 47.0
+offset_right = 115.0
+offset_bottom = 75.0
+label_settings = SubResource("LabelSettings_ptvtw")
+horizontal_alignment = 1

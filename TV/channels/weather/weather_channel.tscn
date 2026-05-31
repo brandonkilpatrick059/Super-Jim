@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo1g7x8tntwtv"]
+
+[ext_resource type="Script" uid="uid://dt1mevb5a3hy0" path="res://scripts/TV/channel.gd" id="1_4ps2e"]
+[ext_resource type="PackedScene" uid="uid://jkhec0ujhijo" path="res://TV/channels/weather/segments/weather_today_segment.tscn" id="2_k1grl"]
+
+[node name="WeatherChannel" type="Node2D" node_paths=PackedStringArray("segments")]
+script = ExtResource("1_4ps2e")
+segments = [NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today"), NodePath("weather_today")]
+channel_text = "CHANNEL 04 - WEATHER"
+
+[node name="weather_today" parent="." instance=ExtResource("2_k1grl")]

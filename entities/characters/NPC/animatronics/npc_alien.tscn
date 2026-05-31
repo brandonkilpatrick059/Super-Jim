@@ -15,7 +15,6 @@ base_spriteframes = ExtResource("4_2wjg3")
 dialog_offset = Vector2(0, 64)
 is_animatronic = true
 save_tag = "NPC_ALIEN"
-shop_manager_group = null
 
 [node name="character_base" type="Node2D" parent="."]
 script = ExtResource("3_3cbuv")

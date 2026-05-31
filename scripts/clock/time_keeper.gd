@@ -74,8 +74,12 @@ var player_ref = null
 
 var pause_menu_ref = null
 
-func get_moon_phase() -> String:
-	return moon_phase[day_of_moon_cycle]
+#offset only works for positive ints
+func get_moon_phase(offset : int = 0) -> String:
+	var plus_offset = day_of_moon_cycle + offset
+	while(plus_offset >= moon_phase.size()):
+		plus_offset = moon_phase.size() - plus_offset
+	return moon_phase[plus_offset]
 
 func get_day_of_moon_cycle():
 	return day_of_moon_cycle

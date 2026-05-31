@@ -65,6 +65,8 @@ extends Node2D
 @export var team_number_buff_shield : bool = false
 @export var team_number_buff_dmg : bool = false
 
+@export var bypasses_shield : bool = false
+
 var stat_max = 9
 
 var meters_stowed : bool = false
@@ -157,6 +159,9 @@ func get_damage_transfers_to_shield() -> bool:
 
 func get_damage_transfers_to_power() -> bool:
 	return damage_transfers_to_power
+
+func get_bypasses_shield() -> bool:
+	return bypasses_shield
 
 func _ready() -> void:
 	_hp_meter.set_stat(hp)

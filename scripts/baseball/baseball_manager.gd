@@ -30,6 +30,8 @@ extends Node2D
 @onready var right_thrown_hp = $right_thrown_hp
 var left_catching : bool = false
 var right_catching : bool = false
+var left_catching_right : bool = false
+var right_catching_left : bool = false
 
 var sound_players : Array[AudioStreamPlayer2D] = []
 
@@ -117,6 +119,9 @@ var show_get_ready = false
 
 var card_left_has_thrown = false
 var card_right_has_thrown = false
+
+var card_left_has_team_buffed = false
+var card_right_has_team_buffed = false
 
 func _ready():
 	bat_arms_left.visible = false
@@ -247,11 +252,13 @@ func run_effects_phase(run_for_right : bool):
 	game_timer.start(turn_secs)
 
 func handle_right_catch():
+	var right_active_card : Baseball_Card = active_card_right.get_child(0)
+	var catches_opponent : bool = right_active_card.get_catches_opponent_stats()
 	if(current_catch_index != current_right_index):
 		if(!killing_card &&
 		!cycling_cards &&
 		!left_catching &&
-		right_has_ready_catch()):
+		(right_has_ready_catch() || (left_has_ready_catch() && catches_opponent))):
 			var roll_success : bool = false
 			var roll : float = randf_range(0.0,1.0)
 			var catch_chance : float = 0.0
@@ -264,6 +271,8 @@ func handle_right_catch():
 					catch_chance = 1.0
 			roll_success = roll <= catch_chance
 			right_catching = roll_success
+			if(catches_opponent && right_catching_left == false && right_catching):
+				right_catching_left = true
 			current_catch_index = current_right_index
 
 func run_attack_phase(attacking_card : Baseball_Card, defending_card : Baseball_Card):
@@ -274,7 +283,7 @@ func run_attack_phase(attacking_card : Baseball_Card, defending_card : Baseball_
 	handle_right_catch()
 	
 	var damage_done = attacking_card.get_power()
-	if(defending_card.get_shield() == 0):
+	if(defending_card.get_shield() == 0 || attacking_card.get_bypasses_shield()):
 		if(attacking_card.get_buff_dmg_against_team() > 0 && 
 		defending_card.get_card_team() == attacking_card.get_buff_dmg_target_team()):
 			damage_done = damage_done + attacking_card.get_buff_dmg_against_team()
@@ -289,15 +298,31 @@ func run_attack_phase(attacking_card : Baseball_Card, defending_card : Baseball_
 			else:
 				damage_done = 0
 	else: #blocked by shield
-		damage_done = 0
-		var defending_current_shield = defending_card.get_shield()
-		defending_card.set_shield(defending_current_shield - 1)
-		var particle = load("res://baseball/stat_particle.tscn").instantiate()
-		attacking_card.add_child(particle)
-		particle.global_position = Vector2(attacking_card.global_position.x,attacking_card.global_position.y)
-		particle.set_and_fire_str("BLOCKED")
+		if(attacking_card.get_damage_transfers_to_shield()):
+			var shield_after_damage = defending_card.get_shield() - damage_done
+			if(shield_after_damage < 0):
+				shield_after_damage = 0
+			defending_card.set_shield(shield_after_damage)
+			damage_done = 0
+		else:
+			damage_done = 0
+			var defending_current_shield = defending_card.get_shield()
+			defending_card.set_shield(defending_current_shield - 1)
+			var particle = load("res://baseball/stat_particle.tscn").instantiate()
+			attacking_card.add_child(particle)
+			particle.global_position = Vector2(attacking_card.global_position.x,attacking_card.global_position.y)
+			particle.set_and_fire_str("BLOCKED")
 	var defending_hp = defending_card.get_hp()
 	var defending_hp_after_damage = defending_hp - damage_done
+	
+	if(attacking_card.get_damage_transfers_to_power()):
+		var power_after_damage = defending_card.get_power() - damage_done
+		if(power_after_damage < 0):
+			power_after_damage = 0
+		defending_card.set_power(power_after_damage)
+		
+
+	#the card is killed
 	if(defending_hp_after_damage <= 0):
 		defending_hp_after_damage = 0
 		card_killed = true
@@ -318,6 +343,23 @@ func run_attack_phase(attacking_card : Baseball_Card, defending_card : Baseball_
 			attacking_card.set_hp(attacking_card.get_hp() + buff_amt)
 			if(attacking_card.get_hp() > final_buff_amt):
 				final_buff_amt = attacking_card.get_hp()
+		
+		var stat_thrown = false
+		if(attacking_card.get_throws_damage_on_kill() > 0):
+			var buff_amt = attacking_card.get_throws_damage_on_kill()
+			left_thrown_power.throw_stat(buff_amt)
+			stat_thrown = true
+		if(attacking_card.get_throws_shield_on_kill() > 0):
+			var buff_amt = attacking_card.get_throws_shield_on_kill()
+			left_thrown_shield.throw_stat(buff_amt)
+			stat_thrown = true
+		if(attacking_card.get_throws_hp_on_kill() > 0):
+			var buff_amt = attacking_card.get_throws_hp_on_kill()
+			left_thrown_hp.throw_stat(buff_amt)
+			stat_thrown = true
+		if(stat_thrown):
+			play_sound("res://audio/soundFX/dash_regen.wav")
+			
 		play_buff_sound(final_buff_amt)
 	if(damage_done == 0):
 		play_sound("res://audio/soundFX/maracca.ogg")
@@ -470,11 +512,18 @@ func enact_effects():
 	if(stat_thrown):
 		play_sound("res://audio/soundFX/dash_regen.wav")
 	
+	#TODO: putting this on the backburner cause it seems difficult in comparison with gameplay improvement
+	###team buffs:
+	#if(!card_left_has_team_buffed):
+		#if(card_left.get_team_number_buff_hp() > 0):
+			#queued_hp_buff_left
+		#card_left_has_team_buffed	=  true
+	
 	#CATCHING STATS
+	var highest_stat = 0
 	var catch_wait_pause = 0.1
 	if(left_catching):
 		var catch_wait = 0.0
-		var highest_stat = 0
 		if left_thrown_hp.is_ready_to_catch():
 			var buff = left_thrown_hp.catch(catch_wait)
 			card_left().set_hp(card_left().get_hp() + buff)
@@ -494,12 +543,42 @@ func enact_effects():
 			catch_wait = catch_wait + catch_wait_pause
 			if(card_left.get_shield() > highest_stat):
 				highest_stat = card_left.get_shield()
+		
+		if(!left_catching_right):
+			play_buff_sound(highest_stat)
+		
+		left_catching = false
+	if(left_catching_right):
+		var catch_wait = 0.0
+		
+		if right_thrown_hp.is_ready_to_catch():
+			var buff = right_thrown_hp.catch(catch_wait)
+			card_left().set_hp(card_left().get_hp() + buff)
+			catch_wait = catch_wait + catch_wait_pause
+			highest_stat = card_left.get_hp()
+		
+		if right_thrown_power.is_ready_to_catch():
+			var buff = right_thrown_power.catch(catch_wait)
+			card_left().set_power(card_left().get_power() + buff)
+			catch_wait = catch_wait + catch_wait_pause
+			if(card_left.get_power() > highest_stat):
+				highest_stat = card_left.get_power()
+		
+		if right_thrown_shield.is_ready_to_catch():
+			var buff = right_thrown_shield.catch(catch_wait)
+			card_left().set_shield(card_left().get_shield() + buff)
+			catch_wait = catch_wait + catch_wait_pause
+			if(card_left.get_shield() > highest_stat):
+				highest_stat = card_left.get_shield()
+		
+		left_catching_right = false
 		play_buff_sound(highest_stat)
 		
 		left_catching = false
+	
+	highest_stat = 0
 	if(right_catching):
 		var catch_wait = 0.0
-		var highest_stat = 0
 		if right_thrown_hp.is_ready_to_catch():
 			var buff = right_thrown_hp.catch(catch_wait)
 			card_right().set_hp(card_right().get_hp() + buff)
@@ -519,17 +598,49 @@ func enact_effects():
 			catch_wait = catch_wait + catch_wait_pause
 			if(card_right.get_power() > highest_stat):
 				highest_stat = card_right.get_power()
+			if(!right_catching_left):
+				play_buff_sound(highest_stat)
+			
+		right_catching = false
+	if(right_catching_left):
+		var catch_wait = 0.0
+		if left_thrown_hp.is_ready_to_catch():
+			var buff = left_thrown_hp.catch(catch_wait)
+			card_right().set_hp(card_right().get_hp() + buff)
+			catch_wait = catch_wait + catch_wait_pause
+			highest_stat = card_right.get_hp()
+		
+		if left_thrown_power.is_ready_to_catch():
+			var buff = left_thrown_power.catch(catch_wait)
+			card_right().set_power(card_right().get_power() + buff)
+			catch_wait = catch_wait + catch_wait_pause
+			if(card_right.get_power() > highest_stat):
+				highest_stat = card_right.get_power()
+		
+		if left_thrown_shield.is_ready_to_catch():
+			var buff = left_thrown_shield.catch(catch_wait)
+			card_right().set_shield(card_right().get_shield() + buff)
+			catch_wait = catch_wait + catch_wait_pause
+			if(card_right.get_power() > highest_stat):
+				highest_stat = card_right.get_power()
 			play_buff_sound(highest_stat)
 			
 		right_catching = false
+	
 
 func handle_input():
+	var left_active_card : Baseball_Card = active_card_left.get_child(0)
+	var catching_opponent = false
+	if(left_active_card != null):
+		catching_opponent = left_active_card.get_catches_opponent_stats()
 	if(!killing_card &&
 	!cycling_cards &&
 	!left_catching &&
-	left_has_ready_catch()):
+	(left_has_ready_catch() || (right_has_ready_catch() && catching_opponent))):
 		if(Input.is_action_pressed("interact")):
 			left_catching = true
+			if(catching_opponent):
+				left_catching_right = true
 			play_sound("res://audio/soundFX/dash.wav")
 		catch_notification.make_active()
 	else:

@@ -219,10 +219,11 @@ power = 3
 buff_dmg_on_kill = 3
 
 [node name="gray_19" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
 team = "gray"
 card_name = "Gray"
 portrait_path = "res://sprites/baseball/portraits/gray_portrait.png"
-description = "+4 [color=red]damage[/color] against [img]res://sprites/baseball/gr_sym.png[/img]
+description = "Adds [color=purple]Grayling[/color] to lineup each kill
 "
 strength_rating = 12
 hp = 4
@@ -230,6 +231,7 @@ shield = 0
 power = 4
 buff_dmg_against_team = 4
 buff_dmg_target_team = "gray"
+adds_card_on_kill = 41
 
 [node name="gray_20" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -372,7 +374,23 @@ team = "yellow"
 [node name="gray_39" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "gray"
+card_name = "Grayling"
+portrait_path = "res://sprites/baseball/portraits/gray_portrait.png"
+description = "\"Space Invader\""
+strength_rating = 6
+hp = 2
+power = 2
 
 [node name="white_40" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
+
+[node name="gray_41" parent="." instance=ExtResource("2_yiqgv")]
+visible = false
+team = "gray"
+card_name = "Grayling"
+portrait_path = "res://sprites/baseball/portraits/gray_portrait.png"
+description = "\"Space Invader\""
+strength_rating = 6
+hp = 2
+power = 2

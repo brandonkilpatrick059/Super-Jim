@@ -67,6 +67,8 @@ extends Node2D
 
 @export var bypasses_shield : bool = false
 
+@export var adds_card_on_kill : int = 0
+
 var stat_max = 9
 
 var meters_stowed : bool = false
@@ -162,6 +164,9 @@ func get_damage_transfers_to_power() -> bool:
 
 func get_bypasses_shield() -> bool:
 	return bypasses_shield
+
+func get_add_card_on_kill() -> int:
+	return adds_card_on_kill
 
 func _ready() -> void:
 	_hp_meter.set_stat(hp)

@@ -359,6 +359,23 @@ func run_attack_phase(attacking_card : Baseball_Card, defending_card : Baseball_
 			stat_thrown = true
 		if(stat_thrown):
 			play_sound("res://audio/soundFX/dash_regen.wav")
+		
+		if(attacking_card.get_add_card_on_kill() != 0):
+			var card_roster = get_tree().get_first_node_in_group("card_roster")
+			var card_num = attacking_card.get_add_card_on_kill()
+			var add_card = card_roster.get_card(card_num).duplicate()
+			if(right_is_going):
+				deck_left.add_child(add_card)
+				var particle = load("res://baseball/stat_particle.tscn").instantiate()
+				card_left().add_child(particle)
+				particle.global_position = Vector2(card_left().global_position.x,card_left().global_position.y)
+				particle.set_and_fire_str("ADD CARD")
+			else:
+				deck_right.add_child(add_card)
+				var particle = load("res://baseball/stat_particle.tscn").instantiate()
+				card_right().add_child(particle)
+				particle.global_position = Vector2(card_right().global_position.x,card_right().global_position.y)
+				particle.set_and_fire_str("ADD CARD")
 			
 		play_buff_sound(final_buff_amt)
 	if(damage_done == 0):

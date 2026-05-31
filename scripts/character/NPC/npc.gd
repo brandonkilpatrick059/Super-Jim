@@ -126,6 +126,14 @@ func _ready():
 		_ai_state_machine.add_child(state)
 		state.ai_state_machine = _ai_state_machine
 
+func update_shop():
+	if(shop_manager_group != ""):
+		shop = get_tree().get_first_node_in_group(shop_manager_group)
+		shop.global_position = global_position
+
+func clear_shop():
+	shop.dispose_of_staged_wares()
+
 func set_up_character_base():
 	if(!is_animatronic):
 		_character_base.set_facing_dir(facing_dir)

@@ -42,6 +42,10 @@ func dispose_of_staged_wares():
 	staged_wares = []
 	staged_ware_indexes = []
 
+func set_wares_visible(value : bool):
+	for stage in stage_locations:
+		stage.visible = value
+
 func get_comment_voice() -> String:
 	return comment_voice
 

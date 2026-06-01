@@ -42,6 +42,20 @@ func set_map(map : Node, has_maps : Array[String], select_name : String = ""):
 				break
 	update_list()
 
+func set_tab(tab_name : String):
+	var index = 0
+	door_nodes = map_node.get_children()
+	selected_index = 0
+	bottom_index = 0
+	if(tab_name != ""):
+		while(door_nodes[selected_index].name != tab_name):
+			increment_selected()
+			if(door_nodes[selected_index].name != tab_name &&
+			selected_index == door_nodes.size() - 1):
+				selected_index = 0
+				bottom_index = 0
+				break
+
 func update_list():
 	var index = bottom_index
 	var tab = 0
@@ -82,6 +96,11 @@ func get_linked_map() -> String:
 	var door_node = door_nodes[selected_index]
 	var linked_map = door_node.get_linked_map()
 	return linked_map
+
+func get_linked_tab_name() -> String:
+	var door_node = door_nodes[selected_index]
+	var linked_tab = door_node.get_link_to_tab_name()
+	return linked_tab
 
 func increment_selected(update : bool = true):
 	if(selected_index + 1 < door_nodes.size()):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b4xq7nnvlutul"]
+[gd_scene load_steps=27 format=3 uid="uid://b4xq7nnvlutul"]
 
 [ext_resource type="Texture2D" uid="uid://deqbpc45nppbe" path="res://sprites/interface/map_ui_background.png" id="1_7ush2"]
 [ext_resource type="Script" uid="uid://c3qms12p3qjax" path="res://scripts/interface/map_interface.gd" id="1_i8fx5"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cnxt2mkrfjwa3" path="res://sprites/interface/map_markers/circle_16.png" id="6_04t1u"]
 [ext_resource type="Script" uid="uid://dmm2udtgn6cwk" path="res://scripts/interface/map_marker.gd" id="6_sq4gs"]
 [ext_resource type="Texture2D" uid="uid://crmt1pdmxurtr" path="res://sprites/interface/maps/stonesthrow.png" id="7_m4rhw"]
+[ext_resource type="Script" uid="uid://ba0sovmtcb8ti" path="res://scripts/utility/all_children_invisible_onready.gd" id="7_tabo3"]
 [ext_resource type="Texture2D" uid="uid://e351vu7h2c5x" path="res://sprites/interface/map_markers/arrow_32.png" id="8_djc6v"]
 [ext_resource type="Texture2D" uid="uid://bvim4tgfco1pe" path="res://sprites/interface/map_markers/box_48.png" id="8_gg6p4"]
 [ext_resource type="Texture2D" uid="uid://d3ocfo461y5yu" path="res://sprites/interface/maps/west_side.png" id="10_c2m0w"]
@@ -24,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://wcp2br3ws5gi" path="res://sprites/interface/maps/cliffside_east.png" id="17_kcea0"]
 [ext_resource type="Texture2D" uid="uid://tl8e4o43c7wn" path="res://sprites/interface/maps/cliffside_west.png" id="18_vk7dx"]
 [ext_resource type="Texture2D" uid="uid://cf8t67t3ol2hb" path="res://sprites/interface/maps/utility_tunnels_map.png" id="23_oejg4"]
+[ext_resource type="Texture2D" uid="uid://ccuf1jjsygpqq" path="res://sprites/interface/maps/sewer_map.png" id="24_ncutt"]
 
 [node name="MapInterface" type="Node2D"]
 material = ExtResource("4_7qnfr")
@@ -88,6 +90,7 @@ position = Vector2(140, 117)
 animation = &"unused"
 
 [node name="maps" type="Node2D" parent="."]
+script = ExtResource("7_tabo3")
 
 [node name="Stonesthrow" type="Sprite2D" parent="maps"]
 visible = false
@@ -228,6 +231,7 @@ texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "Eternal Rest Apartments"
 linked_map = "Utility Tunnels"
+link_to_tab_name = "Eternal Rest Apartments (link)"
 
 [node name="home_label" type="Sprite2D" parent="maps/Central Stonesthrow/Eternal Rest Apartments (link)"]
 material = ExtResource("4_7qnfr")
@@ -444,6 +448,7 @@ texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "North Side Apartments"
 linked_map = "Utility Tunnels"
+link_to_tab_name = "North Side Apartments (link)"
 
 [node name="Palisades Place" type="Sprite2D" parent="maps/North Side West"]
 material = ExtResource("4_7qnfr")
@@ -511,6 +516,7 @@ texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "Abandoned Factory"
 linked_map = "Utility Tunnels"
+link_to_tab_name = "Abandoned Factory (link)"
 
 [node name="Longview Apartments" type="Sprite2D" parent="maps/North Side East"]
 material = ExtResource("4_7qnfr")
@@ -541,6 +547,7 @@ texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "Abandoned Tower"
 linked_map = "Utility Tunnels"
+link_to_tab_name = "Abandoned Tower (link)"
 
 [node name="Onyx Cave  (link)" type="Sprite2D" parent="maps/Fallsboro"]
 material = ExtResource("4_7qnfr")
@@ -618,6 +625,7 @@ texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "Rocktown Roads Apartment"
 linked_map = "Utility Tunnels"
+link_to_tab_name = "Rocktown Road Apartments (link)"
 
 [node name="Canal Town South" type="Sprite2D" parent="maps"]
 visible = false
@@ -695,6 +703,7 @@ texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "Abandoned Building"
 linked_map = "Utility Tunnels"
+link_to_tab_name = "Abandoned Building (link)"
 
 [node name="Rocktown" type="Sprite2D" parent="maps"]
 visible = false
@@ -794,13 +803,14 @@ texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "Oceanview Apartments"
 
-[node name="700 Seaside" type="Sprite2D" parent="maps/Cliffside East"]
+[node name="700 Seaside (link)" type="Sprite2D" parent="maps/Cliffside East"]
 material = ExtResource("4_7qnfr")
 position = Vector2(102, 28)
 texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "700 Seaside"
 linked_map = "Utility Tunnels"
+link_to_tab_name = "700 Seaside (link)"
 
 [node name="Cliffside West" type="Sprite2D" parent="maps"]
 visible = false
@@ -867,7 +877,6 @@ script = ExtResource("6_sq4gs")
 tab_name = "823 Cliffside"
 
 [node name="Utility Tunnels" type="Sprite2D" parent="maps"]
-visible = false
 material = ExtResource("4_7qnfr")
 position = Vector2(-121, 3)
 texture = ExtResource("23_oejg4")
@@ -879,6 +888,7 @@ texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "North Side Apartments"
 linked_map = "North Side West"
+link_to_tab_name = "North Side Apartments (link)"
 
 [node name="Abandoned Factory (link)" type="Sprite2D" parent="maps/Utility Tunnels"]
 material = ExtResource("4_7qnfr")
@@ -887,6 +897,7 @@ texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "Abandoned Factory"
 linked_map = "North Side East"
+link_to_tab_name = "Abandoned Factory (link)"
 
 [node name="Abandoned Tower (link)" type="Sprite2D" parent="maps/Utility Tunnels"]
 material = ExtResource("4_7qnfr")
@@ -895,6 +906,7 @@ texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "Abandoned Tower"
 linked_map = "Fallsboro"
+link_to_tab_name = "Abandoned Tower (link)"
 
 [node name="Rocktown Road Apartments (link)" type="Sprite2D" parent="maps/Utility Tunnels"]
 material = ExtResource("4_7qnfr")
@@ -903,6 +915,7 @@ texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "Rocktown Road Apartments"
 linked_map = "Canal Town North"
+link_to_tab_name = "Rocktown Road Apartments (link)"
 
 [node name="Abandoned Building (link)" type="Sprite2D" parent="maps/Utility Tunnels"]
 material = ExtResource("4_7qnfr")
@@ -911,6 +924,16 @@ texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "Abandoned Building"
 linked_map = "Canal Town South"
+link_to_tab_name = "Abandoned Building (link)"
+
+[node name="Sewers (link)2" type="Sprite2D" parent="maps/Utility Tunnels"]
+material = ExtResource("4_7qnfr")
+position = Vector2(90, 55)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Sewers"
+linked_map = "Sewers"
+link_to_tab_name = "Utility Tunnels (link)"
 
 [node name="700 Seaside (link)" type="Sprite2D" parent="maps/Utility Tunnels"]
 material = ExtResource("4_7qnfr")
@@ -919,8 +942,9 @@ texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "700 Seaside"
 linked_map = "Cliffside East"
+link_to_tab_name = "700 Seaside (link)"
 
-[node name="Eternal Rest Apartments (link)2" type="Sprite2D" parent="maps/Utility Tunnels"]
+[node name="Eternal Rest Apartments (link)" type="Sprite2D" parent="maps/Utility Tunnels"]
 material = ExtResource("4_7qnfr")
 position = Vector2(-51, 26)
 texture = ExtResource("6_04t1u")
@@ -928,6 +952,7 @@ script = ExtResource("6_sq4gs")
 tab_name = "Eternal Rest Apartments"
 linked_map = "Central Stonesthrow"
 lock_group = "basement_gate"
+link_to_tab_name = "Eternal Rest Apartments (link)"
 
 [node name="Train Station" type="Sprite2D" parent="maps/Utility Tunnels"]
 material = ExtResource("4_7qnfr")
@@ -936,22 +961,71 @@ texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "Train Station"
 linked_map = "Central Stonesthrow"
+link_to_tab_name = "Train Station"
 
-[node name="sewers (link)" type="Sprite2D" parent="maps/Utility Tunnels"]
+[node name="Sewers (link)" type="Sprite2D" parent="maps/Utility Tunnels"]
 material = ExtResource("4_7qnfr")
 position = Vector2(-58, 56)
 texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
 tab_name = "Sewers"
 linked_map = "Sewers"
+link_to_tab_name = "Utility Tunnels (link)2"
 
-[node name="sewers (link)2" type="Sprite2D" parent="maps/Utility Tunnels"]
+[node name="Sewers" type="Sprite2D" parent="maps"]
+visible = false
 material = ExtResource("4_7qnfr")
-position = Vector2(90, 55)
+position = Vector2(-121, 3)
+texture = ExtResource("24_ncutt")
+
+[node name="Utility Tunnels (link)2" type="Sprite2D" parent="maps/Sewers"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-2, -42)
 texture = ExtResource("6_04t1u")
 script = ExtResource("6_sq4gs")
-tab_name = "Sewers"
-linked_map = "Sewers"
+tab_name = "Utility Tunnels"
+linked_map = "Utility Tunnels"
+link_to_tab_name = "Sewers (link)"
+
+[node name="Jeffs House" type="Sprite2D" parent="maps/Sewers"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-8, -11)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Jeff's House"
+
+[node name="Utility Tunnels (link)" type="Sprite2D" parent="maps/Sewers"]
+material = ExtResource("4_7qnfr")
+position = Vector2(99, -13)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Utility Tunnels East"
+linked_map = "Utility Tunnels"
+link_to_tab_name = "Sewers (link)2"
+
+[node name="Deep Onyx Caves (link)" type="Sprite2D" parent="maps/Sewers"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-55, -80)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Deep Onyx Caves"
+linked_map = "Deep Onyx Caves"
+
+[node name="Deep Onyx Caves (link)2" type="Sprite2D" parent="maps/Sewers"]
+material = ExtResource("4_7qnfr")
+position = Vector2(81, -69)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Opossum Bros"
+linked_map = "Deep Onyx Caves"
+
+[node name="Deep Onyx Caves (link)3" type="Sprite2D" parent="maps/Sewers"]
+material = ExtResource("4_7qnfr")
+position = Vector2(-116, 83)
+texture = ExtResource("6_04t1u")
+script = ExtResource("6_sq4gs")
+tab_name = "Cliffside West"
+linked_map = "Cliffside West"
 
 [node name="arrow_right" type="Sprite2D" parent="."]
 visible = false

@@ -78,10 +78,14 @@ func switch_to_linked_map():
 	if(new_map_name != "" && ordered_maps.has(new_map_name)):
 		audio_player.stream = load("res://audio/soundFX/page_turn.wav")
 		audio_player.play()
-		set_map(new_map_name, map_node.name)
+		var linked_tab = scroll_list.get_linked_tab_name()
+		if(linked_tab != ""):
+			set_map(new_map_name)
+			scroll_list.set_tab(linked_tab)
+		else:
+			set_map(new_map_name, map_node.name)
 		map_index = ordered_maps.find(new_map_name)
 		update_arrows()
-
 
 func update_arrows():
 	if(map_index > 0):

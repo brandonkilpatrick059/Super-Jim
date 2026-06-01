@@ -3,6 +3,7 @@ extends Sprite2D
 @export var tab_name : String = ""
 @export var linked_map : String = ""
 @export var lock_group : String = ""
+@export var link_to_tab_name : String = ""
 
 var active : bool = false
 
@@ -21,6 +22,9 @@ func get_linked_map() -> String:
 
 func get_lock_group() -> String:
 	return lock_group
+
+func get_link_to_tab_name() -> String:
+	return link_to_tab_name
 
 func set_active(value : bool):
 	active = value

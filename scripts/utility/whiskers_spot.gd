@@ -25,7 +25,6 @@ func _on_body_entered(body : Node):
 func _on_body_exited(body : Node):
 	if(body.is_in_group("player") && whiskers_active):
 		whiskers_active = false
-		whiskers_ref.clear_shop()
 		var shop = get_tree().get_first_node_in_group("whiskers_shop")
 		shop.set_wares_visible(false)
 		whiskers_ref.queue_free()

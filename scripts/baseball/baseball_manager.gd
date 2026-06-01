@@ -364,18 +364,35 @@ func run_attack_phase(attacking_card : Baseball_Card, defending_card : Baseball_
 			var card_roster = get_tree().get_first_node_in_group("card_roster")
 			var card_num = attacking_card.get_add_card_on_kill()
 			var add_card = card_roster.get_card(card_num).duplicate()
-			if(right_is_going):
-				deck_left.add_child(add_card)
+			if(right_is_going): #TODO: this is the opposite of what is should be lmao this code sucks
+				if(card_left_2.get_child_count() == 0):
+					set_card_left(add_card,2)
+					add_card.global_position = card_left_spawn.global_position
+				elif(card_left_3.get_child_count() == 0):
+					set_card_left(add_card,3)
+					add_card.global_position = card_left_spawn.global_position
+				else:
+					deck_left.add_child(add_card)
 				var particle = load("res://baseball/stat_particle.tscn").instantiate()
 				card_left().add_child(particle)
 				particle.global_position = Vector2(card_left().global_position.x,card_left().global_position.y)
 				particle.set_and_fire_str("ADD CARD")
+				play_buff_sound(6)
 			else:
 				deck_right.add_child(add_card)
+				if(card_right_2.get_child_count() == 0):
+					set_card_right(add_card,2)
+					add_card.global_position = card_right_spawn.global_position
+				elif(card_right_3.get_child_count() == 0):
+					set_card_right(add_card,3)
+					add_card.global_position = card_right_spawn.global_position
+				else:
+					deck_right.add_child(add_card)
 				var particle = load("res://baseball/stat_particle.tscn").instantiate()
 				card_right().add_child(particle)
 				particle.global_position = Vector2(card_right().global_position.x,card_right().global_position.y)
 				particle.set_and_fire_str("ADD CARD")
+				play_buff_sound(6)
 			
 		play_buff_sound(final_buff_amt)
 	if(damage_done == 0):
@@ -444,7 +461,7 @@ func set_card_right(card : Node2D, num : int = 1):
 		card_right_3.add_child(card)
 	if(num == 4):
 		card_right_spawn.add_child(card)
-	
+
 func set_card_left(card : Node2D, num : int = 1):
 	card.visible = true
 	if(num == 1):
@@ -901,7 +918,7 @@ func killing_card_process():
 						new_card_right.global_position = card_right_spawn.global_position
 		else:
 			card.queue_free()
-			if(card_left(2) != null):	
+			if(card_left(2) != null):
 				var card_left2 = card_left(2)
 				card_left_2.remove_child(card_left2)
 				set_card_left(card_left2,1)

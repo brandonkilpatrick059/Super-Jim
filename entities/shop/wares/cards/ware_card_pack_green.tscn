@@ -12,9 +12,9 @@ ware_name = "Green Booster Pack"
 
 [node name="script_node" type="Node" parent="."]
 script = ExtResource("2_047qw")
-roster_min = 19
-roster_max = 27
-roster_team = "gray"
+roster_min = 1
+roster_max = 9
+roster_team = "green"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_lc6qa")

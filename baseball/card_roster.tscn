@@ -17,6 +17,7 @@ hp = 3
 shield = 0
 power = 3
 flat_buff_hp_next = 3
+adds_card_on_kill = 0
 
 [node name="green_2" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -29,6 +30,7 @@ hp = 3
 shield = 0
 power = 4
 throws_hp = 2
+adds_card_on_kill = 0
 
 [node name="green_3" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -41,6 +43,7 @@ hp = 4
 shield = 0
 power = 3
 flat_buff_shield_next = 1
+adds_card_on_kill = 0
 
 [node name="green_4" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -51,6 +54,7 @@ strength_rating = 9
 hp = 4
 shield = 0
 throws_shield = 2
+adds_card_on_kill = 0
 
 [node name="green_5" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -62,6 +66,7 @@ strength_rating = 9
 hp = 5
 shield = 0
 buff_hp_on_kill = 3
+adds_card_on_kill = 0
 
 [node name="green_6" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -74,6 +79,7 @@ hp = 7
 power = 2
 buff_dmg_against_team = 3
 buff_dmg_target_team = "yellow"
+adds_card_on_kill = 0
 
 [node name="green_7" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -85,6 +91,7 @@ strength_rating = 12
 hp = 6
 shield = 0
 power = 6
+adds_card_on_kill = 0
 
 [node name="green_8" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -97,6 +104,7 @@ hp = 5
 shield = 0
 power = 4
 throws_hp = 3
+adds_card_on_kill = 0
 
 [node name="green_9" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -109,6 +117,7 @@ hp = 2
 shield = 0
 power = 2
 buff_shield_on_kill = 2
+adds_card_on_kill = 0
 
 [node name="yellow_10" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -121,6 +130,7 @@ hp = 3
 shield = 0
 power = 2
 flat_buff_damage_next = 4
+adds_card_on_kill = 0
 
 [node name="yellow_11" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -133,6 +143,7 @@ hp = 3
 shield = 0
 power = 3
 throws_power = 3
+adds_card_on_kill = 0
 
 [node name="yellow_12" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -144,6 +155,7 @@ strength_rating = 9
 hp = 2
 buff_dmg_against_team = 4
 buff_dmg_target_team = "green"
+adds_card_on_kill = 0
 
 [node name="yellow_13" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -156,6 +168,7 @@ hp = 4
 shield = 0
 power = 3
 throws_hp = 2
+adds_card_on_kill = 0
 
 [node name="yellow_14" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -167,6 +180,7 @@ description = "+3 [img]res://sprites/baseball/p_sym.png[/img] each kill"
 strength_rating = 9
 hp = 5
 shield = 0
+adds_card_on_kill = 0
 
 [node name="yellow_15" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -179,6 +193,7 @@ hp = 2
 shield = 2
 power = 2
 throws_power = 4
+adds_card_on_kill = 0
 
 [node name="yellow_16" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -191,6 +206,7 @@ hp = 5
 shield = 0
 power = 5
 flat_buff_hp_next = 2
+adds_card_on_kill = 0
 
 [node name="yellow_17" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -205,6 +221,7 @@ shield = 0
 power = 2
 buff_dmg_on_kill = 2
 throws_hp = 2
+adds_card_on_kill = 0
 
 [node name="yellow_18" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -217,6 +234,7 @@ hp = 6
 shield = 0
 power = 3
 buff_dmg_on_kill = 3
+adds_card_on_kill = 0
 
 [node name="gray_19" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -244,6 +262,7 @@ hp = 3
 shield = 0
 power = 3
 damage_transfers_to_shield = true
+adds_card_on_kill = 0
 
 [node name="gray_21" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -255,6 +274,7 @@ strength_rating = 12
 hp = 2
 power = 2
 catches_opponent_stats = true
+adds_card_on_kill = 0
 
 [node name="gray_22" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -264,6 +284,7 @@ portrait_path = "res://sprites/baseball/portraits/mechanical_portrait.png"
 description = "\"Beep Boop\""
 strength_rating = 12
 shield = 5
+adds_card_on_kill = 0
 
 [node name="gray_23" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -278,6 +299,7 @@ power = 2
 throws_hp = 2
 throws_shield = 2
 throws_power = 2
+adds_card_on_kill = 0
 
 [node name="gray_24" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -291,6 +313,7 @@ hp = 3
 shield = 0
 power = 6
 throws_power_on_kill = 2
+adds_card_on_kill = 0
 
 [node name="gray_25" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -303,6 +326,7 @@ hp = 6
 shield = 0
 power = 3
 bypasses_shield = true
+adds_card_on_kill = 0
 
 [node name="gray_26" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -314,6 +338,7 @@ strength_rating = 15
 hp = 6
 shield = 0
 power = 9
+adds_card_on_kill = 0
 
 [node name="gray_27" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -326,50 +351,62 @@ hp = 6
 shield = 0
 power = 6
 damage_transfers_to_power = true
+adds_card_on_kill = 0
 
 [node name="white_28" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
+adds_card_on_kill = 0
 
 [node name="white_29" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
+adds_card_on_kill = 0
 
 [node name="white_30" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
+adds_card_on_kill = 0
 
 [node name="white_31" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
+adds_card_on_kill = 0
 
 [node name="white_32" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
+adds_card_on_kill = 0
 
 [node name="white_33" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
+adds_card_on_kill = 0
 
 [node name="white_34" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
+adds_card_on_kill = 0
 
 [node name="white_35" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
+adds_card_on_kill = 0
 
 [node name="white_36" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
+adds_card_on_kill = 0
 
 [node name="green_37" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "green"
+adds_card_on_kill = 0
 
 [node name="yellow_38" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "yellow"
+adds_card_on_kill = 0
 
 [node name="gray_39" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
@@ -380,17 +417,22 @@ description = "\"Space Invader\""
 strength_rating = 6
 hp = 2
 power = 2
+adds_card_on_kill = 0
 
 [node name="white_40" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "white"
+adds_card_on_kill = 0
 
 [node name="gray_41" parent="." instance=ExtResource("2_yiqgv")]
 visible = false
 team = "gray"
 card_name = "Grayling"
 portrait_path = "res://sprites/baseball/portraits/gray_portrait.png"
-description = "\"Space Invader\""
+description = "[color=purple]Throws[/color] +2 [img]res://sprites/baseball/p_sym.png[/img]"
 strength_rating = 6
 hp = 2
+shield = 0
 power = 2
+throws_power = 2
+adds_card_on_kill = 0

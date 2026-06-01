@@ -1,11 +1,16 @@
-[gd_resource type="SpriteFrames" load_steps=34 format=3 uid="uid://c7vua4v87qau2"]
+[gd_resource type="SpriteFrames" load_steps=45 format=3 uid="uid://c7vua4v87qau2"]
 
 [ext_resource type="Texture2D" uid="uid://cxttdy0nri8yj" path="res://sprites/baseball/card_pack.png" id="1_vmplp"]
 [ext_resource type="Texture2D" uid="uid://dgnin37esitcy" path="res://sprites/baseball/card_pack_green.png" id="2_5eigt"]
+[ext_resource type="Texture2D" uid="uid://dllfo7s1ta6lr" path="res://sprites/baseball/card_pack_gray.png" id="2_cybst"]
 [ext_resource type="Texture2D" uid="uid://c2740tcul0y63" path="res://sprites/baseball/card_pack_yellow.png" id="3_lfe6u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5eigt"]
 atlas = ExtResource("1_vmplp")
+region = Rect2(0, 0, 98, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe37v"]
+atlas = ExtResource("2_cybst")
 region = Rect2(0, 0, 98, 162)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8xesi"]
@@ -18,6 +23,10 @@ region = Rect2(0, 0, 98, 162)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lfe6u"]
 atlas = ExtResource("1_vmplp")
+region = Rect2(686, 0, 98, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpkk4"]
+atlas = ExtResource("2_cybst")
 region = Rect2(686, 0, 98, 162)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i5g1v"]
@@ -58,6 +67,38 @@ region = Rect2(588, 0, 98, 162)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1o2l7"]
 atlas = ExtResource("1_vmplp")
+region = Rect2(686, 0, 98, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jp1r"]
+atlas = ExtResource("2_cybst")
+region = Rect2(0, 0, 98, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwda0"]
+atlas = ExtResource("2_cybst")
+region = Rect2(98, 0, 98, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uk87q"]
+atlas = ExtResource("2_cybst")
+region = Rect2(196, 0, 98, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6whxe"]
+atlas = ExtResource("2_cybst")
+region = Rect2(294, 0, 98, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3og75"]
+atlas = ExtResource("2_cybst")
+region = Rect2(392, 0, 98, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0cm1"]
+atlas = ExtResource("2_cybst")
+region = Rect2(490, 0, 98, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvbjw"]
+atlas = ExtResource("2_cybst")
+region = Rect2(588, 0, 98, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqo7f"]
+atlas = ExtResource("2_cybst")
 region = Rect2(686, 0, 98, 162)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xyey8"]
@@ -136,6 +177,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_oe37v")
+}],
+"loop": true,
+"name": &"default_gray",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_8xesi")
 }],
 "loop": true,
@@ -156,6 +205,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"opened",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpkk4")
+}],
+"loop": true,
+"name": &"opened_gray",
 "speed": 5.0
 }, {
 "frames": [{
@@ -213,6 +270,47 @@ animations = [{
 }],
 "loop": true,
 "name": &"opening",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jp1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwda0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uk87q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6whxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3og75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0cm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvbjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqo7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqo7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqo7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqo7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqo7f")
+}],
+"loop": true,
+"name": &"opening_gray",
 "speed": 5.0
 }, {
 "frames": [{

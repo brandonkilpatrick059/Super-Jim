@@ -1543,6 +1543,10 @@ func put_down_and_queue_free():
 		put_down(false)
 		temp.queue_free()
 
+func give_pickupable(pickup : Node):
+	will_grab_object = pickup
+	handle_pick_up()
+
 func handle_pick_up():
 	if(will_grab_object != null && !holding_object):
 		play_sound(pickup_sound)

@@ -23,8 +23,7 @@ force_factor = 1000
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_goc37")
 animation = &"active"
-offset = Vector2(0, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 17)
+position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_uohqg")

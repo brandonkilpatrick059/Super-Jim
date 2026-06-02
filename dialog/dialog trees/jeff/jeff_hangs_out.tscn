@@ -1,12 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://sbv3y6xh1yk8"]
+[gd_scene load_steps=10 format=3 uid="uid://sbv3y6xh1yk8"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_s035q"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_t3q51"]
 [ext_resource type="Script" uid="uid://6ti2gqjsh5s4" path="res://scripts/utility/run_scripts/animatronic_animation.gd" id="3_s035q"]
+[ext_resource type="Script" uid="uid://cim1fpmu1o6uh" path="res://scripts/utility/run_conditionals/has_schedules_index.gd" id="3_t3q51"]
+[ext_resource type="Script" uid="uid://c1os747lsnqal" path="res://scripts/utility/run_conditionals/schedules_index_as_conditional.gd" id="5_saews"]
+[ext_resource type="Script" uid="uid://cw48q6xuo2nnn" path="res://scripts/utility/run_scripts/advanced_run_scripts.gd" id="6_nm1dn"]
+[ext_resource type="Script" uid="uid://b5nmoj42aor50" path="res://scripts/utility/run_scripts/give_pickupable.gd" id="7_h27ns"]
+[ext_resource type="PackedScene" uid="uid://daiakvowyxspo" path="res://entities/props/dynamic props/props_dynamic_pickupable/special/sebastian_lamp.tscn" id="8_mwssk"]
+[ext_resource type="Script" uid="uid://dh02nc27chsam" path="res://scripts/utility/run_scripts/queue_free_group.gd" id="9_mwssk"]
 
 [node name="jeff_hangs_out" type="Node2D"]
 script = ExtResource("1_s035q")
-trunk = NodePath("trunk")
+trunk = NodePath("hello")
+
+[node name="hello" parent="." node_paths=PackedStringArray("option_branches", "conditional_option_script") instance=ExtResource("2_t3q51")]
+position = Vector2(-13, -477)
+speaker_text = Array[String](["Hello again."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk_sebastian"), NodePath("../trunk")]
+voice = "worm_voice"
+conditional_option_script = NodePath("sebastian_is_on_start")
+
+[node name="sebastian_is_on_start" type="Node" parent="hello"]
+script = ExtResource("3_t3q51")
+node_group = "sebastian"
+check_key = "start"
 
 [node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 speaker_text = Array[String](["What's up?"])
@@ -20,20 +39,23 @@ script = ExtResource("3_s035q")
 animatronic_tag = "jeff"
 animation_queue = Array[String](["extend", "default"])
 
-[node name="trunk3(a worm)" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+[node name="trunk_sebastian" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-1003, -171)
+speaker_text = Array[String](["What's up?"])
+speaker_portrait = null
+speech_options = Array[String](["Where are we?", "What's down here?", "What...Are you?", "How did you get here?", "I talked to sebastian.", "Baseball Cards", "See you later."])
+option_branches = [NodePath("../where are we"), NodePath("../whats down here"), NodePath("../trunk3(a worm)"), NodePath("../how did you get here"), NodePath("../trunk_sebastian2_conditional"), NodePath("../baseball cards"), NodePath("../bye"), NodePath("../trunk_sebastian2_conditional")]
+voice = "worm_voice"
+
+[node name="emerge" type="Node" parent="trunk_sebastian"]
+script = ExtResource("3_s035q")
+animatronic_tag = "jeff"
+animation_queue = Array[String](["extend", "default"])
+
+[node name="trunk3(a worm)" parent="." instance=ExtResource("2_t3q51")]
 position = Vector2(-676, 1065)
 speaker_text = Array[String](["I'm a worm!"])
 speaker_portrait = null
-speech_options = Array[String](["Where are we?", "What's down here?", "How did you get here?", "Baseball Cards", "See you later."])
-option_branches = [NodePath("../where are we"), NodePath("../whats down here"), NodePath("../how did you get here"), NodePath("../baseball cards"), NodePath("../bye")]
-voice = "worm_voice"
-
-[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
-position = Vector2(1474, 1427)
-speaker_text = Array[String](["What else is on your mind?"])
-speaker_portrait = null
-speech_options = Array[String](["Where are we?", "What's down here?", "What...Are you?", "How did you get here?", "Baseball Cards", "See you later."])
-option_branches = [NodePath("../where are we"), NodePath("../whats down here"), NodePath("../trunk3(a worm)"), NodePath("../how did you get here"), NodePath("../baseball cards"), NodePath("../bye")]
 voice = "worm_voice"
 
 [node name="bye" parent="." instance=ExtResource("2_t3q51")]
@@ -63,11 +85,10 @@ speaker_portrait = null
 option_branches = [NodePath("../where are we4")]
 voice = "worm_voice"
 
-[node name="where are we4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+[node name="where are we4" parent="." instance=ExtResource("2_t3q51")]
 position = Vector2(2, 1002)
 speaker_text = Array[String](["And out that gate over there is the Sewers."])
 speaker_portrait = null
-option_branches = [NodePath("../trunk2")]
 voice = "worm_voice"
 
 [node name="whats down here" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
@@ -112,11 +133,10 @@ speaker_portrait = null
 option_branches = [NodePath("../whats down here7")]
 voice = "worm_voice"
 
-[node name="whats down here7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+[node name="whats down here7" parent="." instance=ExtResource("2_t3q51")]
 position = Vector2(463, 1799)
 speaker_text = Array[String](["You oughta leave them alone. They're not friendly."])
 speaker_portrait = null
-option_branches = [NodePath("../trunk2")]
 voice = "worm_voice"
 
 [node name="how did you get here" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
@@ -196,11 +216,10 @@ speaker_portrait = null
 option_branches = [NodePath("../how did you get here12")]
 voice = "worm_voice"
 
-[node name="how did you get here12" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+[node name="how did you get here12" parent="." instance=ExtResource("2_t3q51")]
 position = Vector2(305, 3151)
 speaker_text = Array[String](["What more could you want?"])
 speaker_portrait = null
-option_branches = [NodePath("../trunk2")]
 voice = "worm_voice"
 
 [node name="baseball cards" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
@@ -218,23 +237,92 @@ voice = "worm_voice"
 plays_cards = true
 card_deck = Array[int]([9, 14, 9, 11, 14])
 
-[node name="no cards" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+[node name="no cards" parent="." instance=ExtResource("2_t3q51")]
 position = Vector2(756, 507)
 speaker_text = Array[String](["Hold on, you don't have any cards? Sorry, I misheard you."])
 speaker_portrait = null
-option_branches = [NodePath("../trunk2")]
 voice = "worm_voice"
 
-[node name="cards win" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+[node name="cards win" parent="." instance=ExtResource("2_t3q51")]
 position = Vector2(954, 498)
 speaker_text = Array[String](["Wow! Nice one."])
 speaker_portrait = null
-option_branches = [NodePath("../trunk2")]
 voice = "worm_voice"
 
-[node name="cards lose" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+[node name="cards lose" parent="." instance=ExtResource("2_t3q51")]
 position = Vector2(1141, 504)
 speaker_text = Array[String](["Good game."])
 speaker_portrait = null
-option_branches = [NodePath("../trunk2")]
 voice = "worm_voice"
+
+[node name="trunk_sebastian2_conditional" parent="." node_paths=PackedStringArray("option_branches", "conditional_option_script") instance=ExtResource("2_t3q51")]
+position = Vector2(-1003, 85)
+speaker_text = Array[String](["Oh, good!"])
+option_branches = [NodePath("../sebastian_has_spoken")]
+voice = "worm_voice"
+conditional_option_script = NodePath("check_schedule_index")
+
+[node name="check_schedule_index" type="Node" parent="trunk_sebastian2_conditional"]
+script = ExtResource("5_saews")
+node_group = "sebastian"
+check_keys = Array[String](["start_spoken", "has_lamp"])
+
+[node name="sebastian_has_spoken" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-1003, 341)
+speaker_text = Array[String](["How is he?"])
+speech_options = Array[String](["He says he wants a light.", "He's fine, no worries."])
+option_branches = [NodePath("../give_lamp"), NodePath("../glad_to_hear")]
+voice = "worm_voice"
+
+[node name="glad_to_hear" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-997, 2086)
+speaker_text = Array[String](["I'm glad to hear that!"])
+option_branches = [NodePath("../glad_to_hear2")]
+voice = "worm_voice"
+
+[node name="glad_to_hear2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-997, 2342)
+speaker_text = Array[String](["Tell him I say hello, won't you?"])
+option_branches = [NodePath("../glad_to_hear3")]
+voice = "worm_voice"
+
+[node name="glad_to_hear3" parent="." instance=ExtResource("2_t3q51")]
+position = Vector2(-997, 2598)
+speaker_text = Array[String](["I miss talking to him..."])
+voice = "worm_voice"
+
+[node name="give_lamp" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-1189, 622)
+speaker_text = Array[String](["He's stuck in the dark?!"])
+option_branches = [NodePath("../give_lamp2")]
+voice = "worm_voice"
+
+[node name="give_lamp2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-1189, 878)
+speaker_text = Array[String](["My poor brother-"])
+option_branches = [NodePath("../give_lamp3")]
+voice = "worm_voice"
+
+[node name="give_lamp3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-1189, 1134)
+speaker_text = Array[String](["Alone in the dark all these years..."])
+option_branches = [NodePath("../give_lamp4")]
+voice = "worm_voice"
+
+[node name="give_lamp4" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_t3q51")]
+position = Vector2(-1189, 1390)
+speaker_text = Array[String](["Here, take him one of my spare lamps."])
+voice = "worm_voice"
+dialog_script = NodePath("script_runner")
+
+[node name="script_runner" type="Node" parent="give_lamp4" node_paths=PackedStringArray("script_nodes")]
+script = ExtResource("6_nm1dn")
+script_nodes = [NodePath("clear_lamps"), NodePath("give_lamp")]
+
+[node name="clear_lamps" type="Node" parent="give_lamp4/script_runner"]
+script = ExtResource("9_mwssk")
+group_name = "sebastian_lamp"
+
+[node name="give_lamp" type="Node" parent="give_lamp4/script_runner"]
+script = ExtResource("7_h27ns")
+pickupable = ExtResource("8_mwssk")

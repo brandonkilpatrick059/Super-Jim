@@ -1537,6 +1537,12 @@ func put_down_and_return():
 		put_down(false)
 		temp.return_to_home()
 
+func put_down_and_queue_free():
+	if(grabbed_object != null):
+		var temp = grabbed_object
+		put_down(false)
+		temp.queue_free()
+
 func handle_pick_up():
 	if(will_grab_object != null && !holding_object):
 		play_sound(pickup_sound)

@@ -15,6 +15,7 @@ speaker_text = Array[String](["Oh, wait-"])
 speaker_portrait = null
 option_branches = [NodePath("../wormhole2")]
 voice = "worm_voice"
+bypass_distance_check = true
 
 [node name="wormhole2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
 position = Vector2(-1378, 847)
@@ -22,6 +23,7 @@ speaker_text = Array[String](["Before you go..."])
 speaker_portrait = null
 option_branches = [NodePath("../wormhole3")]
 voice = "worm_voice"
+bypass_distance_check = true
 
 [node name="wormhole3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
 position = Vector2(-1406, 1143)
@@ -29,6 +31,7 @@ speaker_text = Array[String](["I want to ask a favor of you."])
 speaker_portrait = null
 option_branches = [NodePath("../wormhole4")]
 voice = "worm_voice"
+bypass_distance_check = true
 
 [node name="wormhole4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
 position = Vector2(-1479, 1489)
@@ -36,6 +39,7 @@ speaker_text = Array[String](["I haven't heard from my brother, Sebastian, since
 speaker_portrait = null
 option_branches = [NodePath("../wormhole5")]
 voice = "worm_voice"
+bypass_distance_check = true
 
 [node name="wormhole5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
 position = Vector2(-1497, 1891)
@@ -43,6 +47,7 @@ speaker_text = Array[String](["He's down here somewhere, but I don't know where.
 speaker_portrait = null
 option_branches = [NodePath("../wormhole6")]
 voice = "worm_voice"
+bypass_distance_check = true
 
 [node name="wormhole6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
 position = Vector2(-1507, 2255)
@@ -50,6 +55,7 @@ speaker_text = Array[String](["Do you think you could find him and check in on h
 speaker_portrait = null
 option_branches = [NodePath("../wormhole7")]
 voice = "worm_voice"
+bypass_distance_check = true
 
 [node name="wormhole7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
 position = Vector2(-1552, 2662)
@@ -58,6 +64,7 @@ speaker_portrait = null
 speech_options = Array[String](["Sure.", "I'm actually sort of busy..."])
 option_branches = [NodePath("../accept"), NodePath("../sort of busy")]
 voice = "worm_voice"
+bypass_distance_check = true
 
 [node name="accept" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
 position = Vector2(-1778, 2967)
@@ -65,6 +72,7 @@ speaker_text = Array[String](["Great!"])
 speaker_portrait = null
 option_branches = [NodePath("../wormhole8")]
 voice = "worm_voice"
+bypass_distance_check = true
 
 [node name="sort of busy" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
 position = Vector2(-1241, 2944)
@@ -72,6 +80,7 @@ speaker_text = Array[String](["Well, if you change your mind-"])
 speaker_portrait = null
 option_branches = [NodePath("../wormhole8")]
 voice = "worm_voice"
+bypass_distance_check = true
 
 [node name="wormhole8" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
 position = Vector2(-1542, 3339)
@@ -79,6 +88,7 @@ speaker_text = Array[String](["I have something that may help you out."])
 speaker_portrait = null
 option_branches = [NodePath("../wormhole9")]
 voice = "worm_voice"
+bypass_distance_check = true
 
 [node name="wormhole9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
 position = Vector2(-1560, 3746)
@@ -86,6 +96,7 @@ speaker_text = Array[String](["Since I got stuck in these sewers, I've been stud
 speaker_portrait = null
 option_branches = [NodePath("../wormhole10")]
 voice = "worm_voice"
+bypass_distance_check = true
 
 [node name="wormhole10" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
 position = Vector2(-1516, 4105)
@@ -93,6 +104,7 @@ speaker_text = Array[String](["And I can show you how to make a Wormhole."])
 speaker_portrait = null
 option_branches = [NodePath("../wormhole11")]
 voice = "worm_voice"
+bypass_distance_check = true
 
 [node name="wormhole11" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
 position = Vector2(-1516, 4516)
@@ -100,6 +112,7 @@ speaker_text = Array[String](["That way, if you get lost while you're looking fo
 speaker_portrait = null
 option_branches = [NodePath("../wormhole12")]
 voice = "worm_voice"
+bypass_distance_check = true
 
 [node name="wormhole12" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
 position = Vector2(-1524, 4923)
@@ -107,6 +120,7 @@ speaker_text = Array[String](["You can teleport to a safe, familiar place."])
 speaker_portrait = null
 option_branches = [NodePath("../wormhole13")]
 voice = "worm_voice"
+bypass_distance_check = true
 
 [node name="wormhole13" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
 position = Vector2(-1495, 5255)
@@ -114,6 +128,7 @@ speaker_text = Array[String](["Ahem..."])
 speaker_portrait = null
 option_branches = [NodePath("../wormhole14")]
 voice = "worm_voice"
+bypass_distance_check = true
 
 [node name="wormhole14" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
 position = Vector2(-1558, 5633)
@@ -121,6 +136,7 @@ speaker_text = Array[String](["So far, I've only figured out how to teleport thi
 speaker_portrait = null
 option_branches = [NodePath("../wormhole15")]
 voice = "worm_voice"
+bypass_distance_check = true
 
 [node name="wormhole15" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_bj1t4")]
 position = Vector2(-1504, 5986)
@@ -128,6 +144,7 @@ speaker_text = Array[String](["Not super useful for ME, but it could be useful f
 speaker_portrait = null
 option_branches = [NodePath("../wormhole16")]
 voice = "worm_voice"
+bypass_distance_check = true
 
 [node name="wormhole16" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_bj1t4")]
 position = Vector2(-1525, 6329)
@@ -137,6 +154,7 @@ option_branches = [NodePath("../wormhole17")]
 voice = "worm_voice"
 dialog_script = NodePath("add_journal_tab")
 play_sound_path = "res://audio/soundFX/crystal_get.wav"
+bypass_distance_check = true
 
 [node name="add_journal_tab" type="Node" parent="wormhole16"]
 script = ExtResource("3_l5id7")
@@ -148,6 +166,7 @@ speaker_text = Array[String](["Just remember: you can't hold anything when you t
 speaker_portrait = null
 option_branches = [NodePath("../wormhole18")]
 voice = "worm_voice"
+bypass_distance_check = true
 
 [node name="wormhole18" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_bj1t4")]
 position = Vector2(-1514, 6991)
@@ -155,6 +174,7 @@ speaker_text = Array[String](["If you find Sebastian, please come tell me how he
 speaker_portrait = null
 voice = "worm_voice"
 dialog_script = NodePath("jeff_hangs_out")
+bypass_distance_check = true
 
 [node name="jeff_hangs_out" type="Node" parent="wormhole18"]
 script = ExtResource("4_ngjwx")

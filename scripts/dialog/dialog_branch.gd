@@ -113,9 +113,6 @@ func append_option_branch():
 	append_option_text = ""
 	branch.set_generated()
 
-#func _ready():
-	#_editor_anim
-
 func _draw():
 	if(Engine.is_editor_hint()):
 			for branch in option_branches:
@@ -135,14 +132,3 @@ func _ready():
 		queue_redraw()
 		if(append_option_text != ""):
 			append_option_branch()
-
-#COMMENT THIS OUT WHEN YOU ARE DONE
-#func _process(delta: float) -> void:
-	#if(Engine.is_editor_hint()):
-		#if(speaker_portrait != null):
-			#_editor_anim.sprite_frames = speaker_portrait
-			#if(speaker_emote != ""):
-				#_editor_anim.play(speaker_emote)
-			#else:
-				#_editor_anim.play("default")
-		#queue_redraw()

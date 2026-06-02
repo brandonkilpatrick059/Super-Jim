@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://daiakvowyxspo"]
+
+[ext_resource type="Script" uid="uid://bkt2mviy7eonh" path="res://scripts/entities/pickupable.gd" id="1_goc37"]
+[ext_resource type="SpriteFrames" uid="uid://drauw2hemh2yd" path="res://sprites/spritesheets/spriteframes/game_world/lamp.tres" id="2_goc37"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_867ch"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uohqg"]
+radius = 7.0
+
+[node name="sebastian_lamp" type="RigidBody2D" groups=["pickupable", "sebastian_lamp"]]
+position = Vector2(0, -4)
+collision_layer = 8
+collision_mask = 4113
+mass = 4.0
+physics_material_override = SubResource("PhysicsMaterial_867ch")
+lock_rotation = true
+linear_damp = 2.0
+script = ExtResource("1_goc37")
+has_home = false
+force_factor = 1000
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_goc37")
+animation = &"active"
+offset = Vector2(0, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 17)
+shape = SubResource("CircleShape2D_uohqg")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=1147 format=3 uid="uid://8n7snbdbe47g"]
+[gd_scene load_steps=1148 format=3 uid="uid://8n7snbdbe47g"]
 
 [ext_resource type="Script" uid="uid://b6jomjtxpe43f" path="res://scripts/tree_management/active_root.gd" id="1_650uh"]
 [ext_resource type="Script" uid="uid://bhwr4mvnbcx4q" path="res://scripts/clock/time_keeper.gd" id="2_ytkim"]
@@ -329,7 +329,6 @@
 [ext_resource type="Texture2D" uid="uid://ywsgoen7vawb" path="res://sprites/tilesets/ysorted_walls/ysorted_sewer_brick_wall.png" id="256_y3bl5"]
 [ext_resource type="Texture2D" uid="uid://cm4qxoaxqg0qa" path="res://sprites/tilesets/ysorted_walls/ysorted_witch_hut_wall_2.png" id="257_eeevi"]
 [ext_resource type="Texture2D" uid="uid://c4sv70boke2tq" path="res://sprites/tilesets/ysorted_walls/ysorted_witch_hut_wall_3.png" id="258_b41b4"]
-[ext_resource type="SpriteFrames" uid="uid://beb5p2yjey7ab" path="res://sprites/spritesheets/spriteframes/characters/base/sebastian_base.tres" id="258_upgrh"]
 [ext_resource type="Texture2D" uid="uid://bvdisuey4xcst" path="res://sprites/tilesets/ysorted_walls/indoor_wall.png" id="259_58oee"]
 [ext_resource type="PackedScene" uid="uid://b4yy6vf56kl58" path="res://entities/items/cash.tscn" id="259_s14sb"]
 [ext_resource type="SpriteFrames" uid="uid://q4pkwgixe2ws" path="res://sprites/spritesheets/spriteframes/characters/base/jeff_base.tres" id="260_g2m25"]
@@ -354,7 +353,9 @@
 [ext_resource type="PackedScene" uid="uid://ce76hxn1j0gf5" path="res://entities/shop/wares/opossum/ware_soup.tscn" id="277_nmlkl"]
 [ext_resource type="PackedScene" uid="uid://cmp2re88qmsol" path="res://dialog/dialog trees/opossum_dialog.tscn" id="277_rtsef"]
 [ext_resource type="PackedScene" uid="uid://bctmlfvoxww75" path="res://entities/props/static props/city/exit_sign.tscn" id="278_kyl8g"]
+[ext_resource type="PackedScene" uid="uid://drnmhviesathl" path="res://entities/characters/NPC/animatronics/npc_sebastian.tscn" id="279_omu3j"]
 [ext_resource type="SpriteFrames" uid="uid://45fw0lvud8of" path="res://sprites/tilesets/water_cave_footer1.tres" id="280_fv5f0"]
+[ext_resource type="Texture2D" uid="uid://becc6bso7oorq" path="res://sprites/spritesheets/characters/base/sebastian_tail.png" id="280_yhe5l"]
 [ext_resource type="SpriteFrames" uid="uid://bh2goat20lwqf" path="res://sprites/tilesets/water_cave_footer2.tres" id="281_8mxrb"]
 [ext_resource type="PackedScene" uid="uid://cwrau1e5y6cny" path="res://effects/node_end_game_skybox.tscn" id="282_vdotn"]
 [ext_resource type="Texture2D" uid="uid://dy8ns022b6h8j" path="res://sprites/tilesets/ysorted_walls/ysorted_mineshaft_wall.png" id="296_wclt5"]
@@ -3058,7 +3059,6 @@ metadata/_edit_use_anchors_ = true
 [node name="dev_layer" type="CanvasLayer" parent="."]
 
 [node name="invisible_walls" type="Node2D" parent="dev_layer"]
-visible = false
 position = Vector2(3, -75)
 
 [node name="central_safe_zone" type="Node2D" parent="dev_layer/invisible_walls"]
@@ -6592,7 +6592,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="dev_layer/invisible_walls/sewers/outer_walls"]
-polygon = PackedVector2Array(-5109, 9427, -4987, 9427, -4987, 8787, -4297.5, 8787, -4280.58, 8787, -4295, 8818, -4216, 8818, -4228.34, 8787, -4209.21, 8787, -4091, 8787, -4091, 8595, -4213, 8595, -4213, 8563, -4091, 8563, -4091, 8207, -4149, 8207, -4149, 7795, -4027, 7795, -4027, 7631, -4085, 7631, -4085, 7475, -4059, 7475, -4027, 7447, -4027, 7367, -4062, 7344, -4027, 7320, -4027, 7178, -3995, 7178, -3995, 7320, -3963, 7347, -3963, 7448, -3937, 7472, -3937, 7614, -3937, 7631, -3995, 7631, -3995, 7795, -3937, 7795, -3937, 8207, -4059, 8207, -4059, 8563, -3675, 8563, -3675, 8787, -3515, 8787, -3515, 8563, -3285, 8563, -3242, 8563, -3242, 8533, -3285, 8533, -3285, 8435, -3243, 8435, -3244, 8334, -3285, 8334, -3285, 8211, -3051, 8211, -3051, 8083, -3077, 8083, -3077, 8035, -3051, 8035, -3051, 7939, -3019, 7939, -3019, 8035, -2993, 8035, -2993, 8082, -3019, 8082, -3019, 8211, -2977, 8211, -2977, 8334, -3211, 8334, -3211, 8435, -3163, 8435, -3163, 8533, -3180, 8533, -3180, 8563, -3141, 8563, -2907.1, 8563, -2907, 8787, -2491, 8787, -2490, 8558, -1882, 8558, -1883, 8368, -1941, 8368, -1941, 7955, -1819, 7955, -1819, 7828, -1627, 7827, -1627, 7667, -1578, 7667, -1578, 7551, -1515, 7551, -1515, 7667, -1275, 7667, -1275, 7827, -987, 7827, -875, 7578, -1151, 7474, -1369, 7408, -795, 7075, -707, 6854, -815, 6831, -843, 6821, -860, 6821, -860, 6945, -922, 6945, -922, 6821, -997, 6821, -997, 6659, -849, 6659, -848, 6830, -836.229, 6800.73, -774, 6646, -815, 6531, -1006, 6523, -1157, 6569, -1657, 6877, -2049, 6877, -2049, 6933, -2092, 6933, -2092, 7018, -2154, 7018, -2154, 6933, -2324, 6933, -2325, 6643, -2163, 6643, -2162, 6676, -2203, 6676, -2203, 6836, -2154, 6836, -2154, 6728, -2092, 6728, -2092, 6836, -2075, 6836, -2075, 6675, -2156, 6675, -2155, 6642, -1657, 6642, -1656, 6509, -2062, 6506, -2380, 6413, -2789, 6933, -2591, 7187, -2441, 7734, -2866, 7730, -2984, 7510, -3544, 7623, -3829, 7489, -3933, 7294, -3955, 7125, -3984, 7074, -4039, 7098, -4099, 7160, -4126, 7253, -4274, 7398, -4377, 7632, -4724, 7999, -5112, 8668, -5215, 9345, -5183, 9523, -5126, 9763, -4664, 10037, -3713, 10357, -1060, 10061, -539, 9571, -467, 9126, -627, 8894, -523, 7891, -898, 7724, -987, 7829, -987, 8787, -929, 8787, -929, 8911, -993, 8911, -992, 9262, -1696, 9262, -1696, 9357, -1825, 9357, -1825, 9653, -4405, 9653, -4405, 9619, -4347, 9619, -4347, 9587, -4373, 9587, -4373, 9558, -4373, 9491, -4331, 9491, -4331, 9402, -4373, 9402, -4373, 9374, -4372, 9267, -4129, 9267, -4129, 9402, -4299, 9402, -4299, 9491, -4251, 9491, -4251, 9566, -4251, 9587, -4315, 9587, -4315, 9619, -4251, 9619, -3259, 9619, -3259, 9357, -3541, 9357, -3541, 8819, -4315, 8819, -4960, 8819, -4961, 9502, -5109, 9502)
+polygon = PackedVector2Array(-5109, 9427, -4987, 9427, -4987, 8787, -4297.5, 8787, -4280.58, 8787, -4228.34, 8787, -4209.21, 8787, -4091, 8787, -4091, 8595, -4213, 8595, -4213, 8563, -4091, 8563, -4091, 8207, -4149, 8207, -4149, 7795, -4027, 7795, -4027, 7631, -4085, 7631, -4085, 7475, -4059, 7475, -4027, 7447, -4027, 7367, -4062, 7344, -4027, 7320, -4027, 7178, -3995, 7178, -3995, 7320, -3963, 7347, -3963, 7448, -3937, 7472, -3937, 7614, -3937, 7631, -3995, 7631, -3995, 7795, -3937, 7795, -3937, 8207, -4059, 8207, -4059, 8563, -3675, 8563, -3675, 8787, -3515, 8787, -3515, 8563, -3285, 8563, -3242, 8563, -3242, 8533, -3285, 8533, -3285, 8435, -3243, 8435, -3244, 8334, -3285, 8334, -3285, 8211, -3051, 8211, -3051, 8083, -3077, 8083, -3077, 8035, -3051, 8035, -3051, 7939, -3019, 7939, -3019, 8035, -2993, 8035, -2993, 8082, -3019, 8082, -3019, 8211, -2977, 8211, -2977, 8334, -3211, 8334, -3211, 8435, -3163, 8435, -3163, 8533, -3180, 8533, -3180, 8563, -3141, 8563, -2907.1, 8563, -2907, 8787, -2491, 8787, -2490, 8558, -1882, 8558, -1883, 8368, -1941, 8368, -1941, 7955, -1819, 7955, -1819, 7828, -1627, 7827, -1627, 7667, -1578, 7667, -1578, 7551, -1515, 7551, -1515, 7667, -1275, 7667, -1275, 7827, -987, 7827, -875, 7578, -1151, 7474, -1369, 7408, -795, 7075, -707, 6854, -815, 6831, -843, 6821, -860, 6821, -860, 6945, -922, 6945, -922, 6821, -997, 6821, -997, 6659, -849, 6659, -848, 6830, -836.229, 6800.73, -774, 6646, -815, 6531, -1006, 6523, -1157, 6569, -1657, 6877, -2049, 6877, -2049, 6933, -2092, 6933, -2092, 7018, -2154, 7018, -2154, 6933, -2324, 6933, -2325, 6643, -2163, 6643, -2162, 6676, -2203, 6676, -2203, 6836, -2154, 6836, -2154, 6728, -2092, 6728, -2092, 6836, -2075, 6836, -2075, 6675, -2156, 6675, -2155, 6642, -1657, 6642, -1656, 6509, -2062, 6506, -2380, 6413, -2789, 6933, -2591, 7187, -2441, 7734, -2866, 7730, -2984, 7510, -3544, 7623, -3829, 7489, -3933, 7294, -3955, 7125, -3984, 7074, -4039, 7098, -4099, 7160, -4126, 7253, -4274, 7398, -4377, 7632, -4724, 7999, -5112, 8668, -5215, 9345, -5183, 9523, -5126, 9763, -4664, 10037, -3713, 10357, -1060, 10061, -539, 9571, -467, 9126, -627, 8894, -523, 7891, -898, 7724, -987, 7829, -987, 8787, -929, 8787, -929, 8911, -993, 8911, -992, 9262, -1696, 9262, -1696, 9357, -1825, 9357, -1825, 9653, -4405, 9653, -4405, 9619, -4347, 9619, -4347, 9587, -4373, 9587, -4373, 9558, -4373, 9491, -4331, 9491, -4331, 9402, -4373, 9402, -4373, 9374, -4372, 9267, -4129, 9267, -4129, 9402, -4299, 9402, -4299, 9491, -4251, 9491, -4251, 9566, -4251, 9587, -4315, 9587, -4315, 9619, -4251, 9619, -3259, 9619, -3259, 9357, -3541, 9357, -3541, 8819, -4315, 8819, -4960, 8819, -4961, 9502, -5109, 9502)
 
 [node name="inner_walls" type="StaticBody2D" parent="dev_layer/invisible_walls/sewers"]
 collision_layer = 16
@@ -8978,7 +8978,7 @@ skips_fade_in = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="dev_layer/music_zones/sewer_music_zone"]
 position = Vector2(130, 783)
-polygon = PackedVector2Array(-313, -5084, -1326, -3773, -462, -2694, -364.152, -2619.72, 605, -1884, 1755, -2033, 4604, -2070, 4383, -4035, 3542, -3958, 3491, -3958, 3442, -3975, 3425, -4050, 3465, -4103, 3575, -4101, 3716, -3968, 3814, -3977, 4447, -4754, 3174, -4581, 2738, -5099, 1947, -3732, 1584, -3870, 1447, -3868, 1404, -5242, 743, -4929, 714, -4927, 593, -5209)
+polygon = PackedVector2Array(-313, -5084, -1326, -3773, -462, -2694, 301, -2686, 318, -3162, 770, -3183, 633, -2746, 501, -2762, 355, -2762, 252, -2506, 778, -2427, 605, -1884, 1755, -2033, 4604, -2070, 4383, -4035, 3542, -3958, 3491, -3958, 3442, -3975, 3425, -4050, 3465, -4103, 3575, -4101, 3716, -3968, 3814, -3977, 4447, -4754, 3174, -4581, 2738, -5099, 1947, -3732, 1584, -3870, 1447, -3868, 1404, -5242, 743, -4929, 714, -4927, 593, -5209)
 
 [node name="alien_ship_music_zone" parent="dev_layer/music_zones" instance=ExtResource("8_vn7pi")]
 position = Vector2(-4886, 11428)
@@ -16013,289 +16013,289 @@ position = Vector2(-2381, -2263)
 [node name="ac_unit_1" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(-726, -141)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_2" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(-2043, -526)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_36" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(-1288, -738)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_37" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(-1288, -706)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_3" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(-2079, -526)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_4" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 4
 position = Vector2(-2294, -1228)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_5" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 4
 position = Vector2(-2261, -1228)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_6" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(-1782, -2014)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_7" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(-1817, -2014)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_8" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(-1367.09, -2680.96)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_46" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 3
 position = Vector2(839.915, -2631.03)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_9" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(-956, -1481)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_10" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(-921, -1481)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_11" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(-1184, -1798)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_34" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(-804, -2821)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_35" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(-767, -2821)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_12" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(-182, -1801)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_13" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(-145, -1801)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_14" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 5
 position = Vector2(2670, -770)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_15" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 5
 position = Vector2(2635, -770)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_38" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(2186, -1670)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_16" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 5
 position = Vector2(2600, -770)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_39" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(3082, 439)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_40" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(3047, 439)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_41" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(1930, 1168)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_43" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(1894, 1168)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_44" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(807, 828)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_45" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(548, 1042)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_42" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(1546, 1493)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_17" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 5
 position = Vector2(1987, -679)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_18" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(3012, -470)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_19" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(3079, -1544)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_20" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(3043, -1544)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_21" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(-2298, 437)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_22" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(-1525, 1425)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_23" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(-187, 1561)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_24" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(-224, 1561)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_25" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(-61, 905)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_26" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(172, -593)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_28" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 4
 position = Vector2(546, -963)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_47" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 4
 position = Vector2(170, -553)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_48" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 4
 position = Vector2(41, 120)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_29" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(166, -1275)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_30" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(203, -1275)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_31" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(1475, -1396)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_32" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(555, -529)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_33" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(516, -529)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="ac_unit_27" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("46_bjajf")]
 z_index = 2
 position = Vector2(133, -593)
-frame_progress = 0.19555
+frame_progress = 0.202531
 not_prunable = null
 
 [node name="lightpoles" type="Node2D" parent="day_light_layer/daylight_affected_ysort/game_world/static_props"]
@@ -16850,7 +16850,7 @@ linked_mob_spawner = NodePath("../../../../../dev_layer/mob_spawners/MobSpawner1
 
 [node name="light_house" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("52_8g5lv")]
 position = Vector2(3316, 2157)
-frame_progress = 0.53908
+frame_progress = 0.400179
 
 [node name="Bush29" parent="day_light_layer/daylight_affected_ysort/game_world/static_props" instance=ExtResource("58_375vr")]
 position = Vector2(-2041, -4034)
@@ -19852,578 +19852,578 @@ speed_factor = 0.5
 [node name="AnimatedSprite2D97" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-33, 16)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D98" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-33, -16)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D99" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-1, 16)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D100" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-1, -16)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D115" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(31, 801)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D116" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(31, 769)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D117" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(63, 801)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D118" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(63, 769)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D119" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(223, 833)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D120" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(223, 801)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D121" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(255, 833)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D123" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(287, 833)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D125" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(47, 1184)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D126" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(111, 1184)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D127" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(175, 1184)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D128" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(239, 1184)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D129" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(303, 1184)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D132" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(943, 1184)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D133" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(1007, 1184)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D134" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(1071, 1184)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D135" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(1135, 1184)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D136" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(1199, 1184)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D124" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(287, 801)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D137" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(575, 2496)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D139" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(607, 2496)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D141" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(607, 2560)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D142" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(607, 2528)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D143" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(575, 2560)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D156" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 z_index = -1
 position = Vector2(-913, 4448)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D157" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 z_index = -1
 position = Vector2(-817, 4448)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D144" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(575, 2528)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D130" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(255, 801)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D138" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(991, 768)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D140" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(991, 736)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D145" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(1023, 768)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D146" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(1055, 768)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D147" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(1055, 736)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D149" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(1087, 768)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D150" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(1087, 736)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D148" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(1023, 736)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D122" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(543, 800)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D131" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(575, 800)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D101" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(31, 16)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D102" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(31, -16)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D106" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(63, 16)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D107" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(63, -16)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D108" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(95, 16)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D109" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(95, -16)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D110" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(127, 16)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D111" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(127, -16)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D103" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3809, -1232)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D104" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3777, -1232)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D105" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3745, -1232)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D154" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3713, -1232)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D155" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3681, -1232)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D158" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3649, -1232)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D159" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3809, -1264)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D160" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3777, -1264)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D161" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3745, -1264)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D162" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3713, -1264)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D163" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3681, -1264)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D164" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3649, -1264)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D165" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3809, -1392)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D166" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3777, -1392)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D167" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3745, -1392)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D168" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3713, -1392)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D169" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3681, -1392)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D170" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3649, -1392)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D171" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3809, -1424)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D172" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3777, -1424)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D173" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3745, -1424)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D174" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3713, -1424)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D175" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3681, -1424)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D176" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3649, -1424)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D177" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3809, -1648)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D178" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3777, -1648)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D179" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3745, -1648)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D180" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3713, -1648)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D181" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3681, -1648)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D182" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3649, -1648)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D189" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3809, -1520)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D190" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3777, -1520)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D191" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3745, -1520)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D192" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3713, -1520)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D193" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3681, -1520)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D194" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3649, -1520)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D183" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3809, -1680)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D184" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3777, -1680)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D185" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3745, -1680)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D186" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3713, -1680)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D187" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3681, -1680)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D188" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3649, -1680)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D195" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3809, -1712)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D196" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3777, -1712)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D197" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3745, -1712)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D198" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3713, -1712)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D199" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3681, -1712)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D200" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(-3649, -1712)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D114" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(1183, -32)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D151" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(1183, -64)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D152" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(1215, -32)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D153" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(1215, -64)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D112" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(383, -48)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D113" type="AnimatedSprite2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/water_fall"]
 position = Vector2(415, -48)
 sprite_frames = ExtResource("67_y8qpl")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="water_fall_mist" type="Node2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects"]
 
@@ -33771,7 +33771,7 @@ position = Vector2(35480, -30881)
 [node name="alien_ship_dome" type="PointLight2D" parent="day_light_layer/daylight_affected_ysort/game_world/effects/point_lights" groups=["prunable"]]
 position = Vector2(-1576, -5926)
 color = Color(0, 1, 0.364706, 1)
-energy = 0.59
+energy = 0.53
 texture = ExtResource("274_dqt0o")
 script = ExtResource("312_kfff1")
 energy_min = 0.5
@@ -44878,12 +44878,6 @@ script = ExtResource("61_jf4ig")
 wait_offset = 1.0
 not_prunable = null
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers"]
-position = Vector2(-4247, 8969)
-sprite_frames = ExtResource("258_upgrh")
-frame_progress = 0.771836
-script = ExtResource("61_jf4ig")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers"]
 visible = false
 position = Vector2(-3160, 7908)
@@ -44977,249 +44971,249 @@ speed_factor = 0.5
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3448, 8600)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3384, 8600)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3320, 8600)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3256, 8600)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3192, 8600)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3128, 8600)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3064, 8600)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3000, 8600)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3448, 8840)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3384, 8840)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3320, 8840)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3256, 8840)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D13" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3192, 8840)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D14" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3128, 8840)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D15" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3064, 8840)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D16" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3000, 8840)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D17" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3448, 8872)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D39" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3448, 8904)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D42" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3384, 8904)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D43" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3320, 8904)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D44" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3256, 8904)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D45" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3192, 8904)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D46" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3128, 8904)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D47" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3064, 8904)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D48" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3000, 8904)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D18" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3384, 8872)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D19" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3320, 8872)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D20" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3256, 8872)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D21" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3192, 8872)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D22" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3128, 8872)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D23" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3064, 8872)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D24" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3000, 8872)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.949665
+frame_progress = 0.0218703
 
 [node name="AnimatedSprite2D25" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-2984, 8624)
 sprite_frames = ExtResource("262_wchqx")
-frame_progress = 0.47482
+frame_progress = 0.0109185
 
 [node name="AnimatedSprite2D26" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3048, 8624)
 sprite_frames = ExtResource("262_wchqx")
-frame_progress = 0.47482
+frame_progress = 0.0109185
 
 [node name="AnimatedSprite2D27" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3112, 8624)
 sprite_frames = ExtResource("262_wchqx")
-frame_progress = 0.47482
+frame_progress = 0.0109185
 
 [node name="AnimatedSprite2D28" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3176, 8624)
 sprite_frames = ExtResource("262_wchqx")
-frame_progress = 0.47482
+frame_progress = 0.0109185
 
 [node name="AnimatedSprite2D29" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3240, 8624)
 sprite_frames = ExtResource("262_wchqx")
-frame_progress = 0.47482
+frame_progress = 0.0109185
 
 [node name="AnimatedSprite2D30" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3304, 8624)
 sprite_frames = ExtResource("262_wchqx")
-frame_progress = 0.47482
+frame_progress = 0.0109185
 
 [node name="AnimatedSprite2D31" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3368, 8624)
 sprite_frames = ExtResource("262_wchqx")
-frame_progress = 0.47482
+frame_progress = 0.0109185
 
 [node name="AnimatedSprite2D32" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3432, 8624)
 sprite_frames = ExtResource("262_wchqx")
-frame_progress = 0.47482
+frame_progress = 0.0109185
 
 [node name="AnimatedSprite2D33" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3464, 8624)
 sprite_frames = ExtResource("262_wchqx")
-frame_progress = 0.47482
+frame_progress = 0.0109185
 flip_h = true
 
 [node name="AnimatedSprite2D34" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3400, 8624)
 sprite_frames = ExtResource("262_wchqx")
-frame_progress = 0.47482
+frame_progress = 0.0109185
 flip_h = true
 
 [node name="AnimatedSprite2D35" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3336, 8624)
 sprite_frames = ExtResource("262_wchqx")
-frame_progress = 0.47482
+frame_progress = 0.0109185
 flip_h = true
 
 [node name="AnimatedSprite2D36" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3272, 8624)
 sprite_frames = ExtResource("262_wchqx")
-frame_progress = 0.47482
+frame_progress = 0.0109185
 flip_h = true
 
 [node name="AnimatedSprite2D37" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3208, 8624)
 sprite_frames = ExtResource("262_wchqx")
-frame_progress = 0.47482
+frame_progress = 0.0109185
 flip_h = true
 
 [node name="AnimatedSprite2D38" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3144, 8624)
 sprite_frames = ExtResource("262_wchqx")
-frame_progress = 0.47482
+frame_progress = 0.0109185
 flip_h = true
 
 [node name="AnimatedSprite2D40" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3016, 8624)
 sprite_frames = ExtResource("262_wchqx")
-frame_progress = 0.47482
+frame_progress = 0.0109185
 flip_h = true
 
 [node name="AnimatedSprite2D41" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/sewers/waterfall"]
 position = Vector2(-3080, 8624)
 sprite_frames = ExtResource("262_wchqx")
-frame_progress = 0.47482
+frame_progress = 0.0109185
 flip_h = true
 
 [node name="waterfall_mist" type="Node2D" parent="dark_layer/dark_indoor_ysort/sewers"]
@@ -45848,6 +45842,18 @@ position = Vector2(3354, 5947)
 
 [node name="stage_2" type="Node2D" parent="dark_layer/dark_indoor_ysort/sewers/opossum_shop_cave"]
 position = Vector2(3354, 5947)
+
+[node name="NpcSebastian" parent="dark_layer/dark_indoor_ysort/sewers" instance=ExtResource("279_omu3j")]
+position = Vector2(-4248, 8965)
+
+[node name="sebastian_tail" type="StaticBody2D" parent="dark_layer/dark_indoor_ysort/sewers"]
+
+[node name="sebastian_tail" type="Sprite2D" parent="dark_layer/dark_indoor_ysort/sewers/sebastian_tail"]
+position = Vector2(-4251, 8727)
+texture = ExtResource("280_yhe5l")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="dark_layer/dark_indoor_ysort/sewers/sebastian_tail"]
+polygon = PackedVector2Array(-4290, 8743, -4211, 8743, -4233, 8698, -4270, 8697)
 
 [node name="deep_onyx_caves" type="Node2D" parent="dark_layer/dark_indoor_ysort"]
 y_sort_enabled = true
@@ -46905,7 +46911,7 @@ texture = ExtResource("310_xwpoh")
 [node name="alien_body" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/alien_ship"]
 position = Vector2(4152, 4440)
 sprite_frames = ExtResource("312_tewv8")
-frame_progress = 0.0638319
+frame_progress = 0.567204
 script = ExtResource("61_jf4ig")
 
 [node name="crystal_ball_light_main" type="PointLight2D" parent="dark_layer/dark_indoor_ysort/alien_ship" groups=["alien_main_light"]]
@@ -46913,7 +46919,7 @@ position = Vector2(4152, 4425)
 scale = Vector2(2.16016, 1.65039)
 enabled = false
 color = Color(0.679721, 0.750951, 0.275265, 1)
-energy = 1.98
+energy = 1.855
 texture = ExtResource("274_dqt0o")
 script = ExtResource("312_kfff1")
 energy_min = 1.0
@@ -46924,7 +46930,7 @@ rate = 0.005
 position = Vector2(4152, 4531)
 scale = Vector2(0.624023, 0.70655)
 color = Color(1.54018e-06, 0.852776, 0.103077, 1)
-energy = 1.63
+energy = 1.88
 texture = ExtResource("274_dqt0o")
 script = ExtResource("312_kfff1")
 energy_min = 0.5
@@ -47117,9 +47123,9 @@ rate = 0.005
 
 [node name="garden_island_main_light2" type="PointLight2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island"]
 position = Vector2(10178, 9153)
-rotation = 4210.88
+rotation = 4402.36
 color = Color(0.989057, 0.935325, 0.83346, 1)
-energy = 0.653995
+energy = 0.628996
 texture = ExtResource("335_8ts68")
 script = ExtResource("312_kfff1")
 energy_min = 0.3
@@ -47130,9 +47136,9 @@ spin_speed = 0.025
 
 [node name="garden_island_main_light3" type="PointLight2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island"]
 position = Vector2(11330, 8107)
-rotation = 4210.88
+rotation = 4402.36
 color = Color(0.989057, 0.935325, 0.83346, 1)
-energy = 0.653995
+energy = 0.628996
 texture = ExtResource("335_8ts68")
 script = ExtResource("312_kfff1")
 energy_min = 0.3
@@ -47143,9 +47149,9 @@ spin_speed = 0.025
 
 [node name="garden_island_main_light4" type="PointLight2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island"]
 position = Vector2(12142, 9345)
-rotation = 4210.88
+rotation = 4402.36
 color = Color(0.989057, 0.935325, 0.83346, 1)
-energy = 0.653995
+energy = 0.628996
 texture = ExtResource("335_8ts68")
 script = ExtResource("312_kfff1")
 energy_min = 0.3
@@ -47156,9 +47162,9 @@ spin_speed = 0.025
 
 [node name="garden_island_main_light6" type="PointLight2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island"]
 position = Vector2(10644, 9006)
-rotation = 4210.88
+rotation = 4402.36
 color = Color(0.989057, 0.935325, 0.83346, 1)
-energy = 0.653995
+energy = 0.628996
 texture = ExtResource("335_8ts68")
 script = ExtResource("312_kfff1")
 energy_min = 0.3
@@ -47169,9 +47175,9 @@ spin_speed = 0.025
 
 [node name="garden_island_main_light5" type="PointLight2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island"]
 position = Vector2(11672, 9030)
-rotation = 4280.01
+rotation = 4539.94
 color = Color(0.989057, 0.935325, 0.83346, 1)
-energy = 0.339
+energy = 0.358999
 texture = ExtResource("335_8ts68")
 script = ExtResource("312_kfff1")
 energy_min = 0.3
@@ -47290,737 +47296,737 @@ script = ExtResource("66_oqpv6")
 [node name="AnimatedSprite2D49" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11173, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D50" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11173, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D51" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11173, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D55" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11237, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D56" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11237, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D57" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11237, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D58" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11269, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D59" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11269, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D60" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11269, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D61" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11301, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D62" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11301, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D63" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11301, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D64" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10821, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D65" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10821, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D66" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10821, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D67" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10853, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D68" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10853, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D69" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10853, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D70" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10885, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D71" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10885, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D72" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10885, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D73" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10917, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D74" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10917, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D75" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10917, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D76" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10949, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D77" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10949, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D78" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10949, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D79" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10661, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D80" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10661, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D81" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10661, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D82" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10693, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D83" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10693, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D84" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10693, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D85" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10725, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D86" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10725, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D87" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10725, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D88" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10757, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D89" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10757, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D90" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10757, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D91" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10789, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D92" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10789, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D93" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10789, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D94" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11333, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D95" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11333, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D96" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11333, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D97" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11365, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D98" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11365, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D99" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11365, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D100" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11397, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D101" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11397, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D102" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11397, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D103" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11429, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D104" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11429, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D105" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11429, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D106" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11461, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D107" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11461, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D108" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11461, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D109" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11493, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D110" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11493, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D111" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11493, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D112" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11525, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D113" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11525, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D114" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11525, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D115" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11557, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D116" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11557, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D117" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11557, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D118" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11589, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D119" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11589, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D120" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11589, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D121" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11621, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D122" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11621, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D123" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11621, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D124" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11653, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D125" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11653, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D126" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11653, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D127" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11685, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D128" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11685, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D129" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11685, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D130" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11717, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D131" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11717, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D132" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11717, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D133" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11749, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D134" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11749, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D135" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11749, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D136" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11781, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D137" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11781, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D138" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11781, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D139" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11813, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D140" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11813, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D141" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11813, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D142" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11845, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D143" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11845, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D144" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11845, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D145" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11877, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D146" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11877, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D147" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11877, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D148" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11909, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D149" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11909, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D150" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11909, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D151" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11941, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D152" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11941, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D153" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(11941, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D154" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10501, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D155" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10501, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D156" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10501, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D157" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10533, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D158" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10533, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D159" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10533, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D160" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10565, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D161" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10565, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D162" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10565, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D163" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10597, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D164" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10597, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D165" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10597, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D166" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10629, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D167" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10629, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D168" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10629, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D169" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10341, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D170" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10341, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D171" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10341, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D172" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10373, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D173" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10373, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D174" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10373, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D175" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10405, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D176" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10405, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D177" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10405, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D178" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10437, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D179" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10437, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D180" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10437, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D181" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10469, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D182" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10469, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D183" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10469, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D184" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10181, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D185" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10181, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D186" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10181, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D187" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10213, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D188" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10213, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D189" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10213, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D190" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10245, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D191" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10245, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D192" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10245, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D193" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10277, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D194" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10277, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D195" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10277, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D196" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10309, 10019)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D197" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10309, 10051)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="AnimatedSprite2D198" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island/waterfall"]
 position = Vector2(10309, 10083)
 sprite_frames = ExtResource("261_g2m25")
-frame_progress = 0.899322
+frame_progress = 0.0436958
 
 [node name="props" type="Node2D" parent="dark_layer/dark_indoor_ysort/dream_world/garden_island"]
 
@@ -50026,7 +50032,7 @@ script = ExtResource("322_4pyqd")
 [node name="dark_peaks_point_light" type="PointLight2D" parent="dark_layer/dark_indoor_ysort/parallax"]
 position = Vector2(6695, 6447)
 color = Color(0.989057, 0.935325, 0.83346, 1)
-energy = 0.995997
+energy = 0.970998
 texture = ExtResource("274_dqt0o")
 texture_scale = 30.0
 script = ExtResource("312_kfff1")
@@ -50556,7 +50562,7 @@ texture = ExtResource("274_dqt0o")
 [node name="main_light_2" type="PointLight2D" parent="dark_layer/dark_indoor_ysort/central_city_interiors/player_apt_building" groups=["prunable"]]
 position = Vector2(35428, -27808)
 scale = Vector2(1.22094, 1.22094)
-energy = 0.98
+energy = 0.99
 texture = ExtResource("274_dqt0o")
 script = ExtResource("312_kfff1")
 energy_min = 0.99
@@ -51565,7 +51571,7 @@ texture = ExtResource("162_wroqy")
 [node name="zonked" type="AnimatedSprite2D" parent="dark_layer/dark_indoor_ysort/central_city_interiors/central_apt_4_interior" groups=["prunable"]]
 position = Vector2(32260, -30357)
 sprite_frames = ExtResource("163_10fmk")
-frame_progress = 0.715134
+frame_progress = 0.215906
 script = ExtResource("61_jf4ig")
 
 [node name="PointLight2D" type="PointLight2D" parent="dark_layer/dark_indoor_ysort/central_city_interiors/central_apt_4_interior"]

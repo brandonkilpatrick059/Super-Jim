@@ -1,0 +1,99 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://dxtfk7j4detci"]
+
+[ext_resource type="Texture2D" uid="uid://352q207kdojn" path="res://sprites/dialog/portraits/test_2_1.png" id="1_rducl"]
+[ext_resource type="Texture2D" uid="uid://dmiv4ucqyu0ay" path="res://sprites/dialog/portraits/test_2_2.png" id="2_a2k32"]
+[ext_resource type="Texture2D" uid="uid://bd8mcg3yvw2ug" path="res://sprites/dialog/portraits/test_2_3.png" id="3_s4e56"]
+[ext_resource type="Texture2D" uid="uid://bmgey5otecljl" path="res://sprites/dialog/portraits/test_2_5.png" id="4_46hqa"]
+[ext_resource type="Texture2D" uid="uid://bslmmqx3bnxcm" path="res://sprites/dialog/portraits/test_2_4.png" id="5_rqjmy"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rducl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_a2k32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_s4e56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_rducl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_a2k32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_s4e56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_rducl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_a2k32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_s4e56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_rducl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_a2k32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_s4e56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_rducl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_a2k32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_s4e56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_46hqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rqjmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_rducl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_46hqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rqjmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_a2k32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_s4e56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_rducl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_a2k32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_s4e56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_rducl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_a2k32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_s4e56")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]

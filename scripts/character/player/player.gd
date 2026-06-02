@@ -304,6 +304,8 @@ func get_quest_state(key : String) -> String:
 
 func handle_teleport():
 	if(teleport_node != null):
+		complete_stop()
+		stop_dash()
 		set_control_frozen(true)
 		if(teleport_timer.is_stopped()):
 			Input.start_joy_vibration(0,0.0,1.0 - teleport_scale,0.0)

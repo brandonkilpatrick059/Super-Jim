@@ -1,3 +1,4 @@
+@tool
 class_name dialog_tree
 extends Node
 

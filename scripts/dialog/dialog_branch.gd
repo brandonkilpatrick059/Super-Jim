@@ -30,6 +30,12 @@ extends Node2D
 
 @export var bypass_distance_check : bool = false
 
+#QOL feature for building dialog trees. Type text for option you want,
+#then save and reload scene and it will be automatically added
+#MAKE SURE YOU CLEAR IT!
+@export_multiline var append_option_text : String = ""
+const branch_template = preload("res://dialog/dialog trees/branch_template.tscn")
+
 var random = RandomNumberGenerator.new()
 
 func get_sound_path():
@@ -93,6 +99,20 @@ func get_shows_wares() -> bool:
 func set_speech_options(options : Array[String]):
 	speech_options = options
 
+func set_speaker_text(text : String):
+	speaker_text.append(text)
+
+func append_option_branch():
+	var branch = branch_template.instantiate()
+	branch.name = name
+	add_child(branch)
+	branch.set_owner(get_tree().edited_scene_root)
+	branch.global_position = global_position + Vector2(0,256)
+	branch.set_speaker_text(append_option_text)
+	option_branches.append(branch)
+	append_option_text = ""
+	branch.set_generated()
+
 #func _ready():
 	#_editor_anim
 
@@ -113,6 +133,8 @@ func _ready():
 				_editor_anim.play("default")
 		test_label.text = get_speaker_text()
 		queue_redraw()
+		if(append_option_text != ""):
+			append_option_branch()
 
 #COMMENT THIS OUT WHEN YOU ARE DONE
 #func _process(delta: float) -> void:

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ba1yuc1osurro"]
+[gd_scene load_steps=5 format=3 uid="uid://ba1yuc1osurro"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_nad2u"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_wu47u"]
+[ext_resource type="Script" uid="uid://dey4uh5lc2jr7" path="res://scripts/utility/run_scripts/add_quest_log.gd" id="3_7asem"]
 [ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="3_7xuq2"]
 
 [node name="sebastian_start" type="Node2D"]
@@ -99,11 +100,17 @@ speaker_text = Array[String](["If you find one, bring it to me, will you?"])
 option_branches = [NodePath("../trunk15")]
 voice = "worm_voice_2"
 
-[node name="trunk15" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
+[node name="trunk15" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_wu47u")]
 position = Vector2(163, 3290)
 speaker_text = Array[String](["Then I'll uh-"])
 option_branches = [NodePath("../trunk16")]
 voice = "worm_voice_2"
+dialog_script = NodePath("update_journal")
+
+[node name="update_journal" type="Node" parent="trunk15"]
+script = ExtResource("3_7asem")
+quest_log_key = "jeff"
+value = 5
 
 [node name="trunk16" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_wu47u")]
 position = Vector2(163, 3546)

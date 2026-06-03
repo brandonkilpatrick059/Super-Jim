@@ -1,32 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://wu60bat886ur"]
+[gd_scene load_steps=5 format=3 uid="uid://wu60bat886ur"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_srd8c"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_igc2l"]
+[ext_resource type="Script" uid="uid://cim1fpmu1o6uh" path="res://scripts/utility/run_conditionals/has_schedules_index.gd" id="3_fy76d"]
 [ext_resource type="Script" uid="uid://c2q4w0ekhh3v4" path="res://scripts/utility/run_scripts/lock_unlock_door.gd" id="3_gqylj"]
 
-[node name="bar_tender_at_bar" type="Node2D"]
+[node name="gary_at_bar" type="Node2D"]
 script = ExtResource("1_srd8c")
-trunk = NodePath("trunk")
+trunk = NodePath("trunk2")
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
+position = Vector2(-5, -272)
+speaker_text = Array[String](["Heyo, it's your boy Gary!"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk")]
+voice = "sine_voice"
 
 [node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
 speaker_text = Array[String](["What's happenin'?"])
 speaker_portrait = null
-speech_options = Array[String](["See you later", "Are you from around here?", "Tell me about this city", "Will you buy me a soda for $2??", "Baseball cards"])
-option_branches = [NodePath("../bye"), NodePath("../are you from around here"), NodePath("../tell me about the city"), NodePath("../Buy me a drink"), NodePath("../cards 1")]
-voice = "sine_voice"
-
-[node name="Buy me a drink" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
-position = Vector2(207, 273)
-speaker_text = Array[String](["Oh you know I would but I uh, only brought enough cash for myself."])
-speaker_portrait = null
-option_branches = [NodePath("../Buy me a drink2")]
-voice = "sine_voice"
-
-[node name="Buy me a drink2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
-position = Vector2(230, 518)
-speaker_text = Array[String](["Sorry, friendo"])
-speaker_portrait = null
-option_branches = [NodePath("../vibes are good")]
+speech_options = Array[String](["See you later", "Are you from around here?", "Tell me about this city", "Baseball cards"])
+option_branches = [NodePath("../bye"), NodePath("../are you from around here"), NodePath("../tell me about the city"), NodePath("../cards 1")]
 voice = "sine_voice"
 
 [node name="bye" parent="." instance=ExtResource("2_igc2l")]
@@ -85,12 +79,18 @@ speaker_portrait = null
 option_branches = [NodePath("../cards_win2")]
 voice = "sine_voice"
 
-[node name="cards_win2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
+[node name="cards_win2" parent="." node_paths=PackedStringArray("option_branches", "conditional_option_script") instance=ExtResource("2_igc2l")]
 position = Vector2(783, 1148)
 speaker_text = Array[String](["You've gotten pretty good at Baseball Cards."])
 speaker_portrait = null
-option_branches = [NodePath("../cards_win3")]
+option_branches = [NodePath("../cards_win3"), NodePath("../cards_win8")]
 voice = "sine_voice"
+conditional_option_script = NodePath("jeff_is_hanging_out")
+
+[node name="jeff_is_hanging_out" type="Node" parent="cards_win2"]
+script = ExtResource("3_fy76d")
+node_group = "jeff"
+check_key = "hangs_out"
 
 [node name="cards_win3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
 position = Vector2(784, 1376)
@@ -126,11 +126,10 @@ play_sound_path = "res://audio/soundFX/pickup.wav"
 script = ExtResource("3_gqylj")
 node_group = "basement_gate"
 
-[node name="cards_win7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
+[node name="cards_win7" parent="." instance=ExtResource("2_igc2l")]
 position = Vector2(782, 2169)
 speaker_text = Array[String](["Say hi to my man Jeff for me!"])
 speaker_portrait = null
-option_branches = [NodePath("../vibes are good")]
 voice = "sine_voice"
 
 [node name="cards_lose" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
@@ -173,4 +172,34 @@ position = Vector2(-531, 137)
 speaker_text = Array[String](["Vibes are good."])
 speaker_portrait = null
 option_branches = [NodePath("../trunk")]
+voice = "sine_voice"
+
+[node name="cards_win8" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
+position = Vector2(1075, 1198)
+speaker_text = Array[String](["Have you played Jeff yet?"])
+option_branches = [NodePath("../cards_win9")]
+voice = "sine_voice"
+
+[node name="cards_win9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
+position = Vector2(1075, 1454)
+speaker_text = Array[String](["Like I said before, he lives under our building."])
+option_branches = [NodePath("../cards_win10")]
+voice = "sine_voice"
+
+[node name="cards_win10" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
+position = Vector2(1075, 1710)
+speaker_text = Array[String](["You know that door to the left of the staircase? "])
+option_branches = [NodePath("../cards_win11")]
+voice = "sine_voice"
+
+[node name="cards_win11" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
+position = Vector2(1075, 1966)
+speaker_text = Array[String](["The one that leads to the little room with the locked metal gate?"])
+option_branches = [NodePath("../cards_win12")]
+voice = "sine_voice"
+
+[node name="cards_win12" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_igc2l")]
+position = Vector2(1075, 2222)
+speaker_text = Array[String](["The key I gave you unlocks that gate."])
+option_branches = [NodePath("../cards_win7")]
 voice = "sine_voice"

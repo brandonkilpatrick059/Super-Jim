@@ -58,7 +58,7 @@ offset_bottom = 138.0
 size_flags_horizontal = 4
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("2_glx4p")
-theme_override_font_sizes/normal_font_size = 11
+theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -163,3 +163,59 @@ script = ExtResource("6_6s05b")
 text = "-Betty's cat, Buster, has escaped.
 -She promised to reward me with a map of the Utility Tunnels if I could return Buster to her.
 -I returned Buster to Betty and received a map of the Utility Tunnels."
+
+[node name="jeff" type="Node" parent="quest_logs"]
+script = ExtResource("5_qwhe4")
+picture_path = "res://sprites/interface/log_pics/jeff.png"
+log_name = "Jeff"
+
+[node name="0" type="Node" parent="quest_logs/jeff"]
+script = ExtResource("6_6s05b")
+text = "-I met a giant worm living in the sewers beneath my apartment.
+-He wants me to find his brother, who is also somewhere in the sewers."
+
+[node name="1" type="Node" parent="quest_logs/jeff"]
+script = ExtResource("6_6s05b")
+text = "-I met a giant worm living in the sewers beneath my apartment.
+-He wants me to find his brother, who is also somewhere in the sewers.
+-I have found Jeff's brother, Sebastian, in the south-west corner of the Sewers.
+-Sebastian wants  me to bring him a light. Maybe Jeff knows what to do?"
+
+[node name="2" type="Node" parent="quest_logs/jeff"]
+script = ExtResource("6_6s05b")
+text = "-I met a giant worm living in the sewers beneath my apartment.
+-He wants me to find his brother, who is also somewhere in the sewers.
+-I have found Jeff's brother, Sebastian, in the south-west corner of the Sewers.
+-Sebastian wants  me to bring him a light. Maybe Jeff knows what to do?
+-Sebastian wants me to bring him a pizza."
+
+[node name="3" type="Node" parent="quest_logs/jeff"]
+script = ExtResource("6_6s05b")
+text = "-I met a giant worm living in the sewers beneath my apartment.
+-He wants me to find his brother, who is also somewhere in the sewers.
+-I have found Jeff's brother, Sebastian, in the south-west corner of the Sewers.
+-Sebastian wants  me to bring him a light. Maybe Jeff knows what to do?
+-Sebastian wants me to bring him a pizza.
+-Sebastian wants me to bring him a TV. Maybe Jeff has one he can spare?"
+
+[node name="4" type="Node" parent="quest_logs/jeff"]
+script = ExtResource("6_6s05b")
+text = "-I met a giant worm living in the sewers beneath my apartment.
+-He wants me to find his brother, who is also somewhere in the sewers.
+-I have found Jeff's brother, Sebastian, in the south-west corner of the Sewers.
+-He is currently stuck in the dark and wants me to bring him a light. Maybe Jeff knows what to do?
+-Sebastian wants me to bring him a pizza.
+-Sebastian wants me to bring him a TV. Maybe Jeff has one?
+-I brought sebastian a TV.
+"
+
+[node name="5" type="Node" parent="quest_logs/jeff"]
+script = ExtResource("6_6s05b")
+text = "-I met a giant worm living in the sewers beneath my apartment.
+-He wants me to find his brother, who is also somewhere in the sewers.
+-I have found Jeff's brother, Sebastian, in the south-west corner of the Sewers.
+-He is currently stuck in the dark and wants me to bring him a light. Maybe Jeff knows what to do?
+-Sebastian wants me to bring him a pizza.
+-Sebastian wants me to bring him a TV. Maybe Jeff has one?
+-I brought sebastian a TV.
+-Sebastian wants me to bring him a cowboy hat in exchange for unblocking the Sewer's westernmost tunnel."

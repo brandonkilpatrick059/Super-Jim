@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://djy43ic54i5wl"]
+[gd_scene load_steps=9 format=3 uid="uid://djy43ic54i5wl"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_eybm3"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_2xwya"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="5_yo83e"]
 [ext_resource type="Script" uid="uid://1yfex3gepnq2" path="res://scripts/utility/run_scripts/run_script_on_group.gd" id="6_871en"]
 [ext_resource type="Script" uid="uid://bs05f0qjlfyh7" path="res://scripts/utility/run_scripts/player_put_down_and_queue_free.gd" id="7_u4l1a"]
+[ext_resource type="Script" uid="uid://dey4uh5lc2jr7" path="res://scripts/utility/run_scripts/add_quest_log.gd" id="8_eybm3"]
 
 [node name="sebastian_start" type="Node2D"]
 script = ExtResource("1_eybm3")
@@ -72,7 +73,7 @@ bypass_distance_check = true
 
 [node name="script_runner" type="Node" parent="has_tv5" node_paths=PackedStringArray("script_nodes")]
 script = ExtResource("4_ynbk6")
-script_nodes = [NodePath("sebastian_to_has_tv"), NodePath("update_quest"), NodePath("put_down_tv")]
+script_nodes = [NodePath("sebastian_to_has_tv"), NodePath("update_quest"), NodePath("put_down_tv"), NodePath("update_journal")]
 
 [node name="sebastian_to_has_tv" type="Node" parent="has_tv5/script_runner"]
 script = ExtResource("5_yo83e")
@@ -85,6 +86,11 @@ group = "sebastian_quest_manager"
 
 [node name="put_down_tv" type="Node" parent="has_tv5/script_runner"]
 script = ExtResource("7_u4l1a")
+
+[node name="update_journal" type="Node" parent="has_tv5/script_runner"]
+script = ExtResource("8_eybm3")
+quest_log_key = "jeff"
+value = 4
 
 [node name="has_tv3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_2xwya")]
 position = Vector2(320, 1493)

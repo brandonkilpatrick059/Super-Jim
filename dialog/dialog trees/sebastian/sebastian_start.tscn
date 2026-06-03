@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1w71c0wnwx0v"]
+[gd_scene load_steps=10 format=3 uid="uid://b1w71c0wnwx0v"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_7ur35"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_c4n2q"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="5_een33"]
 [ext_resource type="Script" uid="uid://6ti2gqjsh5s4" path="res://scripts/utility/run_scripts/animatronic_animation.gd" id="6_2liwl"]
 [ext_resource type="Script" uid="uid://1yfex3gepnq2" path="res://scripts/utility/run_scripts/run_script_on_group.gd" id="6_eoctk"]
+[ext_resource type="Script" uid="uid://dey4uh5lc2jr7" path="res://scripts/utility/run_scripts/add_quest_log.gd" id="6_icpkn"]
 [ext_resource type="Script" uid="uid://bs05f0qjlfyh7" path="res://scripts/utility/run_scripts/player_put_down_and_queue_free.gd" id="7_ij78v"]
 
 [node name="sebastian_start" type="Node2D"]
@@ -65,12 +66,17 @@ bypass_distance_check = true
 
 [node name="script_runner" type="Node" parent="trunk6" node_paths=PackedStringArray("script_nodes")]
 script = ExtResource("4_lg01j")
-script_nodes = [NodePath("sebastian_to_start_spoken")]
+script_nodes = [NodePath("sebastian_to_start_spoken"), NodePath("update_journal")]
 
 [node name="sebastian_to_start_spoken" type="Node" parent="trunk6/script_runner"]
 script = ExtResource("5_een33")
 node_group = "sebastian"
 new_key = "start_spoken"
+
+[node name="update_journal" type="Node" parent="trunk6/script_runner"]
+script = ExtResource("6_icpkn")
+quest_log_key = "jeff"
+value = 1
 
 [node name="has_lamp" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_c4n2q")]
 position = Vector2(320, 213)
@@ -104,7 +110,7 @@ bypass_distance_check = true
 
 [node name="script_runner" type="Node" parent="has_lamp5" node_paths=PackedStringArray("script_nodes")]
 script = ExtResource("4_lg01j")
-script_nodes = [NodePath("sebastian_to_has_lamp"), NodePath("update_quest"), NodePath("put_down_lamp")]
+script_nodes = [NodePath("sebastian_to_has_lamp"), NodePath("update_quest"), NodePath("put_down_lamp"), NodePath("update_journal")]
 
 [node name="sebastian_to_has_lamp" type="Node" parent="has_lamp5/script_runner"]
 script = ExtResource("5_een33")
@@ -117,6 +123,11 @@ group = "sebastian_quest_manager"
 
 [node name="put_down_lamp" type="Node" parent="has_lamp5/script_runner"]
 script = ExtResource("7_ij78v")
+
+[node name="update_journal" type="Node" parent="has_lamp5/script_runner"]
+script = ExtResource("6_icpkn")
+quest_log_key = "jeff"
+value = 2
 
 [node name="has_lamp6" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_c4n2q")]
 position = Vector2(320, 1493)

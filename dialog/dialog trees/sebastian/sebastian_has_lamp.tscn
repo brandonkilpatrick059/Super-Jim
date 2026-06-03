@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0bppw6jvgmke"]
+[gd_scene load_steps=8 format=3 uid="uid://c0bppw6jvgmke"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_yd14v"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_b46ac"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cw48q6xuo2nnn" path="res://scripts/utility/run_scripts/advanced_run_scripts.gd" id="4_gsvad"]
 [ext_resource type="Script" uid="uid://bs05f0qjlfyh7" path="res://scripts/utility/run_scripts/player_put_down_and_queue_free.gd" id="5_j0ng5"]
 [ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="6_b46ac"]
+[ext_resource type="Script" uid="uid://dey4uh5lc2jr7" path="res://scripts/utility/run_scripts/add_quest_log.gd" id="7_1l1h2"]
 
 [node name="sebastian_has_lamp" type="Node2D"]
 script = ExtResource("1_yd14v")
@@ -78,7 +79,7 @@ dialog_script = NodePath("script_runner")
 
 [node name="script_runner" type="Node" parent="has_pizza4" node_paths=PackedStringArray("script_nodes")]
 script = ExtResource("4_gsvad")
-script_nodes = [NodePath("set_delivery_failed"), NodePath("drop_and_queue_free_pizza"), NodePath("set_sebastian_to_has_pizza")]
+script_nodes = [NodePath("set_delivery_failed"), NodePath("drop_and_queue_free_pizza"), NodePath("set_sebastian_to_has_pizza"), NodePath("update_journal")]
 
 [node name="drop_and_queue_free_pizza" type="Node" parent="has_pizza4/script_runner"]
 script = ExtResource("5_j0ng5")
@@ -92,6 +93,11 @@ new_key = "delivery_failed"
 script = ExtResource("6_b46ac")
 node_group = "sebastian"
 new_key = "has_pizza"
+
+[node name="update_journal" type="Node" parent="has_pizza4/script_runner"]
+script = ExtResource("7_1l1h2")
+quest_log_key = "jeff"
+value = 3
 
 [node name="has_pizza5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_b46ac")]
 position = Vector2(320, 1237)

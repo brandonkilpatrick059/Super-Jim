@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ba1yuc1osurro"]
+[gd_scene load_steps=4 format=3 uid="uid://ba1yuc1osurro"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_nad2u"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_wu47u"]
+[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="3_7xuq2"]
 
 [node name="sebastian_start" type="Node2D"]
 script = ExtResource("1_nad2u")
@@ -13,8 +14,6 @@ speaker_portrait = null
 option_branches = [NodePath("../trunk2")]
 voice = "worm_voice_2"
 bypass_distance_check = true
-
-[node name="has_hat (unimplemented)" type="Node" parent="trunk"]
 
 [node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
 position = Vector2(2, 218)
@@ -49,28 +48,6 @@ bypass_distance_check = true
 position = Vector2(2, 1242)
 speaker_text = Array[String](["You know..."])
 option_branches = [NodePath("../trunk7")]
-voice = "worm_voice_2"
-bypass_distance_check = true
-
-[node name="has_hat" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
-position = Vector2(320, 213)
-speaker_text = Array[String](["You're back..."])
-speaker_portrait = null
-option_branches = [NodePath("../has_hat2")]
-voice = "worm_voice_2"
-bypass_distance_check = true
-
-[node name="has_hat2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
-position = Vector2(320, 725)
-speaker_text = Array[String](["Is that-?"])
-option_branches = [NodePath("../has_hat3")]
-voice = "worm_voice_2"
-bypass_distance_check = true
-
-[node name="has_hat3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
-position = Vector2(320, 981)
-speaker_text = Array[String](["You have a light!"])
-option_branches = [null]
 voice = "worm_voice_2"
 bypass_distance_check = true
 
@@ -128,7 +105,13 @@ speaker_text = Array[String](["Then I'll uh-"])
 option_branches = [NodePath("../trunk16")]
 voice = "worm_voice_2"
 
-[node name="trunk16" parent="." instance=ExtResource("2_wu47u")]
+[node name="trunk16" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_wu47u")]
 position = Vector2(163, 3546)
 speaker_text = Array[String](["I'll scooch out of the way for you."])
 voice = "worm_voice_2"
+dialog_script = NodePath("schedules_index_to_wants_hat")
+
+[node name="schedules_index_to_wants_hat" type="Node" parent="trunk16"]
+script = ExtResource("3_7xuq2")
+node_group = "sebastian"
+new_key = "wants_hat"

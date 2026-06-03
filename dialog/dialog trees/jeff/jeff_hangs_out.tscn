@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://sbv3y6xh1yk8"]
+[gd_scene load_steps=11 format=3 uid="uid://sbv3y6xh1yk8"]
 
 [ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_s035q"]
 [ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_t3q51"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://b5nmoj42aor50" path="res://scripts/utility/run_scripts/give_pickupable.gd" id="7_h27ns"]
 [ext_resource type="PackedScene" uid="uid://daiakvowyxspo" path="res://entities/props/dynamic props/props_dynamic_pickupable/special/sebastian_lamp.tscn" id="8_mwssk"]
 [ext_resource type="Script" uid="uid://dh02nc27chsam" path="res://scripts/utility/run_scripts/queue_free_group.gd" id="9_mwssk"]
+[ext_resource type="PackedScene" uid="uid://cbdtbupd6bwp2" path="res://entities/props/dynamic props/props_dynamic_pickupable/special/sebastian_tv.tscn" id="10_a27ak"]
 
 [node name="jeff_hangs_out" type="Node2D"]
 script = ExtResource("1_s035q")
@@ -258,14 +259,15 @@ voice = "worm_voice"
 [node name="trunk_sebastian2_conditional" parent="." node_paths=PackedStringArray("option_branches", "conditional_option_script") instance=ExtResource("2_t3q51")]
 position = Vector2(-1003, 85)
 speaker_text = Array[String](["Oh, good!"])
-option_branches = [NodePath("../sebastian_has_spoken")]
+option_branches = [NodePath("../sebastian_has_spoken"), NodePath("../sebastian_has_lamp"), NodePath("../sebastian_has_pizza"), NodePath("../sebastian_has_tv"), NodePath("../sebastian_wants_hat")]
 voice = "worm_voice"
 conditional_option_script = NodePath("check_schedule_index")
 
 [node name="check_schedule_index" type="Node" parent="trunk_sebastian2_conditional"]
 script = ExtResource("5_saews")
 node_group = "sebastian"
-check_keys = Array[String](["start_spoken", "has_lamp"])
+check_keys = Array[String](["start_spoken", "has_lamp", "has_pizza", "has_tv", "wants_hat"])
+conditional_return_map = Array[int]([0, 1, 2, 3, 4])
 
 [node name="sebastian_has_spoken" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
 position = Vector2(-1003, 341)
@@ -274,20 +276,47 @@ speech_options = Array[String](["He says he wants a light.", "He's fine, no worr
 option_branches = [NodePath("../give_lamp"), NodePath("../glad_to_hear")]
 voice = "worm_voice"
 
+[node name="sebastian_has_lamp" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-1784, 856)
+speaker_text = Array[String](["How is he?"])
+speech_options = Array[String](["He says he wants food. Like, a pizza.", "He's fine, no worries."])
+option_branches = [NodePath("../sebastian_has_lamp2"), NodePath("../glad_to_hear")]
+voice = "worm_voice"
+
+[node name="sebastian_has_pizza" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-2100, -29)
+speaker_text = Array[String](["How is he?"])
+speech_options = Array[String](["He says he wants a TV.", "He's fine, no worries."])
+option_branches = [NodePath("../sebastian_has_pizza2"), NodePath("../glad_to_hear")]
+voice = "worm_voice"
+
+[node name="sebastian_wants_hat" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-2474, -995)
+speaker_text = Array[String](["How is he?"])
+speech_options = Array[String](["He wants a cowboy hat.", "He's fine, no worries."])
+option_branches = [NodePath("../sebastian_wants_hat2"), NodePath("../glad_to_hear")]
+voice = "worm_voice"
+
+[node name="sebastian_has_tv" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-1851, -981)
+speaker_text = Array[String](["I hope he's enjoying his TV."])
+option_branches = [NodePath("../glad_to_hear2")]
+voice = "worm_voice"
+
 [node name="glad_to_hear" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
-position = Vector2(-997, 2086)
+position = Vector2(-1095, 2088)
 speaker_text = Array[String](["I'm glad to hear that!"])
 option_branches = [NodePath("../glad_to_hear2")]
 voice = "worm_voice"
 
 [node name="glad_to_hear2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
-position = Vector2(-997, 2342)
+position = Vector2(-1095, 2344)
 speaker_text = Array[String](["Tell him I say hello, won't you?"])
 option_branches = [NodePath("../glad_to_hear3")]
 voice = "worm_voice"
 
 [node name="glad_to_hear3" parent="." instance=ExtResource("2_t3q51")]
-position = Vector2(-997, 2598)
+position = Vector2(-1095, 2600)
 speaker_text = Array[String](["I miss talking to him..."])
 voice = "worm_voice"
 
@@ -326,3 +355,151 @@ group_name = "sebastian_lamp"
 [node name="give_lamp" type="Node" parent="give_lamp4/script_runner"]
 script = ExtResource("7_h27ns")
 pickupable = ExtResource("8_mwssk")
+
+[node name="sebastian_has_lamp2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-1784, 1112)
+speaker_text = Array[String](["Of course."])
+option_branches = [NodePath("../sebastian_has_lamp3")]
+voice = "worm_voice"
+
+[node name="sebastian_has_lamp3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-1784, 1368)
+speaker_text = Array[String](["I have Gary bring me pizzas occasionally."])
+option_branches = [NodePath("../sebastian_has_lamp4")]
+voice = "worm_voice"
+
+[node name="sebastian_has_lamp4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-1784, 1624)
+speaker_text = Array[String](["I can't imagine what he's been eating all this time..."])
+option_branches = [NodePath("../sebastian_has_lamp5")]
+voice = "worm_voice"
+
+[node name="sebastian_has_lamp5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-1784, 1880)
+speaker_text = Array[String](["Unfortunately I'm stuck here."])
+option_branches = [NodePath("../sebastian_has_lamp6")]
+voice = "worm_voice"
+
+[node name="sebastian_has_lamp6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-1784, 2136)
+speaker_text = Array[String](["Do you think you could go get a pizza and bring it to him?"])
+option_branches = [NodePath("../sebastian_has_lamp7")]
+voice = "worm_voice"
+
+[node name="sebastian_has_lamp7" parent="." instance=ExtResource("2_t3q51")]
+position = Vector2(-1784, 2392)
+speaker_text = Array[String](["I really appreciate your efforts."])
+voice = "worm_voice"
+
+[node name="sebastian_has_pizza2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-2100, 227)
+speaker_text = Array[String](["A TV?"])
+option_branches = [NodePath("../sebastian_has_pizza3")]
+voice = "worm_voice"
+
+[node name="sebastian_has_pizza3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-2100, 483)
+speaker_text = Array[String](["I guess that makes sense."])
+option_branches = [NodePath("../sebastian_has_pizza4")]
+voice = "worm_voice"
+
+[node name="sebastian_has_pizza4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-2100, 739)
+speaker_text = Array[String](["I love watching my TV."])
+option_branches = [NodePath("../sebastian_has_pizza5")]
+voice = "worm_voice"
+
+[node name="sebastian_has_pizza5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-2100, 995)
+speaker_text = Array[String](["Life would be kind of unbearable without it."])
+option_branches = [NodePath("../sebastian_has_pizza6")]
+voice = "worm_voice"
+
+[node name="sebastian_has_pizza6" parent="." node_paths=PackedStringArray("dialog_script") instance=ExtResource("2_t3q51")]
+position = Vector2(-2100, 1251)
+speaker_text = Array[String](["Here, take him one of my spares."])
+voice = "worm_voice"
+dialog_script = NodePath("script_runner")
+
+[node name="script_runner" type="Node" parent="sebastian_has_pizza6" node_paths=PackedStringArray("script_nodes")]
+script = ExtResource("6_nm1dn")
+script_nodes = [NodePath("clear_tvs"), NodePath("give_tv")]
+
+[node name="clear_tvs" type="Node" parent="sebastian_has_pizza6/script_runner"]
+script = ExtResource("9_mwssk")
+group_name = "sebastian_tv"
+
+[node name="give_tv" type="Node" parent="sebastian_has_pizza6/script_runner"]
+script = ExtResource("7_h27ns")
+pickupable = ExtResource("10_a27ak")
+
+[node name="sebastian_wants_hat2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-2474, -739)
+speaker_text = Array[String](["He wants-"])
+option_branches = [NodePath("../sebastian_wants_hat3")]
+voice = "worm_voice"
+
+[node name="sebastian_wants_hat3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-2474, -483)
+speaker_text = Array[String](["What?"])
+option_branches = [NodePath("../sebastian_wants_hat4")]
+voice = "worm_voice"
+
+[node name="sebastian_wants_hat4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-2474, -227)
+speaker_text = Array[String](["I don't understand."])
+speech_options = Array[String](["He's been watching the War Channel.", "I don't get it either."])
+option_branches = [NodePath("../war_channel"), NodePath("../dont get it")]
+voice = "worm_voice"
+
+[node name="war_channel" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-2768, 29)
+speaker_text = Array[String](["Really?"])
+option_branches = [NodePath("../war_channel2")]
+voice = "worm_voice"
+
+[node name="war_channel2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-2768, 285)
+speaker_text = Array[String](["That doesn't seem like him at all..."])
+option_branches = [NodePath("../war_channel3")]
+voice = "worm_voice"
+
+[node name="war_channel3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-2768, 541)
+speaker_text = Array[String](["Maybe all this time stuck down here has messed with his head?"])
+option_branches = [NodePath("../war_channel4")]
+voice = "worm_voice"
+
+[node name="war_channel4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-2768, 797)
+speaker_text = Array[String](["We probably shouldn't encourage his...Violent obsessions."])
+option_branches = [NodePath("../war_channel5")]
+voice = "worm_voice"
+
+[node name="war_channel5" parent="." instance=ExtResource("2_t3q51")]
+position = Vector2(-2768, 1053)
+speaker_text = Array[String](["Go tell him to watch the Chill Out channel instead!"])
+voice = "worm_voice"
+
+[node name="dont get it" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-2474, 29)
+speaker_text = Array[String](["Strange..."])
+option_branches = [NodePath("../dont get it2")]
+voice = "worm_voice"
+
+[node name="dont get it2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-2474, 285)
+speaker_text = Array[String](["Well, as long as he's happier."])
+option_branches = [NodePath("../dont get it3")]
+voice = "worm_voice"
+
+[node name="dont get it3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_t3q51")]
+position = Vector2(-2474, 541)
+speaker_text = Array[String](["I feel bad about all the time he's spent alone."])
+option_branches = [NodePath("../dont get it4")]
+voice = "worm_voice"
+
+[node name="dont get it4" parent="." instance=ExtResource("2_t3q51")]
+position = Vector2(-2474, 797)
+speaker_text = Array[String](["We'll get out of this sewer one day..."])
+voice = "worm_voice"

@@ -1,0 +1,134 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba1yuc1osurro"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_nad2u"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_wu47u"]
+
+[node name="sebastian_start" type="Node2D"]
+script = ExtResource("1_nad2u")
+trunk = NodePath("trunk")
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
+speaker_text = Array[String](["Oh, hey."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2")]
+voice = "worm_voice_2"
+bypass_distance_check = true
+
+[node name="has_hat (unimplemented)" type="Node" parent="trunk"]
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["This TV is AWESOME!"])
+speaker_portrait = null
+option_branches = [NodePath("../trunk3")]
+voice = "worm_voice_2"
+bypass_distance_check = true
+
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
+position = Vector2(2, 474)
+speaker_text = Array[String](["Have you seen this one channel?"])
+option_branches = [NodePath("../trunk4")]
+voice = "worm_voice_2"
+bypass_distance_check = true
+
+[node name="trunk4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
+position = Vector2(2, 730)
+speaker_text = Array[String](["The War Channel?"])
+option_branches = [NodePath("../trunk5")]
+voice = "worm_voice_2"
+bypass_distance_check = true
+
+[node name="trunk5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
+position = Vector2(2, 986)
+speaker_text = Array[String](["I can't stop watching it."])
+option_branches = [NodePath("../trunk6")]
+voice = "worm_voice_2"
+bypass_distance_check = true
+
+[node name="trunk6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
+position = Vector2(2, 1242)
+speaker_text = Array[String](["You know..."])
+option_branches = [NodePath("../trunk7")]
+voice = "worm_voice_2"
+bypass_distance_check = true
+
+[node name="has_hat" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
+position = Vector2(320, 213)
+speaker_text = Array[String](["You're back..."])
+speaker_portrait = null
+option_branches = [NodePath("../has_hat2")]
+voice = "worm_voice_2"
+bypass_distance_check = true
+
+[node name="has_hat2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
+position = Vector2(320, 725)
+speaker_text = Array[String](["Is that-?"])
+option_branches = [NodePath("../has_hat3")]
+voice = "worm_voice_2"
+bypass_distance_check = true
+
+[node name="has_hat3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
+position = Vector2(320, 981)
+speaker_text = Array[String](["You have a light!"])
+option_branches = [null]
+voice = "worm_voice_2"
+bypass_distance_check = true
+
+[node name="trunk7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
+position = Vector2(2, 1498)
+speaker_text = Array[String](["If I wasn't stuck here, I think I'd be a cowboy!"])
+speech_options = Array[String](["Cool, bye.", "Your tail is blocking the way. Can you scooch?"])
+option_branches = [NodePath("../trunk8"), NodePath("../trunk9")]
+voice = "worm_voice_2"
+
+[node name="trunk8" parent="." instance=ExtResource("2_wu47u")]
+position = Vector2(-132, 1754)
+speaker_text = Array[String](["Bye!"])
+voice = "worm_voice_2"
+
+[node name="trunk9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
+position = Vector2(163, 1754)
+speaker_text = Array[String](["Oh."])
+option_branches = [NodePath("../trunk10")]
+voice = "worm_voice_2"
+
+[node name="trunk10" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
+position = Vector2(163, 2010)
+speaker_text = Array[String](["I guess I COULD..."])
+option_branches = [NodePath("../trunk11")]
+voice = "worm_voice_2"
+
+[node name="trunk11" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
+position = Vector2(163, 2266)
+speaker_text = Array[String](["But..."])
+option_branches = [NodePath("../trunk12")]
+voice = "worm_voice_2"
+
+[node name="trunk12" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
+position = Vector2(163, 2522)
+speaker_text = Array[String](["Maybe you could do one last thing first?"])
+option_branches = [NodePath("../trunk13")]
+voice = "worm_voice_2"
+
+[node name="trunk13" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
+position = Vector2(163, 2778)
+speaker_text = Array[String](["I want a cowboy hat."])
+option_branches = [NodePath("../trunk14")]
+voice = "worm_voice_2"
+
+[node name="trunk14" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
+position = Vector2(163, 3034)
+speaker_text = Array[String](["If you find one, bring it to me, will you?"])
+option_branches = [NodePath("../trunk15")]
+voice = "worm_voice_2"
+
+[node name="trunk15" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_wu47u")]
+position = Vector2(163, 3290)
+speaker_text = Array[String](["Then I'll uh-"])
+option_branches = [NodePath("../trunk16")]
+voice = "worm_voice_2"
+
+[node name="trunk16" parent="." instance=ExtResource("2_wu47u")]
+position = Vector2(163, 3546)
+speaker_text = Array[String](["I'll scooch out of the way for you."])
+voice = "worm_voice_2"

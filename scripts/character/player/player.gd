@@ -1547,6 +1547,9 @@ func give_pickupable(pickup : Node):
 	will_grab_object = pickup
 	handle_pick_up()
 
+func holding_object_is_in_group(group : String):
+	return holding_object.is_in_group(group)
+
 func handle_pick_up():
 	if(will_grab_object != null && !holding_object):
 		play_sound(pickup_sound)

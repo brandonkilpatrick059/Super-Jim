@@ -1,0 +1,129 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0bppw6jvgmke"]
+
+[ext_resource type="Script" uid="uid://dxsex64dsa880" path="res://scripts/dialog/dialog_tree.gd" id="1_yd14v"]
+[ext_resource type="PackedScene" uid="uid://ddq0vdqwrs23f" path="res://dialog/dialog trees/branch_template.tscn" id="2_b46ac"]
+[ext_resource type="Script" uid="uid://bso65u31wtpt1" path="res://scripts/utility/run_conditionals/is_holding_pizza.gd" id="3_1l1h2"]
+[ext_resource type="Script" uid="uid://cw48q6xuo2nnn" path="res://scripts/utility/run_scripts/advanced_run_scripts.gd" id="4_gsvad"]
+[ext_resource type="Script" uid="uid://bs05f0qjlfyh7" path="res://scripts/utility/run_scripts/player_put_down_and_queue_free.gd" id="5_j0ng5"]
+[ext_resource type="Script" uid="uid://do7vtf3yo4n81" path="res://scripts/utility/run_scripts/adjust_schedules_index.gd" id="6_b46ac"]
+
+[node name="sebastian_has_lamp" type="Node2D"]
+script = ExtResource("1_yd14v")
+trunk = NodePath("trunk")
+
+[node name="trunk3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_b46ac")]
+position = Vector2(2, -251)
+speaker_text = Array[String](["Ooooh..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk")]
+voice = "worm_voice_2"
+bypass_distance_check = true
+
+[node name="trunk" parent="." node_paths=PackedStringArray("option_branches", "conditional_option_script") instance=ExtResource("2_b46ac")]
+speaker_text = Array[String](["You again."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk2"), NodePath("../has_pizza")]
+voice = "worm_voice_2"
+conditional_option_script = NodePath("player_is_holding_pizza")
+bypass_distance_check = true
+
+[node name="player_is_holding_pizza" type="Node" parent="trunk"]
+script = ExtResource("3_1l1h2")
+
+[node name="trunk2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_b46ac")]
+position = Vector2(2, 218)
+speaker_text = Array[String](["My tummy hurts..."])
+speaker_portrait = null
+option_branches = [NodePath("../trunk4")]
+voice = "worm_voice_2"
+bypass_distance_check = true
+
+[node name="has_pizza" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_b46ac")]
+position = Vector2(320, 213)
+speaker_text = Array[String](["And you have a pizza!"])
+speaker_portrait = null
+option_branches = [NodePath("../has_pizza2")]
+voice = "worm_voice_2"
+bypass_distance_check = true
+
+[node name="trunk4" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_b46ac")]
+position = Vector2(2, 474)
+speaker_text = Array[String](["I need some real food-"])
+option_branches = [NodePath("../trunk5")]
+voice = "worm_voice_2"
+
+[node name="trunk5" parent="." instance=ExtResource("2_b46ac")]
+position = Vector2(2, 730)
+speaker_text = Array[String](["Like a pizza..."])
+voice = "worm_voice_2"
+
+[node name="has_pizza2" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_b46ac")]
+position = Vector2(320, 469)
+speaker_text = Array[String](["I'm so weak..."])
+option_branches = [NodePath("../has_pizza3")]
+voice = "worm_voice_2"
+
+[node name="has_pizza3" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_b46ac")]
+position = Vector2(320, 725)
+speaker_text = Array[String](["Feed me."])
+option_branches = [NodePath("../has_pizza4")]
+voice = "worm_voice_2"
+
+[node name="has_pizza4" parent="." node_paths=PackedStringArray("option_branches", "dialog_script") instance=ExtResource("2_b46ac")]
+position = Vector2(320, 981)
+speaker_text = Array[String](["Yummy!"])
+option_branches = [NodePath("../has_pizza5")]
+voice = "worm_voice_2"
+dialog_script = NodePath("script_runner")
+
+[node name="script_runner" type="Node" parent="has_pizza4" node_paths=PackedStringArray("script_nodes")]
+script = ExtResource("4_gsvad")
+script_nodes = [NodePath("set_delivery_failed"), NodePath("drop_and_queue_free_pizza"), NodePath("set_sebastian_to_has_pizza")]
+
+[node name="drop_and_queue_free_pizza" type="Node" parent="has_pizza4/script_runner"]
+script = ExtResource("5_j0ng5")
+
+[node name="set_delivery_failed" type="Node" parent="has_pizza4/script_runner"]
+script = ExtResource("6_b46ac")
+node_group = "cook"
+new_key = "delivery_failed"
+
+[node name="set_sebastian_to_has_pizza" type="Node" parent="has_pizza4/script_runner"]
+script = ExtResource("6_b46ac")
+node_group = "sebastian"
+new_key = "has_pizza"
+
+[node name="has_pizza5" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_b46ac")]
+position = Vector2(320, 1237)
+speaker_text = Array[String](["I'm feeling better now."])
+option_branches = [NodePath("../has_pizza6")]
+voice = "worm_voice_2"
+
+[node name="has_pizza6" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_b46ac")]
+position = Vector2(320, 1493)
+speaker_text = Array[String](["Do you think you could do me another favor?"])
+option_branches = [NodePath("../has_pizza7")]
+voice = "worm_voice_2"
+
+[node name="has_pizza7" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_b46ac")]
+position = Vector2(320, 1749)
+speaker_text = Array[String](["I've been trapped here so long with NOTHING to do."])
+option_branches = [NodePath("../has_pizza8")]
+voice = "worm_voice_2"
+
+[node name="has_pizza8" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_b46ac")]
+position = Vector2(320, 2005)
+speaker_text = Array[String](["Believe it or not, the boredom is the WORST thing about this mess!"])
+option_branches = [NodePath("../has_pizza9")]
+voice = "worm_voice_2"
+
+[node name="has_pizza9" parent="." node_paths=PackedStringArray("option_branches") instance=ExtResource("2_b46ac")]
+position = Vector2(320, 2261)
+speaker_text = Array[String](["Could you bring something to keep me occupied?"])
+option_branches = [NodePath("../has_pizza10")]
+voice = "worm_voice_2"
+
+[node name="has_pizza10" parent="." instance=ExtResource("2_b46ac")]
+position = Vector2(320, 2517)
+speaker_text = Array[String](["Like, maybe a TV?"])
+voice = "worm_voice_2"

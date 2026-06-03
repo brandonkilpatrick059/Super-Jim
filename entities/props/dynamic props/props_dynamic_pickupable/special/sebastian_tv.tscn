@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbdtbupd6bwp2"]
+
+[ext_resource type="Script" uid="uid://bkt2mviy7eonh" path="res://scripts/entities/pickupable.gd" id="1_jtbi7"]
+[ext_resource type="SpriteFrames" uid="uid://d1gbkm2ewgr3h" path="res://sprites/spritesheets/spriteframes/TV/TV.tres" id="2_jtbi7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_867ch"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uohqg"]
+radius = 8.0
+
+[node name="sebastian_tv" type="RigidBody2D" groups=["pickupable", "sebastian_tv"]]
+position = Vector2(0, -4)
+collision_layer = 8
+collision_mask = 4113
+mass = 4.0
+physics_material_override = SubResource("PhysicsMaterial_867ch")
+lock_rotation = true
+linear_damp = 2.0
+script = ExtResource("1_jtbi7")
+has_home = false
+force_factor = 1000
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = ExtResource("2_jtbi7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_uohqg")

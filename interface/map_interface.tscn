@@ -526,7 +526,6 @@ script = ExtResource("6_sq4gs")
 tab_name = "Longview Apartments"
 
 [node name="Fallsboro" type="Sprite2D" parent="maps"]
-visible = false
 material = ExtResource("4_7qnfr")
 position = Vector2(-121, 3)
 texture = ExtResource("17_gg6p4")
@@ -540,7 +539,7 @@ script = ExtResource("6_sq4gs")
 tab_name = "Canal Town North"
 linked_map = "Canal Town North"
 
-[node name="Abandoned Tower  (link)" type="Sprite2D" parent="maps/Fallsboro"]
+[node name="Abandoned Tower (link)" type="Sprite2D" parent="maps/Fallsboro"]
 material = ExtResource("4_7qnfr")
 position = Vector2(-98, 8)
 texture = ExtResource("6_04t1u")
@@ -877,6 +876,7 @@ script = ExtResource("6_sq4gs")
 tab_name = "823 Cliffside"
 
 [node name="Utility Tunnels" type="Sprite2D" parent="maps"]
+visible = false
 material = ExtResource("4_7qnfr")
 position = Vector2(-121, 3)
 texture = ExtResource("23_oejg4")

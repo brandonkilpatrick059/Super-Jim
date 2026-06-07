@@ -38,7 +38,6 @@ var doors_delivered_today : Array[Node]
 func _ready() -> void:
 	set_up_tutorial_doors()
 
-
 func set_up_tutorial_doors():
 	var delivery_doors = get_tree().get_nodes_in_group("delivery_door")
 	var iterator = 0
